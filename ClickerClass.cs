@@ -4,7 +4,7 @@ using ClickerClass.Projectiles;
 
 namespace ClickerClass
 {
-	class ClickerClass : Mod
+	public class ClickerClass : Mod
 	{
 		public static ModHotKey AutoClickKey;
 		

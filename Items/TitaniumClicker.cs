@@ -24,11 +24,11 @@ namespace ClickerClass.Items
 			radiusBoost = 3.25f;
 			clickerColorItem = new Color(150, 150, 150, 0);
 			clickerDustColor = 146;
-			itemClickerAmount = 15;
+			itemClickerAmount = 12;
 			itemClickerEffect = "Razor's Edge";
 			itemClickerColorEffect = "a2a2a2";
 			
-			item.damage = 42;
+			item.damage = 44;
 			item.width = 30;
 			item.height = 30;
 			item.useTime = 1;
@@ -46,7 +46,7 @@ namespace ClickerClass.Items
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.TitaniumBar, 8);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

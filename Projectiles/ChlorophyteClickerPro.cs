@@ -17,7 +17,7 @@ namespace ClickerClass.Projectiles
 			projectile.penetrate = -1;
 			projectile.timeLeft = 180;
 			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 20;
+			projectile.localNPCHitCooldown = 45;
 		}
 		
 		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)

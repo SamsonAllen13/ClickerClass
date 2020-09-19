@@ -46,7 +46,7 @@ namespace ClickerClass.Items
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.Ichor, 16);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

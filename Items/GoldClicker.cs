@@ -46,7 +46,7 @@ namespace ClickerClass.Items
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.GoldBar, 8);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

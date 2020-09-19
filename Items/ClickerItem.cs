@@ -187,9 +187,9 @@ namespace ClickerClass.Items
 					if (itemClickerEffect.Contains("Splash") || wildMagic == 7)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 86);
-						for (int k = 0; k < 5; k++)
+						for (int k = 0; k < 6; k++)
 						{
-							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), mod.ProjectileType("SlickClickerPro"), (int)(damage * 0.25f), knockBack, player.whoAmI);
+							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), mod.ProjectileType("SlickClickerPro"), (int)(damage * 0.75f), knockBack, player.whoAmI);
 						}
 					}
 					
@@ -324,7 +324,7 @@ namespace ClickerClass.Items
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 22);
 						for (int k = 0; k < 5; k++)
 						{
-							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("TitaniumClickerPro"), (int)(damage * 0.5f), 0f, player.whoAmI, k, 0f);
+							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("TitaniumClickerPro"), (int)(damage * 0.75f), 0f, player.whoAmI, k, 0f);
 						}
 						for (int k = 0; k < 15; k++)
 						{

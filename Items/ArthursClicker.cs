@@ -24,11 +24,11 @@ namespace ClickerClass.Items
 			radiusBoost = 3.5f;
 			clickerColorItem = new Color(255, 225, 0, 0);
 			clickerDustColor = 87;
-			itemClickerAmount = 15;
+			itemClickerAmount = 12;
 			itemClickerEffect = "Holy Nova";
 			itemClickerColorEffect = "fed905";
 			
-			item.damage = 48;
+			item.damage = 50;
 			item.width = 30;
 			item.height = 30;
 			item.useTime = 1;
@@ -46,7 +46,7 @@ namespace ClickerClass.Items
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.HallowedBar, 8);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

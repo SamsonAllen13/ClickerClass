@@ -24,11 +24,11 @@ namespace ClickerClass.Items
 			radiusBoost = 2.35f;
 			clickerColorItem = new Color(100, 175, 75, 0);
 			clickerDustColor = 39;
-			itemClickerAmount = 5;
+			itemClickerAmount = 6;
 			itemClickerEffect = "Stinging Thorn";
 			itemClickerColorEffect = "65e716";
 			
-			item.damage = 14;
+			item.damage = 13;
 			item.width = 30;
 			item.height = 30;
 			item.useTime = 1;
@@ -47,7 +47,7 @@ namespace ClickerClass.Items
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.JungleSpores, 8);
 			recipe.AddIngredient(ItemID.Stinger, 2);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

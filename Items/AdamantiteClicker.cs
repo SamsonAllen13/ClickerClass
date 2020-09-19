@@ -24,11 +24,11 @@ namespace ClickerClass.Items
 			radiusBoost = 3.15f;
 			clickerColorItem = new Color(255, 25, 25, 0);
 			clickerDustColor = 50;
-			itemClickerAmount = 6;
+			itemClickerAmount = 8;
 			itemClickerEffect = "True Strike";
 			itemClickerColorEffect = "ff0606";
 			
-			item.damage = 38;
+			item.damage = 32;
 			item.width = 30;
 			item.height = 30;
 			item.useTime = 1;
@@ -46,7 +46,7 @@ namespace ClickerClass.Items
 		{
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(ItemID.AdamantiteBar, 8);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

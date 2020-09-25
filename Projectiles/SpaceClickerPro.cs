@@ -7,7 +7,7 @@ using Terraria.Graphics.Shaders;
 
 namespace ClickerClass.Projectiles
 {
-	public class SpaceClickerPro : ModProjectile
+	public class SpaceClickerPro : ClickerProjectile
 	{
 		public int timer = 0;
 		public float rotation = 0f;
@@ -15,6 +15,7 @@ namespace ClickerClass.Projectiles
 		
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 22;
 			projectile.height = 22;
 			projectile.aiStyle = -1;

@@ -8,7 +8,7 @@ using ClickerClass.Utilities;
 
 namespace ClickerClass.Projectiles
 {
-	public class PointyClickerPro : ModProjectile
+	public class PointyClickerPro : ClickerProjectile
 	{
 		public override void SetStaticDefaults()
 		{
@@ -18,6 +18,7 @@ namespace ClickerClass.Projectiles
 
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 14;
 			projectile.height = 14;
 			projectile.aiStyle = -1;

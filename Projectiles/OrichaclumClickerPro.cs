@@ -7,13 +7,14 @@ using Terraria.Graphics.Shaders;
 
 namespace ClickerClass.Projectiles
 {
-	public class OrichaclumClickerPro : ModProjectile
+	public class OrichaclumClickerPro : ClickerProjectile
 	{
 		public int timer = 0;
 		public float rotation = 0f;
 		
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 20;
 			projectile.height = 20;
 			projectile.aiStyle = -1;

@@ -5,10 +5,11 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
-	public class LihzarhdClickerPro : ModProjectile
+	public class LihzarhdClickerPro : ClickerProjectile
 	{
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 128;
 			projectile.height = 128;
 			projectile.aiStyle = -1;

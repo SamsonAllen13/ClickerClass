@@ -22,7 +22,7 @@ namespace ClickerClass.Items
 
 		public override void UpdateAccessory(Player player, bool hideVisual) 
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerDamage += 2;
+			player.GetModPlayer<ClickerPlayer>().clickerDamageFlat += 2;
 		}
 	}
 }

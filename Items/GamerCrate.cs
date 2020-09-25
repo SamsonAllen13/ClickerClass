@@ -33,7 +33,7 @@ namespace ClickerClass.Items
 		public override void UpdateAccessory(Player player, bool hideVisual) 
 		{
 			player.GetModPlayer<ClickerPlayer>().clickerRadius += 1f;
-			player.GetModPlayer<ClickerPlayer>().clickerDamagePercent += 0.10f;
+			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.10f;
 			player.GetModPlayer<ClickerPlayer>().clickerBonusPercent -= 0.25f;
 			player.GetModPlayer<ClickerPlayer>().clickerAutoClickAcc = true;
 		}

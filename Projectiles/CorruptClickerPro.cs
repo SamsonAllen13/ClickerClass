@@ -7,10 +7,11 @@ using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
-	public class CorruptClickerPro : ModProjectile
+	public class CorruptClickerPro : ClickerProjectile
 	{
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 250;
 			projectile.height = 250;
 			projectile.penetrate = -1;

@@ -26,11 +26,11 @@ namespace ClickerClass
 		public bool clickerSelected = false;
 		public bool clickerAutoClickAcc = false;
 		public bool clickerAutoClick = false;
-		public float clickerDamagePercent = 1f;
+		public float clickerDamage = 1f;
 		public float clickerBonusPercent = 1f;
 		public float clickerRadius = 1f;
 		public int clickerTotal = 0;
-		public int clickerDamage = 0;
+		public int clickerDamageFlat = 0;
 		public int clickerBonus = 0;
 		public int clickerCrit = 4;
 		public int clickAmount = 0;
@@ -41,10 +41,10 @@ namespace ClickerClass
 			clickerInRange = false;
 			clickerSelected = false;
 			clickerAutoClickAcc = false;
-			clickerDamagePercent = 1f;
+			clickerDamage = 1f;
 			clickerBonusPercent = 1f;
 			clickerRadius = 1f;
-			clickerDamage = 0;
+			clickerDamageFlat = 0;
 			clickerCrit = 4;
 			clickerBonus = 0;
 		}

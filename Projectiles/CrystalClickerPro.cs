@@ -7,10 +7,11 @@ using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
-	public class CrystalClickerPro : ModProjectile
+	public class CrystalClickerPro : ClickerProjectile
 	{
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 8;
 			projectile.height = 8;
 			projectile.penetrate = -1;

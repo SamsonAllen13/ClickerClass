@@ -4,10 +4,11 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
-	public class ChlorophyteClickerPro : ModProjectile
+	public class ChlorophyteClickerPro : ClickerProjectile
 	{
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 32;
 			projectile.height = 32;
 			projectile.aiStyle = -1;

@@ -6,10 +6,11 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
-	public class UmbralClickerPro : ModProjectile
+	public class UmbralClickerPro : ClickerProjectile
 	{
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 10;
 			projectile.height = 10;
 			projectile.aiStyle = -1;

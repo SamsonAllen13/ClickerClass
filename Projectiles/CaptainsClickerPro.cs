@@ -7,10 +7,11 @@ using Terraria.Graphics.Shaders;
 
 namespace ClickerClass.Projectiles
 {
-	public class CaptainsClickerPro : ModProjectile
+	public class CaptainsClickerPro : ClickerProjectile
 	{
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 18;
 			projectile.height = 18;
 			projectile.aiStyle = -1;

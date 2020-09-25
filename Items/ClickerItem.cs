@@ -62,8 +62,8 @@ namespace ClickerClass.Items
 		{
 			if (isClicker)
 			{
-				flat += player.GetModPlayer<ClickerPlayer>().clickerDamage;
-				mult *= player.GetModPlayer<ClickerPlayer>().clickerDamagePercent;
+				flat += player.GetModPlayer<ClickerPlayer>().clickerDamageFlat;
+				mult *= player.GetModPlayer<ClickerPlayer>().clickerDamage;
 			}
 		}
 

@@ -36,6 +36,7 @@ namespace ClickerClass.Items
 			item.useStyle = 5;
 			item.holdStyle = 3;
 			item.knockBack = 2f;
+			item.noMelee = true;
 			item.value = 1000;
 			item.rare = 3;
 			item.shoot = mod.ProjectileType("ClickDamage");

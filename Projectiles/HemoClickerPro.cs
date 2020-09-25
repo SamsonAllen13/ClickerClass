@@ -6,10 +6,11 @@ using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
-	public class HemoClickerPro : ModProjectile
+	public class HemoClickerPro : ClickerProjectile
 	{
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 8;
 			projectile.height = 8;
 			projectile.penetrate = -1;

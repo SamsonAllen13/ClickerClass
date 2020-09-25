@@ -6,10 +6,11 @@ using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
-	public class ClickDamage : ModProjectile
+	public class ClickDamage : ClickerProjectile
 	{
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 30;
 			projectile.height = 30;
 			projectile.aiStyle = -1;

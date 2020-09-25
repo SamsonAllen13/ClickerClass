@@ -8,10 +8,11 @@ using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
-	public class TheClickerPro : ModProjectile
+	public class TheClickerPro : ClickerProjectile
 	{
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 40;
 			projectile.height = 40;
 			projectile.aiStyle = -1;

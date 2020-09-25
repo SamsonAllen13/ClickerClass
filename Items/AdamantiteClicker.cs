@@ -24,7 +24,7 @@ namespace ClickerClass.Items
 			radiusBoost = 3.15f;
 			clickerColorItem = new Color(255, 25, 25, 0);
 			clickerDustColor = 50;
-			itemClickerAmount = 8;
+			itemClickerAmount = 10;
 			itemClickerEffect = "True Strike";
 			itemClickerColorEffect = "ff0606";
 			
@@ -36,6 +36,7 @@ namespace ClickerClass.Items
 			item.useStyle = 5;
 			item.holdStyle = 3;
 			item.knockBack = 1f;
+			item.noMelee = true;
 			item.value = 1000;
 			item.rare = 4;
 			item.shoot = mod.ProjectileType("ClickDamage");

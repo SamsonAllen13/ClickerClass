@@ -8,13 +8,14 @@ using System.Linq;
 
 namespace ClickerClass.Projectiles
 {
-	public class HighTechClickerPro : ModProjectile
+	public class HighTechClickerPro : ClickerProjectile
 	{
 		List<int> targets = new List<int>();
 		public int timer = 0;
 
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 10;
 			projectile.height = 10;
 			projectile.aiStyle = -1;

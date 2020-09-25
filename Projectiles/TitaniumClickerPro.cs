@@ -8,7 +8,7 @@ using Terraria.Graphics.Shaders;
 
 namespace ClickerClass.Projectiles
 {
-	public class TitaniumClickerPro : ModProjectile
+	public class TitaniumClickerPro : ClickerProjectile
 	{
 		public int radiusIncrease = 0;
 		public int timer = 0;
@@ -17,6 +17,7 @@ namespace ClickerClass.Projectiles
 		
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 20;
 			projectile.height = 20;
 			projectile.aiStyle = -1;
@@ -26,7 +27,7 @@ namespace ClickerClass.Projectiles
 			projectile.timeLeft = 240;
 			projectile.extraUpdates = 1;
 			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 30;
+			projectile.localNPCHitCooldown = 20;
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 30;
 			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
 		}

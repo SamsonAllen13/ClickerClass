@@ -7,10 +7,11 @@ using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
-	public class DarkClickerPro : ModProjectile
+	public class DarkClickerPro : ClickerProjectile
 	{
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 200;
 			projectile.height = 200;
 			projectile.penetrate = -1;

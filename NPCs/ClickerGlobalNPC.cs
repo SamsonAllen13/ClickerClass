@@ -166,7 +166,30 @@ namespace ClickerClass.NPCs
 			{
 				if (npc.type == NPCID.MoonLordCore)
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("TheClicker"), 1, false, -1);
+					Item.NewItem(npc.Hitbox, mod.ItemType("LordsClicker"), 1, false, -1);
+					
+					if (Main.rand.NextBool(5))
+					{
+						Item.NewItem(npc.Hitbox, mod.ItemType("TheClicker"), 1, false, -1);
+					}
+				}
+				if (npc.type == NPCID.WallofFlesh)
+				{
+					if (Main.rand.NextBool(4))
+					{
+						Item.NewItem(npc.Hitbox, mod.ItemType("ClickerEmblem"), 1, false, -1);
+					}
+				}
+			}
+			if (npc.type == NPCID.LunarTowerStardust || npc.type == NPCID.LunarTowerSolar || npc.type == NPCID.LunarTowerVortex || npc.type == NPCID.LunarTowerNebula)
+			{
+				if (Main.expertMode)
+				{
+					Item.NewItem(npc.Hitbox, mod.ItemType("MiceFragment"), Main.rand.Next(5, 23));
+				}
+				else
+				{
+					Item.NewItem(npc.Hitbox, mod.ItemType("MiceFragment"), Main.rand.Next(3, 16));
 				}
 			}
 		}

@@ -25,7 +25,7 @@ namespace ClickerClass.Items
 			radiusBoost = 6f;
 			clickerColorItem = new Color(100, 255, 200, 0);
 			clickerDustColor = 110;
-			itemClickerAmount = 20;
+			itemClickerAmount = 15;
 			itemClickerEffect = "Conqueror";
 			itemClickerColorEffect = "adfcdc";
 			
@@ -42,18 +42,6 @@ namespace ClickerClass.Items
 			item.rare = 10;
 			item.shoot = mod.ProjectileType("ClickDamage");
 			item.shootSpeed = 1f;
-		}
-		
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.FragmentStardust, 12);
-			recipe.AddIngredient(ItemID.FragmentVortex, 12);
-			recipe.AddIngredient(ItemID.FragmentNebula, 12);
-			recipe.AddIngredient(ItemID.FragmentSolar, 12);
-			recipe.AddTile(TileID.LunarCraftingStation);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
 		}
 	}
 }

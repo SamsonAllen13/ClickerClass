@@ -1,4 +1,4 @@
 author = DivermanSam
-version = 1.1.6
+version = 1.1.7
 displayName = The Clicker Class
 homepage = https://discord.com/invite/ZyYdrZg

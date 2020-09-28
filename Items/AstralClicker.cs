@@ -11,11 +11,11 @@ using ClickerClass.Buffs;
 
 namespace ClickerClass.Items
 {
-	public class HighTechClicker : ClickerItem
+	public class AstralClicker : ClickerItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("High Tech Clicker");
+			DisplayName.SetDefault("Astral Clicker");
 			Tooltip.SetDefault("Click on an enemy within range and sight to damage them");
 		}
 		
@@ -23,13 +23,13 @@ namespace ClickerClass.Items
 		{
 			isClicker = true;
 			radiusBoost = 6f;
-			clickerColorItem = new Color(75, 255, 200, 0);
-			clickerDustColor = 226;
-			itemClickerAmount = 10;
-			itemClickerEffect = "Discharge";
-			itemClickerColorEffect = "59ffcd";
+			clickerColorItem = new Color(150, 150, 225, 0);
+			clickerDustColor = mod.DustType("MiceDust");
+			itemClickerAmount = 15;
+			itemClickerEffect = "Spiral";
+			itemClickerColorEffect = "8d8deb";
 			
-			item.damage = 90;
+			item.damage = 82;
 			item.width = 30;
 			item.height = 30;
 			item.useTime = 1;
@@ -39,9 +39,18 @@ namespace ClickerClass.Items
 			item.knockBack = 1f;
 			item.noMelee = true;
 			item.value = 1000;
-			item.rare = 8;
+			item.rare = 10;
 			item.shoot = mod.ProjectileType("ClickDamage");
 			item.shootSpeed = 1f;
+		}
+		
+		public override void AddRecipes()
+		{
+			ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(null, "MiceFragment", 18);
+			recipe.AddTile(TileID.LunarCraftingStation);
+			recipe.SetResult(this);
+			recipe.AddRecipe();
 		}
 	}
 }

@@ -31,8 +31,8 @@ namespace ClickerClass.Items
 					if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick)
 					{
 						item.autoReuse = true;
-						item.useTime = 9;
-						item.useAnimation = 9;
+						item.useTime = 10;
+						item.useAnimation = 10;
 					}
 					else
 					{
@@ -75,10 +75,83 @@ namespace ClickerClass.Items
 			}
 		}
 		
+		public override bool AltFunctionUse(Player player)
+		{
+			if (isClicker)
+			{
+				if (player.GetModPlayer<ClickerPlayer>().clickerMiceSet)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
+			}
+			return base.AltFunctionUse(player);
+		}
+		
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) 
 		{
 			if (isClicker)
 			{
+				if (player.altFunctionUse == 2)
+				{
+					if (player.GetModPlayer<ClickerPlayer>().clickerMiceSet && player.GetModPlayer<ClickerPlayer>().clickerMiceSetTimer <= 0)
+					{
+						if (!itemClickerEffect.Contains("Phase Reach"))
+						{
+							if (Vector2.Distance(Main.MouseWorld, player.Center) < 100 * player.GetModPlayer<ClickerPlayer>().clickerRadius && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
+							{
+								Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 115);
+								Main.SetCameraLerp(0.1f, 0);
+								player.position = new Vector2(Main.MouseWorld.X - (player.width / 2), Main.MouseWorld.Y - (player.height / 2));
+								player.fallStart = (int)(player.position.Y / 16f);
+								player.GetModPlayer<ClickerPlayer>().clickerMiceSetTimer = 60;
+								
+								float num102 = 50f;
+								int num103 = 0;
+								while ((float)num103 < num102)
+								{
+									Vector2 vector12 = Vector2.UnitX * 0f;
+									vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(2f, 2f);
+									vector12 = vector12.RotatedBy((double)Vector2.Zero.ToRotation(), default(Vector2));
+									int num104 = Dust.NewDust(Main.MouseWorld, 0, 0, mod.DustType("MiceDust"), 0f, 0f, 0, default(Color), 2f);
+									Main.dust[num104].noGravity = true;
+									Main.dust[num104].position = Main.MouseWorld + vector12;
+									Main.dust[num104].velocity = Vector2.Zero * 0f + vector12.SafeNormalize(Vector2.UnitY) * 4f;
+									int num = num103;
+									num103 = num + 1;
+								}
+							}
+						}
+						else
+						{
+							Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 115);
+							Main.SetCameraLerp(0.1f, 0);
+							player.position = new Vector2(Main.MouseWorld.X - (player.width / 2), Main.MouseWorld.Y - (player.height / 2));
+							player.fallStart = (int)(player.position.Y / 16f);
+							player.GetModPlayer<ClickerPlayer>().clickerMiceSetTimer = 60;
+							
+							float num102 = 40f;
+							int num103 = 0;
+							while ((float)num103 < num102)
+							{
+								Vector2 vector12 = Vector2.UnitX * 0f;
+								vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(2f, 2f);
+								vector12 = vector12.RotatedBy((double)Vector2.Zero.ToRotation(), default(Vector2));
+								int num104 = Dust.NewDust(Main.MouseWorld, 0, 0, mod.DustType("MiceDust"), 0f, 0f, 0, default(Color), 1.75f);
+								Main.dust[num104].noGravity = true;
+								Main.dust[num104].position = Main.MouseWorld + vector12;
+								Main.dust[num104].velocity = Vector2.Zero * 0f + vector12.SafeNormalize(Vector2.UnitY) * 4f;
+								int num = num103;
+								num103 = num + 1;
+							}
+						}
+					}
+					return false;
+				}
+				
 				//Base 
 				Main.PlaySound(SoundID.MenuTick, player.position);
 				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
@@ -97,7 +170,7 @@ namespace ClickerClass.Items
 					int wildMagic = 0;
 					if (itemClickerEffect.Contains("Wild Magic"))
 					{
-						wildMagic = 1 + Main.rand.Next(26);
+						wildMagic = 1 + Main.rand.Next(25);
 					}
 					
 					// Metal Double Click Effect
@@ -480,8 +553,35 @@ namespace ClickerClass.Items
 						}
 					}
 					
+					// Mice Clicker Effect
+					if (itemClickerEffect.Contains("Collision"))
+					{
+						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 105);
+						for (int k = 0; k < 8; k++)
+						{
+							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f), mod.ProjectileType("MiceClickerPro"), (int)(damage * 0.5f), knockBack, player.whoAmI);
+						}
+						for (int k = 0; k < 10; k++)
+						{
+							Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, mod.DustType("MiceDust"), Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
+							dust.noGravity = true;
+						}
+					}
+					
+					// Astral Clicker Effect
+					if (itemClickerEffect.Contains("Spiral"))
+					{
+						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 117);
+						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("AstralClickerPro"), (int)(damage * 3f), 0f, player.whoAmI);
+						for (int k = 0; k < 20; k++)
+						{
+							Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, mod.DustType("MiceDust"), Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
+							dust.noGravity = true;
+						}
+					}
+					
 					// Moon Lord Clicker Effect
-					if (itemClickerEffect.Contains("Conqueror") || wildMagic == 26)
+					if (itemClickerEffect.Contains("Conqueror"))
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 88);
 						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("LordsClickerPro"), (int)(damage * 2f), 0f, player.whoAmI);

@@ -20,7 +20,17 @@ namespace ClickerClass.Items
 					switch (arg)
 					{
 						case ItemID.MoonLordBossBag:
-							player.QuickSpawnItem(ModContent.ItemType<TheClicker>());
+							player.QuickSpawnItem(ModContent.ItemType<LordsClicker>());
+							if (Main.rand.NextBool(5))
+							{
+								player.QuickSpawnItem(ModContent.ItemType<TheClicker>());
+							}
+							break;
+						case ItemID.WallOfFleshBossBag:
+							if (Main.rand.NextBool(4))
+							{
+								player.QuickSpawnItem(ModContent.ItemType<ClickerEmblem>());
+							}
 							break;
 					}
 					break;

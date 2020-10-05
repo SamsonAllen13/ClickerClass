@@ -113,9 +113,9 @@ namespace ClickerClass
 			if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
 			{
 				clickerSelected = true;
-				if (clickerItem.radiusBoost > 0f)
+				if (clickerItem.radiusBoost > 0f || clickerItem.radiusBoostPrefix > 0f)
 				{
-					clickerRadius += clickerItem.radiusBoost;
+					clickerRadius += clickerItem.radiusBoost + clickerItem.radiusBoostPrefix;
 				}
 				if (Vector2.Distance(Main.MouseWorld, player.Center) < 100 * clickerRadius && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
 				{

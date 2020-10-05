@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using ClickerClass.Items;
+using ClickerClass.Prefixes;
 using ClickerClass.NPCs;
 
 namespace ClickerClass.Items
@@ -39,6 +40,21 @@ namespace ClickerClass.Items
 		
 		public override void UpdateEquip(Item item, Player player)
 		{
+			switch (item.prefix)
+			{
+				case PrefixID.Precise:
+					player.GetModPlayer<ClickerPlayer>().clickerCrit += 2;
+					break;
+				case PrefixID.Lucky:
+					player.GetModPlayer<ClickerPlayer>().clickerCrit += 4;
+					break;
+			}
+
+			if (item.prefix == ModContent.PrefixType<ClickerRadius>())
+			{
+				player.GetModPlayer<ClickerPlayer>().clickerRadius += 0.3f;
+			}
+			
 			switch (item.type)
 			{
 				case ItemID.Gi:
@@ -116,6 +132,24 @@ namespace ClickerClass.Items
 				case ItemID.CelestialShell:
 					player.GetModPlayer<ClickerPlayer>().clickerCrit += 2;
 					break;
+			}
+		}
+		
+		//Tooltip stuff
+		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
+		{
+			// Clicker radius accessory prefix tooltip
+			if (item.accessory && !item.social && item.prefix == ModContent.PrefixType<ClickerRadius>())
+			{
+				int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(mod.Name))
+				&& (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
+				if (index != -1)
+				{
+					tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccClickerRadius", "+15% base clicker radius")
+					{
+						isModifier = true
+					});
+				}
 			}
 		}
 	}

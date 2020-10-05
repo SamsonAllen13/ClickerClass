@@ -29,7 +29,7 @@ namespace ClickerClass.Projectiles
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			target.AddBuff(BuffID.ShadowFlame, 120, false);
+			target.AddBuff(BuffID.ShadowFlame, 60, false);
 
 			for (int k = 0; k < 5; k++)
 			{

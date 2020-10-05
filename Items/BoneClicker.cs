@@ -28,7 +28,7 @@ namespace ClickerClass.Items
 			itemClickerEffect = "Lacerate";
 			itemClickerColorEffect = "e1c78e";
 			
-			item.damage = 12;
+			item.damage = 13;
 			item.width = 30;
 			item.height = 30;
 			item.useTime = 1;
@@ -37,7 +37,7 @@ namespace ClickerClass.Items
 			item.holdStyle = 3;
 			item.knockBack = 2f;
 			item.noMelee = true;
-			item.value = 1000;
+			item.value = 15000;
 			item.rare = 1;
 			item.shoot = mod.ProjectileType("ClickDamage");
 			item.shootSpeed = 1f;

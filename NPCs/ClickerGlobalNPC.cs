@@ -120,9 +120,16 @@ namespace ClickerClass.NPCs
 		
 		public override void NPCLoot(NPC npc)
 		{
-			if ((npc.type == NPCID.BloodZombie || npc.type == NPCID.Drippler) && npc.value > 0f)
+			if (npc.type == NPCID.GoblinSorcerer && npc.value > 0f)
 			{
 				if (Main.rand.NextBool(20))
+				{
+					Item.NewItem(npc.Hitbox, mod.ItemType("ShadowyClicker"), 1, false, -1);
+				}
+			}
+			if ((npc.type == NPCID.BloodZombie || npc.type == NPCID.Drippler) && npc.value > 0f)
+			{
+				if (Main.rand.NextBool(25))
 				{
 					Item.NewItem(npc.Hitbox, mod.ItemType("HemoClicker"), 1, false, -1);
 				}
@@ -136,7 +143,7 @@ namespace ClickerClass.NPCs
 			}
 			if (npc.type == NPCID.PirateCaptain && npc.value > 0f)
 			{
-				if (Main.rand.NextBool(20))
+				if (Main.rand.NextBool(8))
 				{
 					Item.NewItem(npc.Hitbox, mod.ItemType("CaptainsClicker"), 1, false, -1);
 				}
@@ -157,7 +164,7 @@ namespace ClickerClass.NPCs
 			}
 			if (npc.type == NPCID.MartianSaucerCore && npc.value > 0f)
 			{
-				if (Main.rand.NextBool(20))
+				if (Main.rand.NextBool(5))
 				{
 					Item.NewItem(npc.Hitbox, mod.ItemType("HighTechClicker"), 1, false, -1);
 				}
@@ -211,6 +218,9 @@ namespace ClickerClass.NPCs
 					break;
 				case NPCID.GoblinTinkerer:
 					shop.item[nextSlot++].SetDefaults(mod.ItemType("MousePad"));
+					break;
+				case NPCID.SkeletonMerchant:
+					shop.item[nextSlot++].SetDefaults(mod.ItemType("CandleClicker"));
 					break;
 			}
 		}

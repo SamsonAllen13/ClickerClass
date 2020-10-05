@@ -70,8 +70,6 @@ namespace ClickerClass.Projectiles
 
 				if (target.active && (target.type < 548 || target.type > 578) && target.type != NPCID.TargetDummy && !target.friendly && !target.boss && target.CanBeChasedBy(projectile, false) && Vector2.Distance(projectile.Center, target.Center) < 150)
 				{
-					target.AddBuff(mod.BuffType("Embrittle"), 30, false);
-					
 					float num3 = 11f;
 					Vector2 vector = new Vector2(target.position.X + (float)(target.width / 2), target.position.Y + (float)(target.height / 2));
 					float num4 = projectile.Center.X - vector.X;

@@ -10,25 +10,25 @@ using Terraria.ObjectData;
 
 namespace ClickerClass.Items
 {
-	public class AdamantiteClicker : ClickerItem
+	public class CandleClicker : ClickerItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Adamantite Clicker");
+			DisplayName.SetDefault("Candle Clicker");
 			Tooltip.SetDefault("Click on an enemy within range and sight to damage them");
 		}
 		
 		public override void SetDefaults()
 		{
 			isClicker = true;
-			radiusBoost = 3.15f;
-			clickerColorItem = new Color(255, 25, 25, 0);
-			clickerDustColor = 50;
+			radiusBoost = 1.5f;
+			clickerColorItem = new Color(255, 175, 75, 0);
+			clickerDustColor = 55;
 			itemClickerAmount = 10;
-			itemClickerEffect = "True Strike";
-			itemClickerColorEffect = "ff0606";
+			itemClickerEffect = "Illuminate";
+			itemClickerColorEffect = "f5a54b";
 			
-			item.damage = 32;
+			item.damage = 8;
 			item.width = 30;
 			item.height = 30;
 			item.useTime = 1;
@@ -37,19 +37,10 @@ namespace ClickerClass.Items
 			item.holdStyle = 3;
 			item.knockBack = 1f;
 			item.noMelee = true;
-			item.value = 138000;
-			item.rare = 4;
+			item.value = 25000;
+			item.rare = 2;
 			item.shoot = mod.ProjectileType("ClickDamage");
 			item.shootSpeed = 1f;
-		}
-		
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.AdamantiteBar, 8);
-			recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
 		}
 	}
 }

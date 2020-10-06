@@ -37,11 +37,11 @@ namespace ClickerClass.Prefixes
 			if (base.Autoload(ref name))
 			{
 				ClickerPrefixes = new List<byte>();
-				AddClickerPrefix(ClickerPrefixType.Elite, "Elite", 1.2f, 0.3f, -1, 2);
-				AddClickerPrefix(ClickerPrefixType.Pro, "Pro", 1.15f, 0.2f, 0, 2);
+				AddClickerPrefix(ClickerPrefixType.Elite, "Elite", 1.15f, 0.3f, -1, 2);
+				AddClickerPrefix(ClickerPrefixType.Pro, "Pro", 1.1f, 0.2f, 0, 2);
 				AddClickerPrefix(ClickerPrefixType.Amateur, "Amateur", 1f, 0.3f, -1, 0);
 				AddClickerPrefix(ClickerPrefixType.Novice, "Novice", 1f, 0.2f, 0, 0);
-				AddClickerPrefix(ClickerPrefixType.Laggy, "Laggy", 1f, -0.2f, 0, 0);
+				AddClickerPrefix(ClickerPrefixType.Laggy, "Laggy", 0.9f, -0.2f, 0, 0);
 				AddClickerPrefix(ClickerPrefixType.Disconnected, "Disconnected", 0.8f, -0.3f, 1, 0);
 			}
 			return false;

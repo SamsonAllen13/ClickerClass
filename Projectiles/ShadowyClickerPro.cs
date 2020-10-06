@@ -6,15 +6,15 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
-	public class ShadowyClickerPro : ModProjectile
+	public class ShadowyClickerPro : ClickerProjectile
 	{
 		public override void SetDefaults()
 		{
+			isClickerProj = true;
 			projectile.width = 22;
 			projectile.height = 22;
 			projectile.aiStyle = 1;
 			projectile.friendly = true;
-			projectile.magic = true;
 			projectile.penetrate = -1;
 			projectile.timeLeft = 180;
 			aiType = ProjectileID.Bullet;

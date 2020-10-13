@@ -4,7 +4,7 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Items
 {
-	public class Soda : ModItem
+	public class Soda : ClickerItem
 	{
 		public override void SetStaticDefaults() 
 		{
@@ -13,6 +13,7 @@ namespace ClickerClass.Items
 
 		public override void SetDefaults() 
 		{
+			isClicker = true;
 			item.width = 20;
 			item.height = 20;
 			item.accessory = true;

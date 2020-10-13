@@ -24,6 +24,11 @@ namespace ClickerClass
 		public Color clickerColor = new Color(0, 0, 0 , 0);
 		public bool clickerMiceSetAllowed = true;
 		public bool clickerMiceSet = false;
+		public bool clickerPrecursorSetAllowed = true;
+		public bool clickerPrecursorSet = false;
+		public bool clickerOverclockSetAllowed = true;
+		public bool clickerOverclockSet = false;
+		public bool clickerStickyAcc = false;
 		public bool clickerInRange = false;
 		public bool clickerSelected = false;
 		public bool clickerAutoClickAcc = false;
@@ -43,6 +48,11 @@ namespace ClickerClass
 			clickerColor = new Color(0, 0, 0 , 0);
 			clickerMiceSetAllowed = true;
 			clickerMiceSet = false;
+			clickerPrecursorSetAllowed = true;
+			clickerPrecursorSet = false;
+			clickerOverclockSetAllowed = true;
+			clickerOverclockSet = false;
+			clickerStickyAcc = false;
 			clickerInRange = false;
 			clickerSelected = false;
 			clickerAutoClickAcc = false;
@@ -146,28 +156,66 @@ namespace ClickerClass
 
 			if (player.wereWolf || player.merman)
 			{
-				clickerMiceSet = false;
+				clickerMiceSetAllowed = false;
+				clickerPrecursorSetAllowed = false;
 			}
 			if (itemVanityHead.type > 0)
 			{
 				if (itemVanityHead.type != ModContent.ItemType<MiceMask>())
 				{
-					clickerMiceSet = false;
+					clickerMiceSetAllowed = false;
+				}
+				if (itemVanityHead.type != ModContent.ItemType<PrecursorHelmet>())
+				{
+					clickerPrecursorSetAllowed = false;
+				}
+				if (itemVanityHead.type != ModContent.ItemType<OverclockHelmet>())
+				{
+					clickerOverclockSetAllowed = false;
 				}
 			}
 			if (itemVanityBody.type > 0)
 			{
 				if (itemVanityBody.type != ModContent.ItemType<MiceSuit>())
 				{
-					clickerMiceSet = false;
+					clickerMiceSetAllowed = false;
+				}
+				if (itemVanityBody.type != ModContent.ItemType<PrecursorBreastplate>())
+				{
+					clickerPrecursorSetAllowed = false;
+				}
+				if (itemVanityBody.type != ModContent.ItemType<OverclockSuit>())
+				{
+					clickerOverclockSetAllowed = false;
 				}
 			}
 			if (itemVanityLegs.type > 0)
 			{
 				if (itemVanityLegs.type != ModContent.ItemType<MiceBoots>())
 				{
-					clickerMiceSet = false;
+					clickerMiceSetAllowed = false;
 				}
+				if (itemVanityLegs.type != ModContent.ItemType<PrecursorGreaves>())
+				{
+					clickerPrecursorSetAllowed = false;
+				}
+				if (itemVanityLegs.type != ModContent.ItemType<OverclockBoots>())
+				{
+					clickerOverclockSetAllowed = false;
+				}
+			}
+			
+			if (clickerOverclockSet && clickerOverclockSetAllowed)
+			{
+				Lighting.AddLight(player.position, 0.3f, 0.075f, 0.075f);
+			}
+			if (clickerPrecursorSet && clickerPrecursorSetAllowed)
+			{
+				Lighting.AddLight(player.position, 0.2f, 0.15f, 0.05f);
+			}
+			if (clickerMiceSet && clickerMiceSetAllowed)
+			{
+				Lighting.AddLight(player.position, 0.1f, 0.1f, 0.3f);
 			}
 		}
 		
@@ -255,6 +303,16 @@ namespace ClickerClass
 			{
 				texture = mod.GetTexture("Gores/MiceMask_Glow");
 			}
+			if (modPlayer.clickerPrecursorSet && modPlayer.clickerPrecursorSetAllowed)
+			{
+				texture = mod.GetTexture("Gores/PrecursorHelmet_Glow");
+				color *= 0.5f;
+			}
+			if (modPlayer.clickerOverclockSet && modPlayer.clickerOverclockSetAllowed)
+			{
+				texture = mod.GetTexture("Gores/OverclockHelmet_Glow");
+				color *= 0.75f;
+			}
 
 			if (texture == null)
 			{
@@ -294,6 +352,32 @@ namespace ClickerClass
 					texture = mod.GetTexture("Gores/MiceSuitFemale_Glow");
 				}
 			}
+			if (modPlayer.clickerPrecursorSet && modPlayer.clickerPrecursorSetAllowed)
+			{
+				if (drawPlayer.Male)
+				{
+					texture = mod.GetTexture("Gores/PrecursorBreastplate_Glow");
+					color *= 0.5f;
+				}
+				else
+				{
+					texture = mod.GetTexture("Gores/PrecursorBreastplateFemale_Glow");
+					color *= 0.5f;
+				}
+			}
+			if (modPlayer.clickerOverclockSet && modPlayer.clickerOverclockSetAllowed)
+			{
+				if (drawPlayer.Male)
+				{
+					texture = mod.GetTexture("Gores/OverclockSuit_Glow");
+					color *= 0.75f;
+				}
+				else
+				{
+					texture = mod.GetTexture("Gores/OverclockSuitFemale_Glow");
+					color *= 0.75f;
+				}
+			}
 
 			if (texture == null)
 			{
@@ -326,6 +410,16 @@ namespace ClickerClass
 			{
 				texture = mod.GetTexture("Gores/MiceSuitArm_Glow");
 			}
+			if (modPlayer.clickerPrecursorSet && modPlayer.clickerPrecursorSetAllowed)
+			{
+				texture = mod.GetTexture("Gores/PrecursorBreastplateArm_Glow");
+				color *= 0.5f;
+			}
+			if (modPlayer.clickerOverclockSet && modPlayer.clickerOverclockSetAllowed)
+			{
+				texture = mod.GetTexture("Gores/OverclockSuitArm_Glow");
+				color *= 0.75f;
+			}
 
 			if (texture == null)
 			{
@@ -357,6 +451,16 @@ namespace ClickerClass
 			if (modPlayer.clickerMiceSet && modPlayer.clickerMiceSetAllowed)
 			{
 				texture = mod.GetTexture("Gores/MiceBoots_Glow");
+			}
+			if (modPlayer.clickerPrecursorSet && modPlayer.clickerPrecursorSetAllowed)
+			{
+				texture = mod.GetTexture("Gores/PrecursorGreaves_Glow");
+				color *= 0.5f;
+			}
+			if (modPlayer.clickerOverclockSet && modPlayer.clickerOverclockSetAllowed)
+			{
+				texture = mod.GetTexture("Gores/OverclockBoots_Glow");
+				color *= 0.75f;
 			}
 			
 			if (texture == null)

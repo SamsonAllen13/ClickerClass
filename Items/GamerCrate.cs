@@ -9,7 +9,7 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Items
 {
-	public class GamerCrate : ModItem
+	public class GamerCrate : ClickerItem
 	{
 		public override void SetStaticDefaults() 
 		{
@@ -23,6 +23,8 @@ namespace ClickerClass.Items
 
 		public override void SetDefaults()
 		{
+			isClicker = true;
+			isClickerDisplay = true;
 			item.width = 20;
 			item.height = 20;
 			item.accessory = true;
@@ -36,21 +38,6 @@ namespace ClickerClass.Items
 			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.10f;
 			player.GetModPlayer<ClickerPlayer>().clickerBonusPercent -= 0.20f;
 			player.GetModPlayer<ClickerPlayer>().clickerAutoClickAcc = true;
-		}
-		
-		public override void ModifyTooltips(List<TooltipLine> list)
-		{
-			Player player = Main.LocalPlayer;
-			int index3 = -1;
-			for (int m = 0; m < list.Count; m++)
-			{
-				if (list[m].Name.Equals("Tooltip0")) { index3 = m; break; }
-			}
-
-			if (index3 != -1)
-			{
-				list.Insert(index3 + 6, new TooltipLine(mod, "transformationText", "Total clicks: " + $"[c/fcd22c:" + player.GetModPlayer<ClickerPlayer>().clickerTotal + "]"));
-			}
 		}
 		
 		public override void AddRecipes()

@@ -127,6 +127,13 @@ namespace ClickerClass.NPCs
 					Item.NewItem(npc.Hitbox, mod.ItemType("ShadowyClicker"), 1, false, -1);
 				}
 			}
+			if ((npc.type == NPCID.Frankenstein || npc.type == NPCID.SwampThing) && npc.value > 0f)
+			{
+				if (Main.rand.NextBool(25))
+				{
+					Item.NewItem(npc.Hitbox, mod.ItemType("EclipticClicker"), 1, false, -1);
+				}
+			}
 			if ((npc.type == NPCID.BloodZombie || npc.type == NPCID.Drippler) && npc.value > 0f)
 			{
 				if (Main.rand.NextBool(25))
@@ -185,6 +192,13 @@ namespace ClickerClass.NPCs
 					if (Main.rand.NextBool(4))
 					{
 						Item.NewItem(npc.Hitbox, mod.ItemType("ClickerEmblem"), 1, false, -1);
+					}
+				}
+				if (npc.type == NPCID.KingSlime)
+				{
+					if (Main.rand.NextBool(4))
+					{
+						Item.NewItem(npc.Hitbox, mod.ItemType("StickyKeychain"), 1, false, -1);
 					}
 				}
 			}

@@ -33,6 +33,12 @@ namespace ClickerClass.Items
 								player.QuickSpawnItem(ModContent.ItemType<ClickerEmblem>());
 							}
 							break;
+						case ItemID.KingSlimeBossBag:
+							if (Main.rand.NextBool(4))
+							{
+								player.QuickSpawnItem(ModContent.ItemType<StickyKeychain>());
+							}
+							break;
 					}
 					break;
 			}

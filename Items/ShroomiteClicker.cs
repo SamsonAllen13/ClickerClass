@@ -44,23 +44,6 @@ namespace ClickerClass.Items
 			item.shootSpeed = 1f;
 		}
 		
-		public override bool CanUseItem(Player player)
-		{
-			if (player.HasBuff(ModContent.BuffType<AutoClick>()))
-			{
-				item.autoReuse = true;
-				item.useTime = 4;
-				item.useAnimation = 4;
-			}
-			else
-			{
-				item.autoReuse = false;
-				item.useTime = 1;
-				item.useAnimation = 1;
-			}
-			return base.CanUseItem(player);
-		}
-		
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);

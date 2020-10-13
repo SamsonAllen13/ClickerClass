@@ -20,13 +20,6 @@ namespace ClickerClass.Projectiles
 			projectile.extraUpdates = 1;
 			projectile.tileCollide = false;
 		}
-		
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-		{
-			Player player = Main.player[projectile.owner];
-			damage = (int)(damage + (target.defense / 2));
-			hitDirection = target.Center.X < player.Center.X ? -1 : 1;
-		}
 
 		public override void AI()
 		{

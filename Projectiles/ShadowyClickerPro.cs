@@ -45,14 +45,7 @@ namespace ClickerClass.Projectiles
 			}
 			return true;
 		}
-		
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-		{
-			Player player = Main.player[projectile.owner];
-			damage = (int)(damage + (target.defense / 2));
-			hitDirection = target.Center.X < player.Center.X ? -1 : 1;
-		}
-		
+
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			target.AddBuff(BuffID.ShadowFlame, 300, false);

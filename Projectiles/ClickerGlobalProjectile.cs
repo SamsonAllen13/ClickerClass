@@ -20,7 +20,15 @@ namespace ClickerClass.Projectiles
 			int critChance = player.HeldItem.crit;
 			ItemLoader.GetWeaponCrit(player.HeldItem, player, ref critChance);
 			PlayerHooks.GetWeaponCrit(player, player.HeldItem, ref critChance);
-			crit = critChance >= 100 || Main.rand.Next(1, 101) <= critChance;
+			if (!crit)
+			{
+				crit = critChance >= 100 || Main.rand.Next(1, 101) <= critChance;
+			}
+			
+			int defenseIgnore = (target.defense / 2);
+			if (defenseIgnore <= 0){defenseIgnore = 0;}
+			damage = (int)(damage + defenseIgnore);
+			hitDirection = target.Center.X < player.Center.X ? -1 : 1;
 		}
 	}
 }

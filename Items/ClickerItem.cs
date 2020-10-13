@@ -22,6 +22,7 @@ namespace ClickerClass.Items
 		public string itemClickerColorEffect = "NULL";
 		public int clickerDustColor = 0;
 		public int clickBoostPrefix = 0;
+		public bool isClickerDisplay = false;
 		public bool isClicker = false;
 		public float radiusBoost = 0f;
 		public float radiusBoostPrefix = 0f;
@@ -30,13 +31,20 @@ namespace ClickerClass.Items
 		{
 			if (isClicker)
 			{
-				if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick || (item.autoReuse && !player.HasBuff(ModContent.BuffType<AutoClick>())))
+				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
-					return 10f;
+					if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick || item.autoReuse)
+					{
+						return 10f;
+					}
+					else
+					{
+						return 1f;
+					}
 				}
 				else
 				{
-					return 1f;
+					return 9.5f;
 				}
 			}
 			
@@ -47,13 +55,20 @@ namespace ClickerClass.Items
 		{
 			if (isClicker)
 			{
-				if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick || (item.autoReuse && !player.HasBuff(ModContent.BuffType<AutoClick>())))
+				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
-					return 0.1f;
+					if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick || item.autoReuse)
+					{
+						return 0.1f;
+					}
+					else
+					{
+						return 1f;
+					}
 				}
 				else
 				{
-					return 1f;
+					return 0.15f;
 				}
 			}
 			
@@ -64,22 +79,18 @@ namespace ClickerClass.Items
 		{
 			if (isClicker)
 			{
-				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
+				if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick || player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
-					if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick)
-					{
-						item.autoReuse = true;
-					}
-					else
-					{
-						item.autoReuse = false;
-					}
+					item.autoReuse = true;
+				}
+				else
+				{
+					item.autoReuse = false;
 				}
 				
 				if (!itemClickerEffect.Contains("Phase Reach"))
 				{
-					if (Vector2.Distance(Main.MouseWorld, player.Center) < 100 * player.GetModPlayer<ClickerPlayer>().clickerRadius 
-					&& Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
+					if (Vector2.Distance(Main.MouseWorld, player.Center) < 100 * player.GetModPlayer<ClickerPlayer>().clickerRadius && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
 					{
 						return true;
 					}
@@ -193,18 +204,62 @@ namespace ClickerClass.Items
 					player.GetModPlayer<ClickerPlayer>().clickAmount++;
 					player.GetModPlayer<ClickerPlayer>().clickerTotal++;
 				}
+				
+				//Spawn normal click damage
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, type, damage, knockBack, player.whoAmI);
 				
-				//Special Effects
+				//Precursor armor set bonus
+				if (player.GetModPlayer<ClickerPlayer>().clickerPrecursorSet)
+				{
+					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("PrecursorPro"), (int)(damage * 0.25f), knockBack, player.whoAmI);
+				}
+				
+				//Find click amount
 				int clickAmountTotal = (int)((itemClickerAmount + clickBoostPrefix - player.GetModPlayer<ClickerPlayer>().clickerBonus) * player.GetModPlayer<ClickerPlayer>().clickerBonusPercent);
 				if (clickAmountTotal < 1){clickAmountTotal = 1;}
-				if (player.GetModPlayer<ClickerPlayer>().clickAmount % clickAmountTotal == 0)
+				
+				//Overclock armor set bonus
+				if (player.GetModPlayer<ClickerPlayer>().clickAmount % 100 == 0 && player.GetModPlayer<ClickerPlayer>().clickerOverclockSet)
+				{
+					Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 94);
+					player.AddBuff(mod.BuffType("OverclockBuff"), 180, false);
+					for (int i = 0; i < 25; i++)
+					{
+						int num6 = Dust.NewDust(player.position, 20, 20, 90, 0f, 0f, 150, default(Color), 1.35f);
+						Main.dust[num6].noGravity = true;
+						Main.dust[num6].velocity *= 0.75f;
+						int num7 = Main.rand.Next(-50, 51);
+						int num8 = Main.rand.Next(-50, 51);
+						Dust dust = Main.dust[num6];
+						dust.position.X = dust.position.X + (float)num7;
+						Dust dust2 = Main.dust[num6];
+						dust2.position.Y = dust2.position.Y + (float)num8;
+						Main.dust[num6].velocity.X = -(float)num7 * 0.075f;
+						Main.dust[num6].velocity.Y = -(float)num8 * 0.075f;
+					}
+				}
+				
+				//Special Effects
+				if (player.GetModPlayer<ClickerPlayer>().clickAmount % 10 == 0 && player.GetModPlayer<ClickerPlayer>().clickerStickyAcc)
+				{
+					Main.PlaySound(3, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 13);
+					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("StickyKeychainPro"), (int)(damage * 0.5), 3f, player.whoAmI, Main.rand.Next(3));
+					for (int k = 0; k < 20; k++)
+					{
+						Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 88, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 175, default, 1.75f);
+						dust.noGravity = true;
+						dust.noLight = true;
+					}
+				}
+				
+				//Clicker Effects
+				if ((player.GetModPlayer<ClickerPlayer>().clickAmount % clickAmountTotal == 0 || player.HasBuff(ModContent.BuffType<OverclockBuff>())) && !player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
 					// Pumpkin Moon Clicker Effect
 					int wildMagic = 0;
 					if (itemClickerEffect.Contains("Wild Magic"))
 					{
-						wildMagic = 1 + Main.rand.Next(27);
+						wildMagic = 1 + Main.rand.Next(28);
 					}
 					
 					// Metal Double Click Effect
@@ -537,6 +592,13 @@ namespace ClickerClass.Items
 						}
 					}
 					
+					// Eclipse Clicker Effect
+					if (itemClickerEffect.Contains("Totality") || wildMagic == 28)
+					{
+						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 43);
+						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("TotalityClickerPro"), damage, knockBack, player.whoAmI);
+					}
+					
 					// Hallowed Clicker Effect
 					if (itemClickerEffect.Contains("Holy Nova") || wildMagic == 21)
 					{
@@ -724,6 +786,15 @@ namespace ClickerClass.Items
 						{
 							tooltips.Insert(index + 1, new TooltipLine(mod, "itemClickerAmount", "1 click - " + $"[c/" + itemClickerColorEffect + ":" + itemClickerEffect + "]"));
 						}
+					}
+				}
+				if (isClickerDisplay)
+				{
+					index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("Tooltip0"));
+					
+					if (index != -1)
+					{
+						tooltips.Insert(index + 6, new TooltipLine(mod, "transformationText", "Total clicks: " + $"[c/fcd22c:" + player.GetModPlayer<ClickerPlayer>().clickerTotal + "]"));
 					}
 				}
 				

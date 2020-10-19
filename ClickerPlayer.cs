@@ -9,7 +9,9 @@ using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
+using ClickerClass.Utilities;
 using ClickerClass.Items;
+using ClickerClass.Projectiles;
 using ClickerClass.Buffs;
 using ClickerClass.NPCs;
 
@@ -21,41 +23,68 @@ namespace ClickerClass
 		public double pressedAutoClick;
 		public int clickerClassTime = 0;
 		
-		public Color clickerColor = new Color(0, 0, 0 , 0);
+		//-Clicker-
+		//Misc
+		public Color clickerColor = new Color(0, 0, 0, 0);
+		public bool clickerInRange = false;
+		public bool clickerSelected = false;
+		public bool clickerAutoClick = false;
+		public int clickerPerSecondTimer = 0;
+		public int clickerPerSecond = 0;
+		public int clickerTotal = 0;
+		public int clickAmount = 0;
+		
+		//Armor
+		public int clickerMiceSetTimer = 0;
 		public bool clickerMiceSetAllowed = true;
 		public bool clickerMiceSet = false;
 		public bool clickerPrecursorSetAllowed = true;
 		public bool clickerPrecursorSet = false;
 		public bool clickerOverclockSetAllowed = true;
 		public bool clickerOverclockSet = false;
-		public bool clickerStickyAcc = false;
-		public bool clickerInRange = false;
-		public bool clickerSelected = false;
+		
+		//Acc
+		public bool clickerEnchantedLED = false;
 		public bool clickerAutoClickAcc = false;
-		public bool clickerAutoClick = false;
-		public float clickerDamage = 1f;
-		public float clickerBonusPercent = 1f;
-		public float clickerRadius = 1f;
-		public int clickerTotal = 0;
+		public bool clickerStickyAcc = false;
+		public bool clickerMilkAcc = false;
+		public bool clickerCookieAcc = false;
+		public bool clickerCookieAcc2 = false;
+		public int clickerCookieAccTimer = 0;
+		
+		//Stats
 		public int clickerDamageFlat = 0;
 		public int clickerBonus = 0;
 		public int clickerCrit = 4;
-		public int clickAmount = 0;
-		public int clickerMiceSetTimer = 0;
-
+		public float clickerDamage = 1f;
+		public float clickerBonusPercent = 1f;
+		public float clickerRadius = 1f;
+		
 		public override void ResetEffects()
 		{
+			//-Clicker-
+			//Misc
 			clickerColor = new Color(0, 0, 0 , 0);
+			clickerInRange = false;
+			clickerSelected = false;
+			
+			//Armor
 			clickerMiceSetAllowed = true;
 			clickerMiceSet = false;
 			clickerPrecursorSetAllowed = true;
 			clickerPrecursorSet = false;
 			clickerOverclockSetAllowed = true;
 			clickerOverclockSet = false;
+			
+			//Acc
+			clickerEnchantedLED = false;
 			clickerStickyAcc = false;
-			clickerInRange = false;
-			clickerSelected = false;
 			clickerAutoClickAcc = false;
+			clickerMilkAcc = false;
+			clickerCookieAcc = false;
+			clickerCookieAcc2 = false;
+			
+			//Stats
 			clickerDamage = 1f;
 			clickerBonusPercent = 1f;
 			clickerRadius = 1f;
@@ -139,6 +168,7 @@ namespace ClickerClass
 				player.armorEffectDrawShadow = true;
 			}
 			
+			//Armor
 			int head = 0;
 			int body = 1;
 			int legs = 2;
@@ -159,6 +189,7 @@ namespace ClickerClass
 				clickerMiceSetAllowed = false;
 				clickerPrecursorSetAllowed = false;
 			}
+			
 			if (itemVanityHead.type > 0)
 			{
 				if (itemVanityHead.type != ModContent.ItemType<MiceMask>())
@@ -216,6 +247,96 @@ namespace ClickerClass
 			if (clickerMiceSet && clickerMiceSetAllowed)
 			{
 				Lighting.AddLight(player.position, 0.1f, 0.1f, 0.3f);
+			}
+			
+			//Acc
+			//Cookie acc
+			if ((clickerCookieAcc || clickerCookieAcc2) && clickerSelected)
+			{
+				clickerCookieAccTimer++;
+				if (clickerCookieAccTimer > 600)
+				{
+					int radius = (int)(95 * clickerRadius);
+					if (radius > 350)
+					{
+						radius = 350;
+					}
+					
+					//Circles give me a damn headache...
+					double r = radius * Math.Sqrt(Main.rand.NextFloat(0f, 1f));
+					double theta = Main.rand.NextFloat(0f, 1f) * 2 * 3.14;
+					double xOffset = player.Center.X + r * Math.Cos(theta);
+					double yOffset = player.Center.Y + r * Math.Sin(theta);
+					
+					if (clickerCookieAcc2 && Main.rand.NextFloat() <= 0.1f)
+					{
+						Projectile.NewProjectile((float)(xOffset), (float)(yOffset), 0f, 0f, mod.ProjectileType("CookiePro"), 0, 0f, player.whoAmI, 1f);
+					}
+					else
+					{
+						Projectile.NewProjectile((float)(xOffset), (float)(yOffset), 0f, 0f, mod.ProjectileType("CookiePro"), 0, 0f, player.whoAmI);
+					}
+					
+					clickerCookieAccTimer = 0;
+				}
+				
+				//Cookie Click
+				for (int i = 0; i < 1000; i++)
+				{
+					Projectile cookieProjectile = Main.projectile[i];
+					
+					if (cookieProjectile.active && cookieProjectile.type == ModContent.ProjectileType<CookiePro>())
+					{
+						if (Main.mouseLeft && Main.mouseLeftRelease && Vector2.Distance(cookieProjectile.Center, Main.MouseWorld) < 30)
+						{
+							if (cookieProjectile.ai[0] == 1f)
+							{
+								Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 4);
+								player.AddBuff(mod.BuffType("CookieBuff"), 600);
+								player.HealLife(10);
+								for (int k = 0; k < 10; k++)
+								{
+									Dust dust = Dust.NewDustDirect(cookieProjectile.Center, 20, 20, 87, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
+									dust.noGravity = true;
+								}
+							}
+							else
+							{
+								Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 2);
+								player.AddBuff(mod.BuffType("CookieBuff"), 300);
+								for (int k = 0; k < 10; k++)
+								{
+									Dust dust = Dust.NewDustDirect(cookieProjectile.Center, 20, 20, 0, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 75, default, 1.5f);
+									dust.noGravity = true;
+								}
+							}
+							cookieProjectile.Kill();
+						}
+					}
+				}
+			}
+			
+			//Milk acc
+			if (clickerMilkAcc)
+			{
+				float bonusDamage = (float)(clickerPerSecond + 0.03f);
+				if (bonusDamage >= 0.15f)
+				{
+					bonusDamage = 0.15f;
+				}
+				clickerDamage += bonusDamage;
+				
+				clickerPerSecondTimer++;
+				if (clickerPerSecondTimer > 60)
+				{
+					clickerPerSecond = 0;
+					clickerPerSecondTimer = 0;
+				}
+			}
+			else
+			{
+				clickerPerSecondTimer = 0;
+				clickerPerSecond = 0;
 			}
 		}
 		

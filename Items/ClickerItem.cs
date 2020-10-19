@@ -201,6 +201,7 @@ namespace ClickerClass.Items
 				Main.PlaySound(SoundID.MenuTick, player.position);
 				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
+					player.GetModPlayer<ClickerPlayer>().clickerPerSecond++;
 					player.GetModPlayer<ClickerPlayer>().clickAmount++;
 					player.GetModPlayer<ClickerPlayer>().clickerTotal++;
 				}
@@ -440,9 +441,9 @@ namespace ClickerClass.Items
 					if (itemClickerEffect.Contains("Shadow Lash") || wildMagic == 10)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 103);
-						for (int k = 0; k < 6; k++)
+						for (int k = 0; k < 5; k++)
 						{
-							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), mod.ProjectileType("UmbralClickerPro"), (int)(damage * 0.25f), knockBack, player.whoAmI);
+							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), mod.ProjectileType("UmbralClickerPro"), (int)(damage * 0.5f), knockBack, player.whoAmI);
 						}
 					}
 					

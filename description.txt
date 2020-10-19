@@ -2,7 +2,7 @@ The Clicker Class is a set of joke weapons inspired by Cookie Clicker and other 
 
 Included:
  +43 new clicker weapons
- +7  new clicker accessories
+ +10  new clicker accessories
  +3  new clicker armors
  +1  new clicker buff potion
  +1  different way of getting Carpal Tunnel

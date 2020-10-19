@@ -141,35 +141,35 @@ namespace ClickerClass.NPCs
 					Item.NewItem(npc.Hitbox, mod.ItemType("HemoClicker"), 1, false, -1);
 				}
 			}
-			if (npc.type == NPCID.DarkCaster && npc.value > 0f)
+			if (npc.type == NPCID.DarkCaster)
 			{
-				if (Main.rand.NextBool(20))
+				if (Main.rand.NextBool(12))
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("SlickClicker"), 1, false, -1);
+					Item.NewItem(npc.Hitbox, mod.ItemType("Milk"), 1, false, -1);
 				}
 			}
-			if (npc.type == NPCID.PirateCaptain && npc.value > 0f)
+			if (npc.type == NPCID.PirateCaptain)
 			{
 				if (Main.rand.NextBool(8))
 				{
 					Item.NewItem(npc.Hitbox, mod.ItemType("CaptainsClicker"), 1, false, -1);
 				}
 			}
-			if (npc.type == NPCID.Pumpking && npc.value > 0f)
+			if (npc.type == NPCID.Pumpking)
 			{
 				if (Main.rand.NextBool(10))
 				{
 					Item.NewItem(npc.Hitbox, mod.ItemType("WitchClicker"), 1, false, -1);
 				}
 			}
-			if (npc.type == NPCID.IceQueen && npc.value > 0f)
+			if (npc.type == NPCID.IceQueen)
 			{
 				if (Main.rand.NextBool(10))
 				{
 					Item.NewItem(npc.Hitbox, mod.ItemType("FrozenClicker"), 1, false, -1);
 				}
 			}
-			if (npc.type == NPCID.MartianSaucerCore && npc.value > 0f)
+			if (npc.type == NPCID.MartianSaucerCore)
 			{
 				if (Main.rand.NextBool(5))
 				{

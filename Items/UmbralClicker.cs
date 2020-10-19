@@ -43,6 +43,7 @@ namespace ClickerClass.Items
 			item.shootSpeed = 1f;
 		}
 
+		/*
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
@@ -62,5 +63,6 @@ namespace ClickerClass.Items
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}
+		*/
 	}
 }

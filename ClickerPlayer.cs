@@ -679,7 +679,6 @@ namespace ClickerClass
 						Vector2 position = new Vector2((int)drawPlayer.Center.X, (int)drawPlayer.Center.Y + drawPlayer.gfxOffY);
 						Effect shader = ShaderManager.SetupCircleEffect(position, (int)(modPlayer.clickerRadius * 100), outer);
 
-						Main.NewText(modPlayer.clickerRadius);
 						ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
 					}
 				}

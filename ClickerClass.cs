@@ -1,8 +1,6 @@
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ClickerClass.Items;
-using ClickerClass.Projectiles;
+using ClickerClass.Effects;
 
 namespace ClickerClass
 {
@@ -15,17 +13,14 @@ namespace ClickerClass
 		{
 			mod = this;
 			AutoClickKey = RegisterHotKey("Clicker Accessory", "G");
+			ShaderManager.Load();
 		}
 		
 		public override void Unload()
 		{
+			ShaderManager.Unload();
 			AutoClickKey = null;
 			mod = null;
-		}
-		
-		public ClickerClass()
-		{
-			
 		}
 		
 		public override void AddRecipes()

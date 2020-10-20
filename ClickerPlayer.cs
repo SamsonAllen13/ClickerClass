@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
@@ -14,6 +13,7 @@ using ClickerClass.Items;
 using ClickerClass.Projectiles;
 using ClickerClass.Buffs;
 using ClickerClass.NPCs;
+using ClickerClass.Effects;
 
 namespace ClickerClass
 {
@@ -33,7 +33,11 @@ namespace ClickerClass
 		public int clickerPerSecond = 0;
 		public int clickerTotal = 0;
 		public int clickAmount = 0;
-		
+		/// <summary>
+		/// Used to prevent drawing more than once per tick
+		/// </summary>
+		private bool drawEffectsCalledOnce = false;
+
 		//Armor
 		public int clickerMiceSetTimer = 0;
 		public bool clickerMiceSetAllowed = true;
@@ -58,6 +62,9 @@ namespace ClickerClass
 		public int clickerCrit = 4;
 		public float clickerDamage = 1f;
 		public float clickerBonusPercent = 1f;
+		/// <summary>
+		/// Effective clicker radius in pixels when multiplied by 100
+		/// </summary>
 		public float clickerRadius = 1f;
 		
 		public override void ResetEffects()
@@ -338,6 +345,14 @@ namespace ClickerClass
 				clickerPerSecondTimer = 0;
 				clickerPerSecond = 0;
 			}
+
+			if (Main.netMode != NetmodeID.Server)
+			{
+				if (drawEffectsCalledOnce)
+				{
+					drawEffectsCalledOnce = false;
+				}
+			}
 		}
 		
 		public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -368,12 +383,7 @@ namespace ClickerClass
 		
 		public override void ModifyDrawLayers(List<PlayerLayer> layers)
 		{
-			int index = layers.IndexOf(PlayerLayer.MiscEffectsFront);
-			if (index != -1)
-			{
-				layers.Insert(index + 1, MiscEffects);
-			}
-			index = layers.IndexOf(PlayerLayer.HeldItem);
+			int index = layers.IndexOf(PlayerLayer.HeldItem);
 			if (index != -1)
 			{
 				layers.Insert(index + 1, WeaponGlow);
@@ -399,7 +409,6 @@ namespace ClickerClass
 				layers.Insert(index + 1, ArmsGlow);
 			}
 			
-			MiscEffects.visible = true;
 			WeaponGlow.visible = true;
 			HeadGlow.visible = true;
 			LegsGlow.visible = true;
@@ -597,54 +606,6 @@ namespace ClickerClass
 			Main.playerDrawData.Add(drawData);
 		});
 		
-		public static readonly PlayerLayer MiscEffects = new PlayerLayer("ClickerClass", "MiscEffects", PlayerLayer.MiscEffectsFront, delegate (PlayerDrawInfo drawInfo)
-		{
-			Player drawPlayer = drawInfo.drawPlayer;
-			Mod mod = ModLoader.GetMod("ClickerClass");
-			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
-
-			if (drawInfo.shadow != 0f)
-			{
-				return;
-			}
-			
-			if (!drawPlayer.dead)
-			{
-				if (modPlayer.clickerSelected)
-				{
-					bool phaseCheck = false;
-					if (drawPlayer.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
-					{
-						if (clickerItem.itemClickerEffect.Contains("Phase Reach"))
-						{
-							phaseCheck = true;
-						}
-					}
-					
-					if (!phaseCheck)
-					{
-						float size = modPlayer.clickerRadius;
-						Texture2D texture = mod.GetTexture("Gores/ClickerRadius100");
-						if (modPlayer.clickerRadius >= 3f)
-						{
-							texture = mod.GetTexture("Gores/ClickerRadius200");
-							size /= 2;
-							if (modPlayer.clickerRadius >= 5f)
-							{
-								texture = mod.GetTexture("Gores/ClickerRadius300");
-								size = size * 0.67f;
-							}
-						}
-						int drawX = (int)(drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X);
-						int drawY = (int)(drawInfo.position.Y + drawPlayer.height / 2f - Main.screenPosition.Y);
-						float glow = modPlayer.clickerInRange ? 0.6f : 0f;
-						DrawData data = new DrawData(texture, new Vector2(drawX, drawY), null, modPlayer.clickerColor * (0.2f + glow), 0f, new Vector2(texture.Width / 2f, texture.Height / 2f), size, SpriteEffects.None, 0);
-						Main.playerDrawData.Add(data);
-					}
-				}
-			}
-		});
-		
 		public static readonly PlayerLayer WeaponGlow = new PlayerLayer("ClickerClass", "WeaponGlow", PlayerLayer.HeldItem, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
@@ -676,5 +637,53 @@ namespace ClickerClass
 				Main.playerDrawData.Add(drawData);
 			}
 		});
-	}
+
+        public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
+        {
+			Player drawPlayer = drawInfo.drawPlayer;
+			if (!drawEffectsCalledOnce)
+			{
+				drawEffectsCalledOnce = true;
+			}
+			else
+			{
+				return;
+			}
+			if (Main.gameMenu) return;
+
+			if (drawInfo.shadow != 0f)
+			{
+				return;
+			}
+
+			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
+
+			if (!drawPlayer.dead)
+			{
+				if (modPlayer.clickerSelected)
+				{
+					bool phaseCheck = false;
+					if (drawPlayer.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
+					{
+						if (clickerItem.itemClickerEffect.Contains("Phase Reach"))
+						{
+							phaseCheck = true;
+						}
+					}
+
+					if (!phaseCheck)
+					{
+						float glow = modPlayer.clickerInRange ? 0.6f : 0f;
+
+						Color outer = modPlayer.clickerColor * (0.2f + glow);
+						Vector2 position = new Vector2((int)drawPlayer.Center.X, (int)drawPlayer.Center.Y + drawPlayer.gfxOffY);
+						Effect shader = ShaderManager.SetupCircleEffect(position, (int)(modPlayer.clickerRadius * 100), outer);
+
+						Main.NewText(modPlayer.clickerRadius);
+						ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
+					}
+				}
+			}
+		}
+    }
 }

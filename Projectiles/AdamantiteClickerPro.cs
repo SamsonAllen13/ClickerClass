@@ -1,8 +1,4 @@
-using System;
 using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
@@ -22,13 +18,13 @@ namespace ClickerClass.Projectiles
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 10;
 		}
-		
+
 		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
 		{
 			damage *= 2;
 			crit = true;
 		}
-		
+
 		public override void Kill(int timeLeft)
 		{
 			for (int k = 0; k < 8; k++)

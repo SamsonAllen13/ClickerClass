@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -39,7 +38,7 @@ namespace ClickerClass.Projectiles
 			Rectangle frame = new Rectangle(0, 0, 22, 28);
 			frame.Y += 28 * projectile.frame;
 			SpriteEffects effects = projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-			
+
 			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
 			for (int k = 0; k < projectile.oldPos.Length; k++)
 			{
@@ -58,7 +57,7 @@ namespace ClickerClass.Projectiles
 		public override void AI()
 		{
 			projectile.spriteDirection = projectile.velocity.X > 0f ? 1 : -1;
-			
+
 			if (Main.rand.Next(3) == 0)
 			{
 				int DustID = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 27, 0f, 0f, 255, default(Color), 1f);
@@ -75,7 +74,7 @@ namespace ClickerClass.Projectiles
 				int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 27, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f), 255, default(Color), 1.25f);
 				Main.dust[dust].noGravity = true;
 			}
-			
+
 			if (projectile.velocity.X != oldVelocity.X)
 			{
 				projectile.velocity.X = -oldVelocity.X;
@@ -95,7 +94,7 @@ namespace ClickerClass.Projectiles
 				Main.dust[dust].noGravity = true;
 			}
 		}
-		
+
 		public override void PostAI()
 		{
 			projectile.frameCounter++;

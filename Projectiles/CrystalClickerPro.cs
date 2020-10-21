@@ -1,9 +1,6 @@
-using System;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
@@ -40,7 +37,7 @@ namespace ClickerClass.Projectiles
 					if (target.CanBeChasedBy(projectile) && target.DistanceSQ(projectile.Center) < 100 * 250)
 					{
 						target.AddBuff(BuffID.Confused, 180, false);
-						
+
 						for (int i = 0; i < 8; i++)
 						{
 							int num6 = Dust.NewDust(target.position, target.width, target.height, 86, 0f, 0f, 0, default(Color), 1f);

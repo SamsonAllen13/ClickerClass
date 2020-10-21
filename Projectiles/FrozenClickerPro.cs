@@ -1,8 +1,4 @@
-using System;
 using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
@@ -27,7 +23,7 @@ namespace ClickerClass.Projectiles
 		{
 			target.AddBuff(mod.BuffType("Frozen"), 120, false);
 		}
-		
+
 		public override void Kill(int timeLeft)
 		{
 			for (int k = 0; k < 5; k++)

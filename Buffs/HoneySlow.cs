@@ -1,6 +1,6 @@
+using ClickerClass.NPCs;
 using Terraria;
 using Terraria.ModLoader;
-using ClickerClass.NPCs;
 
 namespace ClickerClass.Buffs
 {

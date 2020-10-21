@@ -1,3 +1,9 @@
+using ClickerClass.Buffs;
+using ClickerClass.Effects;
+using ClickerClass.Items;
+using ClickerClass.NPCs;
+using ClickerClass.Projectiles;
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,12 +14,6 @@ using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using ClickerClass.Utilities;
-using ClickerClass.Items;
-using ClickerClass.Projectiles;
-using ClickerClass.Buffs;
-using ClickerClass.NPCs;
-using ClickerClass.Effects;
 
 namespace ClickerClass
 {
@@ -22,7 +22,7 @@ namespace ClickerClass
 		//Key presses
 		public double pressedAutoClick;
 		public int clickerClassTime = 0;
-		
+
 		//-Clicker-
 		//Misc
 		public Color clickerColor = new Color(0, 0, 0, 0);
@@ -46,7 +46,7 @@ namespace ClickerClass
 		public bool clickerPrecursorSet = false;
 		public bool clickerOverclockSetAllowed = true;
 		public bool clickerOverclockSet = false;
-		
+
 		//Acc
 		public bool clickerEnchantedLED = false;
 		public bool clickerAutoClickAcc = false;
@@ -55,7 +55,7 @@ namespace ClickerClass
 		public bool clickerCookieAcc = false;
 		public bool clickerCookieAcc2 = false;
 		public int clickerCookieAccTimer = 0;
-		
+
 		//Stats
 		public int clickerDamageFlat = 0;
 		public int clickerBonus = 0;
@@ -66,15 +66,15 @@ namespace ClickerClass
 		/// Effective clicker radius in pixels when multiplied by 100
 		/// </summary>
 		public float clickerRadius = 1f;
-		
+
 		public override void ResetEffects()
 		{
 			//-Clicker-
 			//Misc
-			clickerColor = new Color(0, 0, 0 , 0);
+			clickerColor = new Color(0, 0, 0, 0);
 			clickerInRange = false;
 			clickerSelected = false;
-			
+
 			//Armor
 			clickerMiceSetAllowed = true;
 			clickerMiceSet = false;
@@ -82,7 +82,7 @@ namespace ClickerClass
 			clickerPrecursorSet = false;
 			clickerOverclockSetAllowed = true;
 			clickerOverclockSet = false;
-			
+
 			//Acc
 			clickerEnchantedLED = false;
 			clickerStickyAcc = false;
@@ -90,7 +90,7 @@ namespace ClickerClass
 			clickerMilkAcc = false;
 			clickerCookieAcc = false;
 			clickerCookieAcc2 = false;
-			
+
 			//Stats
 			clickerDamage = 1f;
 			clickerBonusPercent = 1f;
@@ -99,7 +99,7 @@ namespace ClickerClass
 			clickerCrit = 4;
 			clickerBonus = 0;
 		}
-		
+
 		public override void Initialize()
 		{
 			clickerTotal = 0;
@@ -117,7 +117,7 @@ namespace ClickerClass
 		{
 			clickerTotal = tag.GetInt("clickerTotal");
 		}
-		
+
 		public override void ProcessTriggers(TriggersSet triggersSet)
 		{
 			// checks for frozen, webbed and stoned
@@ -131,7 +131,7 @@ namespace ClickerClass
 				if (Math.Abs(clickerClassTime - pressedAutoClick) > 60)
 				{
 					pressedAutoClick = clickerClassTime;
-					
+
 					Main.PlaySound(SoundID.MenuTick, player.position);
 					clickerAutoClick = clickerAutoClick ? false : true;
 				}
@@ -145,17 +145,17 @@ namespace ClickerClass
 			{
 				clickerClassTime = 0;
 			}
-			
+
 			if (!clickerAutoClickAcc)
 			{
 				clickerAutoClick = false;
 			}
-			
+
 			if (clickerMiceSetTimer > 0)
 			{
 				clickerMiceSetTimer--;
 			}
-			
+
 			if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
 			{
 				clickerSelected = true;
@@ -169,12 +169,12 @@ namespace ClickerClass
 				}
 				clickerColor = clickerItem.clickerColorItem;
 			}
-			
+
 			if (player.HasBuff(ModContent.BuffType<Haste>()))
 			{
 				player.armorEffectDrawShadow = true;
 			}
-			
+
 			//Armor
 			int head = 0;
 			int body = 1;
@@ -196,7 +196,7 @@ namespace ClickerClass
 				clickerMiceSetAllowed = false;
 				clickerPrecursorSetAllowed = false;
 			}
-			
+
 			if (itemVanityHead.type > 0)
 			{
 				if (itemVanityHead.type != ModContent.ItemType<MiceMask>())
@@ -242,7 +242,7 @@ namespace ClickerClass
 					clickerOverclockSetAllowed = false;
 				}
 			}
-			
+
 			if (clickerOverclockSet && clickerOverclockSetAllowed)
 			{
 				Lighting.AddLight(player.position, 0.3f, 0.075f, 0.075f);
@@ -255,7 +255,7 @@ namespace ClickerClass
 			{
 				Lighting.AddLight(player.position, 0.1f, 0.1f, 0.3f);
 			}
-			
+
 			//Acc
 			//Cookie acc
 			if ((clickerCookieAcc || clickerCookieAcc2) && clickerSelected)
@@ -268,13 +268,13 @@ namespace ClickerClass
 					{
 						radius = 350;
 					}
-					
+
 					//Circles give me a damn headache...
 					double r = radius * Math.Sqrt(Main.rand.NextFloat(0f, 1f));
 					double theta = Main.rand.NextFloat(0f, 1f) * 2 * 3.14;
 					double xOffset = player.Center.X + r * Math.Cos(theta);
 					double yOffset = player.Center.Y + r * Math.Sin(theta);
-					
+
 					if (clickerCookieAcc2 && Main.rand.NextFloat() <= 0.1f)
 					{
 						Projectile.NewProjectile((float)(xOffset), (float)(yOffset), 0f, 0f, mod.ProjectileType("CookiePro"), 0, 0f, player.whoAmI, 1f);
@@ -283,7 +283,7 @@ namespace ClickerClass
 					{
 						Projectile.NewProjectile((float)(xOffset), (float)(yOffset), 0f, 0f, mod.ProjectileType("CookiePro"), 0, 0f, player.whoAmI);
 					}
-					
+
 					clickerCookieAccTimer = 0;
 				}
 
@@ -325,7 +325,7 @@ namespace ClickerClass
 					}
 				}
 			}
-			
+
 			//Milk acc
 			if (clickerMilkAcc)
 			{
@@ -335,7 +335,7 @@ namespace ClickerClass
 					bonusDamage = 0.15f;
 				}
 				clickerDamage += bonusDamage;
-				
+
 				clickerPerSecondTimer++;
 				if (clickerPerSecondTimer > 60)
 				{
@@ -357,7 +357,7 @@ namespace ClickerClass
 				}
 			}
 		}
-		
+
 		public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
 		{
 			if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
@@ -371,19 +371,19 @@ namespace ClickerClass
 
 		public override void OnHitNPCWithProj(Projectile projectile, NPC target, int damage, float knockback, bool crit)
 		{
-			
+
 		}
 
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
 		{
-			
+
 		}
 
 		public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
 		{
-			
+
 		}
-		
+
 		public override void ModifyDrawLayers(List<PlayerLayer> layers)
 		{
 			int index = layers.IndexOf(PlayerLayer.HeldItem);
@@ -411,13 +411,13 @@ namespace ClickerClass
 			{
 				layers.Insert(index + 1, ArmsGlow);
 			}
-			
+
 			WeaponGlow.visible = true;
 			HeadGlow.visible = true;
 			LegsGlow.visible = true;
 			ArmsGlow.visible = true;
 		}
-		
+
 		//Head
 		public static readonly PlayerLayer HeadGlow = new PlayerLayer("ClickerClass", "HeadGlow", PlayerLayer.Head, delegate (PlayerDrawInfo drawInfo)
 		{
@@ -426,7 +426,7 @@ namespace ClickerClass
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 			Color color = drawPlayer.GetImmuneAlphaPure(Color.White, drawInfo.shadow);
 			Texture2D texture = null;
-			
+
 			if (drawInfo.shadow != 0f || drawInfo.drawPlayer.invis)
 			{
 				return;
@@ -468,7 +468,7 @@ namespace ClickerClass
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 			Color color = drawPlayer.GetImmuneAlphaPure(Color.White, drawInfo.shadow);
 			Texture2D texture = null;
-			
+
 			if (drawInfo.shadow != 0f || drawInfo.drawPlayer.invis)
 			{
 				return;
@@ -533,7 +533,7 @@ namespace ClickerClass
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 			Color color = drawPlayer.GetImmuneAlphaPure(Color.White, drawInfo.shadow);
 			Texture2D texture = null;
-			
+
 			if (drawInfo.shadow != 0f || drawInfo.drawPlayer.invis)
 			{
 				return;
@@ -575,7 +575,7 @@ namespace ClickerClass
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 			Color color = drawPlayer.GetImmuneAlphaPure(Color.White, drawInfo.shadow);
 			Texture2D texture = null;
-			
+
 			if (drawInfo.shadow != 0f || drawInfo.drawPlayer.invis)
 			{
 				return;
@@ -595,7 +595,7 @@ namespace ClickerClass
 				texture = mod.GetTexture("Gores/OverclockBoots_Glow");
 				color *= 0.75f;
 			}
-			
+
 			if (texture == null)
 			{
 				return;
@@ -608,7 +608,7 @@ namespace ClickerClass
 			};
 			Main.playerDrawData.Add(drawData);
 		});
-		
+
 		public static readonly PlayerLayer WeaponGlow = new PlayerLayer("ClickerClass", "WeaponGlow", PlayerLayer.HeldItem, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
@@ -641,8 +641,8 @@ namespace ClickerClass
 			}
 		});
 
-        public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
-        {
+		public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
+		{
 			Player drawPlayer = drawInfo.drawPlayer;
 			if (!drawEffectsCalledOnce)
 			{
@@ -687,5 +687,5 @@ namespace ClickerClass
 				}
 			}
 		}
-    }
+	}
 }

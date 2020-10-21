@@ -1,21 +1,19 @@
+using ClickerClass.Buffs;
+using ClickerClass.Prefixes;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
-using ClickerClass.Buffs;
-using ClickerClass.Prefixes;
 
 namespace ClickerClass.Items
 {
 	public abstract class ClickerItem : ModItem
 	{
 		public override bool CloneNewInstances { get { return true; } }
-		
+
 		public Color clickerColorItem = new Color(0, 0, 0, 0);
 		public int itemClickerAmount = 0;
 		public string itemClickerEffect = "NULL";
@@ -26,8 +24,8 @@ namespace ClickerClass.Items
 		public bool isClicker = false;
 		public float radiusBoost = 0f;
 		public float radiusBoostPrefix = 0f;
-  
-		public override float MeleeSpeedMultiplier(Player player) 
+
+		public override float MeleeSpeedMultiplier(Player player)
 		{
 			if (isClicker)
 			{
@@ -47,11 +45,11 @@ namespace ClickerClass.Items
 					return 9.5f;
 				}
 			}
-			
+
 			return base.MeleeSpeedMultiplier(player);
 		}
-		
-		public override float UseTimeMultiplier(Player player) 
+
+		public override float UseTimeMultiplier(Player player)
 		{
 			if (isClicker)
 			{
@@ -71,10 +69,10 @@ namespace ClickerClass.Items
 					return 0.15f;
 				}
 			}
-			
+
 			return base.UseTimeMultiplier(player);
 		}
-		
+
 		public override bool CanUseItem(Player player)
 		{
 			if (isClicker)
@@ -87,7 +85,7 @@ namespace ClickerClass.Items
 				{
 					item.autoReuse = false;
 				}
-				
+
 				if (!itemClickerEffect.Contains("Phase Reach"))
 				{
 					if (Vector2.Distance(Main.MouseWorld, player.Center) < 100 * player.GetModPlayer<ClickerPlayer>().clickerRadius && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
@@ -119,7 +117,7 @@ namespace ClickerClass.Items
 				crit = item.crit + player.GetModPlayer<ClickerPlayer>().clickerCrit;
 			}
 		}
-		
+
 		public override bool AltFunctionUse(Player player)
 		{
 			if (isClicker)
@@ -135,8 +133,8 @@ namespace ClickerClass.Items
 			}
 			return base.AltFunctionUse(player);
 		}
-		
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack) 
+
+		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
 			if (isClicker)
 			{
@@ -154,7 +152,7 @@ namespace ClickerClass.Items
 								NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
 								player.fallStart = (int)(player.position.Y / 16f);
 								player.GetModPlayer<ClickerPlayer>().clickerMiceSetTimer = 60;
-								
+
 								float num102 = 50f;
 								int num103 = 0;
 								while ((float)num103 < num102)
@@ -179,7 +177,7 @@ namespace ClickerClass.Items
 							NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
 							player.fallStart = (int)(player.position.Y / 16f);
 							player.GetModPlayer<ClickerPlayer>().clickerMiceSetTimer = 60;
-							
+
 							float num102 = 40f;
 							int num103 = 0;
 							while ((float)num103 < num102)
@@ -198,7 +196,7 @@ namespace ClickerClass.Items
 					}
 					return false;
 				}
-				
+
 				//Base 
 				Main.PlaySound(SoundID.MenuTick, player.position);
 				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
@@ -207,20 +205,20 @@ namespace ClickerClass.Items
 					player.GetModPlayer<ClickerPlayer>().clickAmount++;
 					player.GetModPlayer<ClickerPlayer>().clickerTotal++;
 				}
-				
+
 				//Spawn normal click damage
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, type, damage, knockBack, player.whoAmI);
-				
+
 				//Precursor armor set bonus
 				if (player.GetModPlayer<ClickerPlayer>().clickerPrecursorSet)
 				{
 					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("PrecursorPro"), (int)(damage * 0.25f), knockBack, player.whoAmI);
 				}
-				
+
 				//Find click amount
 				int clickAmountTotal = (int)((itemClickerAmount + clickBoostPrefix - player.GetModPlayer<ClickerPlayer>().clickerBonus) * player.GetModPlayer<ClickerPlayer>().clickerBonusPercent);
-				if (clickAmountTotal < 1){clickAmountTotal = 1;}
-				
+				if (clickAmountTotal < 1) { clickAmountTotal = 1; }
+
 				//Overclock armor set bonus
 				if (player.GetModPlayer<ClickerPlayer>().clickAmount % 100 == 0 && player.GetModPlayer<ClickerPlayer>().clickerOverclockSet)
 				{
@@ -241,7 +239,7 @@ namespace ClickerClass.Items
 						Main.dust[num6].velocity.Y = -(float)num8 * 0.075f;
 					}
 				}
-				
+
 				//Special Effects
 				if (player.GetModPlayer<ClickerPlayer>().clickAmount % 10 == 0 && player.GetModPlayer<ClickerPlayer>().clickerStickyAcc)
 				{
@@ -254,7 +252,7 @@ namespace ClickerClass.Items
 						dust.noLight = true;
 					}
 				}
-				
+
 				//Clicker Effects
 				if ((player.GetModPlayer<ClickerPlayer>().clickAmount % clickAmountTotal == 0 || player.HasBuff(ModContent.BuffType<OverclockBuff>())) && !player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
@@ -264,14 +262,14 @@ namespace ClickerClass.Items
 					{
 						wildMagic = 1 + Main.rand.Next(28);
 					}
-					
+
 					// Metal Double Click Effect
 					if (itemClickerEffect.Contains("Double Click") || wildMagic == 1)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 37);
 						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, type, damage, knockBack, player.whoAmI);
 					}
-					
+
 					// Candle Clicker Effect
 					if (itemClickerEffect.Contains("Illuminate") || wildMagic == 26)
 					{
@@ -286,7 +284,7 @@ namespace ClickerClass.Items
 							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), mod.ProjectileType("CandleClickerPro"), 0, 0f, player.whoAmI);
 						}
 					}
-					
+
 					// Hemo Clicker Effect
 					if (itemClickerEffect.Contains("Linger") || wildMagic == 2)
 					{
@@ -296,9 +294,9 @@ namespace ClickerClass.Items
 							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-3f, -1f), mod.ProjectileType("HemoClickerPro"), (int)(damage * 0.50f), 0f, player.whoAmI);
 						}
 					}
-					
+
 					// Bone Clicker Effect
-					if (itemClickerEffect.Contains("Lacerate")  || wildMagic == 3)
+					if (itemClickerEffect.Contains("Lacerate") || wildMagic == 3)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 71);
 						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("BoneClickerPro"), damage, knockBack, player.whoAmI);
@@ -308,9 +306,9 @@ namespace ClickerClass.Items
 							dust.noGravity = true;
 						}
 					}
-					
+
 					// Corruption Clicker Effect
-					if (itemClickerEffect.Contains("Dark Burst")  || wildMagic == 4)
+					if (itemClickerEffect.Contains("Dark Burst") || wildMagic == 4)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 70);
 						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("DarkClickerPro"), damage, knockBack, player.whoAmI);
@@ -320,7 +318,7 @@ namespace ClickerClass.Items
 							dust.noGravity = true;
 						}
 					}
-					
+
 					// Crimson Clicker Effect
 					if (itemClickerEffect.Contains("Siphon") || wildMagic == 5)
 					{
@@ -341,12 +339,12 @@ namespace ClickerClass.Items
 							Main.dust[num6].velocity.Y = -(float)num8 * 0.075f;
 						}
 					}
-					
+
 					// Meteor Clicker Effect
 					if (itemClickerEffect.Contains("Star Storm") || wildMagic == 6)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 42);
-						
+
 						for (int k = 0; k < 3; k++)
 						{
 							Vector2 startSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-100, 101), Main.MouseWorld.Y - 500 + Main.rand.Next(-25, 26));
@@ -362,7 +360,7 @@ namespace ClickerClass.Items
 							Projectile.NewProjectile(startSpot.X, startSpot.Y, vector.X, vector.Y, mod.ProjectileType("SpaceClickerPro"), (int)(damage * 0.75f), knockBack, player.whoAmI, endSpot.X, endSpot.Y);
 						}
 					}
-					
+
 					// Shadowy Clicker Effect
 					if (itemClickerEffect.Contains("Curse") || wildMagic == 27)
 					{
@@ -372,12 +370,12 @@ namespace ClickerClass.Items
 							Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 27, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 255, default, 1f);
 							dust.noGravity = true;
 						}
-						
+
 						int index = -1;
 						for (int i = 0; i < 200; i++)
 						{
-                            NPC npc = Main.npc[i];
-                            if (npc.active && Vector2.Distance(Main.MouseWorld, npc.Center) < 400f && Collision.CanHit(Main.MouseWorld, 1, 1, npc.Center, 1, 1))
+							NPC npc = Main.npc[i];
+							if (npc.active && Vector2.Distance(Main.MouseWorld, npc.Center) < 400f && Collision.CanHit(Main.MouseWorld, 1, 1, npc.Center, 1, 1))
 							{
 								index = i;
 							}
@@ -395,7 +393,7 @@ namespace ClickerClass.Items
 							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, vector.X, vector.Y, mod.ProjectileType("ShadowyClickerPro"), damage, knockBack, player.whoAmI);
 						}
 					}
-					
+
 					// Dungeon Clicker Effect
 					if (itemClickerEffect.Contains("Splash") || wildMagic == 7)
 					{
@@ -405,17 +403,17 @@ namespace ClickerClass.Items
 							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), mod.ProjectileType("SlickClickerPro"), (int)(damage * 0.75f), knockBack, player.whoAmI);
 						}
 					}
-					
+
 					// Jungle Clicker Effect
 					if (itemClickerEffect.Contains("Stinging Thorn") || wildMagic == 8)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 17);
-				
+
 						int index = -1;
 						for (int i = 0; i < 200; i++)
 						{
-                            NPC npc = Main.npc[i];
-                            if (npc.active && Vector2.Distance(Main.MouseWorld, npc.Center) < 400f && Collision.CanHit(Main.MouseWorld, 1, 1, npc.Center, 1, 1))
+							NPC npc = Main.npc[i];
+							if (npc.active && Vector2.Distance(Main.MouseWorld, npc.Center) < 400f && Collision.CanHit(Main.MouseWorld, 1, 1, npc.Center, 1, 1))
 							{
 								index = i;
 							}
@@ -433,14 +431,14 @@ namespace ClickerClass.Items
 							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, vector.X, vector.Y, mod.ProjectileType("PointyClickerPro"), damage, knockBack, player.whoAmI);
 						}
 					}
-					
+
 					// Molten Clicker Effect
 					if (itemClickerEffect.Contains("Inferno") || wildMagic == 9)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 74);
 						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("RedHotClickerPro"), 0, knockBack, player.whoAmI);
 					}
-					
+
 					// Night Clicker Effect
 					if (itemClickerEffect.Contains("Shadow Lash") || wildMagic == 10)
 					{
@@ -450,7 +448,7 @@ namespace ClickerClass.Items
 							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), mod.ProjectileType("UmbralClickerPro"), (int)(damage * 0.5f), knockBack, player.whoAmI);
 						}
 					}
-					
+
 					// Cobalt Clicker Effect
 					if (itemClickerEffect.Contains("Haste") || wildMagic == 11)
 					{
@@ -471,7 +469,7 @@ namespace ClickerClass.Items
 							Main.dust[num6].velocity.Y = -(float)num8 * 0.075f;
 						}
 					}
-					
+
 					// Palladium Clicker Effect
 					if (itemClickerEffect.Contains("Regenerate") || wildMagic == 12)
 					{
@@ -492,19 +490,19 @@ namespace ClickerClass.Items
 							Main.dust[num6].velocity.Y = -(float)num8 * 0.075f;
 						}
 					}
-					
+
 					// Mythril Clicker Effect
 					if (itemClickerEffect.Contains("Embrittle") || wildMagic == 13)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 101);
 						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("MythrilClickerPro"), 0, knockBack, player.whoAmI);
 					}
-					
+
 					// Orich Clicker Effect
 					if (itemClickerEffect.Contains("Petal Storm") || wildMagic == 14)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
-						
+
 						for (int k = 0; k < 5; k++)
 						{
 							float xChoice = Main.rand.Next(-100, 101);
@@ -524,14 +522,14 @@ namespace ClickerClass.Items
 							Projectile.NewProjectile(startSpot.X, startSpot.Y, vector.X, vector.Y, mod.ProjectileType("OrichaclumClickerPro"), (int)(damage * 0.5f), 0f, player.whoAmI, Main.rand.Next(3), 0f);
 						}
 					}
-					
+
 					// Adamantite Clicker Effect
 					if (itemClickerEffect.Contains("True Strike") || wildMagic == 15)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 71);
 						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("AdamantiteClickerPro"), damage, knockBack, player.whoAmI);
 					}
-					
+
 					// Titanium Clicker Effect
 					if (itemClickerEffect.Contains("Razor's Edge") || wildMagic == 16)
 					{
@@ -546,14 +544,14 @@ namespace ClickerClass.Items
 							dust.noGravity = true;
 						}
 					}
-					
+
 					// Crystal Clicker Effect
 					if (itemClickerEffect.Contains("Dazzle") || wildMagic == 17)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 28);
 						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("CrystalClickerPro"), 0, knockBack, player.whoAmI);
 					}
-					
+
 					// Cursed Clicker Effect
 					if (itemClickerEffect.Contains("Cursed Eruption") || wildMagic == 18)
 					{
@@ -565,7 +563,7 @@ namespace ClickerClass.Items
 							dust.noGravity = true;
 						}
 					}
-					
+
 					// Ichor Clicker Effect
 					if (itemClickerEffect.Contains("Infest") || wildMagic == 19)
 					{
@@ -575,12 +573,12 @@ namespace ClickerClass.Items
 							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), mod.ProjectileType("CrimsonClickerPro"), (int)(damage * 0.25f), knockBack, player.whoAmI);
 						}
 					}
-					
+
 					// Pirate Clicker Effect
 					if (itemClickerEffect.Contains("Bombard") || wildMagic == 20)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 14);
-						
+
 						for (int k = 0; k < 4; k++)
 						{
 							Vector2 startSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-150, 151), Main.MouseWorld.Y - 500 + Main.rand.Next(-25, 26));
@@ -596,14 +594,14 @@ namespace ClickerClass.Items
 							Projectile.NewProjectile(startSpot.X, startSpot.Y, vector.X, vector.Y, mod.ProjectileType("CaptainsClickerPro"), damage, knockBack, player.whoAmI, endSpot.X, endSpot.Y);
 						}
 					}
-					
+
 					// Eclipse Clicker Effect
 					if (itemClickerEffect.Contains("Totality") || wildMagic == 28)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 43);
 						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("TotalityClickerPro"), damage, knockBack, player.whoAmI);
 					}
-					
+
 					// Hallowed Clicker Effect
 					if (itemClickerEffect.Contains("Holy Nova") || wildMagic == 21)
 					{
@@ -622,7 +620,7 @@ namespace ClickerClass.Items
 								}
 								vector *= mag;
 								Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("ArthursClickerPro"), damage, knockBack, player.whoAmI, 1f, 0f);
-								
+
 								for (int k = 0; k < 30; k++)
 								{
 									Dust dust = Dust.NewDustDirect(target.Center, 8, 8, 87, vector.X + Main.rand.NextFloat(-1f, 1f), vector.Y + Main.rand.NextFloat(-1f, 1f), 0, default, 1.25f);
@@ -630,7 +628,7 @@ namespace ClickerClass.Items
 								}
 							}
 						}
-						
+
 						float num102 = 100f;
 						int num103 = 0;
 						while ((float)num103 < num102)
@@ -646,7 +644,7 @@ namespace ClickerClass.Items
 							num103 = num + 1;
 						}
 					}
-					
+
 					// Chloro Clicker Effect
 					if (itemClickerEffect.Contains("Toxic Release") || wildMagic == 22)
 					{
@@ -656,7 +654,7 @@ namespace ClickerClass.Items
 							Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), mod.ProjectileType("ChlorophyteClickerPro"), (int)(damage * 0.5f), 0f, player.whoAmI);
 						}
 					}
-					
+
 					// Shroom Clicker Effect
 					if (itemClickerEffect.Contains("Auto Click") || wildMagic == 23)
 					{
@@ -678,14 +676,14 @@ namespace ClickerClass.Items
 							Main.dust[num6].velocity.Y = -(float)num8 * 0.075f;
 						}
 					}
-					
+
 					// Temple Clicker Effect
 					if (itemClickerEffect.Contains("Solar Flare") || wildMagic == 24)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 68);
 						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("LihzarhdClickerPro"), (int)(damage * 0.5f), 0f, player.whoAmI);
 					}
-					
+
 					// Martian Clicker Effect
 					if (itemClickerEffect.Contains("Discharge") || wildMagic == 25)
 					{
@@ -700,7 +698,7 @@ namespace ClickerClass.Items
 							dust.noGravity = true;
 						}
 					}
-					
+
 					// Mice Clicker Effect
 					if (itemClickerEffect.Contains("Collision"))
 					{
@@ -715,7 +713,7 @@ namespace ClickerClass.Items
 							dust.noGravity = true;
 						}
 					}
-					
+
 					// Astral Clicker Effect
 					if (itemClickerEffect.Contains("Spiral"))
 					{
@@ -727,14 +725,14 @@ namespace ClickerClass.Items
 							dust.noGravity = true;
 						}
 					}
-					
+
 					// Moon Lord Clicker Effect
 					if (itemClickerEffect.Contains("Conqueror"))
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 88);
 						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, mod.ProjectileType("LordsClickerPro"), (int)(damage * 2f), 0f, player.whoAmI);
 					}
-					
+
 					wildMagic = 0;
 				}
 				return false;
@@ -779,7 +777,7 @@ namespace ClickerClass.Items
 				if (itemClickerAmount > 0 && itemClickerEffect != "NULL")
 				{
 					index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("Knockback"));
-					
+
 					if (index != -1)
 					{
 						int clickAmountTotal = (int)((itemClickerAmount + clickBoostPrefix - player.GetModPlayer<ClickerPlayer>().clickerBonus) * player.GetModPlayer<ClickerPlayer>().clickerBonusPercent);
@@ -796,13 +794,13 @@ namespace ClickerClass.Items
 				if (isClickerDisplay)
 				{
 					index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("Tooltip0"));
-					
+
 					if (index != -1)
 					{
 						tooltips.Insert(index + 6, new TooltipLine(mod, "transformationText", "Total clicks: " + $"[c/fcd22c:" + player.GetModPlayer<ClickerPlayer>().clickerTotal + "]"));
 					}
 				}
-				
+
 				if (item.prefix < PrefixID.Count || !ClickerPrefix.ClickerPrefixes.Contains(item.prefix))
 				{
 					return;
@@ -821,7 +819,7 @@ namespace ClickerClass.Items
 						tooltips.Insert(ttindex + 1, tt);
 					}
 				}
-				
+
 				if (clickBoostPrefix != 0)
 				{
 					int ttindex = tooltips.FindLastIndex(t => (t.mod == "Terraria" || t.mod == mod.Name) && (t.isModifier || t.Name.StartsWith("Tooltip") || t.Name.Equals("Material")));
@@ -837,7 +835,7 @@ namespace ClickerClass.Items
 				}
 			}
 		}
-		
+
 		public override bool NewPreReforge()
 		{
 			if (isClicker)

@@ -6,7 +6,7 @@ namespace ClickerClass.Items
 {
 	public class MilkCookies : ClickerItem
 	{
-		public override void SetStaticDefaults() 
+		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Milk n' Cookies");
 			Tooltip.SetDefault("While equipped, cookies will periodically spawn within your clicker radius"
@@ -24,12 +24,12 @@ namespace ClickerClass.Items
 			item.rare = 3;
 		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual) 
+		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			player.GetModPlayer<ClickerPlayer>().clickerCookieAcc2 = true;
 			player.GetModPlayer<ClickerPlayer>().clickerMilkAcc = true;
 		}
-		
+
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);

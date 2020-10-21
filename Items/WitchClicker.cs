@@ -1,13 +1,4 @@
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.DataStructures;
-using Terraria.Enums;
-using Terraria.ObjectData;
-using ClickerClass.Buffs;
 
 namespace ClickerClass.Items
 {
@@ -18,7 +9,7 @@ namespace ClickerClass.Items
 			DisplayName.SetDefault("Witch Clicker");
 			Tooltip.SetDefault("Click on an enemy within range and sight to damage them");
 		}
-		
+
 		public override void SetDefaults()
 		{
 			isClicker = true;
@@ -28,7 +19,7 @@ namespace ClickerClass.Items
 			itemClickerAmount = 6;
 			itemClickerEffect = "Wild Magic";
 			itemClickerColorEffect = "ac59ff";
-			
+
 			item.damage = 78;
 			item.width = 30;
 			item.height = 30;

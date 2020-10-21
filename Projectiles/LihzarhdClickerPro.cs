@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -22,7 +21,7 @@ namespace ClickerClass.Projectiles
 			projectile.timeLeft = 60;
 			projectile.friendly = true;
 			projectile.tileCollide = false;
-			
+
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 5;
 		}

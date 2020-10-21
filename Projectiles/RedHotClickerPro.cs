@@ -1,9 +1,6 @@
-using System;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
@@ -36,7 +33,7 @@ namespace ClickerClass.Projectiles
 					{
 						target.AddBuff(BuffID.Oiled, 180, false);
 						target.AddBuff(BuffID.OnFire, 180, false);
-						
+
 						for (int i = 0; i < 15; i++)
 						{
 							int num6 = Dust.NewDust(target.position, target.width, target.height, 174, 0f, 0f, 100, default(Color), 1f);

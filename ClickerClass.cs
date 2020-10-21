@@ -1,6 +1,6 @@
+using ClickerClass.Effects;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ClickerClass.Effects;
 
 namespace ClickerClass
 {
@@ -8,21 +8,21 @@ namespace ClickerClass
 	{
 		public static ModHotKey AutoClickKey;
 		internal static ClickerClass mod;
-		
+
 		public override void Load()
 		{
 			mod = this;
 			AutoClickKey = RegisterHotKey("Clicker Accessory", "G");
 			ShaderManager.Load();
 		}
-		
+
 		public override void Unload()
 		{
 			ShaderManager.Unload();
 			AutoClickKey = null;
 			mod = null;
 		}
-		
+
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(this);

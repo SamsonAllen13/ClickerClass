@@ -1,9 +1,5 @@
-using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
@@ -22,13 +18,13 @@ namespace ClickerClass.Projectiles
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 10;
 		}
-		
+
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
 			target.AddBuff(BuffID.Oiled, 300, false);
 			target.AddBuff(BuffID.OnFire, 300, false);
 		}
-		
+
 		public override void AI()
 		{
 			if (projectile.timeLeft <= 10)

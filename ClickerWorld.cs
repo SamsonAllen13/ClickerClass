@@ -1,18 +1,11 @@
-using Microsoft.Xna.Framework;
+using ClickerClass.Items;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Reflection;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using Terraria.ModLoader.IO;
 using Terraria.World.Generation;
-using ClickerClass.Items;
-using ClickerClass.Utilities;
 
 namespace ClickerClass
 {
@@ -27,7 +20,7 @@ namespace ClickerClass
 				tasks.Insert(++genIndex, new PassLegacy("Clicker Class: Extra Loot", GenerateExtraLoot));
 			}
 		}
-		
+
 		private void GenerateExtraLoot(GenerationProgress progress)
 		{
 			progress.Message = "Clicker Class: Generating Extra Loot";

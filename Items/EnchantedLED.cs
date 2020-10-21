@@ -1,19 +1,17 @@
 ﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Items
 {
 	public class EnchantedLED : ClickerItem
 	{
-		public override void SetStaticDefaults() 
+		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Enchanted LED");
 			Tooltip.SetDefault("Your clicks produce an enchanted burst of light"
 							+ "\nIncreases click damage by 2");
 		}
 
-		public override void SetDefaults() 
+		public override void SetDefaults()
 		{
 			isClicker = true;
 			item.width = 20;
@@ -23,7 +21,7 @@ namespace ClickerClass.Items
 			item.rare = 1;
 		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual) 
+		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED = true;
 			player.GetModPlayer<ClickerPlayer>().clickerDamageFlat += 2;

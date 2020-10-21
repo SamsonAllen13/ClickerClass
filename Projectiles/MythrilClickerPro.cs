@@ -1,10 +1,6 @@
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.Graphics.Shaders;
-using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
@@ -37,7 +33,7 @@ namespace ClickerClass.Projectiles
 					if (target.CanBeChasedBy(projectile) && target.DistanceSQ(projectile.Center) < 250 * 250)
 					{
 						target.AddBuff(mod.BuffType("Embrittle"), 240, false);
-						
+
 						for (int i = 0; i < 15; i++)
 						{
 							int num6 = Dust.NewDust(target.position, target.width, target.height, 57, 0f, 0f, 100, default(Color), 1f);

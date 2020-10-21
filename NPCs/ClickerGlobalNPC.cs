@@ -1,7 +1,6 @@
-using System.Collections.Generic;
 using Microsoft.Xna.Framework;
-using Terraria.Graphics.Shaders;
 using Terraria;
+using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -29,7 +28,7 @@ namespace ClickerClass.NPCs
 			honeySlow = false;
 			embrittle = false;
 		}
-		
+
 		public override void SetDefaults(NPC npc)
 		{
 			switch (npc.type)
@@ -117,7 +116,7 @@ namespace ClickerClass.NPCs
 				npc.frameCounter = 0;
 			}
 		}
-		
+
 		public override void NPCLoot(NPC npc)
 		{
 			if (npc.type == NPCID.GoblinSorcerer && npc.value > 0f)
@@ -181,7 +180,7 @@ namespace ClickerClass.NPCs
 				if (npc.type == NPCID.MoonLordCore)
 				{
 					Item.NewItem(npc.Hitbox, mod.ItemType("LordsClicker"), 1, false, -1);
-					
+
 					if (Main.rand.NextBool(5))
 					{
 						Item.NewItem(npc.Hitbox, mod.ItemType("TheClicker"), 1, false, -1);
@@ -214,11 +213,11 @@ namespace ClickerClass.NPCs
 				}
 			}
 		}
-		
+
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
 		{
 			Player closestPlayer = Main.LocalPlayer;
-			
+
 			switch (type)
 			{
 				case NPCID.Merchant:

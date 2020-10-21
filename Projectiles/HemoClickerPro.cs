@@ -1,8 +1,5 @@
-using System;
-using Terraria;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using ClickerClass.Items;
+using Terraria;
 
 namespace ClickerClass.Projectiles
 {
@@ -50,7 +47,7 @@ namespace ClickerClass.Projectiles
 				Main.dust[num366].noGravity = true;
 			}
 		}
-		
+
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			return false;

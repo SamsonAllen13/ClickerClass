@@ -1,13 +1,5 @@
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.DataStructures;
-using Terraria.Enums;
-using Terraria.ObjectData;
-using ClickerClass.Buffs;
+using Terraria;
 
 namespace ClickerClass.Items
 {
@@ -18,7 +10,7 @@ namespace ClickerClass.Items
 			DisplayName.SetDefault("Lord's Clicker");
 			Tooltip.SetDefault("Click on an enemy within range and sight to damage them");
 		}
-		
+
 		public override void SetDefaults()
 		{
 			isClicker = true;
@@ -28,7 +20,7 @@ namespace ClickerClass.Items
 			itemClickerAmount = 15;
 			itemClickerEffect = "Conqueror";
 			itemClickerColorEffect = "adfcdc";
-			
+
 			item.damage = 122;
 			item.width = 30;
 			item.height = 30;

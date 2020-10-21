@@ -1,7 +1,7 @@
+using ClickerClass.Items;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using ClickerClass.Items;
 
 namespace ClickerClass.Prefixes
 {

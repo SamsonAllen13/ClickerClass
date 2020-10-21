@@ -1,6 +1,4 @@
-using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
@@ -29,7 +27,7 @@ namespace ClickerClass.Projectiles
 			{
 				crit = critChance >= 100 || Main.rand.Next(1, 101) <= critChance;
 			}
-			
+
 			int defenseIgnore = target.defense / 2;
 			if (defenseIgnore <= 0) defenseIgnore = 0;
 			damage += defenseIgnore;

@@ -1,18 +1,16 @@
 ﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Items
 {
 	public class Cookie : ClickerItem
 	{
-		public override void SetStaticDefaults() 
+		public override void SetStaticDefaults()
 		{
 			Tooltip.SetDefault("While equipped, cookies will periodically spawn within your clicker radius"
 							+ "\nClick the cookie to gain bonus clicker damage, radius, and life regeneration");
 		}
 
-		public override void SetDefaults() 
+		public override void SetDefaults()
 		{
 			isClicker = true;
 			item.width = 20;
@@ -22,7 +20,7 @@ namespace ClickerClass.Items
 			item.rare = 1;
 		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual) 
+		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			player.GetModPlayer<ClickerPlayer>().clickerCookieAcc = true;
 		}

@@ -1,9 +1,7 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.Graphics.Shaders;
+using Terraria;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -11,7 +9,7 @@ namespace ClickerClass.Projectiles
 	{
 		public int timer = 0;
 		public float rotation = 0f;
-		
+
 		public override void SetStaticDefaults()
 		{
 			Main.projFrames[projectile.type] = 3;
@@ -38,12 +36,12 @@ namespace ClickerClass.Projectiles
 		{
 			return new Color(255, 255, 255, 0) * (0.01f * projectile.timeLeft);
 		}
-		
+
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
 			Rectangle frame = new Rectangle(0, 0, 20, 20);
 			frame.Y += 20 * projectile.frame;
-			
+
 			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
 			for (int k = 0; k < projectile.oldPos.Length; k++)
 			{
@@ -58,17 +56,17 @@ namespace ClickerClass.Projectiles
 		{
 			projectile.frame = (int)(projectile.ai[0]);
 			projectile.rotation += projectile.velocity.X > 0f ? 0.2f : -0.2f;
-			
+
 			timer++;
 			if (timer % 5 == 0)
 			{
 				rotation = projectile.rotation;
 			}
-			
+
 			if (projectile.ai[1] < 1f)
 			{
 				projectile.ai[1] += 1f;
-				
+
 				float num102 = 30f;
 				int num103 = 0;
 				while ((float)num103 < num102)

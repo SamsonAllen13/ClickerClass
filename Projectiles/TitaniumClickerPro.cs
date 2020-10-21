@@ -1,10 +1,8 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.Graphics.Shaders;
 
 namespace ClickerClass.Projectiles
 {
@@ -14,7 +12,7 @@ namespace ClickerClass.Projectiles
 		public int timer = 0;
 		public float rotation = 0f;
 		public Vector2 center = Vector2.Zero;
-		
+
 		public override void SetStaticDefaults()
 		{
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 30;
@@ -35,7 +33,7 @@ namespace ClickerClass.Projectiles
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 20;
 		}
-		
+
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
 			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
@@ -47,7 +45,7 @@ namespace ClickerClass.Projectiles
 			}
 			return true;
 		}
-		
+
 		public static Vector2 RotateVector(Vector2 origin, Vector2 vecToRot, float rot)
 		{
 			float newPosX = (float)(Math.Cos(rot) * (vecToRot.X - origin.X) - Math.Sin(rot) * (vecToRot.Y - origin.Y) + origin.X);
@@ -64,13 +62,13 @@ namespace ClickerClass.Projectiles
 				center = projectile.Center;
 			}
 			projectile.rotation += projectile.velocity.X > 0f ? 0.2f : -0.2f;
-			
+
 			timer++;
 			if (timer % 5 == 0)
 			{
 				rotation = projectile.rotation;
 			}
-			
+
 			radiusIncrease += 1;
 			rot += 0.05f;
 			projectile.Center = center + RotateVector(default(Vector2), new Vector2(0, 20 + radiusIncrease), rot + (projectile.ai[0] * (6.28f / 5)));

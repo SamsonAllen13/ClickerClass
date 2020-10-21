@@ -1,9 +1,4 @@
-﻿using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Text.RegularExpressions;
-using Terraria;
+﻿using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,7 +6,7 @@ namespace ClickerClass.Items
 {
 	public class GamerCrate : ClickerItem
 	{
-		public override void SetStaticDefaults() 
+		public override void SetStaticDefaults()
 		{
 			Tooltip.SetDefault("'You don't actually think someone would play this, do you?'"
 						+ "\nIncreases click damage by 10%"
@@ -32,14 +27,14 @@ namespace ClickerClass.Items
 			item.rare = 7;
 		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual) 
+		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			player.GetModPlayer<ClickerPlayer>().clickerRadius += 1f;
 			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.10f;
 			player.GetModPlayer<ClickerPlayer>().clickerBonusPercent -= 0.20f;
 			player.GetModPlayer<ClickerPlayer>().clickerAutoClickAcc = true;
 		}
-		
+
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);

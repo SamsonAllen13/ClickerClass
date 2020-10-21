@@ -1,17 +1,15 @@
 ﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Items
 {
 	public class ClickerEmblem : ClickerItem
 	{
-		public override void SetStaticDefaults() 
+		public override void SetStaticDefaults()
 		{
 			Tooltip.SetDefault("15% increased clicker damage");
 		}
 
-		public override void SetDefaults() 
+		public override void SetDefaults()
 		{
 			isClicker = true;
 			item.width = 24;
@@ -21,7 +19,7 @@ namespace ClickerClass.Items
 			item.accessory = true;
 		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual) 
+		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.15f;
 		}

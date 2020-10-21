@@ -1,8 +1,5 @@
-﻿using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.GameContent;
+﻿using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Utilities
 {

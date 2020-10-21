@@ -1,9 +1,8 @@
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace ClickerClass.Projectiles
 {
@@ -18,7 +17,7 @@ namespace ClickerClass.Projectiles
 			projectile.penetrate = -1;
 			projectile.timeLeft = 120;
 			projectile.tileCollide = false;
-			
+
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 30;
 		}
@@ -34,7 +33,7 @@ namespace ClickerClass.Projectiles
 				return new Color(255, 255, 255, 0) * 0f;
 			}
 		}
-		
+
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
 			if (projectile.timeLeft > 4)
@@ -48,7 +47,7 @@ namespace ClickerClass.Projectiles
 		{
 			projectile.rotation += 0.065f;
 			projectile.ai[0] -= 0.15f;
-			
+
 			for (int k = 0; k < 1; k++)
 			{
 				Vector2 offset = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
@@ -56,7 +55,7 @@ namespace ClickerClass.Projectiles
 				dust.noGravity = true;
 				dust.velocity = -offset * 0.1f;
 			}
-			
+
 			for (int u = 0; u < 200; u++)
 			{
 				NPC target = Main.npc[u];
@@ -76,11 +75,11 @@ namespace ClickerClass.Projectiles
 					target.velocity.Y = (target.velocity.Y * (float)(num7 - 1) + num5) / (float)num7;
 				}
 			}
-			
+
 			if (projectile.timeLeft == 4)
 			{
 				Main.PlaySound(2, (int)projectile.Center.X, (int)projectile.Center.Y, 122);
-				
+
 				for (int k = 0; k < 30; k++)
 				{
 					Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, mod.DustType("MiceDust"), Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 0, default, 1.5f);
@@ -92,7 +91,7 @@ namespace ClickerClass.Projectiles
 					dust.noGravity = true;
 				}
 			}
-			
+
 			if (projectile.owner == Main.myPlayer && projectile.timeLeft <= 3)
 			{
 				projectile.velocity.X = 0f;

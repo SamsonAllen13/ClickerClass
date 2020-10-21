@@ -1,8 +1,6 @@
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -32,7 +30,7 @@ namespace ClickerClass.Projectiles
 				projectile.velocity.X += Main.rand.NextFloat(-1f, 1f);
 				projectile.ai[0] = 0;
 			}
-			
+
 			for (int num363 = 0; num363 < 1; num363++)
 			{
 				float num364 = projectile.velocity.X / 3f * (float)num363;
@@ -43,12 +41,12 @@ namespace ClickerClass.Projectiles
 				Main.dust[num366].velocity *= 0f;
 				Main.dust[num366].noGravity = true;
 			}
-			
+
 			if (projectile.timeLeft < 540)
 			{
 				projectile.friendly = true;
 				projectile.extraUpdates = 4;
-				
+
 				if (Main.myPlayer == projectile.owner)
 				{
 					float num477 = projectile.Center.X;
@@ -85,7 +83,7 @@ namespace ClickerClass.Projectiles
 				}
 			}
 		}
-		
+
 		public override void Kill(int timeLeft)
 		{
 			for (int k = 0; k < 5; k++)

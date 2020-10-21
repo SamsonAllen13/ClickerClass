@@ -1,12 +1,4 @@
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.DataStructures;
-using Terraria.Enums;
-using Terraria.ObjectData;
 
 namespace ClickerClass.Items
 {
@@ -17,7 +9,7 @@ namespace ClickerClass.Items
 			DisplayName.SetDefault("Umbral Clicker");
 			Tooltip.SetDefault("Click on an enemy within range and sight to damage them");
 		}
-		
+
 		public override void SetDefaults()
 		{
 			isClicker = true;
@@ -27,7 +19,7 @@ namespace ClickerClass.Items
 			itemClickerAmount = 10;
 			itemClickerEffect = "Shadow Lash";
 			itemClickerColorEffect = "7631f7";
-			
+
 			item.damage = 20;
 			item.width = 30;
 			item.height = 30;

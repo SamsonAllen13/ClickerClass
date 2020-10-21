@@ -1,9 +1,7 @@
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.Graphics.Shaders;
+using Terraria;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -33,7 +31,7 @@ namespace ClickerClass.Projectiles
 		{
 			target.AddBuff(BuffID.OnFire, 300, false);
 		}
-		
+
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
 			if (projectile.timeLeft > 4)
@@ -52,7 +50,7 @@ namespace ClickerClass.Projectiles
 		public override void AI()
 		{
 			projectile.rotation += projectile.velocity.X > 0f ? 0.35f : -0.35f;
-			
+
 			for (int l = 0; l < 2; l++)
 			{
 				int num235 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y) - projectile.velocity, projectile.width, projectile.height, 31, 0f, 0f, 125, default(Color), 1f);
@@ -61,7 +59,7 @@ namespace ClickerClass.Projectiles
 				dust4.velocity *= 0f;
 				Main.dust[num235].noGravity = true;
 			}
-			
+
 			Vector2 vec = new Vector2(projectile.ai[0], projectile.ai[1]);
 			if (Vector2.Distance(projectile.Center, vec) <= 10)
 			{
@@ -69,7 +67,7 @@ namespace ClickerClass.Projectiles
 				{
 					Main.PlaySound(2, (int)projectile.Center.X, (int)projectile.Center.Y, 89);
 					projectile.timeLeft = 4;
-					
+
 					for (int k = 0; k < 10; k++)
 					{
 						Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, 6, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 0, default, 1.35f);
@@ -87,7 +85,7 @@ namespace ClickerClass.Projectiles
 					}
 				}
 			}
-			
+
 			if (projectile.owner == Main.myPlayer && projectile.timeLeft <= 3)
 			{
 				projectile.velocity.X = 0f;

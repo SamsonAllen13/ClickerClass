@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -12,7 +11,7 @@ namespace ClickerClass.Projectiles
 		public bool shift = false;
 		public float pulse = 0f;
 		public float rotation = 0f;
-		
+
 		public override void SetDefaults()
 		{
 			isClickerProj = true;
@@ -46,7 +45,7 @@ namespace ClickerClass.Projectiles
 			{
 				shift = false;
 			}
-			
+
 			projectile.ai[0]++;
 			if (projectile.ai[0] > 20)
 			{
@@ -68,7 +67,7 @@ namespace ClickerClass.Projectiles
 						mag = speed / mag;
 					}
 					vector *= mag;
-					
+
 					if (Main.netMode != NetmodeID.MultiplayerClient)
 					{
 						float numberProjectiles = 3;

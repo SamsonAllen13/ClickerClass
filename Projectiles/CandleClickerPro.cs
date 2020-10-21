@@ -1,9 +1,5 @@
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using ClickerClass.Items;
+using Terraria;
 
 namespace ClickerClass.Projectiles
 {
@@ -32,7 +28,7 @@ namespace ClickerClass.Projectiles
 				}
 			}
 		}
-		
+
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			if (projectile.ai[0] < 1f)

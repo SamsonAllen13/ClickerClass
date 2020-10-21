@@ -1,7 +1,5 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -22,7 +20,7 @@ namespace ClickerClass.Projectiles
 			projectile.timeLeft = 60;
 			projectile.friendly = true;
 			projectile.tileCollide = false;
-			
+
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 60;
 		}
@@ -31,7 +29,7 @@ namespace ClickerClass.Projectiles
 		{
 			return new Color(255, 255, 255, 0) * (0.08f * projectile.timeLeft);
 		}
-		
+
 		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
 		{
 			damage = (int)(damage * 2.5f);

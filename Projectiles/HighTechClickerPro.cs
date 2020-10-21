@@ -1,10 +1,7 @@
 using Microsoft.Xna.Framework;
 using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using System.Collections.Generic;
-using System.Linq;
+using Terraria;
 
 namespace ClickerClass.Projectiles
 {
@@ -24,7 +21,7 @@ namespace ClickerClass.Projectiles
 			projectile.friendly = true;
 			projectile.timeLeft = 600;
 			projectile.extraUpdates = 100;
-			
+
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 30;
 		}
@@ -61,7 +58,7 @@ namespace ClickerClass.Projectiles
 				Main.dust[num366].velocity *= 0f;
 				Main.dust[num366].noGravity = true;
 			}
-			
+
 			if (projectile.timeLeft < 580)
 			{
 				if (projectile.timeLeft >= 600)

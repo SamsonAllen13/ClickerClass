@@ -1,10 +1,8 @@
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ClickerClass.Utilities;
+using Terraria;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {

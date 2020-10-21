@@ -1,10 +1,5 @@
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria.Graphics.Shaders;
-using ClickerClass.Items;
 
 namespace ClickerClass.Projectiles
 {
@@ -28,7 +23,7 @@ namespace ClickerClass.Projectiles
 		public override void Kill(int timeLeft)
 		{
 			Player player = Main.player[projectile.owner];
-			
+
 			for (int k = 0; k < 8; k++)
 			{
 				Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, 90, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 75, default, 1f);

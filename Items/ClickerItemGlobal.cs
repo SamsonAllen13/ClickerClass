@@ -1,12 +1,8 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ClickerClass.Prefixes;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
 using Terraria.ModLoader;
-using ClickerClass.Items;
-using ClickerClass.Prefixes;
-using ClickerClass.NPCs;
 
 namespace ClickerClass.Items
 {
@@ -43,7 +39,7 @@ namespace ClickerClass.Items
 					break;
 			}
 		}
-		
+
 		public override void UpdateEquip(Item item, Player player)
 		{
 			switch (item.prefix)
@@ -60,7 +56,7 @@ namespace ClickerClass.Items
 			{
 				player.GetModPlayer<ClickerPlayer>().clickerRadius += 0.3f;
 			}
-			
+
 			switch (item.type)
 			{
 				case ItemID.Gi:
@@ -140,7 +136,7 @@ namespace ClickerClass.Items
 					break;
 			}
 		}
-		
+
 		//Tooltip stuff
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{

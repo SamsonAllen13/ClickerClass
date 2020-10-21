@@ -1,8 +1,5 @@
-using System;
-using Terraria;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
 using ClickerClass.Items;
+using Terraria;
 
 namespace ClickerClass.Projectiles
 {
@@ -22,23 +19,23 @@ namespace ClickerClass.Projectiles
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 10;
 		}
-		
+
 		public override void Kill(int timeLeft)
 		{
 			Player player = Main.player[projectile.owner];
-			
+
 			int dustColor = 0;
 			if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
 			{
 				dustColor = clickerItem.clickerDustColor;
 			}
-			
+
 			for (int k = 0; k < 5; k++)
 			{
 				Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, dustColor, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
 				dust.noGravity = true;
 			}
-			
+
 			if (player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED)
 			{
 				for (int i = 0; i < 15; i++)

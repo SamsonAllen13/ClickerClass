@@ -1,8 +1,6 @@
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -34,8 +32,8 @@ namespace ClickerClass.Projectiles
 		public override void AI()
 		{
 			Player player = Main.player[projectile.owner];
-			
-			
+
+
 			if (projectile.timeLeft < 172)
 			{
 				projectile.ai[0]++;
@@ -45,7 +43,7 @@ namespace ClickerClass.Projectiles
 					projectile.velocity.X += Main.rand.NextFloat(-1f, 1f);
 					projectile.ai[0] = 0;
 				}
-			
+
 				for (int num363 = 0; num363 < 1; num363++)
 				{
 					float num364 = projectile.velocity.X / 3f * (float)num363;
@@ -57,11 +55,11 @@ namespace ClickerClass.Projectiles
 					Main.dust[num366].noGravity = true;
 				}
 			}
-			
+
 			if (projectile.timeLeft < 150)
 			{
 				projectile.friendly = true;
-				
+
 				int num3;
 				float num477 = projectile.Center.X;
 				float num478 = projectile.Center.Y;
@@ -102,7 +100,7 @@ namespace ClickerClass.Projectiles
 				}
 			}
 		}
-		
+
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			return false;

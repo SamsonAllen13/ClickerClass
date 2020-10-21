@@ -1,13 +1,4 @@
-using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.DataStructures;
-using Terraria.Enums;
-using Terraria.ObjectData;
-using ClickerClass.Buffs;
 
 namespace ClickerClass.Items
 {
@@ -18,7 +9,7 @@ namespace ClickerClass.Items
 			DisplayName.SetDefault("High Tech Clicker");
 			Tooltip.SetDefault("Click on an enemy within range and sight to damage them");
 		}
-		
+
 		public override void SetDefaults()
 		{
 			isClicker = true;
@@ -28,7 +19,7 @@ namespace ClickerClass.Items
 			itemClickerAmount = 10;
 			itemClickerEffect = "Discharge";
 			itemClickerColorEffect = "59ffcd";
-			
+
 			item.damage = 90;
 			item.width = 30;
 			item.height = 30;

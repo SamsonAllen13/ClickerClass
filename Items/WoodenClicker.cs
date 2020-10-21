@@ -1,12 +1,7 @@
-using System;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria.DataStructures;
-using Terraria.Enums;
-using Terraria.ObjectData;
 
 namespace ClickerClass.Items
 {
@@ -17,14 +12,14 @@ namespace ClickerClass.Items
 			DisplayName.SetDefault("Wooden Clicker");
 			Tooltip.SetDefault("Click on an enemy within range and sight to damage them");
 		}
-		
+
 		public override void SetDefaults()
 		{
 			isClicker = true;
 			radiusBoost = 0.9f;
 			clickerColorItem = new Color(125, 100, 75, 0);
 			clickerDustColor = 0;
-			
+
 			item.damage = 3;
 			item.width = 30;
 			item.height = 30;
@@ -39,7 +34,7 @@ namespace ClickerClass.Items
 			item.shoot = mod.ProjectileType("ClickDamage");
 			item.shootSpeed = 1f;
 		}
-		
+
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
 			Main.PlaySound(SoundID.MenuTick, player.position);

@@ -16,18 +16,23 @@ namespace ClickerClass.Projectiles
 
 			Player player = Main.player[projectile.owner];
 
+			Item heldItem = player.HeldItem;
+
+			// Prevent crash when held item is null/none
+			if (heldItem == null) return;
+
 			// Vanilla crit chance calculations. Crit chance of the currently held weapon matters, regardless of the damage type of the weapon.
-			int critChance = player.HeldItem.crit;
-			ItemLoader.GetWeaponCrit(player.HeldItem, player, ref critChance);
-			PlayerHooks.GetWeaponCrit(player, player.HeldItem, ref critChance);
+			int critChance = heldItem.crit;
+			ItemLoader.GetWeaponCrit(heldItem, player, ref critChance);
+			PlayerHooks.GetWeaponCrit(player, heldItem, ref critChance);
 			if (!crit)
 			{
 				crit = critChance >= 100 || Main.rand.Next(1, 101) <= critChance;
 			}
 			
-			int defenseIgnore = (target.defense / 2);
-			if (defenseIgnore <= 0){defenseIgnore = 0;}
-			damage = (int)(damage + defenseIgnore);
+			int defenseIgnore = target.defense / 2;
+			if (defenseIgnore <= 0) defenseIgnore = 0;
+			damage += defenseIgnore;
 			hitDirection = target.Center.X < player.Center.X ? -1 : 1;
 		}
 	}

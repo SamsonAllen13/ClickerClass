@@ -261,7 +261,7 @@ namespace ClickerClass
 			if ((clickerCookieAcc || clickerCookieAcc2) && clickerSelected)
 			{
 				clickerCookieAccTimer++;
-				if (Main.netMode != NetmodeID.Server && clickerCookieAccTimer > 600)
+				if (player.whoAmI == Main.myPlayer && clickerCookieAccTimer > 600)
 				{
 					int radius = (int)(95 * clickerRadius);
 					if (radius > 350)
@@ -288,13 +288,13 @@ namespace ClickerClass
 				}
 
 				//Cookie Click
-				if (Main.netMode != NetmodeID.Server)
+				if (player.whoAmI == Main.myPlayer)
 				{
 					for (int i = 0; i < 1000; i++)
 					{
 						Projectile cookieProjectile = Main.projectile[i];
 
-						if (cookieProjectile.active && cookieProjectile.type == ModContent.ProjectileType<CookiePro>())
+						if (cookieProjectile.active && cookieProjectile.type == ModContent.ProjectileType<CookiePro>() && cookieProjectile.owner == player.whoAmI)
 						{
 							if (Main.mouseLeft && Main.mouseLeftRelease && Vector2.Distance(cookieProjectile.Center, Main.MouseWorld) < 30)
 							{

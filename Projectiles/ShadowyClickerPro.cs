@@ -8,6 +8,13 @@ namespace ClickerClass.Projectiles
 {
 	public class ShadowyClickerPro : ClickerProjectile
 	{
+		public override void SetStaticDefaults()
+		{
+			Main.projFrames[projectile.type] = 4;
+			ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
+			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
+		}
+
 		public override void SetDefaults()
 		{
 			isClickerProj = true;
@@ -18,11 +25,8 @@ namespace ClickerClass.Projectiles
 			projectile.penetrate = -1;
 			projectile.timeLeft = 180;
 			aiType = ProjectileID.Bullet;
-			Main.projFrames[projectile.type] = 4;
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 180;
-			ProjectileID.Sets.TrailCacheLength[projectile.type] = 5;
-			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
 		}
 
 		public override Color? GetAlpha(Color lightColor)

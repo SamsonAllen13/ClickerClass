@@ -8,8 +8,13 @@ namespace ClickerClass.Projectiles
 	public class CookiePro : ClickerProjectile
 	{
 		public Vector2 location = Vector2.Zero;
-		
-		public override void SetDefaults()
+
+        public override void SetStaticDefaults()
+		{
+			Main.projFrames[projectile.type] = 2;
+		}
+
+        public override void SetDefaults()
 		{
 			isClickerProj = true;
 			projectile.width = 30;
@@ -19,7 +24,6 @@ namespace ClickerClass.Projectiles
 			projectile.timeLeft = 300;
 			projectile.ignoreWater = true;
 			projectile.tileCollide = false;
-			Main.projFrames[projectile.type] = 2;
 		}
 
 		public override Color? GetAlpha(Color lightColor)

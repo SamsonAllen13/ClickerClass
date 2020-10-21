@@ -15,6 +15,12 @@ namespace ClickerClass.Projectiles
 		public float rotation = 0f;
 		public Vector2 center = Vector2.Zero;
 		
+		public override void SetStaticDefaults()
+		{
+			ProjectileID.Sets.TrailCacheLength[projectile.type] = 30;
+			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
+		}
+
 		public override void SetDefaults()
 		{
 			isClickerProj = true;
@@ -28,8 +34,6 @@ namespace ClickerClass.Projectiles
 			projectile.extraUpdates = 1;
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 20;
-			ProjectileID.Sets.TrailCacheLength[projectile.type] = 30;
-			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
 		}
 		
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

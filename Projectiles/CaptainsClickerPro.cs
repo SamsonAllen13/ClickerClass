@@ -9,6 +9,12 @@ namespace ClickerClass.Projectiles
 {
 	public class CaptainsClickerPro : ClickerProjectile
 	{
+		public override void SetStaticDefaults()
+		{
+			ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
+			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
+		}
+
 		public override void SetDefaults()
 		{
 			isClickerProj = true;
@@ -21,8 +27,6 @@ namespace ClickerClass.Projectiles
 			projectile.extraUpdates = 1;
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 30;
-			ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
-			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
 		}
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)

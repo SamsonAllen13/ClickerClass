@@ -9,6 +9,11 @@ namespace ClickerClass.Projectiles
 	{
 		public Vector2 location = Vector2.Zero;
 		
+		public override void SetStaticDefaults()
+		{
+			Main.projFrames[projectile.type] = 3;
+		}
+
 		public override void SetDefaults()
 		{
 			isClickerProj = true;
@@ -20,7 +25,6 @@ namespace ClickerClass.Projectiles
 			projectile.friendly = true;
 			projectile.ignoreWater = true;
 			projectile.tileCollide = false;
-			Main.projFrames[projectile.type] = 3;
 			
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 30;

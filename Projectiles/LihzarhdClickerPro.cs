@@ -7,6 +7,11 @@ namespace ClickerClass.Projectiles
 {
 	public class LihzarhdClickerPro : ClickerProjectile
 	{
+		public override void SetStaticDefaults()
+		{
+			Main.projFrames[projectile.type] = 12;
+		}
+
 		public override void SetDefaults()
 		{
 			isClickerProj = true;
@@ -17,7 +22,6 @@ namespace ClickerClass.Projectiles
 			projectile.timeLeft = 60;
 			projectile.friendly = true;
 			projectile.tileCollide = false;
-			Main.projFrames[projectile.type] = 12;
 			
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 5;

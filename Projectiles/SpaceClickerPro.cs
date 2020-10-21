@@ -13,6 +13,13 @@ namespace ClickerClass.Projectiles
 		public float rotation = 0f;
 		public bool colorChoice = false;
 		
+		public override void SetStaticDefaults()
+		{
+			Main.projFrames[projectile.type] = 7;
+			ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
+			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
+		}
+
 		public override void SetDefaults()
 		{
 			isClickerProj = true;
@@ -25,9 +32,6 @@ namespace ClickerClass.Projectiles
 			projectile.extraUpdates = 2;
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 30;
-			Main.projFrames[projectile.type] = 7;
-			ProjectileID.Sets.TrailCacheLength[projectile.type] = 8;
-			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
 		}
 
 		public override Color? GetAlpha(Color lightColor)

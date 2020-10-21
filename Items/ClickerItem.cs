@@ -150,7 +150,8 @@ namespace ClickerClass.Items
 							{
 								Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 115);
 								Main.SetCameraLerp(0.1f, 0);
-								player.position = new Vector2(Main.MouseWorld.X - (player.width / 2), Main.MouseWorld.Y - (player.height / 2));
+								player.Center = Main.MouseWorld;
+								NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
 								player.fallStart = (int)(player.position.Y / 16f);
 								player.GetModPlayer<ClickerPlayer>().clickerMiceSetTimer = 60;
 								
@@ -174,7 +175,8 @@ namespace ClickerClass.Items
 						{
 							Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 115);
 							Main.SetCameraLerp(0.1f, 0);
-							player.position = new Vector2(Main.MouseWorld.X - (player.width / 2), Main.MouseWorld.Y - (player.height / 2));
+							player.Center = Main.MouseWorld;
+							NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
 							player.fallStart = (int)(player.position.Y / 16f);
 							player.GetModPlayer<ClickerPlayer>().clickerMiceSetTimer = 60;
 							
@@ -374,7 +376,8 @@ namespace ClickerClass.Items
 						int index = -1;
 						for (int i = 0; i < 200; i++)
 						{
-							if (Vector2.Distance(Main.MouseWorld, Main.npc[i].Center) < 400f && Main.npc[i].active && Collision.CanHit(Main.MouseWorld, 1, 1, Main.npc[i].Center, 1, 1))
+                            NPC npc = Main.npc[i];
+                            if (npc.active && Vector2.Distance(Main.MouseWorld, npc.Center) < 400f && Collision.CanHit(Main.MouseWorld, 1, 1, npc.Center, 1, 1))
 							{
 								index = i;
 							}
@@ -411,7 +414,8 @@ namespace ClickerClass.Items
 						int index = -1;
 						for (int i = 0; i < 200; i++)
 						{
-							if (Vector2.Distance(Main.MouseWorld, Main.npc[i].Center) < 400f && Main.npc[i].active && Collision.CanHit(Main.MouseWorld, 1, 1, Main.npc[i].Center, 1, 1))
+                            NPC npc = Main.npc[i];
+                            if (npc.active && Vector2.Distance(Main.MouseWorld, npc.Center) < 400f && Collision.CanHit(Main.MouseWorld, 1, 1, npc.Center, 1, 1))
 							{
 								index = i;
 							}

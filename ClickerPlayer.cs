@@ -261,7 +261,7 @@ namespace ClickerClass
 			if ((clickerCookieAcc || clickerCookieAcc2) && clickerSelected)
 			{
 				clickerCookieAccTimer++;
-				if (clickerCookieAccTimer > 600)
+				if (Main.netMode != NetmodeID.Server && clickerCookieAccTimer > 600)
 				{
 					int radius = (int)(95 * clickerRadius);
 					if (radius > 350)
@@ -286,38 +286,41 @@ namespace ClickerClass
 					
 					clickerCookieAccTimer = 0;
 				}
-				
+
 				//Cookie Click
-				for (int i = 0; i < 1000; i++)
+				if (Main.netMode != NetmodeID.Server)
 				{
-					Projectile cookieProjectile = Main.projectile[i];
-					
-					if (cookieProjectile.active && cookieProjectile.type == ModContent.ProjectileType<CookiePro>())
+					for (int i = 0; i < 1000; i++)
 					{
-						if (Main.mouseLeft && Main.mouseLeftRelease && Vector2.Distance(cookieProjectile.Center, Main.MouseWorld) < 30)
+						Projectile cookieProjectile = Main.projectile[i];
+
+						if (cookieProjectile.active && cookieProjectile.type == ModContent.ProjectileType<CookiePro>())
 						{
-							if (cookieProjectile.ai[0] == 1f)
+							if (Main.mouseLeft && Main.mouseLeftRelease && Vector2.Distance(cookieProjectile.Center, Main.MouseWorld) < 30)
 							{
-								Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 4);
-								player.AddBuff(mod.BuffType("CookieBuff"), 600);
-								player.HealLife(10);
-								for (int k = 0; k < 10; k++)
+								if (cookieProjectile.ai[0] == 1f)
 								{
-									Dust dust = Dust.NewDustDirect(cookieProjectile.Center, 20, 20, 87, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
-									dust.noGravity = true;
+									Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 4);
+									player.AddBuff(mod.BuffType("CookieBuff"), 600);
+									player.HealLife(10);
+									for (int k = 0; k < 10; k++)
+									{
+										Dust dust = Dust.NewDustDirect(cookieProjectile.Center, 20, 20, 87, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
+										dust.noGravity = true;
+									}
 								}
-							}
-							else
-							{
-								Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 2);
-								player.AddBuff(mod.BuffType("CookieBuff"), 300);
-								for (int k = 0; k < 10; k++)
+								else
 								{
-									Dust dust = Dust.NewDustDirect(cookieProjectile.Center, 20, 20, 0, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 75, default, 1.5f);
-									dust.noGravity = true;
+									Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 2);
+									player.AddBuff(mod.BuffType("CookieBuff"), 300);
+									for (int k = 0; k < 10; k++)
+									{
+										Dust dust = Dust.NewDustDirect(cookieProjectile.Center, 20, 20, 0, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 75, default, 1.5f);
+										dust.noGravity = true;
+									}
 								}
+								cookieProjectile.Kill();
 							}
-							cookieProjectile.Kill();
 						}
 					}
 				}

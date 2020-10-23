@@ -747,13 +747,16 @@ namespace ClickerClass.Items
 				Player player = Main.LocalPlayer;
 				int index;
 
-				index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
-				if (index != -1)
+				if (ClickerConfigClient.Instance.ShowClassTags)
 				{
-					tooltips.Insert(index + 1, new TooltipLine(mod, "ClickerTag", "-Clicker Class-")
+					index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
+					if (index != -1)
 					{
-						overrideColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB)
-					});
+						tooltips.Insert(index + 1, new TooltipLine(mod, "ClickerTag", "-Clicker Class-")
+						{
+							overrideColor = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB)
+						});
+					}
 				}
 				if (item.damage > 0)
 				{
@@ -797,7 +800,7 @@ namespace ClickerClass.Items
 
 					if (index != -1)
 					{
-						tooltips.Insert(index + 6, new TooltipLine(mod, "transformationText", "Total clicks: " + $"[c/fcd22c:" + player.GetModPlayer<ClickerPlayer>().clickerTotal + "]"));
+						tooltips.Insert(index + 7, new TooltipLine(mod, "transformationText", "Total clicks: " + $"[c/fcd22c:" + player.GetModPlayer<ClickerPlayer>().clickerTotal + "]"));
 					}
 				}
 

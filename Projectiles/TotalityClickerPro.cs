@@ -68,7 +68,7 @@ namespace ClickerClass.Projectiles
 					}
 					vector *= mag;
 
-					if (Main.netMode != NetmodeID.MultiplayerClient)
+					if (projectile.owner == Main.myPlayer)
 					{
 						float numberProjectiles = 3;
 						float rotation = MathHelper.ToRadians(20);

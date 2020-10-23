@@ -36,6 +36,15 @@ namespace ClickerClass.Projectiles
 				dust.noGravity = true;
 			}
 
+			if (player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED2)
+			{
+				for (int k = 0; k < 5; k++)
+				{
+					Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, 90, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
+					dust.noGravity = true;
+				}
+			}
+			
 			if (player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED)
 			{
 				for (int i = 0; i < 15; i++)

@@ -1,6 +1,12 @@
-using ClickerClass.Effects;
+using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.UI;
+using ClickerClass.UI;
+using ClickerClass.Items;
+using ClickerClass.Effects;
 
 namespace ClickerClass
 {
@@ -14,11 +20,51 @@ namespace ClickerClass
 			mod = this;
 			AutoClickKey = RegisterHotKey("Clicker Accessory", "G");
 			ShaderManager.Load();
+			
+			if (!Main.dedServ)
+			{
+				LoadClient();
+			}
+		}
+
+		private void LoadClient()
+		{
+			ClickerInterfaceResources.Load();
+		}
+		
+		private GameTime _lastUpdateUIGameTime;
+
+		public override void UpdateUI(GameTime gameTime)
+		{
+			_lastUpdateUIGameTime = gameTime;
+			ClickerInterfaceResources.Update(gameTime);
+		}
+
+		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+		{
+			ClickerInterfaceResources.AddDrawLayers(layers);
+			
+			Player player = Main.LocalPlayer;
+			for (int i = 0; i < layers.Count; i++)
+            {
+                //Remove Mouse Cursor
+				if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker && player.HeldItem.damage > 0)
+				{
+					if (Main.cursorOverride == -1 && ClickerConfigClient.Instance.ShowCustomCursors)
+					{
+						if (layers[i].Name.Contains("Cursor"))
+						{
+							layers.RemoveAt(i);
+						}
+					}
+				}
+            }
 		}
 
 		public override void Unload()
 		{
 			ShaderManager.Unload();
+			ClickerInterfaceResources.Unload();
 			AutoClickKey = null;
 			mod = null;
 		}

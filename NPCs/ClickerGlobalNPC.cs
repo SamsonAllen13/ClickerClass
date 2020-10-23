@@ -170,7 +170,7 @@ namespace ClickerClass.NPCs
 			}
 			if (npc.type == NPCID.MartianSaucerCore)
 			{
-				if (Main.rand.NextBool(5))
+				if (Main.rand.NextBool(4))
 				{
 					Item.NewItem(npc.Hitbox, mod.ItemType("HighTechClicker"), 1, false, -1);
 				}

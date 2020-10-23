@@ -49,6 +49,7 @@ namespace ClickerClass
 
 		//Acc
 		public bool clickerEnchantedLED = false;
+		public bool clickerEnchantedLED2 = false;
 		public bool clickerAutoClickAcc = false;
 		public bool clickerStickyAcc = false;
 		public bool clickerMilkAcc = false;
@@ -85,6 +86,7 @@ namespace ClickerClass
 
 			//Acc
 			clickerEnchantedLED = false;
+			clickerEnchantedLED2 = false;
 			clickerStickyAcc = false;
 			clickerAutoClickAcc = false;
 			clickerMilkAcc = false;
@@ -434,16 +436,16 @@ namespace ClickerClass
 
 			if (modPlayer.clickerMiceSet && modPlayer.clickerMiceSetAllowed)
 			{
-				texture = mod.GetTexture("Gores/MiceMask_Glow");
+				texture = mod.GetTexture("Glowmasks/MiceMask_Glow");
 			}
 			if (modPlayer.clickerPrecursorSet && modPlayer.clickerPrecursorSetAllowed)
 			{
-				texture = mod.GetTexture("Gores/PrecursorHelmet_Glow");
+				texture = mod.GetTexture("Glowmasks/PrecursorHelmet_Glow");
 				color *= 0.5f;
 			}
 			if (modPlayer.clickerOverclockSet && modPlayer.clickerOverclockSetAllowed)
 			{
-				texture = mod.GetTexture("Gores/OverclockHelmet_Glow");
+				texture = mod.GetTexture("Glowmasks/OverclockHelmet_Glow");
 				color *= 0.75f;
 			}
 
@@ -478,23 +480,23 @@ namespace ClickerClass
 			{
 				if (drawPlayer.Male)
 				{
-					texture = mod.GetTexture("Gores/MiceSuit_Glow");
+					texture = mod.GetTexture("Glowmasks/MiceSuit_Glow");
 				}
 				else
 				{
-					texture = mod.GetTexture("Gores/MiceSuitFemale_Glow");
+					texture = mod.GetTexture("Glowmasks/MiceSuitFemale_Glow");
 				}
 			}
 			if (modPlayer.clickerPrecursorSet && modPlayer.clickerPrecursorSetAllowed)
 			{
 				if (drawPlayer.Male)
 				{
-					texture = mod.GetTexture("Gores/PrecursorBreastplate_Glow");
+					texture = mod.GetTexture("Glowmasks/PrecursorBreastplate_Glow");
 					color *= 0.5f;
 				}
 				else
 				{
-					texture = mod.GetTexture("Gores/PrecursorBreastplateFemale_Glow");
+					texture = mod.GetTexture("Glowmasks/PrecursorBreastplateFemale_Glow");
 					color *= 0.5f;
 				}
 			}
@@ -502,12 +504,12 @@ namespace ClickerClass
 			{
 				if (drawPlayer.Male)
 				{
-					texture = mod.GetTexture("Gores/OverclockSuit_Glow");
+					texture = mod.GetTexture("Glowmasks/OverclockSuit_Glow");
 					color *= 0.75f;
 				}
 				else
 				{
-					texture = mod.GetTexture("Gores/OverclockSuitFemale_Glow");
+					texture = mod.GetTexture("Glowmasks/OverclockSuitFemale_Glow");
 					color *= 0.75f;
 				}
 			}
@@ -541,16 +543,16 @@ namespace ClickerClass
 
 			if (modPlayer.clickerMiceSet && modPlayer.clickerMiceSetAllowed)
 			{
-				texture = mod.GetTexture("Gores/MiceSuitArm_Glow");
+				texture = mod.GetTexture("Glowmasks/MiceSuitArm_Glow");
 			}
 			if (modPlayer.clickerPrecursorSet && modPlayer.clickerPrecursorSetAllowed)
 			{
-				texture = mod.GetTexture("Gores/PrecursorBreastplateArm_Glow");
+				texture = mod.GetTexture("Glowmasks/PrecursorBreastplateArm_Glow");
 				color *= 0.5f;
 			}
 			if (modPlayer.clickerOverclockSet && modPlayer.clickerOverclockSetAllowed)
 			{
-				texture = mod.GetTexture("Gores/OverclockSuitArm_Glow");
+				texture = mod.GetTexture("Glowmasks/OverclockSuitArm_Glow");
 				color *= 0.75f;
 			}
 
@@ -583,16 +585,16 @@ namespace ClickerClass
 
 			if (modPlayer.clickerMiceSet && modPlayer.clickerMiceSetAllowed)
 			{
-				texture = mod.GetTexture("Gores/MiceBoots_Glow");
+				texture = mod.GetTexture("Glowmasks/MiceBoots_Glow");
 			}
 			if (modPlayer.clickerPrecursorSet && modPlayer.clickerPrecursorSetAllowed)
 			{
-				texture = mod.GetTexture("Gores/PrecursorGreaves_Glow");
+				texture = mod.GetTexture("Glowmasks/PrecursorGreaves_Glow");
 				color *= 0.5f;
 			}
 			if (modPlayer.clickerOverclockSet && modPlayer.clickerOverclockSetAllowed)
 			{
-				texture = mod.GetTexture("Gores/OverclockBoots_Glow");
+				texture = mod.GetTexture("Glowmasks/OverclockBoots_Glow");
 				color *= 0.75f;
 			}
 
@@ -623,7 +625,7 @@ namespace ClickerClass
 			//Fragment Pickaxe
 			if (drawPlayer.HeldItem.type == mod.ItemType("MicePickaxe"))
 			{
-				Texture2D weaponGlow = mod.GetTexture("Gores/MicePickaxe_Glow");
+				Texture2D weaponGlow = mod.GetTexture("Glowmasks/MicePickaxe_Glow");
 				Vector2 position = new Vector2((int)(drawInfo.itemLocation.X - Main.screenPosition.X), (int)(drawInfo.itemLocation.Y - Main.screenPosition.Y));
 				Vector2 origin = new Vector2(drawPlayer.direction == -1 ? weaponGlow.Width : 0, drawPlayer.gravDir == -1 ? 0 : weaponGlow.Height);
 				DrawData drawData = new DrawData(weaponGlow, position, null, new Color(255, 255, 255, 0) * 0.8f, drawPlayer.itemRotation, origin, drawPlayer.HeldItem.scale, drawInfo.spriteEffects, 0);
@@ -633,7 +635,7 @@ namespace ClickerClass
 			//Fragment Hamaxe
 			if (drawPlayer.HeldItem.type == mod.ItemType("MiceHamaxe"))
 			{
-				Texture2D weaponGlow = mod.GetTexture("Gores/MiceHamaxe_Glow");
+				Texture2D weaponGlow = mod.GetTexture("Glowmasks/MiceHamaxe_Glow");
 				Vector2 position = new Vector2((int)(drawInfo.itemLocation.X - Main.screenPosition.X), (int)(drawInfo.itemLocation.Y - Main.screenPosition.Y));
 				Vector2 origin = new Vector2(drawPlayer.direction == -1 ? weaponGlow.Width : 0, drawPlayer.gravDir == -1 ? 0 : weaponGlow.Height);
 				DrawData drawData = new DrawData(weaponGlow, position, null, new Color(255, 255, 255, 0) * 0.8f, drawPlayer.itemRotation, origin, drawPlayer.HeldItem.scale, drawInfo.spriteEffects, 0);
@@ -652,6 +654,7 @@ namespace ClickerClass
 			{
 				return;
 			}
+			
 			if (Main.gameMenu) return;
 
 			if (drawInfo.shadow != 0f)

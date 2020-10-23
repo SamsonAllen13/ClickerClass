@@ -58,17 +58,11 @@ namespace ClickerClass.UI
 			Rectangle frame2 = texture2.Frame(1, 1);
 			Vector2 origin2 = frame2.Size() / 2;
 
-			// player.gfxOffY changes depending on if a player is moving on top of half or slanted blocks
-			// Adding player.gfxOffY to the position calculation prevents position glitching
-			Vector2 position = new Vector2(Main.MouseWorld.X + 8, Main.MouseWorld.Y + 11 + player.gfxOffY);
-			Vector2 position2 = new Vector2(Main.MouseWorld.X + 8, Main.MouseWorld.Y + 11 + player.gfxOffY);
+			Vector2 position = new Vector2(Main.mouseX + 8, Main.mouseY + 11);
+			Vector2 position2 = new Vector2(Main.mouseX + 8, Main.mouseY + 11);
 			Color color = Color.White;
 
-			// Calculates UI position depending on UI scale
-			position = Vector2.Transform(position - Main.screenPosition, Main.GameViewMatrix.ZoomMatrix) / Main.UIScale;
-			position2 = Vector2.Transform(position2 - Main.screenPosition, Main.GameViewMatrix.ZoomMatrix) / Main.UIScale;
-
-			// Draw the darker background of the bar
+			// Draw cursor border
 			Main.spriteBatch.Draw(texture, position, frame, Main.mouseBorderColorSlider.GetColor(), 0f, origin, 1f + _clickerScale, SpriteEffects.FlipHorizontally, 0f);
 			Main.spriteBatch.Draw(texture2, position2, frame2, color, 0f, origin2, 1f + _clickerScale, SpriteEffects.FlipHorizontally, 0f);
 			

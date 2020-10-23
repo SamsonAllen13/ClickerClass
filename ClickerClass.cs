@@ -19,8 +19,7 @@ namespace ClickerClass
 		{
 			mod = this;
 			AutoClickKey = RegisterHotKey("Clicker Accessory", "G");
-			ShaderManager.Load();
-			
+
 			if (!Main.dedServ)
 			{
 				LoadClient();
@@ -29,6 +28,7 @@ namespace ClickerClass
 
 		private void LoadClient()
 		{
+			ShaderManager.Load();
 			ClickerInterfaceResources.Load();
 		}
 		
@@ -43,18 +43,19 @@ namespace ClickerClass
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
 		{
 			ClickerInterfaceResources.AddDrawLayers(layers);
-			
+
 			Player player = Main.LocalPlayer;
 			for (int i = 0; i < layers.Count; i++)
             {
                 //Remove Mouse Cursor
-				if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker && player.HeldItem.damage > 0)
+				if (ClickerCursor.CanDrawCursor(player.HeldItem))
 				{
 					if (Main.cursorOverride == -1 && ClickerConfigClient.Instance.ShowCustomCursors)
 					{
-						if (layers[i].Name.Contains("Cursor"))
+						if (layers[i].Name.Equals("Vanilla: Cursor"))
 						{
 							layers.RemoveAt(i);
+							break;
 						}
 					}
 				}

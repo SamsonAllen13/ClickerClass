@@ -657,11 +657,6 @@ namespace ClickerClass
 			
 			if (Main.gameMenu) return;
 
-			if (drawInfo.shadow != 0f)
-			{
-				return;
-			}
-
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 
 			if (!drawPlayer.dead)

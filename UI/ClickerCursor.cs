@@ -1,11 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.UI;
 using ClickerClass.Items;
-using ClickerClass.Utilities;
 
 namespace ClickerClass.UI
 {
@@ -17,6 +15,9 @@ namespace ClickerClass.UI
 		private float _clickerAlpha = 0f;
 		private static bool _lastMouseInterface = false;
 
+		/// <summary>
+		/// Helper method that determines when the cursor can be drawn/replaced
+		/// </summary>
 		public static bool CanDrawCursor(Item item)
 		{
 			return !_lastMouseInterface && item.modItem is ClickerItem clickerItem && clickerItem.isClicker && item.damage > 0;
@@ -28,7 +29,7 @@ namespace ClickerClass.UI
 			// For some reason cursorAlpha is "flipped", revert it here via some maths (0.8 is the value it fluctuates around)
 			float flipped = 2 * 0.8f - Main.cursorAlpha;
 			_clickerAlpha = flipped * 0.3f + 0.7f;
-			// To safely cache when the cursor is inside an interface (directly accessing it adding the cursor will not work because the vanilla logic hasn't reached that stage yet)
+			// To safely cache when the cursor is inside an interface (directly accessing it when adding the cursor will not work because the vanilla logic hasn't reached that stage yet)
 			_lastMouseInterface = Main.LocalPlayer.mouseInterface;
 		}
 		

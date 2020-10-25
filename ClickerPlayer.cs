@@ -27,6 +27,7 @@ namespace ClickerClass
 		//Misc
 		public Color clickerColor = new Color(0, 0, 0, 0);
 		public bool clickerInRange = false;
+		public bool clickerInRangeMech = false;
 		public bool clickerSelected = false;
 		public bool clickerAutoClick = false;
 		public int clickerPerSecondTimer = 0;
@@ -39,7 +40,10 @@ namespace ClickerClass
 		private bool drawEffectsCalledOnce = false;
 
 		//Armor
-		public int clickerMiceSetTimer = 0;
+		public int clickerSetTimer = 0;
+		public Vector2 clickerMechSetPositionTemp = Vector2.Zero;
+		public Vector2 clickerMechSetPosition = Vector2.Zero;
+		public bool clickerMechSet = false;
 		public bool clickerMiceSetAllowed = true;
 		public bool clickerMiceSet = false;
 		public bool clickerPrecursorSetAllowed = true;
@@ -48,6 +52,7 @@ namespace ClickerClass
 		public bool clickerOverclockSet = false;
 
 		//Acc
+		public bool clickerChocolateChipAcc = false;
 		public bool clickerEnchantedLED = false;
 		public bool clickerEnchantedLED2 = false;
 		public bool clickerAutoClickAcc = false;
@@ -74,9 +79,12 @@ namespace ClickerClass
 			//Misc
 			clickerColor = new Color(0, 0, 0, 0);
 			clickerInRange = false;
+			clickerInRangeMech = false;
 			clickerSelected = false;
 
 			//Armor
+			clickerMiceSetAllowed = true;
+			clickerMechSet = false;
 			clickerMiceSetAllowed = true;
 			clickerMiceSet = false;
 			clickerPrecursorSetAllowed = true;
@@ -85,6 +93,7 @@ namespace ClickerClass
 			clickerOverclockSet = false;
 
 			//Acc
+			clickerChocolateChipAcc = false;
 			clickerEnchantedLED = false;
 			clickerEnchantedLED2 = false;
 			clickerStickyAcc = false;
@@ -153,9 +162,18 @@ namespace ClickerClass
 				clickerAutoClick = false;
 			}
 
-			if (clickerMiceSetTimer > 0)
+			if (clickerSetTimer > 0)
 			{
-				clickerMiceSetTimer--;
+				clickerSetTimer--;
+			}
+			
+			if (!clickerMechSet)
+			{
+				clickerMechSetPosition = Vector2.Zero;
+			}
+			else
+			{
+				clickerMechSetPosition = player.Center - clickerMechSetPositionTemp;
 			}
 
 			if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
@@ -168,6 +186,10 @@ namespace ClickerClass
 				if (Vector2.Distance(Main.MouseWorld, player.Center) < 100 * clickerRadius && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
 				{
 					clickerInRange = true;
+				}
+				if (Vector2.Distance(Main.MouseWorld, clickerMechSetPosition) < (100 * player.GetModPlayer<ClickerPlayer>().clickerRadius) * 0.5f && Collision.CanHit(clickerMechSetPosition, 1, 1, Main.MouseWorld, 1, 1))
+				{
+					clickerInRangeMech = true;
 				}
 				clickerColor = clickerItem.clickerColorItem;
 			}
@@ -197,6 +219,8 @@ namespace ClickerClass
 			{
 				clickerMiceSetAllowed = false;
 				clickerPrecursorSetAllowed = false;
+				clickerOverclockSetAllowed = false;
+				//clickerOverclockSetAllowed = false;
 			}
 
 			if (itemVanityHead.type > 0)
@@ -213,6 +237,10 @@ namespace ClickerClass
 				{
 					clickerOverclockSetAllowed = false;
 				}
+				//if (itemVanityHead.type != ModContent.ItemType<OverclockHelmet>())
+				//{
+				//	clickerOverclockSetAllowed = false;
+				//}
 			}
 			if (itemVanityBody.type > 0)
 			{
@@ -228,6 +256,10 @@ namespace ClickerClass
 				{
 					clickerOverclockSetAllowed = false;
 				}
+				//if (itemVanityBody.type != ModContent.ItemType<OverclockSuit>())
+				//{
+				//	clickerOverclockSetAllowed = false;
+				//}
 			}
 			if (itemVanityLegs.type > 0)
 			{
@@ -243,6 +275,10 @@ namespace ClickerClass
 				{
 					clickerOverclockSetAllowed = false;
 				}
+				//if (itemVanityLegs.type != ModContent.ItemType<OverclockBoots>())
+				//{
+				//	clickerOverclockSetAllowed = false;
+				//}
 			}
 
 			if (clickerOverclockSet && clickerOverclockSetAllowed)
@@ -257,6 +293,10 @@ namespace ClickerClass
 			{
 				Lighting.AddLight(player.position, 0.1f, 0.1f, 0.3f);
 			}
+			//if (clickerMiceSet && clickerMiceSetAllowed)
+			//{
+			//	Lighting.AddLight(player.position, 0.1f, 0.1f, 0.3f);
+			//}
 
 			//Acc
 			//Cookie acc
@@ -331,7 +371,7 @@ namespace ClickerClass
 			//Milk acc
 			if (clickerMilkAcc)
 			{
-				float bonusDamage = (float)(clickerPerSecond + 0.03f);
+				float bonusDamage = (float)(clickerPerSecond + 0.015f);
 				if (bonusDamage >= 0.15f)
 				{
 					bonusDamage = 0.15f;
@@ -674,13 +714,28 @@ namespace ClickerClass
 
 					if (!phaseCheck)
 					{
-						float glow = modPlayer.clickerInRange ? 0.6f : 0f;
+						float glow = modPlayer.clickerInRange || modPlayer.clickerInRangeMech ? 0.6f : 0f;
 
 						Color outer = modPlayer.clickerColor * (0.2f + glow);
 						Vector2 position = new Vector2((int)drawPlayer.Center.X, (int)drawPlayer.Center.Y + drawPlayer.gfxOffY);
 						Effect shader = ShaderManager.SetupCircleEffect(position, (int)(modPlayer.clickerRadius * 100), outer);
 
 						ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
+						
+						if (modPlayer.clickerMechSet && modPlayer.clickerMechSetPosition != Vector2.Zero && modPlayer.clickerMechSetPositionTemp != Vector2.Zero)
+						{
+							glow = modPlayer.clickerInRangeMech ? 0.6f : 0f;
+
+							outer = modPlayer.clickerColor * (0.2f + glow);
+							position = clickerMechSetPosition;
+							shader = ShaderManager.SetupCircleEffect(position, (int)((modPlayer.clickerRadius * 100) * 0.5f), outer);
+							ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
+							
+							//Responds to player speed, I need to fix that...
+							Texture2D texture = mod.GetTexture("Glowmasks/MechanicalSetBonus_Glow");
+							DrawData drawData = new DrawData(texture, position - Main.screenPosition, null, Color.White, 0f, new Vector2(texture.Width / 2f, texture.Height / 2f), 1f, SpriteEffects.None, 0);
+							Main.playerDrawData.Add(drawData);
+						}
 					}
 				}
 			}

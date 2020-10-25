@@ -88,7 +88,12 @@ namespace ClickerClass.Items
 
 				if (!itemClickerEffect.Contains("Phase Reach"))
 				{
-					if (Vector2.Distance(Main.MouseWorld, player.Center) < 100 * player.GetModPlayer<ClickerPlayer>().clickerRadius && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
+					Vector2 mechPosition = player.GetModPlayer<ClickerPlayer>().clickerMechSetPosition;
+					bool inRange = Vector2.Distance(Main.MouseWorld, player.Center) < 100 * player.GetModPlayer<ClickerPlayer>().clickerRadius && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1);
+					bool inRangeMech = Vector2.Distance(Main.MouseWorld, mechPosition) < (100 * (player.GetModPlayer<ClickerPlayer>().clickerRadius)) * 0.5f && Collision.CanHit(mechPosition, 1, 1, Main.MouseWorld, 1, 1);
+					//bool allowMech = player.GetModPlayer<ClickerPlayer>().clickerMechSet && player.altFunctionUse == 2;
+					
+					if (inRange || (inRangeMech && player.altFunctionUse != 2))
 					{
 						return true;
 					}
@@ -122,7 +127,7 @@ namespace ClickerClass.Items
 		{
 			if (isClicker)
 			{
-				if (player.GetModPlayer<ClickerPlayer>().clickerMiceSet)
+				if (player.GetModPlayer<ClickerPlayer>().clickerMiceSet || player.GetModPlayer<ClickerPlayer>().clickerMechSet)
 				{
 					return true;
 				}
@@ -140,18 +145,34 @@ namespace ClickerClass.Items
 			{
 				if (player.altFunctionUse == 2)
 				{
-					if (player.GetModPlayer<ClickerPlayer>().clickerMiceSet && player.GetModPlayer<ClickerPlayer>().clickerMiceSetTimer <= 0)
+					//Right click 
+					if (player.GetModPlayer<ClickerPlayer>().clickerSetTimer <= 0)
 					{
-						if (!itemClickerEffect.Contains("Phase Reach"))
+						//Mice armor 
+						if (player.GetModPlayer<ClickerPlayer>().clickerMiceSet)
 						{
-							if (Vector2.Distance(Main.MouseWorld, player.Center) < 100 * player.GetModPlayer<ClickerPlayer>().clickerRadius && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
+							bool canTeleport = false;
+							
+							if (!itemClickerEffect.Contains("Phase Reach"))
+							{
+								if (Vector2.Distance(Main.MouseWorld, player.Center) < 100 * player.GetModPlayer<ClickerPlayer>().clickerRadius && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
+								{
+									canTeleport = true;
+								}
+							}
+							else
+							{
+								canTeleport = true;
+							}
+							
+							if (canTeleport)
 							{
 								Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 115);
 								Main.SetCameraLerp(0.1f, 0);
 								player.Center = Main.MouseWorld;
 								NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
 								player.fallStart = (int)(player.position.Y / 16f);
-								player.GetModPlayer<ClickerPlayer>().clickerMiceSetTimer = 60;
+								player.GetModPlayer<ClickerPlayer>().clickerSetTimer = 60;
 
 								float num102 = 50f;
 								int num103 = 0;
@@ -169,29 +190,11 @@ namespace ClickerClass.Items
 								}
 							}
 						}
-						else
+						if (player.GetModPlayer<ClickerPlayer>().clickerMechSet)
 						{
-							Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 115);
-							Main.SetCameraLerp(0.1f, 0);
-							player.Center = Main.MouseWorld;
-							NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
-							player.fallStart = (int)(player.position.Y / 16f);
-							player.GetModPlayer<ClickerPlayer>().clickerMiceSetTimer = 60;
-
-							float num102 = 40f;
-							int num103 = 0;
-							while ((float)num103 < num102)
-							{
-								Vector2 vector12 = Vector2.UnitX * 0f;
-								vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(2f, 2f);
-								vector12 = vector12.RotatedBy((double)Vector2.Zero.ToRotation(), default(Vector2));
-								int num104 = Dust.NewDust(Main.MouseWorld, 0, 0, mod.DustType("MiceDust"), 0f, 0f, 0, default(Color), 1.75f);
-								Main.dust[num104].noGravity = true;
-								Main.dust[num104].position = Main.MouseWorld + vector12;
-								Main.dust[num104].velocity = Vector2.Zero * 0f + vector12.SafeNormalize(Vector2.UnitY) * 4f;
-								int num = num103;
-								num103 = num + 1;
-							}
+							Main.PlaySound(40, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 0);
+							player.GetModPlayer<ClickerPlayer>().clickerMechSetPositionTemp = new Vector2(player.Center.X - Main.MouseWorld.X, player.Center.Y - Main.MouseWorld.Y);
+							player.GetModPlayer<ClickerPlayer>().clickerSetTimer = 60;
 						}
 					}
 					return false;
@@ -248,6 +251,20 @@ namespace ClickerClass.Items
 					for (int k = 0; k < 20; k++)
 					{
 						Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 88, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 175, default, 1.75f);
+						dust.noGravity = true;
+						dust.noLight = true;
+					}
+				}
+				if (player.GetModPlayer<ClickerPlayer>().clickAmount % 15 == 0 && player.GetModPlayer<ClickerPlayer>().clickerChocolateChipAcc)
+				{
+					Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 112);
+					for (int k = 0; k < 6; k++)
+					{
+						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-10f, 10f), mod.ProjectileType("ChocolateChipPro"), (int)(damage * 0.2), 0f, player.whoAmI, Main.rand.Next(3), 0f);
+					}
+					for (int k = 0; k < 20; k++)
+					{
+						Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 22, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 125, default, 1.5f);
 						dust.noGravity = true;
 						dust.noLight = true;
 					}

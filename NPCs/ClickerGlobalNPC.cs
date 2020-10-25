@@ -142,9 +142,16 @@ namespace ClickerClass.NPCs
 			}
 			if (npc.type == NPCID.DarkCaster)
 			{
-				if (Main.rand.NextBool(12))
+				if (Main.rand.NextBool(15))
 				{
 					Item.NewItem(npc.Hitbox, mod.ItemType("Milk"), 1, false, -1);
+				}
+			}
+			if (npc.type == NPCID.Gastropod)
+			{
+				if (Main.rand.NextBool(20))
+				{
+					Item.NewItem(npc.Hitbox, mod.ItemType("ChocolateChip"), 1, false, -1);
 				}
 			}
 			if (npc.type == NPCID.PirateCaptain)

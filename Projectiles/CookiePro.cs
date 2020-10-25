@@ -45,7 +45,7 @@ namespace ClickerClass.Projectiles
 			if (projectile.ai[1] < 1f)
 			{
 				location.X = player.Center.X - (projectile.Center.X - 15);
-				location.Y = player.Center.Y - (projectile.Center.Y - 15);
+				location.Y = player.Center.Y - (projectile.Center.Y + player.gfxOffY - 15);
 				projectile.ai[1] += 1f;
 			}
 

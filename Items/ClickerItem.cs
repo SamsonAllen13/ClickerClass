@@ -195,7 +195,7 @@ namespace ClickerClass.Items
 						else if (clickerPlayer.clickerMechSet)
 						{
 							Main.PlaySound(SoundID.Camera, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 0);
-							clickerPlayer.SetMechPosition(Main.MouseWorld);
+							clickerPlayer.SetMechRelativePosition(Main.MouseWorld);
 							clickerPlayer.clickerSetTimer = 60;
 						}
 					}

@@ -101,9 +101,8 @@ namespace ClickerClass
 		/// <summary>
 		/// Construct ratio and angle from position
 		/// </summary>
-		public void SetMechPosition(Vector2 position)
+		public void SetMechRelativePosition(Vector2 position)
 		{
-			//Construct ratio and angle from position
 			Vector2 toPosition = position - player.Center;
 			float length = toPosition.Length();
 			float radius = ClickerRadiusReal;

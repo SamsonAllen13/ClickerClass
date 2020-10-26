@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ClickerClass.Items;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -10,6 +11,7 @@ namespace ClickerClass.Effects
 	/// </summary>
 	public static class ShaderManager
 	{
+		#region Circle Effect
 		public static Effect CircleEffect { get; private set; }
 
 		public static Effect SetupCircleEffect(Vector2 center, int radius, Color edgeColor, Color bodyBolor = default)
@@ -29,6 +31,58 @@ namespace ClickerClass.Effects
 			}
 			return circle;
 		}
+
+		public static void LoadCircleEffectAdds()
+		{
+			On.Terraria.Main.DrawInfernoRings += DrawCircles;
+		}
+
+		private static void DrawCircles(On.Terraria.Main.orig_DrawInfernoRings orig, Main self)
+		{
+			//TODO new shader
+			orig(self);
+
+			//Only draws for local player
+
+			Player drawPlayer = Main.LocalPlayer;
+			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
+
+			if (Main.gameMenu) return;
+
+			if (!drawPlayer.dead)
+			{
+				if (modPlayer.clickerSelected)
+				{
+					bool phaseCheck = false;
+					if (drawPlayer.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
+					{
+						if (clickerItem.itemClickerEffect.Contains("Phase Reach"))
+						{
+							phaseCheck = true;
+						}
+					}
+
+					if (!phaseCheck)
+					{
+						float glow = modPlayer.clickerInRange || modPlayer.clickerInRangeMech ? 0.6f : 0f;
+
+						Color outer = modPlayer.clickerColor * (0.2f + glow);
+						Vector2 position = new Vector2((int)drawPlayer.Center.X, (int)drawPlayer.Center.Y + drawPlayer.gfxOffY);
+						Effect shader = ShaderManager.SetupCircleEffect(position, (int)modPlayer.ClickerRadiusReal, outer);
+						ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
+
+						if (modPlayer.clickerMechSet && modPlayer.clickerMechSetRatio > 0)
+						{
+							outer = modPlayer.clickerColor * (0.2f + glow);
+							position += modPlayer.CalculateMechPosition();
+							shader = ShaderManager.SetupCircleEffect(position, (int)modPlayer.ClickerRadiusMech, outer);
+							ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
+						}
+					}
+				}
+			}
+		}
+		#endregion
 
 		public static void ApplyToScreenOnce(SpriteBatch spriteBatch, Effect effect, bool restore = true)
 		{
@@ -69,6 +123,7 @@ namespace ClickerClass.Effects
 			if (Main.netMode != NetmodeID.Server)
 			{
 				CircleEffect = ClickerClass.mod.GetEffect("Effects/CircleShader/Circle");
+				LoadCircleEffectAdds();
 			}
 		}
 
@@ -76,5 +131,7 @@ namespace ClickerClass.Effects
 		{
 			CircleEffect = null;
 		}
+
+
 	}
 }

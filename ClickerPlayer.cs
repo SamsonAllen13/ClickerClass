@@ -1,5 +1,4 @@
 using ClickerClass.Buffs;
-using ClickerClass.Effects;
 using ClickerClass.Items;
 using ClickerClass.NPCs;
 using ClickerClass.Projectiles;
@@ -26,7 +25,13 @@ namespace ClickerClass
 		//-Clicker-
 		//Misc
 		public Color clickerColor = new Color(0, 0, 0, 0);
+		/// <summary>
+		/// Visual indicator that the cursor is inside clicker radius
+		/// </summary>
 		public bool clickerInRange = false;
+		/// <summary>
+		/// Visual indicator that the cursor is inside mech radius
+		/// </summary>
 		public bool clickerInRangeMech = false;
 		public bool clickerSelected = false;
 		public bool clickerAutoClick = false;
@@ -34,14 +39,14 @@ namespace ClickerClass
 		public int clickerPerSecond = 0;
 		public int clickerTotal = 0;
 		public int clickAmount = 0;
-		/// <summary>
-		/// Used to prevent drawing more than once per tick
-		/// </summary>
-		private bool drawEffectsCalledOnce = false;
 
 		//Armor
 		public int clickerSetTimer = 0;
-		public Vector2 clickerMechSetPositionTemp = Vector2.Zero;
+		public float clickerMechSetRatio = 0f;
+		public float clickerMechSetAngle = 0f;
+		/// <summary>
+		/// Calculated after clickerRadius is calculated, and if the mech set is worn
+		/// </summary>
 		public Vector2 clickerMechSetPosition = Vector2.Zero;
 		public bool clickerMechSet = false;
 		public bool clickerMiceSetAllowed = true;
@@ -72,6 +77,40 @@ namespace ClickerClass
 		/// Effective clicker radius in pixels when multiplied by 100
 		/// </summary>
 		public float clickerRadius = 1f;
+
+		/// <summary>
+		/// Clicker radius in pixels
+		/// </summary>
+		public float ClickerRadiusReal => clickerRadius * 100;
+		/// <summary>
+		/// Mech radius in pixels
+		/// </summary>
+		public float ClickerRadiusMech => ClickerRadiusReal * 0.5f;
+
+		//Helper methods
+		/// <summary>
+		/// Returns the position from the ratio and angle
+		/// </summary>
+		public Vector2 CalculateMechPosition()
+		{
+			float length = clickerMechSetRatio * ClickerRadiusReal;
+			Vector2 direction = clickerMechSetAngle.ToRotationVector2();
+			return direction * length;
+		}
+
+		/// <summary>
+		/// Construct ratio and angle from position
+		/// </summary>
+		public void SetMechPosition(Vector2 position)
+		{
+			//Construct ratio and angle from position
+			Vector2 toPosition = position - player.Center;
+			float length = toPosition.Length();
+			float radius = ClickerRadiusReal;
+			float ratio = length / radius;
+			clickerMechSetRatio = ratio;
+			clickerMechSetAngle = toPosition.ToRotation();
+		}
 
 		public override void ResetEffects()
 		{
@@ -170,10 +209,8 @@ namespace ClickerClass
 			if (!clickerMechSet)
 			{
 				clickerMechSetPosition = Vector2.Zero;
-			}
-			else
-			{
-				clickerMechSetPosition = player.Center - clickerMechSetPositionTemp;
+				clickerMechSetRatio = 0f;
+				clickerMechSetAngle = 0f;
 			}
 
 			if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
@@ -183,11 +220,16 @@ namespace ClickerClass
 				{
 					clickerRadius += clickerItem.radiusBoost + clickerItem.radiusBoostPrefix;
 				}
-				if (Vector2.Distance(Main.MouseWorld, player.Center) < 100 * clickerRadius && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
+				if (Vector2.Distance(Main.MouseWorld, player.Center) < ClickerRadiusReal && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
 				{
 					clickerInRange = true;
 				}
-				if (Vector2.Distance(Main.MouseWorld, clickerMechSetPosition) < (100 * player.GetModPlayer<ClickerPlayer>().clickerRadius) * 0.5f && Collision.CanHit(clickerMechSetPosition, 1, 1, Main.MouseWorld, 1, 1))
+				if (clickerMechSet)
+				{
+					//Important: has to be after final clickerRadius calculation because it depends on it
+					clickerMechSetPosition = player.Center + CalculateMechPosition();
+				}
+				if (Vector2.Distance(Main.MouseWorld, clickerMechSetPosition) < ClickerRadiusMech && Collision.CanHit(clickerMechSetPosition, 1, 1, Main.MouseWorld, 1, 1))
 				{
 					clickerInRangeMech = true;
 				}
@@ -389,14 +431,6 @@ namespace ClickerClass
 			{
 				clickerPerSecondTimer = 0;
 				clickerPerSecond = 0;
-			}
-
-			if (Main.netMode != NetmodeID.Server)
-			{
-				if (drawEffectsCalledOnce)
-				{
-					drawEffectsCalledOnce = false;
-				}
 			}
 		}
 
@@ -694,55 +728,40 @@ namespace ClickerClass
 			Mod mod = ModLoader.GetMod("ClickerClass");
 			Player drawPlayer = drawInfo.drawPlayer;
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
-			
-			if (!modPlayer.drawEffectsCalledOnce)
-			{
-				modPlayer.drawEffectsCalledOnce = true;
-			}
-			else
-			{
-				return;
-			}
-			
+
+			if (drawInfo.shadow != 0f || drawPlayer.dead) return;
+
 			if (Main.gameMenu) return;
 
-			if (!drawPlayer.dead)
+			if (modPlayer.clickerSelected)
 			{
-				if (modPlayer.clickerSelected)
+				bool phaseCheck = false;
+				if (drawPlayer.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
 				{
-					bool phaseCheck = false;
-					if (drawPlayer.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
+					if (clickerItem.itemClickerEffect.Contains("Phase Reach"))
 					{
-						if (clickerItem.itemClickerEffect.Contains("Phase Reach"))
-						{
-							phaseCheck = true;
-						}
+						phaseCheck = true;
 					}
+				}
 
-					if (!phaseCheck)
+				if (!phaseCheck)
+				{
+					if (modPlayer.clickerMechSet && modPlayer.clickerMechSetRatio > 0)
 					{
-						float glow = modPlayer.clickerInRange || modPlayer.clickerInRangeMech ? 0.6f : 0f;
+						float glow = modPlayer.clickerInRangeMech ? 0.6f : 0f;
 
 						Color outer = modPlayer.clickerColor * (0.2f + glow);
-						Vector2 position = new Vector2((int)drawPlayer.Center.X, (int)drawPlayer.Center.Y + drawPlayer.gfxOffY);
-						Effect shader = ShaderManager.SetupCircleEffect(position, (int)(modPlayer.clickerRadius * 100), outer);
+						int drawX = (int)(drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X);
+						int drawY = (int)(drawInfo.position.Y + drawPlayer.height / 2f - Main.screenPosition.Y);
+						Vector2 center = (drawPlayer.Center - Main.screenPosition).Floor();
+						Vector2 drawPos = center + modPlayer.CalculateMechPosition().Floor();
 
-						ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
-						
-						if (modPlayer.clickerMechSet && modPlayer.clickerMechSetPosition != Vector2.Zero && modPlayer.clickerMechSetPositionTemp != Vector2.Zero)
+						Texture2D texture = mod.GetTexture("Glowmasks/MechanicalSetBonus_Glow");
+						DrawData drawData = new DrawData(texture, drawPos, null, Color.White, 0f, texture.Size() / 2, 1f, SpriteEffects.None, 0)
 						{
-							glow = modPlayer.clickerInRangeMech ? 0.6f : 0f;
-
-							outer = modPlayer.clickerColor * (0.2f + glow);
-							position = modPlayer.clickerMechSetPosition;
-							shader = ShaderManager.SetupCircleEffect(position, (int)((modPlayer.clickerRadius * 100) * 0.5f), outer);
-							ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
-							
-							//Responds to player speed, I need to fix that...
-							Texture2D texture = mod.GetTexture("Glowmasks/MechanicalSetBonus_Glow");
-							DrawData drawData = new DrawData(texture, position - Main.screenPosition, null, Color.White, 0f, new Vector2(texture.Width / 2f, texture.Height / 2f), 1f, SpriteEffects.None, 0);
-							Main.playerDrawData.Add(drawData);
-						}
+							ignorePlayerRotation = true
+						};
+						Main.playerDrawData.Add(drawData);
 					}
 				}
 			}

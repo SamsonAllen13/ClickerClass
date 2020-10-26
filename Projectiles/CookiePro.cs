@@ -39,17 +39,16 @@ namespace ClickerClass.Projectiles
 		public override void AI()
 		{
 			Player player = Main.player[projectile.owner];
-			projectile.frame = (int)(projectile.ai[0]);
+			projectile.frame = (int)projectile.ai[0];
 			projectile.rotation -= 0.01f;
 
 			if (projectile.ai[1] < 1f)
 			{
-				location.X = player.Center.X - (projectile.Center.X - 15);
-				location.Y = player.Center.Y - (projectile.Center.Y + player.gfxOffY - 15);
+				location = player.Center - projectile.Center;
 				projectile.ai[1] += 1f;
 			}
 
-			projectile.position = player.Center - location;
+			projectile.Center = new Vector2(player.Center.X, player.Center.Y + player.gfxOffY) - location;
 		}
 	}
 }

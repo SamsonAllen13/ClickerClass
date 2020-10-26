@@ -23,7 +23,6 @@ namespace ClickerClass.Projectiles
 			projectile.friendly = true;
 			projectile.ignoreWater = true;
 			projectile.tileCollide = false;
-
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 30;
 		}

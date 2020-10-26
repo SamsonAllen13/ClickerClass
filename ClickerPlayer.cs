@@ -453,11 +453,17 @@ namespace ClickerClass
 			{
 				layers.Insert(index + 1, ArmsGlow);
 			}
+			index = layers.IndexOf(PlayerLayer.MiscEffectsFront);
+			if (index != -1)
+			{
+				layers.Insert(index + 1, MiscEffects);
+			}
 
 			WeaponGlow.visible = true;
 			HeadGlow.visible = true;
 			LegsGlow.visible = true;
 			ArmsGlow.visible = true;
+			MiscEffects.visible = true;
 		}
 
 		//Head
@@ -683,12 +689,15 @@ namespace ClickerClass
 			}
 		});
 
-		public override void DrawEffects(PlayerDrawInfo drawInfo, ref float r, ref float g, ref float b, ref float a, ref bool fullBright)
+		public static readonly PlayerLayer MiscEffects = new PlayerLayer("ClickerClass", "MiscEffects", PlayerLayer.MiscEffectsFront, delegate (PlayerDrawInfo drawInfo)
 		{
+			Mod mod = ModLoader.GetMod("ClickerClass");
 			Player drawPlayer = drawInfo.drawPlayer;
-			if (!drawEffectsCalledOnce)
+			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
+			
+			if (!modPlayer.drawEffectsCalledOnce)
 			{
-				drawEffectsCalledOnce = true;
+				modPlayer.drawEffectsCalledOnce = true;
 			}
 			else
 			{
@@ -696,8 +705,6 @@ namespace ClickerClass
 			}
 			
 			if (Main.gameMenu) return;
-
-			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 
 			if (!drawPlayer.dead)
 			{
@@ -727,7 +734,7 @@ namespace ClickerClass
 							glow = modPlayer.clickerInRangeMech ? 0.6f : 0f;
 
 							outer = modPlayer.clickerColor * (0.2f + glow);
-							position = clickerMechSetPosition;
+							position = modPlayer.clickerMechSetPosition;
 							shader = ShaderManager.SetupCircleEffect(position, (int)((modPlayer.clickerRadius * 100) * 0.5f), outer);
 							ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
 							
@@ -739,6 +746,6 @@ namespace ClickerClass
 					}
 				}
 			}
-		}
+		});
 	}
 }

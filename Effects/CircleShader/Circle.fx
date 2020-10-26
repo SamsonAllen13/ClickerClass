@@ -123,8 +123,8 @@ float4 MainPS(float4 coords : TEXCOORD0) : COLOR0
 
 technique CircleDraw
 {
-	pass P0
-	{
-		PixelShader = compile ps_2_0 MainPS();
-	}
+    pass P0
+    {
+        PixelShader = compile ps_2_0 MainPS();
+    }
 };

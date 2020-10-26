@@ -213,8 +213,9 @@ namespace ClickerClass
 				clickerMechSetAngle = 0f;
 			}
 
-			if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
+			if (/*player.HeldItem.damage > 0 && */player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
 			{
+				//TODO phaseCheck code could be here aswell?
 				clickerSelected = true;
 				if (clickerItem.radiusBoost > 0f || clickerItem.radiusBoostPrefix > 0f)
 				{
@@ -751,9 +752,9 @@ namespace ClickerClass
 						float glow = modPlayer.clickerInRangeMech ? 0.6f : 0f;
 
 						Color outer = modPlayer.clickerColor * (0.2f + glow);
-						int drawX = (int)(drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X);
-						int drawY = (int)(drawInfo.position.Y + drawPlayer.height / 2f - Main.screenPosition.Y);
-						Vector2 center = (drawPlayer.Center - Main.screenPosition).Floor();
+						int drawX = (int)(drawPlayer.Center.X - Main.screenPosition.X);
+						int drawY = (int)(drawPlayer.Center.Y + drawPlayer.gfxOffY - Main.screenPosition.Y);
+						Vector2 center = new Vector2(drawX, drawY);
 						Vector2 drawPos = center + modPlayer.CalculateMechPosition().Floor();
 
 						Texture2D texture = mod.GetTexture("Glowmasks/MechanicalSetBonus_Glow");

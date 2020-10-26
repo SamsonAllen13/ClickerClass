@@ -18,49 +18,113 @@ sampler2D SpriteTextureSampler;
 
 float2 ScreenPos;
 float2 ScreenDim;
-float2 EntCenter;
 float4 EdgeColor;
 float4 BodyColor;
-float Radius;
-float HpPercent;
-float ShrinkResistScale;
+float Thickness;
+//float2 Center1;
+//float Radius1;
+//bool SecondCircle;
+//float2 Center2;
+//float Radius2;
 
+//Max is 3 with the current algorithm
+//Changing this requires changing the method used for populating the parameters accordingly
+const int Amount = 2;
+float2 Centers[2];
+float Radii[2];
 
-float PseudoRNG( in float2 uv ) {
-    float2 noise = ( frac( sin( dot( uv ,float2(12.9898, 78.233)*2.0 ) ) * 43758.5453 ) );
-    return abs(noise.x + noise.y) * 0.5;
+float4 MainPS(float4 coords : TEXCOORD0) : COLOR0
+{
+	//Don't draw if:
+	// * Outside of every circle: transparent color
+	// * Inside of a circle: body color
+	
+	//Draw if:
+	// * On an outline: save edge color, return if no other circle overwrites it with body color
+	
+	// Current pixel the shader operates on
+    float2 coords2d = coords.xy;
+	
+	// Color that is being drawn
+    float4 color = float4(0, 0, 0, 0);
+	
+    for (int i = 0; i < Amount; i++)
+    {
+        float radius = Radii[i];
+        if (radius <= 0)
+            continue;
+		
+        float distFromCenter = distance(ScreenPos + (ScreenDim * coords2d), Centers[i]);
+        if (distFromCenter < radius)
+        {
+            if (distFromCenter > radius - Thickness)
+            {
+				//In outline of this circle: set color, but keep checking other circles
+                color = EdgeColor;
+            }
+            else
+            {
+				//In body: return straight up
+                return BodyColor;
+            }
+        }
+		//Outside of this circle, keep checking other circles
+    }
+    return color;
+	
+//PREVIOUS APPROACH
+//#########
+	
+    //Default transparent color
+ //   float4 color = float4(0, 0, 0, 0);
+	
+	//float2 coords2d = coords.xy;
+	//float distFromCenter1 = distance(ScreenPos + (ScreenDim * coords2d), Center1);
+	//if (distFromCenter1 > Radius1)
+ //   {
+ //       if (SecondCircle)
+ //       {
+ //           float distFromCenter2 = distance(ScreenPos + (ScreenDim * coords2d), Center2);
+ //           if (distFromCenter2 > Radius2)
+ //           {
+ //               return color;
+ //           }
+ //       }
+ //       else
+ //       {
+ //           return color;
+ //       }
+ //   }
+	
+	//float distToEdge1 = Radius1 - distFromCenter1;
+
+ //   if (distToEdge1 < Thickness)
+ //   {
+ //       if (SecondCircle)
+ //       {
+ //           float distFromCenter2 = distance(ScreenPos + (ScreenDim * coords2d), Center2);
+ //           float distToEdge2 = Radius2 - distFromCenter2;
+ //           if (distToEdge2 < Thickness)
+ //           {
+ //               color = EdgeColor;
+ //               return color;
+ //           }
+ //       }
+ //       else
+ //       {
+ //           color = EdgeColor;
+ //           return color;
+ //       }
+	//}
+	
+	//color = BodyColor;
+	//return color;
 }
 
-
-float4 MainPS( float4 coords: TEXCOORD0 ) : COLOR0 {
-	float2 coords2d = coords.xy;
-	float distFromCenter = distance( ScreenPos + (ScreenDim * coords2d), EntCenter );
-	if( distFromCenter > Radius ) {
-		return float4(0,0,0,0);
-	}
-	
-	float rand = PseudoRNG( coords2d );
-	float percentToRadius = distFromCenter / Radius;
-	float distToEdge = Radius - distFromCenter;
-	float stability = 1 - (rand * (1 - HpPercent));
-	
-    //float4 color = tex2d( spritetexturesampler, coords );
-	float4 color;
-
-	if( distToEdge < (ShrinkResistScale * 24) ) {
-		color = EdgeColor * stability;
-	} else {
-		//float intensity = 1 - (float)sqrt( 1 - (percentToRadius * percentToRadius) );
-		float intensity = 1 - (float)sqrt( 1 - (percentToRadius * percentToRadius) );
-
-		color = lerp( float4(0,0,0,0), BodyColor, (0.15 + (intensity * 0.65)) * stability );
-	}
-	
-	return color;
-}
-
-technique BarrierDraw {
-	pass P0 {
+technique CircleDraw
+{
+	pass P0
+	{
 		PixelShader = compile ps_2_0 MainPS();
 	}
 };

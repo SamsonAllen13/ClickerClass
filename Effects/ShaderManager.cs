@@ -14,20 +14,33 @@ namespace ClickerClass.Effects
 		#region Circle Effect
 		public static Effect CircleEffect { get; private set; }
 
-		public static Effect SetupCircleEffect(Vector2 center, int radius, Color edgeColor, Color bodyBolor = default)
+		/// <summary>
+		/// Prepares the CircleEffect shader with proper values. If radius2 is 0, the second circle won't be drawn
+		/// </summary>
+		public static Effect SetupCircleEffect(Vector2 center, int radius, Color edgeColor, float thick = 2f, Color bodyColor = default, Vector2 center2 = default, int radius2 = 0)
 		{
 			Effect circle = CircleEffect;
 			if (circle != null)
 			{
 				circle.Parameters["ScreenPos"].SetValue(Main.screenPosition);
 				circle.Parameters["ScreenDim"].SetValue(new Vector2(Main.screenWidth, Main.screenHeight));
-				circle.Parameters["EntCenter"].SetValue(center);
 				circle.Parameters["EdgeColor"].SetValue(edgeColor.ToVector4());
-				circle.Parameters["BodyColor"].SetValue((bodyBolor == default ? Color.Transparent : bodyBolor).ToVector4());
-				circle.Parameters["Radius"].SetValue(radius);
-				circle.Parameters["HpPercent"].SetValue(1f);
-				float thickness = 2f;
-				circle.Parameters["ShrinkResistScale"].SetValue(thickness / 24f);
+				circle.Parameters["BodyColor"].SetValue((bodyColor == default ? Color.Transparent : bodyColor).ToVector4());
+				circle.Parameters["Thickness"].SetValue(thick);
+
+				//circle.Parameters["Center1"].SetValue(position);
+				//circle.Parameters["Radius1"].SetValue(100);
+
+				//circle.Parameters["SecondCircle"].SetValue(true);
+				//circle.Parameters["Center2"].SetValue(Main.MouseWorld);
+				//circle.Parameters["Radius2"].SetValue(50);
+
+				//2 is the current size the shader accepts
+				Vector2[] centers = new Vector2[2] { center, center2 };
+				float[] radii = new float[2] { radius, radius2 };
+
+				circle.Parameters["Centers"].SetValue(centers);
+				circle.Parameters["Radii"].SetValue(radii);
 			}
 			return circle;
 		}
@@ -39,46 +52,48 @@ namespace ClickerClass.Effects
 
 		private static void DrawCircles(On.Terraria.Main.orig_DrawInfernoRings orig, Main self)
 		{
-			//TODO new shader
 			orig(self);
 
 			//Only draws for local player
 
 			Player drawPlayer = Main.LocalPlayer;
-			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 
 			if (Main.gameMenu) return;
 
-			if (!drawPlayer.dead)
+			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
+
+			if (!drawPlayer.dead && modPlayer.clickerSelected)
 			{
-				if (modPlayer.clickerSelected)
+				bool phaseCheck = false;
+				if (drawPlayer.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
 				{
-					bool phaseCheck = false;
-					if (drawPlayer.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
+					if (clickerItem.itemClickerEffect.Contains("Phase Reach"))
 					{
-						if (clickerItem.itemClickerEffect.Contains("Phase Reach"))
-						{
-							phaseCheck = true;
-						}
+						phaseCheck = true;
+					}
+				}
+
+				if (!phaseCheck)
+				{
+					float glow = modPlayer.clickerInRange || modPlayer.clickerInRangeMech ? 0.6f : 0f;
+
+					Color outer = modPlayer.clickerColor * (0.2f + glow);
+
+
+					Vector2 center = new Vector2((int)drawPlayer.Center.X, (int)drawPlayer.Center.Y + drawPlayer.gfxOffY);
+					Vector2 mechCenter = default;
+					int radius = (int)modPlayer.ClickerRadiusReal;
+					int mechRadius = 0;
+
+					if (modPlayer.clickerMechSet && modPlayer.clickerMechSetRatio > 0)
+					{
+						//Don't use clickerMechSetPosition here as it includes the wrong player.Center
+						mechCenter = center + modPlayer.CalculateMechPosition().Floor();
+						mechRadius = (int)modPlayer.ClickerRadiusMech;
 					}
 
-					if (!phaseCheck)
-					{
-						float glow = modPlayer.clickerInRange || modPlayer.clickerInRangeMech ? 0.6f : 0f;
-
-						Color outer = modPlayer.clickerColor * (0.2f + glow);
-						Vector2 position = new Vector2((int)drawPlayer.Center.X, (int)drawPlayer.Center.Y + drawPlayer.gfxOffY);
-						Effect shader = ShaderManager.SetupCircleEffect(position, (int)modPlayer.ClickerRadiusReal, outer);
-						ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
-
-						if (modPlayer.clickerMechSet && modPlayer.clickerMechSetRatio > 0)
-						{
-							outer = modPlayer.clickerColor * (0.2f + glow);
-							position += modPlayer.CalculateMechPosition();
-							shader = ShaderManager.SetupCircleEffect(position, (int)modPlayer.ClickerRadiusMech, outer);
-							ShaderManager.ApplyToScreenOnce(Main.spriteBatch, shader);
-						}
-					}
+					Effect shader = SetupCircleEffect(center, radius, outer, center2: mechCenter, radius2: mechRadius);
+					ApplyToScreenOnce(Main.spriteBatch, shader);
 				}
 			}
 		}

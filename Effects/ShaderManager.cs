@@ -64,18 +64,9 @@ namespace ClickerClass.Effects
 
 			if (!drawPlayer.dead && modPlayer.clickerSelected)
 			{
-				bool phaseCheck = false;
-				if (drawPlayer.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
+				if (modPlayer.clickerDrawRadius)
 				{
-					if (clickerItem.itemClickerEffect.Contains("Phase Reach"))
-					{
-						phaseCheck = true;
-					}
-				}
-
-				if (!phaseCheck)
-				{
-					float glow = modPlayer.clickerInRange || modPlayer.clickerInRangeMech ? 0.6f : 0f;
+					float glow = modPlayer.clickerInRange || modPlayer.clickerInRangeMotherboard ? 0.6f : 0f;
 
 					Color outer = modPlayer.clickerColor * (0.2f + glow);
 
@@ -85,11 +76,11 @@ namespace ClickerClass.Effects
 					int radius = (int)modPlayer.ClickerRadiusReal;
 					int mechRadius = 0;
 
-					if (modPlayer.clickerMechSet && modPlayer.clickerMechSetRatio > 0)
+					if (modPlayer.clickerMotherboardSet && modPlayer.clickerMotherboardSetRatio > 0)
 					{
-						//Don't use clickerMechSetPosition here as it includes the wrong player.Center
-						mechCenter = center + modPlayer.CalculateMechPosition().Floor();
-						mechRadius = (int)modPlayer.ClickerRadiusMech;
+						//Don't use clickerMotherboardSetPosition here as it includes the wrong player.Center
+						mechCenter = center + modPlayer.CalculateMotherboardPosition().Floor();
+						mechRadius = (int)modPlayer.ClickerRadiusMotherboard;
 					}
 
 					Effect shader = SetupCircleEffect(center, radius, outer, center2: mechCenter, radius2: mechRadius);

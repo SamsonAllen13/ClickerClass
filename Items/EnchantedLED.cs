@@ -7,7 +7,7 @@ namespace ClickerClass.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Enchanted LED");
-			Tooltip.SetDefault("Your clicks produce an enchanted burst of light"
+			Tooltip.SetDefault("Your clicks produce an enchanted burst of light, while accessory is visible"
 							+ "\nIncreases click damage by 2");
 		}
 
@@ -23,7 +23,10 @@ namespace ClickerClass.Items
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED = true;
+			if (!hideVisual)
+			{
+				player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED = true;
+			}
 			player.GetModPlayer<ClickerPlayer>().clickerDamageFlat += 2;
 		}
 	}

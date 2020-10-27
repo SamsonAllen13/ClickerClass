@@ -12,7 +12,7 @@ namespace ClickerClass.Items
 						+ "\nIncreases click damage by 10%"
 						+ "\nIncreases your base click radius by 50%"
 						+ "\nReduces the amount of clicks required for a click effect by 20%"
-						+ "\nYour clicks produce a burst of mechanical light"
+						+ "\nYour clicks produce a burst of mechanical light, while accessory is visible"
 						+ "\nPressing the 'Clicker Accessory' key will toggle auto click on all Clickers"
 						+ "\nWhile auto click is enabled, click rates are decreased");
 		}
@@ -20,7 +20,7 @@ namespace ClickerClass.Items
 		public override void SetDefaults()
 		{
 			isClicker = true;
-			isClickerDisplay = true;
+			isClickerDisplayTotal = true;
 			item.width = 20;
 			item.height = 20;
 			item.accessory = true;
@@ -34,7 +34,10 @@ namespace ClickerClass.Items
 			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.10f;
 			player.GetModPlayer<ClickerPlayer>().clickerBonusPercent -= 0.20f;
 			player.GetModPlayer<ClickerPlayer>().clickerAutoClickAcc = true;
-			player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED2 = true;
+			if (!hideVisual)
+			{
+				player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED2 = true;
+			}
 		}
 
 		public override void AddRecipes()

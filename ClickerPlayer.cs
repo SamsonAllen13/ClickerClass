@@ -32,8 +32,9 @@ namespace ClickerClass
 		/// <summary>
 		/// Visual indicator that the cursor is inside mech radius
 		/// </summary>
-		public bool clickerInRangeMech = false;
+		public bool clickerInRangeMotherboard = false;
 		public bool clickerSelected = false;
+		public bool clickerDrawRadius = false;
 		public bool clickerAutoClick = false;
 		public int clickerPerSecondTimer = 0;
 		public int clickerPerSecond = 0;
@@ -42,13 +43,16 @@ namespace ClickerClass
 
 		//Armor
 		public int clickerSetTimer = 0;
-		public float clickerMechSetRatio = 0f;
-		public float clickerMechSetAngle = 0f;
+		public float clickerMotherboardSetRatio = 0f;
+		public float clickerMotherboardSetAngle = 0f;
 		/// <summary>
 		/// Calculated after clickerRadius is calculated, and if the mech set is worn
 		/// </summary>
-		public Vector2 clickerMechSetPosition = Vector2.Zero;
-		public bool clickerMechSet = false;
+		public float clickerMotherboardSetAlpha = 0f;
+		public int clickerMotherboardSetFrame = 0;
+		public bool clickerMotherboardSetFrameShift = false;
+		public Vector2 clickerMotherboardSetPosition = Vector2.Zero;
+		public bool clickerMotherboardSet = false;
 		public bool clickerMiceSetAllowed = true;
 		public bool clickerMiceSet = false;
 		public bool clickerPrecursorSetAllowed = true;
@@ -83,32 +87,32 @@ namespace ClickerClass
 		/// </summary>
 		public float ClickerRadiusReal => clickerRadius * 100;
 		/// <summary>
-		/// Mech radius in pixels
+		/// Motherboard radius in pixels
 		/// </summary>
-		public float ClickerRadiusMech => ClickerRadiusReal * 0.5f;
+		public float ClickerRadiusMotherboard => ClickerRadiusReal * 0.5f;
 
 		//Helper methods
 		/// <summary>
 		/// Returns the position from the ratio and angle
 		/// </summary>
-		public Vector2 CalculateMechPosition()
+		public Vector2 CalculateMotherboardPosition()
 		{
-			float length = clickerMechSetRatio * ClickerRadiusReal;
-			Vector2 direction = clickerMechSetAngle.ToRotationVector2();
+			float length = clickerMotherboardSetRatio * ClickerRadiusReal;
+			Vector2 direction = clickerMotherboardSetAngle.ToRotationVector2();
 			return direction * length;
 		}
 
 		/// <summary>
 		/// Construct ratio and angle from position
 		/// </summary>
-		public void SetMechRelativePosition(Vector2 position)
+		public void SetMotherboardRelativePosition(Vector2 position)
 		{
 			Vector2 toPosition = position - player.Center;
 			float length = toPosition.Length();
 			float radius = ClickerRadiusReal;
 			float ratio = length / radius;
-			clickerMechSetRatio = ratio;
-			clickerMechSetAngle = toPosition.ToRotation();
+			clickerMotherboardSetRatio = ratio;
+			clickerMotherboardSetAngle = toPosition.ToRotation();
 		}
 
 		public override void ResetEffects()
@@ -117,12 +121,13 @@ namespace ClickerClass
 			//Misc
 			clickerColor = new Color(0, 0, 0, 0);
 			clickerInRange = false;
-			clickerInRangeMech = false;
+			clickerInRangeMotherboard = false;
 			clickerSelected = false;
+			clickerDrawRadius = false;
 
 			//Armor
 			clickerMiceSetAllowed = true;
-			clickerMechSet = false;
+			clickerMotherboardSet = false;
 			clickerMiceSetAllowed = true;
 			clickerMiceSet = false;
 			clickerPrecursorSetAllowed = true;
@@ -205,17 +210,40 @@ namespace ClickerClass
 				clickerSetTimer--;
 			}
 			
-			if (!clickerMechSet)
+			if (!clickerMotherboardSet)
 			{
-				clickerMechSetPosition = Vector2.Zero;
-				clickerMechSetRatio = 0f;
-				clickerMechSetAngle = 0f;
+				clickerMotherboardSetPosition = Vector2.Zero;
+				clickerMotherboardSetRatio = 0f;
+				clickerMotherboardSetAngle = 0f;
+			}
+			else
+			{
+				clickerMotherboardSetAlpha += !clickerMotherboardSetFrameShift ? 0.025f : -0.025f;
+				if (clickerMotherboardSetAlpha >= 1f)
+				{
+					clickerMotherboardSetFrameShift = true;
+				}
+				
+				if (clickerMotherboardSetFrameShift && clickerMotherboardSetAlpha <= 0.25f)
+				{
+					clickerMotherboardSetFrame++;
+					if (clickerMotherboardSetFrame >= 4)
+					{
+						clickerMotherboardSetFrame = 0;
+					}
+					clickerMotherboardSetFrameShift = false;
+				}
 			}
 
-			if (/*player.HeldItem.damage > 0 && */player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
+			if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClickerWeapon)
 			{
-				//TODO phaseCheck code could be here aswell?
 				clickerSelected = true;
+				clickerDrawRadius = true;
+				if (clickerItem.itemClickerEffect.Contains("Phase Reach"))
+				{
+					clickerDrawRadius = false;
+				}
+				
 				if (clickerItem.radiusBoost > 0f || clickerItem.radiusBoostPrefix > 0f)
 				{
 					clickerRadius += clickerItem.radiusBoost + clickerItem.radiusBoostPrefix;
@@ -224,14 +252,14 @@ namespace ClickerClass
 				{
 					clickerInRange = true;
 				}
-				if (clickerMechSet)
+				if (clickerMotherboardSet)
 				{
 					//Important: has to be after final clickerRadius calculation because it depends on it
-					clickerMechSetPosition = player.Center + CalculateMechPosition();
+					clickerMotherboardSetPosition = player.Center + CalculateMotherboardPosition();
 				}
-				if (Vector2.Distance(Main.MouseWorld, clickerMechSetPosition) < ClickerRadiusMech && Collision.CanHit(clickerMechSetPosition, 1, 1, Main.MouseWorld, 1, 1))
+				if (Vector2.Distance(Main.MouseWorld, clickerMotherboardSetPosition) < ClickerRadiusMotherboard && Collision.CanHit(clickerMotherboardSetPosition, 1, 1, Main.MouseWorld, 1, 1))
 				{
-					clickerInRangeMech = true;
+					clickerInRangeMotherboard = true;
 				}
 				clickerColor = clickerItem.clickerColorItem;
 			}
@@ -262,7 +290,6 @@ namespace ClickerClass
 				clickerMiceSetAllowed = false;
 				clickerPrecursorSetAllowed = false;
 				clickerOverclockSetAllowed = false;
-				//clickerOverclockSetAllowed = false;
 			}
 
 			if (itemVanityHead.type > 0)
@@ -279,10 +306,6 @@ namespace ClickerClass
 				{
 					clickerOverclockSetAllowed = false;
 				}
-				//if (itemVanityHead.type != ModContent.ItemType<OverclockHelmet>())
-				//{
-				//	clickerOverclockSetAllowed = false;
-				//}
 			}
 			if (itemVanityBody.type > 0)
 			{
@@ -298,10 +321,6 @@ namespace ClickerClass
 				{
 					clickerOverclockSetAllowed = false;
 				}
-				//if (itemVanityBody.type != ModContent.ItemType<OverclockSuit>())
-				//{
-				//	clickerOverclockSetAllowed = false;
-				//}
 			}
 			if (itemVanityLegs.type > 0)
 			{
@@ -317,10 +336,6 @@ namespace ClickerClass
 				{
 					clickerOverclockSetAllowed = false;
 				}
-				//if (itemVanityLegs.type != ModContent.ItemType<OverclockBoots>())
-				//{
-				//	clickerOverclockSetAllowed = false;
-				//}
 			}
 
 			if (clickerOverclockSet && clickerOverclockSetAllowed)
@@ -335,10 +350,6 @@ namespace ClickerClass
 			{
 				Lighting.AddLight(player.position, 0.1f, 0.1f, 0.3f);
 			}
-			//if (clickerMiceSet && clickerMiceSetAllowed)
-			//{
-			//	Lighting.AddLight(player.position, 0.1f, 0.1f, 0.3f);
-			//}
 
 			//Acc
 			//Cookie acc
@@ -733,36 +744,34 @@ namespace ClickerClass
 
 			if (Main.gameMenu) return;
 
-			if (modPlayer.clickerSelected)
+			if (modPlayer.clickerSelected && modPlayer.clickerDrawRadius)
 			{
-				bool phaseCheck = false;
-				if (drawPlayer.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
+				if (modPlayer.clickerMotherboardSet && modPlayer.clickerMotherboardSetRatio > 0)
 				{
-					if (clickerItem.itemClickerEffect.Contains("Phase Reach"))
+					float glow = modPlayer.clickerInRangeMotherboard ? 0.6f : 0f;
+
+					Color outer = modPlayer.clickerColor * (0.2f + glow);
+					int drawX = (int)(drawPlayer.Center.X - Main.screenPosition.X);
+					int drawY = (int)(drawPlayer.Center.Y + drawPlayer.gfxOffY - Main.screenPosition.Y);
+					Vector2 center = new Vector2(drawX, drawY);
+					Vector2 drawPos = center + modPlayer.CalculateMotherboardPosition().Floor();
+
+					Texture2D texture = mod.GetTexture("Glowmasks/MotherboardSetBonus_Glow");
+					DrawData drawData = new DrawData(texture, drawPos, null, Color.White, 0f, texture.Size() / 2, 1f, SpriteEffects.None, 0)
 					{
-						phaseCheck = true;
-					}
-				}
-
-				if (!phaseCheck)
-				{
-					if (modPlayer.clickerMechSet && modPlayer.clickerMechSetRatio > 0)
+						ignorePlayerRotation = true
+					};
+					Main.playerDrawData.Add(drawData);
+					
+					Rectangle frame = new Rectangle(0, 0, 30, 30);
+					frame.Y += 30 * modPlayer.clickerMotherboardSetFrame;
+					
+					texture = mod.GetTexture("Glowmasks/MotherboardSetBonus2_Glow");
+					drawData = new DrawData(texture, drawPos, frame, new Color(255, 255, 255, 100) * modPlayer.clickerMotherboardSetAlpha, 0f, new Vector2(texture.Width / 2, frame.Height / 2), 1f, SpriteEffects.None, 0)
 					{
-						float glow = modPlayer.clickerInRangeMech ? 0.6f : 0f;
-
-						Color outer = modPlayer.clickerColor * (0.2f + glow);
-						int drawX = (int)(drawPlayer.Center.X - Main.screenPosition.X);
-						int drawY = (int)(drawPlayer.Center.Y + drawPlayer.gfxOffY - Main.screenPosition.Y);
-						Vector2 center = new Vector2(drawX, drawY);
-						Vector2 drawPos = center + modPlayer.CalculateMechPosition().Floor();
-
-						Texture2D texture = mod.GetTexture("Glowmasks/MechanicalSetBonus_Glow");
-						DrawData drawData = new DrawData(texture, drawPos, null, Color.White, 0f, texture.Size() / 2, 1f, SpriteEffects.None, 0)
-						{
-							ignorePlayerRotation = true
-						};
-						Main.playerDrawData.Add(drawData);
-					}
+						ignorePlayerRotation = true
+					};
+					Main.playerDrawData.Add(drawData);
 				}
 			}
 		});

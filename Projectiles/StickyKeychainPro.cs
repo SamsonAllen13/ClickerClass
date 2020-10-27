@@ -36,7 +36,6 @@ namespace ClickerClass.Projectiles
 		{
 			Player player = Main.player[projectile.owner];
 			projectile.frame = (int)projectile.ai[0];
-			projectile.rotation -= 0.01f;
 
 			if (projectile.ai[1] < 1f)
 			{

@@ -20,14 +20,15 @@ namespace ClickerClass.Items
 		public string itemClickerColorEffect = "NULL";
 		public int clickerDustColor = 0;
 		public int clickBoostPrefix = 0;
-		public bool isClickerDisplay = false;
+		public bool isClickerDisplayTotal = false;
 		public bool isClicker = false;
+		public bool isClickerWeapon = false;
 		public float radiusBoost = 0f;
 		public float radiusBoostPrefix = 0f;
 
 		public override float MeleeSpeedMultiplier(Player player)
 		{
-			if (isClicker)
+			if (isClickerWeapon)
 			{
 				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
@@ -51,7 +52,7 @@ namespace ClickerClass.Items
 
 		public override float UseTimeMultiplier(Player player)
 		{
-			if (isClicker)
+			if (isClickerWeapon)
 			{
 				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
@@ -75,7 +76,7 @@ namespace ClickerClass.Items
 
 		public override bool CanUseItem(Player player)
 		{
-			if (isClicker)
+			if (isClickerWeapon)
 			{
 				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 				if (clickerPlayer.clickerAutoClick || player.HasBuff(ModContent.BuffType<AutoClick>()))
@@ -89,12 +90,12 @@ namespace ClickerClass.Items
 
 				if (!itemClickerEffect.Contains("Phase Reach"))
 				{
-					Vector2 mechPosition = clickerPlayer.clickerMechSetPosition;
+					Vector2 mechPosition = clickerPlayer.clickerMotherboardSetPosition;
 					bool inRange = Vector2.Distance(Main.MouseWorld, player.Center) < clickerPlayer.ClickerRadiusReal && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1);
-					bool inRangeMech = Vector2.Distance(Main.MouseWorld, mechPosition) < clickerPlayer.ClickerRadiusMech && Collision.CanHit(mechPosition, 1, 1, Main.MouseWorld, 1, 1);
-					//bool allowMech = player.GetModPlayer<ClickerPlayer>().clickerMechSet && player.altFunctionUse == 2;
+					bool inRangeMotherboard = Vector2.Distance(Main.MouseWorld, mechPosition) < clickerPlayer.ClickerRadiusMotherboard && Collision.CanHit(mechPosition, 1, 1, Main.MouseWorld, 1, 1);
+					//bool allowMotherboard = player.GetModPlayer<ClickerPlayer>().clickerMotherboardSet && player.altFunctionUse == 2;
 					
-					if (inRange || (inRangeMech && player.altFunctionUse != 2))
+					if (inRange || (inRangeMotherboard && player.altFunctionUse != 2))
 					{
 						return true;
 					}
@@ -109,7 +110,7 @@ namespace ClickerClass.Items
 
 		public override void ModifyWeaponDamage(Player player, ref float add, ref float mult, ref float flat)
 		{
-			if (isClicker)
+			if (isClickerWeapon)
 			{
 				flat += player.GetModPlayer<ClickerPlayer>().clickerDamageFlat;
 				mult *= player.GetModPlayer<ClickerPlayer>().clickerDamage;
@@ -118,7 +119,7 @@ namespace ClickerClass.Items
 
 		public override void GetWeaponCrit(Player player, ref int crit)
 		{
-			if (isClicker && item.damage > 0)
+			if (isClickerWeapon)
 			{
 				crit = item.crit + player.GetModPlayer<ClickerPlayer>().clickerCrit;
 			}
@@ -126,9 +127,9 @@ namespace ClickerClass.Items
 
 		public override bool AltFunctionUse(Player player)
 		{
-			if (isClicker)
+			if (isClickerWeapon)
 			{
-				if (player.GetModPlayer<ClickerPlayer>().clickerMiceSet || player.GetModPlayer<ClickerPlayer>().clickerMechSet)
+				if (player.GetModPlayer<ClickerPlayer>().clickerMiceSet || player.GetModPlayer<ClickerPlayer>().clickerMotherboardSet)
 				{
 					return true;
 				}
@@ -142,7 +143,7 @@ namespace ClickerClass.Items
 
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
-			if (isClicker)
+			if (isClickerWeapon)
 			{
 				var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 				if (player.altFunctionUse == 2)
@@ -154,7 +155,6 @@ namespace ClickerClass.Items
 						if (clickerPlayer.clickerMiceSet)
 						{
 							bool canTeleport = false;
-							
 							if (!itemClickerEffect.Contains("Phase Reach"))
 							{
 								if (Vector2.Distance(Main.MouseWorld, player.Center) < clickerPlayer.ClickerRadiusReal && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
@@ -192,10 +192,10 @@ namespace ClickerClass.Items
 								}
 							}
 						}
-						else if (clickerPlayer.clickerMechSet)
+						else if (clickerPlayer.clickerMotherboardSet)
 						{
 							Main.PlaySound(SoundID.Camera, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 0);
-							clickerPlayer.SetMechRelativePosition(Main.MouseWorld);
+							clickerPlayer.SetMotherboardRelativePosition(Main.MouseWorld);
 							clickerPlayer.clickerSetTimer = 60;
 						}
 					}
@@ -638,7 +638,7 @@ namespace ClickerClass.Items
 									mag = speed / mag;
 								}
 								vector *= mag;
-								Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("ArthursClickerPro"), damage, knockBack, player.whoAmI, 1f, 0f);
+								Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, mod.ProjectileType("ArthursClickerPro"), (int)(damage * 0.75f), knockBack, player.whoAmI, 1f, 0f);
 
 								for (int k = 0; k < 30; k++)
 								{
@@ -778,7 +778,18 @@ namespace ClickerClass.Items
 						});
 					}
 				}
-				if (item.damage > 0)
+				
+				if (isClickerDisplayTotal)
+				{
+					index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("Tooltip0"));
+
+					if (index != -1)
+					{
+						tooltips.Insert(index + 7, new TooltipLine(mod, "transformationText", "Total clicks: " + $"[c/fcd22c:" + clickerPlayer.clickerTotal + "]"));
+					}
+				}
+				
+				if (isClickerWeapon)
 				{
 					if (!itemClickerEffect.Contains("The Click"))
 					{
@@ -796,31 +807,23 @@ namespace ClickerClass.Items
 							tooltip.text = tooltip.text.Split(' ')[0] + " + 1% enemy life click damage";
 						}
 					}
-				}
-				if (itemClickerAmount > 0 && itemClickerEffect != "NULL")
-				{
-					index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("Knockback"));
-
-					if (index != -1)
+				
+					if (itemClickerAmount > 0 && itemClickerEffect != "NULL")
 					{
-						int clickAmountTotal = (int)((itemClickerAmount + clickBoostPrefix - clickerPlayer.clickerBonus) * clickerPlayer.clickerBonusPercent);
-						if (clickAmountTotal > 1)
-						{
-							tooltips.Insert(index + 1, new TooltipLine(mod, "itemClickerAmount", clickAmountTotal + " clicks - " + $"[c/" + itemClickerColorEffect + ":" + itemClickerEffect + "]"));
-						}
-						else
-						{
-							tooltips.Insert(index + 1, new TooltipLine(mod, "itemClickerAmount", "1 click - " + $"[c/" + itemClickerColorEffect + ":" + itemClickerEffect + "]"));
-						}
-					}
-				}
-				if (isClickerDisplay)
-				{
-					index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("Tooltip0"));
+						index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("Knockback"));
 
-					if (index != -1)
-					{
-						tooltips.Insert(index + 7, new TooltipLine(mod, "transformationText", "Total clicks: " + $"[c/fcd22c:" + clickerPlayer.clickerTotal + "]"));
+						if (index != -1)
+						{
+							int clickAmountTotal = (int)((itemClickerAmount + clickBoostPrefix - clickerPlayer.clickerBonus) * clickerPlayer.clickerBonusPercent);
+							if (clickAmountTotal > 1)
+							{
+								tooltips.Insert(index + 1, new TooltipLine(mod, "itemClickerAmount", clickAmountTotal + " clicks - " + $"[c/" + itemClickerColorEffect + ":" + itemClickerEffect + "]"));
+							}
+							else
+							{
+								tooltips.Insert(index + 1, new TooltipLine(mod, "itemClickerAmount", "1 click - " + $"[c/" + itemClickerColorEffect + ":" + itemClickerEffect + "]"));
+							}
+						}
 					}
 				}
 
@@ -861,7 +864,7 @@ namespace ClickerClass.Items
 
 		public override bool NewPreReforge()
 		{
-			if (isClicker)
+			if (isClickerWeapon)
 			{
 				radiusBoostPrefix = 0f;
 				clickBoostPrefix = 0;
@@ -871,9 +874,9 @@ namespace ClickerClass.Items
 
 		public override int ChoosePrefix(UnifiedRandom rand)
 		{
-			if (isClicker)
+			if (isClickerWeapon)
 			{
-				if (item.maxStack == 1 && item.damage > 0 && item.useStyle > 0)
+				if (item.maxStack == 1 && item.useStyle > 0)
 				{
 					return rand.Next(ClickerPrefix.ClickerPrefixes);
 				}

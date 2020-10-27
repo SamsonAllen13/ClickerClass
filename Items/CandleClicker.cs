@@ -13,6 +13,7 @@ namespace ClickerClass.Items
 		public override void SetDefaults()
 		{
 			isClicker = true;
+			isClickerWeapon = true;
 			radiusBoost = 1.5f;
 			clickerColorItem = new Color(255, 175, 75, 0);
 			clickerDustColor = 55;

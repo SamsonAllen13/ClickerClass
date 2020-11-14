@@ -17,11 +17,11 @@ namespace ClickerClass.Items
 		{
 			isClicker = true;
 			isClickerWeapon = true;
-			radiusBoost = 0.9f;
+			radiusBoost = 0.85f;
 			clickerColorItem = new Color(125, 100, 75, 0);
 			clickerDustColor = 0;
 
-			item.damage = 3;
+			item.damage = 4;
 			item.width = 30;
 			item.height = 30;
 			item.useTime = 1;

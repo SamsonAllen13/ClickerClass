@@ -30,7 +30,7 @@ namespace ClickerClass
 		/// </summary>
 		public bool clickerInRange = false;
 		/// <summary>
-		/// Visual indicator that the cursor is inside mech radius
+		/// Visual indicator that the cursor is inside Motherboard radius
 		/// </summary>
 		public bool clickerInRangeMotherboard = false;
 		public bool clickerSelected = false;
@@ -40,18 +40,22 @@ namespace ClickerClass
 		public int clickerPerSecond = 0;
 		public int clickerTotal = 0;
 		public int clickAmount = 0;
+		
+		//Out of combat
+		public bool outOfCombat = true;
+		public int outOfCombatTimer = 0;
 
 		//Armor
 		public int clickerSetTimer = 0;
 		public float clickerMotherboardSetRatio = 0f;
 		public float clickerMotherboardSetAngle = 0f;
 		/// <summary>
-		/// Calculated after clickerRadius is calculated, and if the mech set is worn
+		/// Calculated after clickerRadius is calculated, and if the Motherboard set is worn
 		/// </summary>
+		public Vector2 clickerMotherboardSetPosition = Vector2.Zero;
 		public float clickerMotherboardSetAlpha = 0f;
 		public int clickerMotherboardSetFrame = 0;
 		public bool clickerMotherboardSetFrameShift = false;
-		public Vector2 clickerMotherboardSetPosition = Vector2.Zero;
 		public bool clickerMotherboardSet = false;
 		public bool clickerMiceSetAllowed = true;
 		public bool clickerMiceSet = false;
@@ -70,6 +74,9 @@ namespace ClickerClass
 		public bool clickerCookieAcc = false;
 		public bool clickerCookieAcc2 = false;
 		public int clickerCookieAccTimer = 0;
+		public bool clickerGloveAcc = false;
+		public bool clickerGloveAcc2 = false;
+		public int clickerGloveAccTimer = 0;
 
 		//Stats
 		public int clickerDamageFlat = 0;
@@ -114,6 +121,31 @@ namespace ClickerClass
 			clickerMotherboardSetRatio = ratio;
 			clickerMotherboardSetAngle = toPosition.ToRotation();
 		}
+		
+		internal int originalSelectedItem;
+		internal bool autoRevertSelectedItem = false;
+
+		/// <summary>
+		/// Uses the item in the specified index from the players inventory
+		/// </summary>
+		public void QuickUseItemInSlot(int index) 
+		{
+			if (index > -1 && index < Main.maxInventory && player.inventory[index].type != ItemID.None) 
+			{
+				if (player.CheckMana(player.inventory[index], -1, false, false)) 
+				{
+					originalSelectedItem = player.selectedItem;
+					autoRevertSelectedItem = true;
+					player.selectedItem = index;
+					player.controlUseItem = true;
+					player.ItemCheck(player.whoAmI);
+				}
+				else
+				{
+					Main.PlaySound(SoundID.Drip, (int)player.Center.X, (int)player.Center.Y, Main.rand.Next(3));
+				}
+			}
+		}
 
 		public override void ResetEffects()
 		{
@@ -144,6 +176,8 @@ namespace ClickerClass
 			clickerMilkAcc = false;
 			clickerCookieAcc = false;
 			clickerCookieAcc2 = false;
+			clickerGloveAcc = false;
+			clickerGloveAcc2 = false;
 
 			//Stats
 			clickerDamage = 1f;
@@ -188,6 +222,38 @@ namespace ClickerClass
 
 					Main.PlaySound(SoundID.MenuTick, player.position);
 					clickerAutoClick = clickerAutoClick ? false : true;
+				}
+			}
+		}
+		
+		public override void PreUpdate()
+		{
+			if (player.whoAmI == Main.myPlayer) 
+			{
+				if (autoRevertSelectedItem) 
+				{
+					if (player.itemTime == 0 && player.itemAnimation == 0) 
+					{
+						player.selectedItem = originalSelectedItem;
+						autoRevertSelectedItem = false;
+					}
+				}
+			}
+			
+			if (player.whoAmI == Main.myPlayer) 
+			{
+				if (player.itemTime == 0 && player.itemAnimation == 0) 
+				{
+					if (player.GetModPlayer<ClickerPlayer>().clickerGloveAcc2 && player.GetModPlayer<ClickerPlayer>().clickerGloveAccTimer > 60)
+					{
+						QuickUseItemInSlot(player.selectedItem);
+						player.GetModPlayer<ClickerPlayer>().clickerGloveAccTimer = 0;
+					}
+					else if (player.GetModPlayer<ClickerPlayer>().clickerGloveAcc && player.GetModPlayer<ClickerPlayer>().clickerGloveAccTimer > 180)
+					{
+						QuickUseItemInSlot(player.selectedItem);
+						player.GetModPlayer<ClickerPlayer>().clickerGloveAccTimer = 0;
+					}
 				}
 			}
 		}
@@ -262,6 +328,16 @@ namespace ClickerClass
 					clickerInRangeMotherboard = true;
 				}
 				clickerColor = clickerItem.clickerColorItem;
+				
+				//Glove acc
+				if (!outOfCombat && (clickerGloveAcc2 || clickerGloveAcc))
+				{
+					clickerGloveAccTimer++;
+				}
+				else
+				{
+					clickerGloveAccTimer = 0;
+				}
 			}
 
 			if (player.HasBuff(ModContent.BuffType<Haste>()))
@@ -443,6 +519,17 @@ namespace ClickerClass
 				clickerPerSecondTimer = 0;
 				clickerPerSecond = 0;
 			}
+			
+			// Out of Combat timer
+			if (outOfCombatTimer > 0)
+			{
+				outOfCombatTimer--;
+				outOfCombat = false;
+			}
+			else
+			{
+				outOfCombat = true;
+			}
 		}
 
 		public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
@@ -458,17 +545,17 @@ namespace ClickerClass
 
 		public override void OnHitNPCWithProj(Projectile projectile, NPC target, int damage, float knockback, bool crit)
 		{
-
+			outOfCombatTimer = 300;
 		}
 
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
 		{
-
+			outOfCombatTimer = 300;
 		}
-
-		public override void ModifyHitNPC(Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
+		
+		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
-
+			outOfCombatTimer = 300;
 		}
 
 		public override void ModifyDrawLayers(List<PlayerLayer> layers)

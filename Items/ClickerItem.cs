@@ -90,9 +90,9 @@ namespace ClickerClass.Items
 
 				if (!itemClickerEffect.Contains("Phase Reach"))
 				{
-					Vector2 mechPosition = clickerPlayer.clickerMotherboardSetPosition;
+					Vector2 motherboardPosition = clickerPlayer.clickerMotherboardSetPosition;
 					bool inRange = Vector2.Distance(Main.MouseWorld, player.Center) < clickerPlayer.ClickerRadiusReal && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1);
-					bool inRangeMotherboard = Vector2.Distance(Main.MouseWorld, mechPosition) < clickerPlayer.ClickerRadiusMotherboard && Collision.CanHit(mechPosition, 1, 1, Main.MouseWorld, 1, 1);
+					bool inRangeMotherboard = Vector2.Distance(Main.MouseWorld, motherboardPosition) < clickerPlayer.ClickerRadiusMotherboard && Collision.CanHit(motherboardPosition, 1, 1, Main.MouseWorld, 1, 1);
 					//bool allowMotherboard = player.GetModPlayer<ClickerPlayer>().clickerMotherboardSet && player.altFunctionUse == 2;
 					
 					if (inRange || (inRangeMotherboard && player.altFunctionUse != 2))

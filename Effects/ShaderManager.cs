@@ -72,18 +72,18 @@ namespace ClickerClass.Effects
 
 
 					Vector2 center = new Vector2((int)drawPlayer.Center.X, (int)drawPlayer.Center.Y + drawPlayer.gfxOffY);
-					Vector2 mechCenter = default;
+					Vector2 motherboardCenter = default;
 					int radius = (int)modPlayer.ClickerRadiusReal;
-					int mechRadius = 0;
+					int motherboardRadius = 0;
 
 					if (modPlayer.clickerMotherboardSet && modPlayer.clickerMotherboardSetRatio > 0)
 					{
 						//Don't use clickerMotherboardSetPosition here as it includes the wrong player.Center
-						mechCenter = center + modPlayer.CalculateMotherboardPosition().Floor();
-						mechRadius = (int)modPlayer.ClickerRadiusMotherboard;
+						motherboardCenter = center + modPlayer.CalculateMotherboardPosition().Floor();
+						motherboardRadius = (int)modPlayer.ClickerRadiusMotherboard;
 					}
 
-					Effect shader = SetupCircleEffect(center, radius, outer, center2: mechCenter, radius2: mechRadius);
+					Effect shader = SetupCircleEffect(center, radius, outer, center2: motherboardCenter, radius2: motherboardRadius);
 					ApplyToScreenOnce(Main.spriteBatch, shader);
 				}
 			}

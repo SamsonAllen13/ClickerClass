@@ -6,7 +6,6 @@ namespace ClickerClass.Projectiles
 	{
 		public override void SetDefaults()
 		{
-			isClickerProj = true;
 			projectile.width = 30;
 			projectile.height = 30;
 			projectile.aiStyle = -1;
@@ -27,13 +26,13 @@ namespace ClickerClass.Projectiles
 		public override void Kill(int timeLeft)
 		{
 			Player player = Main.player[projectile.owner];
-			
+
 			for (int k = 0; k < 5; k++)
 			{
 				Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, 15, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 255, default, 1.25f);
 				dust.noGravity = true;
 			}
-			
+
 			if (player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED2)
 			{
 				for (int k = 0; k < 5; k++)
@@ -42,7 +41,7 @@ namespace ClickerClass.Projectiles
 					dust.noGravity = true;
 				}
 			}
-			
+
 			if (player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED)
 			{
 				for (int i = 0; i < 15; i++)

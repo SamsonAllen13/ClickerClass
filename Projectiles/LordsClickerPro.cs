@@ -7,12 +7,12 @@ namespace ClickerClass.Projectiles
 	{
 		public override void SetStaticDefaults()
 		{
+			base.SetStaticDefaults();
 			Main.projFrames[projectile.type] = 7;
 		}
 
 		public override void SetDefaults()
 		{
-			isClickerProj = true;
 			projectile.width = 196;
 			projectile.height = 196;
 			projectile.aiStyle = -1;

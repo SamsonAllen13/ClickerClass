@@ -1,5 +1,3 @@
-using ClickerClass.Items;
-using System;
 using Terraria;
 
 namespace ClickerClass.Projectiles
@@ -8,12 +6,12 @@ namespace ClickerClass.Projectiles
 	{
 		public override void SetStaticDefaults()
 		{
+			base.SetStaticDefaults();
 			Main.projFrames[projectile.type] = 3;
 		}
-		
+
 		public override void SetDefaults()
 		{
-			isClickerProj = true;
 			projectile.width = 22;
 			projectile.height = 22;
 			projectile.aiStyle = -1;

@@ -15,13 +15,13 @@ namespace ClickerClass.Projectiles
 
 		public override void SetStaticDefaults()
 		{
+			base.SetStaticDefaults();
 			ProjectileID.Sets.TrailCacheLength[projectile.type] = 30;
 			ProjectileID.Sets.TrailingMode[projectile.type] = 0;
 		}
 
 		public override void SetDefaults()
 		{
-			isClickerProj = true;
 			projectile.width = 20;
 			projectile.height = 20;
 			projectile.aiStyle = -1;

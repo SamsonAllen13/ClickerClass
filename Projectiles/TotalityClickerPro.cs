@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -14,7 +13,6 @@ namespace ClickerClass.Projectiles
 
 		public override void SetDefaults()
 		{
-			isClickerProj = true;
 			projectile.width = 50;
 			projectile.height = 50;
 			projectile.aiStyle = -1;

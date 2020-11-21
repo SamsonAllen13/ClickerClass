@@ -8,7 +8,6 @@ namespace ClickerClass.Projectiles
 	{
 		public override void SetDefaults()
 		{
-			isClickerProj = true;
 			projectile.width = 250;
 			projectile.height = 250;
 			projectile.penetrate = -1;

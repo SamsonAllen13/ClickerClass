@@ -10,7 +10,6 @@ namespace ClickerClass.Projectiles
 	{
 		public override void SetDefaults()
 		{
-			isClickerProj = true;
 			projectile.width = 60;
 			projectile.height = 60;
 			projectile.aiStyle = -1;

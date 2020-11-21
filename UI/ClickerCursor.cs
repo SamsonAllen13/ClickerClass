@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.UI;
-using ClickerClass.Items;
 
 namespace ClickerClass.UI
 {
@@ -20,7 +19,7 @@ namespace ClickerClass.UI
 		/// </summary>
 		public static bool CanDrawCursor(Item item)
 		{
-			return !_lastMouseInterface && item.modItem is ClickerItem clickerItem && clickerItem.isClicker && item.damage > 0;
+			return !_lastMouseInterface && ClickerSystem.IsClickerWeapon(item);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -32,7 +31,7 @@ namespace ClickerClass.UI
 			// To safely cache when the cursor is inside an interface (directly accessing it when adding the cursor will not work because the vanilla logic hasn't reached that stage yet)
 			_lastMouseInterface = Main.LocalPlayer.mouseInterface;
 		}
-		
+
 		protected override bool DrawSelf()
 		{
 			Player player = Main.LocalPlayer;
@@ -54,10 +53,10 @@ namespace ClickerClass.UI
 			{
 				return true;
 			}
-			
+
 			Rectangle borderFrame = borderTexture.Frame(1, 1);
 			Vector2 borderOrigin = borderFrame.Size() / 2;
-			
+
 			Rectangle frame = texture.Frame(1, 1);
 			Vector2 origin = frame.Size() / 2;
 
@@ -72,7 +71,7 @@ namespace ClickerClass.UI
 			Main.spriteBatch.Draw(borderTexture, borderPosition, borderFrame, Main.mouseBorderColorSlider.GetColor(), 0f, Vector2.Zero, _clickerScale, SpriteEffects.FlipHorizontally, 0f);
 			// Actual cursor
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, Vector2.Zero, _clickerScale, SpriteEffects.FlipHorizontally, 0f);
-			
+
 			return true;
 		}
 

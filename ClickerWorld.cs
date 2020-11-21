@@ -1,4 +1,5 @@
-using ClickerClass.Items;
+using ClickerClass.Items.Accessories;
+using ClickerClass.Items.Weapons.Clickers;
 using System;
 using System.Collections.Generic;
 using Terraria;

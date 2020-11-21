@@ -11,7 +11,7 @@ namespace ClickerClass
 		{
 			return new ModRecipe(ClickerClass.mod);
 		}
-		
+
 		public static void AddRecipes()
 		{
 			ModRecipe recipe = GetNewRecipe();

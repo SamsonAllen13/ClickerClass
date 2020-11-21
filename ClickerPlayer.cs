@@ -1,5 +1,6 @@
 using ClickerClass.Buffs;
 using ClickerClass.Items;
+using ClickerClass.Items.Armors;
 using ClickerClass.NPCs;
 using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
@@ -33,14 +34,18 @@ namespace ClickerClass
 		/// Visual indicator that the cursor is inside Motherboard radius
 		/// </summary>
 		public bool clickerInRangeMotherboard = false;
+		public bool GlowVisual => clickerInRange || clickerInRangeMotherboard;
 		public bool clickerSelected = false;
+		/// <summary>
+		/// False if phase reach
+		/// </summary>
 		public bool clickerDrawRadius = false;
 		public bool clickerAutoClick = false;
 		public int clickerPerSecondTimer = 0;
 		public int clickerPerSecond = 0;
 		public int clickerTotal = 0;
 		public int clickAmount = 0;
-		
+
 		//Out of combat
 		public bool outOfCombat = true;
 		public int outOfCombatTimer = 0;
@@ -80,10 +85,19 @@ namespace ClickerClass
 
 		//Stats
 		public int clickerDamageFlat = 0;
-		public int clickerBonus = 0;
 		public int clickerCrit = 4;
 		public float clickerDamage = 1f;
+
+		/// <summary>
+		/// How many less clicks are required to trigger an effect
+		/// </summary>
+		public int clickerBonus = 0;
+
+		/// <summary>
+		/// Multiplier to clicks required to trigger an effect
+		/// </summary>
 		public float clickerBonusPercent = 1f;
+
 		/// <summary>
 		/// Effective clicker radius in pixels when multiplied by 100
 		/// </summary>
@@ -93,6 +107,7 @@ namespace ClickerClass
 		/// Clicker radius in pixels
 		/// </summary>
 		public float ClickerRadiusReal => clickerRadius * 100;
+
 		/// <summary>
 		/// Motherboard radius in pixels
 		/// </summary>
@@ -121,18 +136,18 @@ namespace ClickerClass
 			clickerMotherboardSetRatio = ratio;
 			clickerMotherboardSetAngle = toPosition.ToRotation();
 		}
-		
+
 		internal int originalSelectedItem;
 		internal bool autoRevertSelectedItem = false;
 
 		/// <summary>
 		/// Uses the item in the specified index from the players inventory
 		/// </summary>
-		public void QuickUseItemInSlot(int index) 
+		public void QuickUseItemInSlot(int index)
 		{
-			if (index > -1 && index < Main.maxInventory && player.inventory[index].type != ItemID.None) 
+			if (index > -1 && index < Main.maxInventory && player.inventory[index].type != ItemID.None)
 			{
-				if (player.CheckMana(player.inventory[index], -1, false, false)) 
+				if (player.CheckMana(player.inventory[index], -1, false, false))
 				{
 					originalSelectedItem = player.selectedItem;
 					autoRevertSelectedItem = true;
@@ -145,6 +160,15 @@ namespace ClickerClass
 					Main.PlaySound(SoundID.Drip, (int)player.Center.X, (int)player.Center.Y, Main.rand.Next(3));
 				}
 			}
+		}
+
+		/// <summary>
+		/// Returns the amount of clicks required for an effect to trigger. Includes various bonuses
+		/// </summary>
+		public int GetClickAmountTotal(ClickerItemCore clickerItem)
+		{
+			//Doesn't go below 1
+			return Math.Max(1, (int)((clickerItem.itemClickerAmount + clickerItem.clickBoostPrefix - clickerBonus) * clickerBonusPercent));
 		}
 
 		public override void ResetEffects()
@@ -225,24 +249,24 @@ namespace ClickerClass
 				}
 			}
 		}
-		
+
 		public override void PreUpdate()
 		{
-			if (player.whoAmI == Main.myPlayer) 
+			if (player.whoAmI == Main.myPlayer)
 			{
-				if (autoRevertSelectedItem) 
+				if (autoRevertSelectedItem)
 				{
-					if (player.itemTime == 0 && player.itemAnimation == 0) 
+					if (player.itemTime == 0 && player.itemAnimation == 0)
 					{
 						player.selectedItem = originalSelectedItem;
 						autoRevertSelectedItem = false;
 					}
 				}
 			}
-			
-			if (player.whoAmI == Main.myPlayer) 
+
+			if (player.whoAmI == Main.myPlayer)
 			{
-				if (player.itemTime == 0 && player.itemAnimation == 0) 
+				if (player.itemTime == 0 && player.itemAnimation == 0)
 				{
 					if (player.GetModPlayer<ClickerPlayer>().clickerGloveAcc2 && player.GetModPlayer<ClickerPlayer>().clickerGloveAccTimer > 60)
 					{
@@ -275,7 +299,7 @@ namespace ClickerClass
 			{
 				clickerSetTimer--;
 			}
-			
+
 			if (!clickerMotherboardSet)
 			{
 				clickerMotherboardSetPosition = Vector2.Zero;
@@ -289,7 +313,7 @@ namespace ClickerClass
 				{
 					clickerMotherboardSetFrameShift = true;
 				}
-				
+
 				if (clickerMotherboardSetFrameShift && clickerMotherboardSetAlpha <= 0.25f)
 				{
 					clickerMotherboardSetFrame++;
@@ -301,7 +325,7 @@ namespace ClickerClass
 				}
 			}
 
-			if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClickerWeapon)
+			if (ClickerSystem.IsClickerWeapon(player.HeldItem, out ClickerItemCore clickerItem))
 			{
 				clickerSelected = true;
 				clickerDrawRadius = true;
@@ -309,11 +333,18 @@ namespace ClickerClass
 				{
 					clickerDrawRadius = false;
 				}
-				
-				if (clickerItem.radiusBoost > 0f || clickerItem.radiusBoostPrefix > 0f)
+
+				if (clickerItem.radiusBoost > 0f)
 				{
-					clickerRadius += clickerItem.radiusBoost + clickerItem.radiusBoostPrefix;
+					clickerRadius += clickerItem.radiusBoost;
 				}
+
+				if (clickerItem.radiusBoostPrefix > 0f)
+				{
+					clickerRadius += clickerItem.radiusBoostPrefix;
+				}
+
+				//collision
 				if (Vector2.Distance(Main.MouseWorld, player.Center) < ClickerRadiusReal && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
 				{
 					clickerInRange = true;
@@ -323,12 +354,14 @@ namespace ClickerClass
 					//Important: has to be after final clickerRadius calculation because it depends on it
 					clickerMotherboardSetPosition = player.Center + CalculateMotherboardPosition();
 				}
+
+				//collision
 				if (Vector2.Distance(Main.MouseWorld, clickerMotherboardSetPosition) < ClickerRadiusMotherboard && Collision.CanHit(clickerMotherboardSetPosition, 1, 1, Main.MouseWorld, 1, 1))
 				{
 					clickerInRangeMotherboard = true;
 				}
 				clickerColor = clickerItem.clickerColorItem;
-				
+
 				//Glove acc
 				if (!outOfCombat && (clickerGloveAcc2 || clickerGloveAcc))
 				{
@@ -519,7 +552,7 @@ namespace ClickerClass
 				clickerPerSecondTimer = 0;
 				clickerPerSecond = 0;
 			}
-			
+
 			// Out of Combat timer
 			if (outOfCombatTimer > 0)
 			{
@@ -534,7 +567,7 @@ namespace ClickerClass
 
 		public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
 		{
-			if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
+			if (ClickerSystem.IsClickerWeapon(player.HeldItem))
 			{
 				if (target.GetGlobalNPC<ClickerGlobalNPC>().embrittle)
 				{
@@ -552,7 +585,7 @@ namespace ClickerClass
 		{
 			outOfCombatTimer = 300;
 		}
-		
+
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
 			outOfCombatTimer = 300;
@@ -602,7 +635,6 @@ namespace ClickerClass
 		public static readonly PlayerLayer HeadGlow = new PlayerLayer("ClickerClass", "HeadGlow", PlayerLayer.Head, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
-			Mod mod = ModLoader.GetMod("ClickerClass");
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 			Color color = drawPlayer.GetImmuneAlphaPure(Color.White, drawInfo.shadow);
 			Texture2D texture = null;
@@ -611,6 +643,7 @@ namespace ClickerClass
 			{
 				return;
 			}
+			Mod mod = ModLoader.GetMod("ClickerClass");
 
 			if (modPlayer.clickerMiceSet && modPlayer.clickerMiceSetAllowed)
 			{
@@ -644,7 +677,6 @@ namespace ClickerClass
 		public static readonly PlayerLayer BodyGlow = new PlayerLayer("ClickerClass", "BodyGlow", PlayerLayer.Body, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
-			Mod mod = ModLoader.GetMod("ClickerClass");
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 			Color color = drawPlayer.GetImmuneAlphaPure(Color.White, drawInfo.shadow);
 			Texture2D texture = null;
@@ -653,6 +685,7 @@ namespace ClickerClass
 			{
 				return;
 			}
+			Mod mod = ModLoader.GetMod("ClickerClass");
 
 			if (modPlayer.clickerMiceSet && modPlayer.clickerMiceSetAllowed)
 			{
@@ -709,7 +742,6 @@ namespace ClickerClass
 		public static readonly PlayerLayer ArmsGlow = new PlayerLayer("ClickerClass", "ArmsGlow", PlayerLayer.Arms, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
-			Mod mod = ModLoader.GetMod("ClickerClass");
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 			Color color = drawPlayer.GetImmuneAlphaPure(Color.White, drawInfo.shadow);
 			Texture2D texture = null;
@@ -718,6 +750,7 @@ namespace ClickerClass
 			{
 				return;
 			}
+			Mod mod = ModLoader.GetMod("ClickerClass");
 
 			if (modPlayer.clickerMiceSet && modPlayer.clickerMiceSetAllowed)
 			{
@@ -751,7 +784,6 @@ namespace ClickerClass
 		public static readonly PlayerLayer LegsGlow = new PlayerLayer("ClickerClass", "LegsGlow", PlayerLayer.Legs, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
-			Mod mod = ModLoader.GetMod("ClickerClass");
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 			Color color = drawPlayer.GetImmuneAlphaPure(Color.White, drawInfo.shadow);
 			Texture2D texture = null;
@@ -760,6 +792,7 @@ namespace ClickerClass
 			{
 				return;
 			}
+			Mod mod = ModLoader.GetMod("ClickerClass");
 
 			if (modPlayer.clickerMiceSet && modPlayer.clickerMiceSetAllowed)
 			{
@@ -792,13 +825,13 @@ namespace ClickerClass
 		public static readonly PlayerLayer WeaponGlow = new PlayerLayer("ClickerClass", "WeaponGlow", PlayerLayer.HeldItem, delegate (PlayerDrawInfo drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
-			Mod mod = ModLoader.GetMod("ClickerClass");
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 
 			if (drawInfo.shadow != 0f || drawPlayer.dead || drawPlayer.frozen || drawPlayer.itemAnimation <= 0)
 			{
 				return;
 			}
+			Mod mod = ModLoader.GetMod("ClickerClass");
 
 			//Fragment Pickaxe
 			if (drawPlayer.HeldItem.type == mod.ItemType("MicePickaxe"))
@@ -823,7 +856,6 @@ namespace ClickerClass
 
 		public static readonly PlayerLayer MiscEffects = new PlayerLayer("ClickerClass", "MiscEffects", PlayerLayer.MiscEffectsFront, delegate (PlayerDrawInfo drawInfo)
 		{
-			Mod mod = ModLoader.GetMod("ClickerClass");
 			Player drawPlayer = drawInfo.drawPlayer;
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 
@@ -835,6 +867,7 @@ namespace ClickerClass
 			{
 				if (modPlayer.clickerMotherboardSet && modPlayer.clickerMotherboardSetRatio > 0)
 				{
+					Mod mod = ModLoader.GetMod("ClickerClass");
 					float glow = modPlayer.clickerInRangeMotherboard ? 0.6f : 0f;
 
 					Color outer = modPlayer.clickerColor * (0.2f + glow);
@@ -849,10 +882,10 @@ namespace ClickerClass
 						ignorePlayerRotation = true
 					};
 					Main.playerDrawData.Add(drawData);
-					
+
 					Rectangle frame = new Rectangle(0, 0, 30, 30);
 					frame.Y += 30 * modPlayer.clickerMotherboardSetFrame;
-					
+
 					texture = mod.GetTexture("Glowmasks/MotherboardSetBonus2_Glow");
 					drawData = new DrawData(texture, drawPos, frame, new Color(255, 255, 255, 100) * modPlayer.clickerMotherboardSetAlpha, 0f, new Vector2(texture.Width / 2, frame.Height / 2), 1f, SpriteEffects.None, 0)
 					{

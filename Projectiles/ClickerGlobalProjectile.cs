@@ -7,7 +7,7 @@ namespace ClickerClass.Projectiles
 	{
 		public override void ModifyHitNPC(Projectile projectile, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
 		{
-			if (!(projectile.modProjectile is ClickerProjectile clickerProjectile && clickerProjectile.isClickerProj))
+			if (!ClickerSystem.IsClickerProj(projectile))
 			{
 				return;
 			}
@@ -16,8 +16,8 @@ namespace ClickerClass.Projectiles
 
 			Item heldItem = player.HeldItem;
 
-			// Prevent crash when held item is null/none
-			if (heldItem == null) return;
+			// Prevent crash when held item is nonexistant
+			if (heldItem.IsAir) return;
 
 			// Vanilla crit chance calculations. Crit chance of the currently held weapon matters, regardless of the damage type of the weapon.
 			int critChance = heldItem.crit;

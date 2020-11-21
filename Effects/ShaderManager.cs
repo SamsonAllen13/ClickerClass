@@ -1,5 +1,4 @@
-﻿using ClickerClass.Items;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
@@ -45,7 +44,7 @@ namespace ClickerClass.Effects
 			return circle;
 		}
 
-		public static void LoadCircleEffectAdds()
+		internal static void LoadCircleEffectAdds()
 		{
 			On.Terraria.Main.DrawInfernoRings += DrawCircles;
 		}
@@ -66,7 +65,7 @@ namespace ClickerClass.Effects
 			{
 				if (modPlayer.clickerDrawRadius)
 				{
-					float glow = modPlayer.clickerInRange || modPlayer.clickerInRangeMotherboard ? 0.6f : 0f;
+					float glow = modPlayer.GlowVisual ? 0.6f : 0f;
 
 					Color outer = modPlayer.clickerColor * (0.2f + glow);
 
@@ -124,7 +123,7 @@ namespace ClickerClass.Effects
 			spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
 		}
 
-		public static void Load()
+		internal static void Load()
 		{
 			if (Main.netMode != NetmodeID.Server)
 			{
@@ -133,11 +132,9 @@ namespace ClickerClass.Effects
 			}
 		}
 
-		public static void Unload()
+		internal static void Unload()
 		{
 			CircleEffect = null;
 		}
-
-
 	}
 }

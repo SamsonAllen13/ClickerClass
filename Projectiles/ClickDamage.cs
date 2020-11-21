@@ -3,11 +3,13 @@ using Terraria;
 
 namespace ClickerClass.Projectiles
 {
+	/// <summary>
+	/// The most common damage-inflicting clicker projectile spawned from a clicker. Default for a clicker weapon
+	/// </summary>
 	public class ClickDamage : ClickerProjectile
 	{
 		public override void SetDefaults()
 		{
-			isClickerProj = true;
 			projectile.width = 30;
 			projectile.height = 30;
 			projectile.aiStyle = -1;
@@ -23,20 +25,23 @@ namespace ClickerClass.Projectiles
 		public override void Kill(int timeLeft)
 		{
 			Player player = Main.player[projectile.owner];
+			Item item = player.HeldItem;
 
-			int dustColor = 0;
-			if (player.HeldItem.modItem is ClickerItem clickerItem && clickerItem.isClicker)
+			int dustType = 0;
+			if (ClickerSystem.IsClickerWeapon(item))
 			{
-				dustColor = clickerItem.clickerDustColor;
+				ClickerItemCore clickerItem = item.GetGlobalItem<ClickerItemCore>();
+				dustType = clickerItem.clickerDustColor;
 			}
 
 			for (int k = 0; k < 5; k++)
 			{
-				Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, dustColor, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
+				Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
 				dust.noGravity = true;
 			}
 
-			if (player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED2)
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+			if (clickerPlayer.clickerEnchantedLED2)
 			{
 				for (int k = 0; k < 5; k++)
 				{
@@ -44,19 +49,19 @@ namespace ClickerClass.Projectiles
 					dust.noGravity = true;
 				}
 			}
-			
-			if (player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED)
+
+			if (clickerPlayer.clickerEnchantedLED)
 			{
 				for (int i = 0; i < 15; i++)
 				{
-					int dustType = Main.rand.Next(3);
-					switch (dustType)
+					int dustType1 = Main.rand.Next(3);
+					switch (dustType1)
 					{
-						case 0: dustType = 15; break;
-						case 1: dustType = 57; break;
-						default: dustType = 58; break;
+						case 0: dustType1 = 15; break;
+						case 1: dustType1 = 57; break;
+						default: dustType1 = 58; break;
 					}
-					Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 100, default, 1.5f);
+					Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, dustType1, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 100, default, 1.5f);
 					dust.velocity *= 1.5f;
 					dust.noGravity = true;
 				}

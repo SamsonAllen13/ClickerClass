@@ -1,12 +1,10 @@
+using ClickerClass.Effects;
+using ClickerClass.UI;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.UI;
-using ClickerClass.UI;
-using ClickerClass.Items;
-using ClickerClass.Effects;
 
 namespace ClickerClass
 {
@@ -19,6 +17,7 @@ namespace ClickerClass
 		{
 			mod = this;
 			AutoClickKey = RegisterHotKey("Clicker Accessory", "G");
+			ClickerSystem.Load();
 
 			if (!Main.dedServ)
 			{
@@ -31,7 +30,7 @@ namespace ClickerClass
 			ShaderManager.Load();
 			ClickerInterfaceResources.Load();
 		}
-		
+
 		private GameTime _lastUpdateUIGameTime;
 
 		public override void UpdateUI(GameTime gameTime)
@@ -46,8 +45,8 @@ namespace ClickerClass
 
 			Player player = Main.LocalPlayer;
 			for (int i = 0; i < layers.Count; i++)
-            {
-                //Remove Mouse Cursor
+			{
+				//Remove Mouse Cursor
 				if (ClickerCursor.CanDrawCursor(player.HeldItem))
 				{
 					if (Main.cursorOverride == -1 && ClickerConfigClient.Instance.ShowCustomCursors)
@@ -59,12 +58,13 @@ namespace ClickerClass
 						}
 					}
 				}
-            }
+			}
 		}
 
 		public override void Unload()
 		{
 			ShaderManager.Unload();
+			ClickerSystem.Unload();
 			ClickerInterfaceResources.Unload();
 			AutoClickKey = null;
 			mod = null;
@@ -74,7 +74,7 @@ namespace ClickerClass
 		{
 			ClickerRecipes.AddRecipes();
 		}
-		
+
 		public override void AddRecipeGroups()
 		{
 			ClickerRecipes.AddRecipeGroups();

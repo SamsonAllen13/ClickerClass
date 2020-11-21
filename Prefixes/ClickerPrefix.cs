@@ -49,7 +49,7 @@ namespace ClickerClass.Prefixes
 
 		public override void Apply(Item item)
 		{
-			if (item.modItem is ClickerItem clickerItem)
+			if (ClickerSystem.IsClickerWeapon(item, out ClickerItemCore clickerItem))
 			{
 				clickerItem.radiusBoostPrefix = radiusBonus;
 				clickerItem.clickBoostPrefix = clickBonus;
@@ -60,7 +60,7 @@ namespace ClickerClass.Prefixes
 
 		public override bool CanRoll(Item item)
 		{
-			if (item.modItem is ClickerItem)
+			if (ClickerSystem.IsClickerWeapon(item))
 			{
 				return item.maxStack == 1 && item.damage > 0 && item.useStyle > 0;
 			}

@@ -28,10 +28,12 @@ namespace ClickerClass.Items
 		/// </summary>
 		public int itemClickerAmount = 0;
 
+		public const string NULL = "NULL";
+
 		/// <summary>
 		/// The clickers effect name
 		/// </summary>
-		public string itemClickerEffect = "NULL";
+		public string itemClickerEffect = NULL;
 
 		/// <summary>
 		/// The clickers dust that is spawned on use
@@ -190,6 +192,8 @@ namespace ClickerClass.Items
 				Player player = Main.LocalPlayer;
 				var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 				int index;
+				
+				float alpha = Main.mouseTextColor / 255f;
 
 				if (ClickerConfigClient.Instance.ShowClassTags)
 				{
@@ -209,7 +213,8 @@ namespace ClickerClass.Items
 
 					if (index != -1)
 					{
-						tooltips.Insert(index + 7, new TooltipLine(mod, "transformationText", "Total clicks: " + $"[c/fcd22c:" + clickerPlayer.clickerTotal + "]"));
+						string color = (new Color(252, 210, 44) * alpha).Hex3();
+						tooltips.Add(new TooltipLine(mod, "transformationText", "Total clicks: " + $"[c/" + color + ":" + clickerPlayer.clickerTotal + "]"));
 					}
 				}
 
@@ -232,20 +237,21 @@ namespace ClickerClass.Items
 						}
 					}
 
-					if (itemClickerAmount > 0 && itemClickerEffect != "NULL")
+					if (itemClickerAmount > 0 && itemClickerEffect != NULL)
 					{
 						index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("Knockback"));
 
 						if (index != -1)
 						{
+							string color = (clickerColorItem * alpha).Hex3();
 							int clickAmountTotal = clickerPlayer.GetClickAmountTotal(this);
 							if (clickAmountTotal > 1)
 							{
-								tooltips.Insert(index + 1, new TooltipLine(mod, "itemClickerAmount", clickAmountTotal + " clicks - " + $"[c/" + clickerColorItem.Hex3() + ":" + itemClickerEffect + "]"));
+								tooltips.Insert(index + 1, new TooltipLine(mod, "itemClickerAmount", clickAmountTotal + " clicks - " + $"[c/" + color + ":" + itemClickerEffect + "]"));
 							}
 							else
 							{
-								tooltips.Insert(index + 1, new TooltipLine(mod, "itemClickerAmount", "1 click - " + $"[c/" + clickerColorItem.Hex3() + ":" + itemClickerEffect + "]"));
+								tooltips.Insert(index + 1, new TooltipLine(mod, "itemClickerAmount", "1 click - " + $"[c/" + color + ":" + itemClickerEffect + "]"));
 							}
 						}
 					}

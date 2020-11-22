@@ -80,6 +80,7 @@ namespace ClickerClass
 		}
 
 		//All calls are "documented" on the ClickerClassExampleMod repo: https://github.com/SamsonAllen13/ClickerClassExampleMod/blob/master/ClickerCompat.cs
+		//Not everything is exposed via API yet
 		public override object Call(params object[] args)
 		{
 			//Simplify code by resizing args

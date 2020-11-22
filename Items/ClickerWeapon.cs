@@ -15,7 +15,6 @@ namespace ClickerClass.Items
 		public override void SetStaticDefaults()
 		{
 			ClickerSystem.RegisterClickerWeapon(this);
-			Tooltip.SetDefault("Click on an enemy within range and sight to damage them");
 		}
 
 		/// <summary>
@@ -74,7 +73,7 @@ namespace ClickerClass.Items
 		{
 			if (ClickerSystem.IsClickerWeapon(item, out ClickerItemCore clickerItem))
 			{
-				clickerItem.itemClickerEffect = effect;
+				clickerItem.itemClickerEffect = effect ?? ClickerItemCore.NULL;
 			}
 		}
 

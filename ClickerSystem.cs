@@ -1,5 +1,6 @@
 ﻿using ClickerClass.Items;
 using ClickerClass.Projectiles;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -55,6 +56,10 @@ namespace ClickerClass
 		/// <param name="modProj">The <see cref="ModProjectile"/> that is to be registered</param>
 		public static void RegisterClickerProjectile(ModProjectile modProj)
 		{
+			if (ClickerClass.finalizedRegisterCompat)
+			{
+				throw new Exception("Tried to register a clicker projectile at the wrong time, do so in ModProjectile.SetStaticDefaults");
+			}
 			int type = modProj.projectile.type;
 			if (!ClickerProjectiles.Contains(type))
 			{
@@ -68,6 +73,10 @@ namespace ClickerClass
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
 		public static void RegisterClickerItem(ModItem modItem)
 		{
+			if (ClickerClass.finalizedRegisterCompat)
+			{
+				throw new Exception("Tried to register a clicker item at the wrong time, do so in ModItem.SetStaticDefaults");
+			}
 			int type = modItem.item.type;
 			if (!ClickerItems.Contains(type))
 			{
@@ -77,17 +86,33 @@ namespace ClickerClass
 
 		/// <summary>
 		/// Call this in <see cref="ModItem.SetStaticDefaults"/> to register this weapon into the "clicker class" category as a "clicker".
-		/// Do not call <see cref="RegisterClickerItem"/> as this method does this already by itself
+		/// You can change the default tooltip after it.
+		/// Do not call <see cref="RegisterClickerItem"/> with it as this method does this already by itself
 		/// </summary>
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
 		public static void RegisterClickerWeapon(ModItem modItem)
 		{
+			if (ClickerClass.finalizedRegisterCompat)
+			{
+				throw new Exception("Tried to register a clicker weapon at the wrong time, do so in ModItem.SetStaticDefaults");
+			}
 			RegisterClickerItem(modItem);
 			int type = modItem.item.type;
 			if (!ClickerWeapons.Contains(type))
 			{
 				ClickerWeapons.Add(type);
 			}
+			modItem.Tooltip.SetDefault("Click on an enemy within range and sight to damage them");
+		}
+
+		/// <summary>
+		/// Call this to check if a projectile type belongs to the "clicker class" category
+		/// </summary>
+		/// <param name="type">The item type to be checked</param>
+		/// <returns><see langword="true"/> if that category</returns>
+		public static bool IsClickerProj(int type)
+		{
+			return ClickerProjectiles.Contains(type);
 		}
 
 		/// <summary>
@@ -101,13 +126,13 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call this to check if a projectile type belongs to the "clicker class" category
+		/// Call this to check if an item type belongs to the "clicker class" category
 		/// </summary>
 		/// <param name="type">The item type to be checked</param>
 		/// <returns><see langword="true"/> if that category</returns>
-		public static bool IsClickerProj(int type)
+		public static bool IsClickerItem(int type)
 		{
-			return ClickerProjectiles.Contains(type);
+			return ClickerItems.Contains(type);
 		}
 
 		/// <summary>
@@ -138,13 +163,13 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call this to check if an item type belongs to the "clicker class" category
+		/// Call this to check if an item type is a "clicker"
 		/// </summary>
 		/// <param name="type">The item type to be checked</param>
-		/// <returns><see langword="true"/> if that category</returns>
-		public static bool IsClickerItem(int type)
+		/// <returns><see langword="true"/> if a "clicker"</returns>
+		public static bool IsClickerWeapon(int type)
 		{
-			return ClickerItems.Contains(type);
+			return ClickerWeapons.Contains(type);
 		}
 
 		/// <summary>
@@ -172,16 +197,6 @@ namespace ClickerClass
 				clickerItem = item.GetGlobalItem<ClickerItemCore>();
 			}
 			return ret;
-		}
-
-		/// <summary>
-		/// Call this to check if an item type is a "clicker"
-		/// </summary>
-		/// <param name="type">The item type to be checked</param>
-		/// <returns><see langword="true"/> if a "clicker"</returns>
-		public static bool IsClickerWeapon(int type)
-		{
-			return ClickerWeapons.Contains(type);
 		}
 	}
 }

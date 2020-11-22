@@ -43,7 +43,13 @@ namespace ClickerClass
 		public bool clickerAutoClick = false;
 		public int clickerPerSecondTimer = 0;
 		public int clickerPerSecond = 0;
+		/// <summary>
+		/// Saved amount of clicks done with any clicker, accumulated, fluff
+		/// </summary>
 		public int clickerTotal = 0;
+		/// <summary>
+		/// Amount of clicks done, constantly incremented
+		/// </summary>
 		public int clickAmount = 0;
 
 		//Out of combat
@@ -84,8 +90,19 @@ namespace ClickerClass
 		public int clickerGloveAccTimer = 0;
 
 		//Stats
-		public int clickerDamageFlat = 0;
+		/// <summary>
+		/// Click crit 
+		/// </summary>
 		public int clickerCrit = 4;
+
+		/// <summary>
+		/// Click damage add flat
+		/// </summary>
+		public int clickerDamageFlat = 0;
+
+		/// <summary>
+		/// Click damage add multiplier
+		/// </summary>
 		public float clickerDamage = 1f;
 
 		/// <summary>
@@ -171,6 +188,14 @@ namespace ClickerClass
 			return Math.Max(1, (int)((clickerItem.itemClickerAmount + clickerItem.clickBoostPrefix - clickerBonus) * clickerBonusPercent));
 		}
 
+		/// <summary>
+		/// Returns the amount of clicks required for an effect to trigger. Includes various bonuses
+		/// </summary>
+		public int GetClickAmountTotal(Item item)
+		{
+			return GetClickAmountTotal(item.GetGlobalItem<ClickerItemCore>());
+		}
+
 		public override void ResetEffects()
 		{
 			//-Clicker-
@@ -204,12 +229,12 @@ namespace ClickerClass
 			clickerGloveAcc2 = false;
 
 			//Stats
+			clickerCrit = 4;
+			clickerDamageFlat = 0;
 			clickerDamage = 1f;
+			clickerBonus = 0;
 			clickerBonusPercent = 1f;
 			clickerRadius = 1f;
-			clickerDamageFlat = 0;
-			clickerCrit = 4;
-			clickerBonus = 0;
 		}
 
 		public override void Initialize()
@@ -268,15 +293,15 @@ namespace ClickerClass
 			{
 				if (player.itemTime == 0 && player.itemAnimation == 0)
 				{
-					if (player.GetModPlayer<ClickerPlayer>().clickerGloveAcc2 && player.GetModPlayer<ClickerPlayer>().clickerGloveAccTimer > 60)
+					if (clickerGloveAcc2 && clickerGloveAccTimer > 60)
 					{
 						QuickUseItemInSlot(player.selectedItem);
-						player.GetModPlayer<ClickerPlayer>().clickerGloveAccTimer = 0;
+						clickerGloveAccTimer = 0;
 					}
-					else if (player.GetModPlayer<ClickerPlayer>().clickerGloveAcc && player.GetModPlayer<ClickerPlayer>().clickerGloveAccTimer > 180)
+					else if (clickerGloveAcc && clickerGloveAccTimer > 180)
 					{
 						QuickUseItemInSlot(player.selectedItem);
-						player.GetModPlayer<ClickerPlayer>().clickerGloveAccTimer = 0;
+						clickerGloveAccTimer = 0;
 					}
 				}
 			}

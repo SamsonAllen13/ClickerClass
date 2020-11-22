@@ -79,10 +79,10 @@ namespace ClickerClass
 			}
 		}
 
+		//All calls are "documented" on the ClickerClassExampleMod repo: https://github.com/SamsonAllen13/ClickerClassExampleMod/blob/master/ClickerCompat.cs
 		public override object Call(params object[] args)
 		{
-			//TODO all calls
-			// Simplify code by resizing args
+			//Simplify code by resizing args
 			Array.Resize(ref args, 25);
 			string success = "Success";
 			try

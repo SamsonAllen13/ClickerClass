@@ -5,12 +5,12 @@ using Terraria.ModLoader;
 namespace ClickerClass.Items.Accessories
 {
 	[AutoloadEquip(EquipType.HandsOn)]
-	public class AncientClickingGlove : ClickerItem
+	public class RegalClickingGlove : ClickerItem
 	{
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Tooltip.SetDefault("While in combat, automatically clicks your current clicker every second");
+			Tooltip.SetDefault("While in combat, automatically clicks your current clicker every half-second");
 		}
 
 		public override void SetDefaults()
@@ -19,20 +19,20 @@ namespace ClickerClass.Items.Accessories
 			item.height = 20;
 			item.accessory = true;
 			item.value = 35000;
-			item.rare = 4;
+			item.rare = 6;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerGloveAcc2 = true;
+			player.GetModPlayer<ClickerPlayer>().clickerGloveAcc3 = true;
 		}
 
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "ClickingGlove", 1);
-			recipe.AddIngredient(ItemID.AncientCloth, 8);
-			recipe.AddTile(TileID.MythrilAnvil);
+			recipe.AddIngredient(null, "AncientClickingGlove", 1);
+			recipe.AddIngredient(ItemID.HallowedBar, 8);
+			recipe.AddTile(TileID.Anvils);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

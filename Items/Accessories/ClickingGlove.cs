@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
 {
+	[AutoloadEquip(EquipType.HandsOn)]
 	public class ClickingGlove : ClickerItem
 	{
 		public override void SetStaticDefaults()

@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
 {
+	[AutoloadEquip(EquipType.Waist)]
 	public class GamerCrate : ClickerItem
 	{
 		public override void SetStaticDefaults()

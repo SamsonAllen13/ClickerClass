@@ -87,7 +87,9 @@ namespace ClickerClass
 		public int clickerCookieAccTimer = 0;
 		public bool clickerGloveAcc = false;
 		public bool clickerGloveAcc2 = false;
+		public bool clickerGloveAcc3 = false;
 		public int clickerGloveAccTimer = 0;
+		public bool clickerParticleAcc = false;
 
 		//Stats
 		/// <summary>
@@ -227,6 +229,8 @@ namespace ClickerClass
 			clickerCookieAcc2 = false;
 			clickerGloveAcc = false;
 			clickerGloveAcc2 = false;
+			clickerGloveAcc3 = false;
+			clickerParticleAcc = false;
 
 			//Stats
 			clickerCrit = 4;
@@ -293,7 +297,12 @@ namespace ClickerClass
 			{
 				if (player.itemTime == 0 && player.itemAnimation == 0)
 				{
-					if (clickerGloveAcc2 && clickerGloveAccTimer > 60)
+					if (clickerGloveAcc3 && clickerGloveAccTimer > 30)
+					{
+						QuickUseItemInSlot(player.selectedItem);
+						clickerGloveAccTimer = 0;
+					}
+					else if (clickerGloveAcc2 && clickerGloveAccTimer > 60)
 					{
 						QuickUseItemInSlot(player.selectedItem);
 						clickerGloveAccTimer = 0;
@@ -388,7 +397,7 @@ namespace ClickerClass
 				clickerColor = clickerItem.clickerColorItem;
 
 				//Glove acc
-				if (!outOfCombat && (clickerGloveAcc2 || clickerGloveAcc))
+				if (!outOfCombat && (clickerGloveAcc || clickerGloveAcc2 || clickerGloveAcc3))
 				{
 					clickerGloveAccTimer++;
 				}

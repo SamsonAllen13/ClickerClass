@@ -145,51 +145,54 @@ namespace ClickerClass
 				{
 					var proj = args[index + 0] as Projectile;
 					var type = args[index + 0] as int?; //Try another type variation because of overload
-					if (proj == null || type == null)
-					{
-						throw new Exception($"Call Error: The projectile/type argument for the attempted message, \"{message}\" has returned null.");
-					}
-					else if (proj != null)
+
+					if (proj != null)
 					{
 						return ClickerSystem.IsClickerProj(proj);
 					}
-					else
+					else if (type != null)
 					{
 						return ClickerSystem.IsClickerProj(type.Value);
+					}
+					else
+					{
+						throw new Exception($"Call Error: The projectile/type argument for the attempted message, \"{message}\" has returned null.");
 					}
 				}
 				else if (message == "IsClickerItem")
 				{
 					var item = args[index + 0] as Item;
 					var type = args[index + 0] as int?; //Try another type variation because of overload
-					if (item == null || type == null)
-					{
-						throw new Exception($"Call Error: The item/type argument for the attempted message, \"{message}\" has returned null.");
-					}
-					else if (item != null)
+					
+					if (item != null)
 					{
 						return ClickerSystem.IsClickerItem(item);
 					}
-					else
+					else if (type != null)
 					{
 						return ClickerSystem.IsClickerItem(type.Value);
+					}
+					else
+					{
+						throw new Exception($"Call Error: The item/type argument for the attempted message, \"{message}\" has returned null.");
 					}
 				}
 				else if (message == "IsClickerWeapon")
 				{
 					var item = args[index + 0] as Item;
 					var type = args[index + 0] as int?; //Try another type variation because of overload
-					if (item == null || type == null)
-					{
-						throw new Exception($"Call Error: The item/type argument for the attempted message, \"{message}\" has returned null.");
-					}
-					else if (item != null)
+
+					if (item != null)
 					{
 						return ClickerSystem.IsClickerWeapon(item);
 					}
-					else
+					else if (type != null)
 					{
 						return ClickerSystem.IsClickerWeapon(type.Value);
+					}
+					else
+					{
+						throw new Exception($"Call Error: The item/type argument for the attempted message, \"{message}\" has returned null.");
 					}
 				}
 				//Clicker Weapon/Item specifics now

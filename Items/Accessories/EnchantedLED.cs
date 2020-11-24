@@ -26,7 +26,7 @@ namespace ClickerClass.Items.Accessories
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			if (!hideVisual)
 			{
-				clickerPlayer.clickerEnchantedLED = true;
+				clickerPlayer.accEnchantedLED = true;
 			}
 			clickerPlayer.clickerDamageFlat += 2;
 		}

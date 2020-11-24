@@ -421,7 +421,7 @@ namespace ClickerClass.Items
 				}
 
 				//Special Effects
-				if (clickerPlayer.clickAmount % 10 == 0 && clickerPlayer.clickerStickyAcc)
+				if (clickerPlayer.clickAmount % 10 == 0 && clickerPlayer.accStickyKeychain)
 				{
 					Main.PlaySound(3, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 13);
 					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<StickyKeychainPro>(), (int)(damage * 0.5), 3f, player.whoAmI, Main.rand.Next(3));
@@ -432,7 +432,7 @@ namespace ClickerClass.Items
 						dust.noLight = true;
 					}
 				}
-				if (clickerPlayer.clickAmount % 15 == 0 && clickerPlayer.clickerChocolateChipAcc)
+				if (clickerPlayer.clickAmount % 15 == 0 && clickerPlayer.accChocolateChip)
 				{
 					Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 112);
 					for (int k = 0; k < 6; k++)

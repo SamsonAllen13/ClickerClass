@@ -27,8 +27,8 @@ namespace ClickerClass.Items.Accessories
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.clickerCookieAcc2 = true;
-			clickerPlayer.clickerMilkAcc = true;
+			clickerPlayer.accCookie2 = true;
+			clickerPlayer.accGlassOfMilk = true;
 		}
 
 		public override void AddRecipes()

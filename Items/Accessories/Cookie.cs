@@ -22,7 +22,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerCookieAcc = true;
+			player.GetModPlayer<ClickerPlayer>().accCookie = true;
 		}
 	}
 }

@@ -41,7 +41,7 @@ namespace ClickerClass.Projectiles
 			}
 
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			if (clickerPlayer.clickerEnchantedLED2)
+			if (clickerPlayer.accEnchantedLED2)
 			{
 				for (int k = 0; k < 5; k++)
 				{
@@ -50,7 +50,7 @@ namespace ClickerClass.Projectiles
 				}
 			}
 
-			if (clickerPlayer.clickerEnchantedLED)
+			if (clickerPlayer.accEnchantedLED)
 			{
 				for (int i = 0; i < 15; i++)
 				{

@@ -33,7 +33,8 @@ namespace ClickerClass.Projectiles
 				dust.noGravity = true;
 			}
 
-			if (player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED2)
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+			if (clickerPlayer.accEnchantedLED2)
 			{
 				for (int k = 0; k < 5; k++)
 				{
@@ -42,7 +43,7 @@ namespace ClickerClass.Projectiles
 				}
 			}
 
-			if (player.GetModPlayer<ClickerPlayer>().clickerEnchantedLED)
+			if (clickerPlayer.accEnchantedLED)
 			{
 				for (int i = 0; i < 15; i++)
 				{

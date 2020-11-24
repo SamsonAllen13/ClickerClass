@@ -24,7 +24,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerGloveAcc = true;
+			player.GetModPlayer<ClickerPlayer>().accClickingGlove = true;
 		}
 
 		public override void AddRecipes()

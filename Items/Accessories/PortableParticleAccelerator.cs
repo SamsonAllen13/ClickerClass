@@ -23,7 +23,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerParticleAcc = true;
+			player.GetModPlayer<ClickerPlayer>().accPortableParticleAccelerator = true;
 		}
 
 		/*

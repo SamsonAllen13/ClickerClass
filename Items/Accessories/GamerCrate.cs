@@ -35,10 +35,10 @@ namespace ClickerClass.Items.Accessories
 			clickerPlayer.clickerRadius += 1f;
 			clickerPlayer.clickerDamage += 0.10f;
 			clickerPlayer.clickerBonusPercent -= 0.20f;
-			clickerPlayer.clickerAutoClickAcc = true;
+			clickerPlayer.accHandCream = true;
 			if (!hideVisual)
 			{
-				clickerPlayer.clickerEnchantedLED2 = true;
+				clickerPlayer.accEnchantedLED2 = true;
 			}
 		}
 

@@ -84,20 +84,20 @@ namespace ClickerClass
 		public bool SetOverclockDraw => setOverclock && setOverclockAllowed;
 
 		//Acc
-		public bool clickerChocolateChipAcc = false;
-		public bool clickerEnchantedLED = false;
-		public bool clickerEnchantedLED2 = false;
-		public bool clickerAutoClickAcc = false;
-		public bool clickerStickyAcc = false;
-		public bool clickerMilkAcc = false;
-		public bool clickerCookieAcc = false;
-		public bool clickerCookieAcc2 = false;
-		public int clickerCookieAccTimer = 0;
-		public bool clickerGloveAcc = false;
-		public bool clickerGloveAcc2 = false;
-		public bool clickerGloveAcc3 = false;
-		public int clickerGloveAccTimer = 0;
-		public bool clickerParticleAcc = false;
+		public bool accChocolateChip = false;
+		public bool accEnchantedLED = false;
+		public bool accEnchantedLED2 = false; //different visuals
+		public bool accHandCream = false;
+		public bool accStickyKeychain = false;
+		public bool accGlassOfMilk = false;
+		public bool accCookie = false;
+		public bool accCookie2 = false; //different visuals
+		public int accCookieTimer = 0;
+		public bool accClickingGlove = false;
+		public bool accAncientClickingGlove = false;
+		public bool accRegalClickingGlove = false;
+		public int accClickingGloveTimer = 0;
+		public bool accPortableParticleAccelerator = false; //add to api when implemented
 
 		//Stats
 		/// <summary>
@@ -227,18 +227,18 @@ namespace ClickerClass
 			setOverclock = false;
 
 			//Acc
-			clickerChocolateChipAcc = false;
-			clickerEnchantedLED = false;
-			clickerEnchantedLED2 = false;
-			clickerStickyAcc = false;
-			clickerAutoClickAcc = false;
-			clickerMilkAcc = false;
-			clickerCookieAcc = false;
-			clickerCookieAcc2 = false;
-			clickerGloveAcc = false;
-			clickerGloveAcc2 = false;
-			clickerGloveAcc3 = false;
-			clickerParticleAcc = false;
+			accChocolateChip = false;
+			accEnchantedLED = false;
+			accEnchantedLED2 = false;
+			accStickyKeychain = false;
+			accHandCream = false;
+			accGlassOfMilk = false;
+			accCookie = false;
+			accCookie2 = false;
+			accClickingGlove = false;
+			accAncientClickingGlove = false;
+			accRegalClickingGlove = false;
+			accPortableParticleAccelerator = false;
 
 			//Stats
 			clickerCrit = 4;
@@ -305,20 +305,20 @@ namespace ClickerClass
 			{
 				if (player.itemTime == 0 && player.itemAnimation == 0)
 				{
-					if (clickerGloveAcc3 && clickerGloveAccTimer > 30)
+					if (accRegalClickingGlove && accClickingGloveTimer > 30)
 					{
 						QuickUseItemInSlot(player.selectedItem);
-						clickerGloveAccTimer = 0;
+						accClickingGloveTimer = 0;
 					}
-					else if (clickerGloveAcc2 && clickerGloveAccTimer > 60)
+					else if (accAncientClickingGlove && accClickingGloveTimer > 60)
 					{
 						QuickUseItemInSlot(player.selectedItem);
-						clickerGloveAccTimer = 0;
+						accClickingGloveTimer = 0;
 					}
-					else if (clickerGloveAcc && clickerGloveAccTimer > 180)
+					else if (accClickingGlove && accClickingGloveTimer > 180)
 					{
 						QuickUseItemInSlot(player.selectedItem);
-						clickerGloveAccTimer = 0;
+						accClickingGloveTimer = 0;
 					}
 				}
 			}
@@ -332,7 +332,7 @@ namespace ClickerClass
 				clickerClassTime = 0;
 			}
 
-			if (!clickerAutoClickAcc)
+			if (!accHandCream)
 			{
 				clickerAutoClick = false;
 			}
@@ -405,13 +405,13 @@ namespace ClickerClass
 				clickerColor = clickerItem.clickerColorItem;
 
 				//Glove acc
-				if (!outOfCombat && (clickerGloveAcc || clickerGloveAcc2 || clickerGloveAcc3))
+				if (!outOfCombat && (accClickingGlove || accAncientClickingGlove || accRegalClickingGlove))
 				{
-					clickerGloveAccTimer++;
+					accClickingGloveTimer++;
 				}
 				else
 				{
-					clickerGloveAccTimer = 0;
+					accClickingGloveTimer = 0;
 				}
 			}
 
@@ -504,10 +504,10 @@ namespace ClickerClass
 
 			//Acc
 			//Cookie acc
-			if ((clickerCookieAcc || clickerCookieAcc2) && clickerSelected)
+			if ((accCookie || accCookie2) && clickerSelected)
 			{
-				clickerCookieAccTimer++;
-				if (player.whoAmI == Main.myPlayer && clickerCookieAccTimer > 600)
+				accCookieTimer++;
+				if (player.whoAmI == Main.myPlayer && accCookieTimer > 600)
 				{
 					int radius = (int)(95 * clickerRadius);
 					if (radius > 350)
@@ -521,7 +521,7 @@ namespace ClickerClass
 					double xOffset = player.Center.X + r * Math.Cos(theta);
 					double yOffset = player.Center.Y + r * Math.Sin(theta);
 
-					if (clickerCookieAcc2 && Main.rand.NextFloat() <= 0.1f)
+					if (accCookie2 && Main.rand.NextFloat() <= 0.1f)
 					{
 						Projectile.NewProjectile((float)(xOffset), (float)(yOffset), 0f, 0f, mod.ProjectileType("CookiePro"), 0, 0f, player.whoAmI, 1f);
 					}
@@ -530,7 +530,7 @@ namespace ClickerClass
 						Projectile.NewProjectile((float)(xOffset), (float)(yOffset), 0f, 0f, mod.ProjectileType("CookiePro"), 0, 0f, player.whoAmI);
 					}
 
-					clickerCookieAccTimer = 0;
+					accCookieTimer = 0;
 				}
 
 				//Cookie Click
@@ -573,7 +573,7 @@ namespace ClickerClass
 			}
 
 			//Milk acc
-			if (clickerMilkAcc)
+			if (accGlassOfMilk)
 			{
 				float bonusDamage = (float)(clickerPerSecond + 0.015f);
 				if (bonusDamage >= 0.15f)

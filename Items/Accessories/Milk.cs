@@ -25,7 +25,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerMilkAcc = true;
+			player.GetModPlayer<ClickerPlayer>().accGlassOfMilk = true;
 		}
 	}
 }

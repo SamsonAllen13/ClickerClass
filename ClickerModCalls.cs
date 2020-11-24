@@ -256,6 +256,44 @@ namespace ClickerClass
 					{
 						return clickerPlayer.clickAmount;
 					}
+
+					throw new Exception($"Call Error: The statName argument for the attempted message, \"{message}\" has no valid entry point.");
+				}
+				//Armor set specifics now
+				else if (message == "GetArmorSet")
+				{
+					var player = args[index + 0] as Player;
+					var setName = args[index + 1] as string;
+					if (setName == null)
+					{
+						throw new Exception($"Call Error: The setName argument for the attempted message, \"{message}\" has returned null.");
+					}
+					if (player == null)
+					{
+						throw new Exception($"Call Error: The player argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+
+					//motherboard, overclock, precursor, mice
+					if (setName == "motherboard")
+					{
+						return clickerPlayer.clickerMotherboardSet;
+					}
+					else if (setName == "overclock")
+					{
+						return clickerPlayer.clickerOverclockSet;
+					}
+					else if (setName == "precursor")
+					{
+						return clickerPlayer.clickerPrecursorSet;
+					}
+					else if (setName == "mice")
+					{
+						return clickerPlayer.clickerMiceSet;
+					}
+
+					throw new Exception($"Call Error: The setName argument for the attempted message, \"{message}\" has no valid entry point.");
 				}
 				else if (message == "SetPlayerStat")
 				{

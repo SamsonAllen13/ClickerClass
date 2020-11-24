@@ -97,7 +97,7 @@ namespace ClickerClass
 				{
 					var item = args[index + 0] as Item;
 					var type = args[index + 0] as int?; //Try another type variation because of overload
-					
+
 					if (item != null)
 					{
 						return ClickerSystem.IsClickerItem(item);
@@ -222,7 +222,7 @@ namespace ClickerClass
 					ClickerWeapon.SetRadius(item, radius.Value);
 					return success;
 				}
-				//Clicker Player specifics now
+				//Player specifics now
 				else if (message == "GetPlayerStat")
 				{
 					var player = args[index + 0] as Player;
@@ -259,7 +259,6 @@ namespace ClickerClass
 
 					throw new Exception($"Call Error: The statName argument for the attempted message, \"{message}\" has no valid entry point.");
 				}
-				//Armor set specifics now
 				else if (message == "GetArmorSet")
 				{
 					var player = args[index + 0] as Player;
@@ -275,25 +274,80 @@ namespace ClickerClass
 
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
-					//motherboard, overclock, precursor, mice
-					if (setName == "motherboard")
+					//setMotherboard, setOverclock, setPrecursor, setMice
+					if (setName == "Motherboard")
 					{
 						return clickerPlayer.setMotherboard;
 					}
-					else if (setName == "overclock")
+					else if (setName == "Overclock")
 					{
 						return clickerPlayer.setOverclock;
 					}
-					else if (setName == "precursor")
+					else if (setName == "Precursor")
 					{
 						return clickerPlayer.setPrecursor;
 					}
-					else if (setName == "mice")
+					else if (setName == "Mice")
 					{
 						return clickerPlayer.setMice;
 					}
 
 					throw new Exception($"Call Error: The setName argument for the attempted message, \"{message}\" has no valid entry point.");
+				}
+				else if (message == "GetAccessory")
+				{
+					var player = args[index + 0] as Player;
+					var accName = args[index + 1] as string;
+					if (accName == null)
+					{
+						throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has returned null.");
+					}
+					if (player == null)
+					{
+						throw new Exception($"Call Error: The player argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+
+					//accChocolateChip, accEnchantedLED, accEnchantedLED2, accHandCream, accStickyKeychain, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
+					if (accName == "ChocolateChip")
+					{
+						return clickerPlayer.accChocolateChip;
+					}
+					else if (accName == "EnchantedLED")
+					{
+						return clickerPlayer.accEnchantedLED || clickerPlayer.accEnchantedLED2;
+					}
+					else if (accName == "HandCream")
+					{
+						return clickerPlayer.accHandCream;
+					}
+					else if (accName == "StickyKeychain")
+					{
+						return clickerPlayer.accStickyKeychain;
+					}
+					else if (accName == "GlassOfMilk")
+					{
+						return clickerPlayer.accGlassOfMilk;
+					}
+					else if (accName == "Cookie")
+					{
+						return clickerPlayer.accCookie || clickerPlayer.accCookie2;
+					}
+					else if (accName == "ClickingGlove")
+					{
+						return clickerPlayer.accClickingGlove;
+					}
+					else if (accName == "AncientClickingGlove")
+					{
+						return clickerPlayer.accAncientClickingGlove;
+					}
+					else if (accName == "RegalClickingGlove")
+					{
+						return clickerPlayer.accRegalClickingGlove;
+					}
+
+					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
 				}
 				else if (message == "SetPlayerStat")
 				{
@@ -376,6 +430,82 @@ namespace ClickerClass
 						clickerPlayer.clickerRadius = Math.Max(1f, clickerPlayer.clickerRadius);
 						return success;
 					}
+
+					throw new Exception($"Call Error: The statName argument for the attempted message, \"{message}\" has no valid entry point.");
+				}
+				else if (message == "SetAccessory")
+				{
+					var player = args[index + 0] as Player;
+					var accName = args[index + 1] as string;
+					if (accName == null)
+					{
+						throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has returned null.");
+					}
+					if (player == null)
+					{
+						throw new Exception($"Call Error: The player argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+
+					//accChocolateChip, accEnchantedLED, accEnchantedLED2, accHandCream, accStickyKeychain, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
+					if (accName == "ChocolateChip")
+					{
+						clickerPlayer.accChocolateChip = true;
+						return success;
+					}
+					else if (accName == "EnchantedLED")
+					{
+						clickerPlayer.accEnchantedLED = true;
+						return success;
+					}
+					else if (accName == "EnchantedLED2")
+					{
+						clickerPlayer.accEnchantedLED2 = true;
+						return success;
+					}
+					else if (accName == "HandCream")
+					{
+						clickerPlayer.accHandCream = true;
+						return success;
+					}
+					else if (accName == "StickyKeychain")
+					{
+						clickerPlayer.accStickyKeychain = true;
+						return success;
+					}
+					else if (accName == "GlassOfMilk")
+					{
+						clickerPlayer.accGlassOfMilk = true;
+						return success;
+					}
+					else if (accName == "Cookie")
+					{
+						clickerPlayer.accCookie = true;
+						return success;
+					}
+					else if (accName == "Cookie2")
+					{
+						clickerPlayer.accCookie2 = true;
+						return success;
+					}
+					else if (accName == "ClickingGlove")
+					{
+						clickerPlayer.accClickingGlove = true;
+						return success;
+					}
+					else if (accName == "AncientClickingGlove")
+					{
+						clickerPlayer.accAncientClickingGlove = true;
+						return success;
+					}
+					else if (accName == "RegalClickingGlove")
+					{
+						clickerPlayer.accRegalClickingGlove = true;
+						return success;
+					}
+
+					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
 				}
 			}
 			catch (Exception e)

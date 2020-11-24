@@ -92,12 +92,13 @@ namespace ClickerClass
 		public bool accGlassOfMilk = false;
 		public bool accCookie = false;
 		public bool accCookie2 = false; //different visuals
-		public int accCookieTimer = 0;
 		public bool accClickingGlove = false;
 		public bool accAncientClickingGlove = false;
 		public bool accRegalClickingGlove = false;
-		public int accClickingGloveTimer = 0;
 		public bool accPortableParticleAccelerator = false; //add to api when implemented
+
+		public int accClickingGloveTimer = 0;
+		public int accCookieTimer = 0;
 
 		//Stats
 		/// <summary>

@@ -32,7 +32,7 @@ namespace ClickerClass.Items.Accessories
 			ModRecipe recipe = new ModRecipe(mod);
 			recipe.AddIngredient(null, "AncientClickingGlove", 1);
 			recipe.AddIngredient(ItemID.HallowedBar, 8);
-			recipe.AddTile(TileID.Anvils);
+			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 		}

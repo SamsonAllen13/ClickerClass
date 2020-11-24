@@ -489,15 +489,15 @@ namespace ClickerClass
 				}
 			}
 
-			if (clickerOverclockSet && clickerOverclockSetAllowed)
+			if (ClickerOverclockSetDraw)
 			{
 				Lighting.AddLight(player.position, 0.3f, 0.075f, 0.075f);
 			}
-			if (clickerPrecursorSet && clickerPrecursorSetAllowed)
+			if (ClickerPrecursorSetDraw)
 			{
 				Lighting.AddLight(player.position, 0.2f, 0.15f, 0.05f);
 			}
-			if (clickerMiceSet && clickerMiceSetAllowed)
+			if (ClickerMiceSetDraw)
 			{
 				Lighting.AddLight(player.position, 0.1f, 0.1f, 0.3f);
 			}

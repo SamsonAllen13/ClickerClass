@@ -1,5 +1,5 @@
 author = DivermanSam, Barometz, and direwolf420
-version = 1.2
+version = 1.2.1
 displayName = The Clicker Class
 homepage = https://discord.com/invite/ZyYdrZg
 includePDB = true

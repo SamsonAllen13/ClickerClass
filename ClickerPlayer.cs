@@ -70,10 +70,15 @@ namespace ClickerClass
 		public bool clickerMotherboardSet = false;
 		public bool clickerMiceSetAllowed = true;
 		public bool clickerMiceSet = false;
+		public bool ClickerMiceSetDraw => clickerMiceSet && clickerMiceSetAllowed;
+
 		public bool clickerPrecursorSetAllowed = true;
 		public bool clickerPrecursorSet = false;
+		public bool ClickerPrecursorSetDraw => clickerPrecursorSet && clickerPrecursorSetAllowed;
+
 		public bool clickerOverclockSetAllowed = true;
 		public bool clickerOverclockSet = false;
+		public bool ClickerOverclockSetDraw => clickerOverclockSet && clickerOverclockSetAllowed;
 
 		//Acc
 		public bool clickerChocolateChipAcc = false;
@@ -679,16 +684,16 @@ namespace ClickerClass
 			}
 			Mod mod = ModLoader.GetMod("ClickerClass");
 
-			if (modPlayer.clickerMiceSet && modPlayer.clickerMiceSetAllowed)
+			if (modPlayer.ClickerMiceSetDraw)
 			{
 				texture = mod.GetTexture("Glowmasks/MiceMask_Glow");
 			}
-			if (modPlayer.clickerPrecursorSet && modPlayer.clickerPrecursorSetAllowed)
+			if (modPlayer.ClickerPrecursorSetDraw)
 			{
 				texture = mod.GetTexture("Glowmasks/PrecursorHelmet_Glow");
 				color *= 0.5f;
 			}
-			if (modPlayer.clickerOverclockSet && modPlayer.clickerOverclockSetAllowed)
+			if (modPlayer.ClickerOverclockSetDraw)
 			{
 				texture = mod.GetTexture("Glowmasks/OverclockHelmet_Glow");
 				color *= 0.75f;
@@ -721,7 +726,7 @@ namespace ClickerClass
 			}
 			Mod mod = ModLoader.GetMod("ClickerClass");
 
-			if (modPlayer.clickerMiceSet && modPlayer.clickerMiceSetAllowed)
+			if (modPlayer.ClickerMiceSetDraw)
 			{
 				if (drawPlayer.Male)
 				{
@@ -732,7 +737,7 @@ namespace ClickerClass
 					texture = mod.GetTexture("Glowmasks/MiceSuitFemale_Glow");
 				}
 			}
-			if (modPlayer.clickerPrecursorSet && modPlayer.clickerPrecursorSetAllowed)
+			if (modPlayer.ClickerPrecursorSetDraw)
 			{
 				if (drawPlayer.Male)
 				{
@@ -745,7 +750,7 @@ namespace ClickerClass
 					color *= 0.5f;
 				}
 			}
-			if (modPlayer.clickerOverclockSet && modPlayer.clickerOverclockSetAllowed)
+			if (modPlayer.ClickerOverclockSetDraw)
 			{
 				if (drawPlayer.Male)
 				{
@@ -786,16 +791,16 @@ namespace ClickerClass
 			}
 			Mod mod = ModLoader.GetMod("ClickerClass");
 
-			if (modPlayer.clickerMiceSet && modPlayer.clickerMiceSetAllowed)
+			if (modPlayer.ClickerMiceSetDraw)
 			{
 				texture = mod.GetTexture("Glowmasks/MiceSuitArm_Glow");
 			}
-			if (modPlayer.clickerPrecursorSet && modPlayer.clickerPrecursorSetAllowed)
+			if (modPlayer.ClickerPrecursorSetDraw)
 			{
 				texture = mod.GetTexture("Glowmasks/PrecursorBreastplateArm_Glow");
 				color *= 0.5f;
 			}
-			if (modPlayer.clickerOverclockSet && modPlayer.clickerOverclockSetAllowed)
+			if (modPlayer.ClickerOverclockSetDraw)
 			{
 				texture = mod.GetTexture("Glowmasks/OverclockSuitArm_Glow");
 				color *= 0.75f;
@@ -828,16 +833,16 @@ namespace ClickerClass
 			}
 			Mod mod = ModLoader.GetMod("ClickerClass");
 
-			if (modPlayer.clickerMiceSet && modPlayer.clickerMiceSetAllowed)
+			if (modPlayer.ClickerMiceSetDraw)
 			{
 				texture = mod.GetTexture("Glowmasks/MiceBoots_Glow");
 			}
-			if (modPlayer.clickerPrecursorSet && modPlayer.clickerPrecursorSetAllowed)
+			if (modPlayer.ClickerPrecursorSetDraw)
 			{
 				texture = mod.GetTexture("Glowmasks/PrecursorGreaves_Glow");
 				color *= 0.5f;
 			}
-			if (modPlayer.clickerOverclockSet && modPlayer.clickerOverclockSetAllowed)
+			if (modPlayer.ClickerOverclockSetDraw)
 			{
 				texture = mod.GetTexture("Glowmasks/OverclockBoots_Glow");
 				color *= 0.75f;

@@ -68,6 +68,9 @@ namespace ClickerClass
 		public int clickerMotherboardSetFrame = 0;
 		public bool clickerMotherboardSetFrameShift = false;
 		public bool clickerMotherboardSet = false;
+		public bool ClickerMotherboardSetDraw => clickerMotherboardSet && clickerMotherboardSetRatio > 0;
+
+
 		public bool clickerMiceSetAllowed = true;
 		public bool clickerMiceSet = false;
 		public bool ClickerMiceSetDraw => clickerMiceSet && clickerMiceSetAllowed;
@@ -904,7 +907,7 @@ namespace ClickerClass
 
 			if (modPlayer.clickerSelected && modPlayer.clickerDrawRadius)
 			{
-				if (modPlayer.clickerMotherboardSet && modPlayer.clickerMotherboardSetRatio > 0)
+				if (modPlayer.ClickerMotherboardSetDraw)
 				{
 					Mod mod = ModLoader.GetMod("ClickerClass");
 					float glow = modPlayer.clickerInRangeMotherboard ? 0.6f : 0f;

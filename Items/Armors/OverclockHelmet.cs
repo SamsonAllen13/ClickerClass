@@ -36,7 +36,7 @@ namespace ClickerClass.Items.Armors
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Every 100 clicks briefly grants you 'Overclock', making every click trigger its effect";
-			player.GetModPlayer<ClickerPlayer>().clickerOverclockSet = true;
+			player.GetModPlayer<ClickerPlayer>().setOverclock = true;
 		}
 
 		public override void AddRecipes()

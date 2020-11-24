@@ -132,7 +132,7 @@ namespace ClickerClass.Items
 				if (!itemClickerEffect.Contains("Phase Reach"))
 				{
 					//collision
-					Vector2 motherboardPosition = clickerPlayer.clickerMotherboardSetPosition;
+					Vector2 motherboardPosition = clickerPlayer.setMotherboardPosition;
 					bool inRange = Vector2.Distance(Main.MouseWorld, player.Center) < clickerPlayer.ClickerRadiusReal && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1);
 					bool inRangeMotherboard = Vector2.Distance(Main.MouseWorld, motherboardPosition) < clickerPlayer.ClickerRadiusMotherboard && Collision.CanHit(motherboardPosition, 1, 1, Main.MouseWorld, 1, 1);
 					//bool allowMotherboard = player.GetModPlayer<ClickerPlayer>().clickerMotherboardSet && player.altFunctionUse == 2;
@@ -173,7 +173,7 @@ namespace ClickerClass.Items
 			if (ClickerSystem.IsClickerWeapon(item))
 			{
 				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-				if (clickerPlayer.clickerMiceSet || clickerPlayer.clickerMotherboardSet)
+				if (clickerPlayer.setMice || clickerPlayer.setMotherboard)
 				{
 					return true;
 				}
@@ -322,10 +322,10 @@ namespace ClickerClass.Items
 				if (player.altFunctionUse == 2)
 				{
 					//Right click 
-					if (clickerPlayer.clickerSetTimer <= 0)
+					if (clickerPlayer.setAbilityDelayTimer <= 0)
 					{
 						//Mice armor 
-						if (clickerPlayer.clickerMiceSet)
+						if (clickerPlayer.setMice)
 						{
 							bool canTeleport = false;
 							if (!itemClickerEffect.Contains("Phase Reach"))
@@ -348,7 +348,7 @@ namespace ClickerClass.Items
 								player.Center = Main.MouseWorld;
 								NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
 								player.fallStart = (int)(player.position.Y / 16f);
-								clickerPlayer.clickerSetTimer = 60;
+								clickerPlayer.setAbilityDelayTimer = 60;
 
 								float num102 = 50f;
 								int num103 = 0;
@@ -366,11 +366,11 @@ namespace ClickerClass.Items
 								}
 							}
 						}
-						else if (clickerPlayer.clickerMotherboardSet)
+						else if (clickerPlayer.setMotherboard)
 						{
 							Main.PlaySound(SoundID.Camera, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 0);
 							clickerPlayer.SetMotherboardRelativePosition(Main.MouseWorld);
-							clickerPlayer.clickerSetTimer = 60;
+							clickerPlayer.setAbilityDelayTimer = 60;
 						}
 					}
 					return false;
@@ -391,7 +391,7 @@ namespace ClickerClass.Items
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, type, damage, knockBack, player.whoAmI);
 
 				//Precursor armor set bonus
-				if (clickerPlayer.clickerPrecursorSet)
+				if (clickerPlayer.setPrecursor)
 				{
 					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), (int)(damage * 0.25f), knockBack, player.whoAmI);
 				}
@@ -400,7 +400,7 @@ namespace ClickerClass.Items
 				int clickAmountTotal = clickerPlayer.GetClickAmountTotal(this);
 
 				//Overclock armor set bonus
-				if (clickerPlayer.clickAmount % 100 == 0 && clickerPlayer.clickerOverclockSet)
+				if (clickerPlayer.clickAmount % 100 == 0 && clickerPlayer.setOverclock)
 				{
 					Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 94);
 					player.AddBuff(mod.BuffType("OverclockBuff"), 180, false);

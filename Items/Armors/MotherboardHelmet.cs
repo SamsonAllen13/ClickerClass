@@ -36,7 +36,7 @@ namespace ClickerClass.Items.Armors
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Right click to place a radius extending sensor";
-			player.GetModPlayer<ClickerPlayer>().clickerMotherboardSet = true;
+			player.GetModPlayer<ClickerPlayer>().setMotherboard = true;
 		}
 
 		public override void AddRecipes()

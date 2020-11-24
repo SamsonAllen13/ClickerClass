@@ -39,7 +39,7 @@ namespace ClickerClass.Items.Armors
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Right clicking a position within your clicker radius will teleport you to it";
-			player.GetModPlayer<ClickerPlayer>().clickerMiceSet = true;
+			player.GetModPlayer<ClickerPlayer>().setMice = true;
 		}
 
 		public override void ArmorSetShadows(Player player)

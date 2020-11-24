@@ -36,7 +36,7 @@ namespace ClickerClass.Items.Armors
 		public override void UpdateArmorSet(Player player)
 		{
 			player.setBonus = "Clicking causes an additional delayed fiery click at 25% the damage";
-			player.GetModPlayer<ClickerPlayer>().clickerPrecursorSet = true;
+			player.GetModPlayer<ClickerPlayer>().setPrecursor = true;
 		}
 
 		public override void AddRecipes()

@@ -278,19 +278,19 @@ namespace ClickerClass
 					//motherboard, overclock, precursor, mice
 					if (setName == "motherboard")
 					{
-						return clickerPlayer.clickerMotherboardSet;
+						return clickerPlayer.setMotherboard;
 					}
 					else if (setName == "overclock")
 					{
-						return clickerPlayer.clickerOverclockSet;
+						return clickerPlayer.setOverclock;
 					}
 					else if (setName == "precursor")
 					{
-						return clickerPlayer.clickerPrecursorSet;
+						return clickerPlayer.setPrecursor;
 					}
 					else if (setName == "mice")
 					{
-						return clickerPlayer.clickerMiceSet;
+						return clickerPlayer.setMice;
 					}
 
 					throw new Exception($"Call Error: The setName argument for the attempted message, \"{message}\" has no valid entry point.");

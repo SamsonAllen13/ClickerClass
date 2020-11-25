@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -8,6 +9,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Slick Clicker");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Скользкий курсор");
 		}
 
 		public override void SetDefaults()

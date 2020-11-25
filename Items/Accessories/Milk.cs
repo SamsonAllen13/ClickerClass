@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -12,6 +13,9 @@ namespace ClickerClass.Items.Accessories
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Glass of Milk");
 			Tooltip.SetDefault("Gain up to 15% clicker damage based on your amount of clicks within a second");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Стакан молока");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов до 15% в зависимости от количества совершённых кликов в секунду");
 		}
 
 		public override void SetDefaults()

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -13,6 +14,9 @@ namespace ClickerClass.Items.Armors
 			DisplayName.SetDefault("Mice Suit");
 			Tooltip.SetDefault("Increases click damage by 10%"
 							+ "\nIncreases your base click radius by 25%");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Костюм фрагмента мышки");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 10%\nУвеличивает ваш базовый радиус курсора на 25%");
 		}
 
 		public override void SetDefaults()

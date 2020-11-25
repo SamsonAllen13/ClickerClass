@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -8,6 +9,9 @@ namespace ClickerClass.Items.Accessories
 		{
 			base.SetStaticDefaults();
 			Tooltip.SetDefault("Every 15 clicks releases a burst of damaging chocolate");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Кусок шоколада");
+			Tooltip.AddTranslation(GameCulture.Russian, "Каждые 15 кликов выпускает скопление наносящего урон шоколада");
 		}
 
 		public override void SetDefaults()

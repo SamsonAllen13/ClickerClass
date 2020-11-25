@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -12,6 +13,9 @@ namespace ClickerClass.Items.Armors
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Motherboard Helmet");
 			Tooltip.SetDefault("Increases your base click radius by 20%");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Шлем материнской платы");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает ваш базовый радиус курсора на 20%");
 		}
 
 		public override void SetDefaults()
@@ -35,7 +39,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Right click to place a radius extending sensor";
+			player.setBonus = Language.GetTextValue("Mods.ClickerClass.motherboardSetBonus");
 			player.GetModPlayer<ClickerPlayer>().setMotherboard = true;
 		}
 

@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -8,6 +9,9 @@ namespace ClickerClass.Items.Accessories
 		{
 			base.SetStaticDefaults();
 			Tooltip.SetDefault("Every 10 clicks sticks damaging slime on to your screen");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Липкая связка ключей");
+			Tooltip.AddTranslation(GameCulture.Russian, "Каждые 10 кликов лепит наносящую урон слизь на ваш экран");
 		}
 
 		public override void SetDefaults()

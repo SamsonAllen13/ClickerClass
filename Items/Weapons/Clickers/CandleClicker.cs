@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -8,6 +9,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Candle Clicker");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Курсор-свеча");
 		}
 
 		public override void SetDefaults()

@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -11,6 +12,10 @@ namespace ClickerClass.Items.Accessories
 		{
 			base.SetStaticDefaults();
 			Tooltip.SetDefault("While in combat, automatically clicks your current clicker every 3 seconds");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Кликающая перчатка");
+			Tooltip.AddTranslation(GameCulture.Russian, "Пока вы в бою, автоматически активирует ваш курсор каждые 3 секунды");
+
 		}
 
 		public override void SetDefaults()

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -13,6 +14,9 @@ namespace ClickerClass.Items.Armors
 			DisplayName.SetDefault("Precursor Breastplate");
 			Tooltip.SetDefault("Increases click damage by 10%"
 							+ "\nReduces base clicker radius by 50%");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Нагрудник предтечей");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 10%\nУменьшает базовый радиус курсора на 50%");
 		}
 
 		public override void SetDefaults()

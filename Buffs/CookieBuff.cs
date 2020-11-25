@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Buffs
@@ -9,6 +10,9 @@ namespace ClickerClass.Buffs
 		{
 			DisplayName.SetDefault("Cookie");
 			Description.SetDefault("Increases your click damage, radius, and life regeneration");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Печенье");
+			Description.AddTranslation(GameCulture.Russian, "Увеличивает ваш урон от кликов, радиус курсора и регенерацию здоровья");
 			Main.buffNoSave[Type] = false;
 		}
 

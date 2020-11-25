@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Tools
@@ -9,6 +10,8 @@ namespace ClickerClass.Items.Tools
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Mice Hamaxe");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Молотопор фрагмента мышки");
 		}
 
 		public override void SetDefaults()

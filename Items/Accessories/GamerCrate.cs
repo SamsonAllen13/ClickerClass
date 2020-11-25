@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -17,6 +18,9 @@ namespace ClickerClass.Items.Accessories
 						+ "\nYour clicks produce a burst of mechanical light, while accessory is visible"
 						+ "\nPressing the 'Clicker Accessory' key will toggle auto click on all Clickers"
 						+ "\nWhile auto click is enabled, click rates are decreased");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Игровой ящик");
+			Tooltip.AddTranslation(GameCulture.Russian, "'Вы же не думаете, что кто-то будет играть в это, не так ли?'\nУвеличивает урон от клика на 10%\nУвеличивает ваш базовый радиус курсора на 50%\nСнижает требуемое количество кликов для эффекта курсора на 20%\nВаши клики оставляют механическую вспышку света, пока видимость аксессуара включена\nНажатие кнопки 'Clicker Accessory', переключает на авто-клик все курсоры\nПока авто-клик активирован, частота кликов снижена");
 		}
 
 		public override void SetDefaults()

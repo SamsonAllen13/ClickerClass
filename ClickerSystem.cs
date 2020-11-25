@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass
@@ -103,6 +104,7 @@ namespace ClickerClass
 				ClickerWeapons.Add(type);
 			}
 			modItem.Tooltip.SetDefault("Click on an enemy within range and sight to damage them");
+			modItem.Tooltip.AddTranslation(GameCulture.Russian, "Кликните на врага в пределах радиуса и видимости, чтобы нанести ему урон");
 		}
 
 		/// <summary>

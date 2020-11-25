@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -12,6 +13,9 @@ namespace ClickerClass.Items.Armors
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Overclock Helmet");
 			Tooltip.SetDefault("Reduces the amount of clicks required for a click effect by 1");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Шлем разгона");
+			Tooltip.AddTranslation(GameCulture.Russian, "Снижает требуемое количество кликов для эффекта курсора на 1 единицу");
 		}
 
 		public override void SetDefaults()
@@ -35,7 +39,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Every 100 clicks briefly grants you 'Overclock', making every click trigger its effect";
+			player.setBonus = Language.GetTextValue("Mods.ClickerClass.overclockSetBonus");
 			player.GetModPlayer<ClickerPlayer>().setOverclock = true;
 		}
 

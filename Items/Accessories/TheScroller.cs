@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -14,6 +15,9 @@ namespace ClickerClass.Items.Accessories
 			DisplayName.SetDefault("The Scroller");
 			Tooltip.SetDefault("Allows flight and slow fall"
 							+ "\nHold DOWN to fall faster");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Колёсико");
+			Tooltip.AddTranslation(GameCulture.Russian, "Позволяют вам летать и поглощают урон от падения\nУдерживайте ВНИЗ, чтобы быстрее падать");
 		}
 
 		public override void SetDefaults()

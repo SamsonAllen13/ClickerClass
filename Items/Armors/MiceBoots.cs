@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -13,6 +14,9 @@ namespace ClickerClass.Items.Armors
 			DisplayName.SetDefault("Mice Boots");
 			Tooltip.SetDefault("Increases click damage by 6%"
 							+ "\nIncreases movement speed by 20%");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Сапоги фрагмента мышки");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 6%\nУвеличивает скорость передвижения на 20%");
 		}
 
 		public override void SetDefaults()

@@ -1,6 +1,7 @@
 using ClickerClass.Items;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Prefixes
@@ -30,6 +31,13 @@ namespace ClickerClass.Prefixes
 		public override void SetDefaults()
 		{
 			DisplayName.SetDefault(displayName);
+			
+			mod.GetPrefix("Elite").DisplayName.AddTranslation(GameCulture.Russian, "Элитный");
+			mod.GetPrefix("Pro").DisplayName.AddTranslation(GameCulture.Russian, "Профессиональный");
+			mod.GetPrefix("Amateur").DisplayName.AddTranslation(GameCulture.Russian, "Любительский");
+			mod.GetPrefix("Novice").DisplayName.AddTranslation(GameCulture.Russian, "Начинающий");
+			mod.GetPrefix("Laggy").DisplayName.AddTranslation(GameCulture.Russian, "Сбоящий");
+			mod.GetPrefix("Disconnected").DisplayName.AddTranslation(GameCulture.Russian, "Разъединённый");
 		}
 
 		public override bool Autoload(ref string name)

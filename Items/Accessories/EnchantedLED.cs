@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -10,6 +11,9 @@ namespace ClickerClass.Items.Accessories
 			DisplayName.SetDefault("Enchanted LED");
 			Tooltip.SetDefault("Your clicks produce an enchanted burst of light, while accessory is visible"
 							+ "\nIncreases click damage by 2");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Зачарованный светодиод");
+			Tooltip.AddTranslation(GameCulture.Russian, "Ваши клики оставляют зачарованную вспышку света, пока видимость аксессуара включена\nУвеличивает урон от кликов на 2 единицы");
 		}
 
 		public override void SetDefaults()

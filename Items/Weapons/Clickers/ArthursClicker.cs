@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
@@ -10,6 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Arthur's Clicker");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Курсор Артура");
 		}
 
 		public override void SetDefaults()

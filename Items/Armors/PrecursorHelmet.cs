@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -12,6 +13,9 @@ namespace ClickerClass.Items.Armors
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Precursor Helmet");
 			Tooltip.SetDefault("Increases click damage by 8%");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Шлем предтечей");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 8%");
 		}
 
 		public override void SetDefaults()
@@ -35,7 +39,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Clicking causes an additional delayed fiery click at 25% the damage";
+			player.setBonus = Language.GetTextValue("Mods.ClickerClass.precursorSetBonus");
 			player.GetModPlayer<ClickerPlayer>().setPrecursor = true;
 		}
 

@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
@@ -11,6 +12,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Mice Clicker");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Курсор фрагмента мышки");
 		}
 
 		public override void SetDefaults()

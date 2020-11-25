@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -13,6 +14,9 @@ namespace ClickerClass.Items.Accessories
 			Tooltip.SetDefault("While equipped, cookies will periodically spawn within your clicker radius"
 							+ "\nClick the cookie to gain bonus clicker damage, radius, and life regeneration"
 							+ "\nGain up to 15% clicker damage based on your amount of clicks within a second");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Молоко с печеньем");
+			Tooltip.AddTranslation(GameCulture.Russian, "Будучи надетым, в радиусе вашего курсора будут периодически появляться печенье\nНажмите на печенье, чтобы увеличить урон от кликов, радиус курсора и регенерацию здоровья\nУвеличивает урон от кликов до 15% в зависимости от количества совершённых кликов в секунду");
 		}
 
 		public override void SetDefaults()

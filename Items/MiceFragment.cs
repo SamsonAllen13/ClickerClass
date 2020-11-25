@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 
 namespace ClickerClass.Items
 {
@@ -11,6 +12,9 @@ namespace ClickerClass.Items
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Mice Fragment");
 			Tooltip.SetDefault("'Erratic sparks skitter across this fragment'");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Фрагмент мышки");
+			Tooltip.AddTranslation(GameCulture.Russian, "'Вокруг этого фрагмента витают беспорядочные искры'");
 			ItemID.Sets.ItemIconPulse[item.type] = true;
 			ItemID.Sets.ItemNoGravity[item.type] = true;
 		}

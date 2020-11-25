@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Buffs
@@ -9,6 +10,9 @@ namespace ClickerClass.Buffs
 		{
 			DisplayName.SetDefault("Haste");
 			Description.SetDefault("Movement speed and jump speed increased");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Спешка");
+			Description.AddTranslation(GameCulture.Russian, "Скорость передвижения и прыжка увеличены");
 			Main.buffNoSave[Type] = false;
 		}
 

@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -13,6 +14,9 @@ namespace ClickerClass.Items.Armors
 			DisplayName.SetDefault("Mice Mask");
 			Tooltip.SetDefault("Increases click damage by 4%"
 							+ "\nIncreases click critical strike chance by 6%");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Маска фрагмента мышки");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 4%\nУвеличивает шанс критического удара кликов на 6%");
 		}
 
 		public override void SetDefaults()
@@ -38,7 +42,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Right clicking a position within your clicker radius will teleport you to it";
+			player.setBonus = Language.GetTextValue("Mods.ClickerClass.miceSetBonus");
 			player.GetModPlayer<ClickerPlayer>().setMice = true;
 		}
 

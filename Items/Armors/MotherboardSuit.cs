@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -12,6 +13,9 @@ namespace ClickerClass.Items.Armors
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Motherboard Suit");
 			Tooltip.SetDefault("Increases click damage by 6%");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Костюм материнской платы");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 6%");
 		}
 
 		public override void SetDefaults()

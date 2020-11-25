@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -31,6 +32,30 @@ namespace ClickerClass
 			{
 				LoadClient();
 			}
+
+			#region Translations
+
+			ModTranslation text = CreateTranslation("miceSetBonus");
+			text.SetDefault("Right clicking a position within your clicker radius will teleport you to it");
+			text.AddTranslation(GameCulture.Russian, "Нажмите ПКМ, чтобы телепортироваться в пределах радиуса курсора");
+			AddTranslation(text);
+			
+			text = CreateTranslation("motherboardSetBonus");
+			text.SetDefault("Right click to place a radius extending sensor");
+			text.AddTranslation(GameCulture.Russian, "Нажмите ПКМ, чтобы поставить датчик расширения радиуса курсора");
+			AddTranslation(text);
+			
+			text = CreateTranslation("overclockSetBonus");
+			text.SetDefault("Every 100 clicks briefly grants you 'Overclock', making every click trigger its effect");
+			text.AddTranslation(GameCulture.Russian, "Каждые 100 кликов на короткий промежуток времени дарует бафф «Разгон», заставляя каждый клик активировать свой эффект");
+			AddTranslation(text);
+			
+			text = CreateTranslation("precursorSetBonus");
+			text.SetDefault("Clicking causes an additional delayed fiery click at 25% the damage");
+			text.AddTranslation(GameCulture.Russian, "Кликанье вызывает дополнительный запоздалый огненный клик наносящий 25% урона текущего курсора");
+			AddTranslation(text);
+
+			#endregion
 		}
 
 		public override void Unload()

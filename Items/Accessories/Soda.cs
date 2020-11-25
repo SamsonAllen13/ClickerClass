@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -11,6 +12,9 @@ namespace ClickerClass.Items.Accessories
 		{
 			base.SetStaticDefaults();
 			Tooltip.SetDefault("Reduces the amount of clicks required for a click effect by 1");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Сода");
+			Tooltip.AddTranslation(GameCulture.Russian, "Снижает требуемое количество кликов для эффекта курсора на 1 единицу");
 		}
 
 		public override void SetDefaults()

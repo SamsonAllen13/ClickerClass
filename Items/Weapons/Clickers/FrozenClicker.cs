@@ -1,5 +1,6 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
@@ -10,6 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Frozen Clicker");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Замороженный курсор");
 		}
 
 		public override void SetDefaults()

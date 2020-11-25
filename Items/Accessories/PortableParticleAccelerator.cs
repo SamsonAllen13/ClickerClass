@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -10,6 +11,9 @@ namespace ClickerClass.Items.Accessories
 		{
 			base.SetStaticDefaults();
 			Tooltip.SetDefault("Clicking within the inner 20% of your clicker radius deals 20% more damage");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Карманный ускоритель частиц");
+			Tooltip.AddTranslation(GameCulture.Russian, "Клики в пределах 20% общего радиуса вашего курсора наносят на 20% больше урона");
 		}
 
 		public override void SetDefaults()

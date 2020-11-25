@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -8,6 +9,9 @@ namespace ClickerClass.Items.Accessories
 		{
 			base.SetStaticDefaults();
 			Tooltip.SetDefault("Increases your base click radius by 25%");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Коврик для мышки");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает ваш базовый радиус курсора на 25%");
 		}
 
 		public override void SetDefaults()

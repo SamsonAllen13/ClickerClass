@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -9,6 +10,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Lord's Clicker");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Курсор Лорда");
 		}
 
 		public override void SetDefaults()

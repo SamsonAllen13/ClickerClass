@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Consumables
@@ -11,6 +12,9 @@ namespace ClickerClass.Items.Consumables
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Influence Potion");
 			Tooltip.SetDefault("Increases your base click radius by 20%");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Зелье воздействия");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает ваш базовый радиус курсора на 20%\nПереведено: [c/e180ff:Project tRU]");
 		}
 
 		public override void SetDefaults()

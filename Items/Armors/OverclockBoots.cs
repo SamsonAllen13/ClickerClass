@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -12,6 +13,9 @@ namespace ClickerClass.Items.Armors
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Overclock Boots");
 			Tooltip.SetDefault("Increases movement speed by 10%");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Сапоги разгона");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает скорость передвижения на 10%");
 		}
 
 		public override void SetDefaults()

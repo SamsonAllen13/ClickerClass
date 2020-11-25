@@ -1,4 +1,5 @@
 ﻿using Terraria;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -9,6 +10,9 @@ namespace ClickerClass.Items.Accessories
 			base.SetStaticDefaults();
 			Tooltip.SetDefault("Pressing the 'Clicker Accessory' key will toggle auto click on all Clickers"
 							+ "\nWhile auto click is enabled, click rates are decreased");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Крем для рук");
+			Tooltip.AddTranslation(GameCulture.Russian, "Нажатие кнопки 'Clicker Accessory', переключает на авто-клик все курсоры\nПока авто-клик активирован, частота кликов снижена");
 		}
 
 		public override void SetDefaults()

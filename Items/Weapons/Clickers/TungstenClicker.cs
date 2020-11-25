@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
@@ -10,6 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Tungsten Clicker");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Вольфрамовый курсор");
 		}
 
 		public override void SetDefaults()

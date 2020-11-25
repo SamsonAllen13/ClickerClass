@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -12,6 +13,9 @@ namespace ClickerClass.Items.Armors
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Precursor Greaves");
 			Tooltip.SetDefault("Increases movement speed by 15%");
+			
+			DisplayName.AddTranslation(GameCulture.Russian, "Поножи предтечей");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает скорость передвижения на 15%");
 		}
 
 		public override void SetDefaults()

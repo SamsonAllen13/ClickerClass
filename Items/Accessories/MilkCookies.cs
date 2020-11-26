@@ -16,7 +16,7 @@ namespace ClickerClass.Items.Accessories
 							+ "\nGain up to 15% clicker damage based on your amount of clicks within a second");
 			
 			DisplayName.AddTranslation(GameCulture.Russian, "Молоко с печеньем");
-			Tooltip.AddTranslation(GameCulture.Russian, "Будучи надетым, в радиусе вашего курсора будут периодически появляться печенье\nНажмите на печенье, чтобы увеличить урон от кликов, радиус курсора и регенерацию здоровья\nУвеличивает урон от кликов до 15% в зависимости от количества совершённых кликов в секунду");
+			Tooltip.AddTranslation(GameCulture.Russian, "Будучи надетым, в радиусе вашего курсора будут периодически появляться печенье\nНажмите на печенье, чтобы увеличить урон кликов, радиус курсора и регенерацию здоровья\nУвеличивает урон от кликов до 15% в зависимости от количества совершённых кликов в секунду");
 		}
 
 		public override void SetDefaults()

@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Armors
 			Tooltip.SetDefault("Increases click damage by 8%");
 			
 			DisplayName.AddTranslation(GameCulture.Russian, "Шлем предтечей");
-			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 8%");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон кликов на 8%");
 		}
 
 		public override void SetDefaults()

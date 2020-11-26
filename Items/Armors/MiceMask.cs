@@ -16,7 +16,7 @@ namespace ClickerClass.Items.Armors
 							+ "\nIncreases click critical strike chance by 6%");
 			
 			DisplayName.AddTranslation(GameCulture.Russian, "Маска фрагмента мышки");
-			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 4%\nУвеличивает шанс критического удара кликов на 6%");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон кликов на 4%\nУвеличивает шанс критического удара кликов на 6%");
 		}
 
 		public override void SetDefaults()

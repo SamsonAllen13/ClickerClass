@@ -16,7 +16,7 @@ namespace ClickerClass.Items.Armors
 							+ "\nIncreases your base click radius by 25%");
 			
 			DisplayName.AddTranslation(GameCulture.Russian, "Костюм фрагмента мышки");
-			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 10%\nУвеличивает ваш базовый радиус курсора на 25%");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон кликов на 10%\nУвеличивает ваш базовый радиус курсора на 25%");
 		}
 
 		public override void SetDefaults()

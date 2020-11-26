@@ -16,7 +16,7 @@ namespace ClickerClass.Items.Armors
 							+ "\nIncreases movement speed by 20%");
 			
 			DisplayName.AddTranslation(GameCulture.Russian, "Сапоги фрагмента мышки");
-			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 6%\nУвеличивает скорость передвижения на 20%");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон кликов на 6%\nУвеличивает скорость передвижения на 20%");
 		}
 
 		public override void SetDefaults()

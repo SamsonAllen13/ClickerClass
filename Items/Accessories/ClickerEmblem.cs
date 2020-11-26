@@ -10,8 +10,8 @@ namespace ClickerClass.Items.Accessories
 			base.SetStaticDefaults();
 			Tooltip.SetDefault("15% increased clicker damage");
 			
-			DisplayName.AddTranslation(GameCulture.Russian, "Эмблема курсора");
-			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 15%");
+			DisplayName.AddTranslation(GameCulture.Russian, "Эмблема нажимателя");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон кликов на 15%");
 		}
 
 		public override void SetDefaults()

@@ -11,7 +11,7 @@ namespace ClickerClass.Buffs
 			DisplayName.SetDefault("Influence");
 			Description.SetDefault("Increases your base click radius by 20%");
 			
-			DisplayName.AddTranslation(GameCulture.Russian, "Воздействие");
+			DisplayName.AddTranslation(GameCulture.Russian, "Влияние");
 			Description.AddTranslation(GameCulture.Russian, "Увеличивает ваш базовый радиус курсора на 20%");
 			Main.buffNoSave[Type] = false;
 		}

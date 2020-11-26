@@ -16,7 +16,7 @@ namespace ClickerClass.Items.Armors
 							+ "\nReduces base clicker radius by 50%");
 			
 			DisplayName.AddTranslation(GameCulture.Russian, "Нагрудник предтечей");
-			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 10%\nУменьшает базовый радиус курсора на 50%");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон кликов на 10%\nУменьшает базовый радиус курсора на 50%");
 		}
 
 		public override void SetDefaults()

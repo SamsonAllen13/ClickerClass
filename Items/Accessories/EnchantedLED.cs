@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Accessories
 							+ "\nIncreases click damage by 2");
 			
 			DisplayName.AddTranslation(GameCulture.Russian, "Зачарованный светодиод");
-			Tooltip.AddTranslation(GameCulture.Russian, "Ваши клики оставляют зачарованную вспышку света, пока видимость аксессуара включена\nУвеличивает урон от кликов на 2 единицы");
+			Tooltip.AddTranslation(GameCulture.Russian, "Ваши клики оставляют зачарованную вспышку света, пока видимость аксессуара включена\nУвеличивает урон кликов на 2 единицы");
 		}
 
 		public override void SetDefaults()

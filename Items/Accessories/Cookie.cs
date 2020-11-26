@@ -12,7 +12,7 @@ namespace ClickerClass.Items.Accessories
 							+ "\nClick the cookie to gain bonus clicker damage, radius, and life regeneration");
 			
 			DisplayName.AddTranslation(GameCulture.Russian, "Печенье");
-			Tooltip.AddTranslation(GameCulture.Russian, "Будучи надетым, в радиусе вашего курсора будут периодически появляться печенье\nНажмите на печенье, чтобы увеличить урон от кликов, радиус курсора и регенерацию здоровья");
+			Tooltip.AddTranslation(GameCulture.Russian, "Будучи надетым, в радиусе вашего курсора будут периодически появляться печенье\nНажмите на печенье, чтобы увеличить урон кликов, радиус курсора и регенерацию здоровья");
 		}
 
 		public override void SetDefaults()

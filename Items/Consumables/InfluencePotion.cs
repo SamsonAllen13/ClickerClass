@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Consumables
 			DisplayName.SetDefault("Influence Potion");
 			Tooltip.SetDefault("Increases your base click radius by 20%");
 			
-			DisplayName.AddTranslation(GameCulture.Russian, "Зелье воздействия");
+			DisplayName.AddTranslation(GameCulture.Russian, "Зелье влияния");
 			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает ваш базовый радиус курсора на 20%\nПереведено: [c/e180ff:Project tRU]");
 		}
 

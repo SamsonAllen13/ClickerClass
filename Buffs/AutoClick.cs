@@ -12,7 +12,7 @@ namespace ClickerClass.Buffs
 			Description.SetDefault("Hold down the Left Mouse Button to auto click");
 			
 			DisplayName.AddTranslation(GameCulture.Russian, "Авто-клик");
-			Description.AddTranslation(GameCulture.Russian, "Зажмите ЛКМ, для авто-кликов");
+			Description.AddTranslation(GameCulture.Russian, "Зажмите ЛКМ для авто-кликов");
 			Main.buffNoSave[Type] = false;
 		}
 

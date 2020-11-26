@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Accessories
 			Tooltip.SetDefault("Gain up to 15% clicker damage based on your amount of clicks within a second");
 			
 			DisplayName.AddTranslation(GameCulture.Russian, "Стакан молока");
-			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов до 15% в зависимости от количества совершённых кликов в секунду");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон кликов до 15% в зависимости от количества совершённых кликов в секунду");
 		}
 
 		public override void SetDefaults()

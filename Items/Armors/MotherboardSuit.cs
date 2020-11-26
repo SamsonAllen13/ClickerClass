@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Armors
 			Tooltip.SetDefault("Increases click damage by 6%");
 			
 			DisplayName.AddTranslation(GameCulture.Russian, "Костюм материнской платы");
-			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон от кликов на 6%");
+			Tooltip.AddTranslation(GameCulture.Russian, "Увеличивает урон кликов на 6%");
 		}
 
 		public override void SetDefaults()

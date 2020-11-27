@@ -1,3 +1,4 @@
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -28,7 +29,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			item.knockBack = 2f;
 			item.value = 10000;
 			item.rare = 3;
-			item.shoot = mod.ProjectileType("HoneyGlazedClickerPro");
+			item.shoot = ModContent.ProjectileType<HoneyGlazedClickerPro>();
 		}
 
 		public override void AddRecipes()

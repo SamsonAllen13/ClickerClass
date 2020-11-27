@@ -1,4 +1,6 @@
+using ClickerClass.Buffs;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -20,7 +22,7 @@ namespace ClickerClass.Projectiles
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			target.AddBuff(mod.BuffType("HoneySlow"), 90, false);
+			target.AddBuff(ModContent.BuffType<HoneySlow>(), 90, false);
 		}
 
 		public override void Kill(int timeLeft)

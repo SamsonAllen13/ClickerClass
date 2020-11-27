@@ -1,4 +1,5 @@
 ﻿using ClickerClass.Buffs;
+using ClickerClass.Dusts;
 using ClickerClass.Prefixes;
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
@@ -357,7 +358,7 @@ namespace ClickerClass.Items
 									Vector2 vector12 = Vector2.UnitX * 0f;
 									vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(2f, 2f);
 									vector12 = vector12.RotatedBy((double)Vector2.Zero.ToRotation(), default(Vector2));
-									int num104 = Dust.NewDust(Main.MouseWorld, 0, 0, mod.DustType("MiceDust"), 0f, 0f, 0, default(Color), 2f);
+									int num104 = Dust.NewDust(Main.MouseWorld, 0, 0, ModContent.DustType<MiceDust>(), 0f, 0f, 0, default(Color), 2f);
 									Main.dust[num104].noGravity = true;
 									Main.dust[num104].position = Main.MouseWorld + vector12;
 									Main.dust[num104].velocity = Vector2.Zero * 0f + vector12.SafeNormalize(Vector2.UnitY) * 4f;
@@ -403,7 +404,7 @@ namespace ClickerClass.Items
 				if (clickerPlayer.clickAmount % 100 == 0 && clickerPlayer.setOverclock)
 				{
 					Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 94);
-					player.AddBuff(mod.BuffType("OverclockBuff"), 180, false);
+					player.AddBuff(ModContent.BuffType<OverclockBuff>(), 180, false);
 					for (int i = 0; i < 25; i++)
 					{
 						int num6 = Dust.NewDust(player.position, 20, 20, 90, 0f, 0f, 150, default(Color), 1.35f);
@@ -647,7 +648,7 @@ namespace ClickerClass.Items
 					if (itemClickerEffect.Contains("Haste") || wildMagic == 11)
 					{
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
-						player.AddBuff(mod.BuffType("Haste"), 300, false);
+						player.AddBuff(ModContent.BuffType<Haste>(), 300, false);
 						for (int i = 0; i < 15; i++)
 						{
 							int num6 = Dust.NewDust(player.position, 20, 20, 56, 0f, 0f, 150, default(Color), 1.25f);
@@ -671,7 +672,7 @@ namespace ClickerClass.Items
 						player.AddBuff(BuffID.RapidHealing, 120, false);
 						for (int i = 0; i < 15; i++)
 						{
-							int num6 = Dust.NewDust(player.position, 20, 20, mod.DustType("LoveDust"), 0f, 0f, 0, Color.White, 1f);
+							int num6 = Dust.NewDust(player.position, 20, 20, ModContent.DustType<LoveDust>(), 0f, 0f, 0, Color.White, 1f);
 							Main.dust[num6].noGravity = true;
 							Main.dust[num6].velocity *= 0.75f;
 							int num7 = Main.rand.Next(-50, 51);
@@ -854,7 +855,7 @@ namespace ClickerClass.Items
 					{
 						clickerPlayer.clickAmount++;
 						Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
-						player.AddBuff(mod.BuffType("AutoClick"), 300, false);
+						player.AddBuff(ModContent.BuffType<AutoClick>(), 300, false);
 						for (int i = 0; i < 15; i++)
 						{
 							int num6 = Dust.NewDust(player.position, 20, 20, 15, 0f, 0f, 255, default(Color), 1.5f);
@@ -903,7 +904,7 @@ namespace ClickerClass.Items
 						}
 						for (int k = 0; k < 10; k++)
 						{
-							Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, mod.DustType("MiceDust"), Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
+							Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
 							dust.noGravity = true;
 						}
 					}
@@ -915,7 +916,7 @@ namespace ClickerClass.Items
 						Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<AstralClickerPro>(), (int)(damage * 3f), 0f, player.whoAmI);
 						for (int k = 0; k < 20; k++)
 						{
-							Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, mod.DustType("MiceDust"), Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
+							Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
 							dust.noGravity = true;
 						}
 					}

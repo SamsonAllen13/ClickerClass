@@ -1,6 +1,8 @@
+using ClickerClass.Dusts;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -34,7 +36,7 @@ namespace ClickerClass.Projectiles
 			{
 				float num364 = projectile.velocity.X / 3f * (float)num363;
 				float num365 = projectile.velocity.Y / 3f * (float)num363;
-				int num366 = Dust.NewDust(projectile.Center, projectile.width, projectile.height, mod.DustType("MiceDust"), 0f, 0f, 0, default(Color), 1f);
+				int num366 = Dust.NewDust(projectile.Center, projectile.width, projectile.height, ModContent.DustType<MiceDust>(), 0f, 0f, 0, default(Color), 1f);
 				Main.dust[num366].position.X = projectile.Center.X - num364;
 				Main.dust[num366].position.Y = projectile.Center.Y - num365;
 				Main.dust[num366].velocity *= 0f;
@@ -87,7 +89,7 @@ namespace ClickerClass.Projectiles
 		{
 			for (int k = 0; k < 5; k++)
 			{
-				Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, mod.DustType("MiceDust"), Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1f);
+				Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1f);
 				dust.noGravity = true;
 			}
 		}

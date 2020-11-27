@@ -1,6 +1,7 @@
 using ClickerClass.Buffs;
 using ClickerClass.Items;
 using ClickerClass.Items.Armors;
+using ClickerClass.Items.Tools;
 using ClickerClass.NPCs;
 using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
@@ -524,11 +525,11 @@ namespace ClickerClass
 
 					if (accCookie2 && Main.rand.NextFloat() <= 0.1f)
 					{
-						Projectile.NewProjectile((float)(xOffset), (float)(yOffset), 0f, 0f, mod.ProjectileType("CookiePro"), 0, 0f, player.whoAmI, 1f);
+						Projectile.NewProjectile((float)(xOffset), (float)(yOffset), 0f, 0f, ModContent.ProjectileType<CookiePro>(), 0, 0f, player.whoAmI, 1f);
 					}
 					else
 					{
-						Projectile.NewProjectile((float)(xOffset), (float)(yOffset), 0f, 0f, mod.ProjectileType("CookiePro"), 0, 0f, player.whoAmI);
+						Projectile.NewProjectile((float)(xOffset), (float)(yOffset), 0f, 0f, ModContent.ProjectileType<CookiePro>(), 0, 0f, player.whoAmI);
 					}
 
 					accCookieTimer = 0;
@@ -548,7 +549,7 @@ namespace ClickerClass
 								if (cookieProjectile.ai[0] == 1f)
 								{
 									Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 4);
-									player.AddBuff(mod.BuffType("CookieBuff"), 600);
+									player.AddBuff(ModContent.BuffType<CookieBuff>(), 600);
 									player.HealLife(10);
 									for (int k = 0; k < 10; k++)
 									{
@@ -559,7 +560,7 @@ namespace ClickerClass
 								else
 								{
 									Main.PlaySound(2, (int)player.position.X, (int)player.position.Y, 2);
-									player.AddBuff(mod.BuffType("CookieBuff"), 300);
+									player.AddBuff(ModContent.BuffType<CookieBuff>(), 300);
 									for (int k = 0; k < 10; k++)
 									{
 										Dust dust = Dust.NewDustDirect(cookieProjectile.Center, 20, 20, 0, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 75, default, 1.5f);
@@ -877,7 +878,7 @@ namespace ClickerClass
 			Mod mod = ModLoader.GetMod("ClickerClass");
 
 			//Fragment Pickaxe
-			if (drawPlayer.HeldItem.type == mod.ItemType("MicePickaxe"))
+			if (drawPlayer.HeldItem.type == ModContent.ItemType<MicePickaxe>())
 			{
 				Texture2D weaponGlow = mod.GetTexture("Glowmasks/MicePickaxe_Glow");
 				Vector2 position = new Vector2((int)(drawInfo.itemLocation.X - Main.screenPosition.X), (int)(drawInfo.itemLocation.Y - Main.screenPosition.Y));
@@ -887,7 +888,7 @@ namespace ClickerClass
 			}
 
 			//Fragment Hamaxe
-			if (drawPlayer.HeldItem.type == mod.ItemType("MiceHamaxe"))
+			if (drawPlayer.HeldItem.type == ModContent.ItemType<MiceHamaxe>())
 			{
 				Texture2D weaponGlow = mod.GetTexture("Glowmasks/MiceHamaxe_Glow");
 				Vector2 position = new Vector2((int)(drawInfo.itemLocation.X - Main.screenPosition.X), (int)(drawInfo.itemLocation.Y - Main.screenPosition.Y));

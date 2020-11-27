@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -73,7 +74,7 @@ namespace ClickerClass.Projectiles
 						for (int i = 0; i < numberProjectiles; i++)
 						{
 							Vector2 perturbedSpeed = new Vector2(vector.X, vector.Y).RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * 1f;
-							Projectile.NewProjectile(projectile.Center, perturbedSpeed, mod.ProjectileType("TotalityClickerPro2"), (int)(projectile.damage * 0.25f), projectile.knockBack, projectile.owner);
+							Projectile.NewProjectile(projectile.Center, perturbedSpeed, ModContent.ProjectileType<TotalityClickerPro2>(), (int)(projectile.damage * 0.25f), projectile.knockBack, projectile.owner);
 						}
 					}
 				}

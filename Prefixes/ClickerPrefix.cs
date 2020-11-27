@@ -36,8 +36,8 @@ namespace ClickerClass.Prefixes
 			mod.GetPrefix("Pro").DisplayName.AddTranslation(GameCulture.Russian, "Профессиональный");
 			mod.GetPrefix("Amateur").DisplayName.AddTranslation(GameCulture.Russian, "Любительский");
 			mod.GetPrefix("Novice").DisplayName.AddTranslation(GameCulture.Russian, "Начинающий");
-			mod.GetPrefix("Laggy").DisplayName.AddTranslation(GameCulture.Russian, "Сбоящий");
-			mod.GetPrefix("Disconnected").DisplayName.AddTranslation(GameCulture.Russian, "Разъединённый");
+			mod.GetPrefix("Laggy").DisplayName.AddTranslation(GameCulture.Russian, "Лагающий");
+			mod.GetPrefix("Disconnected").DisplayName.AddTranslation(GameCulture.Russian, "Отключённый");
 		}
 
 		public override bool Autoload(ref string name)

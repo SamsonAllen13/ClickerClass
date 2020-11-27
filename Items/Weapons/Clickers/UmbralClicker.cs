@@ -1,4 +1,6 @@
 using Microsoft.Xna.Framework;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -32,18 +34,18 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "DarkClicker", 1);
-			recipe.AddIngredient(null, "SlickClicker", 1);
-			recipe.AddIngredient(null, "PointyClicker", 1);
-			recipe.AddIngredient(null, "RedHotClicker", 1);
+			recipe.AddIngredient(ModContent.ItemType<DarkClicker>(), 1);
+			recipe.AddIngredient(ModContent.ItemType<SlickClicker>(), 1);
+			recipe.AddIngredient(ModContent.ItemType<PointyClicker>(), 1);
+			recipe.AddIngredient(ModContent.ItemType<RedHotClicker>(), 1);
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 			recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "SinisterClicker", 1);
-			recipe.AddIngredient(null, "SlickClicker", 1);
-			recipe.AddIngredient(null, "PointyClicker", 1);
-			recipe.AddIngredient(null, "RedHotClicker", 1);
+			recipe.AddIngredient(ModContent.ItemType<SinisterClicker>(), 1);
+			recipe.AddIngredient(ModContent.ItemType<SlickClicker>(), 1);
+			recipe.AddIngredient(ModContent.ItemType<PointyClicker>(), 1);
+			recipe.AddIngredient(ModContent.ItemType<RedHotClicker>(), 1);
 			recipe.AddTile(TileID.DemonAltar);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

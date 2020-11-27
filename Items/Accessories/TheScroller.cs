@@ -119,7 +119,7 @@ namespace ClickerClass.Items.Accessories
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "MiceFragment", 14);
+			recipe.AddIngredient(ModContent.ItemType<MiceFragment>(), 14);
 			recipe.AddIngredient(ItemID.LunarBar, 10);
 			recipe.AddTile(TileID.LunarCraftingStation);
 			recipe.SetResult(this);

@@ -164,7 +164,7 @@ namespace ClickerClass.Items
 		{
 			if (ClickerSystem.IsClickerWeapon(item))
 			{
-				crit = item.crit + player.GetModPlayer<ClickerPlayer>().clickerCrit;
+				crit += player.GetModPlayer<ClickerPlayer>().clickerCrit;
 			}
 		}
 

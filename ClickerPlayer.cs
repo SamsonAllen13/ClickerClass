@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.GameInput;
@@ -26,7 +27,7 @@ namespace ClickerClass
 
 		//-Clicker-
 		//Misc
-		public Color clickerColor = new Color(0, 0, 0, 0);
+		public Color clickerColor = Color.White;
 		/// <summary>
 		/// Visual indicator that the cursor is inside clicker radius
 		/// </summary>
@@ -52,6 +53,12 @@ namespace ClickerClass
 		/// Amount of clicks done, constantly incremented
 		/// </summary>
 		public int clickAmount = 0;
+
+		//Click effects
+		/// <summary>
+		/// Used to track effect names that are currently active. Resets every tick
+		/// </summary>
+		private Dictionary<string, bool> ClickEffectActive = new Dictionary<string, bool>();
 
 		//Out of combat
 		public bool outOfCombat = true;
@@ -143,6 +150,60 @@ namespace ClickerClass
 		public float ClickerRadiusMotherboard => ClickerRadiusReal * 0.5f;
 
 		//Helper methods
+		public void EnableClickEffect(string name)
+		{
+			if (ClickEffectActive.TryGetValue(name, out _))
+			{
+				ClickEffectActive[name] = true;
+			}
+		}
+
+		public void EnableClickEffects(List<string> names)
+		{
+			foreach (var name in names)
+			{
+				EnableClickEffect(name);
+			}
+		}
+
+		public bool HasClickEffect(string name)
+		{
+			if (ClickEffectActive.TryGetValue(name, out _))
+			{
+				return ClickEffectActive[name];
+			}
+			return false;
+		}
+
+		public bool HasClickEffect(string name, out ClickEffect effect)
+		{
+			effect = null;
+			if (HasClickEffect(name))
+			{
+				return ClickerSystem.IsClickEffect(name, out effect);
+			}
+			return false;
+		}
+
+		//Unused yet
+		public bool HasAnyClickEffect()
+		{
+			foreach (var value in ClickEffectActive.Values)
+			{
+				if (value) return true;
+			}
+			return false;
+		}
+
+		internal void ResetAllClickEffects()
+		{
+			//Stupid trick to be able to write to a value in a dictionary
+			foreach (var key in ClickEffectActive.Keys.ToList())
+			{
+				ClickEffectActive[key] = false;
+			}
+		}
+
 		/// <summary>
 		/// Returns the position from the ratio and angle
 		/// </summary>
@@ -192,31 +253,39 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Returns the amount of clicks required for an effect to trigger. Includes various bonuses
+		/// Returns the amount of clicks required for an effect of the given name to trigger (defaults to the item's assigned effect). Includes various bonuses
 		/// </summary>
-		public int GetClickAmountTotal(ClickerItemCore clickerItem)
+		public int GetClickAmountTotal(ClickerItemCore clickerItem, string name)
 		{
 			//Doesn't go below 1
-			return Math.Max(1, (int)((clickerItem.itemClickerAmount + clickerItem.clickBoostPrefix - clickerBonus) * clickerBonusPercent));
+			int amount = 1;
+			if (ClickerSystem.IsClickEffect(name, out ClickEffect effect))
+			{
+				amount = effect.Amount;
+			}
+			return Math.Max(1, (int)((amount + clickerItem.clickBoostPrefix - clickerBonus) * clickerBonusPercent));
 		}
 
 		/// <summary>
-		/// Returns the amount of clicks required for an effect to trigger. Includes various bonuses
+		/// Returns the amount of clicks required for the effect of this item to trigger. Includes various bonuses
 		/// </summary>
-		public int GetClickAmountTotal(Item item)
+		public int GetClickAmountTotal(Item item, string name)
 		{
-			return GetClickAmountTotal(item.GetGlobalItem<ClickerItemCore>());
+			return GetClickAmountTotal(item.GetGlobalItem<ClickerItemCore>(), name);
 		}
 
 		public override void ResetEffects()
 		{
 			//-Clicker-
 			//Misc
-			clickerColor = new Color(0, 0, 0, 0);
+			clickerColor = Color.White;
 			clickerInRange = false;
 			clickerInRangeMotherboard = false;
 			clickerSelected = false;
 			clickerDrawRadius = false;
+
+			//Click Effects
+			ResetAllClickEffects();
 
 			//Armor
 			setMiceAllowed = true;
@@ -254,6 +323,12 @@ namespace ClickerClass
 		public override void Initialize()
 		{
 			clickerTotal = 0;
+
+			ClickEffectActive = new Dictionary<string, bool>();
+			foreach (var name in ClickerSystem.GetAllEffectNames())
+			{
+				ClickEffectActive.Add(name, false);
+			}
 		}
 
 		public override TagCompound Save()
@@ -371,9 +446,10 @@ namespace ClickerClass
 
 			if (ClickerSystem.IsClickerWeapon(player.HeldItem, out ClickerItemCore clickerItem))
 			{
+				EnableClickEffects(clickerItem.itemClickEffects);
 				clickerSelected = true;
 				clickerDrawRadius = true;
-				if (clickerItem.itemClickerEffect.Contains("Phase Reach"))
+				if (HasClickEffect(ClickEffect.PhaseReach))
 				{
 					clickerDrawRadius = false;
 				}
@@ -577,6 +653,7 @@ namespace ClickerClass
 			//Milk acc
 			if (accGlassOfMilk)
 			{
+				//TODO change to *
 				float bonusDamage = (float)(clickerPerSecond + 0.015f);
 				if (bonusDamage >= 0.15f)
 				{
@@ -584,6 +661,7 @@ namespace ClickerClass
 				}
 				clickerDamage += bonusDamage;
 
+				//TODO move/change this, add API
 				clickerPerSecondTimer++;
 				if (clickerPerSecondTimer > 60)
 				{

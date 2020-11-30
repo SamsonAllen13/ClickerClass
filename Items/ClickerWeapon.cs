@@ -1,4 +1,6 @@
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -25,6 +27,7 @@ namespace ClickerClass.Items
 			ClickerSystem.SetClickerWeaponDefaults(item);
 		}
 
+		//TODO update desc
 		/// <summary>
 		/// Call in <see cref="ModItem.SetDefaults"/> for a clicker weapon to set its color used for various things
 		/// </summary>
@@ -51,29 +54,49 @@ namespace ClickerClass.Items
 			}
 		}
 
-		/// <summary>
-		/// Call in <see cref="ModItem.SetDefaults"/> for a clicker weapon to set the amount of clicks required for an effect to trigger
-		/// </summary>
-		/// <param name="item">The clicker weapon</param>
-		/// <param name="amount">the amount of clicks</param>
+		[Obsolete("Use AddEffect instead", true)]
 		public static void SetAmount(Item item, int amount)
 		{
-			if (ClickerSystem.IsClickerWeapon(item, out ClickerItemCore clickerItem))
-			{
-				clickerItem.itemClickerAmount = amount;
-			}
+			//Nothing
+		}
+
+		[Obsolete("Use AddEffect instead", true)]
+		public static void SetEffect(Item item, string effect)
+		{
+			AddEffect(item, effect);
 		}
 
 		/// <summary>
-		/// Call in <see cref="ModItem.SetDefaults"/> for a clicker weapon to define its effect
+		/// Call in <see cref="ModItem.SetDefaults"/> for a clicker weapon to add an effect to it
 		/// </summary>
 		/// <param name="item">The clicker weapon</param>
 		/// <param name="effect">the effect name</param>
-		public static void SetEffect(Item item, string effect)
+		public static void AddEffect(Item item, string effect)
+		{
+			AddEffect(item, new List<string> { effect });
+		}
+
+		/// <summary>
+		/// Call in <see cref="ModItem.SetDefaults"/> for a clicker weapon to add effects to it
+		/// </summary>
+		/// <param name="item">The clicker weapon</param>
+		/// <param name="effects">the effect names</param>
+		public static void AddEffect(Item item, IEnumerable<string> effects)
 		{
 			if (ClickerSystem.IsClickerWeapon(item, out ClickerItemCore clickerItem))
 			{
-				clickerItem.itemClickerEffect = effect ?? ClickerItemCore.NULL;
+				//Check against already added effects
+				List<string> list = clickerItem.itemClickEffects;
+				foreach (var name in effects)
+				{
+					if (!string.IsNullOrEmpty(name) && !list.Contains(name))
+					{
+						if (ClickerSystem.IsClickEffect(name, out _))
+						{
+							list.Add(name);
+						}
+					}
+				}
 			}
 		}
 

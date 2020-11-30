@@ -1,12 +1,8 @@
-using ClickerClass.Effects;
 using ClickerClass.Items;
-using ClickerClass.UI;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.UI;
 
 namespace ClickerClass
 {
@@ -16,6 +12,7 @@ namespace ClickerClass
 		//Not everything is exposed via API yet
 		public static object Call(params object[] args)
 		{
+			//TODO update calls for new API
 			ClickerClass clickerClass = ClickerClass.mod;
 			//Simplify code by resizing args
 			Array.Resize(ref args, 25);
@@ -142,8 +139,8 @@ namespace ClickerClass
 					{
 						amount = 1;
 					}
-
-					ClickerWeapon.SetAmount(item, amount.Value);
+					//TODO API change
+					//ClickerWeapon.SetAmount(item, amount.Value);
 					return success;
 				}
 				else if (message == "SetColor")
@@ -200,10 +197,10 @@ namespace ClickerClass
 					}
 					if (name == null)
 					{
-						name = ClickerItemCore.NULL;
+						//name = ClickerItemCore.NULL;
 					}
-
-					ClickerWeapon.SetEffect(item, name);
+					//TODO API change
+					//ClickerWeapon.SetEffect(item, name);
 					return success;
 				}
 				else if (message == "SetRadius")
@@ -244,13 +241,14 @@ namespace ClickerClass
 					}
 					else if (statName == "clickAmountTotal")
 					{
+						//TODO API change
 						var item = args[index + 2] as Item;
 						if (item == null)
 						{
 							throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
 						}
 
-						return clickerPlayer.GetClickAmountTotal(item);
+						//return clickerPlayer.GetClickAmountTotal(item);
 					}
 					else if (statName == "clickAmount")
 					{
@@ -312,6 +310,7 @@ namespace ClickerClass
 					//accChocolateChip, accEnchantedLED, accEnchantedLED2, accHandCream, accStickyKeychain, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					if (accName == "ChocolateChip")
 					{
+						//TODO API change
 						return clickerPlayer.accChocolateChip;
 					}
 					else if (accName == "EnchantedLED")
@@ -324,6 +323,7 @@ namespace ClickerClass
 					}
 					else if (accName == "StickyKeychain")
 					{
+						//TODO API change
 						return clickerPlayer.accStickyKeychain;
 					}
 					else if (accName == "GlassOfMilk")
@@ -451,6 +451,7 @@ namespace ClickerClass
 					//accChocolateChip, accEnchantedLED, accEnchantedLED2, accHandCream, accStickyKeychain, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					if (accName == "ChocolateChip")
 					{
+						//TODO API change
 						clickerPlayer.accChocolateChip = true;
 						return success;
 					}
@@ -471,6 +472,7 @@ namespace ClickerClass
 					}
 					else if (accName == "StickyKeychain")
 					{
+						//TODO API change
 						clickerPlayer.accStickyKeychain = true;
 						return success;
 					}

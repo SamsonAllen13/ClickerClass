@@ -1,4 +1,5 @@
 using ClickerClass.Dusts;
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -12,6 +13,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Astral Clicker");
+
+			ClickEffect.Spiral = ClickerSystem.RegisterClickEffect(mod, "Spiral", "Spiral", "Creates a spiral galaxy that draws in enemies within close proximity", 15, new Color(150, 150, 225, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 117);
+				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<AstralClickerPro>(), (int)(damage * 3f), 0f, player.whoAmI);
+				for (int k = 0; k < 20; k++)
+				{
+					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
+					dust.noGravity = true;
+				}
+			});
 		}
 
 		public override void SetDefaults()
@@ -20,9 +32,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 6f);
 			SetColor(item, new Color(150, 150, 225, 0));
 			SetDust(item, ModContent.DustType<MiceDust>());
-			SetAmount(item, 15);
-			SetEffect(item, "Spiral");
-
+			AddEffect(item, ClickEffect.Spiral);
 
 			item.damage = 82;
 			item.knockBack = 1f;

@@ -3,6 +3,7 @@ using Terraria.Graphics.Shaders;
 
 namespace ClickerClass.Projectiles
 {
+	//TODO orphaned?
 	public class TheClickerPro : ClickerProjectile
 	{
 		public override void SetDefaults()

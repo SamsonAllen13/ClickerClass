@@ -1,4 +1,6 @@
 using Microsoft.Xna.Framework;
+using System.Collections.Generic;
+using Terraria;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -8,6 +10,33 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Witch Clicker");
+
+			ClickEffect.WildMagic = ClickerSystem.RegisterClickEffect(mod, "WildMagic", "Wild Magic", "Randomly acts as any possible click effect", 6, new Color(175, 75, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				List<string> excluded = new List<string>
+				{
+					ClickEffect.WildMagic,
+					ClickEffect.Conqueror
+				};
+
+				List<string> allowed = new List<string>();
+
+				foreach (var name in ClickerSystem.GetAllEffectNames())
+				{
+					if (!excluded.Contains(name))
+					{
+						allowed.Add(name);
+					}
+				}
+
+				if (allowed.Count == 0) return;
+
+				string random = Main.rand.Next(allowed);
+				if (ClickerSystem.IsClickEffect(random, out ClickEffect effect))
+				{
+					effect.Action?.Invoke(player, position, type, damage, knockBack);
+				}
+			});
 		}
 
 		public override void SetDefaults()
@@ -16,9 +45,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 6f);
 			SetColor(item, new Color(175, 75, 255, 0));
 			SetDust(item, 173);
-			SetAmount(item, 6);
-			SetEffect(item, "Wild Magic");
-
+			AddEffect(item, ClickEffect.WildMagic);
 
 			item.damage = 78;
 			item.width = 30;

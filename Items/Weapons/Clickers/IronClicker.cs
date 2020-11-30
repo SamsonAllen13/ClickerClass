@@ -18,9 +18,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 1.25f);
 			SetColor(item, new Color(150, 125, 125, 0));
 			SetDust(item, 8);
-			SetAmount(item, 10);
-			SetEffect(item, "Double Click");
-
+			AddEffect(item, ClickEffect.DoubleClick);
 
 			item.damage = 5;
 			item.width = 30;

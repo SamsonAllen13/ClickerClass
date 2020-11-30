@@ -9,6 +9,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("The Clicker");
+
+			//TODO orphaned?
+			ClickEffect.TheClick = ClickerSystem.RegisterClickEffect(mod, "TheClick", "The Click", "Causes the clicker's attacks to additionally deal damage equal to 1% of the enemy's maximum life", 1, new Color(255, 255, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+
+			});
 		}
 
 		public override void SetDefaults()
@@ -17,9 +23,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 6f);
 			SetColor(item, new Color(255, 255, 255, 0));
 			SetDust(item, 91);
-			SetAmount(item, 1);
-			SetEffect(item, "The Click");
-
+			AddEffect(item, ClickEffect.TheClick);
 
 			item.damage = 150;
 			item.width = 30;

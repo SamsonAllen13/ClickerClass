@@ -10,6 +10,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Frozen Clicker");
+
+			//TODO lie because FrozenClickerPro
+			ClickEffect.Freeze = ClickerSystem.RegisterClickEffect(mod, "Freeze", "Freeze", "Inflicts the Frozen debuff", 1, new Color(175, 255, 255, 0), null);
 		}
 
 		public override void SetDefaults()
@@ -18,9 +21,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 6f);
 			SetColor(item, new Color(175, 255, 255, 0));
 			SetDust(item, 15);
-			SetAmount(item, 1);
-			SetEffect(item, "Freeze");
-
+			AddEffect(item, ClickEffect.Freeze);
 
 			item.damage = 82;
 			item.width = 30;

@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria.ID;
 using Terraria.ModLoader;
-
 namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class PlatinumClicker : ClickerWeapon
@@ -18,9 +17,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 1.65f);
 			SetColor(item, new Color(125, 150, 175, 0));
 			SetDust(item, 11);
-			SetAmount(item, 8);
-			SetEffect(item, "Double Click");
-
+			AddEffect(item, ClickEffect.DoubleClick2);
 
 			item.damage = 8;
 			item.width = 30;

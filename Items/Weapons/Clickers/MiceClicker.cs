@@ -1,4 +1,5 @@
 using ClickerClass.Dusts;
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -12,6 +13,20 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Mice Clicker");
+
+			ClickEffect.Collision = ClickerSystem.RegisterClickEffect(mod, "Collision", "Collision", "Fires out 8 erratic bolts outwards that, after a second, collapse back", 10, new Color(150, 150, 225, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 105);
+				for (int k = 0; k < 8; k++)
+				{
+					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f), ModContent.ProjectileType<MiceClickerPro>(), (int)(damage * 0.5f), knockBack, player.whoAmI);
+				}
+				for (int k = 0; k < 10; k++)
+				{
+					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
+					dust.noGravity = true;
+				}
+			});
 		}
 
 		public override void SetDefaults()
@@ -20,9 +35,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 6f);
 			SetColor(item, new Color(150, 150, 225, 0));
 			SetDust(item, ModContent.DustType<MiceDust>());
-			SetAmount(item, 10);
-			SetEffect(item, "Collision");
-
+			AddEffect(item, ClickEffect.Collision);
 
 			item.damage = 94;
 			item.width = 30;

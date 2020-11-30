@@ -1,5 +1,8 @@
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -9,6 +12,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Lord's Clicker");
+
+			ClickEffect.Conqueror = ClickerSystem.RegisterClickEffect(mod, "Conqueror", "Conqueror", "Creates an area-of-effect phantasmal explosion that deals double damage and a guaranteed critical hit", 15, new Color(100, 255, 200, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 88);
+				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<LordsClickerPro>(), (int)(damage * 2f), 0f, player.whoAmI);
+			});
 		}
 
 		public override void SetDefaults()
@@ -17,9 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 6f);
 			SetColor(item, new Color(100, 255, 200, 0));
 			SetDust(item, 110);
-			SetAmount(item, 15);
-			SetEffect(item, "Conqueror");
-
+			AddEffect(item, ClickEffect.Conqueror);
 
 			item.damage = 122;
 			item.width = 30;

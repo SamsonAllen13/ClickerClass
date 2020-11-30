@@ -1,4 +1,6 @@
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +12,15 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Chlorophyte Clicker");
+
+			ClickEffect.ToxicRelease = ClickerSystem.RegisterClickEffect(mod, "ToxicRelease", "Toxic Release", "Expels 10 poisonous clouds around the cursor that linger", 10, new Color(175, 255, 100, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 104);
+				for (int k = 0; k < 10; k++)
+				{
+					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<ChlorophyteClickerPro>(), (int)(damage * 0.5f), 0f, player.whoAmI);
+				}
+			});
 		}
 
 		public override void SetDefaults()
@@ -18,9 +29,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 3.75f);
 			SetColor(item, new Color(175, 255, 100, 0));
 			SetDust(item, 89);
-			SetAmount(item, 10);
-			SetEffect(item, "Toxic Release");
-
+			AddEffect(item, ClickEffect.ToxicRelease);
 
 			item.damage = 54;
 			item.width = 30;

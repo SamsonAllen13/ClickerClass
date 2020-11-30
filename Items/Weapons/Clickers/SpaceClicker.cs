@@ -1,4 +1,7 @@
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +13,26 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Space Clicker");
+
+			ClickEffect.StarStorm = ClickerSystem.RegisterClickEffect(mod, "StarStorm", "Star Storm", "Causes 3 stars to fall from the sky and explode", 6, new Color(175, 75, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 42);
+
+				for (int k = 0; k < 3; k++)
+				{
+					Vector2 startSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-100, 101), Main.MouseWorld.Y - 500 + Main.rand.Next(-25, 26));
+					Vector2 endSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-25, 26), Main.MouseWorld.Y + Main.rand.Next(-25, 26));
+					Vector2 vector = endSpot - startSpot;
+					float speed = 5f;
+					float mag = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+					if (mag > speed)
+					{
+						mag = speed / mag;
+					}
+					vector *= mag;
+					Projectile.NewProjectile(startSpot.X, startSpot.Y, vector.X, vector.Y, ModContent.ProjectileType<SpaceClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI, endSpot.X, endSpot.Y);
+				}
+			});
 		}
 
 		public override void SetDefaults()
@@ -18,9 +41,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 2.25f);
 			SetColor(item, new Color(175, 125, 125, 0));
 			SetDust(item, 174);
-			SetAmount(item, 8);
-			SetEffect(item, "Star Storm");
-
+			AddEffect(item, ClickEffect.StarStorm);
 
 			item.damage = 10;
 			item.width = 30;

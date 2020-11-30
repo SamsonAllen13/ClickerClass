@@ -1,4 +1,6 @@
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +12,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Dark Clicker");
+
+			ClickEffect.DarkBurst = ClickerSystem.RegisterClickEffect(mod, "DarkBurst", "Dark Burst", "Deals damage in a large area of effect", 8, new Color(100, 50, 200, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 70);
+				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<DarkClickerPro>(), damage, knockBack, player.whoAmI);
+				for (int k = 0; k < 25; k++)
+				{
+					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 14, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 75, default, 1.5f);
+					dust.noGravity = true;
+				}
+			});
 		}
 
 		public override void SetDefaults()
@@ -18,9 +31,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 2.1f);
 			SetColor(item, new Color(100, 50, 200, 0));
 			SetDust(item, 14);
-			SetAmount(item, 8);
-			SetEffect(item, "Dark Burst");
-
+			AddEffect(item, ClickEffect.DarkBurst);
 
 			item.damage = 10;
 			item.width = 30;

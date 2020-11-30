@@ -236,7 +236,7 @@ namespace ClickerClass
 		/// </summary>
 		private void HandleCPS()
 		{
-			if (clicks.Count < ClickQueueCount)
+			if (clicks.Count < ClickQueueCount - 1)
 			{
 				//Something went very wrong here, backup
 				FillClickQueue();
@@ -244,11 +244,6 @@ namespace ClickerClass
 
 			//Queue can get more than ClickQueueCount: when a click happens
 			clicks.Dequeue();
-
-			if (clicks.Count < ClickQueueCount)
-			{
-				clicks.Enqueue(false);
-			}
 
 			clickerPerSecond = clicks.Count(val => val);
 		}

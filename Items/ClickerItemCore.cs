@@ -261,7 +261,7 @@ namespace ClickerClass.Items
 								}
 							}
 
-							if (key != null)
+							if (!showDesc)
 							{
 								tooltips.Insert(++index, new TooltipLine(mod, "ForMoreInfo", $"Hold 'Auto Select' key ({key}) to show click effects")
 								{

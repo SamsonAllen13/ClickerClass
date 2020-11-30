@@ -5,6 +5,7 @@ using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Utilities;
@@ -243,11 +244,28 @@ namespace ClickerClass.Items
 
 						if (index != -1)
 						{
-							foreach (var name in effects)
+							//"Auto Select" key: player.controlTorch
+							var keys = PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard].KeyStatus[TriggerNames.SmartSelect];
+							string key = keys.Count == 0 ? null : keys[0];
+
+							//If has a key, but not pressing it, show the ForMoreInfo text
+							//Otherwise, list all effects
+
+							if (key != null && !player.controlTorch)
 							{
-								if (ClickerSystem.IsClickEffect(name, out ClickEffect effect))
+								tooltips.Insert(++index, new TooltipLine(mod, "ForMoreInfo", $"Hold 'Auto Select' key ({key}) to show click effects")
 								{
-									tooltips.Insert(++index, effect.ToTooltip(clickerPlayer.GetClickAmountTotal(this, name), alpha));
+									overrideColor = Color.LightGray
+								});
+							}
+							else
+							{
+								foreach (var name in effects)
+								{
+									if (ClickerSystem.IsClickEffect(name, out ClickEffect effect))
+									{
+										tooltips.Insert(++index, effect.ToTooltip(clickerPlayer.GetClickAmountTotal(this, name), alpha));
+									}
 								}
 							}
 						}

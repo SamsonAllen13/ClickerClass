@@ -251,22 +251,22 @@ namespace ClickerClass.Items
 							//If has a key, but not pressing it, show the ForMoreInfo text
 							//Otherwise, list all effects
 
-							if (key != null && !player.controlTorch)
+							bool showDesc = key == null || player.controlTorch;
+
+							foreach (var name in effects)
+							{
+								if (ClickerSystem.IsClickEffect(name, out ClickEffect effect))
+								{
+									tooltips.Insert(++index, effect.ToTooltip(clickerPlayer.GetClickAmountTotal(this, name), alpha, showDesc));
+								}
+							}
+
+							if (key != null)
 							{
 								tooltips.Insert(++index, new TooltipLine(mod, "ForMoreInfo", $"Hold 'Auto Select' key ({key}) to show click effects")
 								{
-									overrideColor = Color.LightGray
+									overrideColor = Color.Gray
 								});
-							}
-							else
-							{
-								foreach (var name in effects)
-								{
-									if (ClickerSystem.IsClickEffect(name, out ClickEffect effect))
-									{
-										tooltips.Insert(++index, effect.ToTooltip(clickerPlayer.GetClickAmountTotal(this, name), alpha));
-									}
-								}
 							}
 						}
 					}

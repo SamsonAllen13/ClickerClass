@@ -36,7 +36,7 @@ namespace ClickerClass
 			return new ClickEffect(InternalName, DisplayName, Description, Amount, Color, (Action<Player, Vector2, int, int, float>)Action.Clone());
 		}
 
-		public TooltipLine ToTooltip(int amount, float alpha)
+		public TooltipLine ToTooltip(int amount, float alpha, bool showDesc)
 		{
 			string color = (Color * alpha).Hex3();
 			string text;
@@ -48,7 +48,11 @@ namespace ClickerClass
 			{
 				text = "1 click: ";
 			}
-			text += $"[c/" + color + ":" + DisplayName + "] - " + Description;
+			text += $"[c/" + color + ":" + DisplayName + "]";
+			if (showDesc)
+			{
+				text  += $" - {Description}";
+			}
 			return new TooltipLine(ClickerClass.mod, $"ClickEffect:{InternalName}", text);
 		}
 

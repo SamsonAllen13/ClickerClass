@@ -238,7 +238,6 @@ namespace ClickerClass
 		{
 			if (clicks.Count < ClickQueueCount - 1)
 			{
-				//Something went very wrong here, backup
 				FillClickQueue();
 			}
 

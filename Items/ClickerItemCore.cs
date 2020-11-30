@@ -372,9 +372,7 @@ namespace ClickerClass.Items
 				Main.PlaySound(SoundID.MenuTick, player.position);
 				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
-					clickerPlayer.clickerPerSecond++;
-					clickerPlayer.clickAmount++;
-					clickerPlayer.clickerTotal++;
+					clickerPlayer.Click();
 				}
 
 				//TODO "PreShoot" hook wrapping around the next NewProjectile

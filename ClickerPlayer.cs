@@ -43,8 +43,6 @@ namespace ClickerClass
 		/// </summary>
 		public bool clickerDrawRadius = false;
 		public bool clickerAutoClick = false;
-		public int clickerPerSecondTimer = 0;
-		public int clickerPerSecond = 0;
 		/// <summary>
 		/// Saved amount of clicks done with any clicker, accumulated, fluff
 		/// </summary>
@@ -53,6 +51,15 @@ namespace ClickerClass
 		/// Amount of clicks done, constantly incremented
 		/// </summary>
 		public int clickAmount = 0;
+		/// <summary>
+		/// cps
+		/// </summary>
+		public int clickerPerSecond = 0;
+		private const int ClickQueueCount = 60;
+		/// <summary>
+		/// Keeps track of clicks done in the last <see cref="ClickQueueCount"/> ticks. true if a click occured, otherwise false
+		/// </summary>
+		private Queue<bool> clicks;
 
 		//Click effects
 		/// <summary>
@@ -205,6 +212,48 @@ namespace ClickerClass
 		}
 
 		/// <summary>
+		/// Call to register a click
+		/// </summary>
+		internal void Click()
+		{
+			clickAmount++;
+			clickerTotal++;
+
+			clicks.Enqueue(true);
+		}
+
+		private void FillClickQueue()
+		{
+			int missing = ClickQueueCount - clicks.Count;
+			for (int i = 0; i < missing; i++)
+			{
+				clicks.Enqueue(false);
+			}
+		}
+
+		/// <summary>
+		/// Manages the click queue and calculates <see cref="clickerPerSecond"/>
+		/// </summary>
+		private void HandleCPS()
+		{
+			if (clicks.Count < ClickQueueCount)
+			{
+				//Something went very wrong here, backup
+				FillClickQueue();
+			}
+
+			//Queue can get more than ClickQueueCount: when a click happens
+			clicks.Dequeue();
+
+			if (clicks.Count < ClickQueueCount)
+			{
+				clicks.Enqueue(false);
+			}
+
+			clickerPerSecond = clicks.Count(val => val);
+		}
+
+		/// <summary>
 		/// Returns the position from the ratio and angle
 		/// </summary>
 		public Vector2 CalculateMotherboardPosition()
@@ -329,6 +378,9 @@ namespace ClickerClass
 			{
 				ClickEffectActive.Add(name, false);
 			}
+
+			clicks = new Queue<bool>();
+			FillClickQueue();
 		}
 
 		public override TagCompound Save()
@@ -569,15 +621,15 @@ namespace ClickerClass
 
 			if (SetOverclockDraw)
 			{
-				Lighting.AddLight(player.position, 0.3f, 0.075f, 0.075f);
+				Lighting.AddLight(player.Center, 0.3f, 0.075f, 0.075f);
 			}
 			if (SetPrecursorDraw)
 			{
-				Lighting.AddLight(player.position, 0.2f, 0.15f, 0.05f);
+				Lighting.AddLight(player.Center, 0.2f, 0.15f, 0.05f);
 			}
 			if (SetMiceDraw)
 			{
-				Lighting.AddLight(player.position, 0.1f, 0.1f, 0.3f);
+				Lighting.AddLight(player.Center, 0.1f, 0.1f, 0.3f);
 			}
 
 			//Acc
@@ -650,29 +702,17 @@ namespace ClickerClass
 				}
 			}
 
+			HandleCPS();
+
 			//Milk acc
 			if (accGlassOfMilk)
 			{
-				//TODO change to *
-				float bonusDamage = (float)(clickerPerSecond + 0.015f);
+				float bonusDamage = (float)(clickerPerSecond * 0.015f);
 				if (bonusDamage >= 0.15f)
 				{
 					bonusDamage = 0.15f;
 				}
 				clickerDamage += bonusDamage;
-
-				//TODO move/change this, add API
-				clickerPerSecondTimer++;
-				if (clickerPerSecondTimer > 60)
-				{
-					clickerPerSecond = 0;
-					clickerPerSecondTimer = 0;
-				}
-			}
-			else
-			{
-				clickerPerSecondTimer = 0;
-				clickerPerSecond = 0;
 			}
 
 			// Out of Combat timer

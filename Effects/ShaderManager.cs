@@ -67,7 +67,7 @@ namespace ClickerClass.Effects
 				{
 					float glow = modPlayer.GlowVisual ? 0.6f : 0f;
 
-					Color outer = modPlayer.clickerColor * (0.2f + glow);
+					Color outer = modPlayer.clickerRadiusColor * (0.2f + glow);
 
 
 					Vector2 center = new Vector2((int)drawPlayer.Center.X, (int)drawPlayer.Center.Y + drawPlayer.gfxOffY);

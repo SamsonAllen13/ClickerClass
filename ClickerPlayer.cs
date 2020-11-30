@@ -27,7 +27,7 @@ namespace ClickerClass
 
 		//-Clicker-
 		//Misc
-		public Color clickerColor = Color.White;
+		public Color clickerRadiusColor = Color.White;
 		/// <summary>
 		/// Visual indicator that the cursor is inside clicker radius
 		/// </summary>
@@ -278,7 +278,7 @@ namespace ClickerClass
 		{
 			//-Clicker-
 			//Misc
-			clickerColor = Color.White;
+			clickerRadiusColor = Color.White;
 			clickerInRange = false;
 			clickerInRangeMotherboard = false;
 			clickerSelected = false;
@@ -480,7 +480,7 @@ namespace ClickerClass
 				{
 					clickerInRangeMotherboard = true;
 				}
-				clickerColor = clickerItem.clickerColorItem;
+				clickerRadiusColor = clickerItem.clickerRadiusColor;
 
 				//Glove acc
 				if (!outOfCombat && (accClickingGlove || accAncientClickingGlove || accRegalClickingGlove))
@@ -992,7 +992,7 @@ namespace ClickerClass
 					Mod mod = ModLoader.GetMod("ClickerClass");
 					float glow = modPlayer.clickerInRangeMotherboard ? 0.6f : 0f;
 
-					Color outer = modPlayer.clickerColor * (0.2f + glow);
+					Color outer = modPlayer.clickerRadiusColor * (0.2f + glow);
 					int drawX = (int)(drawPlayer.Center.X - Main.screenPosition.X);
 					int drawY = (int)(drawPlayer.Center.Y + drawPlayer.gfxOffY - Main.screenPosition.Y);
 					Vector2 center = new Vector2(drawX, drawY);

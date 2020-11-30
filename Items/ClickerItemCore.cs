@@ -21,7 +21,7 @@ namespace ClickerClass.Items
 		/// <summary>
 		/// A clickers color used for the radius
 		/// </summary>
-		public Color clickerColorItem = Color.White;
+		public Color clickerRadiusColor = Color.White;
 
 		/// <summary>
 		/// The clickers effects
@@ -49,7 +49,7 @@ namespace ClickerClass.Items
 		public override GlobalItem Clone(Item item, Item itemClone)
 		{
 			ClickerItemCore myClone = (ClickerItemCore)base.Clone(item, itemClone);
-			myClone.clickerColorItem = clickerColorItem;
+			myClone.clickerRadiusColor = clickerRadiusColor;
 			myClone.itemClickEffects = new List<string>(itemClickEffects);
 			myClone.clickerDustColor = clickerDustColor;
 			myClone.clickBoostPrefix = clickBoostPrefix;

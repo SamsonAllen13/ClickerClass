@@ -37,7 +37,7 @@ namespace ClickerClass.Items
 		{
 			if (ClickerSystem.IsClickerWeapon(item, out ClickerItemCore clickerItem))
 			{
-				clickerItem.clickerColorItem = color;
+				clickerItem.clickerRadiusColor = color;
 			}
 		}
 

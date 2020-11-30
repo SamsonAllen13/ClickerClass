@@ -245,6 +245,7 @@ namespace ClickerClass.Items
 						if (index != -1)
 						{
 							//"Auto Select" key: player.controlTorch
+
 							var keys = PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard].KeyStatus[TriggerNames.SmartSelect];
 							string key = keys.Count == 0 ? null : keys[0];
 
@@ -263,10 +264,21 @@ namespace ClickerClass.Items
 
 							if (!showDesc)
 							{
-								tooltips.Insert(++index, new TooltipLine(mod, "ForMoreInfo", $"Hold 'Auto Select' key ({key}) to show click effects")
+								//Add ForMoreInfo as the last line
+								index = tooltips.FindLastIndex(tt => tt.mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
+								var ttl = new TooltipLine(mod, "ForMoreInfo", $"Hold 'Auto Select' key ({key}) to show click effects")
 								{
 									overrideColor = Color.Gray
-								});
+								};
+
+								if (index != -1)
+								{
+									tooltips.Insert(++index, ttl);
+								}
+								else
+								{
+									tooltips.Add(ttl);
+								}
 							}
 						}
 					}

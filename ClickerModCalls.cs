@@ -74,6 +74,41 @@ namespace ClickerClass
 					ClickerSystem.RegisterClickerWeapon(modItem);
 					return success;
 				}
+				//Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, Vector2, int, int, float> action
+				else if (message == "RegisterClickEffect")
+				{
+					var mod = args[index + 0] as Mod;
+					var internalName = args[index + 1] as string;
+					var displayName = args[index + 2] as string;
+					var description = args[index + 3] as string;
+					var amount = args[index + 4] as int?;
+					var color = args[index + 5] as Color?;
+					var action = args[index + 6] as Action<Player, Vector2, int, int, float>;
+
+					string nameOfargument = string.Empty;
+					if (mod == null)
+						nameOfargument = "mod";
+					if (internalName == null)
+						nameOfargument = "internalName";
+					if (displayName == null)
+						nameOfargument = "displayName";
+					if (description == null)
+						nameOfargument = "description";
+					if (amount == null)
+						nameOfargument = "amount";
+					if (color == null)
+						nameOfargument = "color";
+					if (action == null)
+						nameOfargument = "action";
+
+					if (nameOfargument != string.Empty)
+					{
+						throw new Exception($"Call Error: The {nameOfargument} argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerSystem.RegisterClickEffect(mod, internalName, displayName, description, amount.Value, color.Value, action);
+					return success;
+				}
 				else if (message == "IsClickerProj")
 				{
 					var proj = args[index + 0] as Projectile;
@@ -239,7 +274,6 @@ namespace ClickerClass
 						throw new Exception($"Call Error: The name/names argument for the attempted message, \"{message}\" has returned null.");
 					}
 				}
-				//TODO RegisterClickEffect
 				//Player specifics now
 				else if (message == "GetPlayerStat")
 				{

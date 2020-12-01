@@ -232,12 +232,13 @@ namespace ClickerClass.Items
 					List<string> effects = new List<string>(itemClickEffects);
 					foreach (var name in ClickerSystem.GetAllEffectNames())
 					{
-						var heldItemEffects = player.HeldItem.GetGlobalItem<ClickerItemCore>().itemClickEffects;
-						if (clickerPlayer.HasClickEffect(name, out ClickEffect effect) &&
-							!effects.Contains(name) &&
-							player.HeldItem.type == item.type && !heldItemEffects.Contains(name))
+						if (clickerPlayer.HasClickEffect(name, out ClickEffect effect) && !effects.Contains(name))
 						{
-							effects.Add(name);
+							var heldItemEffects = player.HeldItem.GetGlobalItem<ClickerItemCore>().itemClickEffects;
+							if (!(player.HeldItem.type != item.type && heldItemEffects.Contains(name)))
+							{
+								effects.Add(name);
+							}
 						}
 					}
 

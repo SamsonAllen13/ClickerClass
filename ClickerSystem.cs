@@ -121,9 +121,10 @@ namespace ClickerClass
 			{
 				throw new UsageException("Tried to register a click effect at the wrong time, do so in Mod.PostSetupContent or ModItem.SetStaticDefaults");
 			}
-			ClickEffect effect = new ClickEffect(internalName, displayName, description, amount, color, action);
-
 			string name = EffectName(mod, internalName);
+
+			ClickEffect effect = new ClickEffect(name, displayName, description, amount, color, action);
+
 			if (!IsClickEffect(name, out _))
 			{
 				ClickEffectsByName.Add(name, effect);

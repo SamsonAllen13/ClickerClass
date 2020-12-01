@@ -56,6 +56,11 @@ namespace ClickerClass
 			return new TooltipLine(ClickerClass.mod, $"ClickEffect:{InternalName}", text);
 		}
 
+		public override string ToString()
+		{
+			return $"{InternalName} / {DisplayName}: {Description.Substring(0, 20)}...";
+		}
+
 		public Dictionary<string, object> ToDictionary()
 		{
 			return new Dictionary<string, object>
@@ -76,15 +81,19 @@ namespace ClickerClass
 		{
 			ClickEffect.DoubleClick = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick", "Double Click", "Deals damage twice with one attack", 10, Color.White, delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 37);
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, type, damage, knockBack, player.whoAmI);
+				DoubleClick(player, position, type, damage, knockBack);
 			});
 
 			ClickEffect.DoubleClick2 = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick2", "Double Click", "Deals damage twice with one attack", 8, Color.White, delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
+				DoubleClick(player, position, type, damage, knockBack);
+			});
+
+			void DoubleClick(Player player, Vector2 position, int type, int damage, float knockBack)
+			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 37);
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, type, damage, knockBack, player.whoAmI);
-			});
+			}
 		}
 
 		#region Registered Effects

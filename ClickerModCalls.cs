@@ -172,6 +172,16 @@ namespace ClickerClass
 						throw new Exception($"Call Error: The item/type argument for the attempted message, \"{message}\" has returned null.");
 					}
 				}
+				else if (message == "IsClickEffect")
+				{
+					var effectName = args[index + 0] as string;
+
+					if (effectName == null)
+					{
+						throw new Exception($"Call Error: The effectName argument for the attempted message, \"{message}\" has returned null.");
+					}
+					return ClickerSystem.IsClickEffect(effectName);
+				}
 				//Clicker Weapon/Item specifics now
 				else if (message == "SetColor")
 				{
@@ -282,6 +292,23 @@ namespace ClickerClass
 					{
 						throw new Exception($"Call Error: The name/names argument for the attempted message, \"{message}\" has returned null.");
 					}
+				}
+				else if (message == "GetAllEffectNames")
+				{
+					//IEnumerable<string>
+					return ClickerSystem.GetAllEffectNames();
+				}
+				else if (message == "GetClickEffectAsDict")
+				{
+					var effectName = args[index + 0] as string;
+
+					if (effectName == null)
+					{
+						throw new Exception($"Call Error: The effectName argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					//Dictionary<string, object>
+					return ClickerSystem.GetClickEffectAsDict(effectName);
 				}
 				//Player specifics now
 				else if (message == "GetPlayerStat")

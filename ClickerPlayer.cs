@@ -159,6 +159,10 @@ namespace ClickerClass
 		public float ClickerRadiusMotherboard => ClickerRadiusReal * 0.5f;
 
 		//Helper methods
+		/// <summary>
+		/// Enables the use of a click effect for this player
+		/// </summary>
+		/// <param name="name">The unique effect name</param>
 		public void EnableClickEffect(string name)
 		{
 			if (ClickEffectActive.TryGetValue(name, out _))
@@ -167,7 +171,11 @@ namespace ClickerClass
 			}
 		}
 
-		public void EnableClickEffects(List<string> names)
+		/// <summary>
+		/// Enables the use of click effects for this player
+		/// </summary>
+		/// <param name="names">The unique effect names</param>
+		public void EnableClickEffect(IEnumerable<string> names)
 		{
 			foreach (var name in names)
 			{
@@ -175,6 +183,11 @@ namespace ClickerClass
 			}
 		}
 
+		/// <summary>
+		/// Checks if the player has a click effect enabled
+		/// </summary>
+		/// <param name="name">The unique effect name</param>
+		/// <returns><see langword="true"/> if enabled</returns>
 		public bool HasClickEffect(string name)
 		{
 			if (ClickEffectActive.TryGetValue(name, out _))
@@ -184,6 +197,12 @@ namespace ClickerClass
 			return false;
 		}
 
+		/// <summary>
+		/// Checks if the player has a click effect enabled
+		/// </summary>
+		/// <param name="name">The unique effect name</param>
+		/// <param name="effect">The effect associated with the name</param>
+		/// <returns><see langword="true"/> if enabled</returns>
 		public bool HasClickEffect(string name, out ClickEffect effect)
 		{
 			effect = null;
@@ -492,7 +511,7 @@ namespace ClickerClass
 
 			if (ClickerSystem.IsClickerWeapon(player.HeldItem, out ClickerItemCore clickerItem))
 			{
-				EnableClickEffects(clickerItem.itemClickEffects);
+				EnableClickEffect(clickerItem.itemClickEffects);
 				clickerSelected = true;
 				clickerDrawRadius = true;
 				if (HasClickEffect(ClickEffect.PhaseReach))

@@ -565,8 +565,52 @@ namespace ClickerClass
 
 					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
 				}
-				//TODO EnableClickEffect
-				//TODO HasClickEffect
+				else if (message == "EnableClickEffect")
+				{
+					var player = args[index + 0] as Player;
+
+					if (player == null)
+					{
+						throw new Exception($"Call Error: The player argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+
+					var effectName = args[index + 1] as string;
+					var effectNames = args[index + 1] as IEnumerable<string>; //type variation
+
+					if (effectName != null)
+					{
+						clickerPlayer.EnableClickEffect(effectName);
+						return success;
+					}
+					else if (effectNames != null)
+					{
+						clickerPlayer.EnableClickEffect(effectNames);
+						return success;
+					}
+					else
+					{
+						throw new Exception($"Call Error: The effectName/effectNames argument for the attempted message, \"{message}\" has returned null.");
+					}
+				}
+				else if (message == "HasClickEffect")
+				{
+					var player = args[index + 0] as Player;
+					var effectName = args[index + 1] as string;
+
+					if (player == null)
+					{
+						throw new Exception($"Call Error: The player argument for the attempted message, \"{message}\" has returned null.");
+					}
+					if (effectName == null)
+					{
+						throw new Exception($"Call Error: The effectName argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+					return clickerPlayer.HasClickEffect(effectName);
+				}
 			}
 			catch (Exception e)
 			{

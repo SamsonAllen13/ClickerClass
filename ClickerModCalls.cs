@@ -66,12 +66,13 @@ namespace ClickerClass
 				else if (message == "RegisterClickerWeapon")
 				{
 					var modItem = args[index + 0] as ModItem;
+					var borderTexture = args[index + 1] as string;
 					if (modItem == null)
 					{
 						throw new Exception($"Call Error: The modItem argument for the attempted message, \"{message}\" has returned null.");
 					}
 
-					ClickerSystem.RegisterClickerWeapon(modItem);
+					ClickerSystem.RegisterClickerWeapon(modItem, borderTexture);
 					return success;
 				}
 				//Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, Vector2, int, int, float> action
@@ -108,6 +109,15 @@ namespace ClickerClass
 
 					ClickerSystem.RegisterClickEffect(mod, internalName, displayName, description, amount.Value, color.Value, action);
 					return success;
+				}
+				else if (message == "GetPathToBorderTexture")
+				{
+					var type = args[index + 0] as int?;
+					if (type == null)
+					{
+						throw new Exception($"Call Error: The type argument for the attempted message, \"{message}\" has returned null.");
+					}
+					return ClickerSystem.GetPathToBorderTexture(type.Value);
 				}
 				else if (message == "IsClickerProj")
 				{

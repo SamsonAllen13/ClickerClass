@@ -17,6 +17,8 @@ namespace ClickerClass
 	{
 		private static HashSet<int> ClickerItems { get; set; }
 
+		private static Dictionary<int, string> ClickerWeaponBorderTexture { get; set; }
+
 		private static HashSet<int> ClickerWeapons { get; set; }
 
 		private static HashSet<int> ClickerProjectiles { get; set; }
@@ -29,6 +31,7 @@ namespace ClickerClass
 		internal static void Load()
 		{
 			ClickerItems = new HashSet<int>();
+			ClickerWeaponBorderTexture = new Dictionary<int, string>();
 			ClickerWeapons = new HashSet<int>();
 			ClickerProjectiles = new HashSet<int>();
 			ClickEffectsByName = new Dictionary<string, ClickEffect>();
@@ -37,6 +40,8 @@ namespace ClickerClass
 		internal static void Unload()
 		{
 			ClickerItems = null;
+			ClickerWeaponBorderTexture?.Clear();
+			ClickerWeaponBorderTexture = null;
 			ClickerWeapons = null;
 			ClickerProjectiles = null;
 			ClickEffectsByName?.Clear();
@@ -215,8 +220,9 @@ namespace ClickerClass
 		/// Do not call <see cref="RegisterClickerItem"/> with it as this method does this already by itself
 		/// </summary>
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
+		/// <param name="borderTexture">The path to the border texture (optional)</param>
 		/// <exception cref="InvalidOperationException"/>
-		public static void RegisterClickerWeapon(ModItem modItem)
+		public static void RegisterClickerWeapon(ModItem modItem, string borderTexture = null)
 		{
 			if (ClickerClass.finalizedRegisterCompat)
 			{
@@ -227,8 +233,37 @@ namespace ClickerClass
 			if (!ClickerWeapons.Contains(type))
 			{
 				ClickerWeapons.Add(type);
+				if (!string.IsNullOrEmpty(borderTexture))
+				{
+					try
+					{
+						var probe = ModContent.GetTexture(borderTexture);
+						if (!ClickerWeaponBorderTexture.ContainsKey(type))
+						{
+							ClickerWeaponBorderTexture.Add(type, borderTexture);
+						}
+					}
+					catch
+					{
+
+					}
+				}
 			}
 			modItem.Tooltip.SetDefault("Click on an enemy within range and sight to damage them");
+		}
+
+		/// <summary>
+		/// Returns the border texture of the item of this type
+		/// </summary>
+		/// <param name="type">The item type</param>
+		/// <returns>The path to the border texture, null if not found</returns>
+		public static string GetPathToBorderTexture(int type)
+		{
+			if (ClickerWeaponBorderTexture.TryGetValue(type, out string borderTexture))
+			{
+				return borderTexture;
+			}
+			return null;
 		}
 
 		/// <summary>

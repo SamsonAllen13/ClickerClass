@@ -62,15 +62,21 @@ namespace ClickerClass
 		/// <summary>
 		/// Returns all existing effects' internal names
 		/// </summary>
-		/// <returns>IEnumerable[string]</returns>
-		public static IEnumerable<string> GetAllEffectNames()
+		/// <returns>List[string]</returns>
+		public static List<string> GetAllEffectNames()
 		{
 			//Mod compat version of GetAllEffects() since ClickEffect is an unknown type
-			return GetAllEffects().Keys;
+			return GetAllEffects().Keys.ToList();
 		}
 
 		/// <summary>
-		/// Mod Compat way of accessing an effect's stats. <see cref="null"/> if not found
+		/// Mod Compat way of accessing an effect's stats. <see cref="null"/> if not found.
+		/// "InternalName": The unique name (string).
+		/// | "DisplayName": The displayed name (string).
+		/// | "Description": The description (string).
+		/// | "Amount": The amount of clicks to trigger the effect (int).
+		/// | "Color": The color (Color).
+		/// | "Action": The method ran when triggered (Action[Player, Vector2, int, int, float]).
 		/// </summary>
 		/// <param name="name">The unique name</param>
 		/// <returns>Dictionary[string, object]</returns>

@@ -295,7 +295,7 @@ namespace ClickerClass
 				}
 				else if (message == "GetAllEffectNames")
 				{
-					//IEnumerable<string>
+					//List<string>
 					return ClickerSystem.GetAllEffectNames();
 				}
 				else if (message == "GetClickEffectAsDict")

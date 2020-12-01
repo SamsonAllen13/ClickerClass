@@ -114,12 +114,12 @@ namespace ClickerClass
 		/// <param name="amount">The amount of clicks required to trigger the effect</param>
 		/// <param name="action">The method that runs when the effect is triggered</param>
 		/// <returns>The unique identifier</returns>
-		/// <exception cref="UsageException"/>
+		/// <exception cref="InvalidOperationException"/>
 		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, Vector2, int, int, float> action)
 		{
 			if (ClickerClass.finalizedRegisterCompat)
 			{
-				throw new UsageException("Tried to register a click effect at the wrong time, do so in Mod.PostSetupContent or ModItem.SetStaticDefaults");
+				throw new InvalidOperationException("Tried to register a click effect at the wrong time, do so in Mod.PostSetupContent or ModItem.SetStaticDefaults");
 			}
 			string name = EffectName(mod, internalName);
 
@@ -132,7 +132,7 @@ namespace ClickerClass
 			}
 			else
 			{
-				throw new UsageException($"The effect '{name}' has already been registered, duplicate detected");
+				throw new InvalidOperationException($"The effect '{name}' has already been registered, duplicate detected");
 			}
 		}
 
@@ -157,12 +157,12 @@ namespace ClickerClass
 		/// Call this in <see cref="ModProjectile.SetStaticDefaults"/> to register this projectile into the "clicker class" category
 		/// </summary>
 		/// <param name="modProj">The <see cref="ModProjectile"/> that is to be registered</param>
-		/// <exception cref="UsageException"/>
+		/// <exception cref="InvalidOperationException"/>
 		public static void RegisterClickerProjectile(ModProjectile modProj)
 		{
 			if (ClickerClass.finalizedRegisterCompat)
 			{
-				throw new UsageException("Tried to register a clicker projectile at the wrong time, do so in ModProjectile.SetStaticDefaults");
+				throw new InvalidOperationException("Tried to register a clicker projectile at the wrong time, do so in ModProjectile.SetStaticDefaults");
 			}
 			int type = modProj.projectile.type;
 			if (!ClickerProjectiles.Contains(type))
@@ -175,12 +175,12 @@ namespace ClickerClass
 		/// Call this in <see cref="ModItem.SetStaticDefaults"/> to register this item into the "clicker class" category
 		/// </summary>
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
-		/// <exception cref="UsageException"/>
+		/// <exception cref="InvalidOperationException"/>
 		public static void RegisterClickerItem(ModItem modItem)
 		{
 			if (ClickerClass.finalizedRegisterCompat)
 			{
-				throw new UsageException("Tried to register a clicker item at the wrong time, do so in ModItem.SetStaticDefaults");
+				throw new InvalidOperationException("Tried to register a clicker item at the wrong time, do so in ModItem.SetStaticDefaults");
 			}
 			int type = modItem.item.type;
 			if (!ClickerItems.Contains(type))
@@ -195,12 +195,12 @@ namespace ClickerClass
 		/// Do not call <see cref="RegisterClickerItem"/> with it as this method does this already by itself
 		/// </summary>
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
-		/// <exception cref="UsageException"/>
+		/// <exception cref="InvalidOperationException"/>
 		public static void RegisterClickerWeapon(ModItem modItem)
 		{
 			if (ClickerClass.finalizedRegisterCompat)
 			{
-				throw new UsageException("Tried to register a clicker weapon at the wrong time, do so in ModItem.SetStaticDefaults");
+				throw new InvalidOperationException("Tried to register a clicker weapon at the wrong time, do so in ModItem.SetStaticDefaults");
 			}
 			RegisterClickerItem(modItem);
 			int type = modItem.item.type;

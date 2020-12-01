@@ -293,6 +293,10 @@ namespace ClickerClass
 					{
 						return clickerPlayer.clickAmount;
 					}
+					else if (statName == "clickerPerSecond")
+					{
+						return clickerPlayer.clickerPerSecond;
+					}
 					//TODO clickerPerSecond
 
 					throw new Exception($"Call Error: The statName argument for the attempted message, \"{message}\" has no valid entry point.");

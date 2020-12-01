@@ -331,6 +331,7 @@ namespace ClickerClass
 						{
 							name = string.Empty;
 						}
+
 						return clickerPlayer.GetClickAmountTotal(item, name);
 					}
 					else if (statName == "clickAmount")
@@ -341,7 +342,6 @@ namespace ClickerClass
 					{
 						return clickerPlayer.clickerPerSecond;
 					}
-					//TODO clickerPerSecond
 
 					throw new Exception($"Call Error: The statName argument for the attempted message, \"{message}\" has no valid entry point.");
 				}

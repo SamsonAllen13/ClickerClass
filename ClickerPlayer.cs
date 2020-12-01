@@ -99,10 +99,12 @@ namespace ClickerClass
 		public bool SetOverclockDraw => setOverclock && setOverclockAllowed;
 
 		//Acc
+		[Obsolete("Use HasClickEffect(\"ClickerClass:ChocolateChip\") and EnableClickEffect(\"ClickerClass:ChocolateChip\") instead", false)]
 		public bool accChocolateChip = false;
 		public bool accEnchantedLED = false;
 		public bool accEnchantedLED2 = false; //different visuals
 		public bool accHandCream = false;
+		[Obsolete("Use HasClickEffect(\"ClickerClass:StickyKeychain\") and EnableClickEffect(\"ClickerClass:StickyKeychain\") instead", false)]
 		public bool accStickyKeychain = false;
 		public bool accGlassOfMilk = false;
 		public bool accCookie = false;
@@ -341,10 +343,8 @@ namespace ClickerClass
 			setOverclock = false;
 
 			//Acc
-			accChocolateChip = false;
 			accEnchantedLED = false;
 			accEnchantedLED2 = false;
-			accStickyKeychain = false;
 			accHandCream = false;
 			accGlassOfMilk = false;
 			accCookie = false;

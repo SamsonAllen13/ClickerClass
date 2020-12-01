@@ -1,6 +1,7 @@
 using ClickerClass.Items;
 using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -14,6 +15,7 @@ namespace ClickerClass
 		{
 			//TODO update calls for new API
 			ClickerClass clickerClass = ClickerClass.mod;
+			Version latestVersion = clickerClass.Version;
 			//Simplify code by resizing args
 			Array.Resize(ref args, 25);
 			string success = "Success";
@@ -23,7 +25,7 @@ namespace ClickerClass
 
 				//Future-proofing. Allowing new info to be returned while maintaining backwards compat if necessary
 				object apiString = args[1];
-				Version apiVersion = apiString is string ? new Version(apiString as string) : clickerClass.Version;
+				Version apiVersion = apiString is string ? new Version(apiString as string) : latestVersion;
 
 				//Starting index of all parameters for a call
 				int index = 2;
@@ -127,22 +129,6 @@ namespace ClickerClass
 					}
 				}
 				//Clicker Weapon/Item specifics now
-				else if (message == "SetAmount")
-				{
-					var item = args[index + 0] as Item;
-					var amount = args[index + 1] as int?;
-					if (item == null)
-					{
-						throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
-					}
-					if (amount == null)
-					{
-						amount = 1;
-					}
-					//TODO API change
-					//ClickerWeapon.SetAmount(item, amount.Value);
-					return success;
-				}
 				else if (message == "SetColor")
 				{
 					var item = args[index + 0] as Item;
@@ -188,20 +174,29 @@ namespace ClickerClass
 				}
 				else if (message == "SetEffect")
 				{
-					//TODO big todo still
-					var item = args[index + 0] as Item;
-					var name = args[index + 1] as string;
-					if (item == null)
+					if (apiVersion < latestVersion)
 					{
-						throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
+						var item = args[index + 0] as Item;
+						var name = args[index + 1] as string;
+						if (item == null)
+						{
+							throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
+						}
+						if (name == null)
+						{
+							name = string.Empty;
+						}
+						//Old mods could only register with old ClickerClass effect display names before
+						if (ClickerSystem.GetNewNameFromOldDisplayName(name, out string internalName))
+						{
+							ClickerWeapon.AddEffect(item, internalName);
+						}
+						return success;
 					}
-					if (name == null)
+					else
 					{
-						//name = ClickerItemCore.NULL;
+						throw new Exception($"Use AddEffect instead, SetEffect is obsolete in {latestVersion}");
 					}
-					//TODO API change
-					//ClickerWeapon.SetEffect(item, name);
-					return success;
 				}
 				else if (message == "SetRadius")
 				{
@@ -219,6 +214,32 @@ namespace ClickerClass
 					ClickerWeapon.SetRadius(item, radius.Value);
 					return success;
 				}
+				else if (message == "AddEffect")
+				{
+					var item = args[index + 0] as Item;
+					var name = args[index + 1] as string;
+					var names = args[index + 1] as IEnumerable<string>; //type variation
+					if (item == null)
+					{
+						throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					if (name != null)
+					{
+						ClickerWeapon.AddEffect(item, name);
+						return success;
+					}
+					else if (names != null)
+					{
+						ClickerWeapon.AddEffect(item, names);
+						return success;
+					}
+					else
+					{
+						throw new Exception($"Call Error: The name/names argument for the attempted message, \"{message}\" has returned null.");
+					}
+				}
+				//TODO RegisterClickEffect
 				//Player specifics now
 				else if (message == "GetPlayerStat")
 				{
@@ -241,19 +262,38 @@ namespace ClickerClass
 					}
 					else if (statName == "clickAmountTotal")
 					{
-						//TODO API change
 						var item = args[index + 2] as Item;
 						if (item == null)
 						{
 							throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
 						}
 
-						//return clickerPlayer.GetClickAmountTotal(item);
+						string name;
+
+						if (apiVersion < latestVersion)
+						{
+							//Before it assumed the effect of the item used. Since 1.2.2 it is now a list, and requires a specific effect
+							//For the purpose of backwards compatibility, assume the first effect on the clicker as the main one
+
+							var effects = item.GetGlobalItem<ClickerItemCore>().itemClickEffects;
+							name = effects.Count == 0 ? null : effects[0];
+						}
+						else
+						{
+							name = args[index + 3] as string;
+						}
+
+						if (name == null)
+						{
+							name = string.Empty;
+						}
+						return clickerPlayer.GetClickAmountTotal(item, name);
 					}
 					else if (statName == "clickAmount")
 					{
 						return clickerPlayer.clickAmount;
 					}
+					//TODO clickerPerSecond
 
 					throw new Exception($"Call Error: The statName argument for the attempted message, \"{message}\" has no valid entry point.");
 				}
@@ -307,11 +347,15 @@ namespace ClickerClass
 
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
-					//accChocolateChip, accEnchantedLED, accEnchantedLED2, accHandCream, accStickyKeychain, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
+					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					if (accName == "ChocolateChip")
 					{
-						//TODO API change
-						return clickerPlayer.accChocolateChip;
+						if (apiVersion < latestVersion)
+						{
+							//Kept for backwards compatibility
+							return clickerPlayer.HasClickEffect(ClickEffect.ChocolateChip);
+						}
+						throw new Exception("GetAccessory+'ChocolateChip' is obsolete, use HasClickEffect+'ClickerClass:ChocolateChip'");
 					}
 					else if (accName == "EnchantedLED")
 					{
@@ -323,8 +367,12 @@ namespace ClickerClass
 					}
 					else if (accName == "StickyKeychain")
 					{
-						//TODO API change
-						return clickerPlayer.accStickyKeychain;
+						if (apiVersion < latestVersion)
+						{
+							//Kept for backwards compatibility
+							return clickerPlayer.HasClickEffect(ClickEffect.StickyKeychain);
+						}
+						throw new Exception("GetAccessory+'StickyKeychain' is obsolete, use HasClickEffect+'ClickerClass:StickyKeychain'");
 					}
 					else if (accName == "GlassOfMilk")
 					{
@@ -448,12 +496,16 @@ namespace ClickerClass
 
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
-					//accChocolateChip, accEnchantedLED, accEnchantedLED2, accHandCream, accStickyKeychain, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
+					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					if (accName == "ChocolateChip")
 					{
-						//TODO API change
-						clickerPlayer.accChocolateChip = true;
-						return success;
+						//Kept for backwards compatibility
+						if (apiVersion < latestVersion)
+						{
+							clickerPlayer.EnableClickEffect(ClickEffect.ChocolateChip);
+							return success;
+						}
+						throw new Exception("SetAccessory+'ChocolateChip' is obsolete, use EnableClickEffect+'ClickerClass:ChocolateChip'");
 					}
 					else if (accName == "EnchantedLED")
 					{
@@ -472,9 +524,13 @@ namespace ClickerClass
 					}
 					else if (accName == "StickyKeychain")
 					{
-						//TODO API change
-						clickerPlayer.accStickyKeychain = true;
-						return success;
+						//Kept for backwards compatibility
+						if (apiVersion < latestVersion)
+						{
+							clickerPlayer.EnableClickEffect(ClickEffect.StickyKeychain);
+							return success;
+						}
+						throw new Exception("SetAccessory+'StickyKeychain' is obsolete, use EnableClickEffect+'ClickerClass:StickyKeychain'");
 					}
 					else if (accName == "GlassOfMilk")
 					{
@@ -509,6 +565,8 @@ namespace ClickerClass
 
 					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
 				}
+				//TODO EnableClickEffect
+				//TODO HasClickEffect
 			}
 			catch (Exception e)
 			{

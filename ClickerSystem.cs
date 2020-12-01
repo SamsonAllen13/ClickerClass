@@ -2,6 +2,7 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -66,7 +67,7 @@ namespace ClickerClass
 		/// <summary>
 		/// Mod Compat way of accessing an effect's stats. <see cref="null"/> if not found
 		/// </summary>
-		/// <param name="name"></param>
+		/// <param name="name">The unique name</param>
 		/// <returns>Dictionary[string, object]</returns>
 		internal static Dictionary<string, object> GetClickEffectAsDict(string name)
 		{
@@ -105,10 +106,24 @@ namespace ClickerClass
 		}
 
 		/// <summary>
+		/// Mod Compat way of getting obsolete effect names. Can return null if not found
+		/// </summary>
+		/// <param name="oldName">The old display name</param>
+		/// <param name="internalName">The associated internal name</param>
+		/// <returns><see langword="true"/> if exists</returns>
+		internal static bool GetNewNameFromOldDisplayName(string oldName, out string internalName)
+		{
+			var allEffects = GetAllEffects();
+			var found = allEffects.FirstOrDefault(e => e.Value.DisplayName == oldName);
+			internalName = found.Key;
+			return internalName != null;
+		}
+
+		/// <summary>
 		/// Call this in <see cref="Mod.PostSetupContent"/> or <see cref="ModItem.SetStaticDefaults"/> to register this click effect
 		/// </summary>
 		/// <param name="mod">The mod this effect belongs to. ONLY USE YOUR OWN MOD INSTANCE FOR THIS!</param>
-		/// <param name="internalName">The internal name of the effect</param>
+		/// <param name="internalName">The internal name of the effect. Turns into the unique name combined with the associated mod</param>
 		/// <param name="displayName">The name of the effect</param>
 		/// <param name="description">The basic description of the effect, string.Empty for none</param>
 		/// <param name="amount">The amount of clicks required to trigger the effect</param>
@@ -121,6 +136,11 @@ namespace ClickerClass
 			{
 				throw new InvalidOperationException("Tried to register a click effect at the wrong time, do so in Mod.PostSetupContent or ModItem.SetStaticDefaults");
 			}
+			if (string.IsNullOrEmpty(internalName))
+			{
+				throw new InvalidOperationException($"internalName is either null or empty. Give it a proper value");
+			}
+
 			string name = EffectName(mod, internalName);
 
 			ClickEffect effect = new ClickEffect(name, displayName, description, amount, color, action);

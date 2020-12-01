@@ -13,7 +13,6 @@ namespace ClickerClass
 		//Not everything is exposed via API yet
 		public static object Call(params object[] args)
 		{
-			//TODO update calls for new API
 			ClickerClass clickerClass = ClickerClass.mod;
 			Version latestVersion = clickerClass.Version;
 			//Simplify code by resizing args

@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Honey Glazed Clicker");
 
-			//TODO
+			//TODO HoneyGlazedClickerPro here
 			ClickEffect.StickyHoney = ClickerSystem.RegisterClickEffect(mod, "StickyHoney", "Sticky Honey", "Inflicts the Honey debuff, significantly slowing down enemies", 1, new Color(255, 175, 0, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 

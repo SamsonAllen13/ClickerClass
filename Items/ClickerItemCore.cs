@@ -409,7 +409,7 @@ namespace ClickerClass.Items
 					clickerPlayer.Click();
 				}
 
-				//TODO "PreShoot" hook wrapping around the next NewProjectile
+				//TODO dire: maybe "PreShoot" hook wrapping around the next NewProjectile
 
 				//Spawn normal click damage
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, type, damage, knockBack, player.whoAmI);

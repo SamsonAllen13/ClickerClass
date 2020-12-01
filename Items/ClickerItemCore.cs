@@ -228,11 +228,14 @@ namespace ClickerClass.Items
 					}
 
 					//Show the clicker's effects
-					//Then show ones missing through the players enabled effects (respecting overlap)
+					//Then show ones missing through the players enabled effects (respecting overlap, ignoring the currently held clickers effect if its not the same type)
 					List<string> effects = new List<string>(itemClickEffects);
 					foreach (var name in ClickerSystem.GetAllEffectNames())
 					{
-						if (clickerPlayer.HasClickEffect(name, out ClickEffect effect) && !effects.Contains(name))
+						var heldItemEffects = player.HeldItem.GetGlobalItem<ClickerItemCore>().itemClickEffects;
+						if (clickerPlayer.HasClickEffect(name, out ClickEffect effect) &&
+							!effects.Contains(name) &&
+							player.HeldItem.type == item.type && !heldItemEffects.Contains(name))
 						{
 							effects.Add(name);
 						}

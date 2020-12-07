@@ -1,4 +1,6 @@
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +12,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Crystal Clicker");
+
+			ClickEffect.Dazzle = ClickerSystem.RegisterClickEffect(mod, "Dazzle", "Dazzle", "Inflicts the Confused debuff", 8, new Color(200, 50, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 28);
+				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<CrystalClickerPro>(), 0, knockBack, player.whoAmI);
+			});
 		}
 
 		public override void SetDefaults()
@@ -18,9 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 3.1f);
 			SetColor(item, new Color(200, 50, 255, 0));
 			SetDust(item, 86);
-			SetAmount(item, 8);
-			SetEffect(item, "Dazzle");
-
+			AddEffect(item, ClickEffect.Dazzle);
 
 			item.damage = 34;
 			item.width = 30;

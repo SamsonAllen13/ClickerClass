@@ -1,4 +1,7 @@
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using System;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +13,35 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Pointy Clicker");
+
+			ClickEffect.StingingThorn = ClickerSystem.RegisterClickEffect(mod, "StingingThorn", "Stinging Thorn", "Fires a thorn projectile that travels towards the nearest enemy", 8, new Color(100, 175, 75, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 17);
+
+				Vector2 pos = Main.MouseWorld;
+
+				int index = -1;
+				for (int i = 0; i < 200; i++)
+				{
+					NPC npc = Main.npc[i];
+					if (npc.active && npc.CanBeChasedBy() && Vector2.DistanceSquared(pos, npc.Center) < 400f * 400f && Collision.CanHit(pos, 1, 1, npc.Center, 1, 1))
+					{
+						index = i;
+					}
+				}
+				if (index != -1)
+				{
+					Vector2 vector = Main.npc[index].Center - pos;
+					float speed = 3f;
+					float mag = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+					if (mag > speed)
+					{
+						mag = speed / mag;
+					}
+					vector *= mag;
+					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, vector.X, vector.Y, ModContent.ProjectileType<PointyClickerPro>(), damage, knockBack, player.whoAmI);
+				}
+			});
 		}
 
 		public override void SetDefaults()
@@ -18,9 +50,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 2.35f);
 			SetColor(item, new Color(100, 175, 75, 0));
 			SetDust(item, 39);
-			SetAmount(item, 8);
-			SetEffect(item, "Stinging Thorn");
-
+			AddEffect(item, ClickEffect.StingingThorn);
 
 			item.damage = 12;
 			item.width = 30;

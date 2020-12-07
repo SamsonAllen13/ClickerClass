@@ -1,3 +1,4 @@
+using ClickerClass.Buffs;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -26,7 +27,7 @@ namespace ClickerClass.Items.Consumables
 			item.maxStack = 30;
 			item.rare = 1;
 			item.UseSound = SoundID.Item3;
-			item.buffType = mod.BuffType("InfluenceBuff");
+			item.buffType = ModContent.BuffType<InfluenceBuff>();
 			item.buffTime = 18000;
 		}
 

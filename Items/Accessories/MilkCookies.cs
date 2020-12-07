@@ -34,8 +34,8 @@ namespace ClickerClass.Items.Accessories
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "Cookie", 1);
-			recipe.AddIngredient(null, "Milk", 1);
+			recipe.AddIngredient(ModContent.ItemType<Cookie>(), 1);
+			recipe.AddIngredient(ModContent.ItemType<Milk>(), 1);
 			recipe.AddTile(TileID.TinkerersWorkbench);
 			recipe.SetResult(this);
 			recipe.AddRecipe();

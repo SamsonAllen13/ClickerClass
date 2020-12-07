@@ -33,7 +33,7 @@ namespace ClickerClass.Items.Armors
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == mod.ItemType("MiceSuit") && legs.type == mod.ItemType("MiceBoots");
+			return body.type == ModContent.ItemType<MiceSuit>() && legs.type == ModContent.ItemType<MiceBoots>();
 		}
 
 		public override void UpdateArmorSet(Player player)
@@ -50,7 +50,7 @@ namespace ClickerClass.Items.Armors
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "MiceFragment", 10);
+			recipe.AddIngredient(ModContent.ItemType<MiceFragment>(), 10);
 			recipe.AddIngredient(ItemID.LunarBar, 8);
 			recipe.AddTile(TileID.LunarCraftingStation);
 			recipe.SetResult(this);

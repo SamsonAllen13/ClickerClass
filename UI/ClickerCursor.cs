@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace ClickerClass.UI
@@ -42,11 +43,22 @@ namespace ClickerClass.UI
 				return true;
 			}
 
-			Texture2D borderTexture = ClickerClass.mod.GetTexture("UI/CursorOutline");
-			Texture2D texture;
 			Item item = player.HeldItem;
+
+			Texture2D borderTexture;
+			Texture2D texture;
 			if (CanDrawCursor(item))
 			{
+				string borderTexturePath = ClickerSystem.GetPathToBorderTexture(item.type);
+				if (borderTexturePath != null)
+				{
+					borderTexture = ModContent.GetTexture(borderTexturePath);
+				}
+				else
+				{
+					//Default border
+					borderTexture = ClickerClass.mod.GetTexture("UI/CursorOutline");
+				}
 				texture = Main.itemTexture[item.type];
 			}
 			else

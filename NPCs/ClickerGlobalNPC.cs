@@ -1,3 +1,7 @@
+using ClickerClass.Buffs;
+using ClickerClass.Items;
+using ClickerClass.Items.Accessories;
+using ClickerClass.Items.Weapons.Clickers;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Shaders;
@@ -85,8 +89,8 @@ namespace ClickerClass.NPCs
 				case NPCID.DD2OgreT2:
 				case NPCID.DD2OgreT3:
 				case NPCID.TargetDummy:
-					npc.buffImmune[mod.BuffType("Frozen")] = true;
-					npc.buffImmune[mod.BuffType("HoneySlow")] = true;
+					npc.buffImmune[ModContent.BuffType<Frozen>()] = true;
+					npc.buffImmune[ModContent.BuffType<HoneySlow>()] = true;
 					break;
 				default:
 					if (npc.boss)
@@ -123,88 +127,88 @@ namespace ClickerClass.NPCs
 			{
 				if (Main.rand.NextBool(20))
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("ShadowyClicker"), 1, false, -1);
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<ShadowyClicker>(), 1, false, -1);
 				}
 			}
 			if ((npc.type == NPCID.Frankenstein || npc.type == NPCID.SwampThing) && npc.value > 0f)
 			{
 				if (Main.rand.NextBool(25))
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("EclipticClicker"), 1, false, -1);
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<EclipticClicker>(), 1, false, -1);
 				}
 			}
 			if ((npc.type == NPCID.BloodZombie || npc.type == NPCID.Drippler) && npc.value > 0f)
 			{
 				if (Main.rand.NextBool(25))
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("HemoClicker"), 1, false, -1);
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<HemoClicker>(), 1, false, -1);
 				}
 			}
 			if (npc.type == NPCID.DarkCaster)
 			{
 				if (Main.rand.NextBool(15))
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("Milk"), 1, false, -1);
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<Milk>(), 1, false, -1);
 				}
 			}
 			if (npc.type == NPCID.Gastropod)
 			{
 				if (Main.rand.NextBool(20))
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("ChocolateChip"), 1, false, -1);
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<ChocolateChip>(), 1, false, -1);
 				}
 			}
 			if (npc.type == NPCID.PirateCaptain)
 			{
 				if (Main.rand.NextBool(8))
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("CaptainsClicker"), 1, false, -1);
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<CaptainsClicker>(), 1, false, -1);
 				}
 			}
 			if (npc.type == NPCID.Pumpking)
 			{
 				if (Main.rand.NextBool(10))
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("WitchClicker"), 1, false, -1);
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<WitchClicker>(), 1, false, -1);
 				}
 			}
 			if (npc.type == NPCID.IceQueen)
 			{
 				if (Main.rand.NextBool(10))
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("FrozenClicker"), 1, false, -1);
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<FrozenClicker>(), 1, false, -1);
 				}
 			}
 			if (npc.type == NPCID.MartianSaucerCore)
 			{
 				if (Main.rand.NextBool(4))
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("HighTechClicker"), 1, false, -1);
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<HighTechClicker>(), 1, false, -1);
 				}
 			}
 			if (!Main.expertMode)
 			{
 				if (npc.type == NPCID.MoonLordCore)
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("LordsClicker"), 1, false, -1);
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<LordsClicker>(), 1, false, -1);
 
 					if (Main.rand.NextBool(5))
 					{
-						Item.NewItem(npc.Hitbox, mod.ItemType("TheClicker"), 1, false, -1);
+						Item.NewItem(npc.Hitbox, ModContent.ItemType<TheClicker>(), 1, false, -1);
 					}
 				}
 				if (npc.type == NPCID.WallofFlesh)
 				{
 					if (Main.rand.NextBool(4))
 					{
-						Item.NewItem(npc.Hitbox, mod.ItemType("ClickerEmblem"), 1, false, -1);
+						Item.NewItem(npc.Hitbox, ModContent.ItemType<ClickerEmblem>(), 1, false, -1);
 					}
 				}
 				if (npc.type == NPCID.KingSlime)
 				{
 					if (Main.rand.NextBool(4))
 					{
-						Item.NewItem(npc.Hitbox, mod.ItemType("StickyKeychain"), 1, false, -1);
+						Item.NewItem(npc.Hitbox, ModContent.ItemType<StickyKeychain>(), 1, false, -1);
 					}
 				}
 			}
@@ -212,11 +216,11 @@ namespace ClickerClass.NPCs
 			{
 				if (Main.expertMode)
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("MiceFragment"), Main.rand.Next(5, 23));
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<MiceFragment>(), Main.rand.Next(5, 23));
 				}
 				else
 				{
-					Item.NewItem(npc.Hitbox, mod.ItemType("MiceFragment"), Main.rand.Next(3, 16));
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<MiceFragment>(), Main.rand.Next(3, 16));
 				}
 			}
 		}
@@ -228,19 +232,19 @@ namespace ClickerClass.NPCs
 			switch (type)
 			{
 				case NPCID.Merchant:
-					shop.item[nextSlot++].SetDefaults(mod.ItemType("Cookie"));
+					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Cookie>());
 					break;
 				case NPCID.TravellingMerchant:
-					shop.item[nextSlot++].SetDefaults(mod.ItemType("Soda"));
+					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Soda>());
 					break;
 				case NPCID.Mechanic:
-					shop.item[nextSlot++].SetDefaults(mod.ItemType("HandCream"));
+					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HandCream>());
 					break;
 				case NPCID.GoblinTinkerer:
-					shop.item[nextSlot++].SetDefaults(mod.ItemType("MousePad"));
+					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MousePad>());
 					break;
 				case NPCID.SkeletonMerchant:
-					shop.item[nextSlot++].SetDefaults(mod.ItemType("CandleClicker"));
+					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CandleClicker>());
 					break;
 			}
 		}

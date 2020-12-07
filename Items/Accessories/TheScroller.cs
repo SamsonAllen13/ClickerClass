@@ -1,3 +1,4 @@
+using ClickerClass.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Shaders;
@@ -85,7 +86,7 @@ namespace ClickerClass.Items.Accessories
 						Vector2 position = -Vector2.UnitY.RotatedBy(i * MathHelper.TwoPi / numDusts) * new Vector2(1f, 0.25f);
 						Vector2 velocity = playerVelocity + position * 1.25f;
 						position = position * 8 + playerOffset;
-						Dust dust = Dust.NewDustPerfect(position, mod.DustType("MiceDust"), velocity);
+						Dust dust = Dust.NewDustPerfect(position, ModContent.DustType<MiceDust>(), velocity);
 						dust.noGravity = true;
 						dust.scale = 0.8f + rate * 0.04f;
 						dust.shader = GameShaders.Armor.GetSecondaryShader(player.cWings, player);
@@ -104,7 +105,7 @@ namespace ClickerClass.Items.Accessories
 						Vector2 position = -Vector2.UnitY.RotatedBy(i * MathHelper.TwoPi / numDusts) * new Vector2(1f, 0.25f);
 						Vector2 velocity = playerVelocity + position * 2;
 						position = position * 8 + playerOffset;
-						Dust dust = Dust.NewDustPerfect(position, mod.DustType("MiceDust"), velocity);
+						Dust dust = Dust.NewDustPerfect(position, ModContent.DustType<MiceDust>(), velocity);
 						dust.noGravity = true;
 						dust.fadeIn = 1f;
 						dust.scale = 0.8f;
@@ -118,7 +119,7 @@ namespace ClickerClass.Items.Accessories
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "MiceFragment", 14);
+			recipe.AddIngredient(ModContent.ItemType<MiceFragment>(), 14);
 			recipe.AddIngredient(ItemID.LunarBar, 10);
 			recipe.AddTile(TileID.LunarCraftingStation);
 			recipe.SetResult(this);

@@ -1,4 +1,6 @@
+using ClickerClass.Buffs;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -20,7 +22,7 @@ namespace ClickerClass.Projectiles
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			target.AddBuff(mod.BuffType("Gouge"), 60, false);
+			target.AddBuff(ModContent.BuffType<Gouge>(), 60, false);
 		}
 	}
 }

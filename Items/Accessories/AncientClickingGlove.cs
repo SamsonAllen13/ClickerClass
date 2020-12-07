@@ -30,7 +30,7 @@ namespace ClickerClass.Items.Accessories
 		public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(null, "ClickingGlove", 1);
+			recipe.AddIngredient(ModContent.ItemType<ClickingGlove>(), 1);
 			recipe.AddIngredient(ItemID.AncientCloth, 8);
 			recipe.AddTile(TileID.MythrilAnvil);
 			recipe.SetResult(this);

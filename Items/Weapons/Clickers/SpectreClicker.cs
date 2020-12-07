@@ -11,6 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Spectre Clicker");
 			Tooltip.SetDefault("Click on an enemy within sight to damage them");
+
+			ClickEffect.PhaseReach = ClickerSystem.RegisterClickEffect(mod, "PhaseReach", "Phase Reach", "Damage enemies regardless of location", 1, new Color(100, 255, 255, 0), null);
 		}
 
 		public override void SetDefaults()
@@ -19,9 +21,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 5f);
 			SetColor(item, new Color(100, 255, 255, 0));
 			SetDust(item, 88);
-			SetAmount(item, 1);
-			SetEffect(item, "Phase Reach");
-
+			AddEffect(item, ClickEffect.PhaseReach);
 
 			item.damage = 50;
 			item.width = 30;

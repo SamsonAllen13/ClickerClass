@@ -1,4 +1,5 @@
-﻿using Terraria;
+﻿using ClickerClass.Items.Accessories;
+using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -15,7 +16,7 @@ namespace ClickerClass
 		public static void AddRecipes()
 		{
 			ModRecipe recipe = GetNewRecipe();
-			recipe.AddIngredient(null, "ClickerEmblem", 1);
+			recipe.AddIngredient(ModContent.ItemType<ClickerEmblem>(), 1);
 			recipe.AddIngredient(ItemID.SoulofMight, 5);
 			recipe.AddIngredient(ItemID.SoulofSight, 5);
 			recipe.AddIngredient(ItemID.SoulofFright, 5);

@@ -30,7 +30,7 @@ namespace ClickerClass.Items.Armors
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
 		{
-			return body.type == mod.ItemType("OverclockSuit") && legs.type == mod.ItemType("OverclockBoots");
+			return body.type == ModContent.ItemType<OverclockSuit>() && legs.type == ModContent.ItemType<OverclockBoots>();
 		}
 
 		public override void UpdateArmorSet(Player player)

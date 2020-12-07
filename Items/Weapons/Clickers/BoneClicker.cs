@@ -1,7 +1,8 @@
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
 namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class BoneClicker : ClickerWeapon
@@ -10,6 +11,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Bone Clicker");
+
+			ClickEffect.Lacerate = ClickerSystem.RegisterClickEffect(mod, "Lacerate", "Lacerate", "Inflicts the Gouge debuff, dealing 30 damage per second", 12, new Color(225, 225, 200, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 71);
+				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<BoneClickerPro>(), damage, knockBack, player.whoAmI);
+				for (int k = 0; k < 10; k++)
+				{
+					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 5, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 125, default, 1.25f);
+					dust.noGravity = true;
+				}
+			});
 		}
 
 		public override void SetDefaults()
@@ -18,9 +30,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 1.1f);
 			SetColor(item, new Color(225, 225, 200, 0));
 			SetDust(item, 216);
-			SetAmount(item, 12);
-			SetEffect(item, "Lacerate");
-
+			AddEffect(item, ClickEffect.Lacerate);
 
 			item.damage = 13;
 			item.width = 30;

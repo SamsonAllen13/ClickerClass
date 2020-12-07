@@ -1,3 +1,4 @@
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -11,6 +12,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Corrupt Clicker");
+
+			ClickEffect.CursedEruption = ClickerSystem.RegisterClickEffect(mod, "CursedEruption", "Cursed Eruption", "Deals damage in a large area of effect and inflicts Oiled and Cursed Inferno", 8, new Color(125, 255, 0, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 74);
+				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<CorruptClickerPro>(), damage, knockBack, player.whoAmI);
+				for (int k = 0; k < 30; k++)
+				{
+					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 163, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-10f, 10f), 0, default, 1.65f);
+					dust.noGravity = true;
+				}
+			});
 		}
 
 		public override void SetDefaults()
@@ -19,9 +31,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 3.25f);
 			SetColor(item, new Color(125, 255, 0, 0));
 			SetDust(item, 163);
-			SetAmount(item, 8);
-			SetEffect(item, "Cursed Eruption");
-
+			AddEffect(item, ClickEffect.CursedEruption);
 
 			item.damage = 31;
 			item.width = 30;

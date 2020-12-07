@@ -1,6 +1,8 @@
+using ClickerClass.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Shaders;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -31,7 +33,7 @@ namespace ClickerClass.Projectiles
 					NPC target = Main.npc[u];
 					if (target.CanBeChasedBy(projectile) && target.DistanceSQ(projectile.Center) < 250 * 250)
 					{
-						target.AddBuff(mod.BuffType("Embrittle"), 240, false);
+						target.AddBuff(ModContent.BuffType<Embrittle>(), 240, false);
 
 						for (int i = 0; i < 15; i++)
 						{

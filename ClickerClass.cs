@@ -1,8 +1,6 @@
 using ClickerClass.Effects;
-using ClickerClass.Items;
 using ClickerClass.UI;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -26,6 +24,7 @@ namespace ClickerClass
 			mod = this;
 			AutoClickKey = RegisterHotKey("Clicker Accessory", "G");
 			ClickerSystem.Load();
+			ClickEffect.LoadMiscEffects();
 
 			if (!Main.dedServ)
 			{
@@ -38,6 +37,7 @@ namespace ClickerClass
 			finalizedRegisterCompat = false;
 			ShaderManager.Unload();
 			ClickerSystem.Unload();
+			ClickEffect.Unload();
 			ClickerInterfaceResources.Unload();
 			AutoClickKey = null;
 			mod = null;

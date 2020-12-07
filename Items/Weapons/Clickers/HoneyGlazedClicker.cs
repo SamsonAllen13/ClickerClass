@@ -1,4 +1,6 @@
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,6 +12,11 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Honey Glazed Clicker");
+
+			ClickEffect.StickyHoney = ClickerSystem.RegisterClickEffect(mod, "StickyHoney", "Sticky Honey", "Covers enemies under cursor in sticky honey, slowing them", 1, new Color(255, 175, 0, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<HoneyGlazedClickerPro>(), 0, 0f, player.whoAmI);
+			});
 		}
 
 		public override void SetDefaults()
@@ -18,9 +25,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetRadius(item, 2.45f);
 			SetColor(item, new Color(255, 175, 0, 0));
 			SetDust(item, 153);
-			SetAmount(item, 1);
-			SetEffect(item, "Sticky Honey");
-
+			AddEffect(item, ClickEffect.StickyHoney);
 
 			item.damage = 13;
 			item.width = 30;
@@ -28,7 +33,6 @@ namespace ClickerClass.Items.Weapons.Clickers
 			item.knockBack = 2f;
 			item.value = 10000;
 			item.rare = 3;
-			item.shoot = mod.ProjectileType("HoneyGlazedClickerPro");
 		}
 
 		public override void AddRecipes()

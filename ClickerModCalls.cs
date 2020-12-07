@@ -494,7 +494,7 @@ namespace ClickerClass
 							throw new Exception($"Call Error: The crit argument for the attempted message, \"{message}\" has returned null.");
 						}
 						clickerPlayer.clickerCrit += crit.Value;
-						clickerPlayer.clickerCrit = Math.Max(4, clickerPlayer.clickerCrit);
+						clickerPlayer.clickerCrit = Utils.Clamp(clickerPlayer.clickerCrit, 0, 100);
 						return success;
 					}
 					else if (statName == "clickerDamageFlatAdd")
@@ -516,7 +516,7 @@ namespace ClickerClass
 							throw new Exception($"Call Error: The damage argument for the attempted message, \"{message}\" has returned null.");
 						}
 						clickerPlayer.clickerDamage += damage.Value;
-						clickerPlayer.clickerDamage = Math.Max(1f, clickerPlayer.clickerDamage);
+						clickerPlayer.clickerDamage = Math.Max(0f, clickerPlayer.clickerDamage);
 						return success;
 					}
 					else if (statName == "clickerBonusAdd")
@@ -527,7 +527,7 @@ namespace ClickerClass
 							throw new Exception($"Call Error: The bonus argument for the attempted message, \"{message}\" has returned null.");
 						}
 						clickerPlayer.clickerBonus += bonus.Value;
-						clickerPlayer.clickerBonus = Math.Max(1, clickerPlayer.clickerBonus);
+						clickerPlayer.clickerBonus = Math.Max(0, clickerPlayer.clickerBonus);
 						return success;
 					}
 					else if (statName == "clickerBonusPercentAdd")
@@ -538,7 +538,7 @@ namespace ClickerClass
 							throw new Exception($"Call Error: The bonus argument for the attempted message, \"{message}\" has returned null.");
 						}
 						clickerPlayer.clickerBonusPercent += bonus.Value;
-						clickerPlayer.clickerBonusPercent = Math.Max(1f, clickerPlayer.clickerBonusPercent);
+						clickerPlayer.clickerBonusPercent = Math.Max(0f, clickerPlayer.clickerBonusPercent);
 						return success;
 					}
 					else if (statName == "clickerRadiusAdd")
@@ -549,7 +549,7 @@ namespace ClickerClass
 							throw new Exception($"Call Error: The radius argument for the attempted message, \"{message}\" has returned null.");
 						}
 						clickerPlayer.clickerRadius += radius.Value;
-						clickerPlayer.clickerRadius = Math.Max(1f, clickerPlayer.clickerRadius);
+						clickerPlayer.clickerRadius = Math.Max(0f, clickerPlayer.clickerRadius);
 						return success;
 					}
 

@@ -23,7 +23,6 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-
 			SetRadius(item, 3.15f);
 			SetColor(item, new Color(255, 25, 25, 0));
 			SetDust(item, 50);

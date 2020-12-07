@@ -13,10 +13,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Honey Glazed Clicker");
 
-			//TODO HoneyGlazedClickerPro here
-			ClickEffect.StickyHoney = ClickerSystem.RegisterClickEffect(mod, "StickyHoney", "Sticky Honey", "Inflicts the Honey debuff, significantly slowing down enemies", 1, new Color(255, 175, 0, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.StickyHoney = ClickerSystem.RegisterClickEffect(mod, "StickyHoney", "Sticky Honey", "Covers enemies under cursor in sticky honey, slowing them", 1, new Color(255, 175, 0, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-
+				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<HoneyGlazedClickerPro>(), 0, 0f, player.whoAmI);
 			});
 		}
 
@@ -34,7 +33,6 @@ namespace ClickerClass.Items.Weapons.Clickers
 			item.knockBack = 2f;
 			item.value = 10000;
 			item.rare = 3;
-			item.shoot = ModContent.ProjectileType<HoneyGlazedClickerPro>();
 		}
 
 		public override void AddRecipes()

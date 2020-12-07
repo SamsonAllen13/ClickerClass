@@ -1,5 +1,9 @@
+using ClickerClass.Dusts;
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -10,10 +14,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("The Clicker");
 
-			//TODO orphaned?
-			ClickEffect.TheClick = ClickerSystem.RegisterClickEffect(mod, "TheClick", "The Click", "Causes the clicker's attacks to additionally deal damage equal to 1% of the enemy's maximum life", 1, new Color(255, 255, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.TheClick = ClickerSystem.RegisterClickEffect(mod, "TheClick", "The Click", "Deals an additional 1% of the enemy's maximum life as damage", 1, new Color(255, 255, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-
+				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<TheClickerPro>(), damage, 0f, player.whoAmI);
 			});
 		}
 

@@ -1,5 +1,7 @@
 using ClickerClass.Buffs;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
@@ -12,53 +14,34 @@ namespace ClickerClass.Projectiles
 			projectile.height = 30;
 			projectile.aiStyle = -1;
 			projectile.alpha = 255;
-			projectile.friendly = true;
 			projectile.tileCollide = false;
 			projectile.penetrate = -1;
-			projectile.timeLeft = 10;
-			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 10;
-		}
-
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-		{
-			target.AddBuff(ModContent.BuffType<HoneySlow>(), 90, false);
+			projectile.timeLeft = 6;
 		}
 
 		public override void Kill(int timeLeft)
 		{
 			Player player = Main.player[projectile.owner];
-
-			for (int k = 0; k < 5; k++)
+			for (int u = 0; u < Main.maxNPCs; u++)
 			{
-				Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, 153, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1.25f);
-				dust.noGravity = true;
-			}
-
-			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			if (clickerPlayer.accEnchantedLED2)
-			{
-				for (int k = 0; k < 5; k++)
+				NPC target = Main.npc[u];
+				if (target.CanBeChasedBy(projectile) && target.DistanceSQ(projectile.Center) < 100 * 20)
 				{
-					Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, 90, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
-					dust.noGravity = true;
-				}
-			}
-
-			if (clickerPlayer.accEnchantedLED)
-			{
-				for (int i = 0; i < 15; i++)
-				{
-					int dustType = Main.rand.Next(3);
-					switch (dustType)
+					target.AddBuff(ModContent.BuffType<HoneySlow>(), 90, false);
+					for (int i = 0; i < 15; i++)
 					{
-						case 0: dustType = 15; break;
-						case 1: dustType = 57; break;
-						default: dustType = 58; break;
+						int num6 = Dust.NewDust(target.position, target.width, target.height, 153, 0f, 0f, 100, default(Color), 1f);
+						Main.dust[num6].noGravity = true;
+						Main.dust[num6].velocity *= 0.75f;
+						int num7 = Main.rand.Next(-50, 51);
+						int num8 = Main.rand.Next(-50, 51);
+						Dust dust = Main.dust[num6];
+						dust.position.X = dust.position.X + (float)num7;
+						Dust dust2 = Main.dust[num6];
+						dust2.position.Y = dust2.position.Y + (float)num8;
+						Main.dust[num6].velocity.X = -(float)num7 * 0.075f;
+						Main.dust[num6].velocity.Y = -(float)num8 * 0.075f;
 					}
-					Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 100, default, 1.5f);
-					dust.velocity *= 1.5f;
-					dust.noGravity = true;
 				}
 			}
 		}

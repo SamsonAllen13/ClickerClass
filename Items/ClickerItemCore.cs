@@ -217,14 +217,7 @@ namespace ClickerClass.Items
 					if (tooltip != null)
 					{
 						string number = tooltip.text.Split(' ')[0];
-						if (!clickerPlayer.HasClickEffect(ClickEffect.TheClick))
-						{
-							tooltip.text = $"{number} click damage";
-						}
-						else
-						{
-							tooltip.text = $"{number} + 1% enemy life click damage";
-						}
+						tooltip.text = $"{number} click damage";
 					}
 
 					//Show the clicker's effects
@@ -265,11 +258,11 @@ namespace ClickerClass.Items
 								}
 							}
 
-							if (!showDesc)
+							if (!showDesc && ClickerConfigClient.Instance.ShowEffectSuggestion)
 							{
 								//Add ForMoreInfo as the last line
 								index = tooltips.FindLastIndex(tt => tt.mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
-								var ttl = new TooltipLine(mod, "ForMoreInfo", $"Hold 'Auto Select' key ({key}) to show click effects")
+								var ttl = new TooltipLine(mod, "ForMoreInfo", $"Hold 'Auto Select' key ({key}) while not auto-paused to show click effects")
 								{
 									overrideColor = Color.Gray
 								};

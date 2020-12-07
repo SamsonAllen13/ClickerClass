@@ -1,5 +1,7 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
@@ -11,8 +13,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Frozen Clicker");
 
-			//TODO lie because FrozenClickerPro
-			ClickEffect.Freeze = ClickerSystem.RegisterClickEffect(mod, "Freeze", "Freeze", "Inflicts the Frozen debuff", 1, new Color(175, 255, 255, 0), null);
+			ClickEffect.Freeze = ClickerSystem.RegisterClickEffect(mod, "Freeze", "Freeze", "Freezes enemies under your cursor, stopping them in place", 1, new Color(175, 255, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<FrozenClickerPro>(), 0, 0f, player.whoAmI);
+			});
 		}
 
 		public override void SetDefaults()
@@ -20,7 +24,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetDefaults();
 			SetRadius(item, 6f);
 			SetColor(item, new Color(175, 255, 255, 0));
-			SetDust(item, 15);
+			SetDust(item, 92);
 			AddEffect(item, ClickEffect.Freeze);
 
 			item.damage = 82;
@@ -29,7 +33,6 @@ namespace ClickerClass.Items.Weapons.Clickers
 			item.knockBack = 1f;
 			item.value = 500000;
 			item.rare = 8;
-			item.shoot = ModContent.ProjectileType<FrozenClickerPro>();
 		}
 	}
 }

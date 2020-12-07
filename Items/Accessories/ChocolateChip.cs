@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Accessories
 			base.SetStaticDefaults();
 			Tooltip.SetDefault("Every 15 clicks releases a burst of damaging chocolate");
 
-			ClickEffect.ChocolateChip = ClickerSystem.RegisterClickEffect(mod, "ChocolateChip", "Chocolate Chip", "Releases a burst of damaging chocolate", 15, Color.Brown, delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.ChocolateChip = ClickerSystem.RegisterClickEffect(mod, "ChocolateChip", "Chocolate Chip", "Releases a burst of damaging chocolate", 15, new Color(165, 110, 60, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 112);
 				for (int k = 0; k < 6; k++)

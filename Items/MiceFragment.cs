@@ -9,8 +9,6 @@ namespace ClickerClass.Items
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Mice Fragment");
-			Tooltip.SetDefault("'Erratic sparks skitter across this fragment'");
 			ItemID.Sets.ItemIconPulse[item.type] = true;
 			ItemID.Sets.ItemNoGravity[item.type] = true;
 		}

@@ -12,24 +12,17 @@ namespace ClickerClass.Prefixes
 		internal float radiusBonus = 0;
 		internal int clickBonus = 0;
 		internal int critBonus = 0;
-		internal string displayName;
 
 		public override PrefixCategory Category => PrefixCategory.Custom;
 
 		public ClickerPrefix() { }
 
-		public ClickerPrefix(string displayName, float damageMult, float radiusBonus, int clickBonus, int critBonus)
+		public ClickerPrefix(float damageMult, float radiusBonus, int clickBonus, int critBonus)
 		{
-			this.displayName = displayName;
 			this.damageMult = damageMult;
 			this.radiusBonus = radiusBonus;
 			this.clickBonus = clickBonus;
 			this.critBonus = critBonus;
-		}
-
-		public override void SetDefaults()
-		{
-			DisplayName.SetDefault(displayName);
 		}
 
 		public override bool Autoload(ref string name)
@@ -37,12 +30,12 @@ namespace ClickerClass.Prefixes
 			if (base.Autoload(ref name))
 			{
 				ClickerPrefixes = new List<byte>();
-				AddClickerPrefix(ClickerPrefixType.Elite, "Elite", 1.15f, 0.3f, -1, 2);
-				AddClickerPrefix(ClickerPrefixType.Pro, "Pro", 1.1f, 0.2f, 0, 2);
-				AddClickerPrefix(ClickerPrefixType.Amateur, "Amateur", 1f, 0.3f, -1, 0);
-				AddClickerPrefix(ClickerPrefixType.Novice, "Novice", 1f, 0.2f, 0, 0);
-				AddClickerPrefix(ClickerPrefixType.Laggy, "Laggy", 0.9f, -0.2f, 0, 0);
-				AddClickerPrefix(ClickerPrefixType.Disconnected, "Disconnected", 0.8f, -0.3f, 1, 0);
+				AddClickerPrefix(ClickerPrefixType.Elite, 1.15f, 0.3f, -1, 2);
+				AddClickerPrefix(ClickerPrefixType.Pro, 1.1f, 0.2f, 0, 2);
+				AddClickerPrefix(ClickerPrefixType.Amateur, 1f, 0.3f, -1, 0);
+				AddClickerPrefix(ClickerPrefixType.Novice, 1f, 0.2f, 0, 0);
+				AddClickerPrefix(ClickerPrefixType.Laggy, 0.9f, -0.2f, 0, 0);
+				AddClickerPrefix(ClickerPrefixType.Disconnected, 0.8f, -0.3f, 1, 0);
 			}
 			return false;
 		}
@@ -73,9 +66,9 @@ namespace ClickerClass.Prefixes
 			critBonus = this.critBonus;
 		}
 
-		private void AddClickerPrefix(ClickerPrefixType prefixType, string displayName, float damageMult = 1f, float radiusBonus = 0f, int clickBonus = 0, int critBonus = 0)
+		private void AddClickerPrefix(ClickerPrefixType prefixType, float damageMult = 1f, float radiusBonus = 0f, int clickBonus = 0, int critBonus = 0)
 		{
-			mod.AddPrefix(prefixType.ToString(), new ClickerPrefix(displayName, damageMult, radiusBonus, clickBonus, critBonus));
+			mod.AddPrefix(prefixType.ToString(), new ClickerPrefix(damageMult, radiusBonus, clickBonus, critBonus));
 			ClickerPrefixes.Add(mod.GetPrefix(prefixType.ToString()).Type);
 		}
 	}

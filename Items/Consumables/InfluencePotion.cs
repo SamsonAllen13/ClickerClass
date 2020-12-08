@@ -10,8 +10,6 @@ namespace ClickerClass.Items.Consumables
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Influence Potion");
-			Tooltip.SetDefault("Increases your base click radius by 20%");
 		}
 
 		public override void SetDefaults()

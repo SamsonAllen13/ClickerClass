@@ -7,15 +7,14 @@ namespace ClickerClass.Buffs
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Cookie");
-			Description.SetDefault("Increases your click damage, radius, and life regeneration");
 			Main.buffNoSave[Type] = false;
 		}
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerRadius += 0.4f;
-			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.1f;
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+			clickerPlayer.clickerRadius += 0.4f;
+			clickerPlayer.clickerDamage += 0.1f;
 			player.lifeRegen += 2;
 		}
 	}

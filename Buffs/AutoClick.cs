@@ -7,8 +7,6 @@ namespace ClickerClass.Buffs
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Auto Click");
-			Description.SetDefault("Hold down the Left Mouse Button to auto click");
 			Main.buffNoSave[Type] = false;
 		}
 

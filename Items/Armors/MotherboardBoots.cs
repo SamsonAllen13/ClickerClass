@@ -10,8 +10,6 @@ namespace ClickerClass.Items.Armors
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Motherboard Boots");
-			Tooltip.SetDefault("Increases click damage by 6%");
 		}
 
 		public override void SetDefaults()

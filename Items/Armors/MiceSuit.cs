@@ -10,9 +10,6 @@ namespace ClickerClass.Items.Armors
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Mice Suit");
-			Tooltip.SetDefault("Increases click damage by 10%"
-							+ "\nIncreases your base click radius by 25%");
 		}
 
 		public override void SetDefaults()

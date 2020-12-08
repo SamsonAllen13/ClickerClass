@@ -10,8 +10,6 @@ namespace ClickerClass.Items.Armors
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Overclock Boots");
-			Tooltip.SetDefault("Increases movement speed by 10%");
 		}
 
 		public override void SetDefaults()

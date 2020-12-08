@@ -1,0 +1,8 @@
+zh-Hans 242
+ru-RU 242
+pt-BR 242
+pl-PL 242
+it-IT 242
+fr-FR 242
+es-ES 242
+de-DE 242

@@ -12,9 +12,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Captain's Clicker");
 
-			ClickEffect.Bombard = ClickerSystem.RegisterClickEffect(mod, "Bombard", "Bombard", "Causes 4 cannonballs to rain from the sky", 12, new Color(255, 225, 50, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Bombard = ClickerSystem.RegisterClickEffect(mod, "Bombard", null, null, 12, new Color(255, 225, 50), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 14);
 
@@ -39,7 +38,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 3.15f);
-			SetColor(item, new Color(255, 225, 50, 0));
+			SetColor(item, new Color(255, 225, 50));
 			SetDust(item, 10);
 			AddEffect(item, ClickEffect.Bombard);
 

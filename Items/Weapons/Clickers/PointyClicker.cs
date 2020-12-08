@@ -12,9 +12,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Pointy Clicker");
 
-			ClickEffect.StingingThorn = ClickerSystem.RegisterClickEffect(mod, "StingingThorn", "Stinging Thorn", "Fires a thorn projectile that travels towards the nearest enemy", 8, new Color(100, 175, 75, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.StingingThorn = ClickerSystem.RegisterClickEffect(mod, "StingingThorn", null, null, 8, new Color(100, 175, 75), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 17);
 
@@ -48,7 +47,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 2.35f);
-			SetColor(item, new Color(100, 175, 75, 0));
+			SetColor(item, new Color(100, 175, 75));
 			SetDust(item, 39);
 			AddEffect(item, ClickEffect.StingingThorn);
 

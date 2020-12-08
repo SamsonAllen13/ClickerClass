@@ -12,9 +12,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Mice Clicker");
 
-			ClickEffect.Collision = ClickerSystem.RegisterClickEffect(mod, "Collision", "Collision", "Fires out 8 erratic bolts outwards that, after a second, collapse back", 10, new Color(150, 150, 225, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Collision = ClickerSystem.RegisterClickEffect(mod, "Collision", null, null, 10, new Color(150, 150, 225), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 105);
 				for (int k = 0; k < 8; k++)
@@ -33,7 +32,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 6f);
-			SetColor(item, new Color(150, 150, 225, 0));
+			SetColor(item, new Color(150, 150, 225));
 			SetDust(item, ModContent.DustType<MiceDust>());
 			AddEffect(item, ClickEffect.Collision);
 

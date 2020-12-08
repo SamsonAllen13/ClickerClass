@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Crimson Clicker");
 
-			ClickEffect.Infest = ClickerSystem.RegisterClickEffect(mod, "Infest", "Infest", "Fires 8 ichor streams that home in at enemies", 10, new Color(255, 225, 175, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Infest = ClickerSystem.RegisterClickEffect(mod, "Infest", null, null, 10, new Color(255, 225, 175), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
 				for (int k = 0; k < 8; k++)
@@ -27,7 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 2.9f);
-			SetColor(item, new Color(255, 225, 175, 0));
+			SetColor(item, new Color(255, 225, 175));
 			SetDust(item, 87);
 			AddEffect(item, ClickEffect.Infest);
 

@@ -9,14 +9,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Iron Clicker");
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
 			SetRadius(item, 1.25f);
-			SetColor(item, new Color(150, 125, 125, 0));
+			SetColor(item, new Color(150, 125, 125));
 			SetDust(item, 8);
 			AddEffect(item, ClickEffect.DoubleClick);
 

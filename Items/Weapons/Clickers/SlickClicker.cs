@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Slick Clicker");
 
-			ClickEffect.Splash = ClickerSystem.RegisterClickEffect(mod, "Splash", "Splash", "Creates a fountain of 6 damaging water projectiles", 6, new Color(75, 75, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Splash = ClickerSystem.RegisterClickEffect(mod, "Splash", null, null, 6, new Color(75, 75, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 86);
 				for (int k = 0; k < 6; k++)
@@ -27,7 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 2.45f);
-			SetColor(item, new Color(75, 75, 255, 0));
+			SetColor(item, new Color(75, 75, 255));
 			SetDust(item, 33);
 			AddEffect(item, ClickEffect.Splash);
 

@@ -9,14 +9,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Copper Clicker");
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
 			SetRadius(item, 1.1f);
-			SetColor(item, new Color(255, 150, 75, 0));
+			SetColor(item, new Color(255, 150, 75));
 			SetDust(item, 9);
 			AddEffect(item, ClickEffect.DoubleClick);
 

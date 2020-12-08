@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Palladium Clicker");
 
-			ClickEffect.Regenerate = ClickerSystem.RegisterClickEffect(mod, "Regenerate", "Regenerate", "Grants the Rapid Healing buff, increasing the player's life regeneration", 8, new Color(250, 150, 100, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Regenerate = ClickerSystem.RegisterClickEffect(mod, "Regenerate", null, null, 8, new Color(250, 150, 100), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
 				player.AddBuff(BuffID.RapidHealing, 120, false);
@@ -38,7 +37,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 2.85f);
-			SetColor(item, new Color(250, 150, 100, 0));
+			SetColor(item, new Color(250, 150, 100));
 			SetDust(item, 144);
 			AddEffect(item, ClickEffect.Regenerate);
 

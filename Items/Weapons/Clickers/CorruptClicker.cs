@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Corrupt Clicker");
 
-			ClickEffect.CursedEruption = ClickerSystem.RegisterClickEffect(mod, "CursedEruption", "Cursed Eruption", "Deals damage in a large area of effect and inflicts Oiled and Cursed Inferno", 8, new Color(125, 255, 0, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.CursedEruption = ClickerSystem.RegisterClickEffect(mod, "CursedEruption", null, null, 8, new Color(125, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 74);
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<CorruptClickerPro>(), damage, knockBack, player.whoAmI);
@@ -29,7 +28,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 3.25f);
-			SetColor(item, new Color(125, 255, 0, 0));
+			SetColor(item, new Color(125, 255, 0));
 			SetDust(item, 163);
 			AddEffect(item, ClickEffect.CursedEruption);
 

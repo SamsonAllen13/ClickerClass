@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Frozen Clicker");
 
-			ClickEffect.Freeze = ClickerSystem.RegisterClickEffect(mod, "Freeze", "Freeze", "Freezes enemies under your cursor, stopping them in place", 1, new Color(175, 255, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Freeze = ClickerSystem.RegisterClickEffect(mod, "Freeze", null, null, 1, new Color(175, 255, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<FrozenClickerPro>(), 0, 0f, player.whoAmI);
 			});
@@ -23,7 +22,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 6f);
-			SetColor(item, new Color(175, 255, 255, 0));
+			SetColor(item, new Color(175, 255, 255));
 			SetDust(item, 92);
 			AddEffect(item, ClickEffect.Freeze);
 

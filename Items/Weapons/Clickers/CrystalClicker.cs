@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Crystal Clicker");
 
-			ClickEffect.Dazzle = ClickerSystem.RegisterClickEffect(mod, "Dazzle", "Dazzle", "Inflicts the Confused debuff", 8, new Color(200, 50, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Dazzle = ClickerSystem.RegisterClickEffect(mod, "Dazzle", null, null, 8, new Color(200, 50, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 28);
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<CrystalClickerPro>(), 0, knockBack, player.whoAmI);
@@ -24,7 +23,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 3.1f);
-			SetColor(item, new Color(200, 50, 255, 0));
+			SetColor(item, new Color(200, 50, 255));
 			SetDust(item, 86);
 			AddEffect(item, ClickEffect.Dazzle);
 

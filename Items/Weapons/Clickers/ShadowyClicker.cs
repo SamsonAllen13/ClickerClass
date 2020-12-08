@@ -10,9 +10,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Shadowy Clicker");
 
-			ClickEffect.Curse = ClickerSystem.RegisterClickEffect(mod, "Curse", "Curse", "Fires a shadowflame skull towards the nearest enemy", 12, new Color(150, 100, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Curse = ClickerSystem.RegisterClickEffect(mod, "Curse", null, null, 12, new Color(150, 100, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 104);
 				for (int k = 0; k < 15; k++)
@@ -51,7 +50,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 2.15f);
-			SetColor(item, new Color(150, 100, 255, 0));
+			SetColor(item, new Color(150, 100, 255));
 			SetDust(item, 27);
 			AddEffect(item, ClickEffect.Curse);
 

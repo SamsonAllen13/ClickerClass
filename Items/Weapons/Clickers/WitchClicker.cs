@@ -11,7 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Witch Clicker");
 
-			ClickEffect.WildMagic = ClickerSystem.RegisterClickEffect(mod, "WildMagic", "Wild Magic", "Randomly acts as any possible click effect", 6, new Color(175, 75, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.WildMagic = ClickerSystem.RegisterClickEffect(mod, "WildMagic", null, null, 6, new Color(175, 75, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+
 			{
 				List<string> excluded = new List<string>
 				{
@@ -43,7 +44,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 6f);
-			SetColor(item, new Color(175, 75, 255, 0));
+			SetColor(item, new Color(175, 75, 255));
 			SetDust(item, 173);
 			AddEffect(item, ClickEffect.WildMagic);
 

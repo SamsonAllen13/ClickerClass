@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Sinister Clicker");
 
-			ClickEffect.Siphon = ClickerSystem.RegisterClickEffect(mod, "Siphon", "Siphon", "Deals a small amount of damage and restores the player's health by 5", 10, new Color(100, 25, 25, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Siphon = ClickerSystem.RegisterClickEffect(mod, "Siphon", null, null, 10, new Color(100, 25, 25), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 112);
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<SinisterClickerPro>(), (int)(damage * 0.50f), knockBack, player.whoAmI);
@@ -38,7 +37,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 2.2f);
-			SetColor(item, new Color(100, 25, 25, 0));
+			SetColor(item, new Color(100, 25, 25));
 			SetDust(item, 5);
 			AddEffect(item, ClickEffect.Siphon);
 

@@ -12,9 +12,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Arthur's Clicker");
 
-			ClickEffect.HolyNova = ClickerSystem.RegisterClickEffect(mod, "HolyNova", "Holy Nova", "Damages every enemy within the clicker's radius with a guaranteed critical hit", 12, new Color(255, 225, 0, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.HolyNova = ClickerSystem.RegisterClickEffect(mod, "HolyNova", null, null, 12, new Color(255, 225, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.NPCHit, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 5);
 				for (int u = 0; u < Main.maxNPCs; u++)
@@ -61,7 +60,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 3.5f);
-			SetColor(item, new Color(255, 225, 0, 0));
+			SetColor(item, new Color(255, 225, 0));
 			SetDust(item, 87);
 			AddEffect(item, ClickEffect.HolyNova);
 

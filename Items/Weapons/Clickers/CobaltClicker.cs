@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Cobalt Clicker");
 
-			ClickEffect.Haste = ClickerSystem.RegisterClickEffect(mod, "Haste", "Haste", "Grants a jump boost and increased movement speed", 5, new Color(50, 125, 200, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Haste = ClickerSystem.RegisterClickEffect(mod, "Haste", null, null, 5, new Color(50, 125, 200), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
 				player.AddBuff(ModContent.BuffType<Haste>(), 300, false);
@@ -38,7 +37,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 2.75f);
-			SetColor(item, new Color(50, 125, 200, 0));
+			SetColor(item, new Color(50, 125, 200));
 			SetDust(item, 48);
 			AddEffect(item, ClickEffect.Haste);
 

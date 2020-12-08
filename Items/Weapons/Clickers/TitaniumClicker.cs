@@ -11,9 +11,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Titanium Clicker");
 
-			ClickEffect.RazorsEdge = ClickerSystem.RegisterClickEffect(mod, "RazorsEdge", "Razor's Edge", "Fires out 5 orbiting sawblades that spread outwards", 12, new Color(150, 150, 150, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.RazorsEdge = ClickerSystem.RegisterClickEffect(mod, "RazorsEdge", null, null, 12, new Color(150, 150, 150), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 22);
 				for (int k = 0; k < 5; k++)
@@ -32,7 +32,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 3.25f);
-			SetColor(item, new Color(150, 150, 150, 0));
+			SetColor(item, new Color(150, 150, 150));
 			SetDust(item, 146);
 			AddEffect(item, ClickEffect.RazorsEdge);
 

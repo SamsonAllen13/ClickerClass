@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Hemo Clicker");
 
-			ClickEffect.Linger = ClickerSystem.RegisterClickEffect(mod, "Linger", "Linger", "Creates 5 gravity-affected blood globules that linger", 10, new Color(255, 50, 50, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Linger = ClickerSystem.RegisterClickEffect(mod, "Linger", null, null, 10, new Color(255, 50, 50), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.NPCHit, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 13);
 				for (int k = 0; k < 5; k++)
@@ -27,7 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 1.75f);
-			SetColor(item, new Color(255, 50, 50, 0));
+			SetColor(item, new Color(255, 50, 50));
 			SetDust(item, 5);
 			AddEffect(item, ClickEffect.Linger);
 

@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Shroomite Clicker");
 
-			ClickEffect.AutoClick = ClickerSystem.RegisterClickEffect(mod, "AutoClick", "Auto Click", "Grants the Auto Click buff, reducing the use time, but granting auto-use", 20, new Color(150, 150, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.AutoClick = ClickerSystem.RegisterClickEffect(mod, "AutoClick", null, null, 20, new Color(150, 150, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				player.GetModPlayer<ClickerPlayer>().clickAmount++;
 				Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
@@ -39,7 +38,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 6f);
-			SetColor(item, new Color(150, 150, 255, 0));
+			SetColor(item, new Color(150, 150, 255));
 			SetDust(item, 113);
 			AddEffect(item, ClickEffect.AutoClick);
 

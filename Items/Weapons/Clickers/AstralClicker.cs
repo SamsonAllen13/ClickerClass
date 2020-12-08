@@ -12,9 +12,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Astral Clicker");
 
-			ClickEffect.Spiral = ClickerSystem.RegisterClickEffect(mod, "Spiral", "Spiral", "Creates a spiral galaxy that draws in enemies within close proximity", 15, new Color(150, 150, 225, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Spiral = ClickerSystem.RegisterClickEffect(mod, "Spiral", null, null, 15, new Color(150, 150, 225), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 117);
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<AstralClickerPro>(), (int)(damage * 3f), 0f, player.whoAmI);
@@ -30,7 +29,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 6f);
-			SetColor(item, new Color(150, 150, 225, 0));
+			SetColor(item, new Color(150, 150, 225));
 			SetDust(item, ModContent.DustType<MiceDust>());
 			AddEffect(item, ClickEffect.Spiral);
 

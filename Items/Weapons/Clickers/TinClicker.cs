@@ -9,14 +9,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Tin Clicker");
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
 			SetRadius(item, 1.15f);
-			SetColor(item, new Color(125, 125, 75, 0));
+			SetColor(item, new Color(125, 125, 75));
 			SetDust(item, 81);
 			AddEffect(item, ClickEffect.DoubleClick);
 

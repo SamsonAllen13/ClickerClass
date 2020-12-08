@@ -9,14 +9,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Wooden Clicker");
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
 			SetRadius(item, 0.85f);
-			SetColor(item, new Color(125, 100, 75, 0));
+			SetColor(item, new Color(125, 100, 75));
 			SetDust(item, 0);
 
 			item.damage = 4;

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using ClickerClass.Utilities;
 
 namespace ClickerClass
 {
@@ -48,7 +49,7 @@ namespace ClickerClass
 			ClickEffectsByName = null;
 		}
 
-		public static string EffectName(Mod mod, string displayName) => $"{mod.Name}:{displayName}";
+		public static string UniqueEffectName(Mod mod, string internalName) => $"{mod.Name}:{internalName}";
 
 		/// <summary>
 		/// Returns the effect dictionary
@@ -71,7 +72,9 @@ namespace ClickerClass
 
 		/// <summary>
 		/// Mod Compat way of accessing an effect's stats. <see cref="null"/> if not found.
-		/// "InternalName": The unique name (string).
+		/// "Mod": The mod the effect belongs to (string).
+		/// | "InternalName": The internal name (string).
+		/// | "UniqueName": The unique name (string).
 		/// | "DisplayName": The displayed name (string).
 		/// | "Description": The description (string).
 		/// | "Amount": The amount of clicks to trigger the effect (int).
@@ -135,8 +138,8 @@ namespace ClickerClass
 		/// </summary>
 		/// <param name="mod">The mod this effect belongs to. ONLY USE YOUR OWN MOD INSTANCE FOR THIS!</param>
 		/// <param name="internalName">The internal name of the effect. Turns into the unique name combined with the associated mod</param>
-		/// <param name="displayName">The name of the effect</param>
-		/// <param name="description">The basic description of the effect, string.Empty for none</param>
+		/// <param name="displayName">The name of the effect, null if you use lang keys (Defaults to ClickEffect.[internalName].Name)</param>
+		/// <param name="description">The basic description of the effect, string.Empty for none, null if you use lang keys (Defaults to ClickEffect.[internalName].Description)</param>
 		/// <param name="amount">The amount of clicks required to trigger the effect</param>
 		/// <param name="action">The method that runs when the effect is triggered</param>
 		/// <returns>The unique identifier</returns>
@@ -152,18 +155,27 @@ namespace ClickerClass
 				throw new InvalidOperationException($"internalName is either null or empty. Give it a proper value");
 			}
 
-			string name = EffectName(mod, internalName);
+			string uniqueName = UniqueEffectName(mod, internalName);
 
-			ClickEffect effect = new ClickEffect(name, displayName, description, amount, color, action);
+			ClickEffect effect = new ClickEffect(mod, internalName, displayName, description, amount, color, action);
 
-			if (!IsClickEffect(name, out _))
+			if (!IsClickEffect(uniqueName, out _))
 			{
-				ClickEffectsByName.Add(name, effect);
-				return name;
+				ClickEffectsByName.Add(uniqueName, effect);
+				return uniqueName;
 			}
 			else
 			{
-				throw new InvalidOperationException($"The effect '{name}' has already been registered, duplicate detected");
+				throw new InvalidOperationException($"The effect '{uniqueName}' has already been registered, duplicate detected");
+			}
+		}
+
+		internal static void FinalizeLocalization()
+		{
+			// Modded Localization keys are initialized before AddRecipes, so we need to do this late.
+			foreach (var effect in ClickEffectsByName.Values)
+			{
+				effect.FinalizeLocalization();
 			}
 		}
 
@@ -255,7 +267,9 @@ namespace ClickerClass
 					}
 				}
 			}
-			modItem.Tooltip.SetDefault("Click on an enemy within range and sight to damage them");
+			//TODO tooltip
+			//Common.Tooltips.Clicker=Click on an enemy within range and sight to damage them
+			modItem.Tooltip.SetDefault(LangHelper.GetText("Common.Tooltips.Clicker"));
 		}
 
 		/// <summary>

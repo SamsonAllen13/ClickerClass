@@ -90,10 +90,11 @@ namespace ClickerClass
 						nameOfargument = "mod";
 					if (internalName == null)
 						nameOfargument = "internalName";
-					if (displayName == null)
-						nameOfargument = "displayName";
-					if (description == null)
-						nameOfargument = "description";
+					//null -> localized
+					//if (displayName == null)
+					//	nameOfargument = "displayName";
+					//if (description == null)
+					//	nameOfargument = "description";
 					if (amount == null)
 						nameOfargument = "amount";
 					if (color == null)
@@ -305,6 +306,18 @@ namespace ClickerClass
 					if (effectName == null)
 					{
 						throw new Exception($"Call Error: The effectName argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					if (apiVersion < latestVersion)
+					{
+						var dict = ClickerSystem.GetClickEffectAsDict(effectName);
+						dict["InternalName"] = dict["UniqueName"];
+						dict.Remove("UniqueName");
+						dict.Remove("Mod");
+
+						//API Change: InternalName now not prefixed with Mod, separate thing -> UniqueName
+						//restore data suitable for the old version
+						return dict;
 					}
 
 					//Dictionary<string, object>

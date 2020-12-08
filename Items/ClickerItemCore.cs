@@ -2,6 +2,7 @@
 using ClickerClass.Dusts;
 using ClickerClass.Prefixes;
 using ClickerClass.Projectiles;
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -193,7 +194,7 @@ namespace ClickerClass.Items
 					index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
 					if (index != -1)
 					{
-						tooltips.Insert(index + 1, new TooltipLine(mod, "ClickerTag", "-Clicker Class-")
+						tooltips.Insert(index + 1, new TooltipLine(mod, "ClickerTag", $"-{LangHelper.GetText("Tooltip.ClickerTag")}-")
 						{
 							overrideColor = Main.DiscoColor
 						});
@@ -207,7 +208,7 @@ namespace ClickerClass.Items
 					if (index != -1)
 					{
 						string color = (new Color(252, 210, 44) * alpha).Hex3();
-						tooltips.Add(new TooltipLine(mod, "TransformationText", $"Total clicks: [c/{color}:{clickerPlayer.clickerTotal}]"));
+						tooltips.Add(new TooltipLine(mod, "TransformationText", $"{LangHelper.GetText("Tooltip.TotalClicks")}: [c/{color}:{clickerPlayer.clickerTotal}]"));
 					}
 				}
 
@@ -217,7 +218,7 @@ namespace ClickerClass.Items
 					if (tooltip != null)
 					{
 						string number = tooltip.text.Split(' ')[0];
-						tooltip.text = $"{number} click damage";
+						tooltip.text = LangHelper.GetText("Tooltip.ClickDamage", number);
 					}
 
 					//Show the clicker's effects
@@ -262,7 +263,7 @@ namespace ClickerClass.Items
 							{
 								//Add ForMoreInfo as the last line
 								index = tooltips.FindLastIndex(tt => tt.mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
-								var ttl = new TooltipLine(mod, "ForMoreInfo", $"Hold 'Auto Select' key ({key}) while not auto-paused to show click effects")
+								var ttl = new TooltipLine(mod, "ForMoreInfo", LangHelper.GetText("Tooltip.ForMoreInfo", key))
 								{
 									overrideColor = Color.Gray
 								};
@@ -280,6 +281,7 @@ namespace ClickerClass.Items
 					}
 				}
 
+
 				if (item.prefix < PrefixID.Count || !ClickerPrefix.ClickerPrefixes.Contains(item.prefix))
 				{
 					return;
@@ -290,7 +292,7 @@ namespace ClickerClass.Items
 				{
 					if (radiusBoostPrefix != 0)
 					{
-						TooltipLine tt = new TooltipLine(mod, "PrefixClickerRadius", (radiusBoostPrefix > 0 ? "+" : "") + (int)((radiusBoostPrefix / 2) * 100) + "% base clicker radius")
+						TooltipLine tt = new TooltipLine(mod, "PrefixClickerRadius", (radiusBoostPrefix > 0 ? "+" : "") + LangHelper.GetText("Prefix.PrefixClickerRadius.Tooltip", (int)((radiusBoostPrefix / 2) * 100)))
 						{
 							isModifier = true,
 							isModifierBad = radiusBoostPrefix < 0
@@ -299,7 +301,7 @@ namespace ClickerClass.Items
 					}
 					if (radiusBoostPrefix != 0)
 					{
-						TooltipLine tt = new TooltipLine(mod, "PrefixClickBoost", (clickBoostPrefix < 0 ? "" : "+") + clickBoostPrefix + " clicks required")
+						TooltipLine tt = new TooltipLine(mod, "PrefixClickBoost", (clickBoostPrefix < 0 ? "" : "+") + LangHelper.GetText("Prefix.PrefixClickBoost.Tooltip", clickBoostPrefix))
 						{
 							isModifier = true,
 							isModifierBad = clickBoostPrefix > 0

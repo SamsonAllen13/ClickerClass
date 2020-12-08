@@ -22,7 +22,7 @@ namespace ClickerClass
 		{
 			finalizedRegisterCompat = false;
 			mod = this;
-			AutoClickKey = RegisterHotKey("Clicker Accessory", "G");
+			AutoClickKey = RegisterHotKey("Clicker Accessory", "G"); //Can't localize this
 			ClickerSystem.Load();
 			ClickEffect.LoadMiscEffects();
 
@@ -92,6 +92,7 @@ namespace ClickerClass
 		public override void PostAddRecipes()
 		{
 			finalizedRegisterCompat = true;
+			ClickerSystem.FinalizeLocalization();
 		}
 
 		public override void AddRecipeGroups()

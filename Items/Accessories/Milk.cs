@@ -10,8 +10,6 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Glass of Milk");
-			Tooltip.SetDefault("Gain up to 15% clicker damage based on your amount of clicks within a second");
 		}
 
 		public override void SetDefaults()

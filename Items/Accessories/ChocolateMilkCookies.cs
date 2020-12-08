@@ -9,11 +9,6 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Chocolate Milk n' Cookies");
-			Tooltip.SetDefault("While equipped, cookies will periodically spawn within your clicker radius"
-							+ "\nClick the cookie to gain bonus clicker damage, radius, and life regeneration"
-							+ "\nGain up to 15% clicker damage based on your amount of clicks within a second"
-							+ "\nEvery 15 clicks releases a burst of damaging chocolate");
 		}
 
 		public override void SetDefaults()

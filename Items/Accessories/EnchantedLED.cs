@@ -7,9 +7,6 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Enchanted LED");
-			Tooltip.SetDefault("Your clicks produce an enchanted burst of light, while accessory is visible"
-							+ "\nIncreases click damage by 2");
 		}
 
 		public override void SetDefaults()

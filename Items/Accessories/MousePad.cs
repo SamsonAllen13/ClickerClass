@@ -7,7 +7,6 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Tooltip.SetDefault("Increases your base click radius by 25%");
 		}
 
 		public override void SetDefaults()

@@ -9,7 +9,6 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Tooltip.SetDefault("Clicking within the inner 20% of your clicker radius deals 20% more damage");
 		}
 
 		public override void SetDefaults()

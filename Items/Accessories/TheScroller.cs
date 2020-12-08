@@ -12,9 +12,7 @@ namespace ClickerClass.Items.Accessories
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("The Scroller");
-			Tooltip.SetDefault("Allows flight and slow fall"
-							+ "\nHold DOWN to fall faster");
+
 		}
 
 		public override void SetDefaults()

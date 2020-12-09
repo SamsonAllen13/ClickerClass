@@ -24,7 +24,7 @@
 # BuffDescription.HoneySlow=Movement speed significantly reduced
 
 # BuffName.InfluenceBuff=Influence
-# BuffDescription.InfluenceBuff=Increases your base click radius by 20%
+# BuffDescription.InfluenceBuff={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%
 
 # BuffName.OverclockBuff=Overclock
 # BuffDescription.OverclockBuff=Every click will trigger a click effect

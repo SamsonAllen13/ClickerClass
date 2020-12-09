@@ -8,8 +8,6 @@ namespace ClickerClass.Buffs
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Gouge");
-			Description.SetDefault("Rapidly losing life");
 			Main.debuff[Type] = true;
 			Main.pvpBuff[Type] = true;
 			Main.buffNoSave[Type] = true;

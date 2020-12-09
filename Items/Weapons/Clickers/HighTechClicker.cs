@@ -10,9 +10,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("High Tech Clicker");
 
-			ClickEffect.Discharge = ClickerSystem.RegisterClickEffect(mod, "Discharge", "Discharge", "Blasts out 4 short-ranged lasers around the cursor", 10, new Color(75, 255, 200, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Discharge = ClickerSystem.RegisterClickEffect(mod, "Discharge", null, null, 10, new Color(75, 255, 200), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 94);
 				for (int k = 0; k < 4; k++)
@@ -31,7 +30,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 6f);
-			SetColor(item, new Color(75, 255, 200, 0));
+			SetColor(item, new Color(75, 255, 200));
 			SetDust(item, 226);
 			AddEffect(item, ClickEffect.Discharge);
 

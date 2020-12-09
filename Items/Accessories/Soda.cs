@@ -10,7 +10,6 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Tooltip.SetDefault("Reduces the amount of clicks required for a click effect by 1");
 		}
 
 		public override void SetDefaults()

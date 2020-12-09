@@ -12,9 +12,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Space Clicker");
 
-			ClickEffect.StarStorm = ClickerSystem.RegisterClickEffect(mod, "StarStorm", "Star Storm", "Causes 3 stars to fall from the sky and explode", 6, new Color(175, 75, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.StarStorm = ClickerSystem.RegisterClickEffect(mod, "StarStorm", null, null, 6, new Color(175, 75, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 42);
 
@@ -39,7 +38,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 2.25f);
-			SetColor(item, new Color(175, 125, 125, 0));
+			SetColor(item, new Color(175, 125, 125));
 			SetDust(item, 174);
 			AddEffect(item, ClickEffect.StarStorm);
 

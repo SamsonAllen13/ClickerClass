@@ -10,10 +10,8 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Tooltip.SetDefault("Every 10 clicks sticks damaging slime on to your screen");
 
-			ClickEffect.StickyKeychain = ClickerSystem.RegisterClickEffect(mod, "StickyKeychain", "Sticky Keychain", "Sticks damaging slime on to your screen", 10, new Color(145, 180, 230, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
-			{
+			ClickEffect.StickyKeychain = ClickerSystem.RegisterClickEffect(mod, "StickyKeychain", null, null, 10, new Color(145, 180, 230, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)			{
 				Main.PlaySound(3, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 13);
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<StickyKeychainPro>(), (int)(damage * 0.5), 3f, player.whoAmI, Main.rand.Next(3));
 				for (int k = 0; k < 20; k++)

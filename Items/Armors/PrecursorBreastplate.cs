@@ -10,9 +10,6 @@ namespace ClickerClass.Items.Armors
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Precursor Breastplate");
-			Tooltip.SetDefault("Increases click damage by 15%"
-							+ "\nReduces base clicker radius by 50%");
 		}
 
 		public override void SetDefaults()

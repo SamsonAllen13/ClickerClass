@@ -7,7 +7,6 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Tooltip.SetDefault("15% increased clicker damage");
 		}
 
 		public override void SetDefaults()

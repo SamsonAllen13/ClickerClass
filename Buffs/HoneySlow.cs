@@ -8,8 +8,6 @@ namespace ClickerClass.Buffs
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Honey");
-			Description.SetDefault("Movement speed significantly reduced");
 			Main.debuff[Type] = true;
 			Main.pvpBuff[Type] = true;
 			Main.buffNoSave[Type] = true;

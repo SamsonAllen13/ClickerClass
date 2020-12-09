@@ -8,14 +8,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Platinum Clicker");
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
 			SetRadius(item, 1.65f);
-			SetColor(item, new Color(125, 150, 175, 0));
+			SetColor(item, new Color(125, 150, 175));
 			SetDust(item, 11);
 			AddEffect(item, ClickEffect.DoubleClick2);
 

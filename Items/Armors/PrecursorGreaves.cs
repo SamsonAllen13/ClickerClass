@@ -10,8 +10,6 @@ namespace ClickerClass.Items.Armors
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Precursor Greaves");
-			Tooltip.SetDefault("Increases movement speed by 15%");
 		}
 
 		public override void SetDefaults()

@@ -8,7 +8,7 @@ namespace ClickerClass.Items.Tools
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Mice Hamaxe");
+
 		}
 
 		public override void SetDefaults()

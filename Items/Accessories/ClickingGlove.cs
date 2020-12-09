@@ -10,7 +10,6 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Tooltip.SetDefault("While in combat, automatically clicks your current clicker every 3 seconds");
 		}
 
 		public override void SetDefaults()

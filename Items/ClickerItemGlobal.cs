@@ -1,6 +1,7 @@
 ﻿using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Prefixes;
+using ClickerClass.Utilities;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
@@ -150,7 +151,7 @@ namespace ClickerClass.Items
 				&& (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
 				if (index != -1)
 				{
-					tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccClickerRadius", "+15% base clicker radius")
+					tooltips.Insert(index + 1, new TooltipLine(mod, "PrefixAccClickerRadius", LangHelper.GetText("Prefix.ClickerRadius.Tooltip"))
 					{
 						isModifier = true
 					});

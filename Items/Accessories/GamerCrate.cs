@@ -10,13 +10,6 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Tooltip.SetDefault("'You don't actually think someone would play this, do you?'"
-						+ "\nIncreases click damage by 10%"
-						+ "\nIncreases your base click radius by 50%"
-						+ "\nReduces the amount of clicks required for a click effect by 20%"
-						+ "\nYour clicks produce a burst of mechanical light, while accessory is visible"
-						+ "\nPressing the 'Clicker Accessory' key will toggle auto click on all Clickers"
-						+ "\nWhile auto click is enabled, click rates are decreased");
 		}
 
 		public override void SetDefaults()

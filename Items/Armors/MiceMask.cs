@@ -1,3 +1,4 @@
+using ClickerClass.Utilities;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,9 +11,6 @@ namespace ClickerClass.Items.Armors
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Mice Mask");
-			Tooltip.SetDefault("Increases click damage by 4%"
-							+ "\nIncreases click critical strike chance by 6%");
 		}
 
 		public override void SetDefaults()
@@ -38,7 +36,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = "Right clicking a position within your clicker radius will teleport you to it";
+			player.setBonus = LangHelper.GetText("SetBonus.Mice");
 			player.GetModPlayer<ClickerPlayer>().setMice = true;
 		}
 

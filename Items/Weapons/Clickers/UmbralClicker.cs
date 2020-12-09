@@ -12,7 +12,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Umbral Clicker");
 
-			ClickEffect.ShadowLash = ClickerSystem.RegisterClickEffect(mod, "ShadowLash", "Shadow Lash", "Causes a burst of 5 shadow projectiles to seek out nearby enemies", 10, new Color(150, 100, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.ShadowLash = ClickerSystem.RegisterClickEffect(mod, "ShadowLash", null, null, 10, new Color(150, 100, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 103);
 				for (int k = 0; k < 5; k++)
@@ -26,7 +27,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 2.75f);
-			SetColor(item, new Color(150, 100, 255, 0));
+			SetColor(item, new Color(150, 100, 255));
 			SetDust(item, 27);
 			AddEffect(item, ClickEffect.ShadowLash);
 

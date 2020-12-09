@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Mythril Clicker");
 
-			ClickEffect.Embrittle = ClickerSystem.RegisterClickEffect(mod, "Embrittle", "Embrittle", "Inflicts the Embrittle debuff, increasing the amount of damage enemies take from clickers by a flat 8", 10, new Color(125, 225, 125, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Embrittle = ClickerSystem.RegisterClickEffect(mod, "Embrittle", null, null, 10, new Color(125, 225, 125), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 101);
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<MythrilClickerPro>(), 0, knockBack, player.whoAmI);
@@ -24,7 +23,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 2.95f);
-			SetColor(item, new Color(125, 225, 125, 0));
+			SetColor(item, new Color(125, 225, 125));
 			SetDust(item, 49);
 			AddEffect(item, ClickEffect.Embrittle);
 

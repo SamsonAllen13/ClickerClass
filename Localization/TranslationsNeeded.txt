@@ -1,0 +1,8 @@
+zh-Hans 243
+ru-RU 242
+pt-BR 243
+pl-PL 243
+it-IT 243
+fr-FR 243
+es-ES 243
+de-DE 243

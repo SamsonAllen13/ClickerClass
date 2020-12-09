@@ -327,7 +327,9 @@ namespace ClickerClass
 			{
 				amount = effect.Amount;
 			}
-			return Math.Max(1, (int)((amount + clickerItem.clickBoostPrefix - clickerBonus) * clickerBonusPercent));
+			float percent = Math.Max(0f, clickerBonusPercent);
+			int prePercentAmount = Math.Max(1, amount + clickerItem.clickBoostPrefix - clickerBonus);
+			return Math.Max(1, (int)(prePercentAmount * percent));
 		}
 
 		/// <summary>

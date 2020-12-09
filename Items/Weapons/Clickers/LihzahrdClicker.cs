@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Lihzahrd Clicker");
 
-			ClickEffect.SolarFlare = ClickerSystem.RegisterClickEffect(mod, "SolarFlare", "Solar Flare", "Spawns a lingering sun projectile that damages and inflicts the Oiled and On Fire! debuffs", 10, new Color(200, 75, 0, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.SolarFlare = ClickerSystem.RegisterClickEffect(mod, "SolarFlare", null, null, 10, new Color(200, 75, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 68);
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<LihzarhdClickerPro>(), (int)(damage * 0.5f), 0f, player.whoAmI);
@@ -24,7 +23,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 4f);
-			SetColor(item, new Color(200, 75, 0, 0));
+			SetColor(item, new Color(200, 75, 0));
 			SetDust(item, 174);
 			AddEffect(item, ClickEffect.SolarFlare);
 

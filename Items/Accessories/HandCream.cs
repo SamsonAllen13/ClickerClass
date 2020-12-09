@@ -7,8 +7,6 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Tooltip.SetDefault("Pressing the 'Clicker Accessory' key will toggle auto click on all Clickers"
-							+ "\nWhile auto click is enabled, click rates are decreased");
 		}
 
 		public override void SetDefaults()

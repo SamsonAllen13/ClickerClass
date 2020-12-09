@@ -12,9 +12,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Orichalcum Clicker");
 
-			ClickEffect.PetalStorm = ClickerSystem.RegisterClickEffect(mod, "PetalStorm", "Petal Storm", "Causes 5 petal projectiles to be summoned near the player and shoot across the screen", 10, new Color(255, 150, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.PetalStorm = ClickerSystem.RegisterClickEffect(mod, "PetalStorm", null, null, 10, new Color(255, 150, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
 
@@ -43,7 +42,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 3f);
-			SetColor(item, new Color(255, 150, 255, 0));
+			SetColor(item, new Color(255, 150, 255));
 			SetDust(item, 145);
 			AddEffect(item, ClickEffect.PetalStorm);
 

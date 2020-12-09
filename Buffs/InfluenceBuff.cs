@@ -7,8 +7,6 @@ namespace ClickerClass.Buffs
 	{
 		public override void SetDefaults()
 		{
-			DisplayName.SetDefault("Influence");
-			Description.SetDefault("Increases your base click radius by 20%");
 			Main.buffNoSave[Type] = false;
 		}
 

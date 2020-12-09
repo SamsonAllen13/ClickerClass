@@ -11,9 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Chlorophyte Clicker");
 
-			ClickEffect.ToxicRelease = ClickerSystem.RegisterClickEffect(mod, "ToxicRelease", "Toxic Release", "Expels 10 poisonous clouds around the cursor that linger", 10, new Color(175, 255, 100, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.ToxicRelease = ClickerSystem.RegisterClickEffect(mod, "ToxicRelease", null, null, 10, new Color(175, 255, 100), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 104);
 				for (int k = 0; k < 10; k++)
@@ -27,7 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(item, 3.75f);
-			SetColor(item, new Color(175, 255, 100, 0));
+			SetColor(item, new Color(175, 255, 100));
 			SetDust(item, 89);
 			AddEffect(item, ClickEffect.ToxicRelease);
 

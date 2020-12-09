@@ -9,14 +9,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Tungsten Clicker");
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
 			SetRadius(item, 1.45f);
-			SetColor(item, new Color(125, 175, 150, 0));
+			SetColor(item, new Color(125, 175, 150));
 			SetDust(item, 83);
 			AddEffect(item, ClickEffect.DoubleClick2);
 

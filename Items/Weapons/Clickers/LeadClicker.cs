@@ -9,14 +9,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Lead Clicker");
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
 			SetRadius(item, 1.3f);
-			SetColor(item, new Color(75, 75, 125, 0));
+			SetColor(item, new Color(75, 75, 125));
 			SetDust(item, 82);
 			AddEffect(item, ClickEffect.DoubleClick);
 

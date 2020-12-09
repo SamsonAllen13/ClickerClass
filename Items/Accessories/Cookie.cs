@@ -7,8 +7,6 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Tooltip.SetDefault("While equipped, cookies will periodically spawn within your clicker radius"
-							+ "\nClick the cookie to gain bonus clicker damage, radius, and life regeneration");
 		}
 
 		public override void SetDefaults()

@@ -234,7 +234,7 @@ namespace ClickerClass
 
 		/// <summary>
 		/// Call this in <see cref="ModItem.SetStaticDefaults"/> to register this weapon into the "clicker class" category as a "clicker".
-		/// You can change the default tooltip after it.
+		/// You can change the default tooltip BEFORE it.
 		/// Do not call <see cref="RegisterClickerItem"/> with it as this method does this already by itself
 		/// </summary>
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
@@ -267,9 +267,11 @@ namespace ClickerClass
 					}
 				}
 			}
-			//TODO tooltip
-			//Common.Tooltips.Clicker=Click on an enemy within range and sight to damage them
-			modItem.Tooltip.SetDefault(LangHelper.GetText("Common.Tooltips.Clicker"));
+
+			if (modItem.Tooltip.GetDefault() == null)
+			{
+				modItem.Tooltip.SetDefault("{$Mods.ClickerClass.Common.Tooltips.Clicker}");
+			}
 		}
 
 		/// <summary>

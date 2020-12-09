@@ -1,6 +1,5 @@
 # Translation by: 
 
-
 # Buffs
 #######
 # BuffName.AutoClick=Auto Click
@@ -301,6 +300,7 @@
 # ClickEffect.StarStorm.Description=Causes 3 stars to fall from the sky and explode
 
 # ItemName.SpectreClicker=Spectre Clicker
+# ItemTooltip.SpectreClicker=Click on an enemy within sight to damage them
 # ClickEffect.PhaseReach.Name=Phase Reach
 # ClickEffect.PhaseReach.Description=Damage enemies regardless of location
 

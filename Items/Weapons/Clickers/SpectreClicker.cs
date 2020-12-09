@@ -8,9 +8,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 	{
 		public override void SetStaticDefaults()
 		{
+			//Special tooltip set before this normally, but we use lang keys so it's handled automatically
 			base.SetStaticDefaults();
-			//TODO figure out this + default tooltip
-			Tooltip.SetDefault("Click on an enemy within sight to damage them");
 
 			ClickEffect.PhaseReach = ClickerSystem.RegisterClickEffect(mod, "PhaseReach", null, null, 1, new Color(100, 255, 255), null);
 		}

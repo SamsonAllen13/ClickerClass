@@ -34,8 +34,8 @@ BuffDescription.OverclockBuff=Every click will trigger a click effect
 Common.Tooltips.IncreasesClickDamage=Increases click damage
 Common.Tooltips.IncreasedClickerDamage=increased clicker damage
 Common.Tooltips.IncreasesClickCritChance=Increases click critical strike chance
-Common.Tooltips.IncreasesBaseClickRadius=Increases your base click radius by
-Common.Tooltips.ReducesBaseClickRadius=Reduces your base click radius by
+Common.Tooltips.IncreasesBaseClickRadius=Increases your base click radius
+Common.Tooltips.ReducesBaseClickRadius=Reduces your base click radius
 Common.Tooltips.ReducesAmountOfClicks=Reduces the amount of clicks required for a click effect
 Common.Tooltips.ClickingGloveEvery=While in combat, automatically clicks your current clicker every
 Common.Tooltips.Clicker=Click on an enemy within range and sight to damage them
@@ -67,7 +67,7 @@ ItemName.ChocolateMilkCookies=Chocolate Milk n' Cookies
 ItemTooltip.ChocolateMilkCookies={$Mods.ClickerClass.ItemTooltip.MilkCookies}\n{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
 
 ItemName.ClickerEmblem=Clicker Emblem
-ItemTooltip.ClickerEmblem=15% increased clicker damage
+ItemTooltip.ClickerEmblem=15% {$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}
 
 ItemName.ClickingGlove=Clicking Glove
 ItemTooltip.ClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 3 seconds

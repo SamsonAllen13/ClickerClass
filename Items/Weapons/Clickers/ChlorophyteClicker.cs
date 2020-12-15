@@ -17,7 +17,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 104);
 				for (int k = 0; k < 10; k++)
 				{
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<ChlorophyteClickerPro>(), (int)(damage * 0.5f), 0f, player.whoAmI);
+					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<ChlorophyteClickerPro>(), (int)(damage * 0.25f), 0f, player.whoAmI);
 				}
 			});
 		}
@@ -30,7 +30,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 89);
 			AddEffect(item, ClickEffect.ToxicRelease);
 
-			item.damage = 54;
+			item.damage = 50;
 			item.width = 30;
 			item.height = 30;
 			item.knockBack = 1f;

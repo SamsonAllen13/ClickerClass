@@ -250,19 +250,11 @@ namespace ClickerClass
 			if (!ClickerWeapons.Contains(type))
 			{
 				ClickerWeapons.Add(type);
-				if (!string.IsNullOrEmpty(borderTexture))
+				if (borderTexture != null && ModContent.TextureExists(borderTexture))
 				{
-					try
+					if (!ClickerWeaponBorderTexture.ContainsKey(type))
 					{
-						var probe = ModContent.GetTexture(borderTexture);
-						if (!ClickerWeaponBorderTexture.ContainsKey(type))
-						{
-							ClickerWeaponBorderTexture.Add(type, borderTexture);
-						}
-					}
-					catch
-					{
-
+						ClickerWeaponBorderTexture.Add(type, borderTexture);
 					}
 				}
 			}

@@ -1,5 +1,5 @@
 author = DivermanSam, Barometz, and direwolf420
-version = 1.2.4
+version = 1.2.5
 displayName = The Clicker Class
 homepage = https://forums.terraria.org/index.php?threads/the-clicker-class.101811/
 includePDB = true

@@ -1,7 +1,6 @@
 using ClickerClass.Effects;
 using ClickerClass.UI;
 using Microsoft.Xna.Framework;
-using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ModLoader;
@@ -90,21 +89,6 @@ namespace ClickerClass
 			ClickerRecipes.AddRecipes();
 		}
 
-		public override void PostSetupContent()
-		{
-			//Only clicker weapons
-			RecipeBrowser_AddToCategory("Clickers", "Weapons", "UI/RecipeBrowser_Clickers", (Item item) =>
-			{
-				return ClickerSystem.IsClickerWeapon(item);
-			});
-
-			//Every other clicker item
-			RecipeBrowser_AddToCategory("Clicker Items", "Other", "UI/RecipeBrowser_ClickerItems", (Item item) =>
-			{
-				return ClickerSystem.IsClickerItem(item) && !ClickerSystem.IsClickerWeapon(item);
-			});
-		}
-
 		public override void PostAddRecipes()
 		{
 			finalizedRegisterCompat = true;
@@ -114,29 +98,6 @@ namespace ClickerClass
 		public override void AddRecipeGroups()
 		{
 			ClickerRecipes.AddRecipeGroups();
-		}
-
-		/// <summary>
-		/// Attempts to add a subcategory to Recipe Browser
-		/// </summary>
-		/// <param name="name">The displayed subcategory name</param>
-		/// <param name="category">The parent category</param>
-		/// <param name="texture">The 24x24 path to texture within the mod</param>
-		/// <param name="predicate">The condition at which an item is listed in this subcategory</param>
-		private void RecipeBrowser_AddToCategory(string name, string category, string texture, Predicate<Item> predicate)
-		{
-			Mod recipeBrowser = ModLoader.GetMod("RecipeBrowser");
-			if (recipeBrowser != null && !Main.dedServ)
-			{
-				recipeBrowser.Call(new object[5]
-				{
-					"AddItemCategory",
-					name,
-					category,
-					this.GetTexture(texture), // 24x24 icon
-					predicate
-				});
-			}
 		}
 	}
 }

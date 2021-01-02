@@ -24,20 +24,20 @@ BuffName.HoneySlow=Мёд
 BuffDescription.HoneySlow=Скорость передвижения значительно снижена
 
 BuffName.InfluenceBuff=Воздействие
-BuffDescription.InfluenceBuff=Увеличивает базовый радиус курсора на 20%
+BuffDescription.InfluenceBuff={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%
 
 BuffName.OverclockBuff=Разгон
 BuffDescription.OverclockBuff=Каждый клик активирует эффект курсора
 
 # Commons
 #######
-# Common.Tooltips.IncreasesClickDamage=Increases click damage
+Common.Tooltips.IncreasesClickDamage=Увеличивает урон кликов
 # Common.Tooltips.IncreasedClickerDamage=increased clicker damage
-# Common.Tooltips.IncreasesClickCritChance=Increases click critical strike chance
-# Common.Tooltips.IncreasesBaseClickRadius=Increases your base click radius
-# Common.Tooltips.ReducesBaseClickRadius=Reduces your base click radius
-# Common.Tooltips.ReducesAmountOfClicks=Reduces the amount of clicks required for a click effect
-# Common.Tooltips.ClickingGloveEvery=While in combat, automatically clicks your current clicker every
+Common.Tooltips.IncreasesClickCritChance=Увеличивает шанс критического удара кликов
+Common.Tooltips.IncreasesBaseClickRadius=Увеличивает базовый радиус курсора
+Common.Tooltips.ReducesBaseClickRadius=Уменьшает базовый радиус курсора
+Common.Tooltips.ReducesAmountOfClicks=Снижает требуемое количество кликов для эффекта курсора
+Common.Tooltips.ClickingGloveEvery=Пока вы в бою, автоматически активирует курсор каждую
 Common.Tooltips.Clicker=Кликните на врага в пределах радиуса курсора и его видимости, чтобы нанести ему урон
 
 Common.Tooltips.MoreThanOneClick={0} кликов
@@ -58,16 +58,16 @@ ItemTooltip.AncientClickingGlove='Вокруг этого фрагмента в�
 # Accessories
 #######
 ItemName.AncientClickingGlove=Древняя кликающая перчатка
-ItemTooltip.AncientClickingGlove=Пока вы в бою, автоматически активирует курсор каждую секунду
+ItemTooltip.AncientClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} секунду
 
 ItemName.ChocolateChip=Кусок шоколада
 ItemTooltip.ChocolateChip=Каждые 15 кликов выпускает скопление наносящего урон шоколада
 
 ItemName.ChocolateMilkCookies=Шоколадное молоко с печеньем
-ItemTooltip.ChocolateMilkCookies=Будучи надетым, в радиусе вашего курсора будет периодически появляться печенье\nКликните на печенье, чтобы увеличить урон от кликов, радиус курсора и регенерацию здоровья\nУвеличивает урон от кликов до 15% в зависимости от количества совершённых кликов в секунду\nКаждые 15 кликов выпускает скопление наносящего урон шоколада
+ItemTooltip.ChocolateMilkCookies={$Mods.ClickerClass.ItemTooltip.MilkCookies}\n{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
 
 ItemName.ClickerEmblem=Эмблема нажимателя
-ItemTooltip.ClickerEmblem=Увеличивает урон кликов на 15%
+ItemTooltip.ClickerEmblem={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 15%
 
 ItemName.ClickingGlove=Кликающая перчатка
 ItemTooltip.ClickingGlove=Пока вы в бою, автоматически активирует курсор каждые 3 секунды
@@ -76,10 +76,10 @@ ItemName.Cookie=Печенье
 ItemTooltip.Cookie=Будучи надетым, в радиусе вашего курсора будет периодически появляться печенье\nКликните на печенье, чтобы увеличить урон кликов, радиус курсора и регенерацию здоровья
 
 ItemName.EnchantedLED=Зачарованный светодиод
-ItemTooltip.EnchantedLED=Ваши клики оставляют зачарованную вспышку света, пока видимость аксессуара включена\nУвеличивает урон кликов на 2 единицы
+ItemTooltip.EnchantedLED=Ваши клики оставляют зачарованную вспышку света, пока видимость аксессуара включена\n{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 2 единицы
 
 ItemName.GamerCrate=Игровой ящик
-ItemTooltip.GamerCrate='Вы же не думаете, что кто-то будет играть в это, не так ли?'\nУвеличивает урон клика на 10%\nУвеличивает базовый радиус курсора на 50%\nСнижает требуемое количество кликов для эффекта курсора на 20%\nВаши клики оставляют механическую вспышку света, пока видимость аксессуара включена\nНажатие кнопки 'Clicker Accessory', переключает на авто-клик все курсоры\nПока авто-клик активирован, частота кликов снижена
+ItemTooltip.GamerCrate='Вы же не думаете, что кто-то будет играть в это, не так ли?'\n{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 50%\n{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 20%\nВаши клики оставляют механическую вспышку света, пока видимость аксессуара включена\n{$Mods.ClickerClass.ItemTooltip.HandCream}
 
 ItemName.HandCream=Крем для рук
 ItemTooltip.HandCream=Нажатие кнопки 'Clicker Accessory', переключает на авто-клик все курсоры\nПока авто-клик активирован, частота кликов снижена
@@ -88,47 +88,47 @@ ItemName.Milk=Стакан молока
 ItemTooltip.Milk=Увеличивает урон кликов до 15% в зависимости от количества совершённых кликов в секунду
 
 ItemName.MilkCookies=Молоко с печеньем
-ItemTooltip.MilkCookies=Будучи надетым, в радиусе вашего курсора будет периодически появляться печенье\nКликните на печенье, чтобы увеличить урон кликов, радиус курсора и регенерацию здоровья\nУвеличивает урон от кликов до 15% в зависимости от количества совершённых кликов в секунду
+ItemTooltip.MilkCookies={$Mods.ClickerClass.ItemTooltip.Cookie}\n{$Mods.ClickerClass.ItemTooltip.Milk}
 
 ItemName.MousePad=Коврик для мышки
-ItemTooltip.MousePad=Увеличивает базовый радиус курсора на 25%
+ItemTooltip.MousePad={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%
 
 ItemName.PortableParticleAccelerator=Карманный ускоритель частиц
 ItemTooltip.PortableParticleAccelerator=Клики в пределах 20% общего радиуса вашего курсора наносят на 20% больше урона
 
 ItemName.RegalClickingGlove=Королевская кликающая перчатка
-ItemTooltip.RegalClickingGlove=Пока вы в бою, автоматически активирует курсор каждые полсекунды
+ItemTooltip.RegalClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} полсекунду
 
 ItemName.Soda=Сода
-ItemTooltip.Soda=Снижает требуемое количество кликов для эффекта курсора на 1 единицу
+ItemTooltip.Soda={$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 1 единицу
 
 ItemName.StickyKeychain=Липкая связка ключей
 ItemTooltip.StickyKeychain=Каждые 10 кликов приклеивает наносящую урон слизь на экран
 
 ItemName.TheScroller=Колёсико
-ItemTooltip.TheScroller=Позволяют вам летать и поглощают урон от падения\nУдерживайте ВНИЗ, чтобы быстрее падать
+ItemTooltip.TheScroller={$CommonItemTooltip.FlightAndSlowfall}\nУдерживайте ВНИЗ, чтобы быстрее падать
 
 
 # Armors
 #######
 ItemName.MiceBoots=Сапоги фрагмента мышки
-ItemTooltip.MiceBoots=Увеличивает урон кликов на 6%\nУвеличивает скорость передвижения на 20%
+ItemTooltip.MiceBoots={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 6%\nУвеличивает скорость передвижения на 20%
 
 ItemName.MiceMask=Маска фрагмента мышки
-ItemTooltip.MiceMask=Увеличивает урон кликов на 4%\nУвеличивает шанс критического удара кликов на 6%
+ItemTooltip.MiceMask={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 4%\n{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} на 6%
 
 ItemName.MiceSuit=Костюм фрагмента мышки
-ItemTooltip.MiceSuit=Увеличивает урон кликов на 10%\nУвеличивает базовый радиус курсора на 25%
+ItemTooltip.MiceSuit={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%
 SetBonus.Mice=Нажмите ПКМ, чтобы телепортироваться в пределах радиуса курсора
 
 ItemName.MotherboardBoots=Сапоги материнской платы
-ItemTooltip.MotherboardBoots=Увеличивает урон кликов на 6%
+ItemTooltip.MotherboardBoots={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 6%
 
 ItemName.MotherboardHelmet=Шлем материнской платы
-ItemTooltip.MotherboardHelmet=Увеличивает базовый радиус курсора на 20%
+ItemTooltip.MotherboardHelmet={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%
 
 ItemName.MotherboardSuit=Костюм материнской платы
-ItemTooltip.MotherboardSuit=Увеличивает урон кликов на 6%
+ItemTooltip.MotherboardSuit={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 6%
 SetBonus.Motherboard=Нажмите ПКМ, чтобы поставить датчик расширения радиуса курсора
 
 ItemName.OverclockBoots=Сапоги разгона
@@ -138,24 +138,24 @@ ItemName.OverclockHelmet=Шлем разгона
 ItemTooltip.OverclockHelmet=Снижает требуемое количество кликов для эффекта курсора на 1 единицу
 
 ItemName.OverclockSuit=Костюм разгона
-ItemTooltip.OverclockSuit=Увеличивает урон кликов на 10%
+ItemTooltip.OverclockSuit={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%
 SetBonus.Overclock=Каждые 100 кликов на короткий промежуток времени дарует бафф «Разгон», заставляя каждый клик активировать свой эффект
 
 ItemName.PrecursorBreastplate=Нагрудник предтечей
-ItemTooltip.PrecursorBreastplate=Увеличивает урон кликов на 15%\nУменьшает базовый радиус курсора на 50%
+ItemTooltip.PrecursorBreastplate={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 15%\n{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius} на 50%
 
 ItemName.PrecursorGreaves=Поножи предтечей
 ItemTooltip.PrecursorGreaves=Увеличивает скорость передвижения на 15%
 
 ItemName.PrecursorHelmet=Шлем предтечей
-ItemTooltip.PrecursorHelmet=Увеличивает урон кликов на 8%
+ItemTooltip.PrecursorHelmet={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 8%
 SetBonus.Precursor=Клики вызывают дополнительный запоздалый огненный клик наносящий 25% урона текущего курсора
 
 
 # Consumables
 #######
 ItemName.InfluencePotion=Зелье влияния
-ItemTooltip.InfluencePotion=Увеличивает базовый радиус курсора на 20%\nПереведено: [c/e180ff:tRU Team]
+ItemTooltip.InfluencePotion={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%\
 
 
 # Tools
@@ -283,7 +283,7 @@ ClickEffect.Curse.Description=Стреляет черепом теневого �
 
 ItemName.ShroomiteClicker=Грибной курсор
 ClickEffect.AutoClick.Name=Авто-клик
-ClickEffect.AutoClick.Description=Дарует бафф «Авто-клик», увеличивая частоту кликов
+ClickEffect.AutoClick.Description=Дарует бафф «{$Mods.ClickerClass.BuffName.AutoClick}», увеличивая частоту кликов
 
 ItemName.SilverClicker=Серебряный курсор
 

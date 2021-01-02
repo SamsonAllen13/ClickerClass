@@ -1,5 +1,5 @@
 zh-Hans 243
-ru-RU 242
+ru-RU 2
 pt-BR 243
 pl-PL 243
 it-IT 243

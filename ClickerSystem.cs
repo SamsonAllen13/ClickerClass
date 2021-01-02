@@ -250,19 +250,18 @@ namespace ClickerClass
 			if (!ClickerWeapons.Contains(type))
 			{
 				ClickerWeapons.Add(type);
-				if (!string.IsNullOrEmpty(borderTexture))
+				if (borderTexture != null)
 				{
-					try
+					if (ModContent.TextureExists(borderTexture))
 					{
-						var probe = ModContent.GetTexture(borderTexture);
 						if (!ClickerWeaponBorderTexture.ContainsKey(type))
 						{
 							ClickerWeaponBorderTexture.Add(type, borderTexture);
 						}
 					}
-					catch
+					else
 					{
-
+						ClickerClass.mod.Logger.Info($"Border texture for {modItem.Name} not found: {borderTexture}");
 					}
 				}
 			}

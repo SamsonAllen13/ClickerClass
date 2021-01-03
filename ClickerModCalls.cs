@@ -229,7 +229,7 @@ namespace ClickerClass
 				}
 				else if (message == "SetEffect")
 				{
-					if (apiVersion < latestVersion)
+					if (apiVersion < new Version(1, 2, 2))
 					{
 						var item = args[index + 0] as Item;
 						var name = args[index + 1] as string;
@@ -308,7 +308,7 @@ namespace ClickerClass
 						throw new Exception($"Call Error: The effectName argument for the attempted message, \"{message}\" has returned null.");
 					}
 
-					if (apiVersion < latestVersion)
+					if (apiVersion < new Version(1, 2, 4))
 					{
 						var dict = ClickerSystem.GetClickEffectAsDict(effectName);
 						dict["InternalName"] = dict["UniqueName"];
@@ -353,7 +353,7 @@ namespace ClickerClass
 
 						string name;
 
-						if (apiVersion < latestVersion)
+						if (apiVersion < new Version(1, 2, 2))
 						{
 							//Before it assumed the effect of the item used. Since 1.2.2 it is now a list, and requires a specific effect
 							//For the purpose of backwards compatibility, assume the first effect on the clicker as the main one
@@ -437,7 +437,7 @@ namespace ClickerClass
 					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					if (accName == "ChocolateChip")
 					{
-						if (apiVersion < latestVersion)
+						if (apiVersion < new Version(1, 2, 2))
 						{
 							//Kept for backwards compatibility
 							return clickerPlayer.HasClickEffect(ClickEffect.ChocolateChip);
@@ -454,7 +454,7 @@ namespace ClickerClass
 					}
 					else if (accName == "StickyKeychain")
 					{
-						if (apiVersion < latestVersion)
+						if (apiVersion < new Version(1, 2, 2))
 						{
 							//Kept for backwards compatibility
 							return clickerPlayer.HasClickEffect(ClickEffect.StickyKeychain);
@@ -587,7 +587,7 @@ namespace ClickerClass
 					if (accName == "ChocolateChip")
 					{
 						//Kept for backwards compatibility
-						if (apiVersion < latestVersion)
+						if (apiVersion < new Version(1, 2, 2))
 						{
 							clickerPlayer.EnableClickEffect(ClickEffect.ChocolateChip);
 							return success;
@@ -612,7 +612,7 @@ namespace ClickerClass
 					else if (accName == "StickyKeychain")
 					{
 						//Kept for backwards compatibility
-						if (apiVersion < latestVersion)
+						if (apiVersion < new Version(1, 2, 2))
 						{
 							clickerPlayer.EnableClickEffect(ClickEffect.StickyKeychain);
 							return success;

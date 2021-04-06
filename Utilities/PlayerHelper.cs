@@ -115,9 +115,5 @@ namespace ClickerClass.Utilities
 				NetMessage.SendData(MessageID.SpiritHeal, -1, -1, null, player.whoAmI, healAmount);
 			}
 		}
-
-
-
-
 	}
 }

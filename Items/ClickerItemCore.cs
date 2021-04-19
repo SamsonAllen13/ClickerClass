@@ -351,7 +351,7 @@ namespace ClickerClass.Items
 							if (!clickerPlayer.HasClickEffect(ClickEffect.PhaseReach))
 							{
 								//collision
-								if (Vector2.Distance(Main.MouseWorld, player.Center) < clickerPlayer.ClickerRadiusReal && Collision.CanHitLine(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
+								if (Vector2.Distance(Main.MouseWorld, player.Center) < clickerPlayer.ClickerRadiusReal && Collision.CanHitLine(player.Center, 1, 1, Main.MouseWorld, 1, 1))
 								{
 									canTeleport = true;
 								}
@@ -364,10 +364,10 @@ namespace ClickerClass.Items
 							if (canTeleport)
 							{
 								Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 115);
-								Main.SetCameraLerp(0.1f, 0);
-								player.Center = Main.MouseWorld;
+
+								player.ClickerTeleport(Main.MouseWorld);
+
 								NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
-								player.fallStart = (int)(player.position.Y / 16f);
 								clickerPlayer.setAbilityDelayTimer = 60;
 
 								float num102 = 50f;

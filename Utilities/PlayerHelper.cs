@@ -1,4 +1,6 @@
-﻿using Terraria;
+﻿using Microsoft.Xna.Framework;
+using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 
 namespace ClickerClass.Utilities
@@ -8,6 +10,74 @@ namespace ClickerClass.Utilities
 		public static ClickerPlayer GetClickerPlayer(this Player player)
 		{
 			return player.GetModPlayer<ClickerPlayer>();
+		}
+
+		/// <summary>
+		/// Removes and despawns player owned grappling hooks
+		/// </summary>
+		/// <param name="player">The player</param>
+		public static void RemoveGrapplingHooks(this Player player)
+		{
+			player.grappling[0] = -1;
+			player.grapCount = 0;
+			for (int i = 0; i < Main.maxProjectiles; i++)
+			{
+				Projectile projectile = Main.projectile[i];
+				if (projectile.active && projectile.owner == player.whoAmI && projectile.aiStyle == 7)
+				{
+					projectile.Kill();
+				}
+			}
+		}
+
+		/// <summary>
+		/// Carbon copy of the vanilla Player.Teleport, without effects. Only handles basic code and effects, no netcode
+		/// </summary>
+		/// <param name="player">The player</param>
+		/// <param name="newPos">The teleport position</param>
+		public static void ClickerTeleport(this Player player, Vector2 newPos)
+		{
+			player.RemoveGrapplingHooks();
+
+			float distance = Vector2.Distance(player.Center, newPos);
+			PressurePlateHelper.UpdatePlayerPosition(player);
+			player.Center = newPos;
+			player.fallStart = (int)(player.position.Y / 16f);
+			if (player.whoAmI == Main.myPlayer)
+			{
+				bool offScreen = true;
+				if (distance < new Vector2(Main.screenWidth, Main.screenHeight).Length() / 2f + 100f)
+				{
+					Main.SetCameraLerp(0.1f, 0);
+					offScreen = false;
+				}
+				else
+				{
+					Main.BlackFadeIn = 255;
+					Lighting.BlackOut();
+					Main.screenLastPosition = Main.screenPosition;
+					Main.screenPosition = player.Center - new Vector2(Main.screenWidth / 2, Main.screenHeight / 2);
+					Main.quickBG = 10;
+				}
+				if (offScreen)
+				{
+					if (Main.mapTime < 5)
+					{
+						Main.mapTime = 5;
+					}
+
+					Main.maxQ = true;
+					Main.renderNow = true;
+				}
+			}
+
+			PressurePlateHelper.UpdatePlayerPosition(player);
+			for (int j = 0; j < 3; j++)
+			{
+				player.UpdateSocialShadow();
+			}
+
+			player.oldPosition = player.position + player.BlehOldPositionFixer;
 		}
 
 		/// <summary>

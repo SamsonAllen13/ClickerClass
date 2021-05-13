@@ -90,7 +90,6 @@ namespace ClickerClass.Projectiles
 				projectile.extraUpdates = 4;
 
 				MousePlayer mousePlayer = Main.player[projectile.owner].GetModPlayer<MousePlayer>();
-				mousePlayer.SetMousePosition();
 				if (mousePlayer.TryGetMousePosition(out Vector2 mouseWorld))
 				{
 					float x = projectile.Center.X;

@@ -27,8 +27,7 @@ namespace ClickerClass.Core.Netcode.Packets
 					//Only send to other player if the mouse would be in visible range
 					Rectangle otherPlayerBounds = Utils.CenteredRectangle(otherPlayer.Center, MousePlayer.MaxRange);
 
-					Vector2? _mouseWorld = mousePlayer.GetMousePosition();
-					if (_mouseWorld is Vector2 mouseWorld)
+					if (mousePlayer.TryGetMousePosition(out Vector2 mouseWorld))
 					{
 						Point mousePoint = mouseWorld.ToPoint();
 						return otherPlayerBounds.Contains(mousePoint);

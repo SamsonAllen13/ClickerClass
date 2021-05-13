@@ -72,12 +72,15 @@ namespace ClickerClass.Core
 		}
 
 		/// <summary>
-		/// Assigns mousePosition to this player's mouse position, accurate if singleplayer/client, interpolated if other client, or Vector2.Zero if not available (will return false in that case)
+		/// Assigns mousePosition to this player's mouse position, accurate if singleplayer/client, interpolated if other client, or Vector2.Zero if not available (will return false in that case).
+		/// <para>Initiates netcode if called on the local client.</para>
 		/// </summary>
 		/// <param name="mousePosition"></param>
 		/// <returns>True if mouse position exists</returns>
 		public bool TryGetMousePosition(out Vector2 mousePosition)
 		{
+			SetMousePosition();
+
 			mousePosition = Vector2.Zero;
 			if (player.whoAmI == Main.myPlayer)
 			{
@@ -93,9 +96,9 @@ namespace ClickerClass.Core
 		}
 
 		/// <summary>
-		/// If local client, initiates netcode. Always call this before using <see cref="TryGetMousePosition"/>, since that method doesn't "request" anything.
+		/// If local client, initiates netcode.
 		/// </summary>
-		public void SetMousePosition()
+		private void SetMousePosition()
 		{
 			if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer)
 			{

@@ -6,6 +6,12 @@ namespace ClickerClass.Projectiles
 {
 	public class RedHotClickerPro : ClickerProjectile
 	{
+		public bool Spawned
+		{
+			get => projectile.ai[0] == 1f;
+			set => projectile.ai[0] = value ? 1f : 0f;
+		}
+
 		public override void SetDefaults()
 		{
 			projectile.width = 8;
@@ -18,38 +24,41 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
-			if (projectile.ai[0] < 1f)
+			if (!Spawned)
 			{
+				Spawned = true;
+
+				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 74);
+
 				for (int k = 0; k < 30; k++)
 				{
 					Dust dust = Dust.NewDustDirect(projectile.position, projectile.width, projectile.height, 174, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 125, default, 1.25f);
 					dust.noGravity = true;
 				}
+
 				for (int u = 0; u < Main.maxNPCs; u++)
 				{
 					NPC target = Main.npc[u];
-					if (target.CanBeChasedBy(projectile) && target.DistanceSQ(projectile.Center) < 100 * 250)
+					if (target.CanBeChasedBy() && target.DistanceSQ(projectile.Center) < 158 * 158)
 					{
 						target.AddBuff(BuffID.Oiled, 180, false);
 						target.AddBuff(BuffID.OnFire, 180, false);
 
 						for (int i = 0; i < 15; i++)
 						{
-							int num6 = Dust.NewDust(target.position, target.width, target.height, 174, 0f, 0f, 100, default(Color), 1f);
-							Main.dust[num6].noGravity = true;
-							Main.dust[num6].velocity *= 0.75f;
-							int num7 = Main.rand.Next(-50, 51);
-							int num8 = Main.rand.Next(-50, 51);
-							Dust dust = Main.dust[num6];
-							dust.position.X = dust.position.X + (float)num7;
-							Dust dust2 = Main.dust[num6];
-							dust2.position.Y = dust2.position.Y + (float)num8;
-							Main.dust[num6].velocity.X = -(float)num7 * 0.075f;
-							Main.dust[num6].velocity.Y = -(float)num8 * 0.075f;
+							int index = Dust.NewDust(target.position, target.width, target.height, 174, 0f, 0f, 100, default(Color), 1f);
+							Dust dust = Main.dust[index];
+							dust.noGravity = true;
+							dust.velocity *= 0.75f;
+							int x = Main.rand.Next(-50, 51);
+							int y = Main.rand.Next(-50, 51);
+							dust.position.X += x;
+							dust.position.Y += y;
+							dust.velocity.X = -x * 0.075f;
+							dust.velocity.Y = -y * 0.075f;
 						}
 					}
 				}
-				projectile.ai[0] += 1f;
 			}
 		}
 	}

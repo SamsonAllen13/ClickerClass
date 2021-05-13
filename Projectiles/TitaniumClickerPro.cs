@@ -1,6 +1,5 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
 
@@ -9,9 +8,32 @@ namespace ClickerClass.Projectiles
 	public class TitaniumClickerPro : ClickerProjectile
 	{
 		public int radiusIncrease = 0;
-		public int timer = 0;
-		public float rotation = 0f;
+		public float rot = 0f;
 		public Vector2 center = Vector2.Zero;
+
+		public int Index
+		{
+			get => (int)projectile.ai[0];
+			set => projectile.ai[0] = value;
+		}
+
+		public bool HasSpawnEffects
+		{
+			get => projectile.ai[1] == 1f;
+			set => projectile.ai[1] = value ? 1f : 0f;
+		}
+
+		public int Timer
+		{
+			get => (int)projectile.localAI[0];
+			set => projectile.localAI[0] = value;
+		}
+
+		public float Rotation
+		{
+			get => projectile.localAI[1];
+			set => projectile.localAI[1] = value;
+		}
 
 		public override void SetStaticDefaults()
 		{
@@ -36,42 +58,46 @@ namespace ClickerClass.Projectiles
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
-			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
+			Texture2D texture2D = Main.projectileTexture[projectile.type];
+			Vector2 drawOrigin = new Vector2(texture2D.Width * 0.5f, projectile.height * 0.5f);
 			for (int k = 0; k < projectile.oldPos.Length; k++)
 			{
 				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
 				Color color = projectile.GetAlpha(lightColor * 0.25f) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-				spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color * (0.0025f * projectile.timeLeft), rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
+				spriteBatch.Draw(texture2D, drawPos, null, color * (0.0025f * projectile.timeLeft), Rotation, drawOrigin, projectile.scale, SpriteEffects.None, 0f);
 			}
 			return true;
 		}
 
-		public static Vector2 RotateVector(Vector2 origin, Vector2 vecToRot, float rot)
-		{
-			float newPosX = (float)(Math.Cos(rot) * (vecToRot.X - origin.X) - Math.Sin(rot) * (vecToRot.Y - origin.Y) + origin.X);
-			float newPosY = (float)(Math.Sin(rot) * (vecToRot.X - origin.X) + Math.Cos(rot) * (vecToRot.Y - origin.Y) + origin.Y);
-			return new Vector2(newPosX, newPosY);
-		}
-
-		public float rot = 0f;
-
 		public override void AI()
 		{
+			if (HasSpawnEffects)
+			{
+				HasSpawnEffects = false;
+
+				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 22);
+				for (int k = 0; k < 15; k++)
+				{
+					Dust dust = Dust.NewDustDirect(projectile.Center - new Vector2(4), 8, 8, 91, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.25f);
+					dust.noGravity = true;
+				}
+			}
+
 			if (center == Vector2.Zero)
 			{
 				center = projectile.Center;
 			}
 			projectile.rotation += projectile.velocity.X > 0f ? 0.2f : -0.2f;
 
-			timer++;
-			if (timer % 5 == 0)
+			Timer++;
+			if (Timer % 5 == 0)
 			{
-				rotation = projectile.rotation;
+				Rotation = projectile.rotation;
 			}
 
 			radiusIncrease += 1;
 			rot += 0.05f;
-			projectile.Center = center + RotateVector(default(Vector2), new Vector2(0, 20 + radiusIncrease), rot + (projectile.ai[0] * (6.28f / 5)));
+			projectile.Center = center + new Vector2(0, 20 + radiusIncrease).RotatedBy(rot + (Index * (MathHelper.TwoPi / 5)));
 		}
 	}
 }

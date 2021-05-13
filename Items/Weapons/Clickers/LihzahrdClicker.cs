@@ -14,7 +14,6 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.SolarFlare = ClickerSystem.RegisterClickEffect(mod, "SolarFlare", null, null, 10, new Color(200, 75, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 68);
 				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<LihzarhdClickerPro>(), (int)(damage * 0.5f), 0f, player.whoAmI);
 			});
 		}

@@ -1,9 +1,16 @@
 using Terraria;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
 	public class AdamantiteClickerPro : ClickerProjectile
 	{
+		public bool Spawned
+		{
+			get => projectile.ai[0] == 1f;
+			set => projectile.ai[0] = value ? 1f : 0f;
+		}
+
 		public override void SetDefaults()
 		{
 			projectile.width = 30;
@@ -22,6 +29,16 @@ namespace ClickerClass.Projectiles
 		{
 			damage *= 2;
 			crit = true;
+		}
+
+		public override void AI()
+		{
+			if (!Spawned)
+			{
+				Spawned = true;
+
+				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 71);
+			}
 		}
 
 		public override void Kill(int timeLeft)

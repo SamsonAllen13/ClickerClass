@@ -1,10 +1,23 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
 	public class HemoClickerPro : ClickerProjectile
 	{
+		public bool HasSpawnEffects
+		{
+			get => projectile.ai[0] == 1f;
+			set => projectile.ai[0] = value ? 1f : 0f;
+		}
+
+		public int GravityTimer
+		{
+			get => (int)projectile.ai[1];
+			set => projectile.ai[1] = value;
+		}
+
 		public override void SetDefaults()
 		{
 			projectile.width = 8;
@@ -20,6 +33,13 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
+			if (HasSpawnEffects)
+			{
+				HasSpawnEffects = false;
+
+				Main.PlaySound(SoundID.NPCHit, (int)projectile.Center.X, (int)projectile.Center.Y, 13);
+			}
+
 			if (projectile.timeLeft < 280)
 			{
 				projectile.friendly = true;
@@ -27,23 +47,24 @@ namespace ClickerClass.Projectiles
 
 			projectile.velocity.Y /= 1.0065f;
 
-			projectile.ai[1]++;
+			GravityTimer++;
 
-			if (projectile.ai[1] >= 0)
+			if (GravityTimer >= 0)
 			{
 				projectile.velocity.Y += 1.05f;
-				projectile.ai[1] = -15;
+				GravityTimer = -15;
 			}
 
 			for (int num363 = 0; num363 < 3; num363++)
 			{
-				float num364 = projectile.velocity.X / 3f * (float)num363;
-				float num365 = projectile.velocity.Y / 3f * (float)num363;
-				int num366 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 183, 0f, 0f, 75, default(Color), 1.35f);
-				Main.dust[num366].position.X = projectile.Center.X - num364;
-				Main.dust[num366].position.Y = projectile.Center.Y - num365;
-				Main.dust[num366].velocity *= 0f;
-				Main.dust[num366].noGravity = true;
+				float velX = projectile.velocity.X / 3f * num363;
+				float velY = projectile.velocity.Y / 3f * num363;
+				int index = Dust.NewDust(projectile.position, projectile.width, projectile.height, 183, 0f, 0f, 75, default(Color), 1.35f);
+				Dust dust = Main.dust[index];
+				dust.position.X = projectile.Center.X - velX;
+				dust.position.Y = projectile.Center.Y - velY;
+				dust.velocity *= 0f;
+				dust.noGravity = true;
 			}
 		}
 

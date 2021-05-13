@@ -13,20 +13,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Curse = ClickerSystem.RegisterClickEffect(mod, "Curse", null, null, 12, new Color(150, 100, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 104);
-				for (int k = 0; k < 15; k++)
-				{
-					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 27, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 255, default, 1f);
-					dust.noGravity = true;
-				}
-
 				Vector2 pos = Main.MouseWorld;
 
 				int index = -1;
-				for (int i = 0; i < 200; i++)
+				for (int i = 0; i < Main.maxNPCs; i++)
 				{
 					NPC npc = Main.npc[i];
-					if (npc.active && npc.CanBeChasedBy() && Vector2.DistanceSquared(pos, npc.Center) < 400f * 400f && Collision.CanHit(pos, 1, 1, npc.Center, 1, 1))
+					if (npc.active && npc.CanBeChasedBy() && npc.DistanceSQ(pos) < 400f * 400f && Collision.CanHit(pos, 1, 1, npc.Center, 1, 1))
 					{
 						index = i;
 					}
@@ -35,13 +28,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 				{
 					Vector2 vector = Main.npc[index].Center - pos;
 					float speed = 6f;
-					float mag = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+					float mag = vector.Length();
 					if (mag > speed)
 					{
 						mag = speed / mag;
 					}
 					vector *= mag;
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, vector.X, vector.Y, ModContent.ProjectileType<ShadowyClickerPro>(), damage, knockBack, player.whoAmI);
+					Projectile.NewProjectile(pos, vector, ModContent.ProjectileType<ShadowyClickerPro>(), damage, knockBack, player.whoAmI);
 				}
 			});
 		}

@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
@@ -11,6 +11,18 @@ namespace ClickerClass.Projectiles
 		public bool shift = false;
 		public float pulse = 0f;
 		public float rotation = 0f;
+		
+		public bool Spawned
+		{
+			get => projectile.ai[0] == 1f;
+			set => projectile.ai[0] = value ? 1f : 0f;
+		}
+
+		public int Timer
+		{
+			get => (int)projectile.ai[1];
+			set => projectile.ai[1] = value;
+		}
 
 		public override void SetDefaults()
 		{
@@ -28,12 +40,19 @@ namespace ClickerClass.Projectiles
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
-			spriteBatch.Draw(mod.GetTexture("Projectiles/TotalityClickerPro_Effect"), projectile.Center - Main.screenPosition, null, new Color(255, 255, 255, 0) * ((0.65f + pulse) * (0.01f * projectile.timeLeft)), rotation, new Vector2(58, 58), 1.35f + pulse, SpriteEffects.None, 0f);
+			Texture2D texture = mod.GetTexture("Projectiles/TotalityClickerPro_Effect");
+			spriteBatch.Draw(texture, projectile.Center - Main.screenPosition, null, new Color(255, 255, 255, 0) * ((0.65f + pulse) * (0.01f * projectile.timeLeft)), rotation, new Vector2(58, 58), 1.35f + pulse, SpriteEffects.None, 0f);
 			return true;
 		}
 
 		public override void AI()
 		{
+			if (!Spawned)
+			{
+				Spawned = true;
+				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 43);
+			}
+
 			rotation += 0.01f;
 			pulse += !shift ? 0.0035f : -0.0035f;
 			if (pulse > 0.15f && !shift)
@@ -45,13 +64,14 @@ namespace ClickerClass.Projectiles
 				shift = false;
 			}
 
-			projectile.ai[0]++;
-			if (projectile.ai[0] > 20)
+			Timer++;
+			if (Timer > 20)
 			{
 				int index = -1;
-				for (int i = 0; i < 200; i++)
+				for (int i = 0; i < Main.maxNPCs; i++)
 				{
-					if (Vector2.Distance(projectile.Center, Main.npc[i].Center) < 400f && Main.npc[i].active && Collision.CanHit(projectile.Center, 1, 1, Main.npc[i].Center, 1, 1))
+					NPC npc = Main.npc[i];
+					if (npc.CanBeChasedBy() && projectile.DistanceSQ(npc.Center) < 400f * 400f && Collision.CanHit(projectile.Center, 1, 1, npc.Center, 1, 1))
 					{
 						index = i;
 					}
@@ -60,7 +80,7 @@ namespace ClickerClass.Projectiles
 				{
 					Vector2 vector = Main.npc[index].Center - projectile.Center;
 					float speed = 3f;
-					float mag = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+					float mag = vector.Length();
 					if (mag > speed)
 					{
 						mag = speed / mag;
@@ -78,7 +98,7 @@ namespace ClickerClass.Projectiles
 						}
 					}
 				}
-				projectile.ai[0] = 0;
+				Timer = 0;
 			}
 		}
 	}

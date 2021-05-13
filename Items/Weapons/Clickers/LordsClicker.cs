@@ -1,7 +1,6 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
@@ -14,8 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Conqueror = ClickerSystem.RegisterClickEffect(mod, "Conqueror", null, null, 15, new Color(100, 255, 200), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 88);
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<LordsClickerPro>(), (int)(damage * 2f), 0f, player.whoAmI);
+				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<LordsClickerPro>(), (int)(damage * 2f), 0f, player.whoAmI);
 			});
 		}
 

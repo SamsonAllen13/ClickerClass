@@ -23,13 +23,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 					Vector2 endSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-25, 26), Main.MouseWorld.Y + Main.rand.Next(-25, 26));
 					Vector2 vector = endSpot - startSpot;
 					float speed = 8f + Main.rand.NextFloat(-1f, 1f);
-					float mag = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+					float mag = vector.Length();
 					if (mag > speed)
 					{
 						mag = speed / mag;
 					}
 					vector *= mag;
-					Projectile.NewProjectile(startSpot.X, startSpot.Y, vector.X, vector.Y, ModContent.ProjectileType<CaptainsClickerPro>(), damage, knockBack, player.whoAmI, endSpot.X, endSpot.Y);
+					Projectile.NewProjectile(startSpot, vector, ModContent.ProjectileType<CaptainsClickerPro>(), damage, knockBack, player.whoAmI, endSpot.X, endSpot.Y);
 				}
 			});
 		}

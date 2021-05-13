@@ -6,6 +6,18 @@ namespace ClickerClass.Projectiles
 	public class CookiePro : ClickerProjectile
 	{
 		public Vector2 location = Vector2.Zero;
+		
+		public int Frame
+		{
+			get => (int)projectile.ai[0];
+			set => projectile.ai[0] = value;
+		}
+
+		public bool LockedLocation
+		{
+			get => projectile.ai[1] == 1f;
+			set => projectile.ai[1] = value ? 1f : 0f;
+		}
 
 		public override void SetStaticDefaults()
 		{
@@ -26,29 +38,28 @@ namespace ClickerClass.Projectiles
 
 		public override Color? GetAlpha(Color lightColor)
 		{
+			float time = projectile.timeLeft;
 			if (projectile.timeLeft > 150)
 			{
-				return new Color(255, 255, 255, 200) * (0.005f * (int)(300 - projectile.timeLeft));
+				time = 300 - projectile.timeLeft;
 			}
-			else
-			{
-				return new Color(255, 255, 255, 200) * (0.005f * projectile.timeLeft);
-			}
+			return new Color(255, 255, 255, 200) * 0.005f * time;
 		}
 
 		public override void AI()
 		{
 			Player player = Main.player[projectile.owner];
-			projectile.frame = (int)projectile.ai[0];
+			projectile.frame = Frame;
 			projectile.rotation -= 0.01f;
 
-			if (projectile.ai[1] < 1f)
+			if (!LockedLocation)
 			{
 				location = player.Center - projectile.Center;
-				projectile.ai[1] += 1f;
+				LockedLocation = true;
 			}
 
-			projectile.Center = new Vector2(player.Center.X, player.Center.Y + player.gfxOffY) - location;
+			projectile.Center = player.Center - location;
+			projectile.gfxOffY = player.gfxOffY;
 		}
 	}
 }

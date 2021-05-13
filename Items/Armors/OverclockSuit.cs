@@ -7,13 +7,6 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Body)]
 	public class OverclockSuit : ClickerItem
 	{
-		public override void SetStaticDefaults()
-		{
-			base.SetStaticDefaults();
-			DisplayName.SetDefault("Overclock Suit");
-			Tooltip.SetDefault("Increases click damage by 10%");
-		}
-
 		public override void SetDefaults()
 		{
 			item.width = 18;

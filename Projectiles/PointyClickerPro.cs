@@ -8,6 +8,18 @@ namespace ClickerClass.Projectiles
 {
 	public class PointyClickerPro : ClickerProjectile
 	{
+		public bool Spawned
+		{
+			get => projectile.ai[0] == 1f;
+			set => projectile.ai[0] = value ? 1f : 0f;
+		}
+
+		public int Timer
+		{
+			get => (int)projectile.ai[1];
+			set => projectile.ai[1] = value;
+		}
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -30,30 +42,25 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
-			if (projectile.localAI[0] < 48)
+			if (!Spawned)
 			{
-				projectile.localAI[0]++;
+				Spawned = true;
+				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 17);
 			}
 
-			if (projectile.ai[1] > 0f)
-			{
-				projectile.SineWaveMovement(projectile.ai[0], 10f, MathHelper.TwoPi / 40, projectile.ai[0] == 0);
-			}
-			else
-			{
-				projectile.SineWaveMovement(projectile.ai[0], -10f, MathHelper.TwoPi / 40, projectile.ai[0] == 0);
-			}
-			projectile.ai[0]++;
+			projectile.SineWaveMovement(Timer, -10f, MathHelper.TwoPi / 40, Timer == 0);
+			Timer++;
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
-			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
+			Texture2D texture2D = Main.projectileTexture[projectile.type];
+			Vector2 drawOrigin = new Vector2(texture2D.Width * 0.5f, projectile.height * 0.5f);
 			for (int i = projectile.oldPos.Length - 1; i >= 0; i--)
 			{
 				Vector2 drawPos = projectile.oldPos[i] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
 				Color color = projectile.GetAlpha(lightColor * 0.25f) * ((projectile.oldPos.Length - i) / (float)projectile.oldPos.Length);
-				spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, null, color, projectile.oldRot[i], drawOrigin, projectile.scale, SpriteEffects.None, 0f);
+				spriteBatch.Draw(texture2D, drawPos, null, color, projectile.oldRot[i], drawOrigin, projectile.scale, SpriteEffects.None, 0f);
 			}
 			return false;
 		}

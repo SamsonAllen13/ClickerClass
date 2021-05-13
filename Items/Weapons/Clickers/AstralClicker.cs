@@ -15,13 +15,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Spiral = ClickerSystem.RegisterClickEffect(mod, "Spiral", null, null, 15, new Color(150, 150, 225), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 117);
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<AstralClickerPro>(), (int)(damage * 3f), 0f, player.whoAmI);
-				for (int k = 0; k < 20; k++)
-				{
-					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
-					dust.noGravity = true;
-				}
+				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<AstralClickerPro>(), (int)(damage * 3f), 0f, player.whoAmI);
 			});
 		}
 

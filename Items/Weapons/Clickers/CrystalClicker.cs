@@ -14,8 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Dazzle = ClickerSystem.RegisterClickEffect(mod, "Dazzle", null, null, 8, new Color(200, 50, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 28);
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<CrystalClickerPro>(), 0, knockBack, player.whoAmI);
+				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<CrystalClickerPro>(), 0, knockBack, player.whoAmI);
 			});
 		}
 

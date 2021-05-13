@@ -14,7 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.StickyHoney = ClickerSystem.RegisterClickEffect(mod, "StickyHoney", null, null, 1, new Color(255, 175, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<HoneyGlazedClickerPro>(), 0, 0f, player.whoAmI);
+				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<HoneyGlazedClickerPro>(), 0, 0f, player.whoAmI);
 			});
 		}
 

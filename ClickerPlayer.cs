@@ -664,10 +664,6 @@ namespace ClickerClass
 			int vanityBody = 11;
 			int vanityLegs = 12;
 
-			Item itemHead = player.armor[head];
-			Item itemBody = player.armor[body];
-			Item itemLegs = player.armor[legs];
-
 			Item itemVanityHead = player.armor[vanityHead];
 			Item itemVanityBody = player.armor[vanityBody];
 			Item itemVanityLegs = player.armor[vanityLegs];
@@ -679,7 +675,7 @@ namespace ClickerClass
 				setOverclockAllowed = false;
 			}
 
-			if (itemVanityHead.type > 0)
+			if (!itemVanityHead.IsAir)
 			{
 				if (itemVanityHead.type != ModContent.ItemType<MiceMask>())
 				{
@@ -694,7 +690,7 @@ namespace ClickerClass
 					setOverclockAllowed = false;
 				}
 			}
-			if (itemVanityBody.type > 0)
+			if (!itemVanityBody.IsAir)
 			{
 				if (itemVanityBody.type != ModContent.ItemType<MiceSuit>())
 				{
@@ -709,7 +705,7 @@ namespace ClickerClass
 					setOverclockAllowed = false;
 				}
 			}
-			if (itemVanityLegs.type > 0)
+			if (!itemVanityLegs.IsAir)
 			{
 				if (itemVanityLegs.type != ModContent.ItemType<MiceBoots>())
 				{
@@ -753,18 +749,16 @@ namespace ClickerClass
 
 					//Circles give me a damn headache...
 					double r = radius * Math.Sqrt(Main.rand.NextFloat(0f, 1f));
-					double theta = Main.rand.NextFloat(0f, 1f) * 2 * 3.14;
+					double theta = Main.rand.NextFloat(0f, 1f) * MathHelper.TwoPi;
 					double xOffset = player.Center.X + r * Math.Cos(theta);
 					double yOffset = player.Center.Y + r * Math.Sin(theta);
 
+					int frame = 0;
 					if (accCookie2 && Main.rand.NextFloat() <= 0.1f)
 					{
-						Projectile.NewProjectile((float)(xOffset), (float)(yOffset), 0f, 0f, ModContent.ProjectileType<CookiePro>(), 0, 0f, player.whoAmI, 1f);
+						frame= 1;
 					}
-					else
-					{
-						Projectile.NewProjectile((float)(xOffset), (float)(yOffset), 0f, 0f, ModContent.ProjectileType<CookiePro>(), 0, 0f, player.whoAmI);
-					}
+					Projectile.NewProjectile((float)xOffset, (float)yOffset, 0f, 0f, ModContent.ProjectileType<CookiePro>(), 0, 0f, player.whoAmI, frame);
 
 					accCookieTimer = 0;
 				}

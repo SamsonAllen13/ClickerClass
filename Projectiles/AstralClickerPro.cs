@@ -10,6 +10,18 @@ namespace ClickerClass.Projectiles
 {
 	public class AstralClickerPro : ClickerProjectile
 	{
+		public float SecondaryRotation
+		{
+			get => projectile.ai[0];
+			set => projectile.ai[0] = value;
+		}
+
+		public bool Spawned
+		{
+			get => projectile.ai[1] == 1f;
+			set => projectile.ai[1] = value ? 1f : 0f;
+		}
+
 		public override void SetDefaults()
 		{
 			projectile.width = 60;
@@ -25,21 +37,19 @@ namespace ClickerClass.Projectiles
 
 		public override Color? GetAlpha(Color lightColor)
 		{
+			float alpha = 0f;
 			if (projectile.timeLeft > 4)
 			{
-				return new Color(255, 255, 255, 0) * 0.6f;
+				alpha = 0.6f;
 			}
-			else
-			{
-				return new Color(255, 255, 255, 0) * 0f;
-			}
+			return new Color(255, 255, 255, 0) * alpha;
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
 			if (projectile.timeLeft > 4)
 			{
-				spriteBatch.Draw(mod.GetTexture("Projectiles/AstralClickerPro"), projectile.Center - Main.screenPosition, null, new Color(255, 255, 255, 0) * 0.25f, projectile.ai[0], new Vector2(30, 30), 1.25f, SpriteEffects.None, 0f);
+				spriteBatch.Draw(mod.GetTexture("Projectiles/AstralClickerPro"), projectile.Center - Main.screenPosition, null, new Color(255, 255, 255, 0) * 0.25f, SecondaryRotation, new Vector2(30, 30), 1.25f, SpriteEffects.None, 0f);
 			}
 			return true;
 		}
@@ -47,33 +57,43 @@ namespace ClickerClass.Projectiles
 		public override void AI()
 		{
 			projectile.rotation += 0.065f;
-			projectile.ai[0] -= 0.15f;
+			SecondaryRotation -= 0.15f;
 
-			for (int k = 0; k < 1; k++)
+			Vector2 offset = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
+			Dust dust = Dust.NewDustDirect(new Vector2(projectile.Center.X - 10, projectile.Center.Y - 10) + offset, 20, 20, ModContent.DustType<MiceDust>(), Scale: 1.5f);
+			dust.noGravity = true;
+			dust.velocity = -offset * 0.1f;
+
+			if (!Spawned)
 			{
-				Vector2 offset = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
-				Dust dust = Dust.NewDustDirect(new Vector2(projectile.Center.X - 10, projectile.Center.Y - 10) + offset, 20, 20, ModContent.DustType<MiceDust>(), Scale: 1.5f);
-				dust.noGravity = true;
-				dust.velocity = -offset * 0.1f;
+				Spawned = true;
+
+				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 117);
+
+				for (int k = 0; k < 20; k++)
+				{
+					dust = Dust.NewDustDirect(projectile.Center - new Vector2(4), 8, 8, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
+					dust.noGravity = true;
+				}
 			}
 
-			for (int u = 0; u < 200; u++)
+			for (int u = 0; u < Main.maxNPCs; u++)
 			{
 				NPC target = Main.npc[u];
 
-				if (target.active && (target.type < 548 || target.type > 578) && target.type != NPCID.TargetDummy && !target.friendly && !target.boss && target.CanBeChasedBy(projectile, false) && Vector2.Distance(projectile.Center, target.Center) < 150)
+				if (target.CanBeChasedBy() && (target.type < NPCID.DD2EterniaCrystal || target.type > NPCID.DD2LightningBugT3) && !target.boss && projectile.DistanceSQ(target.Center) < 150 * 150)
 				{
-					float num3 = 11f;
-					Vector2 vector = new Vector2(target.position.X + (float)(target.width / 2), target.position.Y + (float)(target.height / 2));
-					float num4 = projectile.Center.X - vector.X;
-					float num5 = projectile.Center.Y - vector.Y;
-					float num6 = (float)Math.Sqrt((double)(num4 * num4 + num5 * num5));
-					num6 = num3 / num6;
-					num4 *= num6;
-					num5 *= num6;
-					int num7 = 5;
-					target.velocity.X = (target.velocity.X * (float)(num7 - 1) + num4) / (float)num7;
-					target.velocity.Y = (target.velocity.Y * (float)(num7 - 1) + num5) / (float)num7;
+					float mag = 11f;
+					Vector2 center = target.Center;
+					float x = projectile.Center.X - center.X;
+					float y = projectile.Center.Y - center.Y;
+					float len = (float)Math.Sqrt((double)(x * x + y * y));
+					len = mag / len;
+					x *= len;
+					y *= len;
+					int inertia = 5;
+					target.velocity.X = (target.velocity.X * (float)(inertia - 1) + x) / (float)inertia;
+					target.velocity.Y = (target.velocity.Y * (float)(inertia - 1) + y) / (float)inertia;
 				}
 			}
 
@@ -83,12 +103,12 @@ namespace ClickerClass.Projectiles
 
 				for (int k = 0; k < 30; k++)
 				{
-					Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 0, default, 1.5f);
+					dust = Dust.NewDustDirect(projectile.Center, 10, 10, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 0, default, 1.5f);
 					dust.noGravity = true;
 				}
 				for (int k = 0; k < 20; k++)
 				{
-					Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, 88, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 125, default, 1.15f);
+					dust = Dust.NewDustDirect(projectile.Center, 10, 10, 88, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 125, default, 1.15f);
 					dust.noGravity = true;
 				}
 			}

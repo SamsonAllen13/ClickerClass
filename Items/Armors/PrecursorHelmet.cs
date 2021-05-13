@@ -8,13 +8,6 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Head)]
 	public class PrecursorHelmet : ClickerItem
 	{
-		public override void SetStaticDefaults()
-		{
-			base.SetStaticDefaults();
-			DisplayName.SetDefault("Precursor Helmet");
-			Tooltip.SetDefault("Increases click damage by 8%");
-		}
-
 		public override void SetDefaults()
 		{
 			item.width = 18;

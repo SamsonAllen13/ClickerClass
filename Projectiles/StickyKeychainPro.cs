@@ -7,6 +7,24 @@ namespace ClickerClass.Projectiles
 	{
 		public Vector2 location = Vector2.Zero;
 
+		public int Frame
+		{
+			get => (int)projectile.ai[0];
+			set => projectile.ai[0] = value;
+		}
+
+		public bool HasLockedLocation
+		{
+			get => projectile.ai[1] == 1f;
+			set => projectile.ai[1] = value ? 1f : 0f;
+		}
+
+		public bool Spawned
+		{
+			get => projectile.localAI[0] == 1f;
+			set => projectile.localAI[0] = value ? 1f : 0f;
+		}
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -25,6 +43,7 @@ namespace ClickerClass.Projectiles
 			projectile.tileCollide = false;
 			projectile.usesLocalNPCImmunity = true;
 			projectile.localNPCHitCooldown = 30;
+			projectile.netImportant = true;
 		}
 
 		public override Color? GetAlpha(Color lightColor)
@@ -34,16 +53,35 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
-			Player player = Main.player[projectile.owner];
-			projectile.frame = (int)projectile.ai[0];
-
-			if (projectile.ai[1] < 1f)
+			if (!Spawned)
 			{
-				location = player.Center - projectile.Center;
-				projectile.ai[1] += 1f;
+				Spawned = true;
+
+				Main.PlaySound(3, (int)projectile.Center.X, (int)projectile.Center.Y, 13);
 			}
 
-			projectile.Center = new Vector2(player.Center.X, player.Center.Y + player.gfxOffY) - location;
+			Player player = Main.player[projectile.owner];
+			projectile.frame = Frame;
+
+			if (!HasLockedLocation)
+			{
+				location = player.Center - projectile.Center;
+			}
+
+			projectile.Center = player.Center - location;
+			projectile.gfxOffY = player.gfxOffY;
+
+			if (!HasLockedLocation)
+			{
+				for (int k = 0; k < 20; k++)
+				{
+					Dust dust = Dust.NewDustDirect(projectile.Center - new Vector2(4), 8, 8, 88, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 175, default, 1.75f);
+					dust.noGravity = true;
+					dust.noLight = true;
+				}
+			}
+
+			HasLockedLocation = true;
 		}
 	}
 }

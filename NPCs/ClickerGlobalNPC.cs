@@ -12,13 +12,7 @@ namespace ClickerClass.NPCs
 {
 	public class ClickerGlobalNPC : GlobalNPC
 	{
-		public override bool InstancePerEntity
-		{
-			get
-			{
-				return true;
-			}
-		}
+		public override bool InstancePerEntity => true;
 
 		public bool gouge = false;
 		public bool frozen = false;
@@ -35,6 +29,7 @@ namespace ClickerClass.NPCs
 
 		public override void SetDefaults(NPC npc)
 		{
+			//TODO implement better boss/miniboss detection
 			switch (npc.type)
 			{
 				case NPCID.SkeletronHead:
@@ -105,7 +100,10 @@ namespace ClickerClass.NPCs
 		{
 			if (gouge)
 			{
-				if (npc.lifeRegen > 0) { npc.lifeRegen = 0; }
+				if (npc.lifeRegen > 0)
+				{
+					npc.lifeRegen = 0;
+				}
 				npc.lifeRegen -= 60;
 				damage = 10;
 			}
@@ -227,8 +225,6 @@ namespace ClickerClass.NPCs
 
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
 		{
-			Player closestPlayer = Main.LocalPlayer;
-
 			switch (type)
 			{
 				case NPCID.Merchant:
@@ -276,12 +272,12 @@ namespace ClickerClass.NPCs
 			}
 			if (honeySlow)
 			{
-				if (Main.rand.Next(4) < 3)
+				if (Main.rand.NextFloat() < 0.66f)
 				{
 					int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 153, 0f, Main.rand.NextFloat(0.25f, 0.75f), 50, default(Color), 1.35f);
 					Main.dust[dust].noGravity = true;
 					Main.dust[dust].fadeIn = 1.1f;
-					if (Main.rand.Next(4) == 0)
+					if (Main.rand.NextBool(4))
 					{
 						Main.dust[dust].noGravity = false;
 						Main.dust[dust].scale *= 0.5f;

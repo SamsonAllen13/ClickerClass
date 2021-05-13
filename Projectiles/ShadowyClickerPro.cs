@@ -7,6 +7,12 @@ namespace ClickerClass.Projectiles
 {
 	public class ShadowyClickerPro : ClickerProjectile
 	{
+		public bool Spawned
+		{
+			get => projectile.ai[0] == 1f;
+			set => projectile.ai[0] = value ? 1f : 0f;
+		}
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -39,12 +45,12 @@ namespace ClickerClass.Projectiles
 			frame.Y += 28 * projectile.frame;
 			SpriteEffects effects = projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
-			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
+			Texture2D texture2D = Main.projectileTexture[projectile.type];
+			Vector2 drawOrigin = new Vector2(texture2D.Width * 0.5f, projectile.height * 0.5f);
 			for (int k = 0; k < projectile.oldPos.Length; k++)
 			{
 				Vector2 drawPos = projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
-				Color color = projectile.GetAlpha(lightColor) * ((float)(projectile.oldPos.Length - k) / (float)projectile.oldPos.Length);
-				spriteBatch.Draw(Main.projectileTexture[projectile.type], drawPos, frame, new Color(255, 255, 255, 0) * 0.1f, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);
+				spriteBatch.Draw(texture2D, drawPos, frame, new Color(255, 255, 255, 0) * 0.1f, projectile.rotation, drawOrigin, projectile.scale, effects, 0f);
 			}
 			return true;
 		}
@@ -56,6 +62,18 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
+			if (!Spawned)
+			{
+				Spawned = true;
+
+				Main.PlaySound(2, (int)projectile.Center.X, (int)projectile.Center.Y, 104);
+				for (int k = 0; k < 15; k++)
+				{
+					Dust dust = Dust.NewDustDirect(projectile.Center - new Vector2(4), 8, 8, 27, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 255, default, 1f);
+					dust.noGravity = true;
+				}
+			}
+
 			projectile.spriteDirection = projectile.velocity.X > 0f ? 1 : -1;
 
 			if (Main.rand.Next(3) == 0)

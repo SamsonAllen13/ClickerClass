@@ -1,7 +1,6 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
@@ -14,10 +13,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Splash = ClickerSystem.RegisterClickEffect(mod, "Splash", null, null, 6, new Color(75, 75, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 86);
+				bool spawnEffects = true;
 				for (int k = 0; k < 6; k++)
 				{
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<SlickClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI);
+					float hasSpawnEffects = spawnEffects ? 1f : 0f;
+					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<SlickClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI, hasSpawnEffects);
+					spawnEffects = false;
 				}
 			});
 		}

@@ -14,8 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.TrueStrike = ClickerSystem.RegisterClickEffect(mod, "TrueStrike", null, null, 10, new Color(255, 25, 25), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 71);
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<AdamantiteClickerPro>(), damage, knockBack, player.whoAmI);
+				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<AdamantiteClickerPro>(), damage, knockBack, player.whoAmI);
 			});
 		}
 

@@ -14,13 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.CursedEruption = ClickerSystem.RegisterClickEffect(mod, "CursedEruption", null, null, 8, new Color(125, 255, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 74);
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<CorruptClickerPro>(), damage, knockBack, player.whoAmI);
-				for (int k = 0; k < 30; k++)
-				{
-					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 163, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-10f, 10f), 0, default, 1.65f);
-					dust.noGravity = true;
-				}
+				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<CorruptClickerPro>(), damage, knockBack, player.whoAmI);
 			});
 		}
 

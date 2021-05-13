@@ -11,15 +11,10 @@ namespace ClickerClass.Items.Accessories
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.StickyKeychain = ClickerSystem.RegisterClickEffect(mod, "StickyKeychain", null, null, 10, new Color(145, 180, 230, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)			{
-				Main.PlaySound(3, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 13);
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<StickyKeychainPro>(), (int)(damage * 0.5), 3f, player.whoAmI, Main.rand.Next(3));
-				for (int k = 0; k < 20; k++)
-				{
-					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 88, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 175, default, 1.75f);
-					dust.noGravity = true;
-					dust.noLight = true;
-				}
+			ClickEffect.StickyKeychain = ClickerSystem.RegisterClickEffect(mod, "StickyKeychain", null, null, 10, new Color(145, 180, 230, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			{
+				int keychain = ModContent.ProjectileType<StickyKeychainPro>();
+				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, keychain, (int)(damage * 0.5), 3f, player.whoAmI, Main.rand.Next(Main.projFrames[keychain]));
 			});
 		}
 

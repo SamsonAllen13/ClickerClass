@@ -1,5 +1,6 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -14,10 +15,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Infest = ClickerSystem.RegisterClickEffect(mod, "Infest", null, null, 10, new Color(255, 225, 175), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
+				bool spawnEffects = true;
 				for (int k = 0; k < 8; k++)
 				{
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), ModContent.ProjectileType<CrimsonClickerPro>(), (int)(damage * 0.25f), knockBack, player.whoAmI);
+					float hasSpawnEffects = spawnEffects ? 1f : 0f;
+					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), ModContent.ProjectileType<CrimsonClickerPro>(), (int)(damage * 0.25f), knockBack, player.whoAmI, (int)DateTime.Now.Ticks, hasSpawnEffects);
+					spawnEffects = false;
 				}
 			});
 		}

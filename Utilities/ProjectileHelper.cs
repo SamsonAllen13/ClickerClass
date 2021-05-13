@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using System;
+using System.Collections.Generic;
 using Terraria;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Utilities
 {
@@ -51,6 +53,70 @@ namespace ClickerClass.Utilities
 			}
 			projectile.velocity = new Vector2(realSpeed, (float)Math.Sin(time + waveStep) * amplitude - curHeight).RotatedBy(realRot);
 			projectile.rotation = projectile.velocity.ToRotation() + MathHelper.PiOver2;
+		}
+
+		/// <summary>
+		/// Calculates simple collision with NPCs, and manages two sets of collections pertaining to them so that damage related code runs properly.
+		/// <para>Requires persistent collections for hitTargets and foundTargets, and the method to be called in any AI hook only once (per tick).</para>
+		/// <para>This method only works on several assumptions:</para>
+		/// <para>* local immunity is used, so that the first contact is a guaranteed hit</para>
+		/// <para>* it uses generic "damage through contact" code, and not special laser code (last prism)</para>
+		/// </summary>
+		/// <param name="projectile">The projectile</param>
+		/// <param name="hitTargets">The collection of NPC indexes it has already hit and should be excluded</param>
+		/// <param name="foundTargets">The collection of NPC indexes from the last method call to then add to hitTargets</param>
+		/// <param name="max">The amount of NPCs it can hit before killing itself</param>
+		/// <param name="condition">Custom condition to check for the NPC before setting it as a suitable target. If null, counts as true.</param>
+		/// <returns>True if target count is atleast max (which kills itself)</returns>
+		public static bool HandleChaining(this Projectile projectile, ICollection<int> hitTargets, ICollection<int> foundTargets, int max, Func<NPC, bool> condition = null)
+		{
+			//Applies foundTargets from the last call to hitTargets
+			foreach (var f in foundTargets)
+			{
+				if (!hitTargets.Contains(f))
+				{
+					//If check can be removed here, but left in in case of debugging/additional method
+					hitTargets.Add(f);
+				}
+			}
+			foundTargets.Clear();
+
+			//Seek suitable targets the projectile collides with
+			for (int i = 0; i < Main.maxNPCs; i++)
+			{
+				NPC npc = Main.npc[i];
+
+				if (!npc.CanBeChasedBy())
+				{
+					continue;
+				}
+
+				//Simple code instead of complicated recreation of vanilla+modded collision code here (which only runs clientside, but this has to be all-side)
+				//Hitbox has to be for "next update cycle" because AI (where this should be called) runs before movement updates, which runs before damaging takes place
+				Rectangle hitbox = new Rectangle((int)(projectile.position.X + projectile.velocity.X), (int)(projectile.position.Y + projectile.velocity.Y), projectile.width, projectile.height);
+				ProjectileLoader.ModifyDamageHitbox(projectile, ref hitbox);
+
+				if (!projectile.Colliding(hitbox, npc.Hitbox)) //Intersecting hitboxes + special checks. Safe to use all-side, lightning aura uses it
+				{
+					continue;
+				}
+
+				if (condition != null && !condition(npc))
+				{
+					//If custom condition returns false
+					continue;
+				}
+
+				foundTargets.Add(i);
+			}
+
+			if (hitTargets.Count >= max)
+			{
+				projectile.Kill();
+				return true;
+			}
+
+			return false;
 		}
 	}
 }

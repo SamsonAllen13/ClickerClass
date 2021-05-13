@@ -6,6 +6,12 @@ namespace ClickerClass.Projectiles
 {
 	public class LihzarhdClickerPro : ClickerProjectile
 	{
+		public bool Spawned
+		{
+			get => projectile.ai[0] == 1f;
+			set => projectile.ai[0] = value ? 1f : 0f;
+		}
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -37,8 +43,14 @@ namespace ClickerClass.Projectiles
 			target.AddBuff(BuffID.OnFire, 180, false);
 		}
 
-		public override void PostAI()
+		public override void AI()
 		{
+			if (!Spawned)
+			{
+				Spawned = true;
+				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 68);
+			}
+
 			projectile.frameCounter++;
 			if (projectile.frameCounter > 4)
 			{
@@ -48,7 +60,6 @@ namespace ClickerClass.Projectiles
 			if (projectile.frame >= 12)
 			{
 				projectile.Kill();
-				return;
 			}
 		}
 	}

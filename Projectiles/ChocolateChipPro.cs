@@ -1,9 +1,23 @@
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
 	public class ChocolateChipPro : ClickerProjectile
 	{
+		public int Frame
+		{
+			get => (int)projectile.ai[0];
+			set => projectile.ai[0] = value;
+		}
+
+		public bool HasSpawnEffects
+		{
+			get => projectile.ai[1] == 1f;
+			set => projectile.ai[1] = value ? 1f : 0f;
+		}
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -25,7 +39,20 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
-			projectile.frame = (int)(projectile.ai[0]);
+			if (HasSpawnEffects)
+			{
+				HasSpawnEffects = false;
+
+				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 112);
+				for (int k = 0; k < 20; k++)
+				{
+					Dust dust = Dust.NewDustDirect(projectile.Center - new Vector2(4), 8, 8, 22, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 125, default, 1.5f);
+					dust.noGravity = true;
+					dust.noLight = true;
+				}
+			}
+
+			projectile.frame = Frame;
 			projectile.velocity *= 0.9f;
 			projectile.rotation += projectile.velocity.X > 0f ? 0.08f : 0.08f;
 			if (projectile.timeLeft < 20)

@@ -1,5 +1,6 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,15 +11,15 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Umbral Clicker");
 
 			ClickEffect.ShadowLash = ClickerSystem.RegisterClickEffect(mod, "ShadowLash", null, null, 10, new Color(150, 100, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
-
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 103);
+				bool spawnEffects = true;
 				for (int k = 0; k < 5; k++)
 				{
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), ModContent.ProjectileType<UmbralClickerPro>(), (int)(damage * 0.5f), knockBack, player.whoAmI);
+					float hasSpawnEffects = spawnEffects ? 1f : 0f;
+					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), ModContent.ProjectileType<UmbralClickerPro>(), (int)(damage * 0.5f), knockBack, player.whoAmI, (int)DateTime.Now.Ticks, hasSpawnEffects);
+					spawnEffects = false;
 				}
 			});
 		}

@@ -15,15 +15,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.StingingThorn = ClickerSystem.RegisterClickEffect(mod, "StingingThorn", null, null, 8, new Color(100, 175, 75), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 17);
-
 				Vector2 pos = Main.MouseWorld;
 
 				int index = -1;
-				for (int i = 0; i < 200; i++)
+				for (int i = 0; i < Main.maxNPCs; i++)
 				{
 					NPC npc = Main.npc[i];
-					if (npc.active && npc.CanBeChasedBy() && Vector2.DistanceSquared(pos, npc.Center) < 400f * 400f && Collision.CanHit(pos, 1, 1, npc.Center, 1, 1))
+					if (npc.active && npc.CanBeChasedBy() && npc.DistanceSQ(pos) < 400f * 400f && Collision.CanHit(pos, 1, 1, npc.Center, 1, 1))
 					{
 						index = i;
 					}
@@ -32,13 +30,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 				{
 					Vector2 vector = Main.npc[index].Center - pos;
 					float speed = 3f;
-					float mag = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+					float mag = vector.Length();
 					if (mag > speed)
 					{
 						mag = speed / mag;
 					}
 					vector *= mag;
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, vector.X, vector.Y, ModContent.ProjectileType<PointyClickerPro>(), damage, knockBack, player.whoAmI);
+					Projectile.NewProjectile(pos, vector, ModContent.ProjectileType<PointyClickerPro>(), damage, knockBack, player.whoAmI);
 				}
 			});
 		}

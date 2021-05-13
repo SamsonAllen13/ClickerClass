@@ -14,8 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Inferno = ClickerSystem.RegisterClickEffect(mod, "Inferno", null, null, 8, new Color(255, 125, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 74);
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<RedHotClickerPro>(), 0, knockBack, player.whoAmI);
+				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<RedHotClickerPro>(), 0, knockBack, player.whoAmI);
 			});
 		}
 

@@ -7,6 +7,8 @@ namespace ClickerClass.Projectiles
 {
 	public class CaptainsClickerPro : ClickerProjectile
 	{
+		public Vector2 Location => new Vector2(projectile.ai[0], projectile.ai[1]);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -55,13 +57,12 @@ namespace ClickerClass.Projectiles
 			{
 				int num235 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y) - projectile.velocity, projectile.width, projectile.height, 31, 0f, 0f, 125, default(Color), 1f);
 				Dust dust4 = Main.dust[num235];
-				dust4 = Main.dust[num235];
 				dust4.velocity *= 0f;
 				Main.dust[num235].noGravity = true;
 			}
 
-			Vector2 vec = new Vector2(projectile.ai[0], projectile.ai[1]);
-			if (Vector2.Distance(projectile.Center, vec) <= 10)
+			Vector2 vec = Location;
+			if (projectile.DistanceSQ(vec) <= 10 * 10)
 			{
 				if (projectile.timeLeft > 4)
 				{

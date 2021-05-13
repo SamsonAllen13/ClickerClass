@@ -14,8 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Embrittle = ClickerSystem.RegisterClickEffect(mod, "Embrittle", null, null, 10, new Color(125, 225, 125), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 101);
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<MythrilClickerPro>(), 0, knockBack, player.whoAmI);
+				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<MythrilClickerPro>(), 0, knockBack, player.whoAmI);
 			});
 		}
 

@@ -13,17 +13,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetStaticDefaults();
 
 			ClickEffect.RazorsEdge = ClickerSystem.RegisterClickEffect(mod, "RazorsEdge", null, null, 12, new Color(150, 150, 150), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
-
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 22);
-				for (int k = 0; k < 5; k++)
+				bool spawnEffects = true;
+				for (int index = 0; index < 5; index++)
 				{
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<TitaniumClickerPro>(), (int)(damage * 0.75f), 0f, player.whoAmI, k, 0f);
-				}
-				for (int k = 0; k < 15; k++)
-				{
-					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 91, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.25f);
-					dust.noGravity = true;
+					float hasSpawnEffects = spawnEffects ? 1f : 0f;
+					Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<TitaniumClickerPro>(), (int)(damage * 0.75f), 0f, player.whoAmI, index, hasSpawnEffects);
+					spawnEffects = false;
 				}
 			});
 		}

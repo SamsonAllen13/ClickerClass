@@ -1,10 +1,23 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
 	public class SlickClickerPro : ClickerProjectile
 	{
+		public bool HasSpawnEffects
+		{
+			get => projectile.ai[0] == 1f;
+			set => projectile.ai[0] = value ? 1f : 0f;
+		}
+
+		public int GravityTimer
+		{
+			get => (int)projectile.ai[1];
+			set => projectile.ai[1] = value;
+		}
+
 		public override void SetDefaults()
 		{
 			projectile.width = 8;
@@ -20,6 +33,13 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
+			if (HasSpawnEffects)
+			{
+				HasSpawnEffects = false;
+
+				Main.PlaySound(SoundID.NPCHit, (int)projectile.Center.X, (int)projectile.Center.Y, 86);
+			}
+
 			if (projectile.timeLeft < 170)
 			{
 				projectile.friendly = true;
@@ -27,12 +47,12 @@ namespace ClickerClass.Projectiles
 
 			projectile.velocity.Y /= 1.0065f;
 
-			projectile.ai[1]++;
+			GravityTimer++;
 
-			if (projectile.ai[1] >= 0)
+			if (GravityTimer >= 0)
 			{
 				projectile.velocity.Y += 1.05f;
-				projectile.ai[1] = -15;
+				GravityTimer = -15;
 			}
 
 			for (int num363 = 0; num363 < 3; num363++)

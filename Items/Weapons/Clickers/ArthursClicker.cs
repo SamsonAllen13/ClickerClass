@@ -15,43 +15,39 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.HolyNova = ClickerSystem.RegisterClickEffect(mod, "HolyNova", null, null, 12, new Color(255, 225, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.NPCHit, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 5);
 				for (int u = 0; u < Main.maxNPCs; u++)
 				{
 					NPC target = Main.npc[u];
-					if (Collision.CanHit(target.Center, 1, 1, Main.MouseWorld, 1, 1) && target.DistanceSQ(Main.MouseWorld) < 350 * 350)
+					if (target.CanBeChasedBy() && target.DistanceSQ(Main.MouseWorld) < 350 * 350 && Collision.CanHit(target.Center, 1, 1, Main.MouseWorld, 1, 1))
 					{
 						Vector2 vector = target.Center - Main.MouseWorld;
 						float speed = 8f;
-						float mag = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+						float mag = vector.Length();
 						if (mag > speed)
 						{
 							mag = speed / mag;
 						}
 						vector *= mag;
-						Projectile.NewProjectile(target.Center.X, target.Center.Y, 0f, 0f, ModContent.ProjectileType<ArthursClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI, 1f, 0f);
-
-						for (int k = 0; k < 30; k++)
-						{
-							Dust dust = Dust.NewDustDirect(target.Center, 8, 8, 87, vector.X + Main.rand.NextFloat(-1f, 1f), vector.Y + Main.rand.NextFloat(-1f, 1f), 0, default, 1.25f);
-							dust.noGravity = true;
-						}
+						Projectile.NewProjectile(target.Center, Vector2.Zero, ModContent.ProjectileType<ArthursClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI);
 					}
 				}
 
-				float num102 = 100f;
-				int num103 = 0;
-				while ((float)num103 < num102)
+				//Can't properly offload this into projectiles as the visuals spawn on the cursor, but projectiles don't
+				Main.PlaySound(SoundID.NPCHit, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 5);
+
+				float max = 100f;
+				int i = 0;
+				while (i < max)
 				{
 					Vector2 vector12 = Vector2.UnitX * 0f;
-					vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(2f, 2f);
+					vector12 += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / max)) * new Vector2(2f, 2f);
 					vector12 = vector12.RotatedBy((double)Vector2.Zero.ToRotation(), default(Vector2));
-					int num104 = Dust.NewDust(Main.MouseWorld, 0, 0, 87, 0f, 0f, 0, default(Color), 2f);
-					Main.dust[num104].noGravity = true;
-					Main.dust[num104].position = Main.MouseWorld + vector12;
-					Main.dust[num104].velocity = Vector2.Zero * 0f + vector12.SafeNormalize(Vector2.UnitY) * 15f;
-					int num = num103;
-					num103 = num + 1;
+					int index = Dust.NewDust(Main.MouseWorld, 0, 0, 87, 0f, 0f, 0, default(Color), 2f);
+					Dust dust = Main.dust[index];
+					dust.noGravity = true;
+					dust.position = Main.MouseWorld + vector12;
+					dust.velocity = vector12.SafeNormalize(Vector2.UnitY) * 15f;
+					i++;
 				}
 			});
 		}

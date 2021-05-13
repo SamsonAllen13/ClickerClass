@@ -27,13 +27,15 @@ namespace ClickerClass.Items.Weapons.Clickers
 					Vector2 endSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-10, 11), Main.MouseWorld.Y + Main.rand.Next(-10, 11));
 					Vector2 vector = endSpot - startSpot;
 					float speed = 4f;
-					float mag = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+					float mag = vector.Length();
 					if (mag > speed)
 					{
 						mag = speed / mag;
 					}
 					vector *= mag;
-					Projectile.NewProjectile(startSpot.X, startSpot.Y, vector.X, vector.Y, ModContent.ProjectileType<OrichaclumClickerPro>(), (int)(damage * 0.5f), 0f, player.whoAmI, Main.rand.Next(3), 0f);
+
+					int orichalcum = ModContent.ProjectileType<OrichaclumClickerPro>();
+					Projectile.NewProjectile(startSpot, vector, orichalcum, (int)(damage * 0.5f), 0f, player.whoAmI, Main.rand.Next(Main.projFrames[orichalcum]), 0f);
 				}
 			});
 		}

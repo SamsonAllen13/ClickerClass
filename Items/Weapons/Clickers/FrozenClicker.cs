@@ -14,7 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Freeze = ClickerSystem.RegisterClickEffect(mod, "Freeze", null, null, 1, new Color(175, 255, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<FrozenClickerPro>(), 0, 0f, player.whoAmI);
+				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<FrozenClickerPro>(), 0, 0f, player.whoAmI);
 			});
 		}
 

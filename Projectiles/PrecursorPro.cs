@@ -5,6 +5,12 @@ namespace ClickerClass.Projectiles
 {
 	public class PrecursorPro : ClickerProjectile
 	{
+		public bool SpanwedDust
+		{
+			get => projectile.ai[0] == 1f;
+			set => projectile.ai[0] = value ? 1f : 0f;
+		}
+
 		public override void SetDefaults()
 		{
 			projectile.width = 30;
@@ -29,9 +35,9 @@ namespace ClickerClass.Projectiles
 			if (projectile.timeLeft <= 10)
 			{
 				projectile.friendly = true;
-				if (projectile.ai[0] < 1f)
+				if (!SpanwedDust)
 				{
-					projectile.ai[0] += 1f;
+					SpanwedDust = true;
 					for (int k = 0; k < 8; k++)
 					{
 						Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, 174, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.25f);

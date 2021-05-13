@@ -5,6 +5,12 @@ namespace ClickerClass.Projectiles
 {
 	public class ChlorophyteClickerPro : ClickerProjectile
 	{
+		public bool HasSpawnEffects
+		{
+			get => projectile.ai[0] == 1f;
+			set => projectile.ai[0] = value ? 1f : 0f;
+		}
+
 		public override void SetDefaults()
 		{
 			projectile.width = 32;
@@ -27,6 +33,12 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
+			if (HasSpawnEffects)
+			{
+				HasSpawnEffects = false;
+				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 104);
+			}
+
 			projectile.rotation += projectile.velocity.X > 0f ? 0.1f : -0.1f;
 			projectile.velocity *= 0.95f;
 			if (projectile.timeLeft < 20)

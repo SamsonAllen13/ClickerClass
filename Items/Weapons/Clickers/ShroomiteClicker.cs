@@ -19,17 +19,16 @@ namespace ClickerClass.Items.Weapons.Clickers
 				player.AddBuff(ModContent.BuffType<AutoClick>(), 300, false);
 				for (int i = 0; i < 15; i++)
 				{
-					int num6 = Dust.NewDust(player.position, 20, 20, 15, 0f, 0f, 255, default(Color), 1.5f);
-					Main.dust[num6].noGravity = true;
-					Main.dust[num6].velocity *= 0.75f;
-					int num7 = Main.rand.Next(-50, 51);
-					int num8 = Main.rand.Next(-50, 51);
-					Dust dust = Main.dust[num6];
-					dust.position.X += num7;
-					Dust dust2 = Main.dust[num6];
-					dust2.position.Y += num8;
-					Main.dust[num6].velocity.X = -num7 * 0.075f;
-					Main.dust[num6].velocity.Y = -num8 * 0.075f;
+					int index = Dust.NewDust(player.position, 20, 20, 15, 0f, 0f, 255, default(Color), 1.5f);
+					Dust dust = Main.dust[index];
+					dust.noGravity = true;
+					dust.velocity *= 0.75f;
+					int x = Main.rand.Next(-50, 51);
+					int y = Main.rand.Next(-50, 51);
+					dust.position.X += x;
+					dust.position.Y += y;
+					dust.velocity.X = -x * 0.075f;
+					dust.velocity.Y = -y * 0.075f;
 				}
 			});
 		}

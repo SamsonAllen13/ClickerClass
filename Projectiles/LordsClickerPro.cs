@@ -1,10 +1,17 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
 	public class LordsClickerPro : ClickerProjectile
 	{
+		public bool Spawned
+		{
+			get => projectile.ai[0] == 1f;
+			set => projectile.ai[0] = value ? 1f : 0f;
+		}
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -36,8 +43,14 @@ namespace ClickerClass.Projectiles
 			crit = true;
 		}
 
-		public override void PostAI()
+		public override void AI()
 		{
+			if (!Spawned)
+			{
+				Spawned = true;
+				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 88);
+			}
+
 			projectile.frameCounter++;
 			if (projectile.frameCounter > 3)
 			{
@@ -47,7 +60,6 @@ namespace ClickerClass.Projectiles
 			if (projectile.frame >= 12)
 			{
 				projectile.Kill();
-				return;
 			}
 		}
 	}

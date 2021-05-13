@@ -9,10 +9,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			DisplayName.SetDefault("Witch Clicker");
 
 			ClickEffect.WildMagic = ClickerSystem.RegisterClickEffect(mod, "WildMagic", null, null, 6, new Color(175, 75, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
-
 			{
 				List<string> excluded = new List<string>
 				{

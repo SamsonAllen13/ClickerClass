@@ -1,14 +1,48 @@
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Utilities;
 
 namespace ClickerClass.Projectiles
 {
 	public class HighTechClickerPro : ClickerProjectile
 	{
-		List<int> targets = new List<int>();
-		public int timer = 0;
+		private readonly HashSet<int> hitTargets = new HashSet<int>();
+		private readonly HashSet<int> foundTargets = new HashSet<int>();
+
+		private UnifiedRandom rng;
+
+		public UnifiedRandom Rng
+		{
+			get
+			{
+				if (rng == null)
+				{
+					rng = new UnifiedRandom(RandomSeed / (1 + projectile.identity));
+				}
+				return rng;
+			}
+		}
+
+		public int RandomSeed
+		{
+			get => (int)projectile.ai[0];
+			set => projectile.ai[0] = value;
+		}
+
+		public bool HasSpawnEffects
+		{
+			get => projectile.ai[1] == 1f;
+			set => projectile.ai[1] = value ? 1f : 0f;
+		}
+
+		public int WobbleTimer
+		{
+			get => (int)projectile.localAI[0];
+			set => projectile.localAI[0] = value;
+		}
 
 		public override void SetDefaults()
 		{
@@ -27,35 +61,39 @@ namespace ClickerClass.Projectiles
 
 		public override bool? CanHitNPC(NPC target)
 		{
-			if (targets.Contains(target.whoAmI))
+			if (hitTargets.Contains(target.whoAmI))
 			{
 				return false;
 			}
 			return base.CanHitNPC(target);
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-		{
-			projectile.velocity = Vector2.Zero;
-			targets.Add(target.whoAmI);
-			if (targets.Count >= 8)
-			{
-				projectile.Kill();
-			}
-		}
-
 		public override void AI()
 		{
-			Player player = Main.player[projectile.owner];
-			for (int num363 = 0; num363 < 1; num363++)
+			bool killed = projectile.HandleChaining(hitTargets, foundTargets, 8);
+			if (killed)
 			{
-				float num364 = projectile.velocity.X / 3f * (float)num363;
-				float num365 = projectile.velocity.Y / 3f * (float)num363;
-				int num366 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 229, 0f, 0f, 0, default(Color), 1.15f);
-				Main.dust[num366].position.X = projectile.Center.X - num364;
-				Main.dust[num366].position.Y = projectile.Center.Y - num365;
-				Main.dust[num366].velocity *= 0f;
-				Main.dust[num366].noGravity = true;
+				return;
+			}
+
+			int index = Dust.NewDust(projectile.position, projectile.width, projectile.height, 229, 0f, 0f, 0, default(Color), 1.15f);
+			Dust dust = Main.dust[index];
+			dust.position.X = projectile.Center.X;
+			dust.position.Y = projectile.Center.Y;
+			dust.velocity *= 0f;
+			dust.noGravity = true;
+
+			if (HasSpawnEffects)
+			{
+				HasSpawnEffects = false;
+
+				Main.PlaySound(2, (int)projectile.Center.X, (int)projectile.Center.Y, 94);
+
+				for (int k = 0; k < 20; k++)
+				{
+					dust = Dust.NewDustDirect(projectile.Center - new Vector2(4), 8, 8, 229, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
+					dust.noGravity = true;
+				}
 			}
 
 			if (projectile.timeLeft < 580)
@@ -64,57 +102,55 @@ namespace ClickerClass.Projectiles
 				{
 					for (int k = 0; k < 6; k++)
 					{
-						int num367 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 229, projectile.velocity.X * 0.25f, projectile.velocity.Y * 0.25f, 125, default(Color), 1.15f);
-						Main.dust[num367].noGravity = true;
+						index = Dust.NewDust(projectile.position, projectile.width, projectile.height, 229, projectile.velocity.X * 0.25f, projectile.velocity.Y * 0.25f, 125, default(Color), 1.15f);
+						Main.dust[index].noGravity = true;
 					}
 				}
 
-				timer++;
-				if (timer > 2)
+				WobbleTimer++;
+				if (WobbleTimer > 2)
 				{
-					projectile.velocity.Y += Main.rand.NextFloat(-0.75f, 0.75f);
-					projectile.velocity.X += Main.rand.NextFloat(-0.75f, 0.75f);
-					timer = 0;
+					projectile.velocity.Y += Rng.NextFloat(-0.75f, 0.75f);
+					projectile.velocity.X += Rng.NextFloat(-0.75f, 0.75f);
+					WobbleTimer = 0;
 				}
 
-				int num3;
-				float num477 = player.Center.X;
-				float num478 = player.Center.Y;
-				float num479 = 750f;
-				bool flag17 = false;
+				float x = projectile.Center.X;
+				float y = projectile.Center.Y;
+				float dist = 750;
+				bool found = false;
 
-				for (int num480 = 0; num480 < 200; num480 = num3 + 1)
+				for (int i = 0; i < Main.maxNPCs; i++)
 				{
-					if (Main.npc[num480].active && !targets.Contains(Main.npc[num480].whoAmI) && Main.npc[num480].CanBeChasedBy(projectile, false) && projectile.Distance(Main.npc[num480].Center) < num479 && Collision.CanHit(projectile.Center, 1, 1, Main.npc[num480].Center, 1, 1))
+					NPC npc = Main.npc[i];
+					if (npc.CanBeChasedBy() && projectile.DistanceSQ(npc.Center) < dist * dist && Collision.CanHit(projectile.Center, 1, 1, npc.Center, 1, 1))
 					{
-						float num481 = Main.npc[num480].position.X + (float)(Main.npc[num480].width / 2);
-						float num482 = Main.npc[num480].position.Y + (float)(Main.npc[num480].height / 2);
-						float num483 = Math.Abs(projectile.position.X + (float)(projectile.width / 2) - num481) + Math.Abs(projectile.position.Y + (float)(projectile.height / 2) - num482);
-						if (num483 < num479)
+						float foundX = npc.Center.X;
+						float foundY = npc.Center.Y;
+						float abs = Math.Abs(projectile.Center.X - foundX) + Math.Abs(projectile.Center.Y - foundY);
+						if (abs < dist)
 						{
-							num479 = num483;
-							num477 = num481;
-							num478 = num482;
-							flag17 = true;
+							dist = abs;
+							x = foundX;
+							y = foundY;
+							found = true;
 						}
 					}
-					num3 = num480;
 				}
 
-				if (flag17)
+				if (found)
 				{
-					float num488 = 2.5f;
+					float mag = 2.5f;
+					Vector2 center = projectile.Center;
+					float toX = x - center.X;
+					float toY = y - center.Y;
+					float len = (float)Math.Sqrt((double)(toX * toX + toY * toY));
+					len = mag / len;
+					toX *= len;
+					toY *= len;
 
-					Vector2 vector38 = new Vector2(projectile.position.X + (float)projectile.width * 0.5f, projectile.position.Y + (float)projectile.height * 0.5f);
-					float num489 = num477 - vector38.X;
-					float num490 = num478 - vector38.Y;
-					float num491 = (float)Math.Sqrt((double)(num489 * num489 + num490 * num490));
-					num491 = num488 / num491;
-					num489 *= num491;
-					num490 *= num491;
-
-					projectile.velocity.X = (projectile.velocity.X * 20f + num489) / 21f;
-					projectile.velocity.Y = (projectile.velocity.Y * 20f + num490) / 21f;
+					projectile.velocity.X = (projectile.velocity.X * 20f + toX) / 21f;
+					projectile.velocity.Y = (projectile.velocity.Y * 20f + toY) / 21f;
 				}
 				else
 				{

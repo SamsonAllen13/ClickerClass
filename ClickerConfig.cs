@@ -27,5 +27,15 @@ namespace ClickerClass
 		[Tooltip("$Mods.ClickerClass.ClickerConfigClient.ShowCustomCursors.Tooltip")]
 		[DefaultValue(true)]
 		public bool ShowCustomCursors;
+
+		[Label("$Mods.ClickerClass.ClickerConfigClient.ShowClickIndicator.Label")]
+		[Tooltip("$Mods.ClickerClass.ClickerConfigClient.ShowClickIndicator.Tooltip")]
+		[DefaultValue(false)]
+		public bool ShowClickIndicator;
+
+		[Label("$Mods.ClickerClass.ClickerConfigClient.ShowOthersClickIndicator.Label")]
+		[Tooltip("$Mods.ClickerClass.ClickerConfigClient.ShowOthersClickIndicator.Tooltip")]
+		[DefaultValue(true)]
+		public bool ShowOthersClickIndicator;
 	}
 }

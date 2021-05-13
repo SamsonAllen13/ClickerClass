@@ -377,3 +377,9 @@
 
 # ClickerConfigClient.ShowCustomCursors.Label=Display Custom Cursors
 # ClickerConfigClient.ShowCustomCursors.Tooltip=Toggle the display of 'Custom Cursors' for clicker weapons
+
+# ClickerConfigClient.ShowClickIndicator.Label=Display Click Indicator
+# ClickerConfigClient.ShowClickIndicator.Tooltip=Toggle the display of click indicators where you used a clicker
+
+# ClickerConfigClient.ShowOthersClickIndicator.Label=Display Others Click Indicator
+# ClickerConfigClient.ShowOthersClickIndicator.Tooltip=Toggle the display of click indicators where others used a clicker

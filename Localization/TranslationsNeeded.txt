@@ -1,8 +1,8 @@
-zh-Hans 243
-ru-RU 2
-pt-BR 243
-pl-PL 243
-it-IT 243
-fr-FR 243
-es-ES 243
-de-DE 243
+zh-Hans 247
+ru-RU 6
+pt-BR 247
+pl-PL 247
+it-IT 247
+fr-FR 247
+es-ES 247
+de-DE 247

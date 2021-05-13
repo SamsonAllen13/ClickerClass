@@ -61,30 +61,24 @@ namespace ClickerClass.Effects
 
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 
-			if (!drawPlayer.dead && modPlayer.clickerSelected)
+			if (!drawPlayer.dead && modPlayer.CanDrawRadius)
 			{
-				if (modPlayer.clickerDrawRadius)
+				Color outer = modPlayer.clickerRadiusColorDraw * modPlayer.ClickerRadiusColorMultiplier;
+
+				Vector2 center = new Vector2((int)drawPlayer.Center.X, (int)drawPlayer.Center.Y + drawPlayer.gfxOffY);
+				Vector2 motherboardCenter = default;
+				int radius = (int)modPlayer.ClickerRadiusRealDraw;
+				int motherboardRadius = 0;
+
+				if (modPlayer.SetMotherboardDraw)
 				{
-					float glow = modPlayer.GlowVisual ? 0.6f : 0f;
-
-					Color outer = modPlayer.clickerRadiusColor * (0.2f + glow);
-
-
-					Vector2 center = new Vector2((int)drawPlayer.Center.X, (int)drawPlayer.Center.Y + drawPlayer.gfxOffY);
-					Vector2 motherboardCenter = default;
-					int radius = (int)modPlayer.ClickerRadiusReal;
-					int motherboardRadius = 0;
-
-					if (modPlayer.SetMotherboardDraw)
-					{
-						//Don't use clickerMotherboardSetPosition here as it includes the wrong player.Center
-						motherboardCenter = center + modPlayer.CalculateMotherboardPosition().Floor();
-						motherboardRadius = (int)modPlayer.ClickerRadiusMotherboard;
-					}
-
-					Effect shader = SetupCircleEffect(center, radius, outer, center2: motherboardCenter, radius2: motherboardRadius);
-					ApplyToScreenOnce(Main.spriteBatch, shader);
+					//Don't use clickerMotherboardSetPosition here as it includes the wrong player.Center and possibly radius
+					motherboardCenter = center + modPlayer.CalculateMotherboardPosition(radius).Floor();
+					motherboardRadius = (int)modPlayer.ClickerRadiusMotherboardDraw;
 				}
+
+				Effect shader = SetupCircleEffect(center, radius, outer, center2: motherboardCenter, radius2: motherboardRadius);
+				ApplyToScreenOnce(Main.spriteBatch, shader);
 			}
 		}
 		#endregion

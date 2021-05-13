@@ -66,10 +66,10 @@ namespace ClickerClass.UI
 				return true;
 			}
 
-			Rectangle borderFrame = borderTexture.Frame(1, 1);
+			Rectangle borderFrame = borderTexture.Frame();
 			Vector2 borderOrigin = borderFrame.Size() / 2;
 
-			Rectangle frame = texture.Frame(1, 1);
+			Rectangle frame = texture.Frame();
 			Vector2 origin = frame.Size() / 2;
 
 			Vector2 borderPosition = Main.MouseScreen;

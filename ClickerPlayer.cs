@@ -29,6 +29,11 @@ namespace ClickerClass
 		//Misc
 		public Color clickerRadiusColor = Color.White;
 		/// <summary>
+		/// Cached clickerRadiusColor for draw
+		/// </summary>
+		public Color clickerRadiusColorDraw = Color.Transparent;
+		public float ClickerRadiusColorMultiplier => clickerRadiusRangeAlpha * clickerRadiusSwitchAlpha;
+		/// <summary>
 		/// Visual indicator that the cursor is inside clicker radius
 		/// </summary>
 		public bool clickerInRange = false;
@@ -42,6 +47,17 @@ namespace ClickerClass
 		/// False if phase reach
 		/// </summary>
 		public bool clickerDrawRadius = false;
+		public const float clickerRadiusSwitchAlphaMin = 0f;
+		public const float clickerRadiusSwitchAlphaMax = 1f;
+		public const float clickerRadiusSwitchAlphaStep = clickerRadiusSwitchAlphaMax / 40f;
+		public float clickerRadiusSwitchAlpha = clickerRadiusSwitchAlphaMin;
+		public bool CanDrawRadius => clickerRadiusSwitchAlpha > clickerRadiusSwitchAlphaMin;
+
+		public const float clickerRadiusRangeAlphaMin = 0.2f;
+		public const float clickerRadiusRangeAlphaMax = 0.8f;
+		public const float clickerRadiusRangeAlphaStep = clickerRadiusRangeAlphaMax / 20f;
+		public float clickerRadiusRangeAlpha = clickerRadiusRangeAlphaMin;
+
 		public bool clickerAutoClick = false;
 		/// <summary>
 		/// Saved amount of clicks done with any clicker, accumulated, fluff
@@ -149,14 +165,29 @@ namespace ClickerClass
 		public float clickerRadius = 1f;
 
 		/// <summary>
+		/// Cached clickerRadius for draw
+		/// </summary>
+		public float clickerRadiusDraw = 1f;
+
+		/// <summary>
 		/// Clicker radius in pixels
 		/// </summary>
 		public float ClickerRadiusReal => clickerRadius * 100;
 
 		/// <summary>
+		/// Clicker draw radius in pixels
+		/// </summary>
+		public float ClickerRadiusRealDraw => clickerRadiusDraw * 100;
+
+		/// <summary>
 		/// Motherboard radius in pixels
 		/// </summary>
 		public float ClickerRadiusMotherboard => ClickerRadiusReal * 0.5f;
+
+		/// <summary>
+		/// Motherboard draw radius in pixels
+		/// </summary>
+		public float ClickerRadiusMotherboardDraw => ClickerRadiusRealDraw * 0.5f;
 
 		//Helper methods
 		/// <summary>
@@ -268,12 +299,62 @@ namespace ClickerClass
 			clickerPerSecond = clicks.Count(val => val);
 		}
 
-		/// <summary>
-		/// Returns the position from the ratio and angle
-		/// </summary>
-		public Vector2 CalculateMotherboardPosition()
+		private void HandleRadiusAlphas()
 		{
-			float length = setMotherboardRatio * ClickerRadiusReal;
+			if (clickerDrawRadius)
+			{
+				if (clickerRadiusSwitchAlpha < clickerRadiusSwitchAlphaMax)
+				{
+					clickerRadiusSwitchAlpha += clickerRadiusSwitchAlphaStep;
+				}
+				else
+				{
+					clickerRadiusSwitchAlpha = clickerRadiusSwitchAlphaMax;
+				}
+			}
+			else
+			{
+				if (clickerRadiusSwitchAlpha > clickerRadiusSwitchAlphaMin)
+				{
+					clickerRadiusSwitchAlpha -= clickerRadiusSwitchAlphaStep;
+				}
+				else
+				{
+					clickerRadiusSwitchAlpha = clickerRadiusSwitchAlphaMin;
+				}
+			}
+
+			if (GlowVisual)
+			{
+				if (clickerRadiusRangeAlpha < clickerRadiusRangeAlphaMax)
+				{
+					clickerRadiusRangeAlpha += clickerRadiusRangeAlphaStep;
+				}
+				else
+				{
+					clickerRadiusRangeAlpha = clickerRadiusRangeAlphaMax;
+				}
+			}
+			else
+			{
+				if (clickerRadiusRangeAlpha > clickerRadiusRangeAlphaMin)
+				{
+					clickerRadiusRangeAlpha -= clickerRadiusRangeAlphaStep;
+				}
+				else
+				{
+					clickerRadiusRangeAlpha = clickerRadiusRangeAlphaMin;
+				}
+			}
+		}
+
+		/// <summary>
+		/// Returns the position from the ratio and angle, given the radius in pixels
+		/// </summary>
+		/// <param name="realRadius">The reference radius</param>
+		public Vector2 CalculateMotherboardPosition(float realRadius)
+		{
+			float length = setMotherboardRatio * realRadius;
 			Vector2 direction = setMotherboardAngle.ToRotationVector2();
 			return direction * length;
 		}
@@ -531,6 +612,9 @@ namespace ClickerClass
 					clickerRadius += clickerItem.radiusBoostPrefix;
 				}
 
+				//Cache for draw
+				clickerRadiusDraw = clickerRadius;
+
 				//collision
 				if (Vector2.Distance(Main.MouseWorld, player.Center) < ClickerRadiusReal && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
 				{
@@ -539,7 +623,7 @@ namespace ClickerClass
 				if (setMotherboard)
 				{
 					//Important: has to be after final clickerRadius calculation because it depends on it
-					setMotherboardPosition = player.Center + CalculateMotherboardPosition();
+					setMotherboardPosition = player.Center + CalculateMotherboardPosition(ClickerRadiusReal);
 				}
 
 				//collision
@@ -548,6 +632,9 @@ namespace ClickerClass
 					clickerInRangeMotherboard = true;
 				}
 				clickerRadiusColor = clickerItem.clickerRadiusColor;
+
+				//Cache for draw
+				clickerRadiusColorDraw = Color.Lerp(clickerRadiusColorDraw, clickerRadiusColor, clickerRadiusSwitchAlpha);
 
 				//Glove acc
 				if (!outOfCombat && (accClickingGlove || accAncientClickingGlove || accRegalClickingGlove))
@@ -558,6 +645,10 @@ namespace ClickerClass
 				{
 					accClickingGloveTimer = 0;
 				}
+			}
+			else
+			{
+				clickerRadiusColorDraw = Color.Lerp(Color.Transparent, clickerRadiusColorDraw, clickerRadiusSwitchAlpha);
 			}
 
 			if (player.HasBuff(ModContent.BuffType<Haste>()))
@@ -718,6 +809,8 @@ namespace ClickerClass
 			}
 
 			HandleCPS();
+
+			HandleRadiusAlphas();
 
 			//Milk acc
 			if (accGlassOfMilk)
@@ -1040,21 +1133,20 @@ namespace ClickerClass
 
 			if (Main.gameMenu) return;
 
-			if (modPlayer.clickerSelected && modPlayer.clickerDrawRadius)
+			if (modPlayer.CanDrawRadius)
 			{
 				if (modPlayer.SetMotherboardDraw)
 				{
 					Mod mod = ModLoader.GetMod("ClickerClass");
-					float glow = modPlayer.clickerInRangeMotherboard ? 0.6f : 0f;
 
-					Color outer = modPlayer.clickerRadiusColor * (0.2f + glow);
+					float alpha = modPlayer.ClickerRadiusColorMultiplier;
 					int drawX = (int)(drawPlayer.Center.X - Main.screenPosition.X);
 					int drawY = (int)(drawPlayer.Center.Y + drawPlayer.gfxOffY - Main.screenPosition.Y);
 					Vector2 center = new Vector2(drawX, drawY);
-					Vector2 drawPos = center + modPlayer.CalculateMotherboardPosition().Floor();
+					Vector2 drawPos = center + modPlayer.CalculateMotherboardPosition(modPlayer.ClickerRadiusRealDraw).Floor();
 
 					Texture2D texture = mod.GetTexture("Glowmasks/MotherboardSetBonus_Glow");
-					DrawData drawData = new DrawData(texture, drawPos, null, Color.White, 0f, texture.Size() / 2, 1f, SpriteEffects.None, 0)
+					DrawData drawData = new DrawData(texture, drawPos, null, Color.White * alpha, 0f, texture.Size() / 2, 1f, SpriteEffects.None, 0)
 					{
 						ignorePlayerRotation = true
 					};
@@ -1064,7 +1156,7 @@ namespace ClickerClass
 					frame.Y += 30 * modPlayer.setMotherboardFrame;
 
 					texture = mod.GetTexture("Glowmasks/MotherboardSetBonus2_Glow");
-					drawData = new DrawData(texture, drawPos, frame, new Color(255, 255, 255, 100) * modPlayer.setMotherboardAlpha, 0f, new Vector2(texture.Width / 2, frame.Height / 2), 1f, SpriteEffects.None, 0)
+					drawData = new DrawData(texture, drawPos, frame, new Color(255, 255, 255, 100) * modPlayer.setMotherboardAlpha * alpha, 0f, new Vector2(texture.Width / 2, frame.Height / 2), 1f, SpriteEffects.None, 0)
 					{
 						ignorePlayerRotation = true
 					};

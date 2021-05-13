@@ -1,8 +1,10 @@
+using ClickerClass.Core.Netcode;
 using ClickerClass.Effects;
 using ClickerClass.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
@@ -26,6 +28,7 @@ namespace ClickerClass
 			AutoClickKey = RegisterHotKey("Clicker Accessory", "G"); //Can't localize this
 			ClickerSystem.Load();
 			ClickEffect.LoadMiscEffects();
+			NetHandler.Load();
 
 			if (!Main.dedServ)
 			{
@@ -39,6 +42,7 @@ namespace ClickerClass
 			ShaderManager.Unload();
 			ClickerSystem.Unload();
 			ClickEffect.Unload();
+			NetHandler.Unload();
 			ClickerInterfaceResources.Unload();
 			AutoClickKey = null;
 			mod = null;
@@ -114,6 +118,11 @@ namespace ClickerClass
 		public override void AddRecipeGroups()
 		{
 			ClickerRecipes.AddRecipeGroups();
+		}
+
+		public override void HandlePacket(BinaryReader reader, int whoAmI)
+		{
+			NetHandler.HandlePackets(reader, whoAmI);
 		}
 
 		/// <summary>

@@ -1,3 +1,4 @@
+using ClickerClass.Core;
 using ClickerClass.Dusts;
 using Microsoft.Xna.Framework;
 using System;
@@ -88,25 +89,26 @@ namespace ClickerClass.Projectiles
 				projectile.friendly = true;
 				projectile.extraUpdates = 4;
 
-				if (Main.myPlayer == projectile.owner)
+				MousePlayer mousePlayer = Main.player[projectile.owner].GetModPlayer<MousePlayer>();
+				mousePlayer.SetMousePosition();
+				if (mousePlayer.TryGetMousePosition(out Vector2 mouseWorld))
 				{
-					//TODO make this MP compatible
 					float x = projectile.Center.X;
 					float y = projectile.Center.Y;
 					float dist = 1000f;
-					bool flag17 = false;
+					bool found = false;
 
-					float mouseX = Main.MouseWorld.X;
-					float mouseY = Main.MouseWorld.Y;
-					float abs = Math.Abs(projectile.position.X + (float)(projectile.width / 2) - mouseX) + Math.Abs(projectile.position.Y + (float)(projectile.height / 2) - mouseY);
+					float mouseX = mouseWorld.X;
+					float mouseY = mouseWorld.Y;
+					float abs = Math.Abs(projectile.Center.X - mouseX) + Math.Abs(projectile.Center.Y - mouseY);
 					if (abs < dist)
 					{
 						x = mouseX;
 						y = mouseY;
-						flag17 = true;
+						found = true;
 					}
 
-					if (flag17)
+					if (found)
 					{
 						float mag = 3f;
 						Vector2 center = projectile.Center;

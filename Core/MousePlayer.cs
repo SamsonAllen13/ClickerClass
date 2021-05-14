@@ -13,22 +13,32 @@ namespace ClickerClass.Core
 	{
 		/*
 		 * How this is used:
-		 * - Whenever something wants client A's mouse position, access A's players ModPlayer, and calls {GetMousePosition()}
-		 *     - It can be null! (if client B hasn't received A's mouse position yet)
+		 * - Whenever something wants client A's mouse position, access A's players ModPlayer, and call {GetMousePosition}
+		 *     - It can be Vector2.Zero/return false! (if client B hasn't received A's mouse position yet)
 		 * 
-		 * How this works:
-		 * - Client A makes it clear that he wants his mouse position to sync, initiates sending process (by using {SetMousePosition()})
-		 *     - Sending process is send MouseWorld every {updateRate} ticks while client wants it
-		 * - Server receives, resends to clients (one of them B)
+		 * How this works (implementation):
+		 * - Client A makes it clear that he needs the mouse position to be known to other clients, initiates sending process (by calling {GetMousePosition})
+		 *     - Sending process is "send MouseWorld every {updateRate} ticks while client wants it"
+		 * - Server receives, resends to clients (one of them being B)
 		 *     - B receives {NextMousePosition}, and:
-		 *         - if it's the first position received: calls {SetNextMousePosition()}
+		 *         - if it's the first position received: calls {SetNextMousePosition}
 		 *         - else: use UpdateRule() to move {MousePosition} towards the received value
-		 *     - If B holds a MousePosition and timeout is reached (no more incoming packets hopefully):
+		 *     - If B holds a {MousePosition} and timeout is reached (no more incoming packets hopefully):
 		 *         - nulls {MousePosition} and sets related fields to default
+		 *         
+		 * Assumptions made:
+		 * - It only works for "continuous" access of the cursor, such as each tick in a projectiles AI
+		 * - It only works if the client owning the mouse also uses {GetMousePosition}. This is NOT a "request" system!
 		 */
 
+		/// <summary>
+		/// Maximum range (rectangle) around the requesting clients position for receiving the packet from the server
+		/// </summary>
 		public static readonly Vector2 MaxRange = new Vector2(1920, 1080) * 3;
 
+		/// <summary>
+		/// Protection against multiple sources requesting the mouse in the same tick (it would mess up the timeouts and interpolation, plus, useless to send the same mouse position twice)
+		/// </summary>
 		private bool sentThisTick;
 
 		/// <summary>
@@ -75,7 +85,7 @@ namespace ClickerClass.Core
 		/// Assigns mousePosition to this player's mouse position, accurate if singleplayer/client, interpolated if other client, or Vector2.Zero if not available (will return false in that case).
 		/// <para>Initiates netcode if called on the local client.</para>
 		/// </summary>
-		/// <param name="mousePosition"></param>
+		/// <param name="mousePosition">"Main.MouseWorld"</param>
 		/// <returns>True if mouse position exists</returns>
 		public bool TryGetMousePosition(out Vector2 mousePosition)
 		{

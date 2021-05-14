@@ -132,6 +132,7 @@ namespace ClickerClass
 		//Acc
 		public static string StickyKeychain { get; internal set; } = string.Empty;
 		public static string ChocolateChip { get; internal set; } = string.Empty;
+		public static string BigRedButton { get; internal set; } = string.Empty;
 
 		//Clicker
 		public static string TrueStrike { get; internal set; } = string.Empty;
@@ -148,15 +149,18 @@ namespace ClickerClass
 		public static string Infest { get; internal set; } = string.Empty;
 		public static string Dazzle { get; internal set; } = string.Empty;
 		public static string DarkBurst { get; internal set; } = string.Empty;
+		public static string DustDevil { get; internal set; } = string.Empty;
 		public static string Totality { get; internal set; } = string.Empty;
 		public static string Freeze { get; internal set; } = string.Empty;
 		public static string Linger { get; internal set; } = string.Empty;
 		public static string Discharge { get; internal set; } = string.Empty;
 		public static string StickyHoney { get; internal set; } = string.Empty;
 		public static string SolarFlare { get; internal set; } = string.Empty;
+		public static string Flurry { get; internal set; } = string.Empty;
 		public static string Conqueror { get; internal set; } = string.Empty;
 		public static string Collision { get; internal set; } = string.Empty;
 		public static string Embrittle { get; internal set; } = string.Empty;
+		public static string Spores { get; internal set; } = string.Empty;
 		public static string PetalStorm { get; internal set; } = string.Empty;
 		public static string Regenerate { get; internal set; } = string.Empty;
 		public static string StingingThorn { get; internal set; } = string.Empty;
@@ -170,6 +174,7 @@ namespace ClickerClass
 		public static string TheClick { get; internal set; } = string.Empty;
 		public static string RazorsEdge { get; internal set; } = string.Empty;
 		public static string ShadowLash { get; internal set; } = string.Empty;
+		public static string WebSplash { get; internal set; } = string.Empty;
 		public static string WildMagic { get; internal set; } = string.Empty;
 		#endregion
 

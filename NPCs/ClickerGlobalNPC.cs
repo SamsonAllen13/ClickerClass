@@ -24,6 +24,7 @@ namespace ClickerClass.NPCs
 		public bool frozen = false;
 		public bool honeySlow = false;
 		public bool embrittle = false;
+		public bool stunned = false;
 
 		public override void ResetEffects(NPC npc)
 		{
@@ -31,6 +32,7 @@ namespace ClickerClass.NPCs
 			frozen = false;
 			honeySlow = false;
 			embrittle = false;
+			stunned = false;
 		}
 
 		public override void SetDefaults(NPC npc)
@@ -91,6 +93,7 @@ namespace ClickerClass.NPCs
 				case NPCID.TargetDummy:
 					npc.buffImmune[ModContent.BuffType<Frozen>()] = true;
 					npc.buffImmune[ModContent.BuffType<HoneySlow>()] = true;
+					npc.buffImmune[ModContent.BuffType<Stunned>()] = true;
 					break;
 				default:
 					if (npc.boss)
@@ -115,6 +118,11 @@ namespace ClickerClass.NPCs
 				npc.velocity.Y += !npc.noTileCollide ? 0.10f : 0.01f;
 			}
 			if (frozen)
+			{
+				npc.position = npc.oldPosition;
+				npc.frameCounter = 0;
+			}
+			if (stunned)
 			{
 				npc.position = npc.oldPosition;
 				npc.frameCounter = 0;
@@ -158,11 +166,32 @@ namespace ClickerClass.NPCs
 					Item.NewItem(npc.Hitbox, ModContent.ItemType<ChocolateChip>(), 1, false, -1);
 				}
 			}
+			if (npc.type == NPCID.SandElemental)
+			{
+				if (Main.rand.NextBool())
+				{
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<SandstormClicker>(), 1, false, -1);
+				}
+			}
+			if (npc.type == NPCID.IceGolem)
+			{
+				if (Main.rand.NextBool())
+				{
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<BlizzardClicker>(), 1, false, -1);
+				}
+			}
 			if (npc.type == NPCID.PirateCaptain)
 			{
 				if (Main.rand.NextBool(8))
 				{
 					Item.NewItem(npc.Hitbox, ModContent.ItemType<CaptainsClicker>(), 1, false, -1);
+				}
+			}
+			if (npc.type == NPCID.PirateShip)
+			{
+				if (Main.rand.NextBool(4))
+				{
+					Item.NewItem(npc.Hitbox, ModContent.ItemType<GoldenTicket>(), 1, false, -1);
 				}
 			}
 			if (npc.type == NPCID.Pumpking)
@@ -233,6 +262,12 @@ namespace ClickerClass.NPCs
 			{
 				case NPCID.Merchant:
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Cookie>());
+					break;
+				case NPCID.Demolitionist:
+					if (Main.hardMode)
+					{
+						shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BigRedButton>());
+					}
 					break;
 				case NPCID.TravellingMerchant:
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Soda>());

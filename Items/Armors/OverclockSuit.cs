@@ -11,7 +11,7 @@ namespace ClickerClass.Items.Armors
 		{
 			base.SetStaticDefaults();
 			DisplayName.SetDefault("Overclock Suit");
-			Tooltip.SetDefault("Increases click damage by 10%");
+			Tooltip.SetDefault("Increases click damage by 8%");
 		}
 
 		public override void SetDefaults()
@@ -25,7 +25,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.1f;
+			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.08f;
 		}
 
 		public override void AddRecipes()

@@ -53,7 +53,7 @@ namespace ClickerClass.Projectiles
 			projectile.timeLeft = 240;
 			projectile.extraUpdates = 1;
 			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 20;
+			projectile.localNPCHitCooldown = 30;
 		}
 
 		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)

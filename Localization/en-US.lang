@@ -29,6 +29,9 @@ BuffDescription.InfluenceBuff={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseC
 BuffName.OverclockBuff=Overclock
 BuffDescription.OverclockBuff=Every click will trigger a click effect
 
+BuffName.Stunned=Stunned
+BuffDescription.Stunned=Stunned in place
+
 # Commons
 #######
 Common.Tooltips.IncreasesClickDamage=Increases click damage
@@ -43,6 +46,12 @@ Common.Tooltips.Clicker=Click on an enemy within range and sight to damage them
 Common.Tooltips.MoreThanOneClick={0} clicks
 Common.Tooltips.OneClick=1 click
 Common.Unknown=Unknown
+
+Common.Tooltips.Copper=copper
+Common.Tooltips.Silver=silver
+Common.Tooltips.Gold=gold
+Common.Tooltips.Coins=coins
+Common.Tooltips.And=and
 
 
 # DO NOT TRANSLATE THIS ONE
@@ -62,6 +71,9 @@ ItemTooltip.AncientClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGlo
 
 ItemName.ChocolateChip=Chocolate Chip
 ItemTooltip.ChocolateChip=Every 15 clicks releases a burst of damaging chocolate
+
+ItemName.BigRedButton=Big Red Button
+ItemTooltip.BigRedButton=Every 25 clicks causes a large, fiery explosion
 
 ItemName.ChocolateMilkCookies=Chocolate Milk n' Cookies
 ItemTooltip.ChocolateMilkCookies={$Mods.ClickerClass.ItemTooltip.MilkCookies}\n{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
@@ -94,7 +106,10 @@ ItemName.MousePad=Mouse Pad
 ItemTooltip.MousePad={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%
 
 ItemName.PortableParticleAccelerator=Portable Particle Accelerator
-ItemTooltip.PortableParticleAccelerator=Clicking within the inner 20% of your clicker radius deals 20% more damage
+ItemTooltip.PortableParticleAccelerator=Clickers within the inner 50% of your clicker radius deal 10 more damage
+
+ItemName.GoldenTicket=Golden Ticket
+ItemTooltip.GoldenTicket=Your clicker damage will generate some coins\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 10%
 
 ItemName.RegalClickingGlove=Regal Clicking Glove
 ItemTooltip.RegalClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} half-second
@@ -139,7 +154,7 @@ ItemTooltip.OverclockHelmet={$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfC
 
 ItemName.OverclockSuit=Overclock Suit
 ItemTooltip.OverclockSuit={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
-SetBonus.Overclock=Every 100 clicks briefly grants you 'Overclock', making every click trigger its effect
+SetBonus.Overclock=Every 100 clicks briefly grants you 'Overclock', making every click trigger its effect\nWhile Overclock is active, you deal 50% less click damage
 
 ItemName.PrecursorBreastplate=Precursor Breastplate
 ItemTooltip.PrecursorBreastplate={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 15%\n{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius} by 50%
@@ -182,6 +197,10 @@ ClickEffect.Spiral.Description=Creates a spiral galaxy that draws in enemies wit
 ItemName.BoneClicker=Bone Clicker
 ClickEffect.Lacerate.Name=Lacerate
 ClickEffect.Lacerate.Description=Inflicts the Gouge debuff, dealing 30 damage per second
+
+ItemName.BlizzardClicker=Blizzard Clicker
+ClickEffect.Flurry.Name=Flurry
+ClickEffect.Flurry.Description=Creates a blizzard cloud that rains freezing hail downwards
 
 ItemName.CandleClicker=Candle Clicker
 ClickEffect.Illuminate.Name=Illuminate
@@ -255,6 +274,10 @@ ItemName.MiceClicker=Mice Clicker
 ClickEffect.Collision.Name=Collision
 ClickEffect.Collision.Description=Fires out 8 erratic bolts outwards that, after a second, collapse back
 
+ItemName.MyceliumClicker=Mycelium Clicker
+ClickEffect.Spores.Name=Spores
+ClickEffect.Spores.Description=Spits of a volley of drifting spores
+
 ItemName.MythrilClicker=Mythril Clicker
 ClickEffect.Embrittle.Name=Embrittle
 ClickEffect.Embrittle.Description=Inflicts the {$Mods.ClickerClass.BuffName.Embrittle} debuff: {$Mods.ClickerClass.BuffDescription.Embrittle}
@@ -276,6 +299,10 @@ ClickEffect.StingingThorn.Description=Fires a thorn projectile that travels towa
 ItemName.RedHotClicker=Red Hot Clicker
 ClickEffect.Inferno.Name=Inferno
 ClickEffect.Inferno.Description=Creates an explosion, dealing damage and inflicting the {$BuffName.Oiled} and {$BuffName.OnFire} debuffs
+
+ItemName.SandstormClicker=Sandstorm Clicker
+ClickEffect.DustDevil.Name=Dust Devil
+ClickEffect.DustDevil.Description=Creates a violent tornado that chases down enemies
 
 ItemName.ShadowyClicker=Shadowy Clicker
 ClickEffect.Curse.Name=Curse
@@ -324,6 +351,10 @@ ItemName.WitchClicker=Witch Clicker
 ClickEffect.WildMagic.Name=Wild Magic
 ClickEffect.WildMagic.Description=Randomly acts as any possible click effect
 
+ItemName.WebClicker=Web Clicker
+ClickEffect.WebSplash.Name=Web Splash
+ClickEffect.WebSplash.Description=Fires out a globule of sticky web towards the nearest enemy
+
 ItemName.WoodenClicker=Wooden Clicker
 
 
@@ -340,6 +371,9 @@ ClickEffect.DoubleClick2.Description={$Mods.ClickerClass.ClickEffect.DoubleClick
 
 ClickEffect.StickyKeychain.Name=Sticky Keychain
 ClickEffect.StickyKeychain.Description=Sticks damaging slime on to your screen
+
+ClickEffect.BigRedButton.Name=Kaboom
+ClickEffect.BigRedButton.Description=Causes a large explosion
 
 
 # Prefixes
@@ -359,6 +393,7 @@ Prefix.PrefixClickBoost.Tooltip={0} clicks required
 #######
 Tooltip.ClickerTag=Clicker Class
 Tooltip.TotalClicks=Total clicks
+Tooltip.MoneyGenerated=Money Generated
 Tooltip.ClickDamage={0} click damage
 Tooltip.ForMoreInfo=Hold 'Auto Select' key ({0}) while not auto-paused to show click effects
 

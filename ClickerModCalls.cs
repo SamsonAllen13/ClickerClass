@@ -435,6 +435,7 @@ namespace ClickerClass
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
+					//accGoldenTicket, accPortableParticleAccelerator
 					if (accName == "ChocolateChip")
 					{
 						if (apiVersion < new Version(1, 2, 2))
@@ -480,6 +481,16 @@ namespace ClickerClass
 					else if (accName == "RegalClickingGlove")
 					{
 						return clickerPlayer.accRegalClickingGlove;
+					}
+					else if (accName == "GoldenTicket")
+					{
+						clickerPlayer.accGoldenTicket = true;
+						return success;
+					}
+					else if (accName == "PortableParticleAccelerator")
+					{
+						clickerPlayer.accPortableParticleAccelerator = true;
+						return success;
 					}
 
 					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
@@ -584,6 +595,7 @@ namespace ClickerClass
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
+					//accGoldenTicket, accPortableParticleAccelerator
 					if (accName == "ChocolateChip")
 					{
 						//Kept for backwards compatibility
@@ -647,6 +659,16 @@ namespace ClickerClass
 					else if (accName == "RegalClickingGlove")
 					{
 						clickerPlayer.accRegalClickingGlove = true;
+						return success;
+					}
+					else if (accName == "GoldenTicket")
+					{
+						clickerPlayer.accGoldenTicket = true;
+						return success;
+					}
+					else if (accName == "PortableParticleAccelerator")
+					{
+						clickerPlayer.accPortableParticleAccelerator = true;
 						return success;
 					}
 

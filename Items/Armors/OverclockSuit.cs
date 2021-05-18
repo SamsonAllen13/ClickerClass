@@ -18,7 +18,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.1f;
+			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.08f;
 		}
 
 		public override void AddRecipes()

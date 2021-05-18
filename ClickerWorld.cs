@@ -63,7 +63,8 @@ namespace ClickerClass
 						continue;
 					}
 
-					if (style == ChestStyle.Mushroom || style == ChestStyle.Granite || style == ChestStyle.Marble) // consider all these as gold chests, since that's what vanilla does
+					//Mushroom is not recongized as gold here for the sake of the 'Mycelium Clicker'
+					if (style == ChestStyle.Granite || style == ChestStyle.Marble) // consider all these as gold chests, since that's what vanilla does
 					{
 						style = ChestStyle.Gold;
 					}
@@ -80,6 +81,11 @@ namespace ClickerClass
 			if (chestLists.ContainsKey(ChestStyle.Gold))
 			{
 				ReplaceRareItemsInChests(chestLists[ChestStyle.Gold], new int[] { ModContent.ItemType<EnchantedLED>() });
+			}
+			
+			if (chestLists.ContainsKey(ChestStyle.Mushroom))
+			{
+				ReplaceRareItemsInChests(chestLists[ChestStyle.Mushroom], new int[] { ModContent.ItemType<MyceliumClicker>() });
 			}
 
 			if (chestLists.ContainsKey(ChestStyle.LockedGold))

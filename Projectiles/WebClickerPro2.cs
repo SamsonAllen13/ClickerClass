@@ -1,15 +1,13 @@
-using ClickerClass.Utilities;
 using ClickerClass.Buffs;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
 	public class WebClickerPro2 : ClickerProjectile
 	{
+		public bool LeftFacing => projectile.ai[0] == 1f;
+
 		public override void SetDefaults()
 		{
 			projectile.width = 78;
@@ -30,7 +28,7 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
-			projectile.rotation += projectile.ai[0] == 1f ? 0.0075f : -0.0075f;
+			projectile.rotation += LeftFacing ? 0.0075f : -0.0075f;
 
 			if (projectile.timeLeft < 20)
 			{

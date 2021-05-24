@@ -123,7 +123,7 @@ namespace ClickerClass.Projectiles
 				for (int i = 0; i < Main.maxNPCs; i++)
 				{
 					NPC npc = Main.npc[i];
-					if (npc.CanBeChasedBy() && projectile.DistanceSQ(npc.Center) < dist * dist && Collision.CanHit(projectile.Center, 1, 1, npc.Center, 1, 1))
+					if (npc.CanBeChasedBy() && !hitTargets.Contains(npc.whoAmI) && projectile.DistanceSQ(npc.Center) < dist * dist && Collision.CanHit(projectile.Center, 1, 1, npc.Center, 1, 1))
 					{
 						float foundX = npc.Center.X;
 						float foundY = npc.Center.Y;

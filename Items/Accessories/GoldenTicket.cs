@@ -1,19 +1,9 @@
-﻿using System;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Microsoft.Xna.Framework;
-using System.Collections.Generic;
+﻿using Terraria;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class GoldenTicket : ClickerItem
 	{
-		public override void SetStaticDefaults()
-		{
-			base.SetStaticDefaults();
-		}
-
 		public override void SetDefaults()
 		{
 			SetDisplayMoneyGenerated(item);
@@ -26,8 +16,9 @@ namespace ClickerClass.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerRadius += 0.2f;
-			player.GetModPlayer<ClickerPlayer>().accGoldenTicket = true;
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+			clickerPlayer.clickerRadius += 0.2f;
+			clickerPlayer.accGoldenTicket = true;
 		}
 	}
 }

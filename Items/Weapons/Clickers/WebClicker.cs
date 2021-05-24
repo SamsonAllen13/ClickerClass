@@ -1,6 +1,5 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -15,29 +14,34 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.WebSplash = ClickerSystem.RegisterClickEffect(mod, "WebSplash", null, null, 10, new Color(190, 190, 175), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 17);
-				Vector2 pos = Main.MouseWorld;
+				Vector2 mouse = Main.MouseWorld;
 
 				int index = -1;
-				for (int i = 0; i < 200; i++)
+				float maxDistSQ = 400f * 400f;
+				for (int i = 0; i < Main.maxNPCs; i++)
 				{
 					NPC npc = Main.npc[i];
-					if (npc.active && npc.CanBeChasedBy() && Vector2.DistanceSquared(pos, npc.Center) < 400f * 400f && Collision.CanHit(pos, 1, 1, npc.Center, 1, 1))
+					if (npc.CanBeChasedBy())
 					{
-						index = i;
+						float distSQ = npc.DistanceSQ(mouse);
+						if (distSQ < maxDistSQ && Collision.CanHit(mouse, 1, 1, npc.Center, 1, 1))
+						{
+							maxDistSQ = distSQ;
+							index = i;
+						}
 					}
 				}
 				if (index != -1)
 				{
-					Vector2 vector = Main.npc[index].Center - pos;
+					Vector2 vector = Main.npc[index].Center - mouse;
 					float speed = 6f;
-					float mag = (float)Math.Sqrt(vector.X * vector.X + vector.Y * vector.Y);
+					float mag = vector.Length();
 					if (mag > speed)
 					{
 						mag = speed / mag;
 					}
 					vector *= mag;
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, vector.X, vector.Y, ModContent.ProjectileType<WebClickerPro>(), damage, knockBack, player.whoAmI);
+					Projectile.NewProjectile(Main.MouseWorld, vector, ModContent.ProjectileType<WebClickerPro>(), damage, knockBack, player.whoAmI);
 				}
 			});
 		}

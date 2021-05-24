@@ -1,3 +1,4 @@
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -9,10 +10,17 @@ namespace ClickerClass.Projectiles
 {
 	public class SandstormClickerPro : ClickerProjectile
 	{
+		private readonly HashSet<int> hitTargets = new HashSet<int>();
+		private readonly HashSet<int> foundTargets = new HashSet<int>();
 		public float alpha = 0.85f;
 		public bool fadeOut = false;
 		public bool homing = false;
-		List<int> targets = new List<int>();
+
+		public bool Spawned
+		{
+			get => projectile.localAI[0] == 1f;
+			set => projectile.localAI[0] = value ? 1f : 0f;
+		}
 
 		public override void SetStaticDefaults()
 		{
@@ -39,7 +47,8 @@ namespace ClickerClass.Projectiles
 		public override void PostDraw(SpriteBatch spriteBatch, Color lightColor)
 		{
 			SpriteEffects effects = projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-			Vector2 drawOrigin = new Vector2(Main.projectileTexture[projectile.type].Width * 0.5f, projectile.height * 0.5f);
+			Texture2D texture2D = Main.projectileTexture[projectile.type];
+			Vector2 drawOrigin = new Vector2(texture2D.Width * 0.5f, projectile.height * 0.5f);
 			for (int k = 0; k < projectile.oldPos.Length; k++)
 			{
 				float scaleDown = 0.067f * (15 - k);
@@ -62,72 +71,73 @@ namespace ClickerClass.Projectiles
 
 		public override bool? CanHitNPC(NPC target)
 		{
-			if (targets.Contains(target.whoAmI))
+			if (hitTargets.Contains(target.whoAmI))
 			{
 				return false;
 			}
 			return base.CanHitNPC(target);
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
-		{
-			targets.Add(target.whoAmI);
-			if (targets.Count >= 10)
-			{
-				projectile.Kill();
-			}
-		}
-
 		public override void AI()
 		{
-			Player player = Main.player[projectile.owner];
-			if (projectile.ai[0] != 0f)
+			bool killed = projectile.HandleChaining(hitTargets, foundTargets, 10);
+			if (killed)
 			{
-				targets.Add((int)(projectile.ai[0]));
-				projectile.ai[0] = 0f;
+				return;
 			}
-			
-			projectile.rotation += projectile.velocity.X > 0f ? 0.08f : -0.08f;
-			projectile.spriteDirection = projectile.velocity.X > 0f ? 1 : -1;
 
-			int num3;
-			float num477 = player.Center.X;
-			float num478 = player.Center.Y;
-			float num479 = 800f;
-			bool flag17 = false;
-
-			for (int num480 = 0; num480 < Main.maxNPCs; num480 = num3 + 1)
+			if (!Spawned)
 			{
-				if (Main.npc[num480].active && !targets.Contains(Main.npc[num480].whoAmI) && Main.npc[num480].CanBeChasedBy(projectile, false) && projectile.Distance(Main.npc[num480].Center) < num479 && Collision.CanHit(projectile.Center, 1, 1, Main.npc[num480].Center, 1, 1))
+				Spawned = true;
+
+				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 8);
+				for (int k = 0; k < 15; k++)
 				{
-					float num481 = Main.npc[num480].position.X + (float)(Main.npc[num480].width / 2);
-					float num482 = Main.npc[num480].position.Y + (float)(Main.npc[num480].height / 2);
-					float num483 = Math.Abs(projectile.position.X + (float)(projectile.width / 2) - num481) + Math.Abs(projectile.position.Y + (float)(projectile.height / 2) - num482);
-					if (num483 < num479)
+					Dust dust = Dust.NewDustDirect(projectile.Center - new Vector2(4), 8, 8, 216, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 150, default, 1.25f);
+					dust.noGravity = true;
+				}
+			}
+
+			int dir = (projectile.velocity.X > 0f).ToDirectionInt();
+			projectile.rotation += dir * 0.08f;
+			projectile.spriteDirection = dir;
+
+			float x = projectile.Center.X;
+			float y = projectile.Center.Y;
+			float dist = 800;
+			bool found = false;
+
+			for (int i = 0; i < Main.maxNPCs; i++)
+			{
+				NPC npc = Main.npc[i];
+				if (npc.CanBeChasedBy() && !hitTargets.Contains(npc.whoAmI) && projectile.DistanceSQ(npc.Center) < dist * dist && Collision.CanHit(projectile.Center, 1, 1, npc.Center, 1, 1))
+				{
+					float foundX = npc.Center.X;
+					float foundY = npc.Center.Y;
+					float abs = Math.Abs(projectile.Center.X - foundX) + Math.Abs(projectile.Center.Y - foundY);
+					if (abs < dist)
 					{
-						num479 = num483;
-						num477 = num481;
-						num478 = num482;
-						flag17 = true;
+						dist = abs;
+						x = foundX;
+						y = foundY;
+						found = true;
 					}
 				}
-				num3 = num480;
 			}
 
-			if (flag17)
+			if (found)
 			{
-				float num488 = 4f;
+				float mag = 4f;
+				Vector2 center = projectile.Center;
+				float toX = x - center.X;
+				float toY = y - center.Y;
+				float len = (float)Math.Sqrt(toX * toX + toY * toY);
+				len = mag / len;
+				toX *= len;
+				toY *= len;
 
-				Vector2 vector38 = new Vector2(projectile.position.X + (float)projectile.width * 0.5f, projectile.position.Y + (float)projectile.height * 0.5f);
-				float num489 = num477 - vector38.X;
-				float num490 = num478 - vector38.Y;
-				float num491 = (float)Math.Sqrt((double)(num489 * num489 + num490 * num490));
-				num491 = num488 / num491;
-				num489 *= num491;
-				num490 *= num491;
-
-				projectile.velocity.X = (projectile.velocity.X * 20f + num489) / 21f;
-				projectile.velocity.Y = (projectile.velocity.Y * 20f + num490) / 21f;
+				projectile.velocity.X = (projectile.velocity.X * 20f + toX) / 21f;
+				projectile.velocity.Y = (projectile.velocity.Y * 20f + toY) / 21f;
 				homing = true;
 			}
 			else
@@ -169,10 +179,8 @@ namespace ClickerClass.Projectiles
 			{
 				int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 216, Main.rand.Next((int)-5f, (int)5f), Main.rand.Next((int)-5f, (int)5f), 200, default(Color), 1.25f);
 				Main.dust[dust].noGravity = true;
-			}
-			for (int k = 0; k < 10; k++)
-			{
-				int dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 216, Main.rand.Next((int)-3f, (int)3f), Main.rand.Next((int)-3f, (int)3f), 50, default(Color), 1f);
+
+				dust = Dust.NewDust(projectile.position, projectile.width, projectile.height, 216, Main.rand.Next((int)-3f, (int)3f), Main.rand.Next((int)-3f, (int)3f), 50, default(Color), 1f);
 				Main.dust[dust].noGravity = true;
 			}
 		}

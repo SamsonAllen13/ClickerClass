@@ -88,7 +88,8 @@ namespace ClickerClass
 		private Dictionary<string, bool> ClickEffectActive = new Dictionary<string, bool>();
 
 		//Out of combat
-		public bool outOfCombat = true;
+		public const int OutOfCombatTimeMax = 300;
+		public bool OutOfCombat => outOfCombatTimer <= 0;
 		public int outOfCombatTimer = 0;
 
 		//Armor
@@ -132,8 +133,8 @@ namespace ClickerClass
 		public bool accClickingGlove = false;
 		public bool accAncientClickingGlove = false;
 		public bool accRegalClickingGlove = false;
-		public bool accPortableParticleAccelerator = false;
-		public bool accPortableParticleAccelerator2 = false;
+		public bool accPortableParticleAccelerator = false; //"is wearing"
+		public bool accPortableParticleAccelerator2 = false; //"is active", client only
 		public bool accGoldenTicket = false;
 
 		public int accClickingGloveTimer = 0;
@@ -647,7 +648,7 @@ namespace ClickerClass
 				clickerRadiusColorDraw = Color.Lerp(clickerRadiusColorDraw, clickerRadiusColor, clickerRadiusSwitchAlpha);
 
 				//Glove acc
-				if (!outOfCombat && (accClickingGlove || accAncientClickingGlove || accRegalClickingGlove))
+				if (!OutOfCombat && (accClickingGlove || accAncientClickingGlove || accRegalClickingGlove))
 				{
 					accClickingGloveTimer++;
 				}
@@ -813,9 +814,10 @@ namespace ClickerClass
 			}
 
 			//Portable Particle Accelerator acc
-			if (accPortableParticleAccelerator)
+			if (accPortableParticleAccelerator && Main.myPlayer == player.whoAmI)
 			{
-				if (Vector2.Distance(Main.MouseWorld, player.Center) < ClickerRadiusReal * 0.5f)
+				float radius = ClickerRadiusReal * 0.5f;
+				if (player.DistanceSQ(Main.MouseWorld) < radius * radius)
 				{
 					accPortableParticleAccelerator2 = true;
 				}
@@ -840,11 +842,6 @@ namespace ClickerClass
 			if (outOfCombatTimer > 0)
 			{
 				outOfCombatTimer--;
-				outOfCombat = false;
-			}
-			else
-			{
-				outOfCombat = true;
 			}
 		}
 
@@ -884,17 +881,17 @@ namespace ClickerClass
 				}
 			}
 			
-			outOfCombatTimer = 300;
+			outOfCombatTimer = OutOfCombatTimeMax;
 		}
 
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
 		{
-			outOfCombatTimer = 300;
+			outOfCombatTimer = OutOfCombatTimeMax;
 		}
 
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
-			outOfCombatTimer = 300;
+			outOfCombatTimer = OutOfCombatTimeMax;
 		}
 
 		public override void ModifyDrawLayers(List<PlayerLayer> layers)

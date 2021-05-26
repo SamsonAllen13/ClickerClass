@@ -37,7 +37,7 @@ namespace ClickerClass.Projectiles
 			{
 				HasSpawnEffects = false;
 
-				Main.PlaySound(SoundID.NPCHit, (int)projectile.Center.X, (int)projectile.Center.Y, 86);
+				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 86);
 			}
 
 			if (projectile.timeLeft < 170)

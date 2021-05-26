@@ -858,7 +858,7 @@ namespace ClickerClass
 
 		public override void OnHitNPCWithProj(Projectile projectile, NPC target, int damage, float knockback, bool crit)
 		{
-			if (ClickerSystem.IsClickerWeapon(player.HeldItem))
+			if (ClickerSystem.IsClickerProj(projectile))
 			{
 				if (accGoldenTicket && target.value > 0f)
 				{

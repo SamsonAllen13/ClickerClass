@@ -484,13 +484,11 @@ namespace ClickerClass
 					}
 					else if (accName == "GoldenTicket")
 					{
-						clickerPlayer.accGoldenTicket = true;
-						return success;
+						return clickerPlayer.accGoldenTicket;
 					}
 					else if (accName == "PortableParticleAccelerator")
 					{
-						clickerPlayer.accPortableParticleAccelerator = true;
-						return success;
+						return clickerPlayer.accPortableParticleAccelerator;
 					}
 
 					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");

@@ -1,57 +1,57 @@
-# Translation by: 
+# Translation by: Pixelnando#7284
 
 # Buffs
 #######
-# BuffName.AutoClick=Auto Click
-# BuffDescription.AutoClick=Hold down the Left Mouse Button to auto click
+# BuffName.AutoClick=Clique automático
+# BuffDescription.AutoClick=Segure o botão direito do mouse para clicar automaticamente
 
-# BuffName.CookieBuff=Cookie
-# BuffDescription.CookieBuff=Increases your click damage, radius, and life regeneration
+# BuffName.CookieBuff=Biscoito
+# BuffDescription.CookieBuff=Aumenta o seu dano por clique, raio, e regeneração de vida
 
-# BuffName.Embrittle=Embrittle
-# BuffDescription.Embrittle=Clicks will deal 8 extra damage to this target
+# BuffName.Embrittle=Frágil
+# BuffDescription.Embrittle=Cliques causarão 8 danos extra a este alvo
 
-# BuffName.Frozen=Frozen
-# BuffDescription.Frozen=Frozen in place
+# BuffName.Frozen=Congelado
+# BuffDescription.Frozen=Congelado no lugar
 
-# BuffName.Gouge=Gouge
-# BuffDescription.Gouge=Rapidly losing life
+# BuffName.Gouge=Cortado
+# BuffDescription.Gouge=Rapidamente perdendo a vida
 
-# BuffName.Haste=Haste
-# BuffDescription.Haste=Movement speed and jump speed increased
+# BuffName.Haste=Pressa
+# BuffDescription.Haste=Velocidade dos movimentos e velocidade dos pulos aumentada
 
-# BuffName.HoneySlow=Honey
-# BuffDescription.HoneySlow=Movement speed significantly reduced
+# BuffName.HoneySlow=Mel
+# BuffDescription.HoneySlow=A velocidade de movimentação é consideravelmente reduzida
 
 # BuffName.InfluenceBuff=Influence
-# BuffDescription.InfluenceBuff={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%
+# BuffDescription.InfluenceBuff={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 20%
 
 # BuffName.OverclockBuff=Overclock
-# BuffDescription.OverclockBuff=Every click will trigger a click effect
+# BuffDescription.OverclockBuff=Cada clique ativará um efeito de clique
 
-# BuffName.Stunned=Stunned
-# BuffDescription.Stunned=Stunned in place
+# BuffName.Stunned=Atordoado
+# BuffDescription.Stunned=Atordoado no lugar
 
 # Commons
 #######
-# Common.Tooltips.IncreasesClickDamage=Increases click damage
-# Common.Tooltips.IncreasedClickerDamage=increased clicker damage
-# Common.Tooltips.IncreasesClickCritChance=Increases click critical strike chance
-# Common.Tooltips.IncreasesBaseClickRadius=Increases your base click radius
-# Common.Tooltips.ReducesBaseClickRadius=Reduces your base click radius
-# Common.Tooltips.ReducesAmountOfClicks=Reduces the amount of clicks required for a click effect
-# Common.Tooltips.ClickingGloveEvery=While in combat, automatically clicks your current clicker every
-# Common.Tooltips.Clicker=Click on an enemy within range and sight to damage them
+# Common.Tooltips.IncreasesClickDamage=Aumenta o dano por clique
+# Common.Tooltips.IncreasedClickerDamage=de aumento nos danos por clique
+# Common.Tooltips.IncreasesClickCritChance=Aumenta a chance de clique crítico
+# Common.Tooltips.IncreasesBaseClickRadius=Aumenta o seu raio de clique básico
+# Common.Tooltips.ReducesBaseClickRadius=Reduz o seu raio de clique básico
+# Common.Tooltips.ReducesAmountOfClicks=Reduz a quantidade de cliques necessários para um efeito de clique
+# Common.Tooltips.ClickingGloveEvery=Durante o combate, clica automaticamente o seu clicador atual a cada
+# Common.Tooltips.Clicker=Clique em um inimigo dentro do seu alcance e visão para causar danos nele
 
-# Common.Tooltips.MoreThanOneClick={0} clicks
-# Common.Tooltips.OneClick=1 click
-# Common.Unknown=Unknown
+# Common.Tooltips.MoreThanOneClick={0} cliques
+# Common.Tooltips.OneClick=1 clique
+# Common.Unknown=Desconhecido
 
-# Common.Tooltips.Copper=copper
-# Common.Tooltips.Silver=silver
-# Common.Tooltips.Gold=gold
-# Common.Tooltips.Coins=coins
-# Common.Tooltips.And=and
+# Common.Tooltips.Copper=cobre
+# Common.Tooltips.Silver=prata
+# Common.Tooltips.Gold=ouro
+# Common.Tooltips.Coins=moedas
+# Common.Tooltips.And=e
 
 
 # DO NOT TRANSLATE THIS ONE
@@ -60,361 +60,361 @@
 
 # Misc Items
 #######
-# ItemName.MiceFragment=Mice Fragment
-# ItemTooltip.AncientClickingGlove='Erratic sparks skitter across this fragment'
+# ItemName.MiceFragment=Fragmento de Mouse
+# ItemTooltip.AncientClickingGlove='Faíscas erráticas deslizam por este fragmento'
 
 
 # Accessories
 #######
-# ItemName.AncientClickingGlove=Ancient Clicking Glove
-# ItemTooltip.AncientClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} second
+# ItemName.AncientClickingGlove=Luva de Clicar Antiga
+# ItemTooltip.AncientClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} segundo
 
-# ItemName.ChocolateChip=Chocolate Chip
-# ItemTooltip.ChocolateChip=Every 15 clicks releases a burst of damaging chocolate
+# ItemName.ChocolateChip=Gota de Chocolate
+# ItemTooltip.ChocolateChip=Cada 15 cliques libera uma explosão de chocolate que causa dano
 
-# ItemName.BigRedButton=Big Red Button
-# ItemTooltip.BigRedButton=Every 25 clicks causes a large, fiery explosion
+# ItemName.BigRedButton=Botão Vermelho Grande
+# ItemTooltip.BigRedButton=Cada 25 cliques causa uma explosão flamejante grande
 
-# ItemName.ChocolateMilkCookies=Chocolate Milk n' Cookies
+# ItemName.ChocolateMilkCookies=Leite com Chocolate e Biscoitos
 # ItemTooltip.ChocolateMilkCookies={$Mods.ClickerClass.ItemTooltip.MilkCookies}\n{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
 
-# ItemName.ClickerEmblem=Clicker Emblem
+# ItemName.ClickerEmblem=Emblema do Clicker
 # ItemTooltip.ClickerEmblem=15% {$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}
 
-# ItemName.ClickingGlove=Clicking Glove
-# ItemTooltip.ClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 3 seconds
+# ItemName.ClickingGlove=Luva de Clicar
+# ItemTooltip.ClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 3 segundos
 
-# ItemName.Cookie=Cookie
-# ItemTooltip.Cookie=While equipped, cookies will periodically spawn within your clicker radius\nClick the cookie to gain bonus clicker damage, radius, and life regeneration
+# ItemName.Cookie=Biscoito
+# ItemTooltip.Cookie=Enquanto equipado, biscoitos serão gerados periodicamente dentro do seu raio de clique\nClique o biscoito para ganhar Click the cookie to gain bonus clicker damage, radius, and life regeneration
 
-# ItemName.EnchantedLED=Enchanted LED
-# ItemTooltip.EnchantedLED=Your clicks produce an enchanted burst of light, while accessory is visible\n{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 2
+# ItemName.EnchantedLED=LED Encantada
+# ItemTooltip.EnchantedLED=Seus cliques produzem uma explosão de luz encantada enquanto o acessório está visível\n{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 2
 
-# ItemName.GamerCrate=Gamer Crate
-# ItemTooltip.GamerCrate='You don't actually think someone would play this, do you?'\n{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 50%\n{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 20%\nYour clicks produce an enchanted burst of mechanical light, while accessory is visible\n{$Mods.ClickerClass.ItemTooltip.HandCream}
+# ItemName.GamerCrate=Caixa Gamer
+# ItemTooltip.GamerCrate='Você não acha que alguém jogaria isso, acha?'\n{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 10%\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 50%\n{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} em 20%\nSeus cliques produzem uma explosão encantada de luz mecânica enquanto o acessório está visível\n{$Mods.ClickerClass.ItemTooltip.HandCream}
 
-# ItemName.HandCream=Hand Cream
-# ItemTooltip.HandCream=Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will toggle auto click on all Clickers\nWhile auto click is enabled, click rates are decreased
+# ItemName.HandCream=Creme para Mãos
+# ItemTooltip.HandCream=Apertar a tecla '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' ativará clique automático em todos os Clickers
 
-# ItemName.Milk=Glass of Milk
-# ItemTooltip.Milk=Gain up to 15% clicker damage based on your amount of clicks within a second
+# ItemName.Milk=Copo de Leite
+# ItemTooltip.Milk=Ganhe até 15% de dano por clique com base na sua quantidade de cliques por segundo
 
-# ItemName.MilkCookies=Milk n' Cookies
+# ItemName.MilkCookies=Leite com Biscoitos
 # ItemTooltip.MilkCookies={$Mods.ClickerClass.ItemTooltip.Cookie}\n{$Mods.ClickerClass.ItemTooltip.Milk}
 
 # ItemName.MousePad=Mouse Pad
-# ItemTooltip.MousePad={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%
+# ItemTooltip.MousePad={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 25%
 
-# ItemName.PortableParticleAccelerator=Portable Particle Accelerator
-# ItemTooltip.PortableParticleAccelerator=Clickers within the inner 50% of your clicker radius deal 10 more damage
+# ItemName.PortableParticleAccelerator=Acelerador de Partículas Portátil
+# ItemTooltip.PortableParticleAccelerator=Clickers dentro dos 50% internos do seu raio de clique causarão 10 a mais de dano
 
-# ItemName.GoldenTicket=Golden Ticket
-# ItemTooltip.GoldenTicket=Your clicker damage will generate some coins\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 10%
+# ItemName.GoldenTicket=Bilhete Dourado
+# ItemTooltip.GoldenTicket=Seu dano por clique irá gerar algumas moedas\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 10%
 
-# ItemName.RegalClickingGlove=Regal Clicking Glove
+# ItemName.RegalClickingGlove=Luva de Clicar Real
 # ItemTooltip.RegalClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} half-second
 
-# ItemName.Soda=Soda
-# ItemTooltip.Soda={$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1
+# ItemName.Soda=Refrigerante
+# ItemTooltip.Soda={$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} em 1
 
-# ItemName.StickyKeychain=Sticky Keychain
-# ItemTooltip.StickyKeychain=Every 10 clicks sticks damaging slime on to your screen
+# ItemName.StickyKeychain=Chaveiro Pegajoso
+# ItemTooltip.StickyKeychain=Cada 10 cliques gruda uma geleia que causa danos na sua tela
 
 # ItemName.TheScroller=The Scroller
-# ItemTooltip.TheScroller={$CommonItemTooltip.FlightAndSlowfall}\nHold DOWN to fall faster
+# ItemTooltip.TheScroller={$CommonItemTooltip.FlightAndSlowfall}\nSegure PARA BAIXO para cair mais rapidamente
 
 
 # Armors
 #######
-# ItemName.MiceBoots=Mice Boots
-# ItemTooltip.MiceBoots={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%\nIncreases movement speed by 20%
+# ItemName.MiceBoots=Botas do Mouse
+# ItemTooltip.MiceBoots={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 6%\nAumenta a velocidade dos movimentos em 20%
 
-# ItemName.MiceMask=Mice Mask
-# ItemTooltip.MiceMask={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 4%\n{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} by 6%
+# ItemName.MiceMask=Máscara do Mouse
+# ItemTooltip.MiceMask={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 4%\n{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} em 6%
 
-# ItemName.MiceSuit=Mice Suit
-# ItemTooltip.MiceSuit={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%
-# SetBonus.Mice=Right clicking a position within your clicker radius will teleport you to it
+# ItemName.MiceSuit=Armadura do Mouse
+# ItemTooltip.MiceSuit={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 25%
+# SetBonus.Mice=Clicar com o botão direito em uma posição dentro de seu raio de clique teleportará você para lá
 
-# ItemName.MotherboardBoots=Motherboard Boots
-# ItemTooltip.MotherboardBoots={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%
+# ItemName.MotherboardBoots=Botas de Placa-Mãe
+# ItemTooltip.MotherboardBoots={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 6%
 
-# ItemName.MotherboardHelmet=Motherboard Helmet
-# ItemTooltip.MotherboardHelmet={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%
+# ItemName.MotherboardHelmet=Elmo de Placa-Mãe
+# ItemTooltip.MotherboardHelmet={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 20%
 
-# ItemName.MotherboardSuit=Motherboard Suit
-# ItemTooltip.MotherboardSuit={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%
+# ItemName.MotherboardSuit=Armadura da Placa-Mãe
+# ItemTooltip.MotherboardSuit={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 6%
 # SetBonus.Motherboard=Right click to place a radius extending sensor
 
-# ItemName.OverclockBoots=Overclock Boots
-# ItemTooltip.OverclockBoots=Increases movement speed by 10%
+# ItemName.OverclockBoots=Botas de Overclock
+# ItemTooltip.OverclockBoots=Aumenta a velocidade dos movimentos em 10%
 
-# ItemName.OverclockHelmet=Overclock Helmet
-# ItemTooltip.OverclockHelmet={$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1
+# ItemName.OverclockHelmet=Elmo de Overclock
+# ItemTooltip.OverclockHelmet={$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} em 1
 
-# ItemName.OverclockSuit=Overclock Suit
-# ItemTooltip.OverclockSuit={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
-# SetBonus.Overclock=Every 100 clicks briefly grants you 'Overclock', making every click trigger its effect\nWhile Overclock is active, you deal 50% less click damage
+# ItemName.OverclockSuit=Armadura de Overclock
+# ItemTooltip.OverclockSuit={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 10%
+# SetBonus.Overclock=Cada 100 cliques concede 'Overclock' a você brevemente, fazendo com que cada clique acione seu efeito\nEnquanto Overclock estiver ativo, você causa 50% a menos de dano por clique
 
-# ItemName.PrecursorBreastplate=Precursor Breastplate
-# ItemTooltip.PrecursorBreastplate={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 15%\n{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius} by 50%
+# ItemName.PrecursorBreastplate=Peitoral do Precursor
+# ItemTooltip.PrecursorBreastplate={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 15%\n{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius} em 50%
 
-# ItemName.PrecursorGreaves=Precursor Greaves
-# ItemTooltip.PrecursorGreaves=Increases movement speed by 15%
+# ItemName.PrecursorGreaves=Grevas do Precursor
+# ItemTooltip.PrecursorGreaves=Aumenta a velocidade dos movimentos em 15%
 
-# ItemName.PrecursorHelmet=Precursor Helmet
-# ItemTooltip.PrecursorHelmet={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 8%
-# SetBonus.Precursor=Clicking causes an additional delayed fiery click at 25% the damage
+# ItemName.PrecursorHelmet=elmo do Precursor
+# ItemTooltip.PrecursorHelmet={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 8%
+# SetBonus.Precursor=Clicar causa um clique ardente atrasado com 25% do dano
 
 
 # Consumables
 #######
-# ItemName.InfluencePotion=Influence Potion
-# ItemTooltip.InfluencePotion={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%
+# ItemName.InfluencePotion=Poção da Influência
+# ItemTooltip.InfluencePotion={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 20%
 
 
 # Tools
 #######
-# ItemName.MiceHamaxe=Mice Hamaxe
+# ItemName.MiceHamaxe=Martelo-machado do Mouse
 
-# ItemName.MicePickaxe=Mice Pickaxe
+# ItemName.MicePickaxe=Picareta do Mouse
 
 
 # Clickers
 #######
-# ItemName.AdamantiteClicker=Adamantite Clicker
-# ClickEffect.TrueStrike.Name=True Strike
-# ClickEffect.TrueStrike.Description=Deals double damage and always inflicts a critical hit
+# ItemName.AdamantiteClicker=Clicker de Adamantina
+# ClickEffect.TrueStrike.Name=Ataque Verdadeiro
+# ClickEffect.TrueStrike.Description=Causa o dobro de dano e sempre inflige um acerto crítico
 
-# ItemName.ArthursClicker=Arthur's Clicker
-# ClickEffect.HolyNova.Name=Holy Nova
-# ClickEffect.HolyNova.Description=Damages every enemy within the clicker's radius with a guaranteed critical hit
+# ItemName.ArthursClicker=Clicker de Artur
+# ClickEffect.HolyNova.Name=Nova Divina
+# ClickEffect.HolyNova.Description=Causa dano a todos os inimigos dentro do raio do clicker com um acerto crítico garantido
 
-# ItemName.AstralClicker=Astral Clicker
-# ClickEffect.Spiral.Name=Spiral
-# ClickEffect.Spiral.Description=Creates a spiral galaxy that draws in enemies within close proximity
+# ItemName.AstralClicker=Clicker Astral
+# ClickEffect.Spiral.Name=Espiral
+# ClickEffect.Spiral.Description=Cria uma galáxia espiral que puxa inimigos próximos
 
-# ItemName.BoneClicker=Bone Clicker
-# ClickEffect.Lacerate.Name=Lacerate
-# ClickEffect.Lacerate.Description=Inflicts the Gouge debuff, dealing 30 damage per second
+# ItemName.BoneClicker=Clicker de Osso
+# ClickEffect.Lacerate.Name=Dilacerar
+# ClickEffect.Lacerate.Description=Inflige o efeito negativo Cortado, causando 30 de dano por segundo
 
-# ItemName.BlizzardClicker=Blizzard Clicker
-# ClickEffect.Flurry.Name=Flurry
-# ClickEffect.Flurry.Description=Creates a blizzard cloud that rains freezing hail downwards
+# ItemName.BlizzardClicker=Clicker da Nevasca
+# ClickEffect.Flurry.Name=Nevasca
+# ClickEffect.Flurry.Description=Cria uma nuvem de nevasca que faz chover granizo gelado
 
-# ItemName.CandleClicker=Candle Clicker
-# ClickEffect.Illuminate.Name=Illuminate
-# ClickEffect.Illuminate.Description=Creates 8 sparks along nearby tiles that illuminate the area
+# ItemName.CandleClicker=Clicker da Vela
+# ClickEffect.Illuminate.Name=Iluminar
+# ClickEffect.Illuminate.Description=Cria 8 faíscas ao longo das peças próximas que iluminam a área
 
-# ItemName.CaptainsClicker=Captain's Clicker
-# ClickEffect.Bombard.Name=Bombard
-# ClickEffect.Bombard.Description=Causes 4 cannonballs to rain from the sky
+# ItemName.CaptainsClicker=Clicker do Capitão
+# ClickEffect.Bombard.Name=Bombardear
+# ClickEffect.Bombard.Description=Faz com que 4 balas de canhão chovam do céu
 
-# ItemName.ChlorophyteClicker=Chlorophyte Clicker
-# ClickEffect.ToxicRelease.Name=Toxic Release
-# ClickEffect.ToxicRelease.Description=Expels 10 poisonous clouds around the cursor that linger
+# ItemName.ChlorophyteClicker=Clicker de Clorofita
+# ClickEffect.ToxicRelease.Name=Liberação Tóxica
+# ClickEffect.ToxicRelease.Description=Expele 10 nuvens venenosas ao redor do cursor que permanecem por um tempo
 
-# ItemName.CobaltClicker=Cobalt Clicker
-# ClickEffect.Haste.Name=Haste
-# ClickEffect.Haste.Description=Grants a jump boost and increased movement speed
+# ItemName.CobaltClicker=Clicker de Cobalto
+# ClickEffect.Haste.Name=Pressa
+# ClickEffect.Haste.Description=Oferece um reforço nos pulos e na velocidade dos movimentos
 
-# ItemName.CopperClicker=Copper Clicker
+# ItemName.CopperClicker=Clicker de Cobre
 
-# ItemName.CorruptClicker=Corrupt Clicker
-# ClickEffect.CursedEruption.Name=Cursed Eruption
-# ClickEffect.CursedEruption.Description=Deals damage in a large area of effect and inflicts {$BuffName.Oiled} and {$BuffName.CursedInferno}
+# ItemName.CorruptClicker=Clicker Corrompido
+# ClickEffect.CursedEruption.Name=Erupção Amaldiçoada
+# ClickEffect.CursedEruption.Description=Causa dano em uma grande área de efeito e inflige {$BuffName.Oiled} e {$BuffName.CursedInferno}
 
-# ItemName.CrimsonClicker=Crimson Clicker
-# ClickEffect.Infest.Name=Infest
-# ClickEffect.Infest.Description=Fires 8 ichor streams that home in at enemies
+# ItemName.CrimsonClicker=Clicker de Carmim
+# ClickEffect.Infest.Name=Infestar
+# ClickEffect.Infest.Description=Dispara 8 fluxos de ichor que seguem os inimigos
 
-# ItemName.CrystalClicker=Crystal Clicker
-# ClickEffect.Dazzle.Name=Dazzle
-# ClickEffect.Dazzle.Description=Inflicts the {$BuffName.Confused} debuff: {$BuffDescription.Confused}
+# ItemName.CrystalClicker=Clicker de Cristal
+# ClickEffect.Dazzle.Name=Deslumbrar
+# ClickEffect.Dazzle.Description=Inflige o efeito negativo {$BuffName.Confused}: {$BuffDescription.Confused}
 
-# ItemName.DarkClicker=Dark Clicker
-# ClickEffect.DarkBurst.Name=Dark Burst
-# ClickEffect.DarkBurst.Description=Deals damage in a large area of effect
+# ItemName.DarkClicker=Clicker das Sombras
+# ClickEffect.DarkBurst.Name=Explosão Sombria
+# ClickEffect.DarkBurst.Description=Causa dano em uma grande área de efeito
 
-# ItemName.EclipticClicker=Ecliptic Clicker
-# ClickEffect.Totality.Name=Totality
-# ClickEffect.Totality.Description=Creates a miniature eclipse, repeatedly firing out homing projectiles
+# ItemName.EclipticClicker=Clicker Elíptico
+# ClickEffect.Totality.Name=Totalidade
+# ClickEffect.Totality.Description=Cria um eclipse em miniatura, disparando projéteis teleguiados repetidamente
 
-# ItemName.FrozenClicker=Frozen Clicker
-# ClickEffect.Freeze.Name=Freeze
-# ClickEffect.Freeze.Description=Freezes enemies under your cursor, stopping them in place
+# ItemName.FrozenClicker=Clicker Congelado
+# ClickEffect.Freeze.Name=Congelar
+# ClickEffect.Freeze.Description=Congela os inimigos sob o seu cursor, parando-os no lugar
 
-# ItemName.GoldClicker=Gold Clicker
+# ItemName.GoldClicker=Clicker de Ouro
 
-# ItemName.HemoClicker=Hemo Clicker
-# ClickEffect.Linger.Name=Linger
-# ClickEffect.Linger.Description=Creates 5 gravity-affected blood globules that linger
+# ItemName.HemoClicker=Clicker Hemo
+# ClickEffect.Linger.Name=Permanecer
+# ClickEffect.Linger.Description=Cria 5 glóbulos de sangue afetados pela gravidade que permanecem por um tempo
 
-# ItemName.HighTechClicker=High Tech Clicker
-# ClickEffect.Discharge.Name=Discharge
-# ClickEffect.Discharge.Description=Blasts out 4 short-ranged lasers around the cursor
+# ItemName.HighTechClicker=Clicker de Alta Tecnologia
+# ClickEffect.Discharge.Name=Descarga
+# ClickEffect.Discharge.Description=Dispara 4 lasers de curto alcance ao redor do cursor
 
-# ItemName.HoneyGlazedClicker=Honey Glazed Clicker
-# ClickEffect.StickyHoney.Name=Sticky Honey
-# ClickEffect.StickyHoney.Description=Covers enemies under cursor in sticky honey, slowing them
+# ItemName.HoneyGlazedClicker=Clicker Glaceado com Mel
+# ClickEffect.StickyHoney.Name=Mel Grudento
+# ClickEffect.StickyHoney.Description=Cobre os inimigos sob o cursor em mel grudento, deixando-os mais lentos
 
-# ItemName.IronClicker=Iron Clicker
+# ItemName.IronClicker=Clicker de Ferro
 
-# ItemName.LeadClicker=Lead Clicker
+# ItemName.LeadClicker=Clicker de Chumbo
 
-# ItemName.LihzahrdClicker=Lihzahrd Clicker
-# ClickEffect.SolarFlare.Name=Solar Flare
-# ClickEffect.SolarFlare.Description=Spawns a lingering sun projectile that damages and inflicts the Oiled and On Fire! debuffs
+# ItemName.LihzahrdClicker=Clicker Lagharto
+# ClickEffect.SolarFlare.Name=Erupção Solar
+# ClickEffect.SolarFlare.Description=Gera um projétil de sol que causa danos e inflige os efeitos negativos Oleoso e Em chamas!
 
-# ItemName.LordsClicker=Lord's Clicker
-# ClickEffect.Conqueror.Name=Conqueror
-# ClickEffect.Conqueror.Description=Creates an area-of-effect phantasmal explosion that deals double damage and a guaranteed critical hit
+# ItemName.LordsClicker=Clicker do Senhor
+# ClickEffect.Conqueror.Name=Conquistador
+# ClickEffect.Conqueror.Description=Cria uma explosão fantasmagórica de área de efeito que causa o dobro de dano e um acerto crítico garantido
 
-# ItemName.MiceClicker=Mice Clicker
-# ClickEffect.Collision.Name=Collision
-# ClickEffect.Collision.Description=Fires out 8 erratic bolts outwards that, after a second, collapse back
+# ItemName.MiceClicker=Clicker do Mouse
+# ClickEffect.Collision.Name=Colisão
+# ClickEffect.Collision.Description=Dispara 8 feixes erráticos que, após um segundo, retrocedem
 
-# ItemName.MyceliumClicker=Mycelium Clicker
-# ClickEffect.Spores.Name=Spores
-# ClickEffect.Spores.Description=Spits out a volley of drifting spores
+# ItemName.MyceliumClicker=Clicker de Micélio
+# ClickEffect.Spores.Name=Esporos
+# ClickEffect.Spores.Description=Cospe uma salva de espóros deslizantes
 
-# ItemName.MythrilClicker=Mythril Clicker
-# ClickEffect.Embrittle.Name=Embrittle
-# ClickEffect.Embrittle.Description=Inflicts the {$Mods.ClickerClass.BuffName.Embrittle} debuff: {$Mods.ClickerClass.BuffDescription.Embrittle}
+# ItemName.MythrilClicker=Clicker de Mithril
+# ClickEffect.Embrittle.Name=Fragilizar
+# ClickEffect.Embrittle.Description=Inflige o efeito negativo {$Mods.ClickerClass.BuffName.Embrittle}: {$Mods.ClickerClass.BuffDescription.Embrittle}
 
-# ItemName.OrichalcumClicker=Orichalcum Clicker
-# ClickEffect.PetalStorm.Name=Petal Storm
-# ClickEffect.PetalStorm.Description=Causes 5 petal projectiles to be summoned near the player and shoot across the screen
+# ItemName.OrichalcumClicker=Clicker de Oricalco
+# ClickEffect.PetalStorm.Name=Tempestade de Pétalas
+# ClickEffect.PetalStorm.Description=Faz com que 5 projéteis de pétalas sejam invocados perto do jogador e sejam atiradas pela tela
 
-# ItemName.PalladiumClicker=Palladium Clicker
-# ClickEffect.Regenerate.Name=Regenerate
-# ClickEffect.Regenerate.Description=Grants the {$BuffName.RapidHealing} buff: {$BuffDescription.RapidHealing}
+# ItemName.PalladiumClicker=Clicker de Paládio
+# ClickEffect.Regenerate.Name=Regenerar
+# ClickEffect.Regenerate.Description=Concede o efeito {$BuffName.RapidHealing}: {$BuffDescription.RapidHealing}
 
-# ItemName.PlatinumClicker=Platinum Clicker
+# ItemName.PlatinumClicker=Clicker de Platina
 
-# ItemName.PointyClicker=Pointy Clicker
-# ClickEffect.StingingThorn.Name=Stinging Thorn
-# ClickEffect.StingingThorn.Description=Fires a thorn projectile that travels towards the nearest enemy
+# ItemName.PointyClicker=Clicker Pontudo
+# ClickEffect.StingingThorn.Name=Espinho Pontudo
+# ClickEffect.StingingThorn.Description=Dispara um projétil de espinho que viaja em direção ao inimigo mais próximo
 
-# ItemName.RedHotClicker=Red Hot Clicker
+# ItemName.RedHotClicker=Clicker em Brasa
 # ClickEffect.Inferno.Name=Inferno
-# ClickEffect.Inferno.Description=Creates an explosion, dealing damage and inflicting the {$BuffName.Oiled} and {$BuffName.OnFire} debuffs
+# ClickEffect.Inferno.Description=Cria uma explosão, causando dano e infligindo os efeitos negativos {$BuffName.Oiled} e {$BuffName.OnFire}
 
-# ItemName.SandstormClicker=Sandstorm Clicker
-# ClickEffect.DustDevil.Name=Dust Devil
-# ClickEffect.DustDevil.Description=Creates a violent tornado that chases down enemies
+# ItemName.SandstormClicker=Clicker da Tempestade de Areia
+# ClickEffect.DustDevil.Name=Demônio de Poeira
+# ClickEffect.DustDevil.Description=Cria um tornado violento que persegue os inimigos
 
-# ItemName.ShadowyClicker=Shadowy Clicker
-# ClickEffect.Curse.Name=Curse
-# ClickEffect.Curse.Description=Fires a shadowflame skull towards the nearest enemy
+# ItemName.ShadowyClicker=Clicker Sombrio
+# ClickEffect.Curse.Name=Maldição
+# ClickEffect.Curse.Description=Dispara uma caveira de chamas sombrias contra o inimigo mais próximo
 
-# ItemName.ShroomiteClicker=Shroomite Clicker
-# ClickEffect.AutoClick.Name=Auto Click
-# ClickEffect.AutoClick.Description=Grants the {$Mods.ClickerClass.BuffName.AutoClick} buff, reducing the use time, but granting auto-use
+# ItemName.ShroomiteClicker=Clicker de Cogumelita
+# ClickEffect.AutoClick.Name=Clique Automático
+# ClickEffect.AutoClick.Description=Concede o efeito {$Mods.ClickerClass.BuffName.AutoClick}, reduzido o tempo de uso, mas oferecendo uso automático
 
-# ItemName.SilverClicker=Silver Clicker
+# ItemName.SilverClicker=Clicker de Prata
 
-# ItemName.SinisterClicker=Sinister Clicker
-# ClickEffect.Siphon.Name=Siphon
-# ClickEffect.Siphon.Description=Deals a small amount of damage and restores the player's health by 5
+# ItemName.SinisterClicker=Clicker Sinistro
+# ClickEffect.Siphon.Name=Sifão
+# ClickEffect.Siphon.Description=Causa uma pequena quantidade de dano e restaura a vida do jogador em 5
 
-# ItemName.SlickClicker=Slick Clicker
-# ClickEffect.Splash.Name=Splash
-# ClickEffect.Splash.Description=Creates a fountain of 6 damaging water projectiles
+# ItemName.SlickClicker=Clicker Liso
+# ClickEffect.Splash.Name=Respingo
+# ClickEffect.Splash.Description=Cria uma fonte de 6 projéteis de água que causam dano
 
-# ItemName.SpaceClicker=Space Clicker
-# ClickEffect.StarStorm.Name=Star Storm
-# ClickEffect.StarStorm.Description=Causes 3 stars to fall from the sky and explode
+# ItemName.SpaceClicker=Clicker do Espaço
+# ClickEffect.StarStorm.Name=Tempestade de Estrelas
+# ClickEffect.StarStorm.Description=Faz com que 3 estrelas caiam do céu e explodam
 
-# ItemName.SpectreClicker=Spectre Clicker
-# ItemTooltip.SpectreClicker=Click on an enemy within sight to damage them
-# ClickEffect.PhaseReach.Name=Phase Reach
-# ClickEffect.PhaseReach.Description=Damage enemies regardless of location
+# ItemName.SpectreClicker=Clicker Espectral
+# ItemTooltip.SpectreClicker=Clique em um inimigo dentro da sua visão para causar danos nele
+# ClickEffect.PhaseReach.Name=Alcance de Fase
+# ClickEffect.PhaseReach.Description=Causa dano aos inimigos, independentemente da localização
 
-# ItemName.TheClicker=The Clicker
-# ClickEffect.TheClick.Name=The Click
-# ClickEffect.TheClick.Description=Deals an additional 1% of the enemy's maximum life as damage
+# ItemName.TheClicker=O Clicker
+# ClickEffect.TheClick.Name=O Clique
+# ClickEffect.TheClick.Description=Causa um adicional de 1% da vida máxima do inimigo como dano
 
-# ItemName.TinClicker=Tin Clicker
+# ItemName.TinClicker=Clicker de Estanho
 
-# ItemName.TitaniumClicker=Titanium Clicker
-# ClickEffect.RazorsEdge.Name=Razor's Edge
-# ClickEffect.RazorsEdge.Description=Fires out 5 orbiting sawblades that spread outwards
+# ItemName.TitaniumClicker=Clicker de Titânio
+# ClickEffect.RazorsEdge.Name=Lâmina de Navalha
+# ClickEffect.RazorsEdge.Description=Dispara 5 serras em órbita que se espalham para fora
 
-# ItemName.TungstenClicker=Tungsten Clicker
+# ItemName.TungstenClicker=Clicker de Tungstênio
 
-# ItemName.UmbralClicker=Umbral Clicker
-# ClickEffect.ShadowLash.Name=Shadow Lash
-# ClickEffect.ShadowLash.Description=Causes a burst of 5 shadow projectiles to seek out nearby enemies
+# ItemName.UmbralClicker=Clicker Umbral
+# ClickEffect.ShadowLash.Name=Chicotada Sombria
+# ClickEffect.ShadowLash.Description=Provoca uma explosão de 5 projéteis de sombra para procurar os inimigos próximos
 
-# ItemName.WitchClicker=Witch Clicker
-# ClickEffect.WildMagic.Name=Wild Magic
-# ClickEffect.WildMagic.Description=Randomly acts as any possible click effect
+# ItemName.WitchClicker=Clicker da Bruxa
+# ClickEffect.WildMagic.Name=Magia Selvagem
+# ClickEffect.WildMagic.Description=Funciona aleatoriamente como qualquer efeito de clique possível
 
-# ItemName.WebClicker=Web Clicker
-# ClickEffect.WebSplash.Name=Web Splash
-# ClickEffect.WebSplash.Description=Fires out a globule of sticky web towards the nearest enemy
+# ItemName.WebClicker=Clicker de Teia
+# ClickEffect.WebSplash.Name=Respingo de Teia
+# ClickEffect.WebSplash.Description=Dispara um glóbulo de teia pegajosa no inimigo mais próximo
 
-# ItemName.WoodenClicker=Wooden Clicker
+# ItemName.WoodenClicker=Clicker de Madeira
 
 
 # Common Effects
 #######
-# ClickEffect.ChocolateChip.Name=Chocolate Chip
-# ClickEffect.ChocolateChip.Description=Releases a burst of damaging chocolate
+# ClickEffect.ChocolateChip.Name=Gota de Chocolate
+# ClickEffect.ChocolateChip.Description=Libera uma explosão de chocolate que causa danos
 
-# ClickEffect.DoubleClick.Name=Double Click
-# ClickEffect.DoubleClick.Description=Deals damage twice with one attack
+# ClickEffect.DoubleClick.Name=Clique Duplo
+# ClickEffect.DoubleClick.Description=Causa dano duas vezes com um ataque
 
 # ClickEffect.DoubleClick2.Name={$Mods.ClickerClass.ClickEffect.DoubleClick.Name}
 # ClickEffect.DoubleClick2.Description={$Mods.ClickerClass.ClickEffect.DoubleClick.Description}
 
-# ClickEffect.StickyKeychain.Name=Sticky Keychain
-# ClickEffect.StickyKeychain.Description=Sticks damaging slime on to your screen
+# ClickEffect.StickyKeychain.Name=Chaveiro Pegajoso
+# ClickEffect.StickyKeychain.Description=Gruda uma geleia que causa danos na sua tela
 
 # ClickEffect.BigRedButton.Name=Kaboom
-# ClickEffect.BigRedButton.Description=Causes a large explosion
+# ClickEffect.BigRedButton.Description=Causa uma grande explosão
 
 
 # Prefixes
 #######
-# Prefix.ClickerRadius=Reaching
-# Prefix.ClickerRadius.Tooltip=+15% base clicker radius
-# Prefix.Elite=Elite
-# Prefix.Pro=Pro
-# Prefix.Amateur=Amateur
-# Prefix.Novice=Novice
-# Prefix.Laggy=Laggy
-# Prefix.Disconnected=Disconnected
-# Prefix.PrefixClickerRadius.Tooltip={0}% base clicker radius
-# Prefix.PrefixClickBoost.Tooltip={0} clicks required
+# Prefix.ClickerRadius=Alcance
+# Prefix.ClickerRadius.Tooltip=+15% de raio de clique básico
+# Prefix.Elite=(Elite)
+# Prefix.Pro=(Profissional)
+# Prefix.Amateur=(Amador)
+# Prefix.Novice=(Novato)
+# Prefix.Laggy=(Travado)
+# Prefix.Disconnected=(Desconectado)
+# Prefix.PrefixClickerRadius.Tooltip={0}% de raio de clique básico
+# Prefix.PrefixClickBoost.Tooltip={0} cliques necessários
 
 # Tooltips
 #######
-# Tooltip.ClickerTag=Clicker Class
-# Tooltip.TotalClicks=Total clicks
-# Tooltip.MoneyGenerated=Money Generated
-# Tooltip.ClickDamage={0} click damage
-# Tooltip.ForMoreInfo=Hold 'Auto Select' key ({0}) while not auto-paused to show click effects
+# Tooltip.ClickerTag=Classe Clicker
+# Tooltip.TotalClicks=Cliques totais
+# Tooltip.MoneyGenerated=Dinheiro gerado
+# Tooltip.ClickDamage={0} de dano por clique
+# Tooltip.ForMoreInfo=Segure a tecla 'Selecionar Automaticamente' ({0}) quando não estiver na pausa automática para exibir efeitos de clique
 
 
 # Configs
 #######
-# ClickerConfigClient.Label=Configuration
+# ClickerConfigClient.Label=Configuração
 
-# ClickerConfigClient.Header.GeneralOptions=General Options
+# ClickerConfigClient.Header.GeneralOptions=Opções gerais
 
-# ClickerConfigClient.ShowClassTags.Label=Display Class Tags
-# ClickerConfigClient.ShowClassTags.Tooltip=Toggle the display of class tags for items made for custom classes on the tooltip
+# ClickerConfigClient.ShowClassTags.Label=Exibir marcas de classe
+# ClickerConfigClient.ShowClassTags.Tooltip=Alterna a exibição de marcas de classe para itens feitos para classes personalizadas na dica de ferramenta
 
-# ClickerConfigClient.ShowEffectSuggestion.Label=Display 'hold auto select' text
-# ClickerConfigClient.ShowEffectSuggestion.Tooltip=Toggle the display of the 'Hold auto select for clicker effects' suggestion text for clicker weapons\n-The key will continue to work regardless of this toggle-
+# ClickerConfigClient.ShowEffectSuggestion.Label=Exibir texto 'segure selecionar automaticamente'
+# ClickerConfigClient.ShowEffectSuggestion.Tooltip=Alterne a exibição do texto de sugestão 'Segure a seleção automática para efeitos do clicker' para armas clicker\n-A tecla continuará a funcionar independentemente dessa opção-
 
-# ClickerConfigClient.ShowCustomCursors.Label=Display Custom Cursors
-# ClickerConfigClient.ShowCustomCursors.Tooltip=Toggle the display of 'Custom Cursors' for clicker weapons
+# ClickerConfigClient.ShowCustomCursors.Label=Exibir cursores personalizados
+# ClickerConfigClient.ShowCustomCursors.Tooltip=Alternar a exibição de 'cursores personalizados' para armas clicker
 
-# ClickerConfigClient.ShowClickIndicator.Label=Display Click Indicator
-# ClickerConfigClient.ShowClickIndicator.Tooltip=Toggle the display of click indicators where you used a clicker
+# ClickerConfigClient.ShowClickIndicator.Label=Exibir indicador de clique
+# ClickerConfigClient.ShowClickIndicator.Tooltip=Alternar a exibição de indicadores de clique onde você usou um clicker
 
-# ClickerConfigClient.ShowOthersClickIndicator.Label=Display Others Click Indicator
-# ClickerConfigClient.ShowOthersClickIndicator.Tooltip=Toggle the display of click indicators where others used a clicker
+# ClickerConfigClient.ShowOthersClickIndicator.Label=Exibir indicadores de clique dos outros
+# ClickerConfigClient.ShowOthersClickIndicator.Tooltip=Alternar a exibição de indicadores de clique onde outros usaram um clicker

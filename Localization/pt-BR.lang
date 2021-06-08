@@ -133,7 +133,7 @@ ItemName.MiceMask=Máscara do Mouse
 ItemTooltip.MiceMask={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 4%\n{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} em 6%
 
 ItemName.MiceSuit=Armadura do Mouse
-ItemTooltip.MiceSuit={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 25%
+ItemTooltip.MiceSuit={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 10%\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 25%
 SetBonus.Mice=Clicar com o botão direito em uma posição dentro de seu raio de clique teleportará você para lá
 
 ItemName.MotherboardBoots=Botas de Placa-Mãe

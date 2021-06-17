@@ -17,6 +17,11 @@ namespace ClickerClass
 		internal static ClickerClass mod;
 
 		/// <summary>
+		/// Populated by the buffs themselves, includes all buffs that bosses should be immune to (so no more manual npc.buffImmune)
+		/// </summary>
+		internal static HashSet<int> BossBuffImmunity;
+
+		/// <summary>
 		/// To prevent certain methods being called when they shouldn't
 		/// </summary>
 		internal static bool finalizedRegisterCompat = false;
@@ -25,6 +30,7 @@ namespace ClickerClass
 		{
 			finalizedRegisterCompat = false;
 			mod = this;
+			BossBuffImmunity = new HashSet<int>();
 			AutoClickKey = RegisterHotKey("Clicker Accessory", "G"); //Can't localize this
 			ClickerSystem.Load();
 			ClickEffect.LoadMiscEffects();
@@ -45,6 +51,7 @@ namespace ClickerClass
 			NetHandler.Unload();
 			ClickerInterfaceResources.Unload();
 			AutoClickKey = null;
+			BossBuffImmunity = null;
 			mod = null;
 		}
 

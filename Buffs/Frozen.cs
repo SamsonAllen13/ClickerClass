@@ -12,6 +12,7 @@ namespace ClickerClass.Buffs
 			Main.pvpBuff[Type] = true;
 			Main.buffNoSave[Type] = true;
 			longerExpertDebuff = true;
+			ClickerClass.BossBuffImmunity.Add(Type);
 		}
 
 		public override void Update(NPC npc, ref int buffIndex)

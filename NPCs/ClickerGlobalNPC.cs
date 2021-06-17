@@ -1,7 +1,7 @@
-using ClickerClass.Buffs;
 using ClickerClass.Items;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Weapons.Clickers;
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Graphics.Shaders;
@@ -20,6 +20,25 @@ namespace ClickerClass.NPCs
 		public bool embrittle = false;
 		public bool stunned = false;
 
+		public bool buffImmunitiesSet = false;
+
+		private void SetBuffImmunities(NPC npc)
+		{
+			if (!buffImmunitiesSet && (npc.immortal || npc.IsBossOrRelated()))
+			{
+				//Automatically make all bosses give immunities to the needed buffs
+
+				foreach (var buff in ClickerClass.BossBuffImmunity)
+				{
+					npc.buffImmune[buff] = true;
+				}
+
+				//This bool is important. As the IsBossOrRelated method includes a dynamic IsChild check which only works when npc.realLife is set,
+				//The code in SetDefaults will not work. This method is therefore also called in PostAI once (which is guaranteed to run)
+				buffImmunitiesSet = true;
+			}
+		}
+
 		public override void ResetEffects(NPC npc)
 		{
 			gouge = false;
@@ -31,72 +50,7 @@ namespace ClickerClass.NPCs
 
 		public override void SetDefaults(NPC npc)
 		{
-			//TODO implement better boss/miniboss detection
-			switch (npc.type)
-			{
-				case NPCID.SkeletronHead:
-				case NPCID.SkeletronHand:
-				case NPCID.SkeletronPrime:
-				case NPCID.TheDestroyer:
-				case NPCID.Retinazer:
-				case NPCID.Spazmatism:
-				case NPCID.EyeofCthulhu:
-				case NPCID.EaterofWorldsHead:
-				case NPCID.EaterofWorldsBody:
-				case NPCID.EaterofWorldsTail:
-				case NPCID.QueenBee:
-				case NPCID.WallofFlesh:
-				case NPCID.WallofFleshEye:
-				case NPCID.DukeFishron:
-				case NPCID.BrainofCthulhu:
-				case NPCID.Plantera:
-				case NPCID.PrimeCannon:
-				case NPCID.PrimeSaw:
-				case NPCID.PrimeVice:
-				case NPCID.PrimeLaser:
-				case NPCID.Golem:
-				case NPCID.GolemHead:
-				case NPCID.GolemFistLeft:
-				case NPCID.GolemFistRight:
-				case NPCID.GolemHeadFree:
-				case NPCID.CultistBoss:
-				case NPCID.KingSlime:
-				case NPCID.MoonLordHead:
-				case NPCID.MoonLordHand:
-				case NPCID.MoonLordCore:
-				case NPCID.WyvernHead:
-				case NPCID.WyvernLegs:
-				case NPCID.WyvernBody:
-				case NPCID.WyvernBody2:
-				case NPCID.WyvernBody3:
-				case NPCID.WyvernTail:
-				case NPCID.IceGolem:
-				case NPCID.Paladin:
-				case NPCID.Everscream:
-				case NPCID.IceQueen:
-				case NPCID.SantaNK1:
-				case NPCID.BigMimicCorruption:
-				case NPCID.BigMimicCrimson:
-				case NPCID.BigMimicHallow:
-				case NPCID.Mothron:
-				case NPCID.SandElemental:
-				case NPCID.DD2Betsy:
-				case NPCID.DD2DarkMageT1:
-				case NPCID.DD2DarkMageT3:
-				case NPCID.DD2OgreT2:
-				case NPCID.DD2OgreT3:
-				case NPCID.TargetDummy:
-					npc.buffImmune[ModContent.BuffType<Frozen>()] = true;
-					npc.buffImmune[ModContent.BuffType<HoneySlow>()] = true;
-					npc.buffImmune[ModContent.BuffType<Stunned>()] = true;
-					break;
-				default:
-					if (npc.boss)
-					{
-						goto case NPCID.TargetDummy;
-					}
-					break;
-			}
+			SetBuffImmunities(npc);
 		}
 
 		public override void UpdateLifeRegen(NPC npc, ref int damage)
@@ -346,6 +300,11 @@ namespace ClickerClass.NPCs
 				drawColor.G = (byte)(drawColor.G * 1f);
 				drawColor.B = (byte)(drawColor.B * 1f);
 			}
+		}
+
+		public override void PostAI(NPC npc)
+		{
+			SetBuffImmunities(npc);
 		}
 	}
 }

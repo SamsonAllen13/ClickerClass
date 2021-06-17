@@ -211,6 +211,17 @@ namespace ClickerClass
 					ClickerItem.SetDisplayTotalClicks(item);
 					return success;
 				}
+				else if (message == "SetDisplayMoneyGenerated")
+				{
+					var item = args[index + 0] as Item;
+					if (item == null)
+					{
+						throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerItem.SetDisplayMoneyGenerated(item);
+					return success;
+				}
 				else if (message == "SetDust")
 				{
 					var item = args[index + 0] as Item;

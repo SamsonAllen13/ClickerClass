@@ -1,4 +1,5 @@
 using ClickerClass.Dusts;
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -81,7 +82,7 @@ namespace ClickerClass.Projectiles
 			{
 				NPC target = Main.npc[u];
 
-				if (target.CanBeChasedBy() && (target.type < NPCID.DD2EterniaCrystal || target.type > NPCID.DD2LightningBugT3) && !target.boss && projectile.DistanceSQ(target.Center) < 150 * 150)
+				if (target.CanBeChasedBy() && (target.type < NPCID.DD2EterniaCrystal || target.type > NPCID.DD2LightningBugT3) && !target.IsBoss() && projectile.DistanceSQ(target.Center) < 150 * 150)
 				{
 					float mag = 11f;
 					Vector2 center = target.Center;

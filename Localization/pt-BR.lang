@@ -23,7 +23,7 @@ BuffDescription.Haste=Velocidade dos movimentos e velocidade dos pulos aumentada
 BuffName.HoneySlow=Mel
 BuffDescription.HoneySlow=A velocidade de movimentação é consideravelmente reduzida
 
-BuffName.InfluenceBuff=Influence
+BuffName.InfluenceBuff=Influência
 BuffDescription.InfluenceBuff={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 20%
 
 BuffName.OverclockBuff=Overclock
@@ -40,7 +40,7 @@ Common.Tooltips.IncreasesClickCritChance=Aumenta a chance de clique crítico
 Common.Tooltips.IncreasesBaseClickRadius=Aumenta o seu raio de clique básico
 Common.Tooltips.ReducesBaseClickRadius=Reduz o seu raio de clique básico
 Common.Tooltips.ReducesAmountOfClicks=Reduz a quantidade de cliques necessários para um efeito de clique
-Common.Tooltips.ClickingGloveEvery=Durante o combate, clica automaticamente o seu clicador atual a cada
+Common.Tooltips.ClickingGloveEvery=Durante o combate, clica automaticamente o seu clicker atual a cada
 Common.Tooltips.Clicker=Clique em um inimigo dentro do seu alcance e visão para causar danos nele
 
 Common.Tooltips.MoreThanOneClick={0} cliques
@@ -112,7 +112,7 @@ ItemName.GoldenTicket=Bilhete Dourado
 ItemTooltip.GoldenTicket=Seu dano por clique irá gerar algumas moedas\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 10%
 
 ItemName.RegalClickingGlove=Luva de Clicar Real
-ItemTooltip.RegalClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} half-second
+ItemTooltip.RegalClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} meio-segundo
 
 ItemName.Soda=Refrigerante
 ItemTooltip.Soda={$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} em 1
@@ -120,7 +120,7 @@ ItemTooltip.Soda={$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} em 1
 ItemName.StickyKeychain=Chaveiro Pegajoso
 ItemTooltip.StickyKeychain=Cada 10 cliques gruda uma geleia que causa danos na sua tela
 
-ItemName.TheScroller=The Scroller
+ItemName.TheScroller=O Rolador
 ItemTooltip.TheScroller={$CommonItemTooltip.FlightAndSlowfall}\nSegure PARA BAIXO para cair mais rapidamente
 
 
@@ -162,7 +162,7 @@ ItemTooltip.PrecursorBreastplate={$Mods.ClickerClass.Common.Tooltips.IncreasesCl
 ItemName.PrecursorGreaves=Grevas do Precursor
 ItemTooltip.PrecursorGreaves=Aumenta a velocidade dos movimentos em 15%
 
-ItemName.PrecursorHelmet=elmo do Precursor
+ItemName.PrecursorHelmet=Elmo do Precursor
 ItemTooltip.PrecursorHelmet={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 8%
 SetBonus.Precursor=Clicar causa um clique ardente atrasado com 25% do dano
 

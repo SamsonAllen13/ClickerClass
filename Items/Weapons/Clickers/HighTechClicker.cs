@@ -12,6 +12,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
+			Mod thoriumMod = ModLoader.GetMod("ThoriumMod");
+			if (thoriumMod != null)
+			{
+				thoriumMod.Call("AddMartianItemID", item.type);
+			}
+
 			ClickEffect.Discharge = ClickerSystem.RegisterClickEffect(mod, "Discharge", null, null, 10, new Color(75, 255, 200), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
@@ -36,7 +42,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			item.width = 30;
 			item.height = 30;
 			item.knockBack = 1f;
-			item.value = 500000;
+			item.value = Item.sellPrice(0, 10, 0, 0);
 			item.rare = 8;
 		}
 	}

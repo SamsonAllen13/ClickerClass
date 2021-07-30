@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -12,13 +13,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.ToxicRelease = ClickerSystem.RegisterClickEffect(mod, "ToxicRelease", null, null, 10, new Color(175, 255, 100), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.ToxicRelease = ClickerSystem.RegisterClickEffect(Mod, "ToxicRelease", null, null, 10, new Color(175, 255, 100), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				for (int k = 0; k < 10; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<ChlorophyteClickerPro>(), (int)(damage * 0.25f), 0f, player.whoAmI, hasSpawnEffects);
+					Projectile.NewProjectile(source, Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<ChlorophyteClickerPro>(), (int)(damage * 0.25f), 0f, player.whoAmI, hasSpawnEffects);
 					spawnEffects = false;
 				}
 			});
@@ -27,26 +28,22 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 3.75f);
-			SetColor(item, new Color(175, 255, 100));
-			SetDust(item, 89);
-			AddEffect(item, ClickEffect.ToxicRelease);
+			SetRadius(Item, 3.75f);
+			SetColor(Item, new Color(175, 255, 100));
+			SetDust(Item, 89);
+			AddEffect(Item, ClickEffect.ToxicRelease);
 
-			item.damage = 50;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 250000;
-			item.rare = 7;
+			Item.damage = 50;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 250000;
+			Item.rare = 7;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.ChlorophyteBar, 8);
-			recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.ChlorophyteBar, 8).AddTile(TileID.MythrilAnvil).Register();
 		}
 	}
 }

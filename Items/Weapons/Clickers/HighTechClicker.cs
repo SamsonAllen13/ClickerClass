@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -12,19 +13,18 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			Mod thoriumMod = ModLoader.GetMod("ThoriumMod");
-			if (thoriumMod != null)
+			if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod))
 			{
-				thoriumMod.Call("AddMartianItemID", item.type);
+				thoriumMod.Call("AddMartianItemID", Item.type);
 			}
 
-			ClickEffect.Discharge = ClickerSystem.RegisterClickEffect(mod, "Discharge", null, null, 10, new Color(75, 255, 200), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Discharge = ClickerSystem.RegisterClickEffect(Mod, "Discharge", null, null, 10, new Color(75, 255, 200), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				for (int k = 0; k < 4; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<HighTechClickerPro>(), damage, 0f, player.whoAmI, (int)DateTime.Now.Ticks, hasSpawnEffects);
+					Projectile.NewProjectile(source, Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<HighTechClickerPro>(), damage, 0f, player.whoAmI, (int)DateTime.Now.Ticks, hasSpawnEffects);
 					spawnEffects = false;
 				}
 			});
@@ -33,17 +33,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 6f);
-			SetColor(item, new Color(75, 255, 200));
-			SetDust(item, 226);
-			AddEffect(item, ClickEffect.Discharge);
+			SetRadius(Item, 6f);
+			SetColor(Item, new Color(75, 255, 200));
+			SetDust(Item, 226);
+			AddEffect(Item, ClickEffect.Discharge);
 
-			item.damage = 90;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = Item.sellPrice(0, 10, 0, 0);
-			item.rare = 8;
+			Item.damage = 90;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = Item.sellPrice(0, 10, 0, 0);
+			Item.rare = 8;
 		}
 	}
 }

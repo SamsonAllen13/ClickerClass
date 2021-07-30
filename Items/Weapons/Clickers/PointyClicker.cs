@@ -4,6 +4,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -13,7 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.StingingThorn = ClickerSystem.RegisterClickEffect(mod, "StingingThorn", null, null, 8, new Color(100, 175, 75), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.StingingThorn = ClickerSystem.RegisterClickEffect(Mod, "StingingThorn", null, null, 8, new Color(100, 175, 75), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Vector2 pos = Main.MouseWorld;
 
@@ -34,9 +35,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 					if (mag > speed)
 					{
 						mag = speed / mag;
+						vector *= mag;
 					}
-					vector *= mag;
-					Projectile.NewProjectile(pos, vector, ModContent.ProjectileType<PointyClickerPro>(), damage, knockBack, player.whoAmI);
+					Projectile.NewProjectile(source, pos, vector, ModContent.ProjectileType<PointyClickerPro>(), damage, knockBack, player.whoAmI);
 				}
 			});
 		}
@@ -44,27 +45,22 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 2.35f);
-			SetColor(item, new Color(100, 175, 75));
-			SetDust(item, 39);
-			AddEffect(item, ClickEffect.StingingThorn);
+			SetRadius(Item, 2.35f);
+			SetColor(Item, new Color(100, 175, 75));
+			SetDust(Item, 39);
+			AddEffect(Item, ClickEffect.StingingThorn);
 
-			item.damage = 12;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 2f;
-			item.value = 27000;
-			item.rare = 3;
+			Item.damage = 12;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 2f;
+			Item.value = 27000;
+			Item.rare = 3;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.JungleSpores, 8);
-			recipe.AddIngredient(ItemID.Stinger, 6);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.JungleSpores, 8).AddIngredient(ItemID.Stinger, 6).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

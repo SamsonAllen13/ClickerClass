@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -12,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.WebSplash = ClickerSystem.RegisterClickEffect(mod, "WebSplash", null, null, 10, new Color(190, 190, 175), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.WebSplash = ClickerSystem.RegisterClickEffect(Mod, "WebSplash", null, null, 10, new Color(190, 190, 175), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Vector2 mouse = Main.MouseWorld;
 
@@ -39,9 +40,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 					if (mag > speed)
 					{
 						mag = speed / mag;
+						vector *= mag;
 					}
-					vector *= mag;
-					Projectile.NewProjectile(Main.MouseWorld, vector, ModContent.ProjectileType<WebClickerPro>(), damage, knockBack, player.whoAmI);
+					Projectile.NewProjectile(source, Main.MouseWorld, vector, ModContent.ProjectileType<WebClickerPro>(), damage, knockBack, player.whoAmI);
 				}
 			});
 		}
@@ -49,26 +50,22 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 2.85f);
-			SetColor(item, new Color(150, 80, 50));
-			SetDust(item, 148);
-			AddEffect(item, ClickEffect.WebSplash);
+			SetRadius(Item, 2.85f);
+			SetColor(Item, new Color(150, 80, 50));
+			SetDust(Item, 148);
+			AddEffect(Item, ClickEffect.WebSplash);
 
-			item.damage = 25;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 120000;
-			item.rare = 4;
+			Item.damage = 25;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 120000;
+			Item.rare = 4;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.SpiderFang, 8);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.SpiderFang, 8).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

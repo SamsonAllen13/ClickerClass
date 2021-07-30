@@ -4,6 +4,7 @@ using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -81,6 +82,100 @@ namespace ClickerClass.NPCs
 			}
 		}
 
+		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+		{
+			//This method is called once when the game loads (per NPC), so you can't make dynamic checks based on world state like "npc.value > 0f" here
+			if (npc.type == NPCID.GoblinSorcerer)
+			{
+				//20 is the dropsOutOfY argument, meaning its a 1/20 roll aka old Main.rand.NextBool(20)
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadowyClicker>(), 20));
+			}
+			else if (npc.type == NPCID.Frankenstein || npc.type == NPCID.SwampThing)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EclipticClicker>(), 25));
+			}
+			else if (npc.type == NPCID.BloodZombie || npc.type == NPCID.Drippler)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HemoClicker>(), 25));
+			}
+			else if (npc.type == NPCID.DarkCaster)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Milk>(), 15));
+			}
+			else if (npc.type == NPCID.Gastropod)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ChocolateChip>(), 20));
+			}
+			else if (npc.type == NPCID.SandElemental)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SandstormClicker>(), 2));
+			}
+			else if (npc.type == NPCID.IceGolem)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BlizzardClicker>(), 2));
+			}
+			else if (npc.type == NPCID.PirateCaptain)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CaptainsClicker>(), 8));
+			}
+			else if (npc.type == NPCID.PirateShip)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoldenTicket>(), 4));
+			}
+			else if (npc.type == NPCID.Pumpking)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WitchClicker>(), 10));
+			}
+			else if (npc.type == NPCID.IceQueen)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenClicker>(), 10));
+			}
+			else if (npc.type == NPCID.MartianSaucerCore)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HighTechClicker>(), 4));
+			}
+
+			Conditions.NotExpert notExpert = new Conditions.NotExpert();
+			if (npc.type == NPCID.MoonLordCore)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LordsClicker>()));
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TheClicker>(), 5));
+			}
+			else if (npc.type == NPCID.WallofFlesh)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<ClickerEmblem>(), 4));
+			}
+			else if (npc.type == NPCID.KingSlime)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<StickyKeychain>(), 4));
+			}
+			else if (npc.type == NPCID.LunarTowerStardust || npc.type == NPCID.LunarTowerSolar || npc.type == NPCID.LunarTowerVortex || npc.type == NPCID.LunarTowerNebula)
+			{
+				int miceFragment = ModContent.ItemType<MiceFragment>();
+
+				var pNormal = default(DropOneByOne.Parameters);
+				pNormal.ChanceDenominator = 1;
+				pNormal.ChanceNumerator = 1;
+				pNormal.MinimumStackPerChunkBase = 1;
+				pNormal.MaximumStackPerChunkBase = 1;
+				pNormal.BonusMinDropsPerChunkPerPlayer = 0;
+				pNormal.BonusMaxDropsPerChunkPerPlayer = 0;
+
+				pNormal.MinimumItemDropsCount = 3;
+				pNormal.MaximumItemDropsCount = 15;
+
+				var pExpert = pNormal; //Since DropOneByOne.Parameters is a struct, this is a copy/new assignment
+				pExpert.MinimumItemDropsCount = 5;
+				pExpert.MaximumItemDropsCount = 22;
+
+				var normalModeRule = new DropOneByOne(miceFragment, pNormal);
+				var expertModeRule = new DropOneByOne(miceFragment, pExpert);
+				npcLoot.Add(new DropBasedOnExpertMode(normalModeRule, expertModeRule));
+			}
+		}
+
+		/*
+		//Old code to compare with
 		public override void NPCLoot(NPC npc)
 		{
 			if (npc.type == NPCID.GoblinSorcerer && npc.value > 0f)
@@ -205,6 +300,7 @@ namespace ClickerClass.NPCs
 				}
 			}
 		}
+		*/
 
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
 		{

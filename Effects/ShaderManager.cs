@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 
 namespace ClickerClass.Effects
@@ -11,14 +13,14 @@ namespace ClickerClass.Effects
 	public static class ShaderManager
 	{
 		#region Circle Effect
-		public static Effect CircleEffect { get; private set; }
+		public static Asset<Effect> CircleEffect { get; private set; }
 
 		/// <summary>
 		/// Prepares the CircleEffect shader with proper values. If radius2 is 0, the second circle won't be drawn
 		/// </summary>
 		public static Effect SetupCircleEffect(Vector2 center, int radius, Color edgeColor, float thick = 2f, Color bodyColor = default, Vector2 center2 = default, int radius2 = 0)
 		{
-			Effect circle = CircleEffect;
+			Effect circle = CircleEffect.Value;
 			if (circle != null)
 			{
 				circle.Parameters["ScreenPos"].SetValue(Main.screenPosition);
@@ -103,25 +105,25 @@ namespace ClickerClass.Effects
 		public static void StartEffectOnSpriteBatch(SpriteBatch spriteBatch, Effect effect)
 		{
 			spriteBatch.End();
-			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, effect, Main.GameViewMatrix.TransformationMatrix);
+			spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, effect, Main.GameViewMatrix.TransformationMatrix);
 		}
 
 		public static void DrawEmptyCanvasToScreen(SpriteBatch spriteBatch)
 		{
-			spriteBatch.Draw(Main.magicPixel, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.Transparent);
+			spriteBatch.Draw(TextureAssets.MagicPixel.Value, new Rectangle(0, 0, Main.screenWidth, Main.screenHeight), Color.Transparent);
 		}
 
 		public static void RestoreVanillaSpriteBatchSettings(SpriteBatch spriteBatch)
 		{
 			spriteBatch.End();
-			spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.instance.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
+			spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
 		}
 
 		internal static void Load()
 		{
 			if (Main.netMode != NetmodeID.Server)
 			{
-				CircleEffect = ClickerClass.mod.GetEffect("Effects/CircleShader/Circle");
+				CircleEffect = ClickerClass.mod.Assets.Request<Effect>("Effects/CircleShader/Circle");
 				LoadCircleEffectAdds();
 			}
 		}

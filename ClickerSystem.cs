@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass
 {
@@ -132,6 +133,8 @@ namespace ClickerClass
 			return internalName != null;
 		}
 
+		//TODO document API break on delegate
+		//ProjectileSource_Item_WithAmmo source
 		/// <summary>
 		/// Call this in <see cref="Mod.PostSetupContent"/> or <see cref="ModItem.SetStaticDefaults"/> to register this click effect
 		/// </summary>
@@ -143,7 +146,7 @@ namespace ClickerClass
 		/// <param name="action">The method that runs when the effect is triggered</param>
 		/// <returns>The unique identifier</returns>
 		/// <exception cref="InvalidOperationException"/>
-		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, Vector2, int, int, float> action)
+		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float> action)
 		{
 			if (ClickerClass.finalizedRegisterCompat)
 			{
@@ -158,7 +161,7 @@ namespace ClickerClass
 
 			ClickEffect effect = new ClickEffect(mod, internalName, displayName, description, amount, color, action);
 
-			if (!IsClickEffect(uniqueName, out _))
+			if (!IsClickEffect(uniqueName))
 			{
 				ClickEffectsByName.Add(uniqueName, effect);
 				return uniqueName;
@@ -186,13 +189,27 @@ namespace ClickerClass
 		/// <param name="item">The <see cref="Item"/> to set the defaults for</param>
 		public static void SetClickerWeaponDefaults(Item item)
 		{
-			item.useTime = 1;
-			item.useAnimation = 1;
-			item.useStyle = ItemUseStyleID.HoldingOut;
+			item.DamageType = ModContent.GetInstance<ClickerDamage>();
+			item.crit = 4;
+			item.useTime = 2;
+			item.useAnimation = 2;
+			item.useStyle = ItemUseStyleID.Shoot;
 			item.holdStyle = 3;
 			item.noMelee = true;
 			item.shoot = ModContent.ProjectileType<ClickDamage>();
 			item.shootSpeed = 1f;
+		}
+
+		//TODO needs API?
+		/// <summary>
+		/// Call in <see cref="ModProjectile.SetDefaults"/> to set important default fields for a clicker projectiles. Set fields:
+		/// DamageType.
+		/// Only change them afterwards if you know what you are doing!
+		/// </summary>
+		/// <param name="projectile">The <see cref="Projectile"/> to set the defaults for</param>
+		public static void SetClickerProjectileDefaults(Projectile projectile)
+		{
+			projectile.DamageType = ModContent.GetInstance<ClickerDamage>();
 		}
 
 		/// <summary>
@@ -206,7 +223,7 @@ namespace ClickerClass
 			{
 				throw new InvalidOperationException("Tried to register a clicker projectile at the wrong time, do so in ModProjectile.SetStaticDefaults");
 			}
-			int type = modProj.projectile.type;
+			int type = modProj.Projectile.type;
 			if (!ClickerProjectiles.Contains(type))
 			{
 				ClickerProjectiles.Add(type);
@@ -224,7 +241,7 @@ namespace ClickerClass
 			{
 				throw new InvalidOperationException("Tried to register a clicker item at the wrong time, do so in ModItem.SetStaticDefaults");
 			}
-			int type = modItem.item.type;
+			int type = modItem.Item.type;
 			if (!ClickerItems.Contains(type))
 			{
 				ClickerItems.Add(type);
@@ -246,13 +263,13 @@ namespace ClickerClass
 				throw new InvalidOperationException("Tried to register a clicker weapon at the wrong time, do so in ModItem.SetStaticDefaults");
 			}
 			RegisterClickerItem(modItem);
-			int type = modItem.item.type;
+			int type = modItem.Item.type;
 			if (!ClickerWeapons.Contains(type))
 			{
 				ClickerWeapons.Add(type);
 				if (borderTexture != null)
 				{
-					if (ModContent.TextureExists(borderTexture))
+					if (ModContent.HasAsset(borderTexture))
 					{
 						if (!ClickerWeaponBorderTexture.ContainsKey(type))
 						{

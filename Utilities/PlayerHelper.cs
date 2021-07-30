@@ -54,10 +54,10 @@ namespace ClickerClass.Utilities
 				else
 				{
 					Main.BlackFadeIn = 255;
-					Lighting.BlackOut();
+					Lighting.Clear();
 					Main.screenLastPosition = Main.screenPosition;
 					Main.screenPosition = player.Center - new Vector2(Main.screenWidth / 2, Main.screenHeight / 2);
-					Main.quickBG = 10;
+					Main.instantBGTransitionCounter = 10;
 				}
 				if (offScreen)
 				{

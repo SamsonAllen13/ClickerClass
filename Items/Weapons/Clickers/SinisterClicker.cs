@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -12,35 +13,31 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Siphon = ClickerSystem.RegisterClickEffect(mod, "Siphon", null, null, 10, new Color(100, 25, 25), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Siphon = ClickerSystem.RegisterClickEffect(Mod, "Siphon", null, null, 10, new Color(100, 25, 25), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<SinisterClickerPro>(), (int)(damage * 0.50f), knockBack, player.whoAmI);
+				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<SinisterClickerPro>(), (int)(damage * 0.50f), knockBack, player.whoAmI);
 			});
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 2.2f);
-			SetColor(item, new Color(100, 25, 25));
-			SetDust(item, 5);
-			AddEffect(item, ClickEffect.Siphon);
+			SetRadius(Item, 2.2f);
+			SetColor(Item, new Color(100, 25, 25));
+			SetDust(Item, 5);
+			AddEffect(Item, ClickEffect.Siphon);
 
-			item.damage = 10;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 2f;
-			item.value = 18000;
-			item.rare = 1;
+			Item.damage = 10;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 2f;
+			Item.value = 18000;
+			Item.rare = 1;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.CrimtaneBar, 8);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.CrimtaneBar, 8).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

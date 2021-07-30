@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace ClickerClass
@@ -74,7 +75,7 @@ namespace ClickerClass
 					ClickerSystem.RegisterClickerWeapon(modItem, borderTexture);
 					return success;
 				}
-				//Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, Vector2, int, int, float> action
+				//Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float> action
 				else if (message == "RegisterClickEffect")
 				{
 					var mod = args[index + 0] as Mod;
@@ -83,7 +84,7 @@ namespace ClickerClass
 					var description = args[index + 3] as string;
 					var amount = args[index + 4] as int?;
 					var color = args[index + 5] as Color?;
-					var action = args[index + 6] as Action<Player, Vector2, int, int, float>;
+					var action = args[index + 6] as Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float>;
 
 					string nameOfargument = string.Empty;
 					if (mod == null)
@@ -647,11 +648,13 @@ namespace ClickerClass
 					}
 					else if (accName == "Cookie")
 					{
+						//TODO item param
 						clickerPlayer.accCookie = true;
 						return success;
 					}
 					else if (accName == "Cookie2")
 					{
+						//TODO item param
 						clickerPlayer.accCookie2 = true;
 						return success;
 					}

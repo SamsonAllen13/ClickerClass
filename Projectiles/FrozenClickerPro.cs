@@ -10,13 +10,15 @@ namespace ClickerClass.Projectiles
 	{
 		public override void SetDefaults()
 		{
-			projectile.width = 30;
-			projectile.height = 30;
-			projectile.aiStyle = -1;
-			projectile.alpha = 255;
-			projectile.tileCollide = false;
-			projectile.penetrate = -1;
-			projectile.timeLeft = 6;
+			base.SetDefaults();
+
+			Projectile.width = 30;
+			Projectile.height = 30;
+			Projectile.aiStyle = -1;
+			Projectile.alpha = 255;
+			Projectile.tileCollide = false;
+			Projectile.penetrate = -1;
+			Projectile.timeLeft = 6;
 		}
 
 		public override void Kill(int timeLeft)
@@ -24,7 +26,7 @@ namespace ClickerClass.Projectiles
 			for (int u = 0; u < Main.maxNPCs; u++)
 			{
 				NPC target = Main.npc[u];
-				if (target.CanBeChasedBy() && target.DistanceSQ(projectile.Center) < 44 * 44)
+				if (target.CanBeChasedBy() && target.DistanceSQ(Projectile.Center) < 44 * 44)
 				{
 					target.AddBuff(ModContent.BuffType<Frozen>(), 120, false);
 					for (int i = 0; i < 15; i++)

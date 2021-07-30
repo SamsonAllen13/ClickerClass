@@ -24,7 +24,7 @@ namespace ClickerClass.Items
 		/// </summary>
 		public override void SetDefaults()
 		{
-			ClickerSystem.SetClickerWeaponDefaults(item);
+			ClickerSystem.SetClickerWeaponDefaults(Item);
 		}
 
 		/// <summary>
@@ -90,7 +90,7 @@ namespace ClickerClass.Items
 				{
 					if (!string.IsNullOrEmpty(name) && !list.Contains(name))
 					{
-						if (ClickerSystem.IsClickEffect(name, out _))
+						if (ClickerSystem.IsClickEffect(name))
 						{
 							list.Add(name);
 						}

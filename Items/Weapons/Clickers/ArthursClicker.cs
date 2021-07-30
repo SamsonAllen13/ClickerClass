@@ -4,6 +4,8 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -13,7 +15,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.HolyNova = ClickerSystem.RegisterClickEffect(mod, "HolyNova", null, null, 12, new Color(255, 225, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.HolyNova = ClickerSystem.RegisterClickEffect(Mod, "HolyNova", null, null, 12, new Color(255, 225, 0), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				for (int u = 0; u < Main.maxNPCs; u++)
 				{
@@ -26,14 +28,14 @@ namespace ClickerClass.Items.Weapons.Clickers
 						if (mag > speed)
 						{
 							mag = speed / mag;
+							vector *= mag;
 						}
-						vector *= mag;
-						Projectile.NewProjectile(target.Center, Vector2.Zero, ModContent.ProjectileType<ArthursClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI);
+						Projectile.NewProjectile(source, target.Center, Vector2.Zero, ModContent.ProjectileType<ArthursClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI);
 					}
 				}
 
 				//Can't properly offload this into projectiles as the visuals spawn on the cursor, but projectiles don't
-				Main.PlaySound(SoundID.NPCHit, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 5);
+				SoundEngine.PlaySound(SoundID.NPCHit, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 5);
 
 				float max = 100f;
 				int i = 0;
@@ -55,26 +57,22 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 3.5f);
-			SetColor(item, new Color(255, 225, 0));
-			SetDust(item, 87);
-			AddEffect(item, ClickEffect.HolyNova);
+			SetRadius(Item, 3.5f);
+			SetColor(Item, new Color(255, 225, 0));
+			SetDust(Item, 87);
+			AddEffect(Item, ClickEffect.HolyNova);
 
-			item.damage = 50;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 210000;
-			item.rare = 5;
+			Item.damage = 50;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 210000;
+			Item.rare = 5;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.HallowedBar, 8);
-			recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.HallowedBar, 8).AddTile(TileID.MythrilAnvil).Register();
 		}
 	}
 }

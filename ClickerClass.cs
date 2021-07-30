@@ -1,19 +1,24 @@
 using ClickerClass.Core.Netcode;
 using ClickerClass.Effects;
 using ClickerClass.UI;
-using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
 using Terraria.ModLoader;
-using Terraria.UI;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using ClickerClass.Prefixes;
 
 namespace ClickerClass
 {
+	//TODO 1.4:
+	//Fix armors
+	//Fix all PlayerLayers
+	//Document API changes
 	public class ClickerClass : Mod
 	{
-		public static ModHotKey AutoClickKey;
+		public static ModKeybind AutoClickKey;
 		internal static ClickerClass mod;
 
 		/// <summary>
@@ -31,8 +36,11 @@ namespace ClickerClass
 			finalizedRegisterCompat = false;
 			mod = this;
 			BossBuffImmunity = new HashSet<int>();
-			AutoClickKey = RegisterHotKey("Clicker Accessory", "G"); //Can't localize this
+			AutoClickKey = KeybindLoader.RegisterKeybind(this, "Clicker Accessory", "G"); //Can't localize this
 			ClickerSystem.Load();
+
+			ClickerPrefix.LoadPrefixes(mod);
+
 			ClickEffect.LoadMiscEffects();
 			NetHandler.Load();
 
@@ -47,6 +55,7 @@ namespace ClickerClass
 			finalizedRegisterCompat = false;
 			ShaderManager.Unload();
 			ClickerSystem.Unload();
+			ClickerPrefix.UnloadPrefixes();
 			ClickEffect.Unload();
 			NetHandler.Unload();
 			ClickerInterfaceResources.Unload();
@@ -61,44 +70,9 @@ namespace ClickerClass
 			ClickerInterfaceResources.Load();
 		}
 
-		private GameTime _lastUpdateUIGameTime;
-
-		public override void UpdateUI(GameTime gameTime)
-		{
-			_lastUpdateUIGameTime = gameTime;
-			ClickerInterfaceResources.Update(gameTime);
-		}
-
-		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
-		{
-			ClickerInterfaceResources.AddDrawLayers(layers);
-
-			//Remove Mouse Cursor
-			if (Main.cursorOverride == -1 && ClickerConfigClient.Instance.ShowCustomCursors)
-			{
-				Player player = Main.LocalPlayer;
-				if (ClickerCursor.CanDrawCursor(player.HeldItem))
-				{
-					for (int i = 0; i < layers.Count; i++)
-					{
-						if (layers[i].Name.Equals("Vanilla: Cursor"))
-						{
-							layers.RemoveAt(i);
-							break;
-						}
-					}
-				}
-			}
-		}
-
 		public override object Call(params object[] args)
 		{
 			return ClickerModCalls.Call(args);
-		}
-
-		public override void AddRecipes()
-		{
-			ClickerRecipes.AddRecipes();
 		}
 
 		public override void PostSetupContent()
@@ -141,15 +115,14 @@ namespace ClickerClass
 		/// <param name="predicate">The condition at which an item is listed in this subcategory</param>
 		private void RecipeBrowser_AddToCategory(string name, string category, string texture, Predicate<Item> predicate)
 		{
-			Mod recipeBrowser = ModLoader.GetMod("RecipeBrowser");
-			if (recipeBrowser != null && !Main.dedServ)
+			if (!Main.dedServ && ModLoader.TryGetMod("RecipeBrowser", out Mod recipeBrowser))
 			{
 				recipeBrowser.Call(new object[5]
 				{
 					"AddItemCategory",
 					name,
 					category,
-					this.GetTexture(texture), // 24x24 icon
+					this.Assets.Request<Texture2D>(texture, AssetRequestMode.ImmediateLoad).Value, // 24x24 icon
 					predicate
 				});
 			}

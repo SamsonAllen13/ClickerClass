@@ -11,11 +11,11 @@ namespace ClickerClass.Items.Accessories
 
 		public override void SetDefaults()
 		{
-			item.width = 24;
-			item.height = 28;
-			item.value = 100000;
-			item.rare = 4;
-			item.accessory = true;
+			Item.width = 24;
+			Item.height = 28;
+			Item.value = 100000;
+			Item.rare = 4;
+			Item.accessory = true;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

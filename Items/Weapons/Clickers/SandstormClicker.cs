@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -12,26 +13,26 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.DustDevil = ClickerSystem.RegisterClickEffect(mod, "DustDevil", null, null, 10, new Color(220, 185, 120), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.DustDevil = ClickerSystem.RegisterClickEffect(Mod, "DustDevil", null, null, 10, new Color(220, 185, 120), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<SandstormClickerPro>(), damage, knockBack, player.whoAmI);
+				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<SandstormClickerPro>(), damage, knockBack, player.whoAmI);
 			});
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 3.1f);
-			SetColor(item, new Color(225, 170, 125));
-			SetDust(item, 216);
-			AddEffect(item, ClickEffect.DustDevil);
+			SetRadius(Item, 3.1f);
+			SetColor(Item, new Color(225, 170, 125));
+			SetDust(Item, 216);
+			AddEffect(Item, ClickEffect.DustDevil);
 
-			item.damage = 30;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 2f;
-			item.value = 105000;
-			item.rare = 5;
+			Item.damage = 30;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 2f;
+			Item.value = 105000;
+			Item.rare = 5;
 		}
 	}
 }

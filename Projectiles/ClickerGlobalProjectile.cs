@@ -14,20 +14,9 @@ namespace ClickerClass.Projectiles
 
 			Player player = Main.player[projectile.owner];
 
-			Item heldItem = player.HeldItem;
+			//No manual clicker crit calculations anymore due to DamageClass
 
-			// Prevent crash when held item is nonexistant
-			if (heldItem.IsAir) return;
-
-			// Vanilla crit chance calculations. Crit chance of the currently held weapon matters, regardless of the damage type of the weapon.
-			int critChance = heldItem.crit;
-			ItemLoader.GetWeaponCrit(heldItem, player, ref critChance);
-			PlayerHooks.GetWeaponCrit(player, heldItem, ref critChance);
-			if (!crit)
-			{
-				crit = critChance >= 100 || Main.rand.Next(1, 101) <= critChance;
-			}
-
+			//This behavior is special to clicker projectiles, not just click damage
 			int defenseIgnore = target.defense / 2;
 			if (defenseIgnore <= 0) defenseIgnore = 0;
 			damage += defenseIgnore;

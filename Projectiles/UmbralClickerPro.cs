@@ -3,6 +3,7 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.Utilities;
+using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
 {
@@ -16,7 +17,7 @@ namespace ClickerClass.Projectiles
 			{
 				if (rng == null)
 				{
-					rng = new UnifiedRandom(RandomSeed / (1 + projectile.identity));
+					rng = new UnifiedRandom(RandomSeed / (1 + Projectile.identity));
 				}
 				return rng;
 			}
@@ -24,33 +25,35 @@ namespace ClickerClass.Projectiles
 
 		public int RandomSeed
 		{
-			get => (int)projectile.ai[0];
-			set => projectile.ai[0] = value;
+			get => (int)Projectile.ai[0];
+			set => Projectile.ai[0] = value;
 		}
 
 		public bool HasSpawnEffects
 		{
-			get => projectile.ai[1] == 1f;
-			set => projectile.ai[1] = value ? 1f : 0f;
+			get => Projectile.ai[1] == 1f;
+			set => Projectile.ai[1] = value ? 1f : 0f;
 		}
 
 		public int WobbleTimer
 		{
-			get => (int)projectile.localAI[0];
-			set => projectile.localAI[0] = value;
+			get => (int)Projectile.localAI[0];
+			set => Projectile.localAI[0] = value;
 		}
 
 		public override void SetDefaults()
 		{
-			projectile.width = 10;
-			projectile.height = 10;
-			projectile.aiStyle = -1;
-			projectile.penetrate = 1;
-			projectile.alpha = 255;
-			projectile.timeLeft = 180;
-			projectile.extraUpdates = 2;
-			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 10;
+			base.SetDefaults();
+
+			Projectile.width = 10;
+			Projectile.height = 10;
+			Projectile.aiStyle = -1;
+			Projectile.penetrate = 1;
+			Projectile.alpha = 255;
+			Projectile.timeLeft = 180;
+			Projectile.extraUpdates = 2;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 10;
 		}
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -59,7 +62,7 @@ namespace ClickerClass.Projectiles
 
 			for (int k = 0; k < 5; k++)
 			{
-				Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, 27, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 255, default, 1.25f);
+				Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 27, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 255, default, 1.25f);
 				dust.noGravity = true;
 			}
 		}
@@ -69,15 +72,15 @@ namespace ClickerClass.Projectiles
 			WobbleTimer++;
 			if (WobbleTimer > 2)
 			{
-				projectile.velocity.Y += Rng.NextFloat(-1f, 1f);
-				projectile.velocity.X += Rng.NextFloat(-1f, 1f);
+				Projectile.velocity.Y += Rng.NextFloat(-1f, 1f);
+				Projectile.velocity.X += Rng.NextFloat(-1f, 1f);
 				WobbleTimer = 0;
 			}
 
-			int index = Dust.NewDust(projectile.Center, projectile.width, projectile.height, 27, 0f, 0f, 255, default(Color), 1.25f);
+			int index = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, 27, 0f, 0f, 255, default(Color), 1.25f);
 			Dust dust = Main.dust[index];
-			dust.position.X = projectile.Center.X;
-			dust.position.Y = projectile.Center.Y;
+			dust.position.X = Projectile.Center.X;
+			dust.position.Y = Projectile.Center.Y;
 			dust.velocity *= 0f;
 			dust.noGravity = true;
 
@@ -85,26 +88,26 @@ namespace ClickerClass.Projectiles
 			{
 				HasSpawnEffects = false;
 
-				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 103);
+				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 103);
 			}
 
-			if (projectile.timeLeft < 150)
+			if (Projectile.timeLeft < 150)
 			{
-				projectile.friendly = true;
+				Projectile.friendly = true;
 
-				float x = projectile.Center.X;
-				float y = projectile.Center.Y;
+				float x = Projectile.Center.X;
+				float y = Projectile.Center.Y;
 				float dist = 500f;
 				bool found = false;
 
 				for (int i = 0; i < Main.maxNPCs; i++)
 				{
 					NPC npc = Main.npc[i];
-					if (npc.CanBeChasedBy() && projectile.DistanceSQ(npc.Center) < dist * dist && Collision.CanHit(projectile.Center, 1, 1, npc.Center, 1, 1))
+					if (npc.CanBeChasedBy() && Projectile.DistanceSQ(npc.Center) < dist * dist && Collision.CanHit(Projectile.Center, 1, 1, npc.Center, 1, 1))
 					{
 						float foundX = npc.Center.X;
 						float foundY = npc.Center.Y;
-						float abs = Math.Abs(projectile.Center.X - foundX) + Math.Abs(projectile.Center.Y - foundY);
+						float abs = Math.Abs(Projectile.Center.X - foundX) + Math.Abs(Projectile.Center.Y - foundY);
 						if (abs < dist)
 						{
 							dist = abs;
@@ -118,7 +121,7 @@ namespace ClickerClass.Projectiles
 				if (found)
 				{
 					float mag = 7.5f;
-					Vector2 center = projectile.Center;
+					Vector2 center = Projectile.Center;
 					float toX = x - center.X;
 					float toY = y - center.Y;
 					float len = (float)Math.Sqrt((double)(toX * toX + toY * toY));
@@ -126,8 +129,8 @@ namespace ClickerClass.Projectiles
 					toX *= len;
 					toY *= len;
 
-					projectile.velocity.X = (projectile.velocity.X * 20f + toX) / 21f;
-					projectile.velocity.Y = (projectile.velocity.Y * 20f + toY) / 21f;
+					Projectile.velocity.X = (Projectile.velocity.X * 20f + toX) / 21f;
+					Projectile.velocity.Y = (Projectile.velocity.Y * 20f + toY) / 21f;
 				}
 			}
 		}

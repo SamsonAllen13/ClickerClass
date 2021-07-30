@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -10,7 +11,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.WildMagic = ClickerSystem.RegisterClickEffect(mod, "WildMagic", null, null, 6, new Color(175, 75, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.WildMagic = ClickerSystem.RegisterClickEffect(Mod, "WildMagic", null, null, 6, new Color(175, 75, 255), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				List<string> excluded = new List<string>
 				{
@@ -33,7 +34,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				string random = Main.rand.Next(allowed);
 				if (ClickerSystem.IsClickEffect(random, out ClickEffect effect))
 				{
-					effect.Action?.Invoke(player, position, type, damage, knockBack);
+					effect.Action?.Invoke(player, source, position, type, damage, knockBack);
 				}
 			});
 		}
@@ -41,17 +42,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 6f);
-			SetColor(item, new Color(175, 75, 255));
-			SetDust(item, 173);
-			AddEffect(item, ClickEffect.WildMagic);
+			SetRadius(Item, 6f);
+			SetColor(Item, new Color(175, 75, 255));
+			SetDust(Item, 173);
+			AddEffect(Item, ClickEffect.WildMagic);
 
-			item.damage = 78;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 500000;
-			item.rare = 8;
+			Item.damage = 78;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 500000;
+			Item.rare = 8;
 		}
 	}
 }

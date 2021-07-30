@@ -14,11 +14,11 @@ namespace ClickerClass.Items.Accessories
 
 		public override void SetDefaults()
 		{
-			item.width = 20;
-			item.height = 20;
-			item.accessory = true;
-			item.value = 2500;
-			item.rare = 1;
+			Item.width = 20;
+			Item.height = 20;
+			Item.accessory = true;
+			Item.value = 2500;
+			Item.rare = 1;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
@@ -28,11 +28,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.Silk, 15);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.Silk, 15).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

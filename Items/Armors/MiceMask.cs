@@ -15,11 +15,11 @@ namespace ClickerClass.Items.Armors
 
 		public override void SetDefaults()
 		{
-			item.width = 18;
-			item.height = 18;
-			item.value = 70000;
-			item.rare = 10;
-			item.defense = 18;
+			Item.width = 18;
+			Item.height = 18;
+			Item.value = 70000;
+			Item.rare = 10;
+			Item.defense = 18;
 		}
 
 		public override void UpdateEquip(Player player)
@@ -47,12 +47,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<MiceFragment>(), 10);
-			recipe.AddIngredient(ItemID.LunarBar, 8);
-			recipe.AddTile(TileID.LunarCraftingStation);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<MiceFragment>(), 10).AddIngredient(ItemID.LunarBar, 8).AddTile(TileID.LunarCraftingStation).Register();
 		}
 	}
 }

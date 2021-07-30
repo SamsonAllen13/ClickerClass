@@ -4,6 +4,8 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -13,9 +15,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Bombard = ClickerSystem.RegisterClickEffect(mod, "Bombard", null, null, 12, new Color(255, 225, 50), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Bombard = ClickerSystem.RegisterClickEffect(Mod, "Bombard", null, null, 12, new Color(255, 225, 50), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 14);
+				SoundEngine.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 14);
 
 				for (int k = 0; k < 4; k++)
 				{
@@ -27,9 +29,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 					if (mag > speed)
 					{
 						mag = speed / mag;
+						vector *= mag;
 					}
-					vector *= mag;
-					Projectile.NewProjectile(startSpot, vector, ModContent.ProjectileType<CaptainsClickerPro>(), damage, knockBack, player.whoAmI, endSpot.X, endSpot.Y);
+					Projectile.NewProjectile(source, startSpot, vector, ModContent.ProjectileType<CaptainsClickerPro>(), damage, knockBack, player.whoAmI, endSpot.X, endSpot.Y);
 				}
 			});
 		}
@@ -37,17 +39,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 3.15f);
-			SetColor(item, new Color(255, 225, 50));
-			SetDust(item, 10);
-			AddEffect(item, ClickEffect.Bombard);
+			SetRadius(Item, 3.15f);
+			SetColor(Item, new Color(255, 225, 50));
+			SetDust(Item, 10);
+			AddEffect(Item, ClickEffect.Bombard);
 
-			item.damage = 30;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 180000;
-			item.rare = 4;
+			Item.damage = 30;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 180000;
+			Item.rare = 4;
 		}
 	}
 }

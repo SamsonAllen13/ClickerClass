@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -12,35 +13,31 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.SolarFlare = ClickerSystem.RegisterClickEffect(mod, "SolarFlare", null, null, 10, new Color(200, 75, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.SolarFlare = ClickerSystem.RegisterClickEffect(Mod, "SolarFlare", null, null, 10, new Color(200, 75, 0), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<LihzarhdClickerPro>(), (int)(damage * 0.5f), 0f, player.whoAmI);
+				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<LihzarhdClickerPro>(), (int)(damage * 0.5f), 0f, player.whoAmI);
 			});
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 4f);
-			SetColor(item, new Color(200, 75, 0));
-			SetDust(item, 174);
-			AddEffect(item, ClickEffect.SolarFlare);
+			SetRadius(Item, 4f);
+			SetColor(Item, new Color(200, 75, 0));
+			SetDust(Item, 174);
+			AddEffect(Item, ClickEffect.SolarFlare);
 
-			item.damage = 66;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 300000;
-			item.rare = 7;
+			Item.damage = 66;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 300000;
+			Item.rare = 7;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.LunarTabletFragment, 8);
-			recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.LunarTabletFragment, 8).AddTile(TileID.MythrilAnvil).Register();
 		}
 	}
 }

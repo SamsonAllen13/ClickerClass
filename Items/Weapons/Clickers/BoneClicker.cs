@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
+
 namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class BoneClicker : ClickerWeapon
@@ -11,36 +13,32 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Lacerate = ClickerSystem.RegisterClickEffect(mod, "Lacerate", null, null, 12, new Color(225, 225, 200), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Lacerate = ClickerSystem.RegisterClickEffect(Mod, "Lacerate", null, null, 12, new Color(225, 225, 200), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<BoneClickerPro>(), damage, knockBack, player.whoAmI);
+				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<BoneClickerPro>(), damage, knockBack, player.whoAmI);
 			});
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 1.1f);
-			SetColor(item, new Color(225, 225, 200));
-			SetDust(item, 216);
-			AddEffect(item, ClickEffect.Lacerate);
+			SetRadius(Item, 1.1f);
+			SetColor(Item, new Color(225, 225, 200));
+			SetDust(Item, 216);
+			AddEffect(Item, ClickEffect.Lacerate);
 
-			item.damage = 13;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 2f;
-			item.noMelee = true;
-			item.value = 15000;
-			item.rare = 1;
+			Item.damage = 13;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 2f;
+			Item.noMelee = true;
+			Item.value = 15000;
+			Item.rare = 1;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.FossilOre, 8);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.FossilOre, 8).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

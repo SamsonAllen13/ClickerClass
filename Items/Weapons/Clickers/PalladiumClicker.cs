@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -12,9 +14,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Regenerate = ClickerSystem.RegisterClickEffect(mod, "Regenerate", null, null, 8, new Color(250, 150, 100), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Regenerate = ClickerSystem.RegisterClickEffect(Mod, "Regenerate", null, null, 8, new Color(250, 150, 100), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
+				SoundEngine.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
 				player.AddBuff(BuffID.RapidHealing, 120, false);
 				for (int i = 0; i < 15; i++)
 				{
@@ -35,26 +37,22 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 2.85f);
-			SetColor(item, new Color(250, 150, 100));
-			SetDust(item, 144);
-			AddEffect(item, ClickEffect.Regenerate);
+			SetRadius(Item, 2.85f);
+			SetColor(Item, new Color(250, 150, 100));
+			SetDust(Item, 144);
+			AddEffect(Item, ClickEffect.Regenerate);
 
-			item.damage = 25;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 2f;
-			item.value = 92000;
-			item.rare = 4;
+			Item.damage = 25;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 2f;
+			Item.value = 92000;
+			Item.rare = 4;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.PalladiumBar, 8);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.PalladiumBar, 8).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

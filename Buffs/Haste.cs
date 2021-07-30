@@ -5,7 +5,7 @@ namespace ClickerClass.Buffs
 {
 	public class Haste : ModBuff
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			Main.buffNoSave[Type] = false;
 		}

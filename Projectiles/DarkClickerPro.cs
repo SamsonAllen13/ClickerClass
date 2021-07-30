@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
 {
@@ -8,22 +9,24 @@ namespace ClickerClass.Projectiles
 	{
 		public bool Spawned
 		{
-			get => projectile.ai[0] == 1f;
-			set => projectile.ai[0] = value ? 1f : 0f;
+			get => Projectile.ai[0] == 1f;
+			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
 
 		public override void SetDefaults()
 		{
-			projectile.width = 200;
-			projectile.height = 200;
-			projectile.penetrate = -1;
-			projectile.timeLeft = 10;
-			projectile.alpha = 255;
-			projectile.friendly = true;
-			projectile.tileCollide = false;
-			projectile.extraUpdates = 3;
-			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 30;
+			base.SetDefaults();
+
+			Projectile.width = 200;
+			Projectile.height = 200;
+			Projectile.penetrate = -1;
+			Projectile.timeLeft = 10;
+			Projectile.alpha = 255;
+			Projectile.friendly = true;
+			Projectile.tileCollide = false;
+			Projectile.extraUpdates = 3;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 30;
 		}
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -48,7 +51,7 @@ namespace ClickerClass.Projectiles
 			if (!Spawned)
 			{
 				Spawned = true;
-				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 70);
+				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 70);
 				for (int k = 0; k < 25; k++)
 				{
 					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 14, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 75, default, 1.5f);

@@ -1,7 +1,9 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ModLoader;
 using Terraria.UI;
 
@@ -14,13 +16,14 @@ namespace ClickerClass.UI
 		private float _clickerScale = 0f;
 		private float _clickerAlpha = 0f;
 		private static bool _lastMouseInterface = false;
+		private static bool _lastMouseText = false;
 
 		/// <summary>
 		/// Helper method that determines when the cursor can be drawn/replaced
 		/// </summary>
 		public static bool CanDrawCursor(Item item)
 		{
-			return !_lastMouseInterface && ClickerSystem.IsClickerWeapon(item);
+			return !_lastMouseInterface && !_lastMouseText && ClickerSystem.IsClickerWeapon(item);
 		}
 
 		public override void Update(GameTime gameTime)
@@ -29,8 +32,10 @@ namespace ClickerClass.UI
 			// For some reason cursorAlpha is "flipped", revert it here via some maths (0.8 is the value it fluctuates around)
 			float flipped = 2 * 0.8f - Main.cursorAlpha;
 			_clickerAlpha = flipped * 0.3f + 0.7f;
+
 			// To safely cache when the cursor is inside an interface (directly accessing it when adding the cursor will not work because the vanilla logic hasn't reached that stage yet)
 			_lastMouseInterface = Main.LocalPlayer.mouseInterface;
+			_lastMouseText = Main.mouseText;
 		}
 
 		protected override bool DrawSelf()
@@ -43,33 +48,40 @@ namespace ClickerClass.UI
 				return true;
 			}
 
-			Item item = player.HeldItem;
-
+			Asset<Texture2D> borderAsset;
 			Texture2D borderTexture;
 			Texture2D texture;
+			Item item = player.HeldItem;
 			if (CanDrawCursor(item))
 			{
 				string borderTexturePath = ClickerSystem.GetPathToBorderTexture(item.type);
 				if (borderTexturePath != null)
 				{
-					borderTexture = ModContent.GetTexture(borderTexturePath);
+					borderAsset = ModContent.Request<Texture2D>(borderTexturePath);
 				}
 				else
 				{
 					//Default border
-					borderTexture = ClickerClass.mod.GetTexture("UI/CursorOutline");
+					borderAsset = ClickerClass.mod.Assets.Request<Texture2D>("UI/CursorOutline");
 				}
-				texture = Main.itemTexture[item.type];
+
+				if (!borderAsset.IsLoaded)
+				{
+					return true;
+				}
+
+				borderTexture = borderAsset.Value;
+				texture = TextureAssets.Item[item.type].Value;
 			}
 			else
 			{
 				return true;
 			}
 
-			Rectangle borderFrame = borderTexture.Frame();
+			Rectangle borderFrame = borderTexture.Frame(1, 1);
 			Vector2 borderOrigin = borderFrame.Size() / 2;
 
-			Rectangle frame = texture.Frame();
+			Rectangle frame = texture.Frame(1, 1);
 			Vector2 origin = frame.Size() / 2;
 
 			Vector2 borderPosition = Main.MouseScreen;

@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -13,33 +14,29 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Spiral = ClickerSystem.RegisterClickEffect(mod, "Spiral", null, null, 15, new Color(150, 150, 225), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Spiral = ClickerSystem.RegisterClickEffect(Mod, "Spiral", null, null, 15, new Color(150, 150, 225), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<AstralClickerPro>(), (int)(damage * 3f), 0f, player.whoAmI);
+				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<AstralClickerPro>(), (int)(damage * 3f), 0f, player.whoAmI);
 			});
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 6f);
-			SetColor(item, new Color(150, 150, 225));
-			SetDust(item, ModContent.DustType<MiceDust>());
-			AddEffect(item, ClickEffect.Spiral);
+			SetRadius(Item, 6f);
+			SetColor(Item, new Color(150, 150, 225));
+			SetDust(Item, ModContent.DustType<MiceDust>());
+			AddEffect(Item, ClickEffect.Spiral);
 
-			item.damage = 82;
-			item.knockBack = 1f;
-			item.value = Item.sellPrice(0, 5, 0, 0);
-			item.rare = 10;
+			Item.damage = 82;
+			Item.knockBack = 1f;
+			Item.value = Item.sellPrice(0, 5, 0, 0);
+			Item.rare = 10;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<MiceFragment>(), 18);
-			recipe.AddTile(TileID.LunarCraftingStation);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<MiceFragment>(), 18).AddTile(TileID.LunarCraftingStation).Register();
 		}
 	}
 }

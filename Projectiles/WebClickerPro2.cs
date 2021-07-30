@@ -6,19 +6,21 @@ namespace ClickerClass.Projectiles
 {
 	public class WebClickerPro2 : ClickerProjectile
 	{
-		public bool LeftFacing => projectile.ai[0] == 1f;
+		public bool LeftFacing => Projectile.ai[0] == 1f;
 
 		public override void SetDefaults()
 		{
-			projectile.width = 78;
-			projectile.height = 76;
-			projectile.aiStyle = -1;
-			projectile.friendly = true;
-			projectile.penetrate = -1;
-			projectile.timeLeft = 40;
-			projectile.tileCollide = false;
-			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 30;
+			base.SetDefaults();
+
+			Projectile.width = 78;
+			Projectile.height = 76;
+			Projectile.aiStyle = -1;
+			Projectile.friendly = true;
+			Projectile.penetrate = -1;
+			Projectile.timeLeft = 40;
+			Projectile.tileCollide = false;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 30;
 		}
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -28,11 +30,11 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
-			projectile.rotation += LeftFacing ? 0.0075f : -0.0075f;
+			Projectile.rotation += LeftFacing ? 0.0075f : -0.0075f;
 
-			if (projectile.timeLeft < 20)
+			if (Projectile.timeLeft < 20)
 			{
-				projectile.alpha += 10;
+				Projectile.alpha += 10;
 			}
 		}
 	}

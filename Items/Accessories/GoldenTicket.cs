@@ -6,12 +6,12 @@ namespace ClickerClass.Items.Accessories
 	{
 		public override void SetDefaults()
 		{
-			SetDisplayMoneyGenerated(item);
-			item.width = 20;
-			item.height = 20;
-			item.accessory = true;
-			item.value = 50000;
-			item.rare = 4;
+			SetDisplayMoneyGenerated(Item);
+			Item.width = 20;
+			Item.height = 20;
+			Item.accessory = true;
+			Item.value = 50000;
+			Item.rare = 4;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

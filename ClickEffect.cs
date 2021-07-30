@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ClickerClass
 {
@@ -26,9 +28,9 @@ namespace ClickerClass
 
 		public Color Color { get; private set; }
 
-		public Action<Player, Vector2, int, int, float> Action { get; private set; }
+		public Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float> Action { get; private set; }
 
-		public ClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, Vector2, int, int, float> action)
+		public ClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float> action)
 		{
 			Mod = mod ?? throw new Exception("No mod specified");
 			InternalName = internalName ?? throw new Exception("No internal name specified");
@@ -37,12 +39,12 @@ namespace ClickerClass
 			TryUsingTranslation = displayName == null || description == null;
 			Amount = amount;
 			Color = color;
-			Action = action ?? (new Action<Player, Vector2, int, int, float>((a, b, c, d, e) => { }));
+			Action = action ?? (new Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float>((a, b, c, d, e, f) => { }));
 		}
 
 		public object Clone()
 		{
-			return new ClickEffect(Mod, InternalName, DisplayName, Description, Amount, Color, (Action<Player, Vector2, int, int, float>)Action.Clone());
+			return new ClickEffect(Mod, InternalName, DisplayName, Description, Amount, Color, (Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float>)Action.Clone());
 		}
 
 		public TooltipLine ToTooltip(int amount, float alpha, bool showDesc)
@@ -111,20 +113,20 @@ namespace ClickerClass
 		/// </summary>
 		internal static void LoadMiscEffects()
 		{
-			ClickEffect.DoubleClick = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick", null, null, 10, Color.White, delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.DoubleClick = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick", null, null, 10, Color.White, delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				DoubleClick(player, position, type, damage, knockBack);
+				DoubleClick(player, source, position, type, damage, knockBack);
 			});
 
-			ClickEffect.DoubleClick2 = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick2", null, null, 8, Color.White, delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.DoubleClick2 = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick2", null, null, 8, Color.White, delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				DoubleClick(player, position, type, damage, knockBack);
+				DoubleClick(player, source, position, type, damage, knockBack);
 			});
 
-			void DoubleClick(Player player, Vector2 position, int type, int damage, float knockBack)
+			void DoubleClick(Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 37);
-				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, type, damage, knockBack, player.whoAmI);
+				SoundEngine.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 37);
+				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, type, damage, knockBack, player.whoAmI);
 			}
 		}
 

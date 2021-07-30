@@ -69,7 +69,7 @@ namespace ClickerClass.Utilities
 
 			//TODO modded
 
-			return npc.boss || NPCID.Sets.TechnicallyABoss[type]; //Lunar Pillars don't have npc.boss
+			return npc.boss || NPCID.Sets.ShouldBeCountedAsBoss[type]; //Lunar Pillars don't have npc.boss
 		}
 
 		/// <summary>

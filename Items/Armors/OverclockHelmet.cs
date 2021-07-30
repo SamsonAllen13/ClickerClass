@@ -15,11 +15,11 @@ namespace ClickerClass.Items.Armors
 
 		public override void SetDefaults()
 		{
-			item.width = 18;
-			item.height = 18;
-			item.value = 30000;
-			item.rare = 6;
-			item.defense = 8;
+			Item.width = 18;
+			Item.height = 18;
+			Item.value = 30000;
+			Item.rare = 6;
+			Item.defense = 8;
 		}
 
 		public override void UpdateEquip(Player player)
@@ -40,12 +40,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.HallowedBar, 14);
-			recipe.AddIngredient(ItemID.SoulofSight, 6);
-			recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.HallowedBar, 14).AddIngredient(ItemID.SoulofSight, 6).AddTile(TileID.MythrilAnvil).Register();
 		}
 	}
 }

@@ -6,12 +6,12 @@ namespace ClickerClass.Buffs
 {
 	public class Stunned : ModBuff
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			Main.debuff[Type] = true;
 			Main.pvpBuff[Type] = true;
 			Main.buffNoSave[Type] = true;
-			longerExpertDebuff = true;
+			LongerExpertDebuff = true;
 			ClickerClass.BossBuffImmunity.Add(Type);
 		}
 

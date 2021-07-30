@@ -4,6 +4,8 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -13,9 +15,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.StarStorm = ClickerSystem.RegisterClickEffect(mod, "StarStorm", null, null, 6, new Color(175, 75, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.StarStorm = ClickerSystem.RegisterClickEffect(Mod, "StarStorm", null, null, 6, new Color(175, 75, 255), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 42);
+				SoundEngine.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 42);
 
 				for (int k = 0; k < 3; k++)
 				{
@@ -27,9 +29,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 					if (mag > speed)
 					{
 						mag = speed / mag;
+						vector *= mag;
 					}
-					vector *= mag;
-					Projectile.NewProjectile(startSpot, vector, ModContent.ProjectileType<SpaceClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI, endSpot.X, endSpot.Y);
+					Projectile.NewProjectile(source, startSpot, vector, ModContent.ProjectileType<SpaceClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI, endSpot.X, endSpot.Y);
 				}
 			});
 		}
@@ -37,26 +39,22 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 2.25f);
-			SetColor(item, new Color(175, 125, 125));
-			SetDust(item, 174);
-			AddEffect(item, ClickEffect.StarStorm);
+			SetRadius(Item, 2.25f);
+			SetColor(Item, new Color(175, 125, 125));
+			SetDust(Item, 174);
+			AddEffect(Item, ClickEffect.StarStorm);
 
-			item.damage = 10;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 15000;
-			item.rare = 1;
+			Item.damage = 10;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 15000;
+			Item.rare = 1;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.MeteoriteBar, 8);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.MeteoriteBar, 8).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

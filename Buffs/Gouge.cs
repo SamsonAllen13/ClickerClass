@@ -6,12 +6,12 @@ namespace ClickerClass.Buffs
 {
 	public class Gouge : ModBuff
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			Main.debuff[Type] = true;
 			Main.pvpBuff[Type] = true;
 			Main.buffNoSave[Type] = true;
-			longerExpertDebuff = true;
+			LongerExpertDebuff = true;
 		}
 
 		public override void Update(NPC npc, ref int buffIndex)

@@ -4,6 +4,8 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -12,21 +14,20 @@ namespace ClickerClass.Items.Accessories
 	{
 		public override void SetStaticDefaults()
 		{
-
+			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(180, 3.5f, 1.15f);
 		}
 
 		public override void SetDefaults()
 		{
-			item.width = 22;
-			item.height = 20;
-			item.value = 100000;
-			item.rare = 10;
-			item.accessory = true;
+			Item.width = 22;
+			Item.height = 20;
+			Item.value = 100000;
+			Item.rare = 10;
+			Item.accessory = true;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.wingTimeMax = 180;
 			if (player.controlUp)
 			{
 				player.maxFallSpeed /= 2f;
@@ -46,11 +47,13 @@ namespace ClickerClass.Items.Accessories
 			constantAscend = 0.35f;
 		}
 
+		/*
 		public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
 		{
 			speed = 3.5f;
 			acceleration *= 1.15f;
 		}
+		*/
 
 		public override bool WingUpdate(Player player, bool inUse)
 		{
@@ -71,7 +74,7 @@ namespace ClickerClass.Items.Accessories
 				}
 				if (player.miscCounter % (rate * 2) == 0)
 				{
-					Main.PlaySound(SoundID.Item24, player.position);
+					SoundEngine.PlaySound(SoundID.Item24, player.position);
 				}
 
 				if (player.miscCounter % rate == 0)
@@ -116,12 +119,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<MiceFragment>(), 14);
-			recipe.AddIngredient(ItemID.LunarBar, 10);
-			recipe.AddTile(TileID.LunarCraftingStation);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<MiceFragment>(), 14).AddIngredient(ItemID.LunarBar, 10).AddTile(TileID.LunarCraftingStation).Register();
 		}
 	}
 }

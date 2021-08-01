@@ -78,7 +78,7 @@ namespace ClickerClass.Items
 				{
 					if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick || item.autoReuse)
 					{
-						return 10f;
+						return 6f;
 					}
 					else
 					{
@@ -87,7 +87,7 @@ namespace ClickerClass.Items
 				}
 				else
 				{
-					return 9.5f;
+					return 3f;
 				}
 			}
 

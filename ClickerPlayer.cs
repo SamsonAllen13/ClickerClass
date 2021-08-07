@@ -1131,38 +1131,6 @@ namespace ClickerClass
 			};
 			Main.playerDrawData.Add(drawData);
 		});
-
-		public static readonly PlayerLayer WeaponGlow = new PlayerLayer("ClickerClass", "WeaponGlow", PlayerLayer.HeldItem, delegate (PlayerDrawInfo drawInfo)
-		{
-			Player drawPlayer = drawInfo.drawPlayer;
-			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
-
-			if (drawInfo.shadow != 0f || drawPlayer.dead || drawPlayer.frozen || drawPlayer.itemAnimation <= 0)
-			{
-				return;
-			}
-			Mod mod = ModLoader.GetMod("ClickerClass");
-
-			//Fragment Pickaxe
-			if (drawPlayer.HeldItem.type == ModContent.ItemType<MicePickaxe>())
-			{
-				Texture2D weaponGlow = mod.Assets.Request<Texture2D>("Glowmasks/MicePickaxe_Glow");
-				Vector2 position = new Vector2((int)(drawInfo.itemLocation.X - Main.screenPosition.X), (int)(drawInfo.itemLocation.Y - Main.screenPosition.Y));
-				Vector2 origin = new Vector2(drawPlayer.direction == -1 ? weaponGlow.Width : 0, drawPlayer.gravDir == -1 ? 0 : weaponGlow.Height);
-				DrawData drawData = new DrawData(weaponGlow, position, null, new Color(255, 255, 255, 0) * 0.8f, drawPlayer.itemRotation, origin, drawPlayer.HeldItem.scale, drawInfo.spriteEffects, 0);
-				Main.playerDrawData.Add(drawData);
-			}
-
-			//Fragment Hamaxe
-			if (drawPlayer.HeldItem.type == ModContent.ItemType<MiceHamaxe>())
-			{
-				Texture2D weaponGlow = mod.Assets.Request<Texture2D>("Glowmasks/MiceHamaxe_Glow");
-				Vector2 position = new Vector2((int)(drawInfo.itemLocation.X - Main.screenPosition.X), (int)(drawInfo.itemLocation.Y - Main.screenPosition.Y));
-				Vector2 origin = new Vector2(drawPlayer.direction == -1 ? weaponGlow.Width : 0, drawPlayer.gravDir == -1 ? 0 : weaponGlow.Height);
-				DrawData drawData = new DrawData(weaponGlow, position, null, new Color(255, 255, 255, 0) * 0.8f, drawPlayer.itemRotation, origin, drawPlayer.HeldItem.scale, drawInfo.spriteEffects, 0);
-				Main.playerDrawData.Add(drawData);
-			}
-		});
 		*/
 	}
 }

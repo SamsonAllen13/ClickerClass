@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
@@ -9,17 +8,10 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.DrawLayers
 {
-	public class ItemLayerData
-	{
-		public Asset<Texture2D> Texture { get; init; }
-
-		public Color Color { get; init; } = new Color(255, 255, 255, 0) * 0.8f;
-	}
-
 	//Items manually register data which this layer is using
 	public sealed class HeldItemLayer : PlayerDrawLayer
 	{
-		private static Dictionary<(int type, int useStyle), ItemLayerData> ItemLayerData { get; set; }
+		private static Dictionary<(int type, int useStyle), DrawLayerData> ItemLayerData { get; set; }
 
 		/// <summary>
 		/// Add data associated with the item type (key) here, usually in <see cref="ModType.SetStaticDefaults"/>.
@@ -29,7 +21,7 @@ namespace ClickerClass.DrawLayers
 		/// <param name="data">Data</param>
 		/// <param name="useStyle">Decides what useStyle this data associates with. -1 for defaulting current held items useStyle.
 		/// <para>This is important if an item switches between useStyles (right click for example), then you register multiple draw layers</para></param>
-		public static void RegisterData(int type, ItemLayerData data, int useStyle = -1)
+		public static void RegisterData(int type, DrawLayerData data, int useStyle = -1)
 		{
 			var tuple = new ValueTuple<int, int>(type, useStyle);
 			if (!ItemLayerData.ContainsKey(tuple))
@@ -40,7 +32,7 @@ namespace ClickerClass.DrawLayers
 
 		public override void Load()
 		{
-			ItemLayerData = new Dictionary<(int, int), ItemLayerData>();
+			ItemLayerData = new Dictionary<(int, int), DrawLayerData>();
 		}
 
 		public override void Unload()
@@ -69,7 +61,7 @@ namespace ClickerClass.DrawLayers
 			Item heldItem = drawInfo.heldItem;
 			int useStyle = heldItem.useStyle;
 
-			ItemLayerData data = null;
+			DrawLayerData data = null;
 			foreach (var pair in ItemLayerData)
 			{
 				var tuple = pair.Key;

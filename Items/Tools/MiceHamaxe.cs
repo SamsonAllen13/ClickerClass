@@ -12,7 +12,7 @@ namespace ClickerClass.Items.Tools
 		{
 			if (!Main.dedServ)
 			{
-				HeldItemLayer.RegisterData(Item.type, new ItemLayerData()
+				HeldItemLayer.RegisterData(Item.type, new DrawLayerData()
 				{
 					Texture = ModContent.Request<Texture2D>(Texture + "_Glow")
 				});

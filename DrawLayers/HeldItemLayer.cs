@@ -47,16 +47,18 @@ namespace ClickerClass.DrawLayers
 
 		public override bool GetDefaultVisiblity(PlayerDrawSet drawInfo)
 		{
+			Player drawPlayer = drawInfo.drawPlayer;
+			if (drawInfo.shadow != 0f || drawPlayer.dead || drawPlayer.frozen || drawPlayer.itemAnimation <= 0)
+			{
+				return false;
+			}
+
 			return true;
 		}
 
 		protected override void Draw(ref PlayerDrawSet drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
-			if (drawInfo.shadow != 0f || drawPlayer.dead || drawPlayer.frozen || drawPlayer.itemAnimation <= 0)
-			{
-				return;
-			}
 
 			Item heldItem = drawInfo.heldItem;
 			int useStyle = heldItem.useStyle;

@@ -1,3 +1,6 @@
+using ClickerClass.DrawLayers;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,6 +13,15 @@ namespace ClickerClass.Items.Armors
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			if (!Main.dedServ)
+			{
+				LegsLayer.RegisterData(Item.legSlot, new DrawLayerData()
+				{
+					Texture = ModContent.Request<Texture2D>(Texture + "_Legs_Glow"),
+					Color = Color.White * 0.5f
+				});
+			}
 		}
 
 		public override void SetDefaults()

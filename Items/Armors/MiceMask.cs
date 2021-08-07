@@ -1,4 +1,6 @@
+using ClickerClass.DrawLayers;
 using ClickerClass.Utilities;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,6 +13,14 @@ namespace ClickerClass.Items.Armors
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			if (!Main.dedServ)
+			{
+				HeadLayer.RegisterData(Item.headSlot, new DrawLayerData()
+				{
+					Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow")
+				});
+			}
 		}
 
 		public override void SetDefaults()
@@ -38,6 +48,11 @@ namespace ClickerClass.Items.Armors
 		{
 			player.setBonus = LangHelper.GetText("SetBonus.Mice");
 			player.GetModPlayer<ClickerPlayer>().setMice = true;
+		}
+
+		public override void UpdateVanitySet(Player player)
+		{
+			Lighting.AddLight(player.Center, 0.1f, 0.1f, 0.3f);
 		}
 
 		public override void ArmorSetShadows(Player player)

@@ -107,18 +107,9 @@ namespace ClickerClass
 		public bool setMotherboard = false;
 		public bool SetMotherboardDraw => setMotherboard && setMotherboardRatio > 0;
 
-
-		public bool setMiceAllowed = true;
 		public bool setMice = false;
-		public bool SetMiceDraw => setMice && setMiceAllowed;
-
-		public bool setPrecursorAllowed = true;
 		public bool setPrecursor = false;
-		public bool SetPrecursorDraw => setPrecursor && setPrecursorAllowed;
-
-		public bool setOverclockAllowed = true;
 		public bool setOverclock = false;
-		public bool SetOverclockDraw => setOverclock && setOverclockAllowed;
 
 		//Acc
 		[Obsolete("Use HasClickEffect(\"ClickerClass:ChocolateChip\") and EnableClickEffect(\"ClickerClass:ChocolateChip\") instead", false)]
@@ -444,13 +435,9 @@ namespace ClickerClass
 			ResetAllClickEffects();
 
 			//Armor
-			setMiceAllowed = true;
 			setMotherboard = false;
-			setMiceAllowed = true;
 			setMice = false;
-			setPrecursorAllowed = true;
 			setPrecursor = false;
-			setOverclockAllowed = true;
 			setOverclock = false;
 
 			//Acc
@@ -673,84 +660,6 @@ namespace ClickerClass
 				Player.armorEffectDrawShadow = true;
 			}
 
-			//Armor
-			int head = 0;
-			int body = 1;
-			int legs = 2;
-			int vanityHead = 10;
-			int vanityBody = 11;
-			int vanityLegs = 12;
-
-			Item itemVanityHead = Player.armor[vanityHead];
-			Item itemVanityBody = Player.armor[vanityBody];
-			Item itemVanityLegs = Player.armor[vanityLegs];
-
-			if (Player.wereWolf || Player.merman)
-			{
-				setMiceAllowed = false;
-				setPrecursorAllowed = false;
-				setOverclockAllowed = false;
-			}
-
-			if (!itemVanityHead.IsAir)
-			{
-				if (itemVanityHead.type != ModContent.ItemType<MiceMask>())
-				{
-					setMiceAllowed = false;
-				}
-				if (itemVanityHead.type != ModContent.ItemType<PrecursorHelmet>())
-				{
-					setPrecursorAllowed = false;
-				}
-				if (itemVanityHead.type != ModContent.ItemType<OverclockHelmet>())
-				{
-					setOverclockAllowed = false;
-				}
-			}
-			if (!itemVanityBody.IsAir)
-			{
-				if (itemVanityBody.type != ModContent.ItemType<MiceSuit>())
-				{
-					setMiceAllowed = false;
-				}
-				if (itemVanityBody.type != ModContent.ItemType<PrecursorBreastplate>())
-				{
-					setPrecursorAllowed = false;
-				}
-				if (itemVanityBody.type != ModContent.ItemType<OverclockSuit>())
-				{
-					setOverclockAllowed = false;
-				}
-			}
-			if (!itemVanityLegs.IsAir)
-			{
-				if (itemVanityLegs.type != ModContent.ItemType<MiceBoots>())
-				{
-					setMiceAllowed = false;
-				}
-				if (itemVanityLegs.type != ModContent.ItemType<PrecursorGreaves>())
-				{
-					setPrecursorAllowed = false;
-				}
-				if (itemVanityLegs.type != ModContent.ItemType<OverclockBoots>())
-				{
-					setOverclockAllowed = false;
-				}
-			}
-
-			if (SetOverclockDraw)
-			{
-				Lighting.AddLight(Player.Center, 0.3f, 0.075f, 0.075f);
-			}
-			if (SetPrecursorDraw)
-			{
-				Lighting.AddLight(Player.Center, 0.2f, 0.15f, 0.05f);
-			}
-			if (SetMiceDraw)
-			{
-				Lighting.AddLight(Player.Center, 0.1f, 0.1f, 0.3f);
-			}
-
 			//Acc
 			//Cookie acc
 			if (accCookieItem != null && !accCookieItem.IsAir && (accCookie || accCookie2) && clickerSelected)
@@ -941,48 +850,6 @@ namespace ClickerClass
 			MiscEffects.visible = true;
 		}
 
-		//Head
-		public static readonly PlayerLayer HeadGlow = new PlayerLayer("ClickerClass", "HeadGlow", PlayerLayer.Head, delegate (PlayerDrawInfo drawInfo)
-		{
-			Player drawPlayer = drawInfo.drawPlayer;
-			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
-			Color color = drawPlayer.GetImmuneAlphaPure(Color.White, drawInfo.shadow);
-			Texture2D texture = null;
-
-			if (drawInfo.shadow != 0f || drawInfo.drawPlayer.invis)
-			{
-				return;
-			}
-			Mod mod = ModLoader.GetMod("ClickerClass");
-
-			if (modPlayer.SetMiceDraw)
-			{
-				texture = mod.Assets.Request<Texture2D>("Glowmasks/MiceMask_Glow");
-			}
-			if (modPlayer.SetPrecursorDraw)
-			{
-				texture = mod.Assets.Request<Texture2D>("Glowmasks/PrecursorHelmet_Glow");
-				color *= 0.5f;
-			}
-			if (modPlayer.SetOverclockDraw)
-			{
-				texture = mod.Assets.Request<Texture2D>("Glowmasks/OverclockHelmet_Glow");
-				color *= 0.75f;
-			}
-
-			if (texture == null)
-			{
-				return;
-			}
-
-			Vector2 drawPos = drawInfo.position - Main.screenPosition + new Vector2(drawPlayer.width / 2 - drawPlayer.bodyFrame.Width / 2, drawPlayer.height - drawPlayer.bodyFrame.Height + 4f) + drawPlayer.headPosition;
-			DrawData drawData = new DrawData(texture, drawPos.Floor() + drawInfo.headOrigin, drawPlayer.bodyFrame, color, drawPlayer.headRotation, drawInfo.headOrigin, 1f, drawInfo.spriteEffects, 0)
-			{
-				shader = drawInfo.headArmorShader
-			};
-			Main.playerDrawData.Add(drawData);
-		});
-
 		//Body
 		public static readonly PlayerLayer BodyGlow = new PlayerLayer("ClickerClass", "BodyGlow", PlayerLayer.Body, delegate (PlayerDrawInfo drawInfo)
 		{
@@ -1086,48 +953,6 @@ namespace ClickerClass
 			DrawData drawData = new DrawData(texture, drawPos.Floor() + drawPlayer.bodyFrame.Size() / 2, drawPlayer.bodyFrame, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, drawInfo.spriteEffects, 0)
 			{
 				shader = drawInfo.bodyArmorShader
-			};
-			Main.playerDrawData.Add(drawData);
-		});
-
-		//Legs
-		public static readonly PlayerLayer LegsGlow = new PlayerLayer("ClickerClass", "LegsGlow", PlayerLayer.Legs, delegate (PlayerDrawInfo drawInfo)
-		{
-			Player drawPlayer = drawInfo.drawPlayer;
-			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
-			Color color = drawPlayer.GetImmuneAlphaPure(Color.White, drawInfo.shadow);
-			Texture2D texture = null;
-
-			if (drawInfo.shadow != 0f || drawInfo.drawPlayer.invis)
-			{
-				return;
-			}
-			Mod mod = ModLoader.GetMod("ClickerClass");
-
-			if (modPlayer.SetMiceDraw)
-			{
-				texture = mod.Assets.Request<Texture2D>("Glowmasks/MiceBoots_Glow");
-			}
-			if (modPlayer.SetPrecursorDraw)
-			{
-				texture = mod.Assets.Request<Texture2D>("Glowmasks/PrecursorGreaves_Glow");
-				color *= 0.5f;
-			}
-			if (modPlayer.SetOverclockDraw)
-			{
-				texture = mod.Assets.Request<Texture2D>("Glowmasks/OverclockBoots_Glow");
-				color *= 0.75f;
-			}
-
-			if (texture == null)
-			{
-				return;
-			}
-
-			Vector2 drawPos = drawInfo.position - Main.screenPosition + new Vector2(drawPlayer.width / 2 - drawPlayer.legFrame.Width / 2, drawPlayer.height - drawPlayer.legFrame.Height + 4f) + drawPlayer.legPosition;
-			DrawData drawData = new DrawData(texture, drawPos.Floor() + drawInfo.legOrigin, drawPlayer.legFrame, color, drawPlayer.legRotation, drawInfo.legOrigin, 1f, drawInfo.spriteEffects, 0)
-			{
-				shader = drawInfo.legArmorShader
 			};
 			Main.playerDrawData.Add(drawData);
 		});

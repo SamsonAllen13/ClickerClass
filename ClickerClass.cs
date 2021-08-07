@@ -13,7 +13,7 @@ using ClickerClass.Prefixes;
 namespace ClickerClass
 {
 	//TODO 1.4:
-	//Fix all PlayerLayers
+	//Fix all Glowmasks (Armor, Weapon)
 	//Document API changes
 	public class ClickerClass : Mod
 	{

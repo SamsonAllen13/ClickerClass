@@ -1163,47 +1163,6 @@ namespace ClickerClass
 				Main.playerDrawData.Add(drawData);
 			}
 		});
-
-		public static readonly PlayerLayer MiscEffects = new PlayerLayer("ClickerClass", "MiscEffects", PlayerLayer.MiscEffectsFront, delegate (PlayerDrawInfo drawInfo)
-		{
-			Player drawPlayer = drawInfo.drawPlayer;
-			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
-
-			if (drawInfo.shadow != 0f || drawPlayer.dead) return;
-
-			if (Main.gameMenu) return;
-
-			if (modPlayer.CanDrawRadius)
-			{
-				if (modPlayer.SetMotherboardDraw)
-				{
-					Mod mod = ModLoader.GetMod("ClickerClass");
-
-					float alpha = modPlayer.ClickerRadiusColorMultiplier;
-					int drawX = (int)(drawPlayer.Center.X - Main.screenPosition.X);
-					int drawY = (int)(drawPlayer.Center.Y + drawPlayer.gfxOffY - Main.screenPosition.Y);
-					Vector2 center = new Vector2(drawX, drawY);
-					Vector2 drawPos = center + modPlayer.CalculateMotherboardPosition(modPlayer.ClickerRadiusRealDraw).Floor();
-
-					Texture2D texture = mod.Assets.Request<Texture2D>("Glowmasks/MotherboardSetBonus_Glow");
-					DrawData drawData = new DrawData(texture, drawPos, null, Color.White * alpha, 0f, texture.Size() / 2, 1f, SpriteEffects.None, 0)
-					{
-						ignorePlayerRotation = true
-					};
-					Main.playerDrawData.Add(drawData);
-
-					Rectangle frame = new Rectangle(0, 0, 30, 30);
-					frame.Y += 30 * modPlayer.setMotherboardFrame;
-
-					texture = mod.Assets.Request<Texture2D>("Glowmasks/MotherboardSetBonus2_Glow");
-					drawData = new DrawData(texture, drawPos, frame, new Color(255, 255, 255, 100) * modPlayer.setMotherboardAlpha * alpha, 0f, new Vector2(texture.Width / 2, frame.Height / 2), 1f, SpriteEffects.None, 0)
-					{
-						ignorePlayerRotation = true
-					};
-					Main.playerDrawData.Add(drawData);
-				}
-			}
-		});
 		*/
 	}
 }

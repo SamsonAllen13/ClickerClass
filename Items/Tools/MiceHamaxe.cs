@@ -1,3 +1,5 @@
+using ClickerClass.DrawLayers;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -8,7 +10,13 @@ namespace ClickerClass.Items.Tools
 	{
 		public override void SetStaticDefaults()
 		{
-
+			if (!Main.dedServ)
+			{
+				HeldItemLayer.RegisterData(Item.type, new ItemLayerData()
+				{
+					Texture = ModContent.Request<Texture2D>(Texture + "_Glow")
+				});
+			}
 		}
 
 		public override void SetDefaults()

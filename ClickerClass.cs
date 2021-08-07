@@ -13,7 +13,6 @@ using ClickerClass.Prefixes;
 namespace ClickerClass
 {
 	//TODO 1.4:
-	//Fix armors
 	//Fix all PlayerLayers
 	//Document API changes
 	public class ClickerClass : Mod

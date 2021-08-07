@@ -17,7 +17,6 @@ namespace ClickerClass.Projectiles
 		/// </summary>
 		public override void SetDefaults()
 		{
-			//TODO call base.SetDefaults everywhere
 			ClickerSystem.SetClickerProjectileDefaults(Projectile);
 		}
 	}

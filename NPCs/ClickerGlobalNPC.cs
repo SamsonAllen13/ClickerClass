@@ -23,20 +23,22 @@ namespace ClickerClass.NPCs
 
 		public bool buffImmunitiesSet = false;
 
-		private void SetBuffImmunities(NPC npc)
+		private void SetBossBuffImmunities(NPC npc)
 		{
-			if (!buffImmunitiesSet && (npc.immortal || npc.IsBossOrRelated()))
+			//Automatically make all bosses give immunities to the needed buffs
+			if (!buffImmunitiesSet)
 			{
-				//Automatically make all bosses give immunities to the needed buffs
-
-				foreach (var buff in ClickerClass.BossBuffImmunity)
-				{
-					npc.buffImmune[buff] = true;
-				}
-
 				//This bool is important. As the IsBossOrRelated method includes a dynamic IsChild check which only works when npc.realLife is set,
-				//The code in SetDefaults will not work. This method is therefore also called in PostAI once (which is guaranteed to run)
+				//The code in SetDefaults will not work. This method is therefore called in PostAI (which is guaranteed to run)
 				buffImmunitiesSet = true;
+
+				if (npc.active && npc.immortal || npc.IsBossOrRelated())
+				{
+					foreach (var buff in ClickerClass.BossBuffImmunity)
+					{
+						npc.buffImmune[buff] = true;
+					}
+				}
 			}
 		}
 
@@ -47,11 +49,6 @@ namespace ClickerClass.NPCs
 			honeySlow = false;
 			embrittle = false;
 			stunned = false;
-		}
-
-		public override void SetDefaults(NPC npc)
-		{
-			SetBuffImmunities(npc);
 		}
 
 		public override void UpdateLifeRegen(NPC npc, ref int damage)
@@ -400,7 +397,7 @@ namespace ClickerClass.NPCs
 
 		public override void PostAI(NPC npc)
 		{
-			SetBuffImmunities(npc);
+			SetBossBuffImmunities(npc);
 		}
 	}
 }

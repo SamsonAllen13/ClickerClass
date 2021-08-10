@@ -17,6 +17,7 @@ namespace ClickerClass.UI
 		private float _clickerAlpha = 0f;
 		private static bool _lastMouseInterface = false;
 		private static bool _lastMouseText = false;
+		internal static bool detourSecondCursorDraw = false;
 
 		/// <summary>
 		/// Helper method that determines when the cursor can be drawn/replaced
@@ -35,7 +36,8 @@ namespace ClickerClass.UI
 
 			// To safely cache when the cursor is inside an interface (directly accessing it when adding the cursor will not work because the vanilla logic hasn't reached that stage yet)
 			_lastMouseInterface = Main.LocalPlayer.mouseInterface;
-			_lastMouseText = Main.mouseText;
+			//_lastMouseText = Main.mouseText;
+			_lastMouseText = Main.hoverItemName != null && Main.hoverItemName != "" && Main.mouseItem?.type == (int?)0; //Use immediate vanilla conditions
 		}
 
 		protected override bool DrawSelf()
@@ -52,31 +54,30 @@ namespace ClickerClass.UI
 			Texture2D borderTexture;
 			Texture2D texture;
 			Item item = player.HeldItem;
-			if (CanDrawCursor(item))
-			{
-				string borderTexturePath = ClickerSystem.GetPathToBorderTexture(item.type);
-				if (borderTexturePath != null)
-				{
-					borderAsset = ModContent.Request<Texture2D>(borderTexturePath);
-				}
-				else
-				{
-					//Default border
-					borderAsset = ClickerClass.mod.Assets.Request<Texture2D>("UI/CursorOutline");
-				}
 
-				if (!borderAsset.IsLoaded)
-				{
-					return true;
-				}
-
-				borderTexture = borderAsset.Value;
-				texture = TextureAssets.Item[item.type].Value;
-			}
-			else
+			if (!CanDrawCursor(item))
 			{
 				return true;
 			}
+
+			string borderTexturePath = ClickerSystem.GetPathToBorderTexture(item.type);
+			if (borderTexturePath != null)
+			{
+				borderAsset = ModContent.Request<Texture2D>(borderTexturePath);
+			}
+			else
+			{
+				//Default border
+				borderAsset = ClickerClass.mod.Assets.Request<Texture2D>("UI/CursorOutline");
+			}
+
+			if (!borderAsset.IsLoaded)
+			{
+				return true;
+			}
+
+			borderTexture = borderAsset.Value;
+			texture = TextureAssets.Item[item.type].Value;
 
 			Rectangle borderFrame = borderTexture.Frame(1, 1);
 			Vector2 borderOrigin = borderFrame.Size() / 2;
@@ -95,6 +96,8 @@ namespace ClickerClass.UI
 			Main.spriteBatch.Draw(borderTexture, borderPosition, borderFrame, Main.mouseBorderColorSlider.GetColor(), 0f, Vector2.Zero, _clickerScale, SpriteEffects.FlipHorizontally, 0f);
 			// Actual cursor
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, Vector2.Zero, _clickerScale, SpriteEffects.FlipHorizontally, 0f);
+
+			detourSecondCursorDraw = true;
 
 			return true;
 		}

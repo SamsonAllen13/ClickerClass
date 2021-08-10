@@ -1,15 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using System.Reflection;
+using System.Collections.Generic;
 using ClickerClass.UI;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
+using System.Linq;
+using System;
 
 namespace ClickerClass
 {
 	public class ClickerUISystem : ModSystem
 	{
 		private GameTime _lastUpdateUIGameTime;
+		private bool reflectionFailedOnceDoNotRetry = false;
 
 		public override void UpdateUI(GameTime gameTime)
 		{
@@ -31,12 +35,63 @@ namespace ClickerClass
 					{
 						if (layers[i].Name.Equals("Vanilla: Cursor"))
 						{
+							//This only removes the default cursor, see DetourSecondCursor for the second one
 							layers.RemoveAt(i);
 							break;
 						}
 					}
 				}
 			}
+		}
+
+		public override void OnModLoad()
+		{
+			On.Terraria.Main.DrawInterface_36_Cursor += DetourSecondCursor;
+		}
+
+		public override void Unload()
+		{
+			reflectionFailedOnceDoNotRetry = false;
+		}
+
+		private void DetourSecondCursor(On.Terraria.Main.orig_DrawInterface_36_Cursor orig)
+		{
+			//This is used to detour the second cursor draw which happens on NPC mouseover in DrawInterface_41 after Main.instance._mouseTextCache.valid is true
+			if (!reflectionFailedOnceDoNotRetry && ClickerCursor.detourSecondCursorDraw)
+			{
+				ClickerCursor.detourSecondCursorDraw = false;
+
+				try
+				{
+					/*if (instance._mouseTextCache.isValid) {
+							instance.MouseTextInner(instance._mouseTextCache);
+							DrawInterface_36_Cursor(); //Detour only this one
+							instance._mouseTextCache.isValid = false;
+							instance._mouseTextCache.noOverride = false;
+						}
+					 */
+
+					Type mainType = typeof(Main);
+					FieldInfo mouseTextCacheField = mainType.GetField("_mouseTextCache", BindingFlags.NonPublic | BindingFlags.Instance);
+					var mouseTextCache = mouseTextCacheField.GetValue(Main.instance);
+
+					var nestedTypes = mainType.GetNestedTypes(BindingFlags.Static | BindingFlags.NonPublic);
+					var mouseTextCacheType = nestedTypes.FirstOrDefault(t => t.Name == "MouseTextCache");
+					FieldInfo isValidField = mouseTextCacheType.GetField("isValid", BindingFlags.Public | BindingFlags.Instance);
+					object isValid = isValidField.GetValue(mouseTextCache);
+
+					if (isValid is bool valid && valid)
+					{
+						return;
+					}
+				}
+				catch
+				{
+					reflectionFailedOnceDoNotRetry = true;
+				}
+			}
+
+			orig();
 		}
 	}
 }

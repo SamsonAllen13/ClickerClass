@@ -43,16 +43,18 @@ namespace ClickerClass.DrawLayers
 
 		public override bool GetDefaultVisiblity(PlayerDrawSet drawInfo)
 		{
+			Player drawPlayer = drawInfo.drawPlayer;
+			if (drawPlayer.dead || drawPlayer.invis || drawPlayer.head == -1)
+			{
+				return false;
+			}
+
 			return true;
 		}
 
 		protected override void Draw(ref PlayerDrawSet drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
-			if (drawPlayer.dead || drawPlayer.invis || drawPlayer.head == -1)
-			{
-				return;
-			}
 
 			if (!HeadLayerData.TryGetValue(drawPlayer.head, out DrawLayerData data))
 			{

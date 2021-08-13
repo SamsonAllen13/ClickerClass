@@ -86,7 +86,7 @@ namespace ClickerClass.Utilities
 			{
 				NPC npc = Main.npc[i];
 
-				if (!npc.active || npc.dontTakeDamage) //The only check that truly prevents damage. No chaseable or immortal, those can still be hit
+				if (!npc.active || npc.dontTakeDamage || projectile.friendly && npc.townNPC) //The only checks that truly prevent damage. No chaseable or immortal, those can still be hit
 				{
 					continue;
 				}

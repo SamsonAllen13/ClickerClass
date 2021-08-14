@@ -1,17 +1,13 @@
 using ClickerClass.Buffs;
 using ClickerClass.Items;
-using ClickerClass.Items.Armors;
-using ClickerClass.Items.Tools;
 using ClickerClass.NPCs;
 using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -808,154 +804,5 @@ namespace ClickerClass
 		{
 			outOfCombatTimer = OutOfCombatTimeMax;
 		}
-
-		/*
-		public override void ModifyDrawLayers(List<PlayerLayer> layers)
-		{
-			int index = layers.IndexOf(PlayerLayer.HeldItem);
-			if (index != -1)
-			{
-				layers.Insert(index + 1, WeaponGlow);
-			}
-			index = layers.IndexOf(PlayerLayer.Head);
-			if (index != -1)
-			{
-				layers.Insert(index + 1, HeadGlow);
-			}
-			index = layers.IndexOf(PlayerLayer.Legs);
-			if (index != -1)
-			{
-				layers.Insert(index + 1, LegsGlow);
-			}
-			index = layers.IndexOf(PlayerLayer.Body);
-			if (index != -1)
-			{
-				layers.Insert(index + 1, BodyGlow);
-			}
-			index = layers.IndexOf(PlayerLayer.Arms);
-			if (index != -1)
-			{
-				layers.Insert(index + 1, ArmsGlow);
-			}
-			index = layers.IndexOf(PlayerLayer.MiscEffectsFront);
-			if (index != -1)
-			{
-				layers.Insert(index + 1, MiscEffects);
-			}
-
-			WeaponGlow.visible = true;
-			HeadGlow.visible = true;
-			LegsGlow.visible = true;
-			ArmsGlow.visible = true;
-			MiscEffects.visible = true;
-		}
-
-		//Body
-		public static readonly PlayerLayer BodyGlow = new PlayerLayer("ClickerClass", "BodyGlow", PlayerLayer.Body, delegate (PlayerDrawInfo drawInfo)
-		{
-			Player drawPlayer = drawInfo.drawPlayer;
-			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
-			Color color = drawPlayer.GetImmuneAlphaPure(Color.White, drawInfo.shadow);
-			Texture2D texture = null;
-
-			if (drawInfo.shadow != 0f || drawInfo.drawPlayer.invis)
-			{
-				return;
-			}
-			Mod mod = ModLoader.GetMod("ClickerClass");
-
-			if (modPlayer.SetMiceDraw)
-			{
-				if (drawPlayer.Male)
-				{
-					texture = mod.Assets.Request<Texture2D>("Glowmasks/MiceSuit_Glow");
-				}
-				else
-				{
-					texture = mod.Assets.Request<Texture2D>("Glowmasks/MiceSuitFemale_Glow");
-				}
-			}
-			if (modPlayer.SetPrecursorDraw)
-			{
-				if (drawPlayer.Male)
-				{
-					texture = mod.Assets.Request<Texture2D>("Glowmasks/PrecursorBreastplate_Glow");
-					color *= 0.5f;
-				}
-				else
-				{
-					texture = mod.Assets.Request<Texture2D>("Glowmasks/PrecursorBreastplateFemale_Glow");
-					color *= 0.5f;
-				}
-			}
-			if (modPlayer.SetOverclockDraw)
-			{
-				if (drawPlayer.Male)
-				{
-					texture = mod.Assets.Request<Texture2D>("Glowmasks/OverclockSuit_Glow");
-					color *= 0.75f;
-				}
-				else
-				{
-					texture = mod.Assets.Request<Texture2D>("Glowmasks/OverclockSuitFemale_Glow");
-					color *= 0.75f;
-				}
-			}
-
-			if (texture == null)
-			{
-				return;
-			}
-
-			Vector2 drawPos = drawInfo.position - Main.screenPosition + new Vector2(drawPlayer.width / 2 - drawPlayer.bodyFrame.Width / 2, drawPlayer.height - drawPlayer.bodyFrame.Height + 4f) + drawPlayer.bodyPosition;
-			DrawData drawData = new DrawData(texture, drawPos.Floor() + drawPlayer.bodyFrame.Size() / 2, drawPlayer.bodyFrame, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, drawInfo.spriteEffects, 0)
-			{
-				shader = drawInfo.bodyArmorShader
-			};
-			Main.playerDrawData.Add(drawData);
-		});
-
-		//Arms
-		public static readonly PlayerLayer ArmsGlow = new PlayerLayer("ClickerClass", "ArmsGlow", PlayerLayer.Arms, delegate (PlayerDrawInfo drawInfo)
-		{
-			Player drawPlayer = drawInfo.drawPlayer;
-			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
-			Color color = drawPlayer.GetImmuneAlphaPure(Color.White, drawInfo.shadow);
-			Texture2D texture = null;
-
-			if (drawInfo.shadow != 0f || drawInfo.drawPlayer.invis)
-			{
-				return;
-			}
-			Mod mod = ModLoader.GetMod("ClickerClass");
-
-			if (modPlayer.SetMiceDraw)
-			{
-				texture = mod.Assets.Request<Texture2D>("Glowmasks/MiceSuitArm_Glow");
-			}
-			if (modPlayer.SetPrecursorDraw)
-			{
-				texture = mod.Assets.Request<Texture2D>("Glowmasks/PrecursorBreastplateArm_Glow");
-				color *= 0.5f;
-			}
-			if (modPlayer.SetOverclockDraw)
-			{
-				texture = mod.Assets.Request<Texture2D>("Glowmasks/OverclockSuitArm_Glow");
-				color *= 0.75f;
-			}
-
-			if (texture == null)
-			{
-				return;
-			}
-
-			Vector2 drawPos = drawInfo.position - Main.screenPosition + new Vector2(drawPlayer.width / 2 - drawPlayer.bodyFrame.Width / 2, drawPlayer.height - drawPlayer.bodyFrame.Height + 4f) + drawPlayer.bodyPosition;
-			DrawData drawData = new DrawData(texture, drawPos.Floor() + drawPlayer.bodyFrame.Size() / 2, drawPlayer.bodyFrame, color, drawPlayer.bodyRotation, drawInfo.bodyOrigin, 1f, drawInfo.spriteEffects, 0)
-			{
-				shader = drawInfo.bodyArmorShader
-			};
-			Main.playerDrawData.Add(drawData);
-		});
-		*/
 	}
 }

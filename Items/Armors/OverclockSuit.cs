@@ -1,3 +1,5 @@
+using ClickerClass.Core;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,6 +9,16 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Body)]
 	public class OverclockSuit : ClickerItem
 	{
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+
+			if (!Main.dedServ)
+			{
+				BodyGlowmaskPlayer.RegisterData(Item.bodySlot, new Color(255, 255, 255, 0) * 0.8f * 0.75f);
+			}
+		}
+
 		public override void SetDefaults()
 		{
 			Item.width = 18;

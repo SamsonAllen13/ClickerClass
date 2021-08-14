@@ -1,3 +1,5 @@
+using ClickerClass.Core;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,6 +12,11 @@ namespace ClickerClass.Items.Armors
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			if (!Main.dedServ)
+			{
+				BodyGlowmaskPlayer.RegisterData(Item.bodySlot, new Color(255, 255, 255, 0) * 0.8f);
+			}
 		}
 
 		public override void SetDefaults()

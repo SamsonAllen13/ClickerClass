@@ -29,7 +29,7 @@ namespace ClickerClass.DrawLayers
 			glowTexture = null;
 		}
 
-		public override bool GetDefaultVisiblity(PlayerDrawSet drawInfo)
+		public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();

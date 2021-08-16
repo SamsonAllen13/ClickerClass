@@ -201,10 +201,11 @@ namespace ClickerClass.Items
 
 					if (index != -1)
 					{
-						//TODO terraria public method in PickupText
 						string displayValue = " ";
 						int currentValue = clickerPlayer.clickerMoneyGenerated;
 
+						//TODO terraria public method in PopupText
+						//string displayValue = " " + PopupText.ValueToName(currentValue);
 						if (currentValue > 10000)
 						{
 							displayValue += (((Math.Abs(currentValue) % 1000000) - (Math.Abs(currentValue) % 10000)) / 10000) + $" {LangHelper.GetText("Common.Tooltips.Gold")}, ";
@@ -351,7 +352,6 @@ namespace ClickerClass.Items
 		{
 			if (player.altFunctionUse == 2 && HasAltFunctionUse(item, player))
 			{
-				//TODO return true here?
 				//Right click 
 				var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 				if (clickerPlayer.setAbilityDelayTimer <= 0)

@@ -405,7 +405,11 @@ namespace ClickerClass
 					//accGoldenTicket, accPortableParticleAccelerator
 					if (accName == "EnchantedLED")
 					{
-						return clickerPlayer.accEnchantedLED || clickerPlayer.accEnchantedLED2;
+						return clickerPlayer.accEnchantedLED;
+					}
+					else if (accName == "EnchantedLED2")
+					{
+						return clickerPlayer.accEnchantedLED2;
 					}
 					else if (accName == "HandCream")
 					{
@@ -415,9 +419,13 @@ namespace ClickerClass
 					{
 						return clickerPlayer.accGlassOfMilk;
 					}
-					else if (accName == "Cookie")
+					else if (accName == "CookieVisual")
 					{
-						return clickerPlayer.accCookie || clickerPlayer.accCookie2;
+						return clickerPlayer.accCookie;
+					}
+					else if (accName == "CookieVisual2")
+					{
+						return clickerPlayer.accCookie2;
 					}
 					else if (accName == "ClickingGlove")
 					{
@@ -438,6 +446,29 @@ namespace ClickerClass
 					else if (accName == "PortableParticleAccelerator")
 					{
 						return clickerPlayer.accPortableParticleAccelerator;
+					}
+
+					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
+				}
+				else if (message == "GetAccessoryItem")
+				{
+					var player = args[index + 0] as Player;
+					var accName = args[index + 1] as string;
+					if (accName == null)
+					{
+						throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has returned null.");
+					}
+					if (player == null)
+					{
+						throw new Exception($"Call Error: The player argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+
+					//accCookieItem
+					if (accName == "Cookie")
+					{
+						return clickerPlayer.accCookieItem;
 					}
 
 					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
@@ -563,15 +594,13 @@ namespace ClickerClass
 						clickerPlayer.accGlassOfMilk = true;
 						return success;
 					}
-					else if (accName == "Cookie")
+					else if (accName == "CookieVisual")
 					{
-						//TODO item param
 						clickerPlayer.accCookie = true;
 						return success;
 					}
-					else if (accName == "Cookie2")
+					else if (accName == "CookieVisual2")
 					{
-						//TODO item param
 						clickerPlayer.accCookie2 = true;
 						return success;
 					}
@@ -598,6 +627,35 @@ namespace ClickerClass
 					else if (accName == "PortableParticleAccelerator")
 					{
 						clickerPlayer.accPortableParticleAccelerator = true;
+						return success;
+					}
+
+					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
+				}
+				else if (message == "SetAccessoryItem")
+				{
+					var player = args[index + 0] as Player;
+					var accName = args[index + 1] as string;
+					var item = args[index + 2] as Item;
+					if (accName == null)
+					{
+						throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has returned null.");
+					}
+					if (player == null)
+					{
+						throw new Exception($"Call Error: The player argument for the attempted message, \"{message}\" has returned null.");
+					}
+					if (item == null)
+					{
+						throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+
+					//accCookieItem
+					if (accName == "Cookie")
+					{
+						clickerPlayer.accCookieItem = item;
 						return success;
 					}
 

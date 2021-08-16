@@ -13,7 +13,7 @@ using ClickerClass.Prefixes;
 namespace ClickerClass
 {
 	//TODO 1.4:
-	//Document API changes
+	//Proper damage type conversion, leave API as convenience but change backend
 	public class ClickerClass : Mod
 	{
 		public static ModKeybind AutoClickKey;

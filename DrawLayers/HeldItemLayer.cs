@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.DataStructures;
 using Terraria.ModLoader;
 
@@ -92,7 +93,7 @@ namespace ClickerClass.DrawLayers
 				//TODO only support for the melee swing usestyle for now
 				case 0:
 					break;
-				case 1:
+				case ItemUseStyleID.Swing:
 					Texture2D weaponGlow = data.Texture.Value;
 					Vector2 position = new Vector2((int)(drawInfo.ItemLocation.X - Main.screenPosition.X), (int)(drawInfo.ItemLocation.Y - Main.screenPosition.Y));
 					Vector2 origin = new Vector2(drawPlayer.direction == -1 ? weaponGlow.Width : 0, drawPlayer.gravDir == -1 ? 0 : weaponGlow.Height);

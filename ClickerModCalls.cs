@@ -91,11 +91,6 @@ namespace ClickerClass
 						nameOfargument = "mod";
 					if (internalName == null)
 						nameOfargument = "internalName";
-					//null -> localized
-					//if (displayName == null)
-					//	nameOfargument = "displayName";
-					//if (description == null)
-					//	nameOfargument = "description";
 					if (amount == null)
 						nameOfargument = "amount";
 					if (color == null)
@@ -239,32 +234,6 @@ namespace ClickerClass
 					ClickerWeapon.SetDust(item, dust.Value);
 					return success;
 				}
-				else if (message == "SetEffect")
-				{
-					if (apiVersion < new Version(1, 2, 2))
-					{
-						var item = args[index + 0] as Item;
-						var name = args[index + 1] as string;
-						if (item == null)
-						{
-							throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
-						}
-						if (name == null)
-						{
-							name = string.Empty;
-						}
-						//Old mods could only register with old ClickerClass effect display names before
-						if (ClickerSystem.GetNewNameFromOldDisplayName(name, out string internalName))
-						{
-							ClickerWeapon.AddEffect(item, internalName);
-						}
-						return success;
-					}
-					else
-					{
-						throw new Exception($"Use AddEffect instead, SetEffect is obsolete in {latestVersion}");
-					}
-				}
 				else if (message == "SetRadius")
 				{
 					var item = args[index + 0] as Item;
@@ -320,18 +289,6 @@ namespace ClickerClass
 						throw new Exception($"Call Error: The effectName argument for the attempted message, \"{message}\" has returned null.");
 					}
 
-					if (apiVersion < new Version(1, 2, 4))
-					{
-						var dict = ClickerSystem.GetClickEffectAsDict(effectName);
-						dict["InternalName"] = dict["UniqueName"];
-						dict.Remove("UniqueName");
-						dict.Remove("Mod");
-
-						//API Change: InternalName now not prefixed with Mod, separate thing -> UniqueName
-						//restore data suitable for the old version
-						return dict;
-					}
-
 					//Dictionary<string, object>
 					return ClickerSystem.GetClickEffectAsDict(effectName);
 				}
@@ -363,20 +320,7 @@ namespace ClickerClass
 							throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
 						}
 
-						string name;
-
-						if (apiVersion < new Version(1, 2, 2))
-						{
-							//Before it assumed the effect of the item used. Since 1.2.2 it is now a list, and requires a specific effect
-							//For the purpose of backwards compatibility, assume the first effect on the clicker as the main one
-
-							var effects = item.GetGlobalItem<ClickerItemCore>().itemClickEffects;
-							name = effects.Count == 0 ? null : effects[0];
-						}
-						else
-						{
-							name = args[index + 3] as string;
-						}
+						string name = args[index + 3] as string;
 
 						if (name == null)
 						{
@@ -448,31 +392,13 @@ namespace ClickerClass
 
 					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					//accGoldenTicket, accPortableParticleAccelerator
-					if (accName == "ChocolateChip")
-					{
-						if (apiVersion < new Version(1, 2, 2))
-						{
-							//Kept for backwards compatibility
-							return clickerPlayer.HasClickEffect(ClickEffect.ChocolateChip);
-						}
-						throw new Exception("GetAccessory+'ChocolateChip' is obsolete, use HasClickEffect+'ClickerClass:ChocolateChip'");
-					}
-					else if (accName == "EnchantedLED")
+					if (accName == "EnchantedLED")
 					{
 						return clickerPlayer.accEnchantedLED || clickerPlayer.accEnchantedLED2;
 					}
 					else if (accName == "HandCream")
 					{
 						return clickerPlayer.accHandCream;
-					}
-					else if (accName == "StickyKeychain")
-					{
-						if (apiVersion < new Version(1, 2, 2))
-						{
-							//Kept for backwards compatibility
-							return clickerPlayer.HasClickEffect(ClickEffect.StickyKeychain);
-						}
-						throw new Exception("GetAccessory+'StickyKeychain' is obsolete, use HasClickEffect+'ClickerClass:StickyKeychain'");
 					}
 					else if (accName == "GlassOfMilk")
 					{
@@ -606,17 +532,7 @@ namespace ClickerClass
 
 					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					//accGoldenTicket, accPortableParticleAccelerator
-					if (accName == "ChocolateChip")
-					{
-						//Kept for backwards compatibility
-						if (apiVersion < new Version(1, 2, 2))
-						{
-							clickerPlayer.EnableClickEffect(ClickEffect.ChocolateChip);
-							return success;
-						}
-						throw new Exception("SetAccessory+'ChocolateChip' is obsolete, use EnableClickEffect+'ClickerClass:ChocolateChip'");
-					}
-					else if (accName == "EnchantedLED")
+					if (accName == "EnchantedLED")
 					{
 						clickerPlayer.accEnchantedLED = true;
 						return success;
@@ -630,16 +546,6 @@ namespace ClickerClass
 					{
 						clickerPlayer.accHandCream = true;
 						return success;
-					}
-					else if (accName == "StickyKeychain")
-					{
-						//Kept for backwards compatibility
-						if (apiVersion < new Version(1, 2, 2))
-						{
-							clickerPlayer.EnableClickEffect(ClickEffect.StickyKeychain);
-							return success;
-						}
-						throw new Exception("SetAccessory+'StickyKeychain' is obsolete, use EnableClickEffect+'ClickerClass:StickyKeychain'");
 					}
 					else if (accName == "GlassOfMilk")
 					{

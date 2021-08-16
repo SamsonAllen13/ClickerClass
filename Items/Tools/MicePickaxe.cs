@@ -1,6 +1,7 @@
 using ClickerClass.DrawLayers;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -17,6 +18,8 @@ namespace ClickerClass.Items.Tools
 					Texture = ModContent.Request<Texture2D>(Texture + "_Glow")
 				});
 			}
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()

@@ -16,6 +16,8 @@ namespace ClickerClass.Items
 		/// </summary>
 		public override void SetStaticDefaults()
 		{
+			base.SetStaticDefaults();
+
 			ClickerSystem.RegisterClickerWeapon(this);
 		}
 

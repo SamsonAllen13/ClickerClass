@@ -6,6 +6,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -15,6 +16,8 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(180, 3.5f, 1.15f);
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()

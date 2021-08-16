@@ -4,6 +4,11 @@ namespace ClickerClass.Items.Accessories
 {
 	public class GoldenTicket : ClickerItem
 	{
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+		}
+
 		public override void SetDefaults()
 		{
 			SetDisplayMoneyGenerated(Item);

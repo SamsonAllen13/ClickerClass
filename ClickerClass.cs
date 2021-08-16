@@ -13,10 +13,7 @@ using ClickerClass.Prefixes;
 namespace ClickerClass
 {
 	//TODO 1.4:
-	//Fix all Glowmasks (Armor, Weapon)
 	//Document API changes
-	//cursor replacement on NPC mouseover
-	//journey sacrifice values
 	public class ClickerClass : Mod
 	{
 		public static ModKeybind AutoClickKey;

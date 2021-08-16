@@ -47,15 +47,9 @@ Common.Tooltips.MoreThanOneClick={0} cliques
 Common.Tooltips.OneClick=1 clique
 Common.Unknown=Desconhecido
 
-Common.Tooltips.Copper=cobre
-Common.Tooltips.Silver=prata
-Common.Tooltips.Gold=ouro
-Common.Tooltips.Coins=moedas
-Common.Tooltips.And=e
-
 
 # DO NOT TRANSLATE THIS ONE
-Hotkeys.ClickerAccessory=Clicker Accessory
+# Hotkeys.ClickerAccessory=Clicker Accessory
 
 
 # Misc Items

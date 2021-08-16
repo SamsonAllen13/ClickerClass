@@ -201,27 +201,8 @@ namespace ClickerClass.Items
 
 					if (index != -1)
 					{
-						string displayValue = " ";
 						int currentValue = clickerPlayer.clickerMoneyGenerated;
-
-						//TODO terraria public method in PopupText
-						//string displayValue = " " + PopupText.ValueToName(currentValue);
-						if (currentValue > 10000)
-						{
-							displayValue += (((Math.Abs(currentValue) % 1000000) - (Math.Abs(currentValue) % 10000)) / 10000) + $" {LangHelper.GetText("Common.Tooltips.Gold")}, ";
-						}
-						if (currentValue > 100)
-						{
-							displayValue += (((Math.Abs(currentValue) % 10000) - (Math.Abs(currentValue) % 100)) / 100) + $" {LangHelper.GetText("Common.Tooltips.Silver")}, {LangHelper.GetText("Common.Tooltips.And")} ";
-						}
-						if (currentValue > 1)
-						{
-							displayValue += Math.Abs(currentValue) % 100 + $" {LangHelper.GetText("Common.Tooltips.Copper")} {LangHelper.GetText("Common.Tooltips.Coins")}";
-						}
-						else
-						{
-							displayValue += $"0 {LangHelper.GetText("Common.Tooltips.Coins")}";
-						}
+						string displayValue = " " + PopupText.ValueToName(currentValue);
 						string color = (new Color(252, 210, 44) * alpha).Hex3();
 						tooltips.Insert(index + 1, new TooltipLine(Mod, "TransformationText", $"{LangHelper.GetText("Tooltip.MoneyGenerated")}:[c/{color}:" + displayValue + "]"));
 					}

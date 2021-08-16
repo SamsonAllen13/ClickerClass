@@ -1,7 +1,5 @@
 The Clicker Class is a set of joke weapons inspired by Cookie Clicker and other idle games. Have some fun with it as you click enemies to death!
 
-Since we're working with the 1.4 alpha, some visuals are not implemented yet! Stay tuned!
-
 Included:
  +48 new clicker weapons
  +19 new clicker accessories

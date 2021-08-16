@@ -495,8 +495,9 @@ namespace ClickerClass
 						{
 							throw new Exception($"Call Error: The crit argument for the attempted message, \"{message}\" has returned null.");
 						}
-						clickerPlayer.clickerCrit += crit.Value;
-						clickerPlayer.clickerCrit = Utils.Clamp(clickerPlayer.clickerCrit, 0, 100);
+						ref var critChance = ref player.GetCritChance<ClickerDamage>();
+						critChance += crit.Value;
+						critChance = Utils.Clamp(critChance, 0, 100);
 						return success;
 					}
 					else if (statName == "clickerDamageFlatAdd")
@@ -517,8 +518,9 @@ namespace ClickerClass
 						{
 							throw new Exception($"Call Error: The damage argument for the attempted message, \"{message}\" has returned null.");
 						}
-						clickerPlayer.clickerDamage += damage.Value;
-						clickerPlayer.clickerDamage = Math.Max(0f, clickerPlayer.clickerDamage);
+						ref var clickerDamage = ref player.GetDamage<ClickerDamage>();
+						clickerDamage += damage.Value;
+						//clickerDamage = Math.Max(0f, clickerDamage);
 						return success;
 					}
 					else if (statName == "clickerBonusAdd")

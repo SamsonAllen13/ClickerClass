@@ -26,7 +26,7 @@ namespace ClickerClass.Items.Accessories
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			clickerPlayer.clickerRadius += 1f;
-			clickerPlayer.clickerDamage += 0.10f;
+			player.GetDamage<ClickerDamage>() += 0.10f;
 			clickerPlayer.clickerBonusPercent -= 0.20f;
 			clickerPlayer.accHandCream = true;
 			if (!hideVisual)

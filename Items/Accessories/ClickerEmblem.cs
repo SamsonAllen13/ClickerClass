@@ -20,7 +20,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.15f;
+			player.GetDamage<ClickerDamage>() += 0.15f;
 		}
 	}
 }

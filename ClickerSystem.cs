@@ -181,7 +181,7 @@ namespace ClickerClass
 
 		/// <summary>
 		/// Call in <see cref="ModItem.SetDefaults"/> to set important default fields for a clicker weapon. Set fields:
-		/// DamageType, useTime, useAnimation, useStyle, holdStyle, noMelee, shoot, shootSpeed.
+		/// DamageType, crit, useTime, useAnimation, useStyle, holdStyle, noMelee, shoot, shootSpeed.
 		/// Only change them afterwards if you know what you are doing!
 		/// </summary>
 		/// <param name="item">The <see cref="Item"/> to set the defaults for</param>

@@ -35,8 +35,8 @@ namespace ClickerClass.Items.Armors
 		public override void UpdateEquip(Player player)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.clickerDamage += 0.04f;
-			clickerPlayer.clickerCrit += 6;
+			player.GetDamage<ClickerDamage>() += 0.04f;
+			player.GetCritChance<ClickerDamage>() += 6;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)

@@ -31,7 +31,7 @@ namespace ClickerClass.Items.Armors
 		public override void UpdateEquip(Player player)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.clickerDamage += 0.10f;
+			player.GetDamage<ClickerDamage>() += 0.10f;
 			clickerPlayer.clickerRadius += 0.5f;
 		}
 

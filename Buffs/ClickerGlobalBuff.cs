@@ -8,14 +8,15 @@ namespace ClickerClass.Buffs
 	{
 		public override void Update(int type, Player player, ref int buffIndex)
 		{
+			ref var crit = ref player.GetCritChance<ClickerDamage>();
 			switch (type)
 			{
 				case BuffID.WellFed:
-					player.GetModPlayer<ClickerPlayer>().clickerCrit += 2;
+					crit += 2;
 					break;
 
 				case BuffID.Rage:
-					player.GetModPlayer<ClickerPlayer>().clickerCrit += 10;
+					crit += 10;
 					break;
 			}
 		}

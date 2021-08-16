@@ -131,19 +131,9 @@ namespace ClickerClass
 
 		//Stats
 		/// <summary>
-		/// Click crit 
-		/// </summary>
-		public int clickerCrit = 4;
-
-		/// <summary>
 		/// Click damage add flat
 		/// </summary>
 		public int clickerDamageFlat = 0;
-
-		/// <summary>
-		/// Click damage add multiplier
-		/// </summary>
-		public float clickerDamage = 1f;
 
 		/// <summary>
 		/// How many less clicks are required to trigger an effect
@@ -452,9 +442,7 @@ namespace ClickerClass
 			accGoldenTicket = false;
 
 			//Stats
-			clickerCrit = 4;
 			clickerDamageFlat = 0;
-			clickerDamage = 1f;
 			clickerBonus = 0;
 			clickerBonusPercent = 1f;
 			clickerRadius = 1f;
@@ -746,7 +734,7 @@ namespace ClickerClass
 				{
 					bonusDamage = 0.15f;
 				}
-				clickerDamage += bonusDamage;
+				Player.GetDamage<ClickerDamage>() += bonusDamage;
 			}
 
 			// Out of Combat timer

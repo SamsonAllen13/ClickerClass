@@ -41,6 +41,17 @@ namespace ClickerClass
 					ClickerSystem.SetClickerWeaponDefaults(item);
 					return success;
 				}
+				else if (message == "SetClickerProjectileDefaults")
+				{
+					var projectile = args[index + 0] as Projectile;
+					if (projectile == null)
+					{
+						throw new Exception($"Call Error: The projectile argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerSystem.SetClickerProjectileDefaults(projectile);
+					return success;
+				}
 				else if (message == "RegisterClickerProjectile")
 				{
 					var modProj = args[index + 0] as ModProjectile;

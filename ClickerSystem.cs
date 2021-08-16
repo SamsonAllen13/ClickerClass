@@ -200,9 +200,8 @@ namespace ClickerClass
 			item.shootSpeed = 1f;
 		}
 
-		//TODO needs API?
 		/// <summary>
-		/// Call in <see cref="ModProjectile.SetDefaults"/> to set important default fields for a clicker projectiles. Set fields:
+		/// Call in <see cref="ModProjectile.SetDefaults"/> to set important default fields for a clicker projectile. Set fields:
 		/// DamageType.
 		/// Only change them afterwards if you know what you are doing!
 		/// </summary>

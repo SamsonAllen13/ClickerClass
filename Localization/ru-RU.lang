@@ -55,7 +55,7 @@ Common.Unknown=Неизвестно
 # Misc Items
 #######
 ItemName.MiceFragment=Фрагмент мышки
-ItemTooltip.AncientClickingGlove='Вокруг этого фрагмента витают беспорядочные искры'
+ItemTooltip.MiceFragment='Вокруг этого фрагмента витают беспорядочные искры'
 
 
 # Accessories

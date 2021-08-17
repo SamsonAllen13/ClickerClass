@@ -61,7 +61,7 @@ Hotkeys.ClickerAccessory=Clicker Accessory
 # Misc Items
 #######
 ItemName.MiceFragment=Fragmento de Mouse
-ItemTooltip.AncientClickingGlove='Faíscas erráticas deslizam por este fragmento'
+ItemTooltip.MiceFragment='Faíscas erráticas deslizam por este fragmento'
 
 
 # Accessories

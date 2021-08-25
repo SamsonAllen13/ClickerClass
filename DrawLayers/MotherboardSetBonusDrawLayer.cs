@@ -32,6 +32,13 @@ namespace ClickerClass.DrawLayers
 		public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
+
+			if (drawInfo.shadow != 0f)
+			{
+				//Gameplay only: no armor shadows
+				return false;
+			}
+
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 
 			return modPlayer.CanDrawRadius && modPlayer.SetMotherboardDraw;
@@ -39,16 +46,12 @@ namespace ClickerClass.DrawLayers
 
 		public override Position GetDefaultPosition()
 		{
-			return new AfterParent(PlayerDrawLayers.JimsCloak); //Furthest back layer
+			return new BeforeParent(PlayerDrawLayers.JimsCloak); //Furthest back layer
 		}
 
 		protected override void Draw(ref PlayerDrawSet drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
-			if (Main.gameMenu || drawInfo.shadow != 0f || drawPlayer.dead)
-			{
-				return;
-			}
 
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 

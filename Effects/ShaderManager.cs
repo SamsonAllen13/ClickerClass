@@ -58,12 +58,9 @@ namespace ClickerClass.Effects
 			//Only draws for local player
 
 			Player drawPlayer = Main.LocalPlayer;
-
-			if (Main.gameMenu) return;
-
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 
-			if (!drawPlayer.dead && modPlayer.CanDrawRadius)
+			if (modPlayer.CanDrawRadius)
 			{
 				Color outer = modPlayer.clickerRadiusColorDraw * modPlayer.ClickerRadiusColorMultiplier;
 

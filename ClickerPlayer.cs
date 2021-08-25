@@ -48,7 +48,9 @@ namespace ClickerClass
 		public const float clickerRadiusSwitchAlphaMax = 1f;
 		public const float clickerRadiusSwitchAlphaStep = clickerRadiusSwitchAlphaMax / 40f;
 		public float clickerRadiusSwitchAlpha = clickerRadiusSwitchAlphaMin;
-		public bool CanDrawRadius => clickerRadiusSwitchAlpha > clickerRadiusSwitchAlphaMin;
+
+		//Gameplay only: not related to player select screen
+		public bool CanDrawRadius => !Main.gameMenu && !Player.dead && clickerRadiusSwitchAlpha > clickerRadiusSwitchAlphaMin;
 
 		public const float clickerRadiusRangeAlphaMin = 0.2f;
 		public const float clickerRadiusRangeAlphaMax = 0.8f;

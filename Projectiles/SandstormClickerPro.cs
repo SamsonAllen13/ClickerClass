@@ -78,8 +78,8 @@ namespace ClickerClass.Projectiles
 		{
 			return new Color(255, 255, 255, 100) * alpha;
 		}
-		
-		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough)
+
+		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
 		{
 			width = Projectile.width / 2;
 			height = Projectile.height / 2;

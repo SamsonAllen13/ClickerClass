@@ -45,7 +45,7 @@ namespace ClickerClass.Projectiles
 			{
 				time = 300 - Projectile.timeLeft;
 			}
-			return new Color(255, 255, 255, 200) * 0.005f * time;
+			return new Color(255, 255, 255, 200) * 0.005f * time * Projectile.Opacity;
 		}
 
 		public override void AI()
@@ -53,6 +53,12 @@ namespace ClickerClass.Projectiles
 			Player player = Main.player[Projectile.owner];
 			Projectile.frame = Frame;
 			Projectile.rotation -= 0.01f;
+
+			if (player.whoAmI != Projectile.owner)
+			{
+				//Hide for everyone but the owner
+				Projectile.alpha = 255;
+			}
 
 			if (!LockedLocation)
 			{

@@ -340,7 +340,7 @@ namespace ClickerClass.Items
 						};
 						tooltips.Insert(++ttindex, tt);
 					}
-					if (radiusBoostPrefix != 0)
+					if (clickBoostPrefix != 0)
 					{
 						TooltipLine tt = new TooltipLine(mod, "PrefixClickBoost", (clickBoostPrefix < 0 ? "" : "+") + LangHelper.GetText("Prefix.PrefixClickBoost.Tooltip", clickBoostPrefix))
 						{

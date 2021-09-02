@@ -32,7 +32,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 55);
 			AddEffect(Item, ClickEffect.Illuminate);
 
-			Item.damage = 8;
+			Item.damage = 6;
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 1f;

@@ -50,10 +50,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 39);
 			AddEffect(Item, ClickEffect.StingingThorn);
 
-			Item.damage = 12;
+			Item.damage = 8;
 			Item.width = 30;
 			Item.height = 30;
-			Item.knockBack = 2f;
+			Item.knockBack = 1f;
 			Item.value = 27000;
 			Item.rare = 3;
 		}

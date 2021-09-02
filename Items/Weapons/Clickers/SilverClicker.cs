@@ -20,10 +20,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			AddEffect(Item, ClickEffect.DoubleClick2);
 
 
-			Item.damage = 6;
+			Item.damage = 4;
 			Item.width = 30;
 			Item.height = 30;
-			Item.knockBack = 1f;
+			Item.knockBack = 0.5f;
 			Item.value = 4500;
 			Item.rare = 0;
 		}

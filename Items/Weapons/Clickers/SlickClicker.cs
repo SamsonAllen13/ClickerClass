@@ -32,10 +32,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 33);
 			AddEffect(Item, ClickEffect.Splash);
 
-			Item.damage = 11;
+			Item.damage = 10;
 			Item.width = 30;
 			Item.height = 30;
-			Item.knockBack = 2f;
+			Item.knockBack = 1f;
 			Item.value = 87500;
 			Item.rare = 2;
 		}

@@ -49,7 +49,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 27);
 			AddEffect(Item, ClickEffect.Curse);
 
-			Item.damage = 12;
+			Item.damage = 7;
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 1f;

@@ -33,7 +33,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 89);
 			AddEffect(Item, ClickEffect.ToxicRelease);
 
-			Item.damage = 50;
+			Item.damage = 38;
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 1f;

@@ -47,7 +47,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 173);
 			AddEffect(Item, ClickEffect.WildMagic);
 
-			Item.damage = 78;
+			Item.damage = 64;
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 1f;

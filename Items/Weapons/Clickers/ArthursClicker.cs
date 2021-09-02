@@ -62,10 +62,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 87);
 			AddEffect(Item, ClickEffect.HolyNova);
 
-			Item.damage = 50;
+			Item.damage = 36;
 			Item.width = 30;
 			Item.height = 30;
-			Item.knockBack = 1f;
+			Item.knockBack = 2f;
 			Item.value = 210000;
 			Item.rare = 5;
 		}

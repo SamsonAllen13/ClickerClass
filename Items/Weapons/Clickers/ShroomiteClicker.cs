@@ -43,10 +43,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 113);
 			AddEffect(Item, ClickEffect.AutoClick);
 
-			Item.damage = 68;
+			Item.damage = 64;
 			Item.width = 30;
 			Item.height = 30;
-			Item.knockBack = 1f;
+			Item.knockBack = 2f;
 			Item.value = 450000;
 			Item.rare = 8;
 		}

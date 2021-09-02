@@ -33,7 +33,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 146);
 			AddEffect(Item, ClickEffect.RazorsEdge);
 
-			Item.damage = 44;
+			Item.damage = 32;
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 1f;

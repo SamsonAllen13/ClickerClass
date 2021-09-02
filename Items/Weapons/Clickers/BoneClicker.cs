@@ -27,10 +27,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 216);
 			AddEffect(Item, ClickEffect.Lacerate);
 
-			Item.damage = 13;
+			Item.damage = 8;
 			Item.width = 30;
 			Item.height = 30;
-			Item.knockBack = 2f;
+			Item.knockBack = 1f;
 			Item.noMelee = true;
 			Item.value = 15000;
 			Item.rare = 1;

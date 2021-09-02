@@ -19,10 +19,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 9);
 			AddEffect(Item, ClickEffect.DoubleClick);
 
-			Item.damage = 4;
+			Item.damage = 3;
 			Item.width = 30;
 			Item.height = 30;
-			Item.knockBack = 1f;
+			Item.knockBack = 0.5f;
 			Item.value = 450;
 			Item.rare = 0;
 		}

@@ -55,7 +55,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 148);
 			AddEffect(Item, ClickEffect.WebSplash);
 
-			Item.damage = 25;
+			Item.damage = 22;
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 1f;

@@ -27,7 +27,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 163);
 			AddEffect(Item, ClickEffect.CursedEruption);
 
-			Item.damage = 31;
+			Item.damage = 24;
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 2f;

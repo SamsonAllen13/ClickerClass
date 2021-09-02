@@ -34,7 +34,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 87);
 			AddEffect(Item, ClickEffect.Infest);
 
-			Item.damage = 30;
+			Item.damage = 24;
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 2f;

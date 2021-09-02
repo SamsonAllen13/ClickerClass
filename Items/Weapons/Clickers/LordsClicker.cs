@@ -25,10 +25,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 110);
 			AddEffect(item, ClickEffect.Conqueror);
 
-			item.damage = 122;
+			item.damage = 110;
 			item.width = 30;
 			item.height = 30;
-			item.knockBack = 1f;
+			item.knockBack = 2f;
 			item.value = Item.sellPrice(0, 5, 0, 0);
 			item.rare = 10;
 		}

@@ -26,7 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 86);
 			AddEffect(item, ClickEffect.Dazzle);
 
-			item.damage = 34;
+			item.damage = 24;
 			item.width = 30;
 			item.height = 30;
 			item.knockBack = 2f;

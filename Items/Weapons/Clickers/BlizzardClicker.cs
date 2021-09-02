@@ -25,7 +25,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 92);
 			AddEffect(item, ClickEffect.Flurry);
 
-			item.damage = 29;
+			item.damage = 26;
 			item.width = 30;
 			item.height = 30;
 			item.knockBack = 2f;

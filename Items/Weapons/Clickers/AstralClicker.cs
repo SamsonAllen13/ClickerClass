@@ -27,8 +27,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, ModContent.DustType<MiceDust>());
 			AddEffect(item, ClickEffect.Spiral);
 
-			item.damage = 82;
-			item.knockBack = 1f;
+			item.damage = 90;
+			item.knockBack = 2f;
 			item.value = Item.sellPrice(0, 5, 0, 0);
 			item.rare = 10;
 		}

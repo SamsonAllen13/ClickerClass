@@ -18,10 +18,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetColor(item, new Color(125, 100, 75));
 			SetDust(item, 0);
 
-			item.damage = 4;
+			item.damage = 2;
 			item.width = 30;
 			item.height = 30;
-			item.knockBack = 1f;
+			item.knockBack = 0.5f;
 			item.value = 24;
 			item.rare = 0;
 		}

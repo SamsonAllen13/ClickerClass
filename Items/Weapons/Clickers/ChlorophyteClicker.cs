@@ -32,10 +32,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 89);
 			AddEffect(item, ClickEffect.ToxicRelease);
 
-			item.damage = 50;
+			item.damage = 38;
 			item.width = 30;
 			item.height = 30;
-			item.knockBack = 1f;
+			item.knockBack = 2f;
 			item.value = 250000;
 			item.rare = 7;
 		}

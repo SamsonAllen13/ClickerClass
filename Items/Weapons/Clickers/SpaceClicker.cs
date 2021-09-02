@@ -42,7 +42,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 174);
 			AddEffect(item, ClickEffect.StarStorm);
 
-			item.damage = 10;
+			item.damage = 7;
 			item.width = 30;
 			item.height = 30;
 			item.knockBack = 1f;

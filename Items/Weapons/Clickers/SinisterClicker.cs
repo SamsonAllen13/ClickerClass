@@ -26,10 +26,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 5);
 			AddEffect(item, ClickEffect.Siphon);
 
-			item.damage = 10;
+			item.damage = 6;
 			item.width = 30;
 			item.height = 30;
-			item.knockBack = 2f;
+			item.knockBack = 1f;
 			item.value = 18000;
 			item.rare = 1;
 		}

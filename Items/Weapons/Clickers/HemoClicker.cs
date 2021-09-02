@@ -31,10 +31,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 5);
 			AddEffect(item, ClickEffect.Linger);
 
-			item.damage = 6;
+			item.damage = 5;
 			item.width = 30;
 			item.height = 30;
-			item.knockBack = 2f;
+			item.knockBack = 1f;
 			item.value = 13000;
 			item.rare = 1;
 		}

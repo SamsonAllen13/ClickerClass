@@ -26,10 +26,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 153);
 			AddEffect(item, ClickEffect.StickyHoney);
 
-			item.damage = 13;
+			item.damage = 8;
 			item.width = 30;
 			item.height = 30;
-			item.knockBack = 2f;
+			item.knockBack = 1f;
 			item.value = 10000;
 			item.rare = 3;
 		}

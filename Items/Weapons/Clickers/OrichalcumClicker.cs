@@ -48,7 +48,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 145);
 			AddEffect(item, ClickEffect.PetalStorm);
 
-			item.damage = 28;
+			item.damage = 22;
 			item.width = 30;
 			item.height = 30;
 			item.knockBack = 1f;

@@ -32,34 +32,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 27);
 			AddEffect(item, ClickEffect.ShadowLash);
 
-			item.damage = 20;
+			item.damage = 14;
 			item.width = 30;
 			item.height = 30;
 			item.knockBack = 2f;
 			item.value = 200000;
 			item.rare = 3;
 		}
-
-		/*
-		public override void AddRecipes()
-		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<DarkClicker>(), 1);
-			recipe.AddIngredient(ModContent.ItemType<SlickClicker>(), 1);
-			recipe.AddIngredient(ModContent.ItemType<PointyClicker>(), 1);
-			recipe.AddIngredient(ModContent.ItemType<RedHotClicker>(), 1);
-			recipe.AddTile(TileID.DemonAltar);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-			recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<SinisterClicker>(), 1);
-			recipe.AddIngredient(ModContent.ItemType<SlickClicker>(), 1);
-			recipe.AddIngredient(ModContent.ItemType<PointyClicker>(), 1);
-			recipe.AddIngredient(ModContent.ItemType<RedHotClicker>(), 1);
-			recipe.AddTile(TileID.DemonAltar);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
-		}
-		*/
 	}
 }

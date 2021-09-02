@@ -40,7 +40,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 144);
 			AddEffect(item, ClickEffect.Regenerate);
 
-			item.damage = 25;
+			item.damage = 20;
 			item.width = 30;
 			item.height = 30;
 			item.knockBack = 2f;

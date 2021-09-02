@@ -26,7 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 216);
 			AddEffect(item, ClickEffect.DustDevil);
 
-			item.damage = 30;
+			item.damage = 26;
 			item.width = 30;
 			item.height = 30;
 			item.knockBack = 2f;

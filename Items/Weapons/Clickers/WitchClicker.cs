@@ -46,10 +46,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 173);
 			AddEffect(item, ClickEffect.WildMagic);
 
-			item.damage = 78;
+			item.damage = 64;
 			item.width = 30;
 			item.height = 30;
-			item.knockBack = 1f;
+			item.knockBack = 2f;
 			item.value = 500000;
 			item.rare = 8;
 		}

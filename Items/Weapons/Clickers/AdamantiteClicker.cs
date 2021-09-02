@@ -26,7 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 50);
 			AddEffect(item, ClickEffect.TrueStrike);
 
-			item.damage = 32;
+			item.damage = 30;
 			item.width = 30;
 			item.height = 30;
 			item.knockBack = 1f;

@@ -26,7 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 49);
 			AddEffect(item, ClickEffect.Embrittle);
 
-			item.damage = 25;
+			item.damage = 22;
 			item.width = 30;
 			item.height = 30;
 			item.knockBack = 1f;

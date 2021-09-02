@@ -26,7 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 14);
 			AddEffect(item, ClickEffect.DarkBurst);
 
-			item.damage = 10;
+			item.damage = 6;
 			item.width = 30;
 			item.height = 30;
 			item.knockBack = 1f;

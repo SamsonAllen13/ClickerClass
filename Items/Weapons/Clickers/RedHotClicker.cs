@@ -26,10 +26,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 174);
 			AddEffect(item, ClickEffect.Inferno);
 
-			item.damage = 17;
+			item.damage = 12;
 			item.width = 30;
 			item.height = 30;
-			item.knockBack = 2f;
+			item.knockBack = 1f;
 			item.value = 27000;
 			item.rare = 3;
 		}

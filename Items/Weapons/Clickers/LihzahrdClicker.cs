@@ -26,10 +26,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(item, 174);
 			AddEffect(item, ClickEffect.SolarFlare);
 
-			item.damage = 66;
+			item.damage = 56;
 			item.width = 30;
 			item.height = 30;
-			item.knockBack = 1f;
+			item.knockBack = 2f;
 			item.value = 300000;
 			item.rare = 7;
 		}

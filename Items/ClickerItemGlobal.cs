@@ -50,98 +50,9 @@ namespace ClickerClass.Items
 			ref var damage = ref player.GetDamage<ClickerDamage>();
 			ref var crit = ref player.GetCritChance<ClickerDamage>();
 
-			switch (item.prefix)
-			{
-				case PrefixID.Precise:
-					crit += 2;
-					break;
-				case PrefixID.Lucky:
-					crit += 4;
-					break;
-			}
-
 			if (item.prefix == ModContent.PrefixType<ClickerRadius>())
 			{
 				clickerPlayer.clickerRadius += 0.3f;
-			}
-
-			switch (item.type)
-			{
-				case ItemID.Gi:
-					crit += 5;
-					break;
-				case ItemID.CobaltBreastplate:
-					crit += 3;
-					break;
-				case ItemID.PalladiumBreastplate:
-					damage += 0.03f;
-					crit += 2;
-					break;
-				case ItemID.PalladiumLeggings:
-					damage += 0.02f;
-					crit += 1;
-					break;
-				case ItemID.MythrilChainmail:
-					damage += 0.05f;
-					break;
-				case ItemID.MythrilGreaves:
-					crit += 3;
-					break;
-				case ItemID.OrichalcumBreastplate:
-					crit += 6;
-					break;
-				case ItemID.AdamantiteBreastplate:
-					damage += 0.06f;
-					break;
-				case ItemID.AdamantiteLeggings:
-					crit += 4;
-					break;
-				case ItemID.TitaniumBreastplate:
-					damage += 0.04f;
-					crit += 3;
-					break;
-				case ItemID.TitaniumLeggings:
-					damage += 0.03f;
-					crit += 3;
-					break;
-				case ItemID.HallowedPlateMail:
-					crit += 7;
-					break;
-				case ItemID.HallowedGreaves:
-					damage += 0.07f;
-					break;
-				case ItemID.ChlorophytePlateMail:
-					damage += 0.05f;
-					crit += 7;
-					break;
-				case ItemID.ChlorophyteGreaves:
-					crit += 8;
-					break;
-				case ItemID.DestroyerEmblem:
-					crit += 8;
-					break;
-				case ItemID.EyeoftheGolem:
-					crit += 10;
-					break;
-				case ItemID.PutridScent:
-					crit += 5;
-					break;
-				case ItemID.SunStone:
-					if (Main.dayTime)
-					{
-						goto case ItemID.CelestialShell;
-					}
-					break;
-				case ItemID.MoonStone:
-					if (!Main.dayTime || Main.eclipse)
-					{
-						goto case ItemID.CelestialShell;
-					}
-					break;
-				case ItemID.CelestialStone:
-				case ItemID.CelestialShell:
-					crit += 2;
-					break;
 			}
 		}
 

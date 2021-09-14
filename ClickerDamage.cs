@@ -8,5 +8,15 @@ namespace ClickerClass
 		{
 			ClassName.SetDefault("click damage");
 		}
+
+		protected override float GetBenefitFrom(DamageClass damageClass)
+		{
+			if (damageClass == Generic)
+			{
+				return 1f;
+			}
+
+			return base.GetBenefitFrom(damageClass);
+		}
 	}
 }

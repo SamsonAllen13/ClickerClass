@@ -464,6 +464,7 @@ namespace ClickerClass
 			accPortableParticleAccelerator = false;
 			accPortableParticleAccelerator2 = false;
 			accGoldenTicket = false;
+			//accMouseTrap = false;
 
 			//Stats
 			clickerCrit = 4;

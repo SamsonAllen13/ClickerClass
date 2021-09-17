@@ -13,6 +13,7 @@ namespace ClickerClass
 		{
 			if (damageClass == Generic)
 			{
+				//Affected by allDamage/Crit, applies base level crit = 4 to player
 				return 1f;
 			}
 

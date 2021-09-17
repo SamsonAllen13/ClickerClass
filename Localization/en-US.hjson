@@ -59,9 +59,11 @@ Mods: {
 			EnchantedLED: Enchanted LED
 			GamerCrate: Gamer Crate
 			HandCream: Hand Cream
+			HotKeychain: Hot Keychain
 			Milk: Glass of Milk
 			MilkCookies: Milk n' Cookies
 			MousePad: Mouse Pad
+			MouseTrap: Mouse Trap
 			PortableParticleAccelerator: Portable Particle Accelerator
 			GoldenTicket: Golden Ticket
 			RegalClickingGlove: Regal Clicking Glove
@@ -169,6 +171,11 @@ Mods: {
 				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will toggle auto click on all Clickers
 				While auto click is enabled, click rates are decreased
 				'''
+			HotKeychain:
+				'''
+				While in combat, clicks cause an additional delayed fiery click
+				Burns you if you click too slowly
+				'''
 			Milk: Gain up to 15% clicker damage based on your amount of clicks within a second
 			MilkCookies:
 				'''
@@ -176,7 +183,13 @@ Mods: {
 				{$Mods.ClickerClass.ItemTooltip.Milk}
 				'''
 			MousePad: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%"
-			PortableParticleAccelerator: Clickers within the inner 50% of your clicker radius deal 10 more damage
+			MouseTrap:
+				'''
+				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 15%
+				{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 10%
+				Clicks have a small chance to briefly curse you
+				'''
+			PortableParticleAccelerator: Clickers within the inner 50% of your clicker radius deal 8 more damage
 			GoldenTicket:
 				'''
 				Your clicker damage will generate some coins

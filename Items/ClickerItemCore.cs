@@ -142,7 +142,7 @@ namespace ClickerClass.Items
 
 				if (clickerPlayer.accPortableParticleAccelerator && clickerPlayer.accPortableParticleAccelerator2)
 				{
-					flat += 10;
+					flat += 8;
 				}
 			}
 		}
@@ -448,9 +448,19 @@ namespace ClickerClass.Items
 						num103 = num + 1;
 					}
 				}
+				
+				//Mouse Trap
+				if (clickerPlayer.accMouseTrap)
+				{
+					if (Main.rand.NextBool(50))
+					{
+						SoundEngine.PlaySound(2, (int)player.position.X, (int)player.position.Y, 153);
+						player.AddBuff(BuffID.Cursed, 60, false);
+					}
+				}
 
-				//Precursor armor set bonus
-				if (clickerPlayer.setPrecursor)
+				//Hot Keychain 
+				if (clickerPlayer.accHotKeychain2)
 				{
 					Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<PrecursorPro>(), (int)(damage * 0.25f), knockback, player.whoAmI);
 				}

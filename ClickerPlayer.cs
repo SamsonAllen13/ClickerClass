@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Terraria;
 using Terraria.GameInput;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
@@ -127,9 +128,13 @@ namespace ClickerClass
 		public bool accPortableParticleAccelerator = false; //"is wearing"
 		public bool accPortableParticleAccelerator2 = false; //"is active", client only
 		public bool accGoldenTicket = false;
+		public bool accMouseTrap = false;
+		public bool accHotKeychain = false;
+		public bool accHotKeychain2 = false;
 
 		public int accClickingGloveTimer = 0;
 		public int accCookieTimer = 0;
+		public int accHotKeychainTimer = 0;
 
 		//Stats
 		/// <summary>
@@ -442,7 +447,9 @@ namespace ClickerClass
 			accPortableParticleAccelerator = false;
 			accPortableParticleAccelerator2 = false;
 			accGoldenTicket = false;
-			//accMouseTrap = false;
+			accMouseTrap = false;
+			accHotKeychain = false;
+			accHotKeychain2 = false;
 
 			//Stats
 			clickerDamageFlat = 0;
@@ -738,6 +745,46 @@ namespace ClickerClass
 					bonusDamage = 0.15f;
 				}
 				Player.GetDamage<ClickerDamage>() += bonusDamage;
+			}
+			
+			//Hot Keychain
+			//TODO - Investigate CPS not working correctly?
+			if (accHotKeychain && !OutOfCombat)
+			{
+				accHotKeychain2 = true;
+				
+				int incomingDamage = (int)(5 - clickerPerSecond);
+				if (incomingDamage <= 0)
+				{
+					incomingDamage = 0;
+				}
+				
+				accHotKeychainTimer++;
+				if (accHotKeychainTimer > 60)
+				{
+					if (incomingDamage > 0)
+					{
+						CombatText.NewText(Player.Hitbox, new Color(209, 65, 74), incomingDamage, true, true);
+						Player.statLife -= incomingDamage;
+						for (int k = 0; k < 2 * incomingDamage; k++)
+						{
+							Vector2 offset = new Vector2(Main.rand.Next(-25, 26), Main.rand.Next(-25, 26));
+							Dust dust = Dust.NewDustDirect(Player.position + offset, Player.width, Player.height, 174, Scale: 1f);
+							dust.noGravity = true;
+							dust.velocity = -offset * 0.05f;
+						}
+						
+						if (Player.statLife <= 0)
+						{
+							Player.KillMe(PlayerDeathReason.ByCustomReason(Player.name + " fell for the spicy keychain."), incomingDamage, 1, false);
+						}
+					}
+					accHotKeychainTimer = 0;
+				}
+			}
+			else
+			{
+				accHotKeychainTimer = 0;
 			}
 
 			// Out of Combat timer

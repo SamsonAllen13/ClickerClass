@@ -19,12 +19,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 82);
 			AddEffect(Item, ClickEffect.DoubleClick);
 
-			item.damage = 3;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 2700;
-			item.rare = 0;
+			Item.damage = 3;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 2700;
+			Item.rare = 0;
 		}
 
 		public override void AddRecipes()

@@ -753,15 +753,10 @@ namespace ClickerClass
 			{
 				accHotKeychain2 = true;
 				
-				int incomingDamage = (int)(5 - clickerPerSecond);
-				if (incomingDamage <= 0)
-				{
-					incomingDamage = 0;
-				}
-				
 				accHotKeychainTimer++;
 				if (accHotKeychainTimer > 60)
 				{
+					int incomingDamage = (int)(5 - clickerPerSecond);
 					if (incomingDamage > 0)
 					{
 						CombatText.NewText(Player.Hitbox, new Color(209, 65, 74), incomingDamage, true, true);
@@ -776,7 +771,7 @@ namespace ClickerClass
 						
 						if (Player.statLife <= 0)
 						{
-							Player.KillMe(PlayerDeathReason.ByCustomReason(Player.name + " fell for the spicy keychain."), incomingDamage, 1, false);
+							Player.KillMe(PlayerDeathReason.ByCustomReason(LangHelper.GetText("DeathMessage.HotKeychain", Player.name)), incomingDamage, 1, false);
 						}
 					}
 					accHotKeychainTimer = 0;
@@ -841,6 +836,12 @@ namespace ClickerClass
 		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
 		{
 			outOfCombatTimer = OutOfCombatTimeMax;
+		}
+
+		public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)
+		{
+			// Don't count as in combat after death, in case respawn timer is less than OutOfCombatTimeMax
+			outOfCombatTimer = 0;
 		}
 	}
 }

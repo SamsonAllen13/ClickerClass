@@ -462,7 +462,7 @@ namespace ClickerClass.Items
 				//Hot Keychain 
 				if (clickerPlayer.accHotKeychain2)
 				{
-					Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<PrecursorPro>(), (int)(damage * 0.25f), knockback, player.whoAmI);
+					Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<HotKeychainPro>(), (int)(damage * 0.25f), knockback, player.whoAmI);
 				}
 
 				int overclockType = ModContent.BuffType<OverclockBuff>();

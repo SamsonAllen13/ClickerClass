@@ -3,8 +3,10 @@ using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
-	public class PrecursorPro : ClickerProjectile
+	public class HotKeychainPro : ClickerProjectile
 	{
+		public override string Texture => "ClickerClass/Empty";
+
 		public bool SpanwedDust
 		{
 			get => Projectile.ai[0] == 1f;

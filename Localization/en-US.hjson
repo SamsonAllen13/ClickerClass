@@ -498,6 +498,10 @@ Mods: {
 			ForMoreInfo: Hold 'Auto Select' key ({0}) while not auto-paused to show click effects
 		}
 
+		DeathMessage: {
+			HotKeychain: "{0} fell for the spicy keychain."
+		}
+
 		ClickerConfigClient: {
 			Label: Configuration
 

@@ -30,9 +30,7 @@ namespace ClickerClass.Items.Accessories
 		
 		public override void AddRecipes()
 		{
-			//bool flag6 = !Main.recipe[n].needGraveyardBiome || Main.player[Main.myPlayer].ZoneGraveyard;
-			//TODO - Add Graveyard requirement 
-			CreateRecipe(1).AddRecipeGroup("IronBar", 8).AddIngredient(ItemID.Wood, 6).AddTile(TileID.Anvils).Register();
+			CreateRecipe(1).AddCondition(Recipe.Condition.InGraveyardBiome).AddRecipeGroup("IronBar", 8).AddRecipeGroup("Wood", 6).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

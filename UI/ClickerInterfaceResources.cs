@@ -12,7 +12,8 @@ namespace ClickerClass.UI
 		{
 			Resources = new List<InterfaceResource>
 			{
-				new ClickerCursor()
+				new ClickerCursor(),
+				new HotKeychainGauge()
 			};
 		}
 

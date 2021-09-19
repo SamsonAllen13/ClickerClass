@@ -135,6 +135,7 @@ namespace ClickerClass
 		public int accClickingGloveTimer = 0;
 		public int accCookieTimer = 0;
 		public int accHotKeychainTimer = 0;
+		public int accHotKeychainAmount = 0;
 
 		//Stats
 		/// <summary>
@@ -748,33 +749,51 @@ namespace ClickerClass
 			}
 			
 			//Hot Keychain
-			//TODO - Investigate CPS not working correctly?
 			if (accHotKeychain && !OutOfCombat)
 			{
+				if (accHotKeychainAmount < 0)
+				{
+					accHotKeychainAmount = 0;
+					
+				}
 				accHotKeychain2 = true;
 				
 				accHotKeychainTimer++;
 				if (accHotKeychainTimer > 60)
 				{
-					int incomingDamage = (int)(5 - clickerPerSecond);
-					if (incomingDamage > 0)
+					int accHotKeychainSpice = (int)(8 - clickerPerSecond);
+					Color color = new Color(150, 150, 150);
+					if (accHotKeychainSpice > 0)
 					{
-						CombatText.NewText(Player.Hitbox, new Color(209, 65, 74), incomingDamage, true, true);
-						Player.statLife -= incomingDamage;
-						for (int k = 0; k < 2 * incomingDamage; k++)
+						color = new Color(255, 150, 75);
+						
+						for (int k = 0; k < 2 * accHotKeychainSpice; k++)
 						{
 							Vector2 offset = new Vector2(Main.rand.Next(-25, 26), Main.rand.Next(-25, 26));
 							Dust dust = Dust.NewDustDirect(Player.position + offset, Player.width, Player.height, 174, Scale: 1f);
 							dust.noGravity = true;
 							dust.velocity = -offset * 0.05f;
 						}
-						
-						if (Player.statLife <= 0)
-						{
-							Player.KillMe(PlayerDeathReason.ByCustomReason(LangHelper.GetText("DeathMessage.HotKeychain", Player.name)), incomingDamage, 1, false);
-						}
 					}
+		
+					CombatText.NewText(Player.Hitbox, color, accHotKeychainSpice, true, true);
+					
+					accHotKeychainAmount += accHotKeychainSpice;
 					accHotKeychainTimer = 0;
+					
+					if (accHotKeychainAmount > 50)
+					{
+						Player.AddBuff(BuffID.OnFire3, 300);
+						SoundEngine.PlaySound(2, (int)Player.position.X, (int)Player.position.Y, 74);
+						for (int k = 0; k < 10; k++)
+						{
+							Vector2 offset = new Vector2(Main.rand.Next(-25, 26), Main.rand.Next(-25, 26));
+							Dust dust = Dust.NewDustDirect(Player.position + offset, Player.width, Player.height, 174, Scale: 1.5f);
+							dust.noGravity = true;
+							dust.velocity = -offset * 0.05f;
+						}
+						accHotKeychainAmount = 0;
+					}
 				}
 			}
 			else

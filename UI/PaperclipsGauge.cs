@@ -11,9 +11,9 @@ using ClickerClass.Utilities;
 
 namespace ClickerClass.UI
 {
-	internal class HotKeychainGauge : InterfaceResource
+	internal class PaperclipsGauge : InterfaceResource
 	{
-		public HotKeychainGauge() : base("ClickerClass: Hot Keychain Gauge", InterfaceScaleType.UI) { }
+		public PaperclipsGauge() : base("ClickerClass: Paperclips Gauge", InterfaceScaleType.UI) { }
 
 		public const int MAX_FADE_TIME = 35;
 		public const int FADE_DELAY = 5;
@@ -28,10 +28,10 @@ namespace ClickerClass.UI
 			{
 				FadeTime = 0;
 			}
-			else if (clickerPlayer.accHotKeychain && !clickerPlayer.OutOfCombat)
+			else if (clickerPlayer.accPaperclips && clickerPlayer.accPaperclipsAmount > 0)
 			{
 				FadeTime = MAX_FADE_TIME + FADE_DELAY;
-				if (clickerPlayer.accHotKeychainAmount > 0)
+				if (clickerPlayer.accPaperclipsAmount > 0)
 				{
 					_delay++;
 				}
@@ -61,7 +61,7 @@ namespace ClickerClass.UI
 			
 			Asset<Texture2D> borderAsset;
 			Texture2D borderTexture;
-			borderAsset = ClickerClass.mod.Assets.Request<Texture2D>("UI/HotKeychainGauge_Sheet");
+			borderAsset = ClickerClass.mod.Assets.Request<Texture2D>("UI/PaperclipsGauge_Sheet");
 
 			if (!borderAsset.IsLoaded)
 			{
@@ -92,7 +92,7 @@ namespace ClickerClass.UI
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 
 			// Percentage of bar filled
-			float fill = (float)(clickerPlayer.accHotKeychainAmount) / 50;
+			float fill = (float)(clickerPlayer.accPaperclipsAmount) / 100;
 
 			// Change the width of the frame so it only draws part of the bar
 			frame.Width = (int)((frame.Width - 8) * fill + 8);
@@ -115,8 +115,8 @@ namespace ClickerClass.UI
 			if (frame.Contains(Main.mouseX, Main.mouseY))
 			{
 				//player.showItemIcon = false;
-				string text = "Heat: " + clickerPlayer.accHotKeychainAmount + " / 50";
-				Main.instance.MouseTextHackZoom(text, Terraria.ID.ItemRarityID.Orange);
+				string text = "Matter: " + clickerPlayer.accPaperclipsAmount + " / 100";
+				Main.instance.MouseTextHackZoom(text, Terraria.ID.ItemRarityID.White);
 				Main.mouseText = true;
 			}
 			return true;

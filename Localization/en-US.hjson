@@ -50,6 +50,7 @@ Mods: {
 		ItemName: {
 			MiceFragment: Mice Fragment
 			AncientClickingGlove: Ancient Clicking Glove
+			BottomlessBoxofPaperclips: Bottomless Box of Paperclips
 			ChocolateChip: Chocolate Chip
 			BigRedButton: Big Red Button
 			ChocolateMilkCookies: Chocolate Milk n' Cookies
@@ -140,6 +141,11 @@ Mods: {
 			AncientClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} second"
 			ChocolateChip: Every 15 clicks releases a burst of damaging chocolate
 			BigRedButton: Every 25 clicks causes a large, fiery explosion
+			BottomlessBoxofPaperclips:
+				'''
+				Collects enemy matter as you deal click damage
+				Creates a burst of gouging paperclips when enough matter is collected
+				'''
 			ChocolateMilkCookies:
 				'''
 				{$Mods.ClickerClass.ItemTooltip.MilkCookies}

@@ -129,11 +129,14 @@ namespace ClickerClass
 		public bool accPortableParticleAccelerator2 = false; //"is active", client only
 		public bool accGoldenTicket = false;
 		public bool accMouseTrap = false;
+		public bool accPaperclips = false;
+		public Item accPaperclipsItem = null;
 		public bool accHotKeychain = false;
 		public bool accHotKeychain2 = false;
 
 		public int accClickingGloveTimer = 0;
 		public int accCookieTimer = 0;
+		public int accPaperclipsAmount = 0;
 		public int accHotKeychainTimer = 0;
 		public int accHotKeychainAmount = 0;
 
@@ -449,6 +452,8 @@ namespace ClickerClass
 			accPortableParticleAccelerator2 = false;
 			accGoldenTicket = false;
 			accMouseTrap = false;
+			accPaperclips = false;
+			accPaperclipsItem = null;
 			accHotKeychain = false;
 			accHotKeychain2 = false;
 
@@ -823,23 +828,51 @@ namespace ClickerClass
 		{
 			if (ClickerSystem.IsClickerProj(projectile))
 			{
-				if (accGoldenTicket && target.value > 0f)
+				if (target.value > 0f)
 				{
-					for (int k = 0; k < 15; k++)
+					if (accGoldenTicket)
 					{
-						int dust = Dust.NewDust(target.position, 20, 20, 11, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default(Color), 1.25f);
-						Main.dust[dust].noGravity = true;
+						for (int k = 0; k < 15; k++)
+						{
+							int dust = Dust.NewDust(target.position, 20, 20, 11, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default(Color), 1.25f);
+							Main.dust[dust].noGravity = true;
+						}
+						
+						int amount = 1 + Main.rand.Next(5);
+						int coin = Item.NewItem(target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
+						if (amount > 0)
+						{
+							clickerMoneyGenerated += amount;
+						}
+						if (Main.netMode == NetmodeID.MultiplayerClient)
+						{
+							NetMessage.SendData(MessageID.SyncItem, -1, -1, null, coin, 1f);
+						}
 					}
-					
-					int amount = 1 + Main.rand.Next(5);
-					int coin = Item.NewItem(target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
-					if (amount > 0)
+					if (accPaperclips && accPaperclipsItem != null && !accPaperclipsItem.IsAir)
 					{
-						clickerMoneyGenerated += amount;
-					}
-					if (Main.netMode == NetmodeID.MultiplayerClient)
-					{
-						NetMessage.SendData(MessageID.SyncItem, -1, -1, null, coin, 1f);
+						int matterAmount = (int)((target.height * target.width) / 200);
+						if (matterAmount > 10)
+						{
+							matterAmount = 10;
+						}
+						accPaperclipsAmount += matterAmount;
+						
+						if (accPaperclipsAmount >= 100)
+						{
+							SoundEngine.PlaySound(2, (int)Player.position.X, (int)Player.position.Y, 108);
+							for (int k = 0; k < 15; k++)
+							{
+								int dust = Dust.NewDust(target.position, 20, 20, 1, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 150, default(Color), 1.35f);
+								Main.dust[dust].noGravity = true;
+							}
+							for (int k = 0; k < 4; k++)
+							{
+								//Can't say I really understand this "source" business yet
+								Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accPaperclipsItem), Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
+							}
+							accPaperclipsAmount = 0;
+						}
 					}
 				}
 			}

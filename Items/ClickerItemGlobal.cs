@@ -38,6 +38,14 @@ namespace ClickerClass.Items
 								player.QuickSpawnItem(ModContent.ItemType<StickyKeychain>());
 							}
 							break;
+						case ItemID.TwinsBossBag:
+						case ItemID.SkeletronPrimeBossBag:
+						case ItemID.DestroyerBossBag:
+							if (Main.rand.NextBool(4))
+							{
+								player.QuickSpawnItem(ModContent.ItemType<BottomlessBoxofPaperclips>());
+							}
+							break;
 					}
 					break;
 			}

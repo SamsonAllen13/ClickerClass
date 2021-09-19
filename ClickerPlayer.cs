@@ -129,8 +129,8 @@ namespace ClickerClass
 		public bool accPortableParticleAccelerator2 = false; //"is active", client only
 		public bool accGoldenTicket = false;
 		public bool accMouseTrap = false;
-		public bool accPaperclips = false;
 		public Item accPaperclipsItem = null;
+		public bool AccPaperclips => accPaperclipsItem != null && !accPaperclipsItem.IsAir;
 		public bool accHotKeychain = false;
 		public bool accHotKeychain2 = false;
 
@@ -452,7 +452,6 @@ namespace ClickerClass
 			accPortableParticleAccelerator2 = false;
 			accGoldenTicket = false;
 			accMouseTrap = false;
-			accPaperclips = false;
 			accPaperclipsItem = null;
 			accHotKeychain = false;
 			accHotKeychain2 = false;
@@ -849,7 +848,8 @@ namespace ClickerClass
 							NetMessage.SendData(MessageID.SyncItem, -1, -1, null, coin, 1f);
 						}
 					}
-					if (accPaperclips && accPaperclipsItem != null && !accPaperclipsItem.IsAir)
+
+					if (AccPaperclips)
 					{
 						int matterAmount = (int)((target.height * target.width) / 200);
 						if (matterAmount > 10)
@@ -866,11 +866,15 @@ namespace ClickerClass
 								int dust = Dust.NewDust(target.position, 20, 20, 1, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 150, default(Color), 1.35f);
 								Main.dust[dust].noGravity = true;
 							}
-							for (int k = 0; k < 4; k++)
+
+							if (Main.myPlayer == Player.whoAmI)
 							{
-								//Can't say I really understand this "source" business yet
-								Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accPaperclipsItem), Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
+								for (int k = 0; k < 4; k++)
+								{
+									Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accPaperclipsItem), Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
+								}
 							}
+
 							accPaperclipsAmount = 0;
 						}
 					}

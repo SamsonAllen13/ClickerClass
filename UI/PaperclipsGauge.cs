@@ -28,7 +28,7 @@ namespace ClickerClass.UI
 			{
 				FadeTime = 0;
 			}
-			else if (clickerPlayer.accPaperclips && clickerPlayer.accPaperclipsAmount > 0)
+			else if (clickerPlayer.AccPaperclips && clickerPlayer.accPaperclipsAmount > 0)
 			{
 				FadeTime = MAX_FADE_TIME + FADE_DELAY;
 				if (clickerPlayer.accPaperclipsAmount > 0)

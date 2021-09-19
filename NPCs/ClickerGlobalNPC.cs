@@ -138,6 +138,21 @@ namespace ClickerClass.NPCs
 				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LordsClicker>()));
 				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TheClicker>(), 5));
 			}
+			else if (npc.type == NPCID.TheDestroyer || npc.type == NPCID.SkeletronPrime || npc.type == NPCID.Retinazer || npc.type == NPCID.Spazmatism)
+			{
+				var ruleToAdd = ItemDropRule.ByCondition(notExpert, ModContent.ItemType<BottomlessBoxofPaperclips>(), 4);
+
+				if (npc.type == NPCID.TheDestroyer || npc.type == NPCID.SkeletronPrime)
+				{
+					npcLoot.Add(ruleToAdd);
+				}
+				else
+				{
+					LeadingConditionRule missingTwinRule = new LeadingConditionRule(new Conditions.MissingTwin());
+					missingTwinRule.OnSuccess(ruleToAdd);
+					npcLoot.Add(missingTwinRule);
+				}
+			}
 			else if (npc.type == NPCID.WallofFlesh)
 			{
 				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<ClickerEmblem>(), 4));

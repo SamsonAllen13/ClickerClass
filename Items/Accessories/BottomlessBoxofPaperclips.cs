@@ -1,8 +1,4 @@
-﻿using ClickerClass.Projectiles;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.DataStructures;
+﻿using Terraria;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -13,6 +9,7 @@ namespace ClickerClass.Items.Accessories
 			base.SetStaticDefaults();
 		}
 
+		//Any Mechnical Boss drop+bag
 		public override void SetDefaults()
 		{
 			Item.width = 20;
@@ -26,9 +23,6 @@ namespace ClickerClass.Items.Accessories
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			clickerPlayer.accPaperclipsItem = Item;
-			clickerPlayer.accPaperclips = true;
 		}
-		
-		//Any Mechnical Boss
 	}
 }

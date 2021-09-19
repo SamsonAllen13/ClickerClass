@@ -72,6 +72,7 @@ Mods: {
 			Soda: Soda
 			StickyKeychain: Sticky Keychain
 			TheScroller: The Scroller
+			TriggerFinger: Trigger Finger
 			MiceBoots: Mice Boots
 			MiceMask: Mice Mask
 			MiceSuit: Mice Suit
@@ -214,6 +215,10 @@ Mods: {
 				'''
 				{$CommonItemTooltip.FlightAndSlowfall}
 				Hold DOWN to fall faster
+				'''
+			TriggerFinger: 
+				'''
+				Your first click when out of combat will automatically trigger its clicker effect
 				'''
 			MiceBoots:
 				'''

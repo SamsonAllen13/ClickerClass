@@ -511,9 +511,15 @@ namespace ClickerClass.Items
 							int clickAmountTotal = clickerPlayer.GetClickAmountTotal(this, name);
 							bool reachedAmount = clickerPlayer.clickAmount % clickAmountTotal == 0;
 
-							if (reachedAmount || overclock)
+							if (reachedAmount || overclock || (clickerPlayer.accTriggerFinger && clickerPlayer.OutOfCombat))
 							{
 								effect.Action?.Invoke(player, source, position, type, damage, knockback);
+								
+								if (clickerPlayer.accTriggerFinger)
+								{
+									//Magic number :complete_failure:
+									clickerPlayer.outOfCombatTimer = 300;
+								}
 							}
 						}
 					}

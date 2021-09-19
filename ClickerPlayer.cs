@@ -132,6 +132,7 @@ namespace ClickerClass
 		public bool accPortableParticleAccelerator = false; //"is wearing"
 		public bool accPortableParticleAccelerator2 = false; //"is active", client only
 		public bool accGoldenTicket = false;
+		public bool accTriggerFinger = false;
 		public bool accIcePack = false;
 		public bool accMouseTrap = false;
 		public Item accPaperclipsItem = null;
@@ -463,6 +464,7 @@ namespace ClickerClass
 			accPortableParticleAccelerator = false;
 			accPortableParticleAccelerator2 = false;
 			accGoldenTicket = false;
+			accTriggerFinger = false;
 			accIcePack = false;
 			accMouseTrap = false;
 			accPaperclipsItem = null;

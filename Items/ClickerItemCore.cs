@@ -419,9 +419,12 @@ namespace ClickerClass.Items
 
 				//Base 
 				SoundEngine.PlaySound(SoundID.MenuTick, player.position);
-				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
+				clickerPlayer.AddClick();
+
+				bool hasAutoClick = player.HasBuff(ModContent.BuffType<AutoClick>());
+				if (!hasAutoClick)
 				{
-					clickerPlayer.Click();
+					clickerPlayer.AddClickAmount();
 				}
 
 				//TODO dire: maybe "PreShoot" hook wrapping around the next NewProjectile
@@ -487,10 +490,9 @@ namespace ClickerClass.Items
 					}
 				}
 
-				bool autoClick = player.HasBuff(ModContent.BuffType<AutoClick>());
 				bool overclock = player.HasBuff(overclockType);
 
-				if (!autoClick)
+				if (!hasAutoClick)
 				{
 					foreach (var name in ClickerSystem.GetAllEffectNames())
 					{

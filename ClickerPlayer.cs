@@ -64,7 +64,7 @@ namespace ClickerClass
 		/// </summary>
 		public int clickerTotal = 0;
 		/// <summary>
-		/// Amount of clicks done, constantly incremented
+		/// Amount of clicks done, constantly incremented. Used for click effect proccing
 		/// </summary>
 		public int clickAmount = 0;
 		/// <summary>
@@ -261,14 +261,20 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call to register a click
+		/// Call to register a click towards the "clicks per second" and total calculations
 		/// </summary>
-		internal void Click()
+		internal void AddClick()
+		{
+			clicks.Enqueue(true);
+			clickerTotal++;
+		}
+
+		/// <summary>
+		/// Call to increment the click amount counter used for proccing click effects
+		/// </summary>
+		internal void AddClickAmount()
 		{
 			clickAmount++;
-			clickerTotal++;
-
-			clicks.Enqueue(true);
 		}
 
 		private void FillClickQueue()

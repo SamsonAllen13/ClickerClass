@@ -28,7 +28,7 @@ namespace ClickerClass.UI
 			{
 				FadeTime = 0;
 			}
-			else if (clickerPlayer.AccPaperclips && clickerPlayer.accPaperclipsAmount > 0)
+			else if (clickerPlayer.AccPaperclips && clickerPlayer.accPaperclipsAmount > 0 && !clickerPlayer.OutOfCombat)
 			{
 				FadeTime = MAX_FADE_TIME + FADE_DELAY;
 				if (clickerPlayer.accPaperclipsAmount > 0)
@@ -75,8 +75,10 @@ namespace ClickerClass.UI
 
 			// player.gfxOffY changes depending on if a player is moving on top of half or slanted blocks
 			// Adding player.gfxOffY to the position calculation prevents position glitching
-			Vector2 position = (player.Bottom + new Vector2(0, 14 + player.gfxOffY)).Floor();
+			Vector2 position = (player.Bottom + new Vector2(0, 14 + clickerPlayer.clickerGaugeOffset + player.gfxOffY)).Floor();
 			Color color = Color.White * alphaMult;
+			
+			clickerPlayer.clickerGaugeOffset += 26;
 
 			if (Main.playerInventory && Main.screenHeight < 1000)
 			{

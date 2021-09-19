@@ -61,6 +61,7 @@ Mods: {
 			GamerCrate: Gamer Crate
 			HandCream: Hand Cream
 			HotKeychain: Hot Keychain
+			IcePack: Ice Pack
 			Milk: Glass of Milk
 			MilkCookies: Milk n' Cookies
 			MousePad: Mouse Pad
@@ -175,12 +176,17 @@ Mods: {
 			HandCream:
 				'''
 				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will toggle auto click on all Clickers
-				While auto click is enabled, click rates are decreased
+				While auto click is enabled, click rates are moderately decreased
 				'''
 			HotKeychain:
 				'''
 				While in combat, clicks cause an additional delayed fiery click
 				Burns you if you click too slowly
+				'''
+			IcePack:
+				'''
+				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will toggle auto click on all Clickers
+				While auto click is enabled, click rates are greatly decreased
 				'''
 			Milk: Gain up to 15% clicker damage based on your amount of clicks within a second
 			MilkCookies:

@@ -72,13 +72,22 @@ namespace ClickerClass.Items
 
 		public override float UseTimeMultiplier(Item item, Player player)
 		{
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+			
 			if (ClickerSystem.IsClickerWeapon(item))
 			{
 				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
 					if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick || item.autoReuse)
 					{
-						return 6f;
+						if (clickerPlayer.accHandCream)
+						{
+							return 6f;
+						}
+						else if (clickerPlayer.accIcePack)
+						{
+							return 8f;
+						}
 					}
 					else
 					{

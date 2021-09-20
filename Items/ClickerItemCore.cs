@@ -517,8 +517,8 @@ namespace ClickerClass.Items
 								
 								if (clickerPlayer.accTriggerFinger)
 								{
-									//Magic number :complete_failure:
-									clickerPlayer.outOfCombatTimer = 300;
+									//TODO looks like a hack
+									clickerPlayer.outOfCombatTimer = ClickerPlayer.OutOfCombatTimeMax;
 								}
 							}
 						}

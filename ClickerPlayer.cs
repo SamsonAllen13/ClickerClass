@@ -482,6 +482,12 @@ namespace ClickerClass
 			clickerRadius = 1f;
 		}
 
+		public override void UpdateAutopause()
+		{
+			clickerGaugeOffset = 0; //Otherwise it starts moving downwards when in the menu/paused
+			clickerRadius = 1f;
+		}
+
 		public override void Initialize()
 		{
 			clickerTotal = 0;

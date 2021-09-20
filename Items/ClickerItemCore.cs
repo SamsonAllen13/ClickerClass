@@ -393,7 +393,19 @@ namespace ClickerClass.Items
 					else if (clickerPlayer.setMotherboard)
 					{
 						SoundEngine.PlaySound(SoundID.Camera, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 0);
-						clickerPlayer.SetMotherboardRelativePosition(Main.MouseWorld);
+
+						Vector2 sensorLocation = player.Center + clickerPlayer.CalculateMotherboardPosition(clickerPlayer.ClickerRadiusReal);
+
+						if (sensorLocation.DistanceSQ(Main.MouseWorld) < 20 * 20)
+						{
+							//Clicked onto the sensor
+							clickerPlayer.ResetMotherboardPosition();
+						}
+						else
+						{
+							clickerPlayer.SetMotherboardRelativePosition(Main.MouseWorld);
+						}
+
 						clickerPlayer.setAbilityDelayTimer = 60;
 					}
 				}

@@ -380,8 +380,22 @@ namespace ClickerClass
 			float length = toPosition.Length();
 			float radius = ClickerRadiusReal;
 			float ratio = length / radius;
+			if (ratio < 0.6f)
+			{
+				//Enforce minimal range
+				ratio = 0.6f;
+			}
 			setMotherboardRatio = ratio;
 			setMotherboardAngle = toPosition.ToRotation();
+		}
+
+		/// <summary>
+		/// Dispels the motherboard position
+		/// </summary>
+		public void ResetMotherboardPosition()
+		{
+			setMotherboardRatio = 0f;
+			setMotherboardAngle = 0f;
 		}
 
 		internal int originalSelectedItem;

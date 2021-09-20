@@ -97,7 +97,7 @@ namespace ClickerClass.DrawLayers
 					Texture2D weaponGlow = data.Texture.Value;
 					Vector2 position = new Vector2((int)(drawInfo.ItemLocation.X - Main.screenPosition.X), (int)(drawInfo.ItemLocation.Y - Main.screenPosition.Y));
 					Vector2 origin = new Vector2(drawPlayer.direction == -1 ? weaponGlow.Width : 0, drawPlayer.gravDir == -1 ? 0 : weaponGlow.Height);
-					DrawData drawData = new DrawData(weaponGlow, position, null, data.Color, drawPlayer.itemRotation, origin, heldItem.scale, drawInfo.itemEffect, 0);
+					DrawData drawData = new DrawData(weaponGlow, position, null, data.Color(), drawPlayer.itemRotation, origin, heldItem.scale, drawInfo.itemEffect, 0);
 					drawInfo.DrawDataCache.Add(drawData);
 					break;
 				default:

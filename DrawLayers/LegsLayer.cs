@@ -60,7 +60,7 @@ namespace ClickerClass.DrawLayers
 				return;
 			}
 
-			Color color = drawPlayer.GetImmuneAlphaPure(data.Color, drawInfo.shadow);
+			Color color = drawPlayer.GetImmuneAlphaPure(data.Color(), drawInfo.shadow);
 
 			Texture2D texture = data.Texture.Value;
 			Vector2 drawPos = drawInfo.Position - Main.screenPosition + new Vector2(drawPlayer.width / 2 - drawPlayer.legFrame.Width / 2, drawPlayer.height - drawPlayer.legFrame.Height + 4f) + drawPlayer.legPosition;

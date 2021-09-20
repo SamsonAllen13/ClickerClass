@@ -17,11 +17,10 @@ namespace ClickerClass.Items.Armors
 
 			if (!Main.dedServ)
 			{
-				//Gonna need some extra code for the color here since it doesnt update 
 				HeadLayer.RegisterData(Item.headSlot, new DrawLayerData()
 				{
 					Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow"),
-					Color = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) * 0.75f
+					Color = () => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) * 0.75f
 				});
 			}
 		}
@@ -53,7 +52,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateVanitySet(Player player)
 		{
-			Lighting.AddLight(player.Center, Main.DiscoR * 0.004f, Main.DiscoG * 0.004f, Main.DiscoB * 0.004f);
+			Lighting.AddLight(player.Center, Main.DiscoColor.ToVector3() * 0.75f);
 		}
 		
 		public override void AddRecipes()

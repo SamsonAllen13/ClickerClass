@@ -16,11 +16,10 @@ namespace ClickerClass.Items.Armors
 
 			if (!Main.dedServ)
 			{
-				//Gonna need some extra code for the color here since it doesnt update 
 				LegsLayer.RegisterData(Item.legSlot, new DrawLayerData()
 				{
 					Texture = ModContent.Request<Texture2D>(Texture + "_Legs_Glow"),
-					Color = new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) * 0.75f
+					Color = () => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) * 0.75f
 				});
 			}
 		}

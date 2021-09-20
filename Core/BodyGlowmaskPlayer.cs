@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
@@ -8,7 +9,7 @@ namespace ClickerClass.Core
 {
 	public class BodyGlowmaskPlayer : ModPlayer
 	{
-		private static Dictionary<int, Color> BodyColor { get; set; }
+		private static Dictionary<int, Func<Color>> BodyColor { get; set; }
 
 		/// <summary>
 		/// Add glowmask color associated with the body equip slot here, usually in <see cref="ModType.SetStaticDefaults"/>.
@@ -16,7 +17,7 @@ namespace ClickerClass.Core
 		/// </summary>
 		/// <param name="bodySlot">Body equip slot</param>
 		/// <param name="color">Color</param>
-		public static void RegisterData(int bodySlot, Color color)
+		public static void RegisterData(int bodySlot, Func<Color> color)
 		{
 			if (!BodyColor.ContainsKey(bodySlot))
 			{
@@ -26,7 +27,7 @@ namespace ClickerClass.Core
 
 		public override void Load()
 		{
-			BodyColor = new Dictionary<int, Color>();
+			BodyColor = new Dictionary<int, Func<Color>>();
 		}
 
 		public override void Unload()
@@ -36,13 +37,13 @@ namespace ClickerClass.Core
 
 		public override void ModifyDrawInfo(ref PlayerDrawSet drawInfo)
 		{
-			if (!BodyColor.TryGetValue(Player.body, out Color color))
+			if (!BodyColor.TryGetValue(Player.body, out Func<Color> color))
 			{
 				return;
 			}
 
-			drawInfo.bodyGlowColor = color;
-			drawInfo.armGlowColor = color;
+			drawInfo.bodyGlowColor = color();
+			drawInfo.armGlowColor = color();
 		}
 	}
 }

@@ -113,6 +113,7 @@ namespace ClickerClass
 		public bool setMice = false;
 		public bool setPrecursor = false;
 		public bool setOverclock = false;
+		public bool setRGB = false;
 		
 		public int setPrecursorTimer = 0;
 
@@ -451,6 +452,7 @@ namespace ClickerClass
 			setMice = false;
 			setPrecursor = false;
 			setOverclock = false;
+			setRGB = false;
 
 			//Acc
 			accEnchantedLED = false;

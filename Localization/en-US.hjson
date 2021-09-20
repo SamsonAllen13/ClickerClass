@@ -85,6 +85,9 @@ Mods: {
 			PrecursorBreastplate: Precursor Breastplate
 			PrecursorGreaves: Precursor Greaves
 			PrecursorHelmet: Precursor Helmet
+			RGBBreastplate: RGB Breastplate
+			RGBGreaves: RGB Greaves
+			RGBHelm: RGB Helm
 			InfluencePotion: Influence Potion
 			MiceHamaxe: Mice Hamaxe
 			MicePickaxe: Mice Pickaxe
@@ -260,7 +263,8 @@ Mods: {
 				Every 100 clicks briefly grants you 'Overclock', making every click trigger its effect
 				While Overclock is active, you deal 50% less click damage
 				'''
-			Precursor: While in combat, your cursor constantly leaves behind damaging after images
+			Precursor: While in combat, your cursor constantly leaves behind damaging afterimages
+			RGB: Null
 		}
 
 		ClickEffect: {

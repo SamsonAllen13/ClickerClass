@@ -113,6 +113,8 @@ namespace ClickerClass
 		public bool setMice = false;
 		public bool setPrecursor = false;
 		public bool setOverclock = false;
+		
+		public int setPrecursorTimer = 0;
 
 		//Acc
 		[Obsolete("Use HasClickEffect(\"ClickerClass:ChocolateChip\") and EnableClickEffect(\"ClickerClass:ChocolateChip\") instead", false)]
@@ -662,6 +664,24 @@ namespace ClickerClass
 				else
 				{
 					accClickingGloveTimer = 0;
+				}
+				
+				if (setPrecursor && !OutOfCombat && clickerInRange)
+				{
+					setPrecursorTimer++;
+					if (setPrecursorTimer > 10)
+					{
+						if (Main.myPlayer == Player.whoAmI)
+						{
+							//Needs a new source
+							//Projectile.NewProjectile(source, Main.MouseWorld.X + 8, Main.MouseWorld.Y + 11, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), (int)(Player.HeldItem.damage * 0.2f), 0f, Player.whoAmI);
+						}
+						setPrecursorTimer = 0;
+					}
+				}
+				else
+				{
+					setPrecursorTimer = 0;
 				}
 			}
 			else

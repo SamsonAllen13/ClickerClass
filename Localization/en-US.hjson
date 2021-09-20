@@ -260,7 +260,7 @@ Mods: {
 				Every 100 clicks briefly grants you 'Overclock', making every click trigger its effect
 				While Overclock is active, you deal 50% less click damage
 				'''
-			Precursor: Clicking causes an additional delayed fiery click at 25% the damage
+			Precursor: While in combat, your cursor constantly leaves behind damaging after images
 		}
 
 		ClickEffect: {

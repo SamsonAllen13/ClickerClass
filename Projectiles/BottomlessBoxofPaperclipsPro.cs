@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
-using Terraria.Audio;
 using Terraria.ModLoader;
 using Terraria.GameContent;
 
@@ -26,12 +25,15 @@ namespace ClickerClass.Projectiles
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 15;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 		}
 
 		public override void SetDefaults()
 		{
+			base.SetDefaults();
+
 			Projectile.width = 14;
 			Projectile.height = 14;
 			Projectile.aiStyle = 1;

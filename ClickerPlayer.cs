@@ -618,7 +618,8 @@ namespace ClickerClass
 				}
 			}
 
-			if (ClickerSystem.IsClickerWeapon(Player.HeldItem, out ClickerItemCore clickerItem))
+			Item heldItem = Player.HeldItem;
+			if (ClickerSystem.IsClickerWeapon(heldItem, out ClickerItemCore clickerItem))
 			{
 				EnableClickEffect(clickerItem.itemClickEffects);
 				clickerSelected = true;
@@ -673,7 +674,7 @@ namespace ClickerClass
 				{
 					accClickingGloveTimer = 0;
 				}
-				
+
 				if (setPrecursor && !OutOfCombat && clickerInRange)
 				{
 					setPrecursorTimer++;
@@ -681,8 +682,7 @@ namespace ClickerClass
 					{
 						if (Main.myPlayer == Player.whoAmI)
 						{
-							//Needs a new source
-							//Projectile.NewProjectile(source, Main.MouseWorld.X + 8, Main.MouseWorld.Y + 11, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), (int)(Player.HeldItem.damage * 0.2f), 0f, Player.whoAmI);
+							Projectile.NewProjectile(Player.GetProjectileSource_SetBonus(0), Main.MouseWorld.X + 8, Main.MouseWorld.Y + 11, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), (int)(heldItem.damage * 0.2f), 0f, Player.whoAmI);
 						}
 						setPrecursorTimer = 0;
 					}
@@ -927,8 +927,11 @@ namespace ClickerClass
 					}
 				}
 			}
-			
-			outOfCombatTimer = OutOfCombatTimeMax;
+
+			if (projectile.type != ModContent.ProjectileType<PrecursorPro>())
+			{
+				outOfCombatTimer = OutOfCombatTimeMax;
+			}
 		}
 
 		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)

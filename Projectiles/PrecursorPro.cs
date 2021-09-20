@@ -1,11 +1,9 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
-using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
+	//Does not trigger out of combat reset
 	public class PrecursorPro : ClickerProjectile
 	{
 		public override void SetDefaults()

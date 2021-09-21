@@ -19,7 +19,7 @@ namespace ClickerClass.Items.Armors
 				LegsLayer.RegisterData(Item.legSlot, new DrawLayerData()
 				{
 					Texture = ModContent.Request<Texture2D>(Texture + "_Legs_Glow"),
-					Color = () => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 0) * 0.75f
+					Color = () => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 50) * 0.8f
 				});
 			}
 		}

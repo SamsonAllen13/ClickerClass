@@ -28,7 +28,7 @@ namespace ClickerClass.UI
 			{
 				FadeTime = 0;
 			}
-			else if (clickerPlayer.AccPaperclips && clickerPlayer.accPaperclipsAmount > 0 && !clickerPlayer.OutOfCombat)
+			else if (clickerPlayer.AccPaperclips && clickerPlayer.accPaperclipsAmount > 0 && !clickerPlayer.OutOfCombat && clickerPlayer.clickerSelected)
 			{
 				FadeTime = MAX_FADE_TIME + FADE_DELAY;
 				if (clickerPlayer.accPaperclipsAmount > 0)

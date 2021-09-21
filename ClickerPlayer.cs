@@ -812,48 +812,50 @@ namespace ClickerClass
 			//Hot Keychain
 			if (accHotKeychain && !OutOfCombat)
 			{
-				if (accHotKeychainAmount < 0)
+				if (clickerSelected)
 				{
-					accHotKeychainAmount = 0;
-					
-				}
-				accHotKeychain2 = true;
-				
-				accHotKeychainTimer++;
-				if (accHotKeychainTimer > 60)
-				{
-					int accHotKeychainSpice = (int)(8 - clickerPerSecond);
-					Color color = new Color(150, 150, 150);
-					if (accHotKeychainSpice > 0)
+					if (accHotKeychainAmount < 0)
 					{
-						color = new Color(255, 150, 75);
-						
-						for (int k = 0; k < 2 * accHotKeychainSpice; k++)
-						{
-							Vector2 offset = new Vector2(Main.rand.Next(-25, 26), Main.rand.Next(-25, 26));
-							Dust dust = Dust.NewDustDirect(Player.position + offset, Player.width, Player.height, 174, Scale: 1f);
-							dust.noGravity = true;
-							dust.velocity = -offset * 0.05f;
-						}
-					}
-		
-					CombatText.NewText(Player.Hitbox, color, accHotKeychainSpice, true, true);
-					
-					accHotKeychainAmount += accHotKeychainSpice;
-					accHotKeychainTimer = 0;
-					
-					if (accHotKeychainAmount > 50)
-					{
-						Player.AddBuff(BuffID.OnFire3, 300);
-						SoundEngine.PlaySound(2, (int)Player.position.X, (int)Player.position.Y, 74);
-						for (int k = 0; k < 10; k++)
-						{
-							Vector2 offset = new Vector2(Main.rand.Next(-25, 26), Main.rand.Next(-25, 26));
-							Dust dust = Dust.NewDustDirect(Player.position + offset, Player.width, Player.height, 174, Scale: 1.5f);
-							dust.noGravity = true;
-							dust.velocity = -offset * 0.05f;
-						}
 						accHotKeychainAmount = 0;
+					}
+					accHotKeychain2 = true;
+
+					accHotKeychainTimer++;
+					if (accHotKeychainTimer > 60)
+					{
+						int accHotKeychainSpice = (int)(8 - clickerPerSecond);
+						Color color = new Color(150, 150, 150);
+						if (accHotKeychainSpice > 0)
+						{
+							color = new Color(255, 150, 75);
+
+							for (int k = 0; k < 2 * accHotKeychainSpice; k++)
+							{
+								Vector2 offset = new Vector2(Main.rand.Next(-25, 26), Main.rand.Next(-25, 26));
+								Dust dust = Dust.NewDustDirect(Player.position + offset, Player.width, Player.height, 174, Scale: 1f);
+								dust.noGravity = true;
+								dust.velocity = -offset * 0.05f;
+							}
+						}
+
+						CombatText.NewText(Player.Hitbox, color, accHotKeychainSpice, true, true);
+
+						accHotKeychainAmount += accHotKeychainSpice;
+						accHotKeychainTimer = 0;
+
+						if (accHotKeychainAmount > 50)
+						{
+							Player.AddBuff(BuffID.OnFire3, 300);
+							SoundEngine.PlaySound(2, (int)Player.position.X, (int)Player.position.Y, 74);
+							for (int k = 0; k < 10; k++)
+							{
+								Vector2 offset = new Vector2(Main.rand.Next(-25, 26), Main.rand.Next(-25, 26));
+								Dust dust = Dust.NewDustDirect(Player.position + offset, Player.width, Player.height, 174, Scale: 1.5f);
+								dust.noGravity = true;
+								dust.velocity = -offset * 0.05f;
+							}
+							accHotKeychainAmount = 0;
+						}
 					}
 				}
 			}

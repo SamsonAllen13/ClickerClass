@@ -912,7 +912,7 @@ namespace ClickerClass
 						}
 					}
 
-					if (AccPaperclips)
+					if (AccPaperclips && projectile.type != ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>())
 					{
 						int matterAmount = (int)((target.height * target.width) / 200);
 						if (matterAmount > 10)

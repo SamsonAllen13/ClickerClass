@@ -78,6 +78,7 @@ namespace ClickerClass.UI
 			Vector2 position = (player.Bottom + new Vector2(0, 14 + clickerPlayer.clickerGaugeOffset + player.gfxOffY)).Floor();
 			Color color = Color.White * alphaMult;
 			
+			//TODO - Fix funny little glitch that happens when you click outside of the game window
 			clickerPlayer.clickerGaugeOffset += 26;
 
 			if (Main.playerInventory && Main.screenHeight < 1000)

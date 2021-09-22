@@ -106,6 +106,7 @@ Mods: {
 			CrystalClicker: Crystal Clicker
 			DarkClicker: Dark Clicker
 			EclipticClicker: Ecliptic Clicker
+			FaultyClicker: Faulty Clicker
 			FrozenClicker: Frozen Clicker
 			GoldClicker: Gold Clicker
 			HemoClicker: Hemo Clicker
@@ -131,6 +132,7 @@ Mods: {
 			SlickClicker: Slick Clicker
 			SpaceClicker: Space Clicker
 			SpectreClicker: Spectre Clicker
+			StarryClicker: Starry Clicker
 			TheClicker: The Clicker
 			TinClicker: Tin Clicker
 			TitaniumClicker: Titanium Clicker
@@ -286,6 +288,16 @@ Mods: {
 			Lacerate: {
 				Name: Lacerate
 				Description: Inflicts the Gouge debuff, dealing 30 damage per second
+			}
+			
+			Starfall: {
+				Name: Starfall
+				Description: Calls down a piercing star from the heavens
+			}
+			
+			Fritz: {
+				Name: Fritz
+				Description: Releases a random shock within your clicker radius
 			}
 
 			Flurry: {

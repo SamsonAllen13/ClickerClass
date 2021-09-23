@@ -466,16 +466,13 @@ namespace ClickerClass
 			FillClickQueue();
 		}
 
-		public override TagCompound Save()
+		public override void SaveData(TagCompound tag)
 		{
-			return new TagCompound
-			{
-				{"clickerTotal", clickerTotal},
-				{"clickerMoneyGenerated", clickerMoneyGenerated}
-			};
+			tag.Add("clickerTotal", clickerTotal);
+			tag.Add("clickerMoneyGenerated", clickerMoneyGenerated);
 		}
 
-		public override void Load(TagCompound tag)
+		public override void LoadData(TagCompound tag)
 		{
 			clickerTotal = tag.GetInt("clickerTotal");
 			clickerMoneyGenerated = tag.GetInt("clickerMoneyGenerated");

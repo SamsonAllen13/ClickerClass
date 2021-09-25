@@ -40,6 +40,9 @@ namespace ClickerClass.Projectiles
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			DisplayName.SetDefault("Sandstorm Clicker");
+
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 15;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 		}
@@ -53,10 +56,13 @@ namespace ClickerClass.Projectiles
 			Projectile.aiStyle = -1;
 			Projectile.penetrate = -1;
 			Projectile.alpha = 255;
+			//TODO magic damage intended? If not, just remove that line
 			Projectile.DamageType = DamageClass.Magic;
 			Projectile.friendly = true;
 			Projectile.timeLeft = 600;
 			Projectile.extraUpdates = 2;
+			Projectile.ignoreWater = true;
+
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 30;
 		}

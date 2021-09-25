@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Utilities;
 using Terraria.Audio;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -45,6 +46,15 @@ namespace ClickerClass.Projectiles
 			set => Projectile.localAI[0] = value;
 		}
 
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+
+			DisplayName.SetDefault("High Tech Clicker");
+
+			ProjectileID.Sets.CanDistortWater[Projectile.type] = false;
+		}
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
@@ -57,6 +67,7 @@ namespace ClickerClass.Projectiles
 			Projectile.friendly = true;
 			Projectile.timeLeft = 600;
 			Projectile.extraUpdates = 100;
+			Projectile.ignoreWater = true;
 
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 30;

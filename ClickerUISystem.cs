@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using System.Linq;
 using System;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ClickerClass
 {
@@ -19,6 +20,12 @@ namespace ClickerClass
 		{
 			_lastUpdateUIGameTime = gameTime;
 			ClickerInterfaceResources.Update(gameTime);
+		}
+
+		public override void PostDrawInterface(SpriteBatch spriteBatch)
+		{
+			//Only called if not in the ingame menu/fancyUI
+			InterfaceResource.ResetClickerGaugeOffset();
 		}
 
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)

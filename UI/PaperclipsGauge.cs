@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using ReLogic.Content;
 using Terraria;
 using Terraria.UI;
-using Terraria.ModLoader;
-using Terraria.GameContent;
 using ClickerClass.Utilities;
 
 namespace ClickerClass.UI
@@ -58,16 +56,18 @@ namespace ClickerClass.UI
 			// Transparency Multiplier
 			float alphaMult = Math.Min((float)FadeTime / MAX_FADE_TIME, 1);
 			
-			
 			Asset<Texture2D> borderAsset;
-			Texture2D borderTexture;
 			borderAsset = ClickerClass.mod.Assets.Request<Texture2D>("UI/PaperclipsGauge_Sheet");
 
 			if (!borderAsset.IsLoaded)
 			{
 				return true;
 			}
-			
+
+			if (Main.ingameOptionsWindow || Main.InGameUI.IsVisible)
+			{
+				return true;
+			}
 
 			Texture2D texture = borderAsset.Value;
 			Rectangle frame = texture.Frame(1, 3);
@@ -75,11 +75,10 @@ namespace ClickerClass.UI
 
 			// player.gfxOffY changes depending on if a player is moving on top of half or slanted blocks
 			// Adding player.gfxOffY to the position calculation prevents position glitching
-			Vector2 position = (player.Bottom + new Vector2(0, 14 + clickerPlayer.clickerGaugeOffset + player.gfxOffY)).Floor();
+			Vector2 position = (player.Bottom + new Vector2(0, 14 + ClickerGaugeOffset + player.gfxOffY)).Floor();
 			Color color = Color.White * alphaMult;
-			
-			//TODO - Fix funny little glitch that happens when you click outside of the game window
-			clickerPlayer.clickerGaugeOffset += 26;
+
+			IncreaseClickerGaugeOffset();
 
 			if (Main.playerInventory && Main.screenHeight < 1000)
 			{

@@ -19,6 +19,8 @@ namespace ClickerClass.NPCs
 		public bool frozen = false;
 		public bool honeySlow = false;
 		public bool embrittle = false;
+		public bool crystalSlime = false;
+		public bool crystalSlimeEnd = false;
 		public bool stunned = false;
 
 		public bool buffImmunitiesSet = false;
@@ -48,6 +50,7 @@ namespace ClickerClass.NPCs
 			frozen = false;
 			honeySlow = false;
 			embrittle = false;
+			crystalSlime = false;
 			stunned = false;
 		}
 
@@ -403,6 +406,19 @@ namespace ClickerClass.NPCs
 					dust.noGravity = true;
 					dust.velocity *= 0f;
 					dust.fadeIn = 1.75f;
+				}
+				drawColor.R = (byte)(drawColor.R * 1f);
+				drawColor.G = (byte)(drawColor.G * 1f);
+				drawColor.B = (byte)(drawColor.B * 1f);
+			}
+			if (crystalSlime)
+			{
+				if (!Main.rand.NextBool(5))
+				{
+					Dust dust = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 71, 0f, 0f, 255, default(Color), 0.4f);
+					dust.noGravity = true;
+					dust.velocity *= 0f;
+					dust.fadeIn = 1.25f;
 				}
 				drawColor.R = (byte)(drawColor.R * 1f);
 				drawColor.G = (byte)(drawColor.G * 1f);

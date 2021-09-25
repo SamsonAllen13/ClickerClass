@@ -32,8 +32,8 @@ namespace ClickerClass.Projectiles
 		
 		public int DestinationY
 		{
-			get => (int)Projectile.ai[0];
-			set => Projectile.ai[0] = value;
+			get => (int)Projectile.ai[1];
+			set => Projectile.ai[1] = value;
 		}
 
 		public override void SetStaticDefaults()

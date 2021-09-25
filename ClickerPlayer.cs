@@ -791,6 +791,30 @@ namespace ClickerClass
 				}
 			}
 			
+			//Balloon Defense effect
+			if (Player.whoAmI == Main.myPlayer)
+			{
+				for (int i = 0; i < 1000; i++)
+				{
+					Projectile balloonProjectile = Main.projectile[i];
+
+					if (balloonProjectile.active && balloonProjectile.ai[0] == 0f && balloonProjectile.type == ModContent.ProjectileType<BalloonClickerPro>() && balloonProjectile.owner == Player.whoAmI)
+					{
+						if (Main.mouseLeft && Main.mouseLeftRelease && balloonProjectile.DistanceSQ(new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y + 40)) < 20 * 20)
+						{
+							for (int k = 0; k < 8; k++)
+							{
+								Dust dust = Dust.NewDustDirect(balloonProjectile.Center - new Vector2(4), 8, 8, 115, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 100, default, 1.25f);
+								dust.noGravity = true;
+							}
+							SoundEngine.PlaySound(4, (int)Player.position.X, (int)Player.position.Y, 63);
+							balloonProjectile.ai[0] = 1f;
+							balloonProjectile.timeLeft = 300;
+						}
+					}
+				}
+			}
+			
 			HandleCPS();
 
 			HandleRadiusAlphas();
@@ -937,6 +961,29 @@ namespace ClickerClass
 
 							accPaperclipsAmount = 0;
 						}
+					}
+					
+					if (target.GetGlobalNPC<ClickerGlobalNPC>().crystalSlime && projectile.type != ModContent.ProjectileType<ClearKeychainPro2>())
+					{
+						target.GetGlobalNPC<ClickerGlobalNPC>().crystalSlimeEnd = true;
+						int crystal = ModContent.ProjectileType<ClearKeychainPro2>();
+						bool spawnEffects = true;
+						
+						float num102 = 10f;
+						int num103 = 0;
+						while ((float)num103 < num102)
+						{
+							float hasSpawnEffects = spawnEffects ? 1f : 0f;
+							Vector2 vector12 = Vector2.UnitX * 0f;
+							vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(10f, 10f);
+							vector12 = vector12.RotatedBy((double)target.velocity.ToRotation(), default(Vector2));
+							int damageAmount = (int)(damage * 0.25f);
+							damageAmount = damageAmount < 1 ? 1 : damageAmount;
+							Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accPaperclipsItem), target.Center + vector12, target.velocity * 0f + vector12.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
+							int num = num103;
+							num103 = num + 1;
+						}
+						spawnEffects = false;
 					}
 				}
 			}

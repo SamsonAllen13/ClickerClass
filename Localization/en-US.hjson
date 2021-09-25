@@ -3,6 +3,7 @@ Mods: {
 		BuffName: {
 			AutoClick: Auto Click
 			CookieBuff: Cookie
+			Crystalized: Crystalized
 			Embrittle: Embrittle
 			Frozen: Frozen
 			Gouge: Gouge
@@ -16,6 +17,7 @@ Mods: {
 		BuffDescription: {
 			AutoClick: Hold down the Left Mouse Button to auto click
 			CookieBuff: Increases your click damage, radius, and life regeneration
+			Crystalized: Clicks will release a spread of crystal shards
 			Embrittle: Clicks will deal 8 extra damage to this target
 			Frozen: Frozen in place
 			Gouge: Rapidly losing life
@@ -158,6 +160,11 @@ Mods: {
 				{$Mods.ClickerClass.ItemTooltip.MilkCookies}
 				{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
 				'''
+			ClearKeychain: 
+				'''
+				Every 15 clicks covers nearby enemies with crystal slime
+				Click on an affected enemy to expel a burst of crystal shards from the target
+				'''
 			ClickerEmblem: 15% {$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}
 			ClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 3 seconds"
 			Cookie:
@@ -193,6 +200,11 @@ Mods: {
 				'''
 				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will toggle auto click on all Clickers
 				While auto click is enabled, click rates are greatly decreased
+				'''
+			MasterKeychain:
+				'''
+				'I can never find the right one...'
+				Your clicks are imbued with all things slimey, hot, and crystalline
 				'''
 			Milk: Gain up to 15% clicker damage based on your amount of clicks within a second
 			MilkCookies:
@@ -283,6 +295,16 @@ Mods: {
 			Spiral: {
 				Name: Spiral
 				Description: Creates a spiral galaxy that draws in enemies within close proximity
+			}
+			
+			BalloonDefense: {
+				Name: Balloon Defense
+				Description: Calls forth a friendly slime on a poppable balloon
+			}
+			
+			Incinerate: {
+				Name: Incinerate
+				Description: Creates 8 sparks downwards along nearby tiles that burn the area
 			}
 
 			Lacerate: {
@@ -498,6 +520,11 @@ Mods: {
 			BigRedButton: {
 				Name: Kaboom
 				Description: Causes a large explosion
+			}
+			
+			ClearKeychain: {
+				Name: Crystalize
+				Description: Covers nearby enemies in crystal slime; Click them to deal AOE damage
 			}
 		}
 

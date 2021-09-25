@@ -135,6 +135,7 @@ namespace ClickerClass
 		public static string StickyKeychain { get; internal set; } = string.Empty;
 		public static string ChocolateChip { get; internal set; } = string.Empty;
 		public static string BigRedButton { get; internal set; } = string.Empty;
+		public static string ClearKeychain { get; internal set; } = string.Empty;
 
 		//Clicker
 		public static string TrueStrike { get; internal set; } = string.Empty;
@@ -142,6 +143,8 @@ namespace ClickerClass
 		public static string Spiral { get; internal set; } = string.Empty;
 		public static string Lacerate { get; internal set; } = string.Empty;
 		public static string Illuminate { get; internal set; } = string.Empty;
+		public static string Incinerate { get; internal set; } = string.Empty;
+		public static string BalloonDefense { get; internal set; } = string.Empty;
 		public static string Bombard { get; internal set; } = string.Empty;
 		public static string Starfall { get; internal set; } = string.Empty;
 		public static string ToxicRelease { get; internal set; } = string.Empty;

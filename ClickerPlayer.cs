@@ -788,22 +788,16 @@ namespace ClickerClass
 			//Balloon Defense effect
 			if (Player.whoAmI == Main.myPlayer)
 			{
-				for (int i = 0; i < 1000; i++)
+				int balloonType = ModContent.ProjectileType<BalloonClickerPro>();
+				for (int i = 0; i < Main.maxProjectiles; i++)
 				{
-					Projectile balloonProjectile = Main.projectile[i];
+					Projectile balloonProj = Main.projectile[i];
 
-					if (balloonProjectile.active && balloonProjectile.ai[0] == 0f && balloonProjectile.type == ModContent.ProjectileType<BalloonClickerPro>() && balloonProjectile.owner == Player.whoAmI)
+					if (balloonProj.active && balloonProj.owner == Player.whoAmI && balloonProj.type == balloonType && balloonProj.ai[0] == 0f && balloonProj.ModProjectile is BalloonClickerPro balloon && !balloon.hasChanged)
 					{
-						if (Main.mouseLeft && Main.mouseLeftRelease && balloonProjectile.DistanceSQ(new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y + 40)) < 20 * 20)
+						if (Main.mouseLeft && Main.mouseLeftRelease && balloonProj.DistanceSQ(new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y + 40)) < 30 * 30)
 						{
-							for (int k = 0; k < 8; k++)
-							{
-								Dust dust = Dust.NewDustDirect(balloonProjectile.Center - new Vector2(4), 8, 8, 115, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 100, default, 1.25f);
-								dust.noGravity = true;
-							}
-							SoundEngine.PlaySound(4, (int)Player.position.X, (int)Player.position.Y, 63);
-							balloonProjectile.ai[0] = 1f;
-							balloonProjectile.timeLeft = 300;
+							balloonProj.ai[0] = 1f; //Handled in the AI
 						}
 					}
 				}

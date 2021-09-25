@@ -1,12 +1,11 @@
-using ClickerClass.Buffs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Audio;
-using Terraria.GameContent;
 using ReLogic.Content;
+using System.IO;
+using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
 {
@@ -26,10 +25,21 @@ namespace ClickerClass.Projectiles
 		
 		public bool hasChanged = false;
 
+		public override void SendExtraAI(BinaryWriter writer)
+		{
+			writer.Write((bool)hasChanged);
+		}
+
+		public override void ReceiveExtraAI(BinaryReader reader)
+		{
+			hasChanged = reader.ReadBoolean();
+		}
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 			Main.projFrames[Projectile.type] = 6;
+			Main.projPet[Projectile.type] = true;
 		}
 
 		public override void SetDefaults()
@@ -42,52 +52,70 @@ namespace ClickerClass.Projectiles
 			Projectile.friendly = true;
 			Projectile.penetrate = -1;
 			Projectile.timeLeft = 600;
-			Projectile.alpha = 255;
+			Projectile.alpha = 0;
 			Projectile.tileCollide = false;
+
+			DrawOriginOffsetY = -2;
+			DrawOffsetX = Projectile.width / 2 - 44 / 2;
+
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 30;
 		}
 
+		private const int BalloonOffset = 22;
+
 		public override bool PreDraw(ref Color lightColor)
 		{
-			Texture2D texture = effect.Value;
-			Rectangle frame = texture.Frame(1, 1, frameY: 0);
-			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
 			if (!hasChanged)
 			{
-				Main.spriteBatch.Draw(texture, new Vector2(Projectile.Center.X - 1, Projectile.Center.Y - 20) - Main.screenPosition, null, lightColor, Projectile.rotation, frame.Size() / 2, Projectile.scale, SpriteEffects.None, 0f);
+				Texture2D effectTexture = effect.Value;
+				Rectangle frame = effectTexture.Frame();
+				Vector2 drawOrigin = new Vector2(effectTexture.Width * 0.5f, Projectile.height * 0.5f - DrawOriginOffsetY + BalloonOffset);
+				Main.spriteBatch.Draw(effectTexture, new Vector2(Projectile.Center.X /*+ DrawOffsetX*/ - 1, Projectile.Center.Y /*- BalloonOffset*/) - Main.screenPosition, frame, lightColor, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
 			}
 			
-			//TODO dire / Diver - Remove need for PreDraw nonsense since I don't know the new form of drawOriginOffsetY / drawOffsetX
-			texture = TextureAssets.Projectile[Projectile.type].Value;
-			frame = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
-			drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-			SpriteEffects effects = Projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-			Main.spriteBatch.Draw(texture, new Vector2(Projectile.Center.X, Projectile.Center.Y + 2) - Main.screenPosition, frame, lightColor, Projectile.rotation, frame.Size() / 2, Projectile.scale, effects, 0f);
 			return true;
 		}
 
-		//TODO dire / Diver - Make the balloon phase influenced by wind and fix it's trouble getting through platforms
-
 		public override void AI()
 		{
-			if (Projectile.ai[0] == 1f)
+			Player player = Main.player[Projectile.owner];
+
+			if (Main.myPlayer == Projectile.owner && !hasChanged && Projectile.ai[0] == 1f)
 			{
 				hasChanged = true;
+				Projectile.ai[0] = 0f;
+				Projectile.timeLeft = 300;
+				Projectile.netUpdate = true;
 			}
 			
 			if (hasChanged)
 			{
+				if (Projectile.aiStyle != 26)
+				{
+					for (int k = 0; k < 8; k++)
+					{
+						Dust dust = Dust.NewDustDirect(Projectile.Center - new Vector2(6, 6 + BalloonOffset), 12, 12, 115, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 100, default, 1.25f);
+						dust.noGravity = true;
+					}
+					SoundEngine.PlaySound(4, (int)Projectile.Center.X, (int)Projectile.Center.Y, 63);
+				}
+
 				Projectile.aiStyle = 26;
 				Projectile.velocity.Y += 0.1f;
 				AIType = ProjectileID.BabySlime;
-				if (Projectile.timeLeft < 30)
-				{
-					Projectile.alpha += 8;
-				}
 			}
 			else
 			{
+				int y = (int)Projectile.position.Y / 16;
+				if (y < Main.worldSurface && y > 50)
+				{
+					//Only affected by wind if on the surface
+					Projectile.velocity.X = MathHelper.Clamp(Projectile.velocity.X + Main.windSpeedTarget * 0.2f, -2f, 2f);
+				}
+
+				Projectile.rotation = Projectile.velocity.X * 0.04f;
+
 				if (Projectile.timeLeft > 510)
 				{
 					Projectile.velocity.Y *= 0.96f;
@@ -99,7 +127,17 @@ namespace ClickerClass.Projectiles
 				Projectile.alpha += 8;
 			}
 		}
-		
+
+		public override void ModifyDamageHitbox(ref Rectangle hitbox)
+		{
+			hitbox.Inflate(2, 2);
+		}
+
+		public override bool MinionContactDamage()
+		{
+			return hasChanged;
+		}
+
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			return false;
@@ -107,7 +145,8 @@ namespace ClickerClass.Projectiles
 		
 		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
 		{
-			fallThrough = false;
+			//Always fall through. For conditional fallthrough, would require writing own AI (currently just clones vanilla)
+			fallThrough = true;
 			return true;
 		}
 

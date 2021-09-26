@@ -152,7 +152,7 @@ Mods: {
 			BigRedButton: Every 25 clicks causes a large, fiery explosion
 			BottomlessBoxofPaperclips:
 				'''
-				Collects enemy matter as you deal click damage
+				Collects enemy matter as you click on enemies
 				Creates a burst of gouging paperclips when enough matter is collected
 				'''
 			ChocolateMilkCookies:

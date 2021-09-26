@@ -921,7 +921,7 @@ namespace ClickerClass
 						}
 					}
 
-					if (AccPaperclips && projectile.type != ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>())
+					if (AccPaperclips && projectile.type == ModContent.ProjectileType<ClickDamage>())
 					{
 						int matterAmount = (int)((target.height * target.width) / 200);
 						if (matterAmount > 10)
@@ -951,7 +951,7 @@ namespace ClickerClass
 						}
 					}
 					
-					if (target.GetGlobalNPC<ClickerGlobalNPC>().crystalSlime && projectile.type != ModContent.ProjectileType<ClearKeychainPro2>())
+					if (target.GetGlobalNPC<ClickerGlobalNPC>().crystalSlime && projectile.type == ModContent.ProjectileType<ClickDamage>())
 					{
 						target.GetGlobalNPC<ClickerGlobalNPC>().crystalSlimeEnd = true;
 						int crystal = ModContent.ProjectileType<ClearKeychainPro2>();

@@ -84,7 +84,7 @@ namespace ClickerClass.Projectiles
 				for (int u = 0; u < Main.maxNPCs; u++)
 				{
 					NPC target = Main.npc[u];
-					if (target.CanBeChasedBy() && target.DistanceSQ(Projectile.Center) < 250 * 250)
+					if (target.CanBeChasedBy() && target.DistanceSQ(Projectile.Center) < 200 * 200)
 					{
 						target.AddBuff(ModContent.BuffType<Crystalized>(), 300, false);
 						for (int i = 0; i < 15; i++)

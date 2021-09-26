@@ -22,7 +22,5 @@ namespace ClickerClass.Items.Accessories
 		{
 			player.GetModPlayer<ClickerPlayer>().accIcePack = true;
 		}
-		
-		//Generated in Ice Chests
 	}
 }

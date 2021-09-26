@@ -32,7 +32,7 @@ namespace ClickerClass
 				ChestStyle.Wooden, ChestStyle.Gold, ChestStyle.LockedGold, ChestStyle.RichMahogany,
 				ChestStyle.Ivy, ChestStyle.LivingWood, ChestStyle.WebCovered, ChestStyle.Water,
 				ChestStyle.Mushroom, ChestStyle.Granite, ChestStyle.Marble, ChestStyle.Lihzahrd,
-				ChestStyle.LockedShadow
+				ChestStyle.LockedShadow, ChestStyle.Skyware, ChestStyle.Ice
 			};
 
 			Dictionary<ChestStyle, List<Chest>> chestLists = new Dictionary<ChestStyle, List<Chest>>();
@@ -78,10 +78,28 @@ namespace ClickerClass
 					chestLists[style].Add(chest);
 				}
 			}
-
+			
 			if (chestLists.ContainsKey(ChestStyle.Gold))
 			{
 				ReplaceRareItemsInChests(chestLists[ChestStyle.Gold], new int[] { ModContent.ItemType<EnchantedLED>() });
+			}
+
+			//TODO dire: Since Dead Man's chest is in TileID.Containers2, I wasnt sure how to approach this :^(
+			/*
+			if (chestLists2.ContainsKey(ChestStyle2.DeadMans))
+			{
+				ReplaceRareItemsInChests(chestLists2[ChestStyle2.DeadMans], new int[] { ModContent.ItemType<FaultyClicker>() });
+			}
+			*/
+			
+			if (chestLists.ContainsKey(ChestStyle.Skyware))
+			{
+				ReplaceRareItemsInChests(chestLists[ChestStyle.Skyware], new int[] { ModContent.ItemType<StarryClicker>() });
+			}
+			
+			if (chestLists.ContainsKey(ChestStyle.Ice))
+			{
+				ReplaceRareItemsInChests(chestLists[ChestStyle.Ice], new int[] { ModContent.ItemType<IcePack>() });
 			}
 			
 			if (chestLists.ContainsKey(ChestStyle.Mushroom))
@@ -205,7 +223,7 @@ namespace ClickerClass
 				}
 				availableChests.RemoveAt(index); // then we remove the current chest from the list
 			}
-			return; // note that this doesn't handle cases were the list of chests provided as a parameter is smaller than the amount of items to generate
+			return; // note that this doesn't handle cases where the list of chests provided as a parameter is smaller than the amount of items to generate
 		}
 	}
 }

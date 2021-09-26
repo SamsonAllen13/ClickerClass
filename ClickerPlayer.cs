@@ -793,7 +793,7 @@ namespace ClickerClass
 				{
 					Projectile balloonProj = Main.projectile[i];
 
-					if (balloonProj.active && balloonProj.owner == Player.whoAmI && balloonProj.type == balloonType && balloonProj.ai[0] == 0f && balloonProj.ModProjectile is BalloonClickerPro balloon && !balloon.hasChanged)
+					if (balloonProj.active && clickerSelected && clickerInRange && balloonProj.owner == Player.whoAmI && balloonProj.type == balloonType && balloonProj.ai[0] == 0f && balloonProj.ModProjectile is BalloonClickerPro balloon && !balloon.hasChanged)
 					{
 						if (Main.mouseLeft && Main.mouseLeftRelease && balloonProj.DistanceSQ(new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y + 40)) < 30 * 30)
 						{
@@ -967,6 +967,7 @@ namespace ClickerClass
 							vector12 = vector12.RotatedBy((double)target.velocity.ToRotation(), default(Vector2));
 							int damageAmount = (int)(damage * 0.25f);
 							damageAmount = damageAmount < 1 ? 1 : damageAmount;
+							//TODO Diver / dire - fix source for this projectile
 							Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accPaperclipsItem), target.Center + vector12, target.velocity * 0f + vector12.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
 							int num = num103;
 							num103 = num + 1;

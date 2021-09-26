@@ -1,6 +1,7 @@
 ﻿using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 
@@ -23,6 +24,11 @@ namespace ClickerClass.Items.Accessories
 			clickerPlayer.accHotKeychain = true;
 			clickerPlayer.EnableClickEffect(ClickEffect.ClearKeychain);
 			clickerPlayer.EnableClickEffect(ClickEffect.StickyKeychain);
+		}
+		
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<StickyKeychain>(), 1).AddIngredient(ModContent.ItemType<ClearKeychain>(), 1).AddIngredient(ModContent.ItemType<HotKeychain>(), 1).AddTile(TileID.TinkerersWorkbench).Register();
 		}
 	}
 }

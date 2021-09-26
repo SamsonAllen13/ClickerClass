@@ -124,15 +124,27 @@ namespace ClickerClass.NPCs
 			}
 			else if (npc.type == NPCID.Pumpking)
 			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LanternClicker>(), 10));
+			}
+			else if (npc.type == NPCID.MourningWood)
+			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WitchClicker>(), 10));
 			}
 			else if (npc.type == NPCID.IceQueen)
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenClicker>(), 10));
 			}
+			else if (npc.type == NPCID.MaggotZombie)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TriggerFinger>(), 18));
+			}
 			else if (npc.type == NPCID.MartianSaucerCore)
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HighTechClicker>(), 4));
+			}
+			else if (npc.type == NPCID.WindyBalloon)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BalloonClicker>(), 10));
 			}
 
 			Conditions.NotExpert notExpert = new Conditions.NotExpert();
@@ -163,6 +175,10 @@ namespace ClickerClass.NPCs
 			else if (npc.type == NPCID.KingSlime)
 			{
 				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<StickyKeychain>(), 4));
+			}
+			else if (npc.type == NPCID.QueenSlimeBoss)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<ClearKeychain>(), 4));
 			}
 			else if (npc.type == NPCID.LunarTowerStardust || npc.type == NPCID.LunarTowerSolar || npc.type == NPCID.LunarTowerVortex || npc.type == NPCID.LunarTowerNebula)
 			{

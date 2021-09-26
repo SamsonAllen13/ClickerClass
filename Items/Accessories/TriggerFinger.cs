@@ -25,7 +25,5 @@ namespace ClickerClass.Items.Accessories
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			clickerPlayer.accTriggerFinger = true;
 		}
-		
-		//Drops from Maggot Zombies
 	}
 }

@@ -107,18 +107,19 @@ namespace ClickerClass.Projectiles
 			}
 			else
 			{
-				int y = (int)Projectile.position.Y / 16;
-				if (y < Main.worldSurface && y > 50)
-				{
-					//Only affected by wind if on the surface
-					Projectile.velocity.X = MathHelper.Clamp(Projectile.velocity.X + Main.windSpeedTarget * 0.2f, -2f, 2f);
-				}
-
-				Projectile.rotation = Projectile.velocity.X * 0.04f;
-
 				if (Projectile.timeLeft > 510)
 				{
 					Projectile.velocity.Y *= 0.96f;
+				}
+				else
+				{
+					int y = (int)Projectile.position.Y / 16;
+					if (y < Main.worldSurface && y > 150)
+					{
+						//Only affected by wind if on the surface
+						Projectile.velocity.X = MathHelper.Clamp(Projectile.velocity.X + Main.windSpeedTarget * 0.15f, -2f, 2f);
+					}
+					Projectile.rotation = Projectile.velocity.X * 0.04f;
 				}
 			}
 			

@@ -57,7 +57,5 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = 10000;
 			Item.rare = 1;
 		}
-		
-		//Generated in Deadman's chests
 	}
 }

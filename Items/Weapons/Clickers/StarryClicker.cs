@@ -33,7 +33,5 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = 25000;
 			Item.rare = 2;
 		}
-		
-		//Not sure yet
 	}
 }

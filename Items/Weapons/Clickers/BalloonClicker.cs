@@ -12,7 +12,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.BalloonDefense = ClickerSystem.RegisterClickEffect(Mod, "BalloonDefense", null, null, 20, new Color(200, 100, 100), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.BalloonDefense = ClickerSystem.RegisterClickEffect(Mod, "BalloonDefense", null, null, 20, new Color(200, 125, 125), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, Main.MouseWorld.X, Main.MouseWorld.Y - 500, 0f, 15f, ModContent.ProjectileType<BalloonClickerPro>(), damage, 0f, player.whoAmI);
 			});
@@ -22,7 +22,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(Item, 1.15f);
-			SetColor(Item, new Color(125, 50, 50));
+			SetColor(Item, new Color(180, 75, 75));
 			SetDust(Item, 36);
 			AddEffect(Item, ClickEffect.BalloonDefense);
 
@@ -33,7 +33,5 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = 5000;
 			Item.rare = 1;
 		}
-		
-		//TODO Diver - Make this drop from Balloons 4%
 	}
 }

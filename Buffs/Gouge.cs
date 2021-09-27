@@ -9,8 +9,6 @@ namespace ClickerClass.Buffs
 		public override void SetStaticDefaults()
 		{
 			Main.debuff[Type] = true;
-			Main.pvpBuff[Type] = true;
-			Main.buffNoSave[Type] = true;
 			LongerExpertDebuff = true;
 		}
 

@@ -687,7 +687,8 @@ namespace ClickerClass
 					{
 						if (Main.myPlayer == Player.whoAmI)
 						{
-							Projectile.NewProjectile(Player.GetProjectileSource_SetBonus(0), Main.MouseWorld.X + 8, Main.MouseWorld.Y + 11, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), (int)(heldItem.damage * 0.2f), 0f, Player.whoAmI);
+							int damage = Math.Max(1, (int)(heldItem.damage * 0.2f));
+							Projectile.NewProjectile(Player.GetProjectileSource_SetBonus(0), Main.MouseWorld.X + 8, Main.MouseWorld.Y + 11, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), damage, 0f, Player.whoAmI);
 						}
 						setPrecursorTimer = 0;
 					}

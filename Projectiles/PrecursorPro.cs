@@ -3,7 +3,6 @@ using Terraria;
 
 namespace ClickerClass.Projectiles
 {
-	//Does not trigger out of combat reset
 	public class PrecursorPro : ClickerProjectile
 	{
 		public override void SetDefaults()

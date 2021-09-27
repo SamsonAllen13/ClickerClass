@@ -63,6 +63,17 @@ namespace ClickerClass
 					ClickerSystem.RegisterClickerProjectile(modProj);
 					return success;
 				}
+				else if (message == "RegisterClickerWeaponProjectile")
+				{
+					var modProj = args[index + 0] as ModProjectile;
+					if (modProj == null)
+					{
+						throw new Exception($"Call Error: The modProjectile argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerSystem.RegisterClickerWeaponProjectile(modProj);
+					return success;
+				}
 				else if (message == "RegisterClickerItem")
 				{
 					var modItem = args[index + 0] as ModItem;
@@ -138,6 +149,24 @@ namespace ClickerClass
 					else if (type != null)
 					{
 						return ClickerSystem.IsClickerProj(type.Value);
+					}
+					else
+					{
+						throw new Exception($"Call Error: The projectile/type argument for the attempted message, \"{message}\" has returned null.");
+					}
+				}
+				else if (message == "IsClickerWeaponProj")
+				{
+					var proj = args[index + 0] as Projectile;
+					var type = args[index + 0] as int?; //Try another type variation because of overload
+
+					if (proj != null)
+					{
+						return ClickerSystem.IsClickerWeaponProj(proj);
+					}
+					else if (type != null)
+					{
+						return ClickerSystem.IsClickerWeaponProj(type.Value);
 					}
 					else
 					{

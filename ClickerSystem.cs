@@ -22,6 +22,8 @@ namespace ClickerClass
 
 		private static HashSet<int> ClickerWeapons { get; set; }
 
+		private static HashSet<int> ClickerWeaponProjectiles { get; set; }
+
 		private static HashSet<int> ClickerProjectiles { get; set; }
 
 		/// <summary>
@@ -35,6 +37,7 @@ namespace ClickerClass
 			ClickerWeaponBorderTexture = new Dictionary<int, string>();
 			ClickerWeapons = new HashSet<int>();
 			ClickerProjectiles = new HashSet<int>();
+			ClickerWeaponProjectiles = new HashSet<int>();
 			ClickEffectsByName = new Dictionary<string, ClickEffect>();
 		}
 
@@ -45,6 +48,7 @@ namespace ClickerClass
 			ClickerWeaponBorderTexture = null;
 			ClickerWeapons = null;
 			ClickerProjectiles = null;
+			ClickerWeaponProjectiles = null;
 			ClickEffectsByName?.Clear();
 			ClickEffectsByName = null;
 		}
@@ -227,6 +231,26 @@ namespace ClickerClass
 		}
 
 		/// <summary>
+		/// Call this in <see cref="ModProjectile.SetStaticDefaults"/> to register this projectile into the "clicker weapon" category.
+		/// <br>This is only for projectiles spawned by clickers directly (Item.shoot). Clicker Class only uses one such projectile for all it's clickers. Only use this if you know what you are doing!</br>
+		/// <br>Various effects will only proc "on click" by checking this category instead of "all clicker class projectiles"</br>
+		/// </summary>
+		/// <param name="modProj">The <see cref="ModProjectile"/> that is to be registered</param>
+		/// <exception cref="InvalidOperationException"/>
+		public static void RegisterClickerWeaponProjectile(ModProjectile modProj)
+		{
+			if (ClickerClass.finalizedRegisterCompat)
+			{
+				throw new InvalidOperationException("Tried to register a clicker weapon projectile at the wrong time, do so in ModProjectile.SetStaticDefaults");
+			}
+			int type = modProj.Projectile.type;
+			if (!ClickerWeaponProjectiles.Contains(type))
+			{
+				ClickerWeaponProjectiles.Add(type);
+			}
+		}
+
+		/// <summary>
 		/// Call this in <see cref="ModItem.SetStaticDefaults"/> to register this item into the "clicker class" category
 		/// </summary>
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
@@ -302,7 +326,7 @@ namespace ClickerClass
 		/// <summary>
 		/// Call this to check if a projectile type belongs to the "clicker class" category
 		/// </summary>
-		/// <param name="type">The item type to be checked</param>
+		/// <param name="type">The projectile type to be checked</param>
 		/// <returns><see langword="true"/> if that category</returns>
 		public static bool IsClickerProj(int type)
 		{
@@ -317,6 +341,28 @@ namespace ClickerClass
 		public static bool IsClickerProj(Projectile proj)
 		{
 			return IsClickerProj(proj.type);
+		}
+
+		/// <summary>
+		/// Call this to check if a projectile type belongs to the "clicker weapon" category.
+		/// <br>Various effects will only proc "on click" by checking this category instead of "all clicker class projectiles"</br>
+		/// </summary>
+		/// <param name="type">The projectile type to be checked</param>
+		/// <returns><see langword="true"/> if that category</returns>
+		public static bool IsClickerWeaponProj(int type)
+		{
+			return ClickerWeaponProjectiles.Contains(type);
+		}
+
+		/// <summary>
+		/// Call this to check if a projectile type belongs to the "clicker weapon" category.
+		/// <br>Various effects will only proc "on click" by checking this category instead of "all clicker class projectiles"</br>
+		/// </summary>
+		/// <param name="proj">The <see cref="Projectile"/> to be checked</param>
+		/// <returns><see langword="true"/> if that category</returns>
+		public static bool IsClickerWeaponProj(Projectile proj)
+		{
+			return IsClickerWeaponProj(proj.type);
 		}
 
 		/// <summary>

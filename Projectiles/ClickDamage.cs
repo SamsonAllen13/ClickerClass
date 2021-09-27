@@ -12,6 +12,13 @@ namespace ClickerClass.Projectiles
 	/// </summary>
 	public class ClickDamage : ClickerProjectile
 	{
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+
+			ClickerSystem.RegisterClickerWeaponProjectile(this);
+		}
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();

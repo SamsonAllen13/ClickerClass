@@ -897,9 +897,9 @@ namespace ClickerClass
 
 		public override void OnHitNPCWithProj(Projectile projectile, NPC target, int damage, float knockback, bool crit)
 		{
-			if (ClickerSystem.IsClickerProj(projectile))
+			//Proc effects only when an actual "click" happens, and not other clicker projectiles
+			if (ClickerSystem.IsClickerWeaponProj(projectile))
 			{
-				int clickDamageType = ModContent.ProjectileType<ClickDamage>(); //TODO dire make a set for this + API
 				ClickerGlobalNPC clickerNPC = target.GetGlobalNPC<ClickerGlobalNPC>();
 				if (target.value > 0f)
 				{
@@ -924,7 +924,7 @@ namespace ClickerClass
 					}
 				}
 
-				if (AccPaperclips && projectile.type == clickDamageType)
+				if (AccPaperclips)
 				{
 					int matterAmount = (int)((target.height * target.width) / 200);
 					if (matterAmount > 10)
@@ -954,7 +954,7 @@ namespace ClickerClass
 					}
 				}
 
-				if (clickerNPC.crystalSlime && projectile.type == clickDamageType)
+				if (clickerNPC.crystalSlime)
 				{
 					target.RequestBuffRemoval(ModContent.BuffType<Crystalized>());
 
@@ -978,10 +978,7 @@ namespace ClickerClass
 						spawnEffects = false;
 					}
 				}
-			}
 
-			if (projectile.type != ModContent.ProjectileType<PrecursorPro>())
-			{
 				outOfCombatTimer = OutOfCombatTimeMax;
 			}
 		}

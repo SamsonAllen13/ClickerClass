@@ -355,7 +355,7 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call this to check if a projectile type belongs to the "clicker weapon" category.
+		/// Call this to check if a projectile belongs to the "clicker weapon" category.
 		/// <br>Various effects will only proc "on click" by checking this category instead of "all clicker class projectiles"</br>
 		/// </summary>
 		/// <param name="proj">The <see cref="Projectile"/> to be checked</param>

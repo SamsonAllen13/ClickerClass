@@ -899,6 +899,8 @@ namespace ClickerClass
 		{
 			if (ClickerSystem.IsClickerProj(projectile))
 			{
+				int clickDamageType = ModContent.ProjectileType<ClickDamage>(); //TODO dire make a set for this + API
+				ClickerGlobalNPC clickerNPC = target.GetGlobalNPC<ClickerGlobalNPC>();
 				if (target.value > 0f)
 				{
 					if (accGoldenTicket)
@@ -920,58 +922,59 @@ namespace ClickerClass
 							NetMessage.SendData(MessageID.SyncItem, -1, -1, null, coin, 1f);
 						}
 					}
+				}
 
-					if (AccPaperclips && projectile.type == ModContent.ProjectileType<ClickDamage>())
+				if (AccPaperclips && projectile.type == clickDamageType)
+				{
+					int matterAmount = (int)((target.height * target.width) / 200);
+					if (matterAmount > 10)
 					{
-						int matterAmount = (int)((target.height * target.width) / 200);
-						if (matterAmount > 10)
-						{
-							matterAmount = 10;
-						}
-						accPaperclipsAmount += matterAmount;
-						
-						if (accPaperclipsAmount >= 100)
-						{
-							SoundEngine.PlaySound(2, (int)Player.position.X, (int)Player.position.Y, 108);
-							for (int k = 0; k < 15; k++)
-							{
-								int dust = Dust.NewDust(target.position, 20, 20, 1, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 150, default(Color), 1.35f);
-								Main.dust[dust].noGravity = true;
-							}
-
-							if (Main.myPlayer == Player.whoAmI)
-							{
-								for (int k = 0; k < 4; k++)
-								{
-									Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accPaperclipsItem), Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
-								}
-							}
-
-							accPaperclipsAmount = 0;
-						}
+						matterAmount = 10;
 					}
-					
-					if (target.GetGlobalNPC<ClickerGlobalNPC>().crystalSlime && projectile.type == ModContent.ProjectileType<ClickDamage>())
+					accPaperclipsAmount += matterAmount;
+
+					if (accPaperclipsAmount >= 100)
 					{
-						target.GetGlobalNPC<ClickerGlobalNPC>().crystalSlimeEnd = true;
-						int crystal = ModContent.ProjectileType<ClearKeychainPro2>();
-						bool spawnEffects = true;
-						
-						float num102 = 10f;
-						int num103 = 0;
-						while ((float)num103 < num102)
+						SoundEngine.PlaySound(2, (int)Player.position.X, (int)Player.position.Y, 108);
+						for (int k = 0; k < 15; k++)
 						{
-							float hasSpawnEffects = spawnEffects ? 1f : 0f;
-							Vector2 vector12 = Vector2.UnitX * 0f;
-							vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(10f, 10f);
-							vector12 = vector12.RotatedBy((double)target.velocity.ToRotation(), default(Vector2));
-							int damageAmount = (int)(damage * 0.25f);
-							damageAmount = damageAmount < 1 ? 1 : damageAmount;
-							//TODO Diver / dire - fix source for this projectile
-							Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accPaperclipsItem), target.Center + vector12, target.velocity * 0f + vector12.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
-							int num = num103;
-							num103 = num + 1;
+							int dust = Dust.NewDust(target.position, 20, 20, 1, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 150, default(Color), 1.35f);
+							Main.dust[dust].noGravity = true;
 						}
+
+						if (Main.myPlayer == Player.whoAmI)
+						{
+							for (int k = 0; k < 4; k++)
+							{
+								Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accPaperclipsItem), Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
+							}
+						}
+
+						accPaperclipsAmount = 0;
+					}
+				}
+
+				if (clickerNPC.crystalSlime && projectile.type == clickDamageType)
+				{
+					target.RequestBuffRemoval(ModContent.BuffType<Crystalized>());
+
+					target.AddBuff(ModContent.BuffType<CrystalizedFatigue>(), 60); //Give short cooldown between application in case of proccing on the same enemy due to spread
+
+					int crystal = ModContent.ProjectileType<ClearKeychainPro2>();
+					bool spawnEffects = true;
+
+					float total = 10f;
+					int i = 0;
+					while (i < total)
+					{
+						float hasSpawnEffects = spawnEffects ? 1f : 0f;
+						Vector2 toDir = Vector2.UnitX * 0f;
+						toDir += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / total)) * new Vector2(10f, 10f);
+						toDir = toDir.RotatedBy(target.velocity.ToRotation());
+						int damageAmount = (int)(damage * 0.25f);
+						damageAmount = damageAmount < 1 ? 1 : damageAmount;
+						Projectile.NewProjectile(Player.GetProjectileSource_Misc(0), target.Center + toDir, target.velocity * 0f + toDir.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
+						i++;
 						spawnEffects = false;
 					}
 				}

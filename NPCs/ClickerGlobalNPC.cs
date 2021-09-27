@@ -20,7 +20,7 @@ namespace ClickerClass.NPCs
 		public bool honeySlow = false;
 		public bool embrittle = false;
 		public bool crystalSlime = false;
-		public bool crystalSlimeEnd = false;
+		public bool crystalSlimeFatigue = false;
 		public bool stunned = false;
 
 		public bool buffImmunitiesSet = false;
@@ -51,6 +51,7 @@ namespace ClickerClass.NPCs
 			honeySlow = false;
 			embrittle = false;
 			crystalSlime = false;
+			crystalSlimeFatigue = false;
 			stunned = false;
 		}
 

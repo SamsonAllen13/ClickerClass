@@ -7,6 +7,8 @@ namespace ClickerClass.Projectiles
 {
 	public class ClearKeychainPro2 : ClickerProjectile
 	{
+		public int IgnoreWhoAmI => (int)Projectile.ai[0];
+
 		public bool HasSpawnEffects
 		{
 			get => Projectile.ai[1] == 1f;
@@ -31,6 +33,16 @@ namespace ClickerClass.Projectiles
 			Projectile.timeLeft = 30;
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 60;
+		}
+
+		public override bool? CanHitNPC(NPC target)
+		{
+			if (target.whoAmI == IgnoreWhoAmI)
+			{
+				return false;
+			}
+
+			return base.CanHitNPC(target);
 		}
 
 		public override void AI()

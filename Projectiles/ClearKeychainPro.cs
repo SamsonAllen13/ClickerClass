@@ -7,6 +7,7 @@ using Terraria.Audio;
 using Terraria.GameContent;
 using ReLogic.Content;
 using ClickerClass.Buffs;
+using ClickerClass.NPCs;
 
 namespace ClickerClass.Projectiles
 {
@@ -17,6 +18,7 @@ namespace ClickerClass.Projectiles
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 		}
@@ -84,7 +86,7 @@ namespace ClickerClass.Projectiles
 				for (int u = 0; u < Main.maxNPCs; u++)
 				{
 					NPC target = Main.npc[u];
-					if (target.CanBeChasedBy() && target.DistanceSQ(Projectile.Center) < 200 * 200)
+					if (target.CanBeChasedBy() && !target.GetGlobalNPC<ClickerGlobalNPC>().crystalSlimeFatigue && target.DistanceSQ(Projectile.Center) < 200 * 200)
 					{
 						target.AddBuff(ModContent.BuffType<Crystalized>(), 300, false);
 						for (int i = 0; i < 15; i++)
@@ -102,6 +104,7 @@ namespace ClickerClass.Projectiles
 						}
 					}
 				}
+
 				Projectile.Kill();
 			}
 		}

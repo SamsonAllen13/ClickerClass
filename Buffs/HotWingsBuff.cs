@@ -3,7 +3,7 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Buffs
 {
-	public class Haste : ModBuff
+	public class HotWingsBuff : ModBuff
 	{
 		public override void SetStaticDefaults()
 		{
@@ -12,9 +12,7 @@ namespace ClickerClass.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.jumpSpeedBoost = 2f;
-			player.moveSpeed += 0.25f;
-			player.maxRunSpeed += 0.25f;
+			player.GetModPlayer<ClickerPlayer>().effectHotWings = true;
 		}
 	}
 }

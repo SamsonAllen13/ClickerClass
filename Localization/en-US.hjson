@@ -11,6 +11,7 @@ Mods: {
 			HoneySlow: Honey
 			InfluenceBuff: Influence
 			OverclockBuff: Overclock
+			HotWingsBuff: Hot Wings
 			Stunned: Stunned
 		}
 
@@ -114,6 +115,7 @@ Mods: {
 			HemoClicker: Hemo Clicker
 			HighTechClicker: High Tech Clicker
 			HoneyGlazedClicker: Honey Glazed Clicker
+			ImpishClicker: Impish Clicker
 			IronClicker: Iron Clicker
 			LeadClicker: Lead Clicker
 			LihzahrdClicker: Lihzahrd Clicker
@@ -222,7 +224,7 @@ Mods: {
 			PortableParticleAccelerator: Clickers within the inner 50% of your clicker radius deal 8 more damage
 			GoldenTicket:
 				'''
-				Your clicker damage will generate some coins
+				Generates some coins as you click on enemies
 				{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 10%
 				'''
 			RegalClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} half-second"
@@ -327,6 +329,11 @@ Mods: {
 				Description: Creates a blizzard cloud that rains freezing hail downwards
 			}
 
+			HotWings: {
+				Name: Hot Wings
+				Description: Grants a single-use dash; use by double-tapping a direction
+			}
+			
 			Illuminate: {
 				Name: Illuminate
 				Description: Creates 8 sparks along nearby tiles that illuminate the area

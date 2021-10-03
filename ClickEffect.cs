@@ -142,6 +142,7 @@ namespace ClickerClass
 		public static string HolyNova { get; internal set; } = string.Empty;
 		public static string Spiral { get; internal set; } = string.Empty;
 		public static string Lacerate { get; internal set; } = string.Empty;
+		public static string HotWings { get; internal set; } = string.Empty;
 		public static string Illuminate { get; internal set; } = string.Empty;
 		public static string Incinerate { get; internal set; } = string.Empty;
 		public static string BalloonDefense { get; internal set; } = string.Empty;

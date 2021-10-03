@@ -88,6 +88,10 @@ namespace ClickerClass.Items
 						{
 							return 8f;
 						}
+						else
+						{
+							return 10f;
+						}
 					}
 					else
 					{

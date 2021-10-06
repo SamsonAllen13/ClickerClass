@@ -14,7 +14,8 @@ namespace ClickerClass.UI
 			{
 				new ClickerCursor(),
 				new HotKeychainGauge(),
-				new PaperclipsGauge()
+				new PaperclipsGauge(),
+				new SMedalGauge()
 			};
 		}
 

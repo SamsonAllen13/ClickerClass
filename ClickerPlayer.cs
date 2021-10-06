@@ -128,6 +128,7 @@ namespace ClickerClass
 		public bool accHandCream = false;
 		[Obsolete("Use HasClickEffect(\"ClickerClass:StickyKeychain\") and EnableClickEffect(\"ClickerClass:StickyKeychain\") instead", false)]
 		public bool accStickyKeychain = false;
+		public bool accSMedal = false;
 		public bool accGlassOfMilk = false;
 		public Item accCookieItem = null;
 		public bool accCookie = false;
@@ -148,6 +149,7 @@ namespace ClickerClass
 
 		public int accClickingGloveTimer = 0;
 		public int accCookieTimer = 0;
+		public int accSMedalAmount = 0;
 		public int accPaperclipsAmount = 0;
 		public int accHotKeychainTimer = 0;
 		public int accHotKeychainAmount = 0;
@@ -845,9 +847,9 @@ namespace ClickerClass
 				}
 			}
 			
-			//Balloon Defense effect
 			if (Player.whoAmI == Main.myPlayer)
 			{
+				//Balloon Defense effect
 				int balloonType = ModContent.ProjectileType<BalloonClickerPro>();
 				for (int i = 0; i < Main.maxProjectiles; i++)
 				{
@@ -861,6 +863,43 @@ namespace ClickerClass
 						}
 					}
 				}
+				
+				//S Medal effect
+				int medalType = ModContent.ProjectileType<SMedalPro>();
+				for (int i = 0; i < Main.maxProjectiles; i++)
+				{
+					Projectile medalProj = Main.projectile[i];
+
+					if (medalProj.active && clickerSelected && medalProj.owner == Player.whoAmI && medalProj.type == medalType)
+					{
+						if (accSMedalAmount < 300 && medalProj.DistanceSQ(Main.MouseWorld) < 20 * 20)
+						{
+							accSMedalAmount++;
+							medalProj.ai[1] = 1f;
+							Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
+							Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 86, Scale: 1.25f);
+							dust.noGravity = true;
+							dust.velocity = -offset * 0.05f;
+						}
+					}
+				}
+			}
+			
+			//S Medal effect
+			if (accSMedal)
+			{
+				int medalType = ModContent.ProjectileType<SMedalPro>();
+				if (Main.myPlayer == Player.whoAmI && Player.ownedProjectileCounts[medalType] < 1)
+				{
+					for (int l = 0; l < 1; l++)
+					{
+						Projectile.NewProjectile(Player.GetProjectileSource_Misc(0), Player.Center, Vector2.Zero, medalType, 0, 0f, Player.whoAmI, l, 0.5f);
+					}
+				}
+			}
+			else
+			{
+				accSMedalAmount = 0;
 			}
 			
 			HandleCPS();
@@ -962,6 +1001,14 @@ namespace ClickerClass
 				if (target.GetGlobalNPC<ClickerGlobalNPC>().embrittle)
 				{
 					damage += 8;
+				}
+			}
+			if (ClickerSystem.IsClickerWeaponProj(proj))
+			{
+				if (accSMedalAmount > 30)
+				{
+					crit = true;
+					accSMedalAmount -= 30;
 				}
 			}
 		}

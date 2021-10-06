@@ -850,25 +850,28 @@ namespace ClickerClass
 			}
 			
 			//Effects related to having cursor within the radius
-			if (Player.whoAmI == Main.myPlayer && clickerInRange)
+			if (Player.whoAmI == Main.myPlayer)
 			{
 				//Balloon Defense effect
-				int balloonType = ModContent.ProjectileType<BalloonClickerPro>();
-				for (int i = 0; i < Main.maxProjectiles; i++)
+				if (clickerInRange)
 				{
-					Projectile balloonProj = Main.projectile[i];
-
-					if (balloonProj.active && clickerSelected && balloonProj.owner == Player.whoAmI && balloonProj.type == balloonType && balloonProj.ai[0] == 0f && balloonProj.ModProjectile is BalloonClickerPro balloon && !balloon.hasChanged)
+					int balloonType = ModContent.ProjectileType<BalloonClickerPro>();
+					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
-						if (Main.mouseLeft && Main.mouseLeftRelease && balloonProj.DistanceSQ(new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y + 40)) < 30 * 30)
+						Projectile balloonProj = Main.projectile[i];
+
+						if (balloonProj.active && clickerSelected && balloonProj.owner == Player.whoAmI && balloonProj.type == balloonType && balloonProj.ai[0] == 0f && balloonProj.ModProjectile is BalloonClickerPro balloon && !balloon.hasChanged)
 						{
-							balloonProj.ai[0] = 1f; //Handled in the AI
+							if (Main.mouseLeft && Main.mouseLeftRelease && balloonProj.DistanceSQ(new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y + 40)) < 30 * 30)
+							{
+								balloonProj.ai[0] = 1f; //Handled in the AI
+							}
 						}
 					}
 				}
 				
 				//S Medal effect
-				if (accSMedalAmount < 300)
+				if (accSMedalAmount < 200)
 				{
 					int medalType = ModContent.ProjectileType<SMedalPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
@@ -1010,10 +1013,10 @@ namespace ClickerClass
 
 			if (ClickerSystem.IsClickerWeaponProj(proj))
 			{
-				if (accSMedalAmount >= 30)
+				if (accSMedalAmount >= 20)
 				{
 					crit = true;
-					accSMedalAmount -= 30;
+					accSMedalAmount -= 20;
 				}
 			}
 		}

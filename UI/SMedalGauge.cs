@@ -26,10 +26,10 @@ namespace ClickerClass.UI
 			{
 				FadeTime = 0;
 			}
-			else if (clickerPlayer.accSMedalAmount > 30 && clickerPlayer.clickerSelected)
+			else if (clickerPlayer.accSMedalAmount > 20 && clickerPlayer.clickerSelected)
 			{
 				FadeTime = MAX_FADE_TIME + FADE_DELAY;
-				if (clickerPlayer.accSMedalAmount > 30)
+				if (clickerPlayer.accSMedalAmount > 20)
 				{
 					_delay++;
 				}
@@ -94,7 +94,7 @@ namespace ClickerClass.UI
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 
 			// Percentage of bar filled
-			float fill = (float)(clickerPlayer.accSMedalAmount) / 300;
+			float fill = (float)(clickerPlayer.accSMedalAmount) / 200;
 
 			// Change the width of the frame so it only draws part of the bar
 			frame.Width = (int)((frame.Width - 8) * fill + 8);
@@ -117,7 +117,7 @@ namespace ClickerClass.UI
 			if (frame.Contains(Main.mouseX, Main.mouseY))
 			{
 				//player.showItemIcon = false;
-				string text = "Chain: " + (int)(clickerPlayer.accSMedalAmount / 30) + " / 10";
+				string text = "Charges: " + (int)(clickerPlayer.accSMedalAmount / 20) + " / 10";
 				Main.instance.MouseTextHackZoom(text, Terraria.ID.ItemRarityID.Pink);
 				Main.mouseText = true;
 			}

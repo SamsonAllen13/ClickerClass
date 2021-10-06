@@ -878,7 +878,7 @@ namespace ClickerClass
 					{
 						Projectile medalProj = Main.projectile[i];
 
-						if (medalProj.active && medalProj.owner == Player.whoAmI && medalProj.type == medalType)
+						if (medalProj.active && clickerSelected && medalProj.owner == Player.whoAmI && medalProj.type == medalType)
 						{
 							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
 							if (medalProj.DistanceSQ(Main.MouseWorld) < len)

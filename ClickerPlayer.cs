@@ -128,7 +128,8 @@ namespace ClickerClass
 		public bool accHandCream = false;
 		[Obsolete("Use HasClickEffect(\"ClickerClass:StickyKeychain\") and EnableClickEffect(\"ClickerClass:StickyKeychain\") instead", false)]
 		public bool accStickyKeychain = false;
-		public bool accSMedal = false;
+		public Item accSMedalItem = null;
+		public bool AccSMedal => accSMedalItem != null && !accSMedalItem.IsAir;
 		public bool accGlassOfMilk = false;
 		public Item accCookieItem = null;
 		public bool accCookie = false;
@@ -477,6 +478,7 @@ namespace ClickerClass
 			accEnchantedLED = false;
 			accEnchantedLED2 = false;
 			accHandCream = false;
+			accSMedalItem = null;
 			accGlassOfMilk = false;
 			accCookieItem = null;
 			accCookie = false;
@@ -847,7 +849,8 @@ namespace ClickerClass
 				}
 			}
 			
-			if (Player.whoAmI == Main.myPlayer)
+			//Effects related to having cursor within the radius
+			if (Player.whoAmI == Main.myPlayer && clickerInRange)
 			{
 				//Balloon Defense effect
 				int balloonType = ModContent.ProjectileType<BalloonClickerPro>();
@@ -855,7 +858,7 @@ namespace ClickerClass
 				{
 					Projectile balloonProj = Main.projectile[i];
 
-					if (balloonProj.active && clickerSelected && clickerInRange && balloonProj.owner == Player.whoAmI && balloonProj.type == balloonType && balloonProj.ai[0] == 0f && balloonProj.ModProjectile is BalloonClickerPro balloon && !balloon.hasChanged)
+					if (balloonProj.active && clickerSelected && balloonProj.owner == Player.whoAmI && balloonProj.type == balloonType && balloonProj.ai[0] == 0f && balloonProj.ModProjectile is BalloonClickerPro balloon && !balloon.hasChanged)
 					{
 						if (Main.mouseLeft && Main.mouseLeftRelease && balloonProj.DistanceSQ(new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y + 40)) < 30 * 30)
 						{
@@ -865,36 +868,37 @@ namespace ClickerClass
 				}
 				
 				//S Medal effect
-				int medalType = ModContent.ProjectileType<SMedalPro>();
-				for (int i = 0; i < Main.maxProjectiles; i++)
+				if (accSMedalAmount < 300)
 				{
-					Projectile medalProj = Main.projectile[i];
-
-					if (medalProj.active && clickerSelected && medalProj.owner == Player.whoAmI && medalProj.type == medalType)
+					int medalType = ModContent.ProjectileType<SMedalPro>();
+					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
-						if (accSMedalAmount < 300 && medalProj.DistanceSQ(Main.MouseWorld) < 20 * 20)
+						Projectile medalProj = Main.projectile[i];
+
+						if (medalProj.active && medalProj.owner == Player.whoAmI && medalProj.type == medalType)
 						{
-							accSMedalAmount++;
-							medalProj.ai[1] = 1f;
-							Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
-							Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 86, Scale: 1.25f);
-							dust.noGravity = true;
-							dust.velocity = -offset * 0.05f;
+							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
+							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
+							{
+								accSMedalAmount++;
+								medalProj.ai[1] = 1f;
+								Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
+								Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 86, Scale: 1.25f);
+								dust.noGravity = true;
+								dust.velocity = -offset * 0.05f;
+							}
 						}
 					}
 				}
 			}
 			
 			//S Medal effect
-			if (accSMedal)
+			if (AccSMedal && Main.myPlayer == Player.whoAmI)
 			{
 				int medalType = ModContent.ProjectileType<SMedalPro>();
-				if (Main.myPlayer == Player.whoAmI && Player.ownedProjectileCounts[medalType] < 1)
+				if (Player.ownedProjectileCounts[medalType] < 1)
 				{
-					for (int l = 0; l < 1; l++)
-					{
-						Projectile.NewProjectile(Player.GetProjectileSource_Misc(0), Player.Center, Vector2.Zero, medalType, 0, 0f, Player.whoAmI, l, 0.5f);
-					}
+					Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, medalType, 0, 0f, Player.whoAmI, 0f, 0.5f);
 				}
 			}
 			else
@@ -1003,9 +1007,10 @@ namespace ClickerClass
 					damage += 8;
 				}
 			}
+
 			if (ClickerSystem.IsClickerWeaponProj(proj))
 			{
-				if (accSMedalAmount > 30)
+				if (accSMedalAmount >= 30)
 				{
 					crit = true;
 					accSMedalAmount -= 30;

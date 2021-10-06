@@ -1,11 +1,22 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
 	public class SMedalPro : ClickerProjectile
 	{
+		public float Rot
+		{
+			get => Projectile.ai[0];
+			set => Projectile.ai[0] = value;
+		}
+
+		public float Alpha
+		{
+			get => Projectile.ai[1];
+			set => Projectile.ai[1] = value;
+		}
+
 		public override void SetDefaults()
 		{
 			Projectile.width = 40;
@@ -20,27 +31,33 @@ namespace ClickerClass.Projectiles
 		
 		public override Color? GetAlpha(Color lightColor)
 		{
-			return new Color(255, 255, 255, 150) * Projectile.ai[1];
+			return new Color(255, 255, 255, 150) * Alpha * Projectile.Opacity;
 		}
 
 		public Vector2 rotVec = new Vector2(0, 120);
-		public float rot = 0f;
 
 		public override void AI()
 		{
 			Player player = Main.player[Projectile.owner];
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			
-			if (clickerPlayer.accSMedal)
+			if (clickerPlayer.AccSMedal)
 			{
 				Projectile.timeLeft = 10;
 			}
-
-			rot += 0.025f;
-			Projectile.Center = player.Center + rotVec.RotatedBy(rot + (Projectile.ai[0] * (6.28f / 1)));
-			if (Projectile.ai[1] > 0.1f)
+			if (player.whoAmI != Projectile.owner)
 			{
-				Projectile.ai[1] -= 0.01f;
+				//Hide for everyone but the owner
+				Projectile.alpha = 255;
+			}
+
+			Rot += 0.025f;
+			Projectile.Center = player.Center + rotVec.RotatedBy(Rot);
+			Projectile.gfxOffY = player.gfxOffY;
+
+			if (Alpha > 0.1f)
+			{
+				Alpha -= 0.01f;
 			}
 		}
 	}

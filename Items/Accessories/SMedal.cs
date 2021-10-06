@@ -21,7 +21,7 @@ namespace ClickerClass.Items.Accessories
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.accSMedal = true;
+			clickerPlayer.accSMedalItem = Item;
 		}
 		
 		//TODO Diver: Make obtainable

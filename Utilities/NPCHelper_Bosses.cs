@@ -62,7 +62,7 @@ namespace ClickerClass.Utilities
 					return true;
 			}
 
-			if (npc.IsChild(out NPC parent) && parent.IsBoss())
+			if (npc.IsChild(out NPC parent) && parent.whoAmI != npc.whoAmI && parent.IsBoss())
 			{
 				return true;
 			}
@@ -112,7 +112,7 @@ namespace ClickerClass.Utilities
 					return true;
 			}
 
-			if (npc.IsChild(out NPC parent) && parent.IsMiniBoss())
+			if (npc.IsChild(out NPC parent) && parent.whoAmI != npc.whoAmI && parent.IsMiniBoss())
 			{
 				return true;
 			}

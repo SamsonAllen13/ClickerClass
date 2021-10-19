@@ -7,6 +7,7 @@ using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.OS;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -859,7 +860,13 @@ namespace ClickerClass
 			{
 				enteredWorldOnceThisSession = true;
 
-				Main.NewText($"[c/{Color.Orange.Hex3()}:Welcome to {mod.DisplayName}!] If your clickers attack slowly, this may be caused by using mods which enable auto-reuse, such as OmniSwing.");
+				string welcome = $"Welcome to {mod.DisplayName}!";
+				if (!Platform.IsOSX)
+				{
+					welcome = $"[c/{Color.Orange.Hex3()}:{welcome}]";
+				}
+
+				Main.NewText($"{welcome} If your clickers attack slowly, this may be caused by using mods which enable auto-reuse, such as OmniSwing.");
 			}
 		}
 

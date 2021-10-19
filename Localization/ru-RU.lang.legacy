@@ -29,8 +29,8 @@ BuffDescription.InfluenceBuff={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseC
 BuffName.OverclockBuff=Разгон
 BuffDescription.OverclockBuff=Каждый клик активирует эффект курсора
 
-# BuffName.Stunned=Stunned
-# BuffDescription.Stunned=Stunned in place
+BuffName.Stunned=Ошеломлённый
+BuffDescription.Stunned=Вы не можете сдвинуться с места
 
 # Commons
 #######
@@ -40,12 +40,18 @@ Common.Tooltips.IncreasesClickCritChance=Увеличивает шанс кри�
 Common.Tooltips.IncreasesBaseClickRadius=Увеличивает базовый радиус курсора
 Common.Tooltips.ReducesBaseClickRadius=Уменьшает базовый радиус курсора
 Common.Tooltips.ReducesAmountOfClicks=Снижает требуемое количество кликов для эффекта курсора
-Common.Tooltips.ClickingGloveEvery=Пока вы в бою, автоматически активирует курсор каждую
+Common.Tooltips.ClickingGloveEvery=Пока вы в бою, автоматически активирует курсор каждую(ые)
 Common.Tooltips.Clicker=Кликните на врага в пределах радиуса курсора и его видимости, чтобы нанести ему урон
 
 Common.Tooltips.MoreThanOneClick={0} кликов
 Common.Tooltips.OneClick=1 клик
 Common.Unknown=Неизвестно
+
+Common.Tooltips.Copper=медных
+Common.Tooltips.Silver=серебряных
+Common.Tooltips.Gold=золотых
+Common.Tooltips.Coins=монет
+Common.Tooltips.And=и
 
 
 # DO NOT TRANSLATE THIS ONE
@@ -64,10 +70,10 @@ ItemName.AncientClickingGlove=Древняя кликающая перчатка
 ItemTooltip.AncientClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} секунду
 
 ItemName.ChocolateChip=Кусок шоколада
-ItemTooltip.ChocolateChip=Каждые 15 кликов выпускает скопление наносящего урон шоколада
+ItemTooltip.ChocolateChip=Через каждые 15 кликов выпускает скопление наносящего урон шоколада
 
-# ItemName.BigRedButton=Big Red Button
-# ItemTooltip.BigRedButton=Every 25 clicks causes a large, fiery explosion
+ItemName.BigRedButton=Большая красная кнопка
+ItemTooltip.BigRedButton=Через каждые 25 кликов вызывает огромный огненный взрыв
 
 ItemName.ChocolateMilkCookies=Шоколадное молоко с печеньем
 ItemTooltip.ChocolateMilkCookies={$Mods.ClickerClass.ItemTooltip.MilkCookies}\n{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
@@ -102,11 +108,11 @@ ItemTooltip.MousePad={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiu
 ItemName.PortableParticleAccelerator=Карманный ускоритель частиц
 ItemTooltip.PortableParticleAccelerator=Клики в пределах 20% общего радиуса вашего курсора наносят на 20% больше урона
 
-# ItemName.GoldenTicket=Golden Ticket
-# ItemTooltip.GoldenTicket=Your clicker damage will generate some coins\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 10%
+ItemName.GoldenTicket=Золотой билет
+ItemTooltip.GoldenTicket=Ваш урон, нанесённый кликами, создаёт несколько монет\n{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 10%
 
 ItemName.RegalClickingGlove=Королевская кликающая перчатка
-ItemTooltip.RegalClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} полсекунду
+ItemTooltip.RegalClickingGlove={$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} полсекунды
 
 ItemName.Soda=Сода
 ItemTooltip.Soda={$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 1 единицу
@@ -158,13 +164,13 @@ ItemTooltip.PrecursorGreaves=Увеличивает скорость перед�
 
 ItemName.PrecursorHelmet=Шлем предтечей
 ItemTooltip.PrecursorHelmet={$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 8%
-SetBonus.Precursor=Клики вызывают дополнительный запоздалый огненный клик наносящий 25% урона текущего курсора
+SetBonus.Precursor=Клики вызывают дополнительный запоздалый огненный клик, наносящий 25% урона текущего курсора
 
 
 # Consumables
 #######
 ItemName.InfluencePotion=Зелье влияния
-ItemTooltip.InfluencePotion={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%\
+ItemTooltip.InfluencePotion={$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%
 
 
 # Tools
@@ -190,11 +196,11 @@ ClickEffect.Spiral.Description=Создаёт спиральную галакт�
 
 ItemName.BoneClicker=Костяной курсор
 ClickEffect.Lacerate.Name=Разрыв
-ClickEffect.Lacerate.Description=Накладывает дебафф «Глубокий порез», нанося 30 единиц урона в секунду
+ClickEffect.Lacerate.Description=Накладывает дебафф «{$Mods.ClickerClass.BuffName.Gouge}», нанося 30 единиц урона в секунду
 
-# ItemName.BlizzardClicker=Blizzard Clicker
-# ClickEffect.Flurry.Name=Flurry
-# ClickEffect.Flurry.Description=Creates a blizzard cloud that rains freezing hail downwards
+ItemName.BlizzardClicker=Курсор снежной бури
+ClickEffect.Flurry.Name=Ливень
+ClickEffect.Flurry.Description=Создаёт облако снежной бури, осыпая врагов ледяным градом
 
 ItemName.CandleClicker=Курсор-свеча
 ClickEffect.Illuminate.Name=Просветление
@@ -268,9 +274,9 @@ ItemName.MiceClicker=Курсор фрагмента мышки
 ClickEffect.Collision.Name=Столкновение
 ClickEffect.Collision.Description=Стреляет 8 неустойчивыми зарядами, которые через секунду следуют за курсором
 
-# ItemName.MyceliumClicker=Mycelium Clicker
-# ClickEffect.Spores.Name=Spores
-# ClickEffect.Spores.Description=Spits out a volley of drifting spores
+ItemName.MyceliumClicker=Мицелиевый курсор
+ClickEffect.Spores.Name=Споры
+ClickEffect.Spores.Description=Выплёвывает залп разлетающихся спор
 
 ItemName.MythrilClicker=Мифриловый курсор
 ClickEffect.Embrittle.Name=Хрупкость
@@ -290,13 +296,13 @@ ItemName.PointyClicker=Заострённый курсор
 ClickEffect.StingingThorn.Name=Жалящий шип
 ClickEffect.StingingThorn.Description=Стреляет шипом, который движется в сторону ближайшего врага
 
-ItemName.RedHotClicker=Пылающе красный курсор
+ItemName.RedHotClicker=Пылающий красный курсор
 ClickEffect.Inferno.Name=Ад
 ClickEffect.Inferno.Description=Создаёт взрыв, наносящий урон и накладывающий дебаффы «{$BuffName.Oiled}» и «{$BuffName.OnFire}»
 
-# ItemName.SandstormClicker=Sandstorm Clicker
-# ClickEffect.DustDevil.Name=Dust Devil
-# ClickEffect.DustDevil.Description=Creates a violent tornado that chases down enemies
+ItemName.SandstormClicker=Курсор песчаной бури
+ClickEffect.DustDevil.Name=Пылевой дьявол
+ClickEffect.DustDevil.Description=Создаёт стремительный торнадо, который преследует врагов
 
 ItemName.ShadowyClicker=Мрачный курсор
 ClickEffect.Curse.Name=Проклятие
@@ -345,9 +351,9 @@ ItemName.WitchClicker=Курсор ведьмы
 ClickEffect.WildMagic.Name=Необузданная магия
 ClickEffect.WildMagic.Description=Случайно срабатывает как любой возможный эффект клика
 
-# ItemName.WebClicker=Web Clicker
-# ClickEffect.WebSplash.Name=Web Splash
-# ClickEffect.WebSplash.Description=Fires out a globule of sticky web towards the nearest enemy
+ItemName.WebClicker=Курсор паутины
+ClickEffect.WebSplash.Name=Раскатистая паутина
+ClickEffect.WebSplash.Description=Выпускает сгусток липкой паутины в сторону ближайшего врага
 
 ItemName.WoodenClicker=Деревянный курсор
 
@@ -366,8 +372,8 @@ ClickEffect.DoubleClick2.Description={$Mods.ClickerClass.ClickEffect.DoubleClick
 ClickEffect.StickyKeychain.Name=Липкий брелок
 ClickEffect.StickyKeychain.Description=Приклеивает слизь к вашему экрану
 
-# ClickEffect.BigRedButton.Name=Kaboom
-# ClickEffect.BigRedButton.Description=Causes a large explosion
+ClickEffect.BigRedButton.Name=Бабах
+ClickEffect.BigRedButton.Description=Вызывает огромный взрыв
 
 
 # Prefixes
@@ -387,8 +393,8 @@ Prefix.PrefixClickBoost.Tooltip={0} кликов для эффекта
 #######
 Tooltip.ClickerTag=Кликер
 Tooltip.TotalClicks=Всего кликов
-# Tooltip.MoneyGenerated=Money Generated
-Tooltip.ClickDamage={0} урона клика
+Tooltip.MoneyGenerated=Количество созданных монет
+Tooltip.ClickDamage={0} ед. урона клика
 Tooltip.ForMoreInfo=Зажмите кнопку 'Auto Select' ({0}) без автоматической паузы для отображения эффектов кликов
 
 
@@ -405,10 +411,10 @@ ClickerConfigClient.ShowEffectSuggestion.Label=Показывать текст: 
 ClickerConfigClient.ShowEffectSuggestion.Tooltip=Переключает отображение текста в описании курсоров:\nЗажмите кнопку 'Auto Select' без автоматической паузы для отображения эффектов кликов\n-Ключ продолжит работать независимо от настройки-
 
 ClickerConfigClient.ShowCustomCursors.Label=Показывать новые курсоры
-ClickerConfigClient.ShowCustomCursors.Tooltip=Заменяет стандартный курсор игры на курсоры из мода
+ClickerConfigClient.ShowCustomCursors.Tooltip=Заменяет игровой курсор на курсоры из мода
 
-# ClickerConfigClient.ShowClickIndicator.Label=Display Click Indicator
-# ClickerConfigClient.ShowClickIndicator.Tooltip=Toggle the display of click indicators where you used a clicker
+ClickerConfigClient.ShowClickIndicator.Label=Визуальный индикатор кликов
+ClickerConfigClient.ShowClickIndicator.Tooltip=Показывает визуальный индикатор кликов, когда вы атакуете курсором
 
-# ClickerConfigClient.ShowOthersClickIndicator.Label=Display Others Click Indicator
-# ClickerConfigClient.ShowOthersClickIndicator.Tooltip=Toggle the display of click indicators where others used a clicker
+ClickerConfigClient.ShowOthersClickIndicator.Label=Визуальный индикатор кликов других игроков
+ClickerConfigClient.ShowOthersClickIndicator.Tooltip=Показывает визуальный индикатор кликов других игроков

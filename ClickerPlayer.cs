@@ -1050,7 +1050,7 @@ namespace ClickerClass
 					}
 				}
 
-				if (AccPaperclips)
+				if (AccPaperclips && target.CanBeChasedBy())
 				{
 					int matterAmount = (int)((target.height * target.width) / 200);
 					if (matterAmount > 10)

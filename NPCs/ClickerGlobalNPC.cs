@@ -147,6 +147,10 @@ namespace ClickerClass.NPCs
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BalloonClicker>(), 10));
 			}
+			else if (npc.type == NPCID.BloodNautilus)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpiralClicker>(), 2));
+			}
 
 			Conditions.NotExpert notExpert = new Conditions.NotExpert();
 			if (npc.type == NPCID.MoonLordCore)
@@ -352,6 +356,7 @@ namespace ClickerClass.NPCs
 					break;
 				case NPCID.Mechanic:
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HandCream>());
+					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MagnetClicker>());
 					break;
 				case NPCID.GoblinTinkerer:
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MousePad>());

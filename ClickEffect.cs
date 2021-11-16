@@ -150,11 +150,13 @@ namespace ClickerClass
 		public static string Starfall { get; internal set; } = string.Empty;
 		public static string ToxicRelease { get; internal set; } = string.Empty;
 		public static string Haste { get; internal set; } = string.Empty;
+		public static string Yoink { get; internal set; } = string.Empty;
 		public static string DoubleClick { get; internal set; } = string.Empty;
 		public static string DoubleClick2 { get; internal set; } = string.Empty;
 		public static string CursedEruption { get; internal set; } = string.Empty;
 		public static string Fritz { get; internal set; } = string.Empty;
 		public static string Infest { get; internal set; } = string.Empty;
+		public static string BloodSucker { get; internal set; } = string.Empty;
 		public static string Dazzle { get; internal set; } = string.Empty;
 		public static string DarkBurst { get; internal set; } = string.Empty;
 		public static string DustDevil { get; internal set; } = string.Empty;

@@ -22,7 +22,6 @@ namespace ClickerClass.Projectiles
 			Projectile.width = 40;
 			Projectile.height = 40;
 			Projectile.aiStyle = -1;
-			Projectile.friendly = true;
 			Projectile.tileCollide = false;
 			Projectile.ignoreWater = true;
 			Projectile.penetrate = -1;

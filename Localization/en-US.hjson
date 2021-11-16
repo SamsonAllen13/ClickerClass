@@ -305,6 +305,16 @@ Mods: {
 				Description: Creates a spiral galaxy that draws in enemies within close proximity
 			}
 			
+			Yoink: {
+				Name: Yoink
+				Description: Grabs items and coins near your cursor
+			}
+			
+			BloodSucker: {
+				Name: Blood Sucker
+				Description: Creates 2 blood globules that spiral inwards from the cursor radius
+			}
+			
 			BalloonDefense: {
 				Name: Balloon Defense
 				Description: Calls forth a friendly slime on a poppable balloon

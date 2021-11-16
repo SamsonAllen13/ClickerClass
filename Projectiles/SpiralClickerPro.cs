@@ -9,10 +9,6 @@ namespace ClickerClass.Projectiles
 {
 	public class SpiralClickerPro : ClickerProjectile
 	{
-		public int radiusDecrease = 0;
-		public float rot = 0f;
-		public Vector2 center = Vector2.Zero;
-
 		public int Index
 		{
 			get => (int)Projectile.ai[0];
@@ -25,13 +21,13 @@ namespace ClickerClass.Projectiles
 			set => Projectile.ai[1] = value ? 1f : 0f;
 		}
 
-		public int Timer
+		public int RadiusDecrease
 		{
 			get => (int)Projectile.localAI[0];
 			set => Projectile.localAI[0] = value;
 		}
 
-		public float Rotation
+		public float Rot
 		{
 			get => Projectile.localAI[1];
 			set => Projectile.localAI[1] = value;
@@ -66,7 +62,7 @@ namespace ClickerClass.Projectiles
 			{
 				Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
 				Color color = Projectile.GetAlpha(lightColor * 0.25f) * ((float)(Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
-				Main.spriteBatch.Draw(texture2D, drawPos, null, color * (0.0025f * Projectile.timeLeft), Rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
+				Main.spriteBatch.Draw(texture2D, drawPos, null, color * (0.0025f * Projectile.timeLeft), Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
 			}
 			return true;
 		}
@@ -90,10 +86,12 @@ namespace ClickerClass.Projectiles
 			Player player = Main.player[Projectile.owner];
 			
 			Projectile.rotation += 0.2f;
-			radiusDecrease += 1;
-			rot += 0.05f;
-			Projectile.Center = player.Center + new Vector2(0, player.GetModPlayer<ClickerPlayer>().ClickerRadiusReal - radiusDecrease).RotatedBy(rot + (Index * (MathHelper.TwoPi / 2)));
-			if (radiusDecrease >= player.GetModPlayer<ClickerPlayer>().ClickerRadiusReal)
+			RadiusDecrease += 1;
+			Rot += 0.05f;
+			float clickerRadiusReal = player.GetModPlayer<ClickerPlayer>().ClickerRadiusReal;
+			Projectile.Center = player.Center + new Vector2(0, clickerRadiusReal - RadiusDecrease).RotatedBy(Rot + (Index * (MathHelper.TwoPi / 2)));
+			Projectile.gfxOffY = player.gfxOffY;
+			if (RadiusDecrease >= clickerRadiusReal)
 			{
 				Projectile.Kill();
 			}

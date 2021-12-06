@@ -10,7 +10,7 @@ namespace ClickerClass.Buffs
 		public override void SetStaticDefaults()
 		{
 			Main.debuff[Type] = true;
-			LongerExpertDebuff = true;
+			BuffID.Sets.LongerExpertDebuff[Type] = true;
 
 			//Required so NPC.RequestBuffRemoval works
 			BuffID.Sets.CanBeRemovedByNetMessage[Type] = true;

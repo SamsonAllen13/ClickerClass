@@ -32,7 +32,7 @@ namespace ClickerClass
 				ChestStyle.Wooden, ChestStyle.Gold, ChestStyle.LockedGold, ChestStyle.RichMahogany,
 				ChestStyle.Ivy, ChestStyle.LivingWood, ChestStyle.WebCovered, ChestStyle.Water,
 				ChestStyle.Mushroom, ChestStyle.Granite, ChestStyle.Marble, ChestStyle.Lihzahrd,
-				ChestStyle.LockedShadow, ChestStyle.Skyware, ChestStyle.Ice
+				ChestStyle.LockedShadow, ChestStyle.Skyware, ChestStyle.Ice, ChestStyle.DeadMans
 			};
 
 			Dictionary<ChestStyle, List<Chest>> chestLists = new Dictionary<ChestStyle, List<Chest>>();
@@ -46,12 +46,19 @@ namespace ClickerClass
 				}
 
 				Tile tile = Main.tile[chest.x, chest.y];
-				if (tile.type != TileID.Containers || chest.item == null)
+				if (chest.item == null || (tile.type != TileID.Containers && tile.type != TileID.Containers2))
 				{
 					continue;
 				}
 
-				ChestStyle style = (ChestStyle)(tile.frameX / 36);
+				int chestStyleOffset = 0;
+				if (tile.type == TileID.Containers2)
+				{
+					chestStyleOffset = (int)ChestStyle.Containers2Offset;
+				}
+				int styleNum = tile.frameX / 36 + chestStyleOffset;
+
+				ChestStyle style = (ChestStyle)styleNum;
 				if (chestStyles.Contains(style))
 				{
 					if (style == ChestStyle.LockedGold && !Main.wallDungeon[tile.wall]) // not actually a dungeon chest, maybe some mod added this
@@ -84,13 +91,10 @@ namespace ClickerClass
 				ReplaceRareItemsInChests(chestLists[ChestStyle.Gold], new int[] { ModContent.ItemType<EnchantedLED>() });
 			}
 
-			//TODO dire: Since Dead Man's chest is in TileID.Containers2, I wasnt sure how to approach this :^(
-			/*
-			if (chestLists2.ContainsKey(ChestStyle2.DeadMans))
+			if (chestLists.ContainsKey(ChestStyle.DeadMans))
 			{
-				ReplaceRareItemsInChests(chestLists2[ChestStyle2.DeadMans], new int[] { ModContent.ItemType<FaultyClicker>() });
+				ReplaceRareItemsInChests(chestLists[ChestStyle.DeadMans], new int[] { ModContent.ItemType<FaultyClicker>() });
 			}
-			*/
 			
 			if (chestLists.ContainsKey(ChestStyle.Skyware))
 			{

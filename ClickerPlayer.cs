@@ -92,7 +92,7 @@ namespace ClickerClass
 		private Dictionary<string, bool> ClickEffectActive = new Dictionary<string, bool>();
 
 		public bool effectHotWings = false;
-		public const int EffectHotWingsTimerMax = 90;
+		public const int EffectHotWingsTimerMax = 70; //Full duration. Damage part excludes the fade time
 		public const int EffectHotWingsTimerFadeStart = 30;
 		public int effectHotWingsTimer = 0; //Gets set to max, counts down
 
@@ -734,7 +734,7 @@ namespace ClickerClass
 			
 			//Clicker Effects
 			//Hot Wings
-			if (effectHotWings)
+			if (effectHotWings && Player.grappling[0] == -1 && !Player.tongued)
 			{
 				int dashDir = 0;
 				if (Player.controlRight && Player.releaseRight)

@@ -10,6 +10,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class ImpishClicker : ClickerWeapon
 	{
+		//May be used later
+		public const int DashDamage = 11;
+		public const float DashKB = 0f;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();

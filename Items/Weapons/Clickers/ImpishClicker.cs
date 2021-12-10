@@ -1,4 +1,3 @@
-using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -50,7 +49,5 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = 30000;
 			Item.rare = 3;
 		}
-		
-		//TODO Diver: Drop from fire imps
 	}
 }

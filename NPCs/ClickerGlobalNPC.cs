@@ -85,6 +85,18 @@ namespace ClickerClass.NPCs
 
 		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
 		{
+			//HOW TO SEE DROP RATES IN THE BESTIARY:
+			/*
+			 * 1. Get the "GamerMod (Debug Tools)" mod
+			 * 2. Enter a world, type "/bestiary" in chat
+			 * 3. If it says "done?", leave the world (so that the 100% progress saves on that world)
+			 * 4. ???
+			 * 5. profit (check bestiary for drops)
+			 * 
+			 * You need to do this for every world you are using (ideally a normal and an expert world)
+			 * You only have to do this once or when new NPCs get added. New drops to existing NPCs do not need redoing the steps
+			 */
+
 			//This method is called once when the game loads (per NPC), so you can't make dynamic checks based on world state like "npc.value > 0f" here
 			if (npc.type == NPCID.GoblinSorcerer)
 			{
@@ -150,6 +162,10 @@ namespace ClickerClass.NPCs
 			else if (npc.type == NPCID.BloodNautilus)
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpiralClicker>(), 2));
+			}
+			else if (npc.type == NPCID.FireImp)
+			{
+				DropHelper.NPCExpertGetsRerolls(npcLoot, ModContent.ItemType<ImpishClicker>(), 35);
 			}
 
 			Conditions.NotExpert notExpert = new Conditions.NotExpert();

@@ -14,7 +14,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Audio;
-using ClickerClass.Buffs;
 
 namespace ClickerClass
 {
@@ -91,8 +90,16 @@ namespace ClickerClass
 		/// Used to track effect names that are currently active. Resets every tick
 		/// </summary>
 		private Dictionary<string, bool> ClickEffectActive = new Dictionary<string, bool>();
-		
+
 		public bool effectHotWings = false;
+		public const int EffectHotWingsTimerMax = 90;
+		public const int EffectHotWingsTimerFadeStart = 30;
+		public int effectHotWingsTimer = 0; //Gets set to max, counts down
+
+		public const int EffectHotWingsFrameMax = 4;
+		public int effectHotWingsFrame = 0;
+
+		public bool DrawHotWings => effectHotWingsTimer > 0;
 
 		//Out of combat
 		public const int OutOfCombatTimeMax = 300;
@@ -729,46 +736,69 @@ namespace ClickerClass
 			//Hot Wings
 			if (effectHotWings)
 			{
+				int dashDir = 0;
 				if (Player.controlRight && Player.releaseRight)
 				{
 					clickerDoubleTap += clickerDoubleTap > 0 ? 0 : 15;
-					if (Player.controlRight && Player.releaseRight && clickerDoubleTap < 15 && clickerDoubleTap > 0)
+					if (clickerDoubleTap < 15 && clickerDoubleTap > 0)
 					{
-						SoundEngine.PlaySound(SoundID.Item, (int)Player.position.X, (int)Player.position.Y, 73);
-						Player.ClearBuff(ModContent.BuffType<HotWingsBuff>());
-						if (Player.velocity.Y > 0f){Player.velocity.Y = 0f;}
-						if (Player.velocity.X > 0f){Player.velocity.X = 0f;}
-						Player.velocity.Y -= 6f;
-						Player.velocity.X += 12f;
-						Player.direction = 1;
-						for (int k = 0; k < 15; k++)
-						{
-							Dust dust = Dust.NewDustDirect(Player.position, Player.width, Player.height, 174, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1.25f);
-							dust.noGravity = true;
-							dust.noLight = true;
-						}
+						dashDir = 1;
 					}
 				}
-				if (Player.controlLeft && Player.releaseLeft)
+				else if (Player.controlLeft && Player.releaseLeft)
 				{
 					clickerDoubleTap += clickerDoubleTap > 0 ? 0 : 15;
-					if (Player.controlLeft && Player.releaseLeft && clickerDoubleTap < 15 && clickerDoubleTap > 0)
+					if (clickerDoubleTap < 15 && clickerDoubleTap > 0)
 					{
-						SoundEngine.PlaySound(SoundID.Item, (int)Player.position.X, (int)Player.position.Y, 73);
-						Player.ClearBuff(ModContent.BuffType<HotWingsBuff>());
-						if (Player.velocity.Y > 0f){Player.velocity.Y = 0f;}
-						if (Player.velocity.X > 0f){Player.velocity.X = 0f;}
-						Player.velocity.Y -= 6f;
-						Player.velocity.X -= 12f;
-						Player.direction = -1;
-						for (int k = 0; k < 15; k++)
-						{
-							Dust dust = Dust.NewDustDirect(Player.position, Player.width, Player.height, 174, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1.25f);
-							dust.noGravity = true;
-							dust.noLight = true;
-						}
+						dashDir = -1;
 					}
 				}
+
+				if (Math.Abs(dashDir) == 1)
+				{
+					effectHotWingsTimer = EffectHotWingsTimerMax;
+
+					SoundEngine.PlaySound(SoundID.Item, (int)Player.position.X, (int)Player.position.Y, 73);
+					Player.ClearBuff(ModContent.BuffType<HotWingsBuff>());
+					//if (Player.velocity.Y > 0f) Player.velocity.Y = 0f;
+					//if (Player.velocity.X < 0f) Player.velocity.X = 0f;
+					Player.velocity.Y -= 6f;
+					Player.velocity.X = dashDir * 12f;
+					Player.ChangeDir(dashDir);
+
+					//Vanilla code
+					Point point3 = (Player.Center + new Vector2(dashDir * Player.width / 2 + 2, Player.gravDir * -Player.height / 2f + Player.gravDir * 2f)).ToTileCoordinates();
+					Point point4 = (Player.Center + new Vector2(dashDir * Player.width / 2 + 2, 0f)).ToTileCoordinates();
+					if (WorldGen.SolidOrSlopedTile(point3.X, point3.Y) || WorldGen.SolidOrSlopedTile(point4.X, point4.Y))
+					{
+						Player.velocity.X /= 2f;
+					}
+
+					for (int k = 0; k < 15; k++)
+					{
+						Dust dust = Dust.NewDustDirect(Player.position, Player.width, Player.height, 174, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1.25f);
+						dust.noGravity = true;
+						dust.noLight = true;
+					}
+				}
+			}
+
+			if (effectHotWingsTimer > 0)
+			{
+				effectHotWingsTimer--;
+
+				if (effectHotWingsTimer % 6 == 0)
+				{
+					effectHotWingsFrame++;
+					if (effectHotWingsFrame >= EffectHotWingsFrameMax)
+					{
+						effectHotWingsFrame = 0;
+					}
+				}
+			}
+			else
+			{
+				effectHotWingsFrame = 0;
 			}
 
 			//Acc
@@ -1123,6 +1153,15 @@ namespace ClickerClass
 		{
 			// Don't count as in combat after death, in case respawn timer is less than OutOfCombatTimeMax
 			outOfCombatTimer = 0;
+		}
+
+		public override void HideDrawLayers(PlayerDrawSet drawInfo)
+		{
+			if (DrawHotWings)
+			{
+				//Hide the vanilla wings layer. Important that our own replacement layer is not attached to that, then it would get hidden aswell :failure:
+				PlayerDrawLayers.Wings.Hide();
+			}
 		}
 	}
 }

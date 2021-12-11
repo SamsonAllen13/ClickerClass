@@ -79,7 +79,7 @@ namespace ClickerClass.Items
 				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
 					//if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick || item.autoReuse) //item.autoReuse: Hard OmniSwing incompatibility
-					if (player.UsingAutoswingableItem(item))
+					if (player.UsingAutoReusableItem(item))
 					{
 						if (clickerPlayer.accHandCream)
 						{
@@ -108,7 +108,7 @@ namespace ClickerClass.Items
 			return base.UseTimeMultiplier(item, player);
 		}
 
-		public override bool? CanAutoswing(Item item, Player player)
+		public override bool? CanAutoReuseItem(Item item, Player player)
 		{
 			if (ClickerSystem.IsClickerWeapon(item))
 			{
@@ -118,7 +118,7 @@ namespace ClickerClass.Items
 					return true;
 				}
 			}
-			return base.CanAutoswing(item, player);
+			return base.CanAutoReuseItem(item, player);
 		}
 
 		public override bool CanUseItem(Item item, Player player)

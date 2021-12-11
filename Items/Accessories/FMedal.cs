@@ -3,7 +3,7 @@ using Terraria.ID;
 
 namespace ClickerClass.Items.Accessories
 {
-	public class SMedal : ClickerItem
+	public class FMedal : ClickerItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -22,12 +22,12 @@ namespace ClickerClass.Items.Accessories
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.accSMedalItem = Item;
+			clickerPlayer.accFMedalItem = Item;
 		}
 		
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddIngredient(ItemID.GoldBar, 5).AddIngredient(ItemID.SoulofLight, 8).AddTile(TileID.Anvils).Register();
+			CreateRecipe(1).AddIngredient(ItemID.GoldBar, 5).AddIngredient(ItemID.SoulofNight, 8).AddTile(TileID.Anvils).Register();
 		}
 		
 		//TODO Diver - Make the S and F medal circles orbit on opposite sides of each other

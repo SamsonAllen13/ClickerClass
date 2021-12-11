@@ -27,6 +27,7 @@ Mods: {
 			InfluenceBuff: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%"
 			OverclockBuff: Every click will trigger a click effect
 			Stunned: Stunned in place
+			HotWingsBuff: Double tap to perform a fiery dash
 		}
 
 		Common: {
@@ -73,6 +74,7 @@ Mods: {
 			GoldenTicket: Golden Ticket
 			RegalClickingGlove: Regal Clicking Glove
 			SMedal: S Medal
+			FMedal: F Medal
 			Soda: Soda
 			StickyKeychain: Sticky Keychain
 			TheScroller: The Scroller
@@ -179,6 +181,11 @@ Mods: {
 				'''
 				Your clicks produce an enchanted burst of light, while accessory is visible
 				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 2
+				'''
+			FMedal:
+				'''
+				While equipped, an empowering circle will rotate around you
+				Keeping your cursor within the circle will build up to 100% increased clicker radius
 				'''
 			GamerCrate:
 				'''

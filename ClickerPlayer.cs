@@ -143,6 +143,8 @@ namespace ClickerClass
 		public bool accStickyKeychain = false;
 		public Item accSMedalItem = null;
 		public bool AccSMedal => accSMedalItem != null && !accSMedalItem.IsAir;
+		public Item accFMedalItem = null;
+		public bool AccFMedal => accFMedalItem != null && !accFMedalItem.IsAir;
 		public bool accGlassOfMilk = false;
 		public Item accCookieItem = null;
 		public bool accCookie = false;
@@ -164,6 +166,7 @@ namespace ClickerClass
 		public int accClickingGloveTimer = 0;
 		public int accCookieTimer = 0;
 		public int accSMedalAmount = 0;
+		public int accFMedalAmount = 0;
 		public int accPaperclipsAmount = 0;
 		public int accHotKeychainTimer = 0;
 		public int accHotKeychainAmount = 0;
@@ -492,6 +495,7 @@ namespace ClickerClass
 			accEnchantedLED2 = false;
 			accHandCream = false;
 			accSMedalItem = null;
+			accFMedalItem = null;
 			accGlassOfMilk = false;
 			accCookieItem = null;
 			accCookie = false;
@@ -647,6 +651,8 @@ namespace ClickerClass
 					setMotherboardFrameShift = false;
 				}
 			}
+			
+			clickerRadius += 0.005f * accFMedalAmount;
 
 			Item heldItem = Player.HeldItem;
 			if (ClickerSystem.IsClickerWeapon(heldItem, out ClickerItemCore clickerItem))
@@ -929,6 +935,30 @@ namespace ClickerClass
 						}
 					}
 				}
+				
+				//F Medal effect
+				if (accFMedalAmount < 200)
+				{
+					int medalType = ModContent.ProjectileType<FMedalPro>();
+					for (int i = 0; i < Main.maxProjectiles; i++)
+					{
+						Projectile medalProj = Main.projectile[i];
+
+						if (medalProj.active && clickerSelected && medalProj.owner == Player.whoAmI && medalProj.type == medalType)
+						{
+							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
+							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
+							{
+								accFMedalAmount++;
+								medalProj.ai[1] = 1f;
+								Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
+								Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 173, Scale: 1.25f);
+								dust.noGravity = true;
+								dust.velocity = -offset * 0.05f;
+							}
+						}
+					}
+				}
 			}
 			
 			//S Medal effect
@@ -943,6 +973,20 @@ namespace ClickerClass
 			else
 			{
 				accSMedalAmount = 0;
+			}
+			
+			//F Medal effect
+			if (AccFMedal && Main.myPlayer == Player.whoAmI)
+			{
+				int medalType = ModContent.ProjectileType<FMedalPro>();
+				if (Player.ownedProjectileCounts[medalType] < 1)
+				{
+					Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accFMedalItem), Player.Center, Vector2.Zero, medalType, 0, 0f, Player.whoAmI, 0f, 0.5f);
+				}
+			}
+			else
+			{
+				accFMedalAmount = 0;
 			}
 			
 			HandleCPS();
@@ -1053,6 +1097,10 @@ namespace ClickerClass
 				{
 					crit = true;
 					accSMedalAmount -= 20;
+				}
+				if (accFMedalAmount >= 20)
+				{
+					accFMedalAmount -= 20;
 				}
 			}
 		}

@@ -15,7 +15,8 @@ namespace ClickerClass.UI
 				new ClickerCursor(),
 				new HotKeychainGauge(),
 				new PaperclipsGauge(),
-				new SMedalGauge()
+				new SMedalGauge(),
+				new FMedalGauge()
 			};
 		}
 

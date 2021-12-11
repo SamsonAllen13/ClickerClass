@@ -14,6 +14,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Audio;
+using ClickerClass.Items.Accessories;
 
 namespace ClickerClass
 {
@@ -1166,6 +1167,27 @@ namespace ClickerClass
 			{
 				//Hide the vanilla wings layer. Important that our own replacement layer is not attached to that, then it would get hidden aswell :failure:
 				PlayerDrawLayers.Wings.Hide();
+			}
+		}
+
+		public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType)
+		{
+			//As of mid-december 2021, power and poolSize have their meaning swapped in the tml release
+			if (liquidType == LiquidID.Lava)
+			{
+				//FishingAttempt fisher;
+				//fisher.CanFishInLava = (ItemID.Sets.CanFishInLava[fisher.playerFishingConditions.PoleItemType] || ItemID.Sets.IsLavaBait[fisher.playerFishingConditions.BaitItemType] || Main.player[owner].accLavaFishing);
+
+				bool canfishInLava = ItemID.Sets.CanFishInLava[fishingRod.type] || ItemID.Sets.IsLavaBait[bait.type] || Player.accLavaFishing;
+				if (!canfishInLava)
+				{
+					return;
+				}
+
+				if (Main.rand.NextBool(50)) //Roughly around [Lava] Crate chance, so around 10%
+				{
+					caughtType = ModContent.ItemType<HotKeychain>();
+				}
 			}
 		}
 	}

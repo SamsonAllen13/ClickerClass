@@ -1,8 +1,4 @@
-﻿using ClickerClass.Projectiles;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ModLoader;
-using Terraria.DataStructures;
+﻿using Terraria;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -27,7 +23,5 @@ namespace ClickerClass.Items.Accessories
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			clickerPlayer.accHotKeychain = true;
 		}
-		
-		//Fished up in Lava
 	}
 }

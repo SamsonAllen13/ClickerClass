@@ -1,8 +1,6 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
-using Terraria.Audio;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 
@@ -41,7 +39,5 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = 500000;
 			Item.rare = 8;
 		}
-		
-		//TODO Diver - Make this drop from Mourning Wood 10%
 	}
 }

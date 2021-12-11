@@ -78,7 +78,8 @@ namespace ClickerClass.Items
 			{
 				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
-					if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick || item.autoReuse)
+					//if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick || item.autoReuse) //item.autoReuse: Hard OmniSwing incompatibility
+					if (player.UsingAutoswingableItem(item))
 					{
 						if (clickerPlayer.accHandCream)
 						{
@@ -107,19 +108,24 @@ namespace ClickerClass.Items
 			return base.UseTimeMultiplier(item, player);
 		}
 
-		public override bool CanUseItem(Item item, Player player)
+		public override bool? CanAutoswing(Item item, Player player)
 		{
 			if (ClickerSystem.IsClickerWeapon(item))
 			{
 				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 				if (clickerPlayer.clickerAutoClick || player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
-					item.autoReuse = true;
+					return true;
 				}
-				else
-				{
-					item.autoReuse = false;
-				}
+			}
+			return base.CanAutoswing(item, player);
+		}
+
+		public override bool CanUseItem(Item item, Player player)
+		{
+			if (ClickerSystem.IsClickerWeapon(item))
+			{
+				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 				if (!clickerPlayer.HasClickEffect(ClickEffect.PhaseReach))
 				{

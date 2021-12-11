@@ -1019,17 +1019,6 @@ namespace ClickerClass
 				outOfCombatTimer--;
 			}
 		}
-		
-		//TODO dire or Diver: Figure out similar effect for 'Hot Wings'
-		/*
-		public override void FrameEffects()
-		{
-			if (effectHotWings)
-			{
-				player.wings = mod.GetEquipSlot("HotWings", EquipType.Wings);
-			}
-		}
-		*/
 
 		public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
 		{

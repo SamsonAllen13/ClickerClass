@@ -64,11 +64,6 @@ namespace ClickerClass
 		{
 			ShaderManager.Load();
 			ClickerInterfaceResources.Load();
-			
-			//TODO dire or Diver: Figure out similar effect for 'Hot Wings'
-			/*
-			AddEquipTexture(null, EquipType.Wings, "HotWings", "ClickerClass/Glowmasks/HotWings_Wings");
-			*/
 		}
 
 		public override object Call(params object[] args)

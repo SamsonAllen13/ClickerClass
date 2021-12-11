@@ -48,6 +48,7 @@ namespace ClickerClass.Items.Armors
 		{
 			player.setBonus = LangHelper.GetText("SetBonus.RGB");
 			player.GetModPlayer<ClickerPlayer>().setRGB = true;
+			//TODO RGB implement set bonus effect, and UpdateEquip on each piece
 		}
 
 		public override void UpdateVanitySet(Player player)

@@ -29,7 +29,5 @@ namespace ClickerClass.Items.Accessories
 		{
 			CreateRecipe(1).AddIngredient(ItemID.GoldBar, 5).AddIngredient(ItemID.SoulofLight, 8).AddTile(TileID.Anvils).Register();
 		}
-		
-		//TODO Diver - Make the S and F medal circles orbit on opposite sides of each other
 	}
 }

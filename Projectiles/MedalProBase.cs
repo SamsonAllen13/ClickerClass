@@ -3,19 +3,31 @@ using Terraria;
 
 namespace ClickerClass.Projectiles
 {
-	public class MedalPro : ClickerProjectile
+	public abstract class MedalProBase : ClickerProjectile
 	{
-		public float Rot = 0f;
+		public const int TotalCount = 2;
+
+		public int Mode
+		{
+			get => (int)Projectile.ai[0];
+			set => Projectile.ai[0] = value;
+		}
+
 		public float Alpha
 		{
 			get => Projectile.ai[1];
 			set => Projectile.ai[1] = value;
 		}
-		
+
+		public float Rot
+		{
+			get => Projectile.localAI[0];
+			set => Projectile.localAI[0] = value;
+		}
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Main.projFrames[Projectile.type] = 2;
 		}
 
 		public override void SetDefaults()
@@ -40,59 +52,25 @@ namespace ClickerClass.Projectiles
 		{
 			Player player = Main.player[Projectile.owner];
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			
+
 			if (player.whoAmI != Projectile.owner)
 			{
 				//Hide for everyone but the owner
 				Projectile.alpha = 255;
 			}
 
-			Rot += 0.025f;
-			Projectile.Center = player.Center + rotVec.RotatedBy(Rot + (Projectile.ai[0] * (6.28f / 2)));
+			Rot = clickerPlayer.accMedalRot;
+			Projectile.Center = player.Center + rotVec.RotatedBy(Rot + (Mode * (6.28f / TotalCount)));
 			Projectile.gfxOffY = player.gfxOffY;
 
 			if (Alpha > 0.1f)
 			{
 				Alpha -= 0.01f;
 			}
-			
-			if (clickerPlayer.AccSMedal || clickerPlayer.AccFMedal)
+
+			if (Alpha < 0.1f)
 			{
-				Projectile.timeLeft = 10;
-			}
-			
-			if (Projectile.ai[0] == 0)
-			{
-				if (clickerPlayer.AccSMedal)
-				{
-					Projectile.frame = 0;
-					if (Alpha < 0.1f)
-					{
-						Alpha = 0.1f;
-					}
-				}
-				else
-				{
-					Alpha = 0f;
-				}
-				return;
-			}
-			
-			if (Projectile.ai[0] == 1)
-			{
-				if (clickerPlayer.AccFMedal)
-				{
-					Projectile.frame = 1;
-					if (Alpha < 0.1f)
-					{
-						Alpha = 0.1f;
-					}
-				}
-				else
-				{
-					Alpha = 0f;
-				}
-				return;
+				Alpha = 0.1f;
 			}
 		}
 	}

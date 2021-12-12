@@ -165,8 +165,9 @@ namespace ClickerClass
 
 		public int accClickingGloveTimer = 0;
 		public int accCookieTimer = 0;
-		public int accSMedalAmount = 0;
-		public int accFMedalAmount = 0;
+		public int accSMedalAmount = 0; //Only updated clientside
+		public int accFMedalAmount = 0; //Only updated clientside
+		public float accMedalRot = 0f; //Unified rotation for all medals
 		public int accPaperclipsAmount = 0;
 		public int accHotKeychainTimer = 0;
 		public int accHotKeychainAmount = 0;
@@ -913,14 +914,14 @@ namespace ClickerClass
 				}
 				
 				//S Medal effect
-				if (accSMedalAmount < 200 && AccSMedal)
+				if (accSMedalAmount < 200 && clickerSelected && AccSMedal)
 				{
-					int medalType = ModContent.ProjectileType<MedalPro>();
+					int sMedalType = ModContent.ProjectileType<SMedalPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
 						Projectile medalProj = Main.projectile[i];
 
-						if (medalProj.active && medalProj.ai[0] == 0 && clickerSelected && medalProj.owner == Player.whoAmI && medalProj.type == medalType)
+						if (medalProj.active && medalProj.owner == Player.whoAmI && medalProj.type == sMedalType)
 						{
 							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
 							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
@@ -937,14 +938,14 @@ namespace ClickerClass
 				}
 				
 				//F Medal effect
-				if (accFMedalAmount < 200 && AccFMedal)
+				if (accFMedalAmount < 200 && clickerSelected && AccFMedal)
 				{
-					int medalType = ModContent.ProjectileType<MedalPro>();
+					int fMedalType = ModContent.ProjectileType<FMedalPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
 						Projectile medalProj = Main.projectile[i];
 
-						if (medalProj.active && medalProj.ai[0] == 1 && clickerSelected && medalProj.owner == Player.whoAmI && medalProj.type == medalType)
+						if (medalProj.active && medalProj.owner == Player.whoAmI && medalProj.type == fMedalType)
 						{
 							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
 							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
@@ -960,31 +961,37 @@ namespace ClickerClass
 					}
 				}
 			}
-			
+
 			//Medal effect
-			if ((AccSMedal || AccFMedal) && Main.myPlayer == Player.whoAmI)
+			accMedalRot += 0.025f;
+
+			if (Main.myPlayer == Player.whoAmI)
 			{
-				int medalType = ModContent.ProjectileType<MedalPro>();
-				if (Player.ownedProjectileCounts[medalType] < 2)
+				int sMedalType = ModContent.ProjectileType<SMedalPro>();
+				if (AccSMedal)
 				{
-					for (int k = 0; k < 2; k++)
+					if (Player.ownedProjectileCounts[sMedalType] == 0)
 					{
-						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accFMedalItem), Player.Center, Vector2.Zero, medalType, 0, 0f, Player.whoAmI, k, 0.5f);
+						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType, 0, 0f, Player.whoAmI, 0, 0.5f);
 					}
 				}
-				if (!AccFMedal)
-				{
-					accFMedalAmount = 0;
-				}
-				if (!AccSMedal)
+				else
 				{
 					accSMedalAmount = 0;
 				}
-			}
-			else
-			{
-				accSMedalAmount = 0;
-				accFMedalAmount = 0;
+
+				int fMedalType = ModContent.ProjectileType<FMedalPro>();
+				if (AccFMedal)
+				{
+					if (Player.ownedProjectileCounts[fMedalType] == 0)
+					{
+						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accFMedalItem), Player.Center, Vector2.Zero, fMedalType, 0, 0f, Player.whoAmI, 1, 0.5f);
+					}
+				}
+				else
+				{
+					accFMedalAmount = 0;
+				}
 			}
 			
 			HandleCPS();

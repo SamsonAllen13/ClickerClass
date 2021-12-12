@@ -20,7 +20,7 @@ namespace ClickerClass.Items.Armors
 				HeadLayer.RegisterData(Item.headSlot, new DrawLayerData()
 				{
 					Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow"),
-					Color = () => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 50) * 0.8f
+					Color = () => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * 0.8f 
 				});
 			}
 		}

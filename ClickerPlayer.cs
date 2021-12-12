@@ -913,14 +913,14 @@ namespace ClickerClass
 				}
 				
 				//S Medal effect
-				if (accSMedalAmount < 200)
+				if (accSMedalAmount < 200 && AccSMedal)
 				{
-					int medalType = ModContent.ProjectileType<SMedalPro>();
+					int medalType = ModContent.ProjectileType<MedalPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
 						Projectile medalProj = Main.projectile[i];
 
-						if (medalProj.active && clickerSelected && medalProj.owner == Player.whoAmI && medalProj.type == medalType)
+						if (medalProj.active && medalProj.ai[0] == 0 && clickerSelected && medalProj.owner == Player.whoAmI && medalProj.type == medalType)
 						{
 							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
 							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
@@ -937,19 +937,19 @@ namespace ClickerClass
 				}
 				
 				//F Medal effect
-				if (accFMedalAmount < 200)
+				if (accFMedalAmount < 200 && AccFMedal)
 				{
-					int medalType = ModContent.ProjectileType<FMedalPro>();
+					int medalType = ModContent.ProjectileType<MedalPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
 						Projectile medalProj = Main.projectile[i];
 
-						if (medalProj.active && clickerSelected && medalProj.owner == Player.whoAmI && medalProj.type == medalType)
+						if (medalProj.active && medalProj.ai[0] == 1 && clickerSelected && medalProj.owner == Player.whoAmI && medalProj.type == medalType)
 						{
 							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
 							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
 							{
-								accFMedalAmount++;
+								accFMedalAmount += 2;
 								medalProj.ai[1] = 1f;
 								Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 								Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 173, Scale: 1.25f);
@@ -961,31 +961,29 @@ namespace ClickerClass
 				}
 			}
 			
-			//S Medal effect
-			if (AccSMedal && Main.myPlayer == Player.whoAmI)
+			//Medal effect
+			if ((AccSMedal || AccFMedal) && Main.myPlayer == Player.whoAmI)
 			{
-				int medalType = ModContent.ProjectileType<SMedalPro>();
-				if (Player.ownedProjectileCounts[medalType] < 1)
+				int medalType = ModContent.ProjectileType<MedalPro>();
+				if (Player.ownedProjectileCounts[medalType] < 2)
 				{
-					Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, medalType, 0, 0f, Player.whoAmI, 0f, 0.5f);
+					for (int k = 0; k < 2; k++)
+					{
+						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accFMedalItem), Player.Center, Vector2.Zero, medalType, 0, 0f, Player.whoAmI, k, 0.5f);
+					}
+				}
+				if (!AccFMedal)
+				{
+					accFMedalAmount = 0;
+				}
+				if (!AccSMedal)
+				{
+					accSMedalAmount = 0;
 				}
 			}
 			else
 			{
 				accSMedalAmount = 0;
-			}
-			
-			//F Medal effect
-			if (AccFMedal && Main.myPlayer == Player.whoAmI)
-			{
-				int medalType = ModContent.ProjectileType<FMedalPro>();
-				if (Player.ownedProjectileCounts[medalType] < 1)
-				{
-					Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accFMedalItem), Player.Center, Vector2.Zero, medalType, 0, 0f, Player.whoAmI, 0f, 0.5f);
-				}
-			}
-			else
-			{
 				accFMedalAmount = 0;
 			}
 			

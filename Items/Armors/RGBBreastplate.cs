@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Armors
 
 			if (!Main.dedServ)
 			{
-				BodyGlowmaskPlayer.RegisterData(Item.bodySlot, () => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 50) * 0.8f);
+				BodyGlowmaskPlayer.RegisterData(Item.bodySlot, () => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * 0.8f);
 			}
 		}
 

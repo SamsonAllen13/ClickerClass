@@ -26,11 +26,11 @@ namespace ClickerClass
 
 		public int Amount { get; private set; }
 
-		public Color Color { get; private set; }
+		public Func<Color> ColorFunc { get; private set; }
 
 		public Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float> Action { get; private set; }
 
-		public ClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float> action)
+		public ClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Func<Color> colorFunc, Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float> action)
 		{
 			Mod = mod ?? throw new Exception("No mod specified");
 			InternalName = internalName ?? throw new Exception("No internal name specified");
@@ -38,18 +38,18 @@ namespace ClickerClass
 			Description = description ?? LangHelper.GetText("Common.Unknown");
 			TryUsingTranslation = displayName == null || description == null;
 			Amount = amount;
-			Color = color;
+			ColorFunc = colorFunc;
 			Action = action ?? (new Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float>((a, b, c, d, e, f) => { }));
 		}
 
 		public object Clone()
 		{
-			return new ClickEffect(Mod, InternalName, DisplayName, Description, Amount, Color, (Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float>)Action.Clone());
+			return new ClickEffect(Mod, InternalName, DisplayName, Description, Amount, ColorFunc, (Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float>)Action.Clone());
 		}
 
 		public TooltipLine ToTooltip(int amount, float alpha, bool showDesc)
 		{
-			string color = (Color * alpha).Hex3();
+			string color = (ColorFunc() * alpha).Hex3();
 			string text;
 			if (amount > 1)
 			{
@@ -103,7 +103,7 @@ namespace ClickerClass
 				["DisplayName"] = DisplayName,
 				["Description"] = Description,
 				["Amount"] = Amount,
-				["Color"] = Color,
+				["ColorFunc"] = ColorFunc,
 				["Action"] = Action
 			};
 		}

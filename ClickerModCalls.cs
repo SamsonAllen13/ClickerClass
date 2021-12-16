@@ -12,6 +12,7 @@ namespace ClickerClass
 	{
 		//All calls are "documented" on the ClickerClassExampleMod repo: https://github.com/SamsonAllen13/ClickerClassExampleMod/blob/master/ClickerCompat.cs
 		//Not everything is exposed via API yet
+		//TODO add new 1.4 accessories to API
 		public static object Call(params object[] args)
 		{
 			ClickerClass clickerClass = ClickerClass.mod;
@@ -106,6 +107,7 @@ namespace ClickerClass
 					var description = args[index + 3] as string;
 					var amount = args[index + 4] as int?;
 					var color = args[index + 5] as Color?;
+					var colorFunc = args[index + 5] as Func<Color>; //Try another type variation because of overload
 					var action = args[index + 6] as Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float>;
 
 					string nameOfargument = string.Empty;
@@ -115,7 +117,7 @@ namespace ClickerClass
 						nameOfargument = "internalName";
 					if (amount == null)
 						nameOfargument = "amount";
-					if (color == null)
+					if (color == null && colorFunc == null) //TODO need to test with example
 						nameOfargument = "color";
 					if (action == null)
 						nameOfargument = "action";
@@ -125,7 +127,14 @@ namespace ClickerClass
 						throw new Exception($"Call Error: The {nameOfargument} argument for the attempted message, \"{message}\" has returned null.");
 					}
 
-					ClickerSystem.RegisterClickEffect(mod, internalName, displayName, description, amount.Value, color.Value, action);
+					Func<Color> useColor = colorFunc;
+					if (colorFunc == null)
+					{
+						//Fall back to old (regular) call without func
+						useColor = () => color.Value;
+					}
+
+					ClickerSystem.RegisterClickEffect(mod, internalName, displayName, description, amount.Value, useColor, action);
 					return success;
 				}
 				else if (message == "GetPathToBorderTexture")
@@ -411,6 +420,10 @@ namespace ClickerClass
 					else if (setName == "Mice")
 					{
 						return clickerPlayer.setMice;
+					}
+					else if (setName == "RGB")
+					{
+						return clickerPlayer.setRGB;
 					}
 
 					throw new Exception($"Call Error: The setName argument for the attempted message, \"{message}\" has no valid entry point.");

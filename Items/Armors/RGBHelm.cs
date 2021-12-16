@@ -26,7 +26,7 @@ namespace ClickerClass.Items.Armors
 				});
 			}
 			
-			ClickEffect.ChromaticBurst = ClickerSystem.RegisterClickEffect(Mod, "ChromaticBurst", null, null, 20, new Color(255, 255, 255, 50) * 0.8f, delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.ChromaticBurst = ClickerSystem.RegisterClickEffect(Mod, "ChromaticBurst", null, null, 20, () => Color.Lerp(Color.White, Main.DiscoColor, 0.5f), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				int chromatic = ModContent.ProjectileType<RGBPro>();
@@ -72,7 +72,6 @@ namespace ClickerClass.Items.Armors
 			player.setBonus = LangHelper.GetText("SetBonus.RGB");
 			clickerPlayer.setRGB = true;
 			clickerPlayer.EnableClickEffect(ClickEffect.ChromaticBurst);
-			//TODO RGB implement set bonus effect, and UpdateEquip on each piece
 		}
 
 		public override void UpdateVanitySet(Player player)

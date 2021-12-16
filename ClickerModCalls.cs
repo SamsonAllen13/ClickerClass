@@ -12,7 +12,6 @@ namespace ClickerClass
 	{
 		//All calls are "documented" on the ClickerClassExampleMod repo: https://github.com/SamsonAllen13/ClickerClassExampleMod/blob/master/ClickerCompat.cs
 		//Not everything is exposed via API yet
-		//TODO add new 1.4 accessories to API
 		public static object Call(params object[] args)
 		{
 			ClickerClass clickerClass = ClickerClass.mod;
@@ -117,7 +116,7 @@ namespace ClickerClass
 						nameOfargument = "internalName";
 					if (amount == null)
 						nameOfargument = "amount";
-					if (color == null && colorFunc == null) //TODO need to test with example
+					if (color == null && colorFunc == null)
 						nameOfargument = "color";
 					if (action == null)
 						nameOfargument = "action";
@@ -445,6 +444,7 @@ namespace ClickerClass
 
 					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					//accGoldenTicket, accPortableParticleAccelerator
+					//accIcePack, accMouseTrap, accHotKeychain, accTriggerFinger
 					if (accName == "EnchantedLED")
 					{
 						return clickerPlayer.accEnchantedLED;
@@ -489,6 +489,22 @@ namespace ClickerClass
 					{
 						return clickerPlayer.accPortableParticleAccelerator;
 					}
+					else if (accName == "IcePack")
+					{
+						return clickerPlayer.accIcePack;
+					}
+					else if (accName == "MouseTrap")
+					{
+						return clickerPlayer.accMouseTrap;
+					}
+					else if (accName == "HotKeychain")
+					{
+						return clickerPlayer.accHotKeychain;
+					}
+					else if (accName == "TriggerFinger")
+					{
+						return clickerPlayer.accTriggerFinger;
+					}
 
 					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
 				}
@@ -508,9 +524,22 @@ namespace ClickerClass
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 					//accCookieItem
+					//accSMedalItem, accFMedalItem, accPaperclipsItem
 					if (accName == "Cookie")
 					{
 						return clickerPlayer.accCookieItem;
+					}
+					else if (accName == "SMedal")
+					{
+						return clickerPlayer.accSMedalItem;
+					}
+					else if (accName == "FMedal")
+					{
+						return clickerPlayer.accFMedalItem;
+					}
+					else if (accName == "BottomlessBoxOfPaperclips")
+					{
+						return clickerPlayer.accPaperclipsItem;
 					}
 
 					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
@@ -618,6 +647,7 @@ namespace ClickerClass
 
 					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					//accGoldenTicket, accPortableParticleAccelerator
+					//accIcePack, accMouseTrap, accHotKeychain, accTriggerFinger
 					if (accName == "EnchantedLED")
 					{
 						clickerPlayer.accEnchantedLED = true;
@@ -673,6 +703,26 @@ namespace ClickerClass
 						clickerPlayer.accPortableParticleAccelerator = true;
 						return success;
 					}
+					else if (accName == "IcePack")
+					{
+						clickerPlayer.accIcePack = true;
+						return success;
+					}
+					else if (accName == "MouseTrap")
+					{
+						clickerPlayer.accMouseTrap = true;
+						return success;
+					}
+					else if (accName == "HotKeychain")
+					{
+						clickerPlayer.accHotKeychain = true;
+						return success;
+					}
+					else if (accName == "TriggerFinger")
+					{
+						clickerPlayer.accTriggerFinger = true;
+						return success;
+					}
 
 					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
 				}
@@ -697,9 +747,25 @@ namespace ClickerClass
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 					//accCookieItem
+					//accSMedalItem, accFMedalItem, accPaperclipsItem
 					if (accName == "Cookie")
 					{
 						clickerPlayer.accCookieItem = item;
+						return success;
+					}
+					else if (accName == "SMedal")
+					{
+						clickerPlayer.accSMedalItem = item;
+						return success;
+					}
+					else if (accName == "FMedal")
+					{
+						clickerPlayer.accFMedalItem = item;
+						return success;
+					}
+					else if (accName == "BottomlessBoxOfPaperclips")
+					{
+						clickerPlayer.accPaperclipsItem = item;
 						return success;
 					}
 

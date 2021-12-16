@@ -161,7 +161,7 @@ namespace ClickerClass.NPCs
 			}
 			else if (npc.type == NPCID.BloodNautilus)
 			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SpiralClicker>(), 2));
+				npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<SpiralClicker>(), 2, 1));
 			}
 			else if (npc.type == NPCID.FireImp)
 			{

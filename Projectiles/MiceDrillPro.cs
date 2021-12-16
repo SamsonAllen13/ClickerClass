@@ -69,7 +69,7 @@ namespace ClickerClass.Projectiles
 
 			Vector2 drawPos = new Vector2(Projectile.position.X - Main.screenPosition.X + originX + offsetX, Projectile.position.Y - Main.screenPosition.Y + Projectile.height / 2 + Projectile.gfxOffY);
 			Rectangle sourceRect = glowmaskTexture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
-			Color glowColor = new Color(255, 255, 255) * Projectile.Opacity;
+			Color glowColor = new Color(255, 255, 255, 255) * 0.7f * Projectile.Opacity;
 			Vector2 drawOrigin = new Vector2(originX, Projectile.height / 2 + offsetY);
 			Main.EntitySpriteDraw(glowmaskTexture, drawPos, sourceRect, glowColor, Projectile.rotation, drawOrigin, Projectile.scale, spriteEffects, 0);
 		}

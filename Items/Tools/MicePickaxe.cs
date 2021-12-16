@@ -27,7 +27,8 @@ namespace ClickerClass.Items.Tools
 
 				HeldItemLayer.RegisterData(Item.type, new DrawLayerData()
 				{
-					Texture = glowmask
+					Texture = glowmask,
+					Color = () => new Color(255, 255, 255, 50) * 0.7f
 				});
 			}
 
@@ -60,7 +61,7 @@ namespace ClickerClass.Items.Tools
 
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
 		{
-			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
+			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 50) * 0.7f, rotation, scale);
 		}
 
 		public override void AddRecipes()

@@ -136,7 +136,10 @@ namespace ClickerClass
 		public static string ChocolateChip { get; internal set; } = string.Empty;
 		public static string BigRedButton { get; internal set; } = string.Empty;
 		public static string ClearKeychain { get; internal set; } = string.Empty;
-
+		
+		//Armor
+		public static string ChromaticBurst { get; internal set; } = string.Empty;
+		
 		//Clicker
 		public static string TrueStrike { get; internal set; } = string.Empty;
 		public static string HolyNova { get; internal set; } = string.Empty;

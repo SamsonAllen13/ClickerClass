@@ -1,10 +1,12 @@
 using ClickerClass.DrawLayers;
+using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Armors
 {
@@ -23,6 +25,26 @@ namespace ClickerClass.Items.Armors
 					Color = () => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * 0.8f 
 				});
 			}
+			
+			ClickEffect.ChromaticBurst = ClickerSystem.RegisterClickEffect(Mod, "ChromaticBurst", null, null, 20, new Color(255, 255, 255, 50) * 0.8f, delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			{
+				bool spawnEffects = true;
+				int chromatic = ModContent.ProjectileType<RGBPro>();
+				
+				float total = 7f;
+				int i = 0;
+				while (i < total)
+				{
+					float hasSpawnEffects = spawnEffects ? 1f : 0f;
+					Vector2 toDir = Vector2.UnitX * 0f;
+					toDir += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / total)) * new Vector2(10f, 10f);
+					int damageAmount = (int)(damage * 0.33f);
+					damageAmount = damageAmount < 1 ? 1 : damageAmount;
+					Projectile.NewProjectile(source, Main.MouseWorld, toDir.SafeNormalize(Vector2.UnitY) * 10f, chromatic, damageAmount, 1f, Main.myPlayer, 0f, hasSpawnEffects);
+					i++;
+					spawnEffects = false;
+				}
+			});
 		}
 
 		public override void SetDefaults()
@@ -36,7 +58,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			
+			player.GetModPlayer<ClickerPlayer>().clickerBonus += 1;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -48,6 +70,7 @@ namespace ClickerClass.Items.Armors
 		{
 			player.setBonus = LangHelper.GetText("SetBonus.RGB");
 			player.GetModPlayer<ClickerPlayer>().setRGB = true;
+			player.GetModPlayer<ClickerPlayer>().EnableClickEffect(ClickEffect.ChromaticBurst);
 			//TODO RGB implement set bonus effect, and UpdateEquip on each piece
 		}
 

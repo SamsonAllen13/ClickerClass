@@ -270,6 +270,9 @@ Mods: {
 			MotherboardBoots: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%"
 			MotherboardHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%"
 			MotherboardSuit: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%"
+			RGBGreaves: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%"
+			RGBHelm: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1"
+			RGBBreastplate: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%"
 			OverclockBoots: Increases movement speed by 10%
 			OverclockHelmet: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1"
 			OverclockSuit: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%"
@@ -293,7 +296,7 @@ Mods: {
 				While Overclock is active, you deal 50% less click damage
 				'''
 			Precursor: While in combat, your cursor constantly leaves behind damaging afterimages
-			RGB: Null
+			RGB: Every 20 clicks propels a chromatic burst from your cursor
 		}
 
 		ClickEffect: {
@@ -315,6 +318,11 @@ Mods: {
 			Yoink: {
 				Name: Yoink
 				Description: Grabs items and coins near your cursor
+			}
+			
+			ChromaticBurst: {
+				Name: Chromatic Burst
+				Description: Propels chromatic energy out and then towards your cursor
 			}
 			
 			BloodSucker: {

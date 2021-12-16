@@ -135,17 +135,22 @@ namespace ClickerClass.Projectiles
 					}
 				}
 			
-				Vector2 vector = Main.MouseWorld - Projectile.Center;
-				float speed = 5f;
-				float mag = vector.Length();
-				if (mag > speed)
+				if (Main.myPlayer == Projectile.owner)
 				{
-					mag = speed / mag;
-					vector *= mag;
+					Vector2 vector = Main.MouseWorld - Projectile.Center;
+					float speed = 5f;
+					float mag = vector.Length();
+					if (mag > speed)
+					{
+						mag = speed / mag;
+						vector *= mag;
+					}
+					Projectile.velocity = vector;
 				}
-				Projectile.velocity = vector;
+				
 				Projectile.ai[0]++;
 				Projectile.frame = 1;
+				Projectile.netUpdate = true;
 			}
 			else
 			{

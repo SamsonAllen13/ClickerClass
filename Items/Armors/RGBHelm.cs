@@ -68,9 +68,10 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateArmorSet(Player player)
 		{
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			player.setBonus = LangHelper.GetText("SetBonus.RGB");
-			player.GetModPlayer<ClickerPlayer>().setRGB = true;
-			player.GetModPlayer<ClickerPlayer>().EnableClickEffect(ClickEffect.ChromaticBurst);
+			clickerPlayer.setRGB = true;
+			clickerPlayer.EnableClickEffect(ClickEffect.ChromaticBurst);
 			//TODO RGB implement set bonus effect, and UpdateEquip on each piece
 		}
 

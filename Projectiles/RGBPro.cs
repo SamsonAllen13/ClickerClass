@@ -27,6 +27,16 @@ namespace ClickerClass.Projectiles
 			effect2 = null;
 		}
 
+		public int StateTimer
+		{
+			get => (int)Projectile.ai[0];
+			set => Projectile.ai[0] = value;
+		}
+
+		public bool State_Waiting => StateTimer == 0;
+
+		public bool State_Decide => StateTimer == 1;
+
 		public bool HasSpawnEffects
 		{
 			get => Projectile.ai[1] == 1f;
@@ -67,7 +77,7 @@ namespace ClickerClass.Projectiles
 			Rectangle frame = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 			Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * (0.8f * Projectile.Opacity), Projectile.rotation, new Vector2(14, 14), Projectile.scale, SpriteEffects.None, 0);
 		
-			if (Projectile.ai[0] > 0f)
+			if (!State_Waiting)
 			{
 				SpriteEffects effects = Projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
 
@@ -103,15 +113,15 @@ namespace ClickerClass.Projectiles
 				}
 			}
 			
-			if (Projectile.ai[0] == 0f)
+			if (State_Waiting)
 			{
 				Projectile.velocity *= 0.9f;
 				if (Projectile.timeLeft <= 180)
 				{
-					Projectile.ai[0]++;
+					StateTimer++;
 				}
 			}
-			else if (Projectile.ai[0] == 1f)
+			else if (State_Decide)
 			{
 				Projectile.extraUpdates = 1;
 				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 86);
@@ -146,11 +156,11 @@ namespace ClickerClass.Projectiles
 						vector *= mag;
 					}
 					Projectile.velocity = vector;
+					Projectile.netUpdate = true;
 				}
 				
-				Projectile.ai[0]++;
+				StateTimer++;
 				Projectile.frame = 1;
-				Projectile.netUpdate = true;
 			}
 			else
 			{

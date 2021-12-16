@@ -74,7 +74,7 @@ namespace ClickerClass.Projectiles
 			{
 				float scaleDown = 0.067f * (15 - k);
 				Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-				Main.spriteBatch.Draw(texture2D, drawPos, null, new Color(255, 255, 255, 0) * (alpha * 0.25f), Projectile.rotation, drawOrigin, scaleDown, effects, 0f);
+				Main.EntitySpriteDraw(texture2D, drawPos, null, new Color(255, 255, 255, 0) * (alpha * 0.25f), Projectile.rotation, drawOrigin, scaleDown, effects, 0);
 			}
 		}
 

@@ -71,8 +71,7 @@ namespace ClickerClass.Projectiles
 			Rectangle sourceRect = glowmaskTexture.Frame(1, Main.projFrames[Projectile.type], 0, Projectile.frame);
 			Color glowColor = new Color(255, 255, 255) * Projectile.Opacity;
 			Vector2 drawOrigin = new Vector2(originX, Projectile.height / 2 + offsetY);
-			//TODO Main.EntitySpriteDraw all
-			Main.spriteBatch.Draw(glowmaskTexture, drawPos, sourceRect, glowColor, Projectile.rotation, drawOrigin, Projectile.scale, spriteEffects, 0);
+			Main.EntitySpriteDraw(glowmaskTexture, drawPos, sourceRect, glowColor, Projectile.rotation, drawOrigin, Projectile.scale, spriteEffects, 0);
 		}
 	}
 }

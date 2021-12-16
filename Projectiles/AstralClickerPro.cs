@@ -54,7 +54,7 @@ namespace ClickerClass.Projectiles
 		{
 			if (Projectile.timeLeft > 4)
 			{
-				Main.spriteBatch.Draw(TextureAssets.Projectile[Projectile.type].Value, Projectile.Center - Main.screenPosition, null, new Color(255, 255, 255, 0) * 0.25f, SecondaryRotation, new Vector2(30, 30), 1.25f, SpriteEffects.None, 0f);
+				Main.EntitySpriteDraw(TextureAssets.Projectile[Projectile.type].Value, Projectile.Center - Main.screenPosition, null, new Color(255, 255, 255, 0) * 0.25f, SecondaryRotation, new Vector2(30, 30), 1.25f, SpriteEffects.None, 0);
 			}
 			return true;
 		}

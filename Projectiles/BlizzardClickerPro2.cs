@@ -50,7 +50,7 @@ namespace ClickerClass.Projectiles
 			for (int k = 0; k < Projectile.oldPos.Length; k++)
 			{
 				Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-				Main.spriteBatch.Draw(texture2D, drawPos, null, new Color(255, 255, 255, 0) * (AlphaTimer * 0.1f), Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
+				Main.EntitySpriteDraw(texture2D, drawPos, null, new Color(255, 255, 255, 0) * (AlphaTimer * 0.1f), Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
 			}
 			return true;
 		}

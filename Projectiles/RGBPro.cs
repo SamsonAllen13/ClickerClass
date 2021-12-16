@@ -65,7 +65,7 @@ namespace ClickerClass.Projectiles
 		{
 			Texture2D texture = effect.Value;
 			Rectangle frame = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
-			Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * (0.8f * Projectile.Opacity), Projectile.rotation, new Vector2(14, 14), Projectile.scale, SpriteEffects.None, 0f);
+			Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * (0.8f * Projectile.Opacity), Projectile.rotation, new Vector2(14, 14), Projectile.scale, SpriteEffects.None, 0);
 		
 			if (Projectile.ai[0] > 0f)
 			{
@@ -75,7 +75,7 @@ namespace ClickerClass.Projectiles
 				for (int k = 0; k < Projectile.oldPos.Length; k++)
 				{
 					Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
-					Main.spriteBatch.Draw(texture, drawPos, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * (0.3f * Projectile.Opacity), Projectile.rotation, drawOrigin, Projectile.scale, effects, 0f);
+					Main.EntitySpriteDraw(texture, drawPos, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * (0.3f * Projectile.Opacity), Projectile.rotation, drawOrigin, Projectile.scale, effects, 0);
 				}
 			}
 			return true;
@@ -85,7 +85,7 @@ namespace ClickerClass.Projectiles
 		{
 			Texture2D texture = effect2.Value;
 			Rectangle frame = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
-			Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 50) * (0.25f * Projectile.Opacity), Projectile.rotation, new Vector2(14, 14), Projectile.scale, SpriteEffects.None, 0f);
+			Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 50) * (0.25f * Projectile.Opacity), Projectile.rotation, new Vector2(14, 14), Projectile.scale, SpriteEffects.None, 0);
 		}
 
 		public override void AI()

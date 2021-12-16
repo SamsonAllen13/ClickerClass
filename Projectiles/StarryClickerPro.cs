@@ -75,13 +75,13 @@ namespace ClickerClass.Projectiles
 			for (int k = 0; k < Projectile.oldPos.Length; k++)
 			{
 				Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + new Vector2(frame.Width / 2, frame.Height * 0.2f) + new Vector2(0f, Projectile.gfxOffY);
-				Main.spriteBatch.Draw(texture, drawPos, null, new Color(255, 255, 255, 100) * ((8 - k) * 0.025f), 0f, new Vector2(frame.Width / 2, frame.Height * 0.8f), Projectile.scale, SpriteEffects.None, 0f);
+				Main.EntitySpriteDraw(texture, drawPos, null, new Color(255, 255, 255, 100) * ((8 - k) * 0.025f), 0f, new Vector2(frame.Width / 2, frame.Height * 0.8f), Projectile.scale, SpriteEffects.None, 0);
 			}
 			
 			texture = TextureAssets.Projectile[Projectile.type].Value;
 			frame = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
-			Main.spriteBatch.Draw(texture, Projectile.Center - Main.screenPosition, null, new Color(255, 255, 255, 0) * (Projectile.Opacity * 0.5f), -Projectile.rotation, frame.Size() / 2, Projectile.scale, SpriteEffects.None, 0f);
+			Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, new Color(255, 255, 255, 0) * (Projectile.Opacity * 0.5f), -Projectile.rotation, frame.Size() / 2, Projectile.scale, SpriteEffects.None, 0);
 			return true;
 		}
 		

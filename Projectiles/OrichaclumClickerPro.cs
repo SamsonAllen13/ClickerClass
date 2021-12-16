@@ -71,7 +71,7 @@ namespace ClickerClass.Projectiles
 			{
 				Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
 				Color color = Projectile.GetAlpha(new Color(255, 255, 255, 0) * 0.25f) * ((float)(Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
-				Main.spriteBatch.Draw(texture2D, drawPos, frame, color * (0.0025f * Projectile.timeLeft), Rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0f);
+				Main.EntitySpriteDraw(texture2D, drawPos, frame, color * (0.0025f * Projectile.timeLeft), Rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
 			}
 			return true;
 		}

@@ -1,5 +1,8 @@
 using ClickerClass.Core;
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -9,12 +12,21 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Body)]
 	public class MiceSuit : ClickerItem
 	{
+		public static Asset<Texture2D> glowmask;
+
+		public override void Unload()
+		{
+			glowmask = null;
+		}
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 
 			if (!Main.dedServ)
 			{
+				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
+
 				BodyGlowmaskPlayer.RegisterData(Item.bodySlot, () => new Color(255, 255, 255, 0) * 0.8f);
 			}
 		}
@@ -33,6 +45,16 @@ namespace ClickerClass.Items.Armors
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			player.GetDamage<ClickerDamage>() += 0.10f;
 			clickerPlayer.clickerRadius += 0.5f;
+		}
+
+		public override void PostUpdate()
+		{
+			Lighting.AddLight(Item.Center, 0.1f, 0.1f, 0.3f);
+		}
+
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+		{
+			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
 		}
 
 		public override void AddRecipes()

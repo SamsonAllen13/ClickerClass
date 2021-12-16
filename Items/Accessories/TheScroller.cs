@@ -7,14 +7,36 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.GameContent.Creative;
+using ReLogic.Content;
+using Microsoft.Xna.Framework.Graphics;
+using ClickerClass.DrawLayers;
+using ClickerClass.Utilities;
 
 namespace ClickerClass.Items.Accessories
 {
 	[AutoloadEquip(EquipType.Wings)]
 	public class TheScroller : ModItem
 	{
+		public static Asset<Texture2D> glowmask;
+
+		public override void Unload()
+		{
+			glowmask = null;
+		}
+
 		public override void SetStaticDefaults()
 		{
+			if (!Main.dedServ)
+			{
+				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
+
+				WingsLayer.RegisterData(Item.wingSlot, new DrawLayerData()
+				{
+					Texture = ModContent.Request<Texture2D>(Texture + "_Wings_Glow"),
+					Color = () => Color.White * 0.8f
+				});
+			}
+
 			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(180, 3.5f, 1.15f);
 
 			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
@@ -118,6 +140,16 @@ namespace ClickerClass.Items.Accessories
 				}
 			}
 			return base.WingUpdate(player, inUse);
+		}
+
+		public override void PostUpdate()
+		{
+			Lighting.AddLight(Item.Center, 0.1f, 0.1f, 0.3f);
+		}
+
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+		{
+			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
 		}
 
 		public override void AddRecipes()

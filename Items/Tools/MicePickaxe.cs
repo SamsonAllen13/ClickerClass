@@ -1,5 +1,8 @@
 using ClickerClass.DrawLayers;
+using ClickerClass.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent.Creative;
 using Terraria.ID;
@@ -9,13 +12,22 @@ namespace ClickerClass.Items.Tools
 {
 	public class MicePickaxe : ModItem
 	{
+		public static Asset<Texture2D> glowmask;
+
+		public override void Unload()
+		{
+			glowmask = null;
+		}
+
 		public override void SetStaticDefaults()
 		{
 			if (!Main.dedServ)
 			{
+				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
+
 				HeldItemLayer.RegisterData(Item.type, new DrawLayerData()
 				{
-					Texture = ModContent.Request<Texture2D>(Texture + "_Glow")
+					Texture = glowmask
 				});
 			}
 
@@ -39,6 +51,16 @@ namespace ClickerClass.Items.Tools
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
 			Item.useTurn = true;
+		}
+
+		public override void PostUpdate()
+		{
+			Lighting.AddLight(Item.Center, 0.1f, 0.1f, 0.3f);
+		}
+
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+		{
+			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
 		}
 
 		public override void AddRecipes()

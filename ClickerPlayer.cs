@@ -162,6 +162,7 @@ namespace ClickerClass
 		public bool AccPaperclips => accPaperclipsItem != null && !accPaperclipsItem.IsAir;
 		public bool accHotKeychain = false;
 		public bool accHotKeychain2 = false;
+		public bool accButtonMasher = false;
 
 		public int accClickingGloveTimer = 0;
 		public int accCookieTimer = 0;
@@ -512,6 +513,7 @@ namespace ClickerClass
 			accPaperclipsItem = null;
 			accHotKeychain = false;
 			accHotKeychain2 = false;
+			accButtonMasher = false;
 
 			//Stats
 			clickerDamageFlat = 0;

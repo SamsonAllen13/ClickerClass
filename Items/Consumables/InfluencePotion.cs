@@ -1,4 +1,5 @@
 using ClickerClass.Buffs;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -10,6 +11,12 @@ namespace ClickerClass.Items.Consumables
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			ItemID.Sets.DrinkParticleColors[Type] = new Color[3] {
+				new Color(255, 163, 255),
+				new Color(255, 58, 255),
+				new Color(170, 0, 255)
+			};
 		}
 
 		public override void SetDefaults()
@@ -18,7 +25,7 @@ namespace ClickerClass.Items.Consumables
 			Item.height = 20;
 			Item.useTime = 17;
 			Item.useAnimation = 17;
-			Item.useStyle = 2;
+			Item.useStyle = ItemUseStyleID.DrinkLiquid;
 			Item.useTurn = true;
 			Item.value = Item.sellPrice(0, 0, 2, 0);
 			Item.consumable = true;

@@ -302,6 +302,10 @@ Mods: {
 			RGB: Every 20 clicks propels a chromatic burst from your cursor
 		}
 
+		InfoDisplayName: {
+			CPSInfoDisplay: Clicks per second
+		}
+
 		ClickEffect: {
 			TrueStrike: {
 				Name: True Strike

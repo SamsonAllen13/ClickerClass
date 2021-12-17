@@ -12,7 +12,7 @@ namespace ClickerClass.InfoDisplays
 
 		public override string DisplayValue() {
 			Player player = Main.LocalPlayer;
-			return "" + Math.Floor(player.GetModPlayer<ClickerPlayer>().clickerPerSecond) + " Clicks per second";
+			return "" + Math.Floor(player.GetModPlayer<ClickerPlayer>().clickerPerSecond) + " " + DisplayName;
 		}
 	}
 }

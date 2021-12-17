@@ -1,5 +1,6 @@
 using ClickerClass.Items;
 using ClickerClass.Items.Accessories;
+using ClickerClass.Items.Consumables;
 using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
@@ -356,6 +357,8 @@ namespace ClickerClass.NPCs
 
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
 		{
+			Player player = Main.LocalPlayer;
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			switch (type)
 			{
 				case NPCID.Merchant:
@@ -376,6 +379,20 @@ namespace ClickerClass.NPCs
 					break;
 				case NPCID.GoblinTinkerer:
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MousePad>());
+					break;
+				case NPCID.Stylist:
+					if (clickerPlayer.clickerSelected)
+					{
+						if (clickerPlayer.clickerTotal >= 2500)
+						{
+							shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ClickerEffectHairDye>());
+						}
+
+						if (clickerPlayer.clickerTotal >= 5000)
+						{
+							shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ClickSpeedHairDye>());
+						}
+					}
 					break;
 				case NPCID.SkeletonMerchant:
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CandleClicker>());

@@ -159,7 +159,7 @@ namespace ClickerClass.Items
 				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 				flat += clickerPlayer.clickerDamageFlat;
 
-				if (clickerPlayer.accPortableParticleAccelerator && clickerPlayer.accPortableParticleAccelerator2)
+				if (clickerPlayer.IsPortableParticleAcceleratorActive)
 				{
 					flat += 8;
 				}
@@ -470,7 +470,7 @@ namespace ClickerClass.Items
 				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, type, damage, knockback, player.whoAmI);
 
 				//Portable Particle Accelerator acc
-				if (clickerPlayer.accPortableParticleAccelerator && clickerPlayer.accPortableParticleAccelerator2)
+				if (clickerPlayer.IsPortableParticleAcceleratorActive)
 				{
 					Vector2 vec = Main.MouseWorld;
 					float num102 = 25f;

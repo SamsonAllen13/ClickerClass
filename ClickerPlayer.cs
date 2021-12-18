@@ -154,6 +154,7 @@ namespace ClickerClass
 		public bool accRegalClickingGlove = false;
 		public bool accPortableParticleAccelerator = false; //"is wearing"
 		public bool accPortableParticleAccelerator2 = false; //"is active", client only
+		public bool IsPortableParticleAcceleratorActive => accPortableParticleAccelerator && accPortableParticleAccelerator2;
 		public bool accGoldenTicket = false;
 		public bool accTriggerFinger = false;
 		public bool accIcePack = false;

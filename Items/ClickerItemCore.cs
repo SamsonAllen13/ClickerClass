@@ -76,6 +76,13 @@ namespace ClickerClass.Items
 			
 			if (ClickerSystem.IsClickerWeapon(item))
 			{
+				//Current value calculation:
+				//Use time 2
+				//60 ticks per second
+				//
+				//Examples:
+				//1f => 2 * 1 = 2 => 60 / 2 = 30 cps
+				//6f = 2 * 6 = 12 => 60 / 12 = 5 cps
 				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
 					if (player.GetModPlayer<ClickerPlayer>().clickerAutoClick || item.autoReuse)
@@ -90,17 +97,17 @@ namespace ClickerClass.Items
 						}
 						else
 						{
-							return 10f;
+							return 10f; //non-clicker induced autoswing
 						}
 					}
 					else
 					{
-						return 1f;
+						return 1f; //No change
 					}
 				}
 				else
 				{
-					return 3f;
+					return 3f; //AutoClick buff
 				}
 			}
 

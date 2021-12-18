@@ -50,10 +50,6 @@ namespace ClickerClass.DrawLayers
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
 			Item heldItem = drawInfo.heldItem;
-			if (heldItem == null)
-			{
-				return false;
-			}
 			bool usingItem = drawPlayer.itemAnimation > 0 && heldItem.useStyle != 0;
 			bool holdingSuitableItem = heldItem.holdStyle != 0 && !drawPlayer.pulley;
 			if (!drawPlayer.CanVisuallyHoldItem(heldItem))

@@ -155,15 +155,14 @@ namespace ClickerClass.Items
 
 		public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage, ref float flat)
 		{
-			if (Main.gameMenu)
-			{
-				//Avoid incompatibility with TRAI calling ModifyTooltips during mod load and using GetModPlayer 
-				return;
-			}
-
 			if (item.CountsAsClass<ClickerDamage>())
 			{
-				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+				if (!player.TryGetModPlayer(out ClickerPlayer clickerPlayer))
+				{
+					//Avoid incompatibility with TRAI calling ModifyTooltips during mod load when no players exist
+					return;
+				}
+
 				flat += clickerPlayer.clickerDamageFlat;
 
 				if (clickerPlayer.IsPortableParticleAcceleratorActive)
@@ -190,16 +189,15 @@ namespace ClickerClass.Items
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			if (Main.gameMenu)
-			{
-				//Avoid incompatibility with TRAI calling ModifyTooltips during mod load and using GetModPlayer 
-				return;
-			}
-
 			if (ClickerSystem.IsClickerItem(item))
 			{
 				Player player = Main.LocalPlayer;
-				var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+				if (!player.TryGetModPlayer(out ClickerPlayer clickerPlayer))
+				{
+					//Avoid incompatibility with TRAI calling ModifyTooltips during mod load when no players exist
+					return;
+				}
+
 				int index;
 
 				float alpha = Main.mouseTextColor / 255f;

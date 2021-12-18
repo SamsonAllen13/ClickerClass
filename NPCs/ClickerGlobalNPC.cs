@@ -357,14 +357,13 @@ namespace ClickerClass.NPCs
 
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
 		{
-			if (Main.gameMenu)
+			Player player = Main.LocalPlayer;
+			if (!player.TryGetModPlayer(out ClickerPlayer clickerPlayer))
 			{
-				//Avoid incompatibility with TRAI calling SetupShop during mod load and using GetModPlayer 
+				//Avoid incompatibility with TRAI calling ModifyTooltips during mod load when no players exist
 				return;
 			}
 
-			Player player = Main.LocalPlayer;
-			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			switch (type)
 			{
 				case NPCID.Merchant:

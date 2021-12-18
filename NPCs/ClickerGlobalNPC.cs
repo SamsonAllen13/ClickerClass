@@ -377,6 +377,7 @@ namespace ClickerClass.NPCs
 					}
 					break;
 				case NPCID.TravellingMerchant:
+					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ButtonMasher>());
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Soda>());
 					break;
 				case NPCID.Mechanic:

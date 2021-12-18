@@ -7,7 +7,8 @@ namespace ClickerClass.InfoDisplays
 	public class CPSInfoDisplay : InfoDisplay
 	{
 		public override bool Active() {
-			return true; //TODO Usually some accessory flag here
+			Player player = Main.LocalPlayer;
+			return player.GetModPlayer<ClickerPlayer>().accButtonMasher;
 		}
 
 		public override string DisplayValue() {

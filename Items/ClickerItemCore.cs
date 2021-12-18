@@ -148,6 +148,12 @@ namespace ClickerClass.Items
 
 		public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage, ref float flat)
 		{
+			if (Main.gameMenu)
+			{
+				//Avoid incompatibility with TRAI calling ModifyTooltips during mod load and using GetModPlayer 
+				return;
+			}
+
 			if (item.CountsAsClass<ClickerDamage>())
 			{
 				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
@@ -177,6 +183,12 @@ namespace ClickerClass.Items
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
+			if (Main.gameMenu)
+			{
+				//Avoid incompatibility with TRAI calling ModifyTooltips during mod load and using GetModPlayer 
+				return;
+			}
+
 			if (ClickerSystem.IsClickerItem(item))
 			{
 				Player player = Main.LocalPlayer;

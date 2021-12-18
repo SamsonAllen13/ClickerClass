@@ -357,6 +357,12 @@ namespace ClickerClass.NPCs
 
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
 		{
+			if (Main.gameMenu)
+			{
+				//Avoid incompatibility with TRAI calling SetupShop during mod load and using GetModPlayer 
+				return;
+			}
+
 			Player player = Main.LocalPlayer;
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			switch (type)

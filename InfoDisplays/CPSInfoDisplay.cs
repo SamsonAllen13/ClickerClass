@@ -8,7 +8,8 @@ namespace ClickerClass.InfoDisplays
 	{
 		public override bool Active() {
 			Player player = Main.LocalPlayer;
-			return player.GetModPlayer<ClickerPlayer>().accButtonMasher;
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+			return clickerPlayer.clickerSelected && clickerPlayer.accButtonMasher;
 		}
 
 		public override string DisplayValue() {

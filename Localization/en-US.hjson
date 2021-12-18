@@ -158,7 +158,7 @@ Mods: {
 			MiceFragment: "'Erratic sparks skitter across this fragment'"
 			AncientClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} second"
 			ChocolateChip: Every 15 clicks releases a burst of damaging chocolate
-			ButtonMasher: Displays your clicks per second
+			ButtonMasher: Displays your clicks per second while a clicker is held
 			BigRedButton: Every 25 clicks causes a large, fiery explosion
 			BottomlessBoxofPaperclips:
 				'''

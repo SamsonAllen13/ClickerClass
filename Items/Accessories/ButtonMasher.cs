@@ -20,6 +20,7 @@ namespace ClickerClass.Items.Accessories
 			Item.rare = 2;
 		}
 		
+		//Sharing to party members handled in ClickerPlayer.PostUpdateEquips
 		public override void UpdateInventory(Player player) 
 		{
 			player.GetModPlayer<ClickerPlayer>().accButtonMasher = true;

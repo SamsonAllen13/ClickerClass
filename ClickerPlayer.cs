@@ -1069,6 +1069,30 @@ namespace ClickerClass
 				}
 			}
 
+			// Get variables from other players
+			if (Main.netMode == NetmodeID.MultiplayerClient && Player.whoAmI == Main.myPlayer)
+			{
+				for (int num = 0; num < Main.maxPlayers; num++)
+				{
+					Player other = Main.player[num];
+					if (num == Player.whoAmI || !other.active || other.dead || other.team != Player.team || other.team == 0)
+					{
+						continue;
+					}
+					// Other player that is on the same team
+
+					int distSQ = 800 * 800;
+					if (Player.DistanceSQ(other.Center) < distSQ)
+					{
+						ClickerPlayer clickerPlayer = other.GetModPlayer<ClickerPlayer>();
+						if (clickerPlayer.accButtonMasher)
+						{
+							accButtonMasher = true;
+						}
+					}
+				}
+			}
+
 			// Out of Combat timer
 			if (outOfCombatTimer > 0)
 			{

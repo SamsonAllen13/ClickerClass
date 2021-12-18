@@ -360,7 +360,7 @@ namespace ClickerClass.NPCs
 			Player player = Main.LocalPlayer;
 			if (!player.TryGetModPlayer(out ClickerPlayer clickerPlayer))
 			{
-				//Avoid incompatibility with TRAI calling ModifyTooltips during mod load when no players exist
+				//Avoid incompatibility with TRAI calling SetupShop during mod load when no players exist
 				return;
 			}
 

@@ -6,14 +6,14 @@ using Terraria.ModLoader;
 
 namespace ClickerClass
 {
-	internal class ClickerRecipes
+	internal class ClickerRecipes : ModSystem
 	{
 		private static Recipe CreateRecipe(int result, int amount = 1)
 		{
 			return ClickerClass.mod.CreateRecipe(result, amount);
 		}
 
-		public static void AddRecipes()
+		public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe(ItemID.AvengerEmblem);
 			recipe.AddIngredient(ModContent.ItemType<ClickerEmblem>(), 1);
@@ -24,7 +24,7 @@ namespace ClickerClass
 			recipe.Register();
 		}
 
-		public static void AddRecipeGroups()
+		public override void AddRecipeGroups()
 		{
 			RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.SilverBar), new int[]
 			{

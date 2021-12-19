@@ -92,11 +92,6 @@ namespace ClickerClass
 			ClickerSystem.FinalizeLocalization();
 		}
 
-		public override void AddRecipeGroups()
-		{
-			ClickerRecipes.AddRecipeGroups();
-		}
-
 		public override void HandlePacket(BinaryReader reader, int whoAmI)
 		{
 			NetHandler.HandlePackets(reader, whoAmI);

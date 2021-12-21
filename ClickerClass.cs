@@ -8,7 +8,6 @@ using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
-using ClickerClass.Prefixes;
 
 namespace ClickerClass
 {
@@ -35,8 +34,6 @@ namespace ClickerClass
 			AutoClickKey = KeybindLoader.RegisterKeybind(this, "Clicker Accessory", "G"); //Can't localize this
 			ClickerSystem.Load();
 
-			ClickerPrefix.LoadPrefixes(mod);
-
 			ClickEffect.LoadMiscEffects();
 			NetHandler.Load();
 
@@ -51,7 +48,6 @@ namespace ClickerClass
 			finalizedRegisterCompat = false;
 			ShaderManager.Unload();
 			ClickerSystem.Unload();
-			ClickerPrefix.UnloadPrefixes();
 			ClickEffect.Unload();
 			NetHandler.Unload();
 			ClickerInterfaceResources.Unload();

@@ -1,6 +1,5 @@
 ﻿using ClickerClass.Buffs;
 using ClickerClass.Dusts;
-using ClickerClass.Prefixes;
 using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
@@ -13,6 +12,7 @@ using Terraria.ModLoader;
 using Terraria.Utilities;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using ClickerClass.Prefixes.ClickerPrefixes;
 
 namespace ClickerClass.Items
 {
@@ -349,12 +349,9 @@ namespace ClickerClass.Items
 
 		public override int ChoosePrefix(Item item, UnifiedRandom rand)
 		{
-			if (ClickerSystem.IsClickerWeapon(item))
+			if (ClickerPrefix.DoConditionsApply(item))
 			{
-				if (item.maxStack == 1 && item.useStyle > 0)
-				{
-					return rand.Next(ClickerPrefix.ClickerPrefixes);
-				}
+				return rand.Next(ClickerPrefix.ClickerPrefixes);
 			}
 			return base.ChoosePrefix(item, rand);
 		}

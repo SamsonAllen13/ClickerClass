@@ -1,3 +1,5 @@
 Mods: {
-	ClickerClass: {}
+	ClickerClass: {
+		missing: missing
+	}
 }

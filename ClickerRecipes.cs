@@ -32,6 +32,12 @@ namespace ClickerClass
 				ItemID.TungstenBar,
 			});
 			RecipeGroup.RegisterGroup("ClickerClass:SilverBar", group);
+			group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.GoldBar), new int[]
+			{
+				ItemID.GoldBar,
+				ItemID.PlatinumBar,
+			});
+			RecipeGroup.RegisterGroup("ClickerClass:GoldBar", group);
 		}
 	}
 }

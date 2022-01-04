@@ -1248,23 +1248,13 @@ namespace ClickerClass
 			}
 		}
 
-		public override void CatchFish(Item fishingRod, Item bait, int power, int liquidType, int poolSize, int worldLayer, int questFish, ref int caughtType)
+		public override void CatchFish(FishingAttempt attempt, ref int itemDrop, ref int npcSpawn, ref AdvancedPopupRequest sonar, ref Vector2 sonarPosition)
 		{
-			//As of mid-december 2021, power and poolSize have their meaning swapped in the tml release
-			if (liquidType == LiquidID.Lava)
+			if (attempt.inLava && attempt.CanFishInLava)
 			{
-				//FishingAttempt fisher;
-				//fisher.CanFishInLava = (ItemID.Sets.CanFishInLava[fisher.playerFishingConditions.PoleItemType] || ItemID.Sets.IsLavaBait[fisher.playerFishingConditions.BaitItemType] || Main.player[owner].accLavaFishing);
-
-				bool canfishInLava = ItemID.Sets.CanFishInLava[fishingRod.type] || ItemID.Sets.IsLavaBait[bait.type] || Player.accLavaFishing;
-				if (!canfishInLava)
-				{
-					return;
-				}
-
 				if (Main.rand.NextBool(50)) //Roughly around [Lava] Crate chance, so around 10%
 				{
-					caughtType = ModContent.ItemType<HotKeychain>();
+					itemDrop = ModContent.ItemType<HotKeychain>();
 				}
 			}
 		}

@@ -64,6 +64,9 @@ namespace ClickerClass
 		public const float clickerRadiusRangeAlphaStep = clickerRadiusRangeAlphaMax / 20f;
 		public float clickerRadiusRangeAlpha = clickerRadiusRangeAlphaMin;
 
+		/// <summary>
+		/// Set via hotkey, reset if no autoclick-giving effects are applied (i.e. Hand Cream)
+		/// </summary>
 		public bool clickerAutoClick = false;
 		/// <summary>
 		/// Saved amount of clicks done with any clicker, accumulated, fluff

@@ -33,7 +33,7 @@ namespace ClickerClass.Items.Accessories
 				WingsLayer.RegisterData(Item.wingSlot, new DrawLayerData()
 				{
 					Texture = ModContent.Request<Texture2D>(Texture + "_Wings_Glow"),
-					Color = () => Color.White * 0.8f
+					Color = (PlayerDrawSet drawInfo) => Color.White * 0.8f
 				});
 			}
 

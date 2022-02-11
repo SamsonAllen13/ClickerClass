@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent.Creative;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -28,7 +29,7 @@ namespace ClickerClass.Items.Tools
 				HeldItemLayer.RegisterData(Item.type, new DrawLayerData()
 				{
 					Texture = glowmask,
-					Color = () => new Color(255, 255, 255, 50) * 0.7f
+					Color = (PlayerDrawSet drawInfo) => new Color(255, 255, 255, 50) * 0.7f
 				});
 			}
 

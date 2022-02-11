@@ -37,7 +37,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				HeldItemLayer.RegisterData(Item.type, new DrawLayerData()
 				{
 					Texture = glowmask,
-					Color = () => new Color(255, 255, 255, 50) * 0.7f
+					Color = (PlayerDrawSet drawInfo) => new Color(255, 255, 255, 50) * 0.7f
 				});
 			}
 		}

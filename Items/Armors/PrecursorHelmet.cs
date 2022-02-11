@@ -3,6 +3,7 @@ using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -20,7 +21,7 @@ namespace ClickerClass.Items.Armors
 				HeadLayer.RegisterData(Item.headSlot, new DrawLayerData()
 				{
 					Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow"),
-					Color = () => Color.White * 0.8f * 0.5f
+					Color = (PlayerDrawSet drawInfo) => Color.White * 0.8f * 0.5f
 				});
 			}
 		}

@@ -60,7 +60,7 @@ namespace ClickerClass.DrawLayers
 				return;
 			}
 
-			Color color = drawPlayer.GetImmuneAlphaPure(data.Color(), drawInfo.shadow);
+			Color color = drawPlayer.GetImmuneAlphaPure(data.Color(drawInfo), drawInfo.shadow);
 
 			Texture2D texture = data.Texture.Value;
 

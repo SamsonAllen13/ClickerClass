@@ -105,11 +105,13 @@ namespace ClickerClass.DrawLayers
 			if (useStyle == ItemUseStyleID.Swing)
 			{
 				Vector2 origin = new Vector2(drawPlayer.direction == -1 ? weaponGlow.Width : 0, drawPlayer.gravDir == -1 ? 0 : weaponGlow.Height);
-				DrawData drawData = new DrawData(weaponGlow, position, sourceRect, data.Color(), drawPlayer.itemRotation, origin, adjustedItemScale, drawInfo.itemEffect, 0);
+				Color color = data.Color(drawInfo);
+				DrawData drawData = new DrawData(weaponGlow, position, sourceRect, color, drawPlayer.itemRotation, origin, adjustedItemScale, drawInfo.itemEffect, 0);
 				drawInfo.DrawDataCache.Add(drawData);
 			}
 			else if (useStyle == ItemUseStyleID.Shoot)
 			{
+				Color color = data.Color(drawInfo);
 				if (Item.staff[heldItem.type])
 				{
 					float num9 = drawInfo.drawPlayer.itemRotation + 0.785f * (float)drawInfo.drawPlayer.direction;
@@ -139,7 +141,7 @@ namespace ClickerClass.DrawLayers
 
 					ItemLoader.HoldoutOrigin(drawInfo.drawPlayer, ref originStaff);
 
-					DrawData drawDataStaff = new DrawData(weaponGlow, new Vector2((int)(drawInfo.ItemLocation.X - Main.screenPosition.X + originStaff.X + num10), (int)(drawInfo.ItemLocation.Y - Main.screenPosition.Y + num11)), sourceRect, data.Color(), num9, originStaff, adjustedItemScale, drawInfo.itemEffect, 0);
+					DrawData drawDataStaff = new DrawData(weaponGlow, new Vector2((int)(drawInfo.ItemLocation.X - Main.screenPosition.X + originStaff.X + num10), (int)(drawInfo.ItemLocation.Y - Main.screenPosition.Y + num11)), sourceRect, color, num9, originStaff, adjustedItemScale, drawInfo.itemEffect, 0);
 					drawInfo.DrawDataCache.Add(drawDataStaff);
 
 					return;
@@ -155,7 +157,7 @@ namespace ClickerClass.DrawLayers
 					origin = new Vector2(weaponGlow.Width + num12, weaponGlow.Height / 2);
 				}
 
-				DrawData drawData = new DrawData(weaponGlow, new Vector2((int)(drawInfo.ItemLocation.X - Main.screenPosition.X + vector5.X), (int)(drawInfo.ItemLocation.Y - Main.screenPosition.Y + vector5.Y)), sourceRect, data.Color(), drawPlayer.itemRotation, origin, adjustedItemScale, drawInfo.itemEffect, 0);
+				DrawData drawData = new DrawData(weaponGlow, new Vector2((int)(drawInfo.ItemLocation.X - Main.screenPosition.X + vector5.X), (int)(drawInfo.ItemLocation.Y - Main.screenPosition.Y + vector5.Y)), sourceRect, color, drawPlayer.itemRotation, origin, adjustedItemScale, drawInfo.itemEffect, 0);
 				drawInfo.DrawDataCache.Add(drawData);
 			}
 		}

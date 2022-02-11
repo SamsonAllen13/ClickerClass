@@ -46,27 +46,27 @@ namespace ClickerClass
 				}
 
 				Tile tile = Main.tile[chest.x, chest.y];
-				if (chest.item == null || (tile.type != TileID.Containers && tile.type != TileID.Containers2))
+				if (chest.item == null || (tile.TileType != TileID.Containers && tile.TileType != TileID.Containers2))
 				{
 					continue;
 				}
 
 				int chestStyleOffset = 0;
-				if (tile.type == TileID.Containers2)
+				if (tile.TileType == TileID.Containers2)
 				{
 					chestStyleOffset = (int)ChestStyle.Containers2Offset;
 				}
-				int styleNum = tile.frameX / 36 + chestStyleOffset;
+				int styleNum = tile.TileFrameX / 36 + chestStyleOffset;
 
 				ChestStyle style = (ChestStyle)styleNum;
 				if (chestStyles.Contains(style))
 				{
-					if (style == ChestStyle.LockedGold && !Main.wallDungeon[tile.wall]) // not actually a dungeon chest, maybe some mod added this
+					if (style == ChestStyle.LockedGold && !Main.wallDungeon[tile.WallType]) // not actually a dungeon chest, maybe some mod added this
 					{
 						continue;
 					}
 
-					if (style == ChestStyle.Wooden && Main.wallDungeon[tile.wall]) // wooden chests generated inside the dungeon always have golden keys
+					if (style == ChestStyle.Wooden && Main.wallDungeon[tile.WallType]) // wooden chests generated inside the dungeon always have golden keys
 					{
 						continue;
 					}

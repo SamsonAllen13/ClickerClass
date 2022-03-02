@@ -11,7 +11,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.WildMagic = ClickerSystem.RegisterClickEffect(Mod, "WildMagic", null, null, 6, new Color(175, 75, 255), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.WildMagic = ClickerSystem.RegisterClickEffect(Mod, "WildMagic", null, null, 6, new Color(175, 75, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				List<string> excluded = new List<string>
 				{

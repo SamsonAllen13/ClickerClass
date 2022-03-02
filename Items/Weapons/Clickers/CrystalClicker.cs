@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Dazzle = ClickerSystem.RegisterClickEffect(Mod, "Dazzle", null, null, 8, new Color(200, 50, 255), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Dazzle = ClickerSystem.RegisterClickEffect(Mod, "Dazzle", null, null, 8, new Color(200, 50, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<CrystalClickerPro>(), 0, knockBack, player.whoAmI);
 			});

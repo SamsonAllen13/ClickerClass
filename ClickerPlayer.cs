@@ -1155,7 +1155,7 @@ namespace ClickerClass
 						}
 						
 						int amount = 1 + Main.rand.Next(6);
-						int coin = Item.NewItem(target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
+						int coin = Item.NewItem(Main.player[projectile.owner].GetItemSource_OnHit(target, -1), target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
 						if (amount > 0)
 						{
 							clickerMoneyGenerated += amount;

@@ -12,7 +12,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Starfall = ClickerSystem.RegisterClickEffect(Mod, "Starfall", null, null, 15, new Color(255, 50, 200), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Starfall = ClickerSystem.RegisterClickEffect(Mod, "Starfall", null, null, 15, new Color(255, 50, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, Main.MouseWorld.X, Main.MouseWorld.Y - 500, 0f, 15f, ModContent.ProjectileType<StarryClickerPro>(), (int)(damage * 1.5f), 1f, player.whoAmI, Main.MouseWorld.X, Main.MouseWorld.Y);
 			});

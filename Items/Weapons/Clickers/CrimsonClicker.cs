@@ -14,7 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Infest = ClickerSystem.RegisterClickEffect(Mod, "Infest", null, null, 10, new Color(255, 225, 175), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Infest = ClickerSystem.RegisterClickEffect(Mod, "Infest", null, null, 10, new Color(255, 225, 175), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				for (int k = 0; k < 8; k++)

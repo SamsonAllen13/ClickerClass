@@ -83,7 +83,7 @@ namespace ClickerClass
 		/// | "Description": The description (string).
 		/// | "Amount": The amount of clicks to trigger the effect (int).
 		/// | "ColorFunc": The color (Color) if invoked.
-		/// | "Action": The method ran when triggered (Action[Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float]).
+		/// | "Action": The method ran when triggered (Action[Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float]).
 		/// </summary>
 		/// <param name="name">The unique name</param>
 		/// <returns>Dictionary[string, object]</returns>
@@ -149,7 +149,7 @@ namespace ClickerClass
 		/// <param name="action">The method that runs when the effect is triggered</param>
 		/// <returns>The unique identifier</returns>
 		/// <exception cref="InvalidOperationException"/>
-		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Func<Color> colorFunc, Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float> action)
+		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action)
 		{
 			if (ClickerClass.finalizedRegisterCompat)
 			{
@@ -188,7 +188,7 @@ namespace ClickerClass
 		/// <remarks>For dynamic colors, use the Func[Color] overload</remarks>
 		/// <returns>The unique identifier</returns>
 		/// <exception cref="InvalidOperationException"/>
-		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, ProjectileSource_Item_WithAmmo, Vector2, int, int, float> action)
+		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action)
 		{
 			return RegisterClickEffect(mod, internalName, displayName, description, amount, () => color, action);
 		}

@@ -14,34 +14,36 @@ namespace ClickerClass.Items
 		// Add items to vanilla loot bags
 		public override void OpenVanillaBag(string context, Player player, int arg)
 		{
+			var source = player.GetItemSource_OpenItem(arg);
+
 			switch (context)
 			{
 				case "bossBag":
 					switch (arg)
 					{
 						case ItemID.MoonLordBossBag:
-							player.QuickSpawnItem(ModContent.ItemType<LordsClicker>());
+							player.QuickSpawnItem(source, ModContent.ItemType<LordsClicker>());
 							if (Main.rand.NextBool(5))
 							{
-								player.QuickSpawnItem(ModContent.ItemType<TheClicker>());
+								player.QuickSpawnItem(source, ModContent.ItemType<TheClicker>());
 							}
 							break;
 						case ItemID.WallOfFleshBossBag:
 							if (Main.rand.NextBool(4))
 							{
-								player.QuickSpawnItem(ModContent.ItemType<ClickerEmblem>());
+								player.QuickSpawnItem(source, ModContent.ItemType<ClickerEmblem>());
 							}
 							break;
 						case ItemID.KingSlimeBossBag:
 							if (Main.rand.NextBool(4))
 							{
-								player.QuickSpawnItem(ModContent.ItemType<StickyKeychain>());
+								player.QuickSpawnItem(source, ModContent.ItemType<StickyKeychain>());
 							}
 							break;
 						case ItemID.QueenSlimeBossBag:
 							if (Main.rand.NextBool(4))
 							{
-								player.QuickSpawnItem(ModContent.ItemType<ClearKeychain>());
+								player.QuickSpawnItem(source, ModContent.ItemType<ClearKeychain>());
 							}
 							break;
 						case ItemID.TwinsBossBag:
@@ -49,7 +51,7 @@ namespace ClickerClass.Items
 						case ItemID.DestroyerBossBag:
 							if (Main.rand.NextBool(4))
 							{
-								player.QuickSpawnItem(ModContent.ItemType<BottomlessBoxofPaperclips>());
+								player.QuickSpawnItem(source, ModContent.ItemType<BottomlessBoxofPaperclips>());
 							}
 							break;
 					}

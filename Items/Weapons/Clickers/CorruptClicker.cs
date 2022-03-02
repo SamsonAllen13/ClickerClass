@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.CursedEruption = ClickerSystem.RegisterClickEffect(Mod, "CursedEruption", null, null, 8, new Color(125, 255, 0), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.CursedEruption = ClickerSystem.RegisterClickEffect(Mod, "CursedEruption", null, null, 8, new Color(125, 255, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<CorruptClickerPro>(), damage, knockBack, player.whoAmI);
 			});

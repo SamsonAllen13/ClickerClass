@@ -12,7 +12,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.BalloonDefense = ClickerSystem.RegisterClickEffect(Mod, "BalloonDefense", null, null, 20, new Color(200, 125, 125), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.BalloonDefense = ClickerSystem.RegisterClickEffect(Mod, "BalloonDefense", null, null, 20, new Color(200, 125, 125), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, Main.MouseWorld.X, Main.MouseWorld.Y - 500, 0f, 15f, ModContent.ProjectileType<BalloonClickerPro>(), damage, 0f, player.whoAmI);
 			});

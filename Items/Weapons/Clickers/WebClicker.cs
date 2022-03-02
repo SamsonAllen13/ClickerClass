@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.WebSplash = ClickerSystem.RegisterClickEffect(Mod, "WebSplash", null, null, 10, new Color(190, 190, 175), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.WebSplash = ClickerSystem.RegisterClickEffect(Mod, "WebSplash", null, null, 10, new Color(190, 190, 175), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Vector2 mouse = Main.MouseWorld;
 

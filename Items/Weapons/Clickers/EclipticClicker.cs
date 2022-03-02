@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Totality = ClickerSystem.RegisterClickEffect(Mod, "Totality", null, null, 15, new Color(255, 200, 100), delegate (Player player, ProjectileSource_Item_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Totality = ClickerSystem.RegisterClickEffect(Mod, "Totality", null, null, 15, new Color(255, 200, 100), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<TotalityClickerPro>(), damage, knockBack, player.whoAmI);
 			});

@@ -1246,7 +1246,7 @@ namespace ClickerClass
 		{
 			if (DrawHotWings)
 			{
-				//Hide the vanilla wings layer. Important that our own replacement layer is not attached to that, then it would get hidden aswell :failure:
+				//Hide the vanilla wings layer. Important that our own replacement layer is not attached to that (via XParent), then it would get hidden aswell :failure:
 				PlayerDrawLayers.Wings.Hide();
 			}
 		}

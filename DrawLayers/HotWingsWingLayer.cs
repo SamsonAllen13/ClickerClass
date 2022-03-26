@@ -37,7 +37,8 @@ namespace ClickerClass.DrawLayers
 
 		public override Position GetDefaultPosition()
 		{
-			return new BeforeParent(PlayerDrawLayers.JimsCloak); //First layer
+			return new Between(PlayerDrawLayers.MountBack, PlayerDrawLayers.Wings); //MountBack is one of the first layers, we want it before Wings to match order roughly
+			//Not using XParent because that would make it a child, affected by visibility hierarchy, which we don't want as we hide the Wings layer while this is visible
 		}
 
 		protected override void Draw(ref PlayerDrawSet drawInfo)

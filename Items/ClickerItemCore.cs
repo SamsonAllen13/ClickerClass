@@ -210,19 +210,19 @@ namespace ClickerClass.Items
 
 				if (ClickerConfigClient.Instance.ShowClassTags)
 				{
-					index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
+					index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
 					if (index != -1)
 					{
 						tooltips.Insert(index + 1, new TooltipLine(Mod, "ClickerTag", $"-{LangHelper.GetText("Tooltip.ClickerTag")}-")
 						{
-							overrideColor = Main.DiscoColor
+							OverrideColor = Main.DiscoColor
 						});
 					}
 				}
 
 				if (isClickerDisplayTotal)
 				{
-					index = tooltips.FindLastIndex(tt => tt.mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
+					index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
 
 					if (index != -1)
 					{
@@ -233,7 +233,7 @@ namespace ClickerClass.Items
 				
 				if (isClickerDisplayMoneyGenerated)
 				{
-					index = tooltips.FindLastIndex(tt => tt.mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
+					index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
 
 					if (index != -1)
 					{
@@ -246,11 +246,11 @@ namespace ClickerClass.Items
 
 				if (ClickerSystem.IsClickerWeapon(item))
 				{
-					TooltipLine tooltip = tooltips.Find(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("Damage"));
+					TooltipLine tooltip = tooltips.Find(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Damage"));
 					if (tooltip != null)
 					{
-						string number = tooltip.text.Split(' ')[0];
-						tooltip.text = LangHelper.GetText("Tooltip.ClickDamage", number);
+						string number = tooltip.Text.Split(' ')[0];
+						tooltip.Text = LangHelper.GetText("Tooltip.ClickDamage", number);
 					}
 
 					//Show the clicker's effects
@@ -269,7 +269,7 @@ namespace ClickerClass.Items
 
 					if (effects.Count > 0)
 					{
-						index = tooltips.FindIndex(tt => tt.mod.Equals("Terraria") && tt.Name.Equals("Knockback"));
+						index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Knockback"));
 
 						if (index != -1)
 						{
@@ -293,10 +293,10 @@ namespace ClickerClass.Items
 							if (!showDesc && ClickerConfigClient.Instance.ShowEffectSuggestion)
 							{
 								//Add ForMoreInfo as the last line
-								index = tooltips.FindLastIndex(tt => tt.mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
+								index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
 								var ttl = new TooltipLine(Mod, "ForMoreInfo", LangHelper.GetText("Tooltip.ForMoreInfo", key))
 								{
-									overrideColor = Color.Gray
+									OverrideColor = Color.Gray
 								};
 
 								if (index != -1)
@@ -317,15 +317,15 @@ namespace ClickerClass.Items
 					return;
 				}
 
-				int ttindex = tooltips.FindLastIndex(t => (t.mod == "Terraria" || t.mod == Mod.Name) && (t.isModifier || t.Name.StartsWith("Tooltip") || t.Name.Equals("Material")));
+				int ttindex = tooltips.FindLastIndex(t => (t.Mod == "Terraria" || t.Mod == Mod.Name) && (t.IsModifier || t.Name.StartsWith("Tooltip") || t.Name.Equals("Material")));
 				if (ttindex != -1)
 				{
 					if (radiusBoostPrefix != 0)
 					{
 						TooltipLine tt = new TooltipLine(Mod, "PrefixClickerRadius", (radiusBoostPrefix > 0 ? "+" : "") + LangHelper.GetText("Prefix.PrefixClickerRadius.Tooltip", (int)((radiusBoostPrefix / 2) * 100)))
 						{
-							isModifier = true,
-							isModifierBad = radiusBoostPrefix < 0
+							IsModifier = true,
+							IsModifierBad = radiusBoostPrefix < 0
 						};
 						tooltips.Insert(++ttindex, tt);
 					}
@@ -333,8 +333,8 @@ namespace ClickerClass.Items
 					{
 						TooltipLine tt = new TooltipLine(Mod, "PrefixClickBoost", (clickBoostPrefix < 0 ? "" : "+") + LangHelper.GetText("Prefix.PrefixClickBoost.Tooltip", clickBoostPrefix))
 						{
-							isModifier = true,
-							isModifierBad = clickBoostPrefix > 0
+							IsModifier = true,
+							IsModifierBad = clickBoostPrefix > 0
 						};
 						tooltips.Insert(++ttindex, tt);
 					}

@@ -78,13 +78,13 @@ namespace ClickerClass.Items
 			// Clicker radius accessory prefix tooltip
 			if (item.accessory && !item.social && item.prefix == ModContent.PrefixType<ClickerRadius>())
 			{
-				int index = tooltips.FindLastIndex(tt => (tt.mod.Equals("Terraria") || tt.mod.Equals(Mod.Name))
+				int index = tooltips.FindLastIndex(tt => (tt.Mod.Equals("Terraria") || tt.Mod.Equals(Mod.Name))
 				&& (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
 				if (index != -1)
 				{
 					tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccClickerRadius", LangHelper.GetText("Prefix.ClickerRadius.Tooltip"))
 					{
-						isModifier = true
+						IsModifier = true
 					});
 				}
 			}

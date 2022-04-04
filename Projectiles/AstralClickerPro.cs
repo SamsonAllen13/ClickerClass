@@ -65,7 +65,7 @@ namespace ClickerClass.Projectiles
 			SecondaryRotation -= 0.15f;
 
 			Vector2 offset = new Vector2(Main.rand.Next(-100, 101), Main.rand.Next(-100, 101));
-			Dust dust = Dust.NewDustDirect(new Vector2(Projectile.Center.X - 10, Projectile.Center.Y - 10) + offset, 20, 20, ModContent.DustType<MiceDust>(), Scale: 1.5f);
+			Dust dust = Dust.NewDustDirect(null, new Vector2(Projectile.Center.X - 10, Projectile.Center.Y - 10) + offset, 20, 20, ModContent.DustType<MiceDust>(), Scale: 1.5f);
 			dust.noGravity = true;
 			dust.velocity = -offset * 0.1f;
 
@@ -77,7 +77,7 @@ namespace ClickerClass.Projectiles
 
 				for (int k = 0; k < 20; k++)
 				{
-					dust = Dust.NewDustDirect(Projectile.Center - new Vector2(4), 8, 8, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
+					dust = Dust.NewDustDirect(null, Projectile.Center - new Vector2(4), 8, 8, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 0, default, 1.25f);
 					dust.noGravity = true;
 				}
 			}
@@ -108,12 +108,12 @@ namespace ClickerClass.Projectiles
 
 				for (int k = 0; k < 30; k++)
 				{
-					dust = Dust.NewDustDirect(Projectile.Center, 10, 10, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 0, default, 1.5f);
+					dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, ModContent.DustType<MiceDust>(), Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 0, default, 1.5f);
 					dust.noGravity = true;
 				}
 				for (int k = 0; k < 20; k++)
 				{
-					dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 88, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 125, default, 1.15f);
+					dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, 88, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 125, default, 1.15f);
 					dust.noGravity = true;
 				}
 			}

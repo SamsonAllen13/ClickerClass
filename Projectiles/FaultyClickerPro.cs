@@ -47,7 +47,7 @@ namespace ClickerClass.Projectiles
 				Vector2 vector12 = Vector2.UnitX * 0f;
 				vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(4f, 4f);
 				vector12 = vector12.RotatedBy((double)Projectile.velocity.ToRotation(), default(Vector2));
-				int num104 = Dust.NewDust(Projectile.Center, 0, 0, 229, 0f, 0f, 0, default(Color), 1f);
+				int num104 = Dust.NewDust(null, Projectile.Center, 0, 0, 229, 0f, 0f, 0, default(Color), 1f);
 				Main.dust[num104].noGravity = true;
 				Main.dust[num104].position = Projectile.Center + vector12;
 				Main.dust[num104].velocity = Projectile.velocity * 0f + vector12.SafeNormalize(Vector2.UnitY) * 2f;

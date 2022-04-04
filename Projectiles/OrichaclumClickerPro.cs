@@ -98,7 +98,7 @@ namespace ClickerClass.Projectiles
 					Vector2 vector2 = Vector2.Zero;
 					vector2 += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / max)) * new Vector2(2f, 2f);
 					vector2 = vector2.RotatedBy(Projectile.velocity.ToRotation(), default(Vector2));
-					int index = Dust.NewDust(Projectile.Center, 0, 0, 86, 0f, 0f, 0, default(Color), 1.25f);
+					int index = Dust.NewDust(null, Projectile.Center, 0, 0, 86, 0f, 0f, 0, default(Color), 1.25f);
 					Dust dust = Main.dust[index];
 					dust.noGravity = true;
 					dust.position = Projectile.Center + vector2;

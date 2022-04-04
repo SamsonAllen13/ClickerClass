@@ -77,7 +77,7 @@ namespace ClickerClass.Projectiles
 			SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 30, volumeScale: 0.7f);
 			for (int u = 0; u < 15; u++)
 			{
-				int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 92, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 255, default(Color), 1.25f);
+				int dust = Dust.NewDust(null, Projectile.position, Projectile.width, Projectile.height, 92, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 255, default(Color), 1.25f);
 				Main.dust[dust].noGravity = true;
 			}
 		}

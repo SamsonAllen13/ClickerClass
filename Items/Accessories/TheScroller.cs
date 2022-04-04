@@ -112,7 +112,7 @@ namespace ClickerClass.Items.Accessories
 						Vector2 position = -Vector2.UnitY.RotatedBy(i * MathHelper.TwoPi / numDusts) * new Vector2(1f, 0.25f);
 						Vector2 velocity = playerVelocity + position * 1.25f;
 						position = position * 8 + playerOffset;
-						Dust dust = Dust.NewDustPerfect(position, ModContent.DustType<MiceDust>(), velocity);
+						Dust dust = Dust.NewDustPerfect(null, position, ModContent.DustType<MiceDust>(), velocity);
 						dust.noGravity = true;
 						dust.scale = 0.8f + rate * 0.04f;
 						dust.shader = GameShaders.Armor.GetSecondaryShader(player.cWings, player);
@@ -131,7 +131,7 @@ namespace ClickerClass.Items.Accessories
 						Vector2 position = -Vector2.UnitY.RotatedBy(i * MathHelper.TwoPi / numDusts) * new Vector2(1f, 0.25f);
 						Vector2 velocity = playerVelocity + position * 2;
 						position = position * 8 + playerOffset;
-						Dust dust = Dust.NewDustPerfect(position, ModContent.DustType<MiceDust>(), velocity);
+						Dust dust = Dust.NewDustPerfect(null, position, ModContent.DustType<MiceDust>(), velocity);
 						dust.noGravity = true;
 						dust.fadeIn = 1f;
 						dust.scale = 0.8f;

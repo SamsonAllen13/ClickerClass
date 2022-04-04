@@ -20,7 +20,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				player.AddBuff(ModContent.BuffType<AutoClick>(), 300, false);
 				for (int i = 0; i < 15; i++)
 				{
-					int index = Dust.NewDust(player.position, 20, 20, 15, 0f, 0f, 255, default(Color), 1.5f);
+					int index = Dust.NewDust(null, player.position, 20, 20, 15, 0f, 0f, 255, default(Color), 1.5f);
 					Dust dust = Main.dust[index];
 					dust.noGravity = true;
 					dust.velocity *= 0.75f;

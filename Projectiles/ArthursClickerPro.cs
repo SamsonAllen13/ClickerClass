@@ -38,7 +38,7 @@ namespace ClickerClass.Projectiles
 				Spawned = true;
 				for (int k = 0; k < 30; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.Center, 8, 8, 87, Projectile.velocity.X + Main.rand.NextFloat(-1f, 1f), Projectile.velocity.Y + Main.rand.NextFloat(-1f, 1f), 0, default, 1.25f);
+					Dust dust = Dust.NewDustDirect(null, Projectile.Center, 8, 8, 87, Projectile.velocity.X + Main.rand.NextFloat(-1f, 1f), Projectile.velocity.Y + Main.rand.NextFloat(-1f, 1f), 0, default, 1.25f);
 					dust.noGravity = true;
 				}
 			}

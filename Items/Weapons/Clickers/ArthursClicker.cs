@@ -44,7 +44,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 					Vector2 vector12 = Vector2.UnitX * 0f;
 					vector12 += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / max)) * new Vector2(2f, 2f);
 					vector12 = vector12.RotatedBy((double)Vector2.Zero.ToRotation(), default(Vector2));
-					int index = Dust.NewDust(Main.MouseWorld, 0, 0, 87, 0f, 0f, 0, default(Color), 2f);
+					int index = Dust.NewDust(null, Main.MouseWorld, 0, 0, 87, 0f, 0f, 0, default(Color), 2f);
 					Dust dust = Main.dust[index];
 					dust.noGravity = true;
 					dust.position = Main.MouseWorld + vector12;

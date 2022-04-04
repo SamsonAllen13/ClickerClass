@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Dusts
@@ -9,7 +10,7 @@ namespace ClickerClass.Dusts
 	/// </summary>
 	public class ColorableDust : ModDust
 	{
-		public override void OnSpawn(Dust dust)
+		public override void OnSpawn(Dust dust, IEntitySource source)
 		{
 			dust.noGravity = true;
 			dust.noLight = true;

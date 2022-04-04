@@ -4,6 +4,7 @@ using ClickerClass.Prefixes;
 using ClickerClass.Utilities;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,7 +15,7 @@ namespace ClickerClass.Items
 		// Add items to vanilla loot bags
 		public override void OpenVanillaBag(string context, Player player, int arg)
 		{
-			var source = player.GetItemSource_OpenItem(arg);
+			var source = new EntitySource_ItemOpen(player, arg);
 
 			switch (context)
 			{

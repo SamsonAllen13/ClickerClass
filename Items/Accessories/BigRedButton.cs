@@ -29,7 +29,7 @@ namespace ClickerClass.Items.Accessories
 				}
 				for (int k = 0; k < 20; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 174, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 0, default, 1.75f);
+					Dust dust = Dust.NewDustDirect(null, Main.MouseWorld, 8, 8, 174, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 0, default, 1.75f);
 					dust.noGravity = true;
 					dust.noLight = true;
 				}

@@ -60,7 +60,7 @@ namespace ClickerClass.Projectiles
 
 			for (int l = 0; l < 2; l++)
 			{
-				int num235 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y) - Projectile.velocity, Projectile.width, Projectile.height, 59, 0f, 0f, 150, default(Color), 1f);
+				int num235 = Dust.NewDust(null, new Vector2(Projectile.position.X, Projectile.position.Y) - Projectile.velocity, Projectile.width, Projectile.height, 59, 0f, 0f, 150, default(Color), 1f);
 				Dust dust4 = Main.dust[num235];
 				dust4.velocity *= 0f;
 				Main.dust[num235].noGravity = true;
@@ -74,12 +74,12 @@ namespace ClickerClass.Projectiles
 
 				for (int k = 0; k < 10; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 59, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 125, default, 1.5f);
+					Dust dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, 59, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 125, default, 1.5f);
 					dust.noGravity = true;
 				}
 				for (int k = 0; k < 15; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 103, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 100, default, 1.75f);
+					Dust dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, 103, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 100, default, 1.75f);
 					dust.noGravity = true;
 				}
 				
@@ -91,7 +91,7 @@ namespace ClickerClass.Projectiles
 						target.AddBuff(ModContent.BuffType<Crystalized>(), 300, false);
 						for (int i = 0; i < 15; i++)
 						{
-							int index = Dust.NewDust(target.position, target.width, target.height, 71, 0f, 0f, 255, default(Color), 1f);
+							int index = Dust.NewDust(null, target.position, target.width, target.height, 71, 0f, 0f, 255, default(Color), 1f);
 							Dust dust = Main.dust[index];
 							dust.noGravity = true;
 							dust.velocity *= 0.75f;

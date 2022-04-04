@@ -65,7 +65,7 @@ namespace ClickerClass.Projectiles
 				SoundEngine.PlaySound(3, (int)Projectile.Center.X, (int)Projectile.Center.Y, 13);
 				for (int k = 0; k < 20; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 41, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 200, default, 1.25f);
+					Dust dust = Dust.NewDustDirect(null, Projectile.position, Projectile.width, Projectile.height, 41, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 200, default, 1.25f);
 					dust.noGravity = true;
 				}
 			}
@@ -87,7 +87,7 @@ namespace ClickerClass.Projectiles
 		{
 			for (int k = 0; k < 8; k++)
 			{
-				int dust = Dust.NewDust(Projectile.position, (int)(Projectile.width * 0.5f), (int)(Projectile.height * 0.5f), 41, Main.rand.Next((int)-8f, (int)8f), Main.rand.Next((int)-8f, (int)8f), 200, default, 1.25f);
+				int dust = Dust.NewDust(null, Projectile.position, (int)(Projectile.width * 0.5f), (int)(Projectile.height * 0.5f), 41, Main.rand.Next((int)-8f, (int)8f), Main.rand.Next((int)-8f, (int)8f), 200, default, 1.25f);
 				Main.dust[dust].noGravity = true;
 			}
 		}

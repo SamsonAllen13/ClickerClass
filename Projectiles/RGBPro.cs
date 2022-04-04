@@ -107,7 +107,7 @@ namespace ClickerClass.Projectiles
 				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 109);
 				for (int k = 0; k < 20; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.Center - new Vector2(4), 8, 8, 22, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 125, default, 1.5f);
+					Dust dust = Dust.NewDustDirect(null, Projectile.Center - new Vector2(4), 8, 8, 22, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 125, default, 1.5f);
 					dust.noGravity = true;
 					dust.noLight = true;
 				}
@@ -133,13 +133,13 @@ namespace ClickerClass.Projectiles
 					{
 						if (dustType == 91)
 						{
-							Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 92, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 0.75f);
+							Dust dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, 92, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 0.75f);
 							dust.shader = GameShaders.Armor.GetSecondaryShader(70, Main.LocalPlayer);
 							dust.noGravity = true;
 						}
 						else
 						{
-							Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 0.75f);
+							Dust dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 0.75f);
 							dust.noGravity = true;
 						}
 					}
@@ -182,13 +182,13 @@ namespace ClickerClass.Projectiles
 				{
 					if (dustType == 91)
 					{
-						Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 92, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1f);
+						Dust dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, 92, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1f);
 						dust.shader = GameShaders.Armor.GetSecondaryShader(70, Main.LocalPlayer);
 						dust.noGravity = true;
 					}
 					else
 					{
-						Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1f);
+						Dust dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1f);
 						dust.noGravity = true;
 					}
 				}

@@ -405,7 +405,7 @@ namespace ClickerClass.Items
 								Vector2 vector12 = Vector2.UnitX * 0f;
 								vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (MathHelper.TwoPi / num102)), default(Vector2)) * new Vector2(2f, 2f);
 								vector12 = vector12.RotatedBy((double)Vector2.Zero.ToRotation(), default(Vector2));
-								int num104 = Dust.NewDust(Main.MouseWorld, 0, 0, ModContent.DustType<MiceDust>(), 0f, 0f, 0, default(Color), 2f);
+								int num104 = Dust.NewDust(null, Main.MouseWorld, 0, 0, ModContent.DustType<MiceDust>(), 0f, 0f, 0, default(Color), 2f);
 								Main.dust[num104].noGravity = true;
 								Main.dust[num104].position = Main.MouseWorld + vector12;
 								Main.dust[num104].velocity = Vector2.Zero * 0f + vector12.SafeNormalize(Vector2.UnitY) * 4f;
@@ -488,7 +488,7 @@ namespace ClickerClass.Items
 						Vector2 vector12 = Vector2.UnitX * 0f;
 						vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(4f, 4f);
 						vector12 = vector12.RotatedBy((double)player.velocity.ToRotation(), default(Vector2));
-						int num104 = Dust.NewDust(vec, 0, 0, 229, 0f, 0f, 0, default(Color), 1f);
+						int num104 = Dust.NewDust(null, vec, 0, 0, 229, 0f, 0f, 0, default(Color), 1f);
 						Main.dust[num104].noGravity = true;
 						Main.dust[num104].position = vec + vector12;
 						Main.dust[num104].velocity = player.velocity * 0f + vector12.SafeNormalize(Vector2.UnitY) * 1f;
@@ -523,7 +523,7 @@ namespace ClickerClass.Items
 					player.AddBuff(overclockType, 180, false);
 					for (int i = 0; i < 25; i++)
 					{
-						int num6 = Dust.NewDust(player.position, 20, 20, 90, 0f, 0f, 150, default(Color), 1.35f);
+						int num6 = Dust.NewDust(null, player.position, 20, 20, 90, 0f, 0f, 150, default(Color), 1.35f);
 						Main.dust[num6].noGravity = true;
 						Main.dust[num6].velocity *= 0.75f;
 						int num7 = Main.rand.Next(-50, 51);

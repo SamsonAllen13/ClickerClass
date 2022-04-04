@@ -412,8 +412,8 @@ namespace ClickerClass.NPCs
 			{
 				if (!Main.rand.NextBool(4))
 				{
-					Dust dust = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 5, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2.2f);
-					Dust dust2 = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 54, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 1.6f);
+					Dust dust = Dust.NewDustDirect(null, npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 5, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 2.2f);
+					Dust dust2 = Dust.NewDustDirect(null, npc.position - new Vector2(2f, 2f), npc.width + 4, npc.height + 4, 54, npc.velocity.X * 0.4f, npc.velocity.Y * 0.4f, 100, default(Color), 1.6f);
 					dust.noGravity = true;
 					dust.velocity *= 1.2f;
 					dust.velocity.Y -= 0.7f;
@@ -435,7 +435,7 @@ namespace ClickerClass.NPCs
 			{
 				if (Main.rand.NextFloat() < 0.66f)
 				{
-					int dust = Dust.NewDust(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 153, 0f, Main.rand.NextFloat(0.25f, 0.75f), 50, default(Color), 1.35f);
+					int dust = Dust.NewDust(null, npc.position - new Vector2(2f, 2f), npc.width, npc.height, 153, 0f, Main.rand.NextFloat(0.25f, 0.75f), 50, default(Color), 1.35f);
 					Main.dust[dust].noGravity = true;
 					Main.dust[dust].fadeIn = 1.1f;
 					if (Main.rand.NextBool(4))
@@ -449,7 +449,7 @@ namespace ClickerClass.NPCs
 			{
 				if (!Main.rand.NextBool(5))
 				{
-					Dust dust = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 111, 0f, 0f, 0, default(Color), 0.75f);
+					Dust dust = Dust.NewDustDirect(null, npc.position - new Vector2(2f, 2f), npc.width, npc.height, 111, 0f, 0f, 0, default(Color), 0.75f);
 					dust.noGravity = true;
 					dust.velocity *= 0f;
 					dust.fadeIn = 1.75f;
@@ -462,7 +462,7 @@ namespace ClickerClass.NPCs
 			{
 				if (!Main.rand.NextBool(5))
 				{
-					Dust dust = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 57, 0f, 0f, 255, default(Color), 0.65f);
+					Dust dust = Dust.NewDustDirect(null, npc.position - new Vector2(2f, 2f), npc.width, npc.height, 57, 0f, 0f, 255, default(Color), 0.65f);
 					dust.shader = GameShaders.Armor.GetSecondaryShader(20, Main.LocalPlayer);
 					dust.noGravity = true;
 					dust.velocity *= 0f;
@@ -476,7 +476,7 @@ namespace ClickerClass.NPCs
 			{
 				if (!Main.rand.NextBool(5))
 				{
-					Dust dust = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 71, 0f, 0f, 255, default(Color), 0.4f);
+					Dust dust = Dust.NewDustDirect(null, npc.position - new Vector2(2f, 2f), npc.width, npc.height, 71, 0f, 0f, 255, default(Color), 0.4f);
 					dust.noGravity = true;
 					dust.velocity *= 0f;
 					dust.fadeIn = 1.25f;

@@ -50,7 +50,7 @@ namespace ClickerClass.Projectiles
 				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 74);
 				for (int k = 0; k < 15; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.Center - new Vector2(4), 8, 8, 55, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 255, default, 1.35f);
+					Dust dust = Dust.NewDustDirect(null, Projectile.Center - new Vector2(4), 8, 8, 55, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 255, default, 1.35f);
 					dust.noGravity = true;
 				}
 			}
@@ -60,7 +60,7 @@ namespace ClickerClass.Projectiles
 				Projectile.extraUpdates = 0;
 				for (int k = 0; k < 3; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 174, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 255, default, 0.75f);
+					Dust dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, 174, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 255, default, 0.75f);
 					dust.noGravity = true;
 				}
 			}

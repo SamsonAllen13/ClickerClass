@@ -1,12 +1,13 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Dusts
 {
 	public class MiceDust : ModDust
 	{
-		public override void OnSpawn(Dust dust)
+		public override void OnSpawn(Dust dust, IEntitySource source)
 		{
 			dust.scale *= 1.25f;
 		}

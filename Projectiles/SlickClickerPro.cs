@@ -62,7 +62,7 @@ namespace ClickerClass.Projectiles
 			{
 				float num364 = Projectile.velocity.X / 3f * (float)num363;
 				float num365 = Projectile.velocity.Y / 3f * (float)num363;
-				int num366 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 33, 0f, 0f, 100, default(Color), 1.25f);
+				int num366 = Dust.NewDust(null, Projectile.position, Projectile.width, Projectile.height, 33, 0f, 0f, 100, default(Color), 1.25f);
 				Main.dust[num366].position.X = Projectile.Center.X - num364;
 				Main.dust[num366].position.Y = Projectile.Center.Y - num365;
 				Main.dust[num366].velocity *= 0f;
@@ -71,7 +71,7 @@ namespace ClickerClass.Projectiles
 
 			for (int k = 0; k < 2; k++)
 			{
-				int dust = Dust.NewDust(Projectile.position, 10, 10, 33, Main.rand.Next((int)-1f, (int)1f), Main.rand.Next((int)-1f, (int)1f), 100, default(Color), 0.75f);
+				int dust = Dust.NewDust(null, Projectile.position, 10, 10, 33, Main.rand.Next((int)-1f, (int)1f), Main.rand.Next((int)-1f, (int)1f), 100, default(Color), 0.75f);
 				Main.dust[dust].noGravity = true;
 			}
 		}

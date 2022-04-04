@@ -35,13 +35,13 @@ namespace ClickerClass.Projectiles
 				{
 					if (dustType == 91)
 					{
-						Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 92, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1f);
+						Dust dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, 92, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1f);
 						dust.shader = GameShaders.Armor.GetSecondaryShader(70, Main.LocalPlayer);
 						dust.noGravity = true;
 					}
 					else
 					{
-						Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1f);
+						Dust dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1f);
 						dust.noGravity = true;
 					}
 				}

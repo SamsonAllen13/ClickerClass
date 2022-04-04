@@ -24,7 +24,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				player.AddBuff(ModContent.BuffType<HotWingsBuff>(), 300, false);
 				for (int i = 0; i < 15; i++)
 				{
-					int index = Dust.NewDust(player.position, player.width, player.height, 174, 0f, 0f, 150, default(Color), 1.25f);
+					int index = Dust.NewDust(null, player.position, player.width, player.height, 174, 0f, 0f, 150, default(Color), 1.25f);
 					Dust dust = Main.dust[index];
 					dust.noGravity = true;
 					dust.velocity *= 0.75f;

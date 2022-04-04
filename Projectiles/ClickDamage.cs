@@ -55,7 +55,7 @@ namespace ClickerClass.Projectiles
 
 			for (int k = 0; k < 5; k++)
 			{
-				Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
+				Dust dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
 				dust.noGravity = true;
 			}
 
@@ -64,7 +64,7 @@ namespace ClickerClass.Projectiles
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 90, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
+					Dust dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, 90, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
 					dust.noGravity = true;
 				}
 			}
@@ -80,7 +80,7 @@ namespace ClickerClass.Projectiles
 						case 1: dustType1 = 57; break;
 						default: dustType1 = 58; break;
 					}
-					Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, dustType1, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 100, default, 1.5f);
+					Dust dust = Dust.NewDustDirect(null, Projectile.Center, 10, 10, dustType1, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 100, default, 1.5f);
 					dust.velocity *= 1.5f;
 					dust.noGravity = true;
 				}
@@ -136,7 +136,7 @@ namespace ClickerClass.Projectiles
 				{
 					float rot = MathHelper.TwoPi * i / amount;
 					Vector2 velocity = vel.RotatedBy(rot);
-					Dust dust = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<ColorableDust>(), velocity, newColor: dustColor, Alpha: 25);
+					Dust dust = Dust.NewDustPerfect(null, Projectile.Center, ModContent.DustType<ColorableDust>(), velocity, newColor: dustColor, Alpha: 25);
 					dust.scale = 1f;
 				}
 			}

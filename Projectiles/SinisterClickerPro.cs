@@ -42,7 +42,7 @@ namespace ClickerClass.Projectiles
 				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 112);
 				for (int i = 0; i < 15; i++)
 				{
-					int index = Dust.NewDust(Projectile.Center, 4, 4, 5, 0f, 0f, 75, default(Color), 1.5f);
+					int index = Dust.NewDust(null, Projectile.Center, 4, 4, 5, 0f, 0f, 75, default(Color), 1.5f);
 					Dust dust = Main.dust[index];
 					dust.noGravity = true;
 					dust.velocity *= 0.75f;

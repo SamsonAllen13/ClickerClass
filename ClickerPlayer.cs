@@ -724,7 +724,8 @@ namespace ClickerClass
 						if (Main.myPlayer == Player.whoAmI)
 						{
 							int damage = Math.Max(1, (int)(heldItem.damage * 0.2f));
-							Projectile.NewProjectile(Player.GetProjectileSource_SetBonus(0), Main.MouseWorld.X + 8, Main.MouseWorld.Y + 11, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), damage, 0f, Player.whoAmI);
+							//TODO find better source for this/wait for tml
+							Projectile.NewProjectile(null, Main.MouseWorld.X + 8, Main.MouseWorld.Y + 11, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), damage, 0f, Player.whoAmI);
 						}
 						setPrecursorTimer = 0;
 					}
@@ -793,7 +794,7 @@ namespace ClickerClass
 
 					for (int k = 0; k < 15; k++)
 					{
-						Dust dust = Dust.NewDustDirect(Player.position, Player.width, Player.height, 174, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1.25f);
+						Dust dust = Dust.NewDustDirect(null, Player.position, Player.width, Player.height, 174, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1.25f);
 						dust.noGravity = true;
 						dust.noLight = true;
 					}
@@ -842,7 +843,7 @@ namespace ClickerClass
 					{
 						frame= 1;
 					}
-					Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accCookieItem), (float)xOffset, (float)yOffset, 0f, 0f, ModContent.ProjectileType<CookiePro>(), 0, 0f, Player.whoAmI, frame);
+					Projectile.NewProjectile(new EntitySource_ItemUse(Player, accCookieItem), (float)xOffset, (float)yOffset, 0f, 0f, ModContent.ProjectileType<CookiePro>(), 0, 0f, Player.whoAmI, frame);
 
 					accCookieTimer = 0;
 				}
@@ -865,7 +866,7 @@ namespace ClickerClass
 									Player.HealLife(10);
 									for (int k = 0; k < 10; k++)
 									{
-										Dust dust = Dust.NewDustDirect(cookieProjectile.Center, 20, 20, 87, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
+										Dust dust = Dust.NewDustDirect(null, cookieProjectile.Center, 20, 20, 87, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
 										dust.noGravity = true;
 									}
 								}
@@ -875,7 +876,7 @@ namespace ClickerClass
 									Player.AddBuff(ModContent.BuffType<CookieBuff>(), 300);
 									for (int k = 0; k < 10; k++)
 									{
-										Dust dust = Dust.NewDustDirect(cookieProjectile.Center, 20, 20, 0, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 75, default, 1.5f);
+										Dust dust = Dust.NewDustDirect(null, cookieProjectile.Center, 20, 20, 0, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 75, default, 1.5f);
 										dust.noGravity = true;
 									}
 								}
@@ -933,7 +934,7 @@ namespace ClickerClass
 								accSMedalAmount++;
 								medalProj.ai[1] = 1f;
 								Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
-								Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 86, Scale: 1.25f);
+								Dust dust = Dust.NewDustDirect(null, Main.MouseWorld + offset, 8, 8, 86, Scale: 1.25f);
 								dust.noGravity = true;
 								dust.velocity = -offset * 0.05f;
 							}
@@ -957,7 +958,7 @@ namespace ClickerClass
 								accFMedalAmount += 2;
 								medalProj.ai[1] = 1f;
 								Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
-								Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 173, Scale: 1.25f);
+								Dust dust = Dust.NewDustDirect(null, Main.MouseWorld + offset, 8, 8, 173, Scale: 1.25f);
 								dust.noGravity = true;
 								dust.velocity = -offset * 0.05f;
 							}
@@ -976,7 +977,7 @@ namespace ClickerClass
 				{
 					if (Player.ownedProjectileCounts[sMedalType] == 0)
 					{
-						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType, 0, 0f, Player.whoAmI, 0, 0.5f);
+						Projectile.NewProjectile(new EntitySource_ItemUse(Player, accSMedalItem), Player.Center, Vector2.Zero, sMedalType, 0, 0f, Player.whoAmI, 0, 0.5f);
 					}
 				}
 				else
@@ -989,7 +990,7 @@ namespace ClickerClass
 				{
 					if (Player.ownedProjectileCounts[fMedalType] == 0)
 					{
-						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accFMedalItem), Player.Center, Vector2.Zero, fMedalType, 0, 0f, Player.whoAmI, 1, 0.5f);
+						Projectile.NewProjectile(new EntitySource_ItemUse(Player, accFMedalItem), Player.Center, Vector2.Zero, fMedalType, 0, 0f, Player.whoAmI, 1, 0.5f);
 					}
 				}
 				else
@@ -1036,7 +1037,7 @@ namespace ClickerClass
 							for (int k = 0; k < 2 * accHotKeychainSpice; k++)
 							{
 								Vector2 offset = new Vector2(Main.rand.Next(-25, 26), Main.rand.Next(-25, 26));
-								Dust dust = Dust.NewDustDirect(Player.position + offset, Player.width, Player.height, 174, Scale: 1f);
+								Dust dust = Dust.NewDustDirect(null, Player.position + offset, Player.width, Player.height, 174, Scale: 1f);
 								dust.noGravity = true;
 								dust.velocity = -offset * 0.05f;
 							}
@@ -1054,7 +1055,7 @@ namespace ClickerClass
 							for (int k = 0; k < 10; k++)
 							{
 								Vector2 offset = new Vector2(Main.rand.Next(-25, 26), Main.rand.Next(-25, 26));
-								Dust dust = Dust.NewDustDirect(Player.position + offset, Player.width, Player.height, 174, Scale: 1.5f);
+								Dust dust = Dust.NewDustDirect(null, Player.position + offset, Player.width, Player.height, 174, Scale: 1.5f);
 								dust.noGravity = true;
 								dust.velocity = -offset * 0.05f;
 							}
@@ -1150,12 +1151,12 @@ namespace ClickerClass
 					{
 						for (int k = 0; k < 15; k++)
 						{
-							int dust = Dust.NewDust(target.position, 20, 20, 11, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default(Color), 1.25f);
+							int dust = Dust.NewDust(null, target.position, 20, 20, 11, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default(Color), 1.25f);
 							Main.dust[dust].noGravity = true;
 						}
 						
 						int amount = 1 + Main.rand.Next(6);
-						int coin = Item.NewItem(Main.player[projectile.owner].GetItemSource_OnHit(target, -1), target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
+						int coin = Item.NewItem(new EntitySource_OnHit_ByItemSourceID(Main.player[projectile.owner], target), target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
 						if (amount > 0)
 						{
 							clickerMoneyGenerated += amount;
@@ -1181,7 +1182,7 @@ namespace ClickerClass
 						SoundEngine.PlaySound(2, (int)Player.position.X, (int)Player.position.Y, 108);
 						for (int k = 0; k < 15; k++)
 						{
-							int dust = Dust.NewDust(target.position, 20, 20, 1, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 150, default(Color), 1.35f);
+							int dust = Dust.NewDust(null, target.position, 20, 20, 1, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 150, default(Color), 1.35f);
 							Main.dust[dust].noGravity = true;
 						}
 
@@ -1189,7 +1190,7 @@ namespace ClickerClass
 						{
 							for (int k = 0; k < 4; k++)
 							{
-								Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accPaperclipsItem), Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
+								Projectile.NewProjectile(new EntitySource_ItemUse(Player, accPaperclipsItem), Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
 							}
 						}
 
@@ -1216,7 +1217,8 @@ namespace ClickerClass
 						toDir = toDir.RotatedBy(target.velocity.ToRotation());
 						int damageAmount = (int)(damage * 0.25f);
 						damageAmount = damageAmount < 1 ? 1 : damageAmount;
-						Projectile.NewProjectile(Player.GetProjectileSource_Misc(0), target.Center + toDir, target.velocity * 0f + toDir.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
+						//TODO find a better source for this
+						Projectile.NewProjectile(null, target.Center + toDir, target.velocity * 0f + toDir.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
 						i++;
 						spawnEffects = false;
 					}

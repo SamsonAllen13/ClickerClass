@@ -113,7 +113,7 @@ namespace ClickerClass.Projectiles
 						Vector2 vector12 = Vector2.Zero;
 						vector12 += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / max), default(Vector2)) * new Vector2(8f, 8f);
 						vector12 = vector12.RotatedBy(Projectile.velocity.ToRotation(), default(Vector2));
-						int index = Dust.NewDust(Projectile.Center, 0, 0, dustType, 0f, 0f, 0, default(Color), 1.25f);
+						int index = Dust.NewDust(null, Projectile.Center, 0, 0, dustType, 0f, 0f, 0, default(Color), 1.25f);
 						Dust dust = Main.dust[index];
 						if (Projectile.frame == 1) { dust.shader = GameShaders.Armor.GetSecondaryShader(70, Main.LocalPlayer); }
 						dust.noGravity = true;

@@ -3,6 +3,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Projectiles
 {
@@ -49,7 +50,7 @@ namespace ClickerClass.Projectiles
 				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 24);
 				for (int k = 0; k < 15; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.Center - new Vector2(4), 8, 8, 92, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1f);
+					Dust dust = Dust.NewDustDirect(null, Projectile.Center - new Vector2(4), 8, 8, 92, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1f);
 					dust.noGravity = true;
 				}
 			}
@@ -59,7 +60,7 @@ namespace ClickerClass.Projectiles
 			{
 				if (Main.myPlayer == Projectile.owner)
 				{
-					Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), new Vector2(Projectile.Center.X + Main.rand.Next(-15, 16), Projectile.Center.Y), new Vector2(Main.rand.NextFloat(-0.4f, 0.4f), Main.rand.NextFloat(4f, 4.5f)), ModContent.ProjectileType<BlizzardClickerPro2>(), (int)(Projectile.damage * 0.5f), Projectile.knockBack, Projectile.owner);
+					Projectile.NewProjectile(new EntitySource_Parent(Projectile), new Vector2(Projectile.Center.X + Main.rand.Next(-15, 16), Projectile.Center.Y), new Vector2(Main.rand.NextFloat(-0.4f, 0.4f), Main.rand.NextFloat(4f, 4.5f)), ModContent.ProjectileType<BlizzardClickerPro2>(), (int)(Projectile.damage * 0.5f), Projectile.knockBack, Projectile.owner);
 				}
 				Timer = 0;
 			}

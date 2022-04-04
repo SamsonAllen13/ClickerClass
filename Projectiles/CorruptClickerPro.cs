@@ -36,7 +36,7 @@ namespace ClickerClass.Projectiles
 
 			for (int i = 0; i < 15; i++)
 			{
-				int index = Dust.NewDust(target.position, target.width, target.height, 163, 0f, 0f, 0, default(Color), 1.5f);
+				int index = Dust.NewDust(null, target.position, target.width, target.height, 163, 0f, 0f, 0, default(Color), 1.5f);
 				Dust dust = Main.dust[index];
 				dust.noGravity = true;
 				dust.velocity *= 0.75f;
@@ -59,7 +59,7 @@ namespace ClickerClass.Projectiles
 
 				for (int k = 0; k < 30; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.Center - new Vector2(4), 8, 8, 163, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-10f, 10f), 0, default, 1.65f);
+					Dust dust = Dust.NewDustDirect(null, Projectile.Center - new Vector2(4), 8, 8, 163, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-10f, 10f), 0, default, 1.65f);
 					dust.noGravity = true;
 				}
 			}

@@ -31,7 +31,7 @@ namespace ClickerClass.Projectiles
 					target.AddBuff(ModContent.BuffType<Frozen>(), 120, false);
 					for (int i = 0; i < 15; i++)
 					{
-						int index = Dust.NewDust(target.position, target.width, target.height, 15, 0f, 0f, 255, default(Color), 1f);
+						int index = Dust.NewDust(null, target.position, target.width, target.height, 15, 0f, 0f, 255, default(Color), 1f);
 						Dust dust = Main.dust[index];
 						dust.noGravity = true;
 						dust.velocity *= 0.75f;

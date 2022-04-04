@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Projectiles
 {
@@ -69,12 +70,12 @@ namespace ClickerClass.Projectiles
 
 			if (Main.myPlayer == Projectile.owner)
 			{
-				Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<WebClickerPro2>(), (int)(Projectile.damage * 0.50), 1f, Projectile.owner, leftFacing, 0f);
+				Projectile.NewProjectile(new EntitySource_Parent(Projectile), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<WebClickerPro2>(), (int)(Projectile.damage * 0.50), 1f, Projectile.owner, leftFacing, 0f);
 			}
 
 			for (int k = 0; k < 5; k++)
 			{
-				int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 261, Main.rand.Next((int)-4f, (int)4f), Main.rand.Next((int)-4f, (int)4f), 0, default(Color), 0.8f);
+				int dust = Dust.NewDust(null, Projectile.position, Projectile.width, Projectile.height, 261, Main.rand.Next((int)-4f, (int)4f), Main.rand.Next((int)-4f, (int)4f), 0, default(Color), 0.8f);
 				Main.dust[dust].noGravity = true;
 			}
 		}

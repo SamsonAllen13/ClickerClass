@@ -25,7 +25,8 @@ namespace ClickerClass.Items.Accessories
 			{
 				clickerPlayer.accEnchantedLED = true;
 			}
-			clickerPlayer.clickerDamageFlat += 2;
+
+			player.GetDamage<ClickerDamage>().Flat += 2;
 		}
 	}
 }

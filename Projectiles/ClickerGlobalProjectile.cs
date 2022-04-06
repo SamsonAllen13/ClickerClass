@@ -19,6 +19,7 @@ namespace ClickerClass.Projectiles
 			Player player = Main.player[projectile.owner];
 			hitDirection = target.Center.X < player.Center.X ? -1 : 1;
 
+			//Cannot use item/projectile.ArmorPenetration here because it's technically "infinite", and also conditional
 			if (target.type != NPCID.DungeonGuardian && target.defense < 999)
 			{
 				int defenseIgnore = target.defense / 2;

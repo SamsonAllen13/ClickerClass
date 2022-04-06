@@ -582,8 +582,9 @@ namespace ClickerClass
 						{
 							throw new Exception($"Call Error: The flat argument for the attempted message, \"{message}\" has returned null.");
 						}
-						clickerPlayer.clickerDamageFlat += flat.Value;
-						clickerPlayer.clickerDamageFlat = Math.Max(0, clickerPlayer.clickerDamageFlat);
+						ref var clickerDamage = ref player.GetDamage<ClickerDamage>();
+						clickerDamage.Flat += flat.Value;
+						//clickerDamage.Flat = Math.Max(0, clickerDamage.Flat);
 						return success;
 					}
 					else if (statName == "clickerDamageAdd")

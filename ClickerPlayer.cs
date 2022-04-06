@@ -179,11 +179,6 @@ namespace ClickerClass
 
 		//Stats
 		/// <summary>
-		/// Click damage add flat
-		/// </summary>
-		public int clickerDamageFlat = 0;
-
-		/// <summary>
 		/// How many less clicks are required to trigger an effect
 		/// </summary>
 		public int clickerBonus = 0;
@@ -520,7 +515,6 @@ namespace ClickerClass
 			accButtonMasher = false;
 
 			//Stats
-			clickerDamageFlat = 0;
 			clickerBonus = 0;
 			clickerBonusPercent = 1f;
 			clickerRadius = 1f;
@@ -894,6 +888,11 @@ namespace ClickerClass
 				{
 					accPortableParticleAccelerator2 = true;
 				}
+			}
+
+			if (IsPortableParticleAcceleratorActive)
+			{
+				Player.GetDamage<ClickerDamage>().Flat += 8;
 			}
 			
 			//Effects related to having cursor within the radius

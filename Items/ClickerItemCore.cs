@@ -159,25 +159,6 @@ namespace ClickerClass.Items
 			return base.CanUseItem(item, player);
 		}
 
-		public override void ModifyWeaponDamage(Item item, Player player, ref StatModifier damage, ref float flat)
-		{
-			if (item.CountsAsClass<ClickerDamage>())
-			{
-				if (!player.TryGetModPlayer(out ClickerPlayer clickerPlayer))
-				{
-					//Avoid incompatibility with TRAI calling ModifyTooltips + ModifyWeaponDamage during mod load when no players exist
-					return;
-				}
-
-				flat += clickerPlayer.clickerDamageFlat;
-
-				if (clickerPlayer.IsPortableParticleAcceleratorActive)
-				{
-					flat += 8;
-				}
-			}
-		}
-
 		private bool HasAltFunctionUse(Item item, Player player)
 		{
 			if (ClickerSystem.IsClickerWeapon(item))

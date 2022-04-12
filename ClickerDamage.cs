@@ -8,7 +8,5 @@ namespace ClickerClass
 		{
 			ClassName.SetDefault("click damage");
 		}
-
-		//TODO open problem: all weapons in the game seem to have 0% crit
 	}
 }

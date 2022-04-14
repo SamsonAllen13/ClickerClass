@@ -13,31 +13,13 @@ namespace ClickerClass.Utilities
 		}
 
 		/// <summary>
-		/// Removes and despawns player owned grappling hooks
-		/// </summary>
-		/// <param name="player">The player</param>
-		public static void RemoveGrapplingHooks(this Player player)
-		{
-			player.grappling[0] = -1;
-			player.grapCount = 0;
-			for (int i = 0; i < Main.maxProjectiles; i++)
-			{
-				Projectile projectile = Main.projectile[i];
-				if (projectile.active && projectile.owner == player.whoAmI && projectile.aiStyle == 7)
-				{
-					projectile.Kill();
-				}
-			}
-		}
-
-		/// <summary>
 		/// Carbon copy of the vanilla Player.Teleport, without effects. Only handles basic code and effects, no netcode
 		/// </summary>
 		/// <param name="player">The player</param>
 		/// <param name="newPos">The teleport position</param>
 		public static void ClickerTeleport(this Player player, Vector2 newPos)
 		{
-			player.RemoveGrapplingHooks();
+			player.RemoveAllGrapplingHooks();
 
 			float distance = Vector2.Distance(player.Center, newPos);
 			PressurePlateHelper.UpdatePlayerPosition(player);

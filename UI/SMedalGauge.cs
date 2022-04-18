@@ -17,7 +17,7 @@ namespace ClickerClass.UI
 
 		protected override int TextColor()
 		{
-			return Terraria.ID.ItemRarityID.Pink;
+			return Terraria.ID.ItemRarityID.Green;
 		}
 
 		protected override string TexturePath()

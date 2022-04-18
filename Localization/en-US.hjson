@@ -76,6 +76,7 @@ Mods: {
 			RegalClickingGlove: Regal Clicking Glove
 			SMedal: S Medal
 			FMedal: F Medal
+			SMedal: S Medal
 			Soda: Soda
 			StickyKeychain: Sticky Keychain
 			TheScroller: The Scroller
@@ -156,6 +157,11 @@ Mods: {
 
 		ItemTooltip: {
 			MiceFragment: "'Erratic sparks skitter across this fragment'"
+			AMedal:
+				'''
+				While equipped, an empowering circle will rotate around you
+				Keeping your cursor within the circle will build up to 10 free clicker critical strikes
+				'''
 			AncientClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} second"
 			ChocolateChip: Every 15 clicks releases a burst of damaging chocolate
 			ButtonMasher: Displays your clicks per second while a clicker is held
@@ -243,8 +249,8 @@ Mods: {
 			RegalClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} half-second"
 			SMedal:
 				'''
-				While equipped, an empowering circle will rotate around you
-				Keeping your cursor within the circle will build up to 10 free clicker critical strikes
+				While equipped, empowering circles will rotate around you
+				Keeping your cursor within the circles will build up clicker critical strikes, clicker radius, and clicker effect generation
 				'''
 			Soda: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1"
 			StickyKeychain: Every 10 clicks sticks damaging slime on to your screen

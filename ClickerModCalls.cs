@@ -528,14 +528,14 @@ namespace ClickerClass
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 					//accCookieItem
-					//accSMedalItem, accFMedalItem, accPaperclipsItem
+					//accAMedalItem, accFMedalItem, accPaperclipsItem
 					if (accName == "Cookie")
 					{
 						return clickerPlayer.accCookieItem;
 					}
-					else if (accName == "SMedal")
+					else if (accName == "AMedal")
 					{
-						return clickerPlayer.accSMedalItem;
+						return clickerPlayer.accAMedalItem;
 					}
 					else if (accName == "FMedal")
 					{
@@ -757,15 +757,15 @@ namespace ClickerClass
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 					//accCookieItem
-					//accSMedalItem, accFMedalItem, accPaperclipsItem
+					//accAMedalItem, accFMedalItem, accPaperclipsItem
 					if (accName == "Cookie")
 					{
 						clickerPlayer.accCookieItem = item;
 						return success;
 					}
-					else if (accName == "SMedal")
+					else if (accName == "AMedal")
 					{
-						clickerPlayer.accSMedalItem = item;
+						clickerPlayer.accAMedalItem = item;
 						return success;
 					}
 					else if (accName == "FMedal")

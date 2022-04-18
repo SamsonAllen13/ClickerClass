@@ -144,10 +144,12 @@ namespace ClickerClass
 		public bool accHandCream = false;
 		[Obsolete("Use HasClickEffect(\"ClickerClass:StickyKeychain\") and EnableClickEffect(\"ClickerClass:StickyKeychain\") instead", false)]
 		public bool accStickyKeychain = false;
-		public Item accSMedalItem = null;
-		public bool AccSMedal => accSMedalItem != null && !accSMedalItem.IsAir;
+		public Item accAMedalItem = null;
+		public bool AccAMedal => accAMedalItem != null && !accAMedalItem.IsAir;
 		public Item accFMedalItem = null;
 		public bool AccFMedal => accFMedalItem != null && !accFMedalItem.IsAir;
+		public Item accSMedalItem = null;
+		public bool AccSMedal => accSMedalItem != null && !accSMedalItem.IsAir;
 		public bool accGlassOfMilk = false;
 		public Item accCookieItem = null;
 		public bool accCookie = false;
@@ -170,8 +172,9 @@ namespace ClickerClass
 
 		public int accClickingGloveTimer = 0;
 		public int accCookieTimer = 0;
-		public int accSMedalAmount = 0; //Only updated clientside
+		public int accAMedalAmount = 0; //Only updated clientside
 		public int accFMedalAmount = 0; //Only updated clientside
+		public int accSMedalAmount = 0; //Only updated clientside
 		public float accMedalRot = 0f; //Unified rotation for all medals
 		public int accPaperclipsAmount = 0;
 		public int accHotKeychainTimer = 0;
@@ -307,6 +310,11 @@ namespace ClickerClass
 		internal void AddClickAmount()
 		{
 			clickAmount++;
+			if (accSMedalAmount > 20)
+			{
+				clickAmount++;
+				accSMedalAmount -= 20;
+			}
 		}
 
 		/// <summary>
@@ -494,8 +502,9 @@ namespace ClickerClass
 			accEnchantedLED = false;
 			accEnchantedLED2 = false;
 			accHandCream = false;
-			accSMedalItem = null;
+			accAMedalItem = null;
 			accFMedalItem = null;
+			accSMedalItem = null;
 			accGlassOfMilk = false;
 			accCookieItem = null;
 			accCookie = false;
@@ -916,20 +925,20 @@ namespace ClickerClass
 					}
 				}
 				
-				//S Medal effect
-				if (accSMedalAmount < 200 && clickerSelected && AccSMedal)
+				//A Medal effect
+				if (accAMedalAmount < 200 && clickerSelected && AccAMedal)
 				{
-					int sMedalType = ModContent.ProjectileType<SMedalPro>();
+					int aMedalType = ModContent.ProjectileType<AMedalPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
 						Projectile medalProj = Main.projectile[i];
 
-						if (medalProj.active && medalProj.owner == Player.whoAmI && medalProj.type == sMedalType)
+						if (medalProj.active && medalProj.owner == Player.whoAmI && medalProj.type == aMedalType)
 						{
 							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
 							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
 							{
-								accSMedalAmount++;
+								accAMedalAmount++;
 								medalProj.ai[1] = 1f;
 								Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 								Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 86, Scale: 1.25f);
@@ -963,6 +972,54 @@ namespace ClickerClass
 						}
 					}
 				}
+				
+				//S Medal effect
+				if (clickerSelected && AccSMedal)
+				{
+					int sMedalType1 = ModContent.ProjectileType<SMedalPro>();
+					int sMedalType2 = ModContent.ProjectileType<SMedalPro2>();
+					int sMedalType3 = ModContent.ProjectileType<SMedalPro3>();
+					
+					for (int i = 0; i < Main.maxProjectiles; i++)
+					{
+						Projectile medalProj = Main.projectile[i];
+
+						if (medalProj.active && medalProj.owner == Player.whoAmI && (medalProj.type == sMedalType1 || medalProj.type == sMedalType2 || medalProj.type == sMedalType3))
+						{
+							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
+							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
+							{
+								if (medalProj.type == sMedalType1 && accFMedalAmount < 200) //F Medal Equivalent
+								{
+									accFMedalAmount += 3;
+									medalProj.ai[1] = 1f;
+									Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
+									Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 88, Scale: 1.25f);
+									dust.noGravity = true;
+									dust.velocity = -offset * 0.05f;
+								}
+								if (medalProj.type == sMedalType2 && accAMedalAmount < 200) //A Medal Equivalent
+								{
+									accAMedalAmount += 2;
+									medalProj.ai[1] = 1f;
+									Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
+									Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 87, Scale: 1.25f);
+									dust.noGravity = true;
+									dust.velocity = -offset * 0.05f;
+								}
+								if (medalProj.type == sMedalType3 && accSMedalAmount < 200)
+								{
+									accSMedalAmount += 2;
+									medalProj.ai[1] = 1f;
+									Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
+									Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 89, Scale: 1.25f);
+									dust.noGravity = true;
+									dust.velocity = -offset * 0.05f;
+								}
+							}
+						}
+					}
+				}
 			}
 
 			//Medal effect
@@ -970,30 +1027,54 @@ namespace ClickerClass
 
 			if (Main.myPlayer == Player.whoAmI)
 			{
-				int sMedalType = ModContent.ProjectileType<SMedalPro>();
 				if (AccSMedal)
 				{
-					if (Player.ownedProjectileCounts[sMedalType] == 0)
+					int sMedalType1 = ModContent.ProjectileType<SMedalPro>();
+					int sMedalType2 = ModContent.ProjectileType<SMedalPro2>();
+					int sMedalType3 = ModContent.ProjectileType<SMedalPro3>();
+					
+					if (Player.ownedProjectileCounts[sMedalType1] == 0)
 					{
-						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType, 0, 0f, Player.whoAmI, 0, 0.5f);
+						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType1, 0, 0f, Player.whoAmI, 0, 0.5f);
+					}
+					if (Player.ownedProjectileCounts[sMedalType2] == 0)
+					{
+						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType2, 0, 0f, Player.whoAmI, 1, 0.5f);
+					}
+					if (Player.ownedProjectileCounts[sMedalType3] == 0)
+					{
+						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType3, 0, 0f, Player.whoAmI, 2, 0.5f);
 					}
 				}
 				else
 				{
 					accSMedalAmount = 0;
-				}
-
-				int fMedalType = ModContent.ProjectileType<FMedalPro>();
-				if (AccFMedal)
-				{
-					if (Player.ownedProjectileCounts[fMedalType] == 0)
+					
+					int aMedalType = ModContent.ProjectileType<AMedalPro>();
+					if (AccAMedal)
 					{
-						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accFMedalItem), Player.Center, Vector2.Zero, fMedalType, 0, 0f, Player.whoAmI, 1, 0.5f);
+						if (Player.ownedProjectileCounts[aMedalType] == 0)
+						{
+							Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accAMedalItem), Player.Center, Vector2.Zero, aMedalType, 0, 0f, Player.whoAmI, 0, 0.5f);
+						}
 					}
-				}
-				else
-				{
-					accFMedalAmount = 0;
+					else
+					{
+						accAMedalAmount = 0;
+					}
+
+					int fMedalType = ModContent.ProjectileType<FMedalPro>();
+					if (AccFMedal)
+					{
+						if (Player.ownedProjectileCounts[fMedalType] == 0)
+						{
+							Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accFMedalItem), Player.Center, Vector2.Zero, fMedalType, 0, 0f, Player.whoAmI, 1, 0.5f);
+						}
+					}
+					else
+					{
+						accFMedalAmount = 0;
+					}
 				}
 			}
 			
@@ -1125,10 +1206,10 @@ namespace ClickerClass
 
 			if (ClickerSystem.IsClickerWeaponProj(proj))
 			{
-				if (accSMedalAmount >= 20)
+				if (accAMedalAmount >= 20)
 				{
 					crit = true;
-					accSMedalAmount -= 20;
+					accAMedalAmount -= 20;
 				}
 				if (accFMedalAmount >= 20)
 				{

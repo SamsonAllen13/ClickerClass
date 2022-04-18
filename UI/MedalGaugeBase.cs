@@ -47,7 +47,8 @@ namespace ClickerClass.UI
 		protected override bool DrawSelf()
 		{
 			Player player = Main.LocalPlayer;
-
+			ClickerPlayer clickerPlayer = player.GetClickerPlayer();
+			
 			// Don't draw if the options, the achievements or the key config menus are visible, if the player is a ghost or if the bar should be fully transparent
 			if (player.dead || player.ghost || FadeTime == 0)
 			{
@@ -71,8 +72,11 @@ namespace ClickerClass.UI
 			}
 
 			Texture2D texture = borderAsset.Value;
-			Rectangle frame = texture.Frame(1, 3);
+			Rectangle frame = texture.Frame(1, 5);
 			Vector2 origin = frame.Size() / 2;
+			
+			//The S clicker changes the colors of the gauges to match the orbiting circles
+			int sMedalOffset = clickerPlayer.AccSMedal ? 2 : 0;
 
 			// player.gfxOffY changes depending on if a player is moving on top of half or slanted blocks
 			// Adding player.gfxOffY to the position calculation prevents position glitching
@@ -99,13 +103,13 @@ namespace ClickerClass.UI
 
 			// Change the width of the frame so it only draws part of the bar
 			frame.Width = (int)((frame.Width - 8) * fill + 8);
-			frame.Y = frame.Height * 1;
+			frame.Y = frame.Height * (1 + sMedalOffset);
 
 			// Draw the filling of the bar
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 
 			// Set the frame to the last one (Symbol), reset the width to normal, and then draw the symbol
-			frame.Y = frame.Height * 2;
+			frame.Y = frame.Height * (2 + sMedalOffset);
 			frame.Width = texture.Width;
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 

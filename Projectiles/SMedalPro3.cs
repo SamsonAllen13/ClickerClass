@@ -2,7 +2,7 @@ using Terraria;
 
 namespace ClickerClass.Projectiles
 {
-	public class SMedalPro : SMedalProBase
+	public class SMedalPro3 : SMedalProBase
 	{
 		
 	}

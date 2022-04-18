@@ -4,27 +4,27 @@ using ClickerClass.Utilities;
 
 namespace ClickerClass.UI
 {
-	internal class FMedalGauge : MedalGaugeBase
+	internal class AMedalGauge : MedalGaugeBase
 	{
-		public FMedalGauge() : base("ClickerClass: F Medal Gauge", InterfaceScaleType.UI) { }
+		public AMedalGauge() : base("ClickerClass: A Medal Gauge", InterfaceScaleType.UI) { }
 
 		protected override int GetValue()
 		{
 			Player player = Main.LocalPlayer;
 			ClickerPlayer clickerPlayer = player.GetClickerPlayer();
-			return clickerPlayer.accFMedalAmount;
+			return clickerPlayer.accAMedalAmount;
 		}
 
 		protected override int TextColor()
 		{
 			Player player = Main.LocalPlayer;
 			ClickerPlayer clickerPlayer = player.GetClickerPlayer();
-			return clickerPlayer.AccSMedal ? Terraria.ID.ItemRarityID.Blue : Terraria.ID.ItemRarityID.LightPurple;
+			return clickerPlayer.AccSMedal ? Terraria.ID.ItemRarityID.Orange : Terraria.ID.ItemRarityID.Pink;
 		}
 
 		protected override string TexturePath()
 		{
-			return "UI/FMedalGauge_Sheet";
+			return "UI/AMedalGauge_Sheet";
 		}
 	}
 }

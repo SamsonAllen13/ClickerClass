@@ -312,7 +312,7 @@ namespace ClickerClass
 			clickAmount++;
 			if (accSMedalAmount > 20)
 			{
-				clickAmount++;
+				clickAmount += 2; //End total of +3
 				accSMedalAmount -= 20;
 			}
 		}

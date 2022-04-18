@@ -449,6 +449,11 @@ Mods: {
 				Name: Solar Flare
 				Description: Spawns a lingering sun projectile that damages and inflicts the Oiled and On Fire! debuffs
 			}
+			
+			Smite: {
+				Name: Smite
+				Description: Propels up to 8 torch flames towards your cursor
+			}
 
 			Conqueror: {
 				Name: Conqueror

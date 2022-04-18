@@ -169,7 +169,10 @@ namespace ClickerClass
 		public bool accHotKeychain = false;
 		public bool accHotKeychain2 = false;
 		public bool accButtonMasher = false;
+		public bool accAimbotModule = false;
 
+		public int accAimbotModuleTarget = 0;
+		public int accAimbotModuleFailsafe = 0;
 		public int accClickingGloveTimer = 0;
 		public int accCookieTimer = 0;
 		public int accAMedalAmount = 0; //Only updated clientside
@@ -573,9 +576,40 @@ namespace ClickerClass
 				if (Math.Abs(clickerClassTime - pressedAutoClick) > 60)
 				{
 					pressedAutoClick = clickerClassTime;
-
-					SoundEngine.PlaySound(SoundID.MenuTick, Player.position);
-					clickerAutoClick = clickerAutoClick ? false : true;
+					
+					if (clickerAutoClick)
+					{
+						SoundEngine.PlaySound(SoundID.MenuTick, Player.position);
+						clickerAutoClick = clickerAutoClick ? false : true;
+					}
+					
+					//TODO - Figure out optimal way to accomplish these effects:
+					//Pressing the key will select the enemy / nearest enemy to your cursor as your 'Target' (Currently isnt dictated by mouse proximity)
+					//Selected 'Target' will have AimbotModule_Glow DrawLayer drawn over them (Currently not working)
+					//Once selected, the click damage projectile in ClickerWeapon Shoot() will spawn over the 'Target' (Hasnt been implemented)
+					//Enemies that are killed or leave the radius are no longer considered the 'Target' (Should work currently)
+					//Optionally, though probably not even possible, just have the player's cursor snap to the 'Target's' center when active?
+					if (accAimbotModule)
+					{
+						SoundEngine.PlaySound(SoundID.MenuTick, Player.position);
+						for (int i = 0; i < Main.maxNPCs; i++)
+						{
+							NPC target = Main.npc[i];
+							int radius = (int)(95 * clickerRadius);
+							radius = radius > 500 ? 500 : radius;
+							
+							if (target.CanBeChasedBy() && target.active && target.DistanceSQ(Player.Center) < radius * radius)
+							{
+								accAimbotModuleTarget = target.whoAmI;
+								for (int k = 0; k < 10; k++)
+								{
+									Dust dust = Dust.NewDustDirect(target.Center, 20, 20, 90, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 75, default, 1.5f);
+									dust.noGravity = true;
+								}
+								break;
+							}
+						}
+					}
 				}
 			}
 		}
@@ -822,6 +856,24 @@ namespace ClickerClass
 			}
 
 			//Acc
+			//Aimbot Module
+			if (accAimbotModuleFailsafe < 10)
+			{
+				accAimbotModuleTarget = -1;
+				accAimbotModuleFailsafe++;
+			}
+			if (accAimbotModuleTarget != -1 && accAimbotModuleFailsafe >= 10)
+			{
+				NPC target = Main.npc[accAimbotModuleTarget];
+				int radius = (int)(95 * clickerRadius);
+				radius = radius > 350 ? 350 : radius;
+				
+				if (!target.active || target.DistanceSQ(Player.Center) > radius * radius)
+				{
+					accAimbotModuleTarget = -1;
+				}
+			}
+			
 			//Cookie acc
 			if (accCookieItem != null && !accCookieItem.IsAir && (accCookie || accCookie2) && clickerSelected)
 			{

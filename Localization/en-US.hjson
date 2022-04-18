@@ -53,6 +53,8 @@ Mods: {
 
 		ItemName: {
 			MiceFragment: Mice Fragment
+			ABlissfulDay: A Blissful Day
+			OutsideTheCave: Outside The Cave
 			AncientClickingGlove: Ancient Clicking Glove
 			BottomlessBoxofPaperclips: Bottomless Box of Paperclips
 			ButtonMasher: Button Masher
@@ -171,6 +173,8 @@ Mods: {
 				Collects enemy matter as you click on enemies
 				Creates a burst of gouging paperclips when enough matter is collected
 				'''
+			ABlissfulDay: 'M. B. Wellby'
+			OutsideTheCave: 'S. Streak'
 			ChocolateMilkCookies:
 				'''
 				{$Mods.ClickerClass.ItemTooltip.MilkCookies}

@@ -75,7 +75,7 @@ namespace ClickerClass.UI
 			Rectangle frame = texture.Frame(1, 5);
 			Vector2 origin = frame.Size() / 2;
 			
-			//The S clicker changes the colors of the gauges to match the orbiting circles
+			//The S Medal changes the colors of the gauges to match the orbiting circles
 			int sMedalOffset = clickerPlayer.AccSMedal ? 2 : 0;
 
 			// player.gfxOffY changes depending on if a player is moving on top of half or slanted blocks

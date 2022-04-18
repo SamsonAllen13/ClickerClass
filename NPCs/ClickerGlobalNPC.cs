@@ -1,6 +1,7 @@
 using ClickerClass.Items;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Consumables;
+using ClickerClass.Items.Placeable;
 using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
@@ -385,6 +386,20 @@ namespace ClickerClass.NPCs
 					break;
 				case NPCID.GoblinTinkerer:
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MousePad>());
+					break;
+				case NPCID.Painter:
+					if (clickerPlayer.clickerSelected)
+					{
+						if (clickerPlayer.clickerTotal >= 1000)
+						{
+							shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OutsideTheCave>());
+						}
+
+						if (clickerPlayer.clickerTotal >= 2500)
+						{
+							shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ABlissfulDay>());
+						}
+					}
 					break;
 				case NPCID.Stylist:
 					if (clickerPlayer.clickerSelected)

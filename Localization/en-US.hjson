@@ -53,6 +53,7 @@ Mods: {
 
 		ItemName: {
 			MiceFragment: Mice Fragment
+			AimbotModule: Aimbot Module
 			ABlissfulDay: A Blissful Day
 			OutsideTheCave: Outside The Cave
 			AncientClickingGlove: Ancient Clicking Glove
@@ -139,11 +140,13 @@ Mods: {
 			PointyClicker: Pointy Clicker
 			RedHotClicker: Red Hot Clicker
 			SandstormClicker: Sandstorm Clicker
+			SeafoamClicker: Seafoam Clicker
 			ShadowyClicker: Shadowy Clicker
 			ShroomiteClicker: Shroomite Clicker
 			SilverClicker: Silver Clicker
 			SinisterClicker: Sinister Clicker
 			SlickClicker: Slick Clicker
+			SnottyClicker: Snotty Clicker
 			SpaceClicker: Space Clicker
 			SpectreClicker: Spectre Clicker
 			StarryClicker: Starry Clicker
@@ -159,6 +162,13 @@ Mods: {
 
 		ItemTooltip: {
 			MiceFragment: "'Erratic sparks skitter across this fragment'"
+			AimbotModule:
+				'''
+				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will select a target under your cursor
+				When clicking, your click damage is dealt to that target, regardless of your cursor's position
+				Your target is lost if they exit your radius or you lose direct line of sight of them
+				Click effects will still originate from your cursor's position
+				'''
 			AMedal:
 				'''
 				While equipped, an empowering circle will rotate around you
@@ -254,7 +264,7 @@ Mods: {
 			SMedal:
 				'''
 				While equipped, empowering circles will rotate around you
-				Keeping your cursor within the circles will build up clicker critical strikes, clicker radius, and clicker effect generation
+				Keeping your cursor within the circles will build up clicker critical strikes, clicker radius, and clicker effects
 				'''
 			Soda: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1"
 			StickyKeychain: Every 10 clicks sticks damaging slime on to your screen
@@ -323,7 +333,17 @@ Mods: {
 				Name: True Strike
 				Description: Deals double damage and always inflicts a critical hit
 			}
-
+			
+			OgreGold: {
+				Name: Ogre Gold
+				Description: Covers enemies under cursor in snot, greatly slowing them
+			}
+			
+			SeaSpray: {
+				Name: Sea Spray
+				Description: Slows nearby enemies and allows you to steal life from them
+			}
+			
 			HolyNova: {
 				Name: Holy Nova
 				Description: Damages every enemy within the clicker's radius with a guaranteed critical hit

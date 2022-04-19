@@ -46,6 +46,12 @@ namespace ClickerClass.Items
 								player.QuickSpawnItem(source, ModContent.ItemType<ClearKeychain>());
 							}
 							break;
+						case ItemID.FishronBossBag:
+							if (Main.rand.NextBool(5))
+							{
+								player.QuickSpawnItem(source, ModContent.ItemType<SeafoamClicker>());
+							}
+							break;
 						case ItemID.TwinsBossBag:
 						case ItemID.SkeletronPrimeBossBag:
 						case ItemID.DestroyerBossBag:

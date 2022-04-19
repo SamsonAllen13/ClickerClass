@@ -23,6 +23,8 @@ namespace ClickerClass.NPCs
 		public bool embrittle = false;
 		public bool crystalSlime = false;
 		public bool crystalSlimeFatigue = false;
+		public bool oozed = false;
+		public bool seafoam = false;
 		public bool stunned = false;
 
 		public bool buffImmunitiesSet = false;
@@ -54,6 +56,8 @@ namespace ClickerClass.NPCs
 			embrittle = false;
 			crystalSlime = false;
 			crystalSlimeFatigue = false;
+			oozed = false;
+			seafoam = false;
 			stunned = false;
 		}
 
@@ -68,17 +72,22 @@ namespace ClickerClass.NPCs
 				npc.lifeRegen -= 60;
 				damage = 10;
 			}
+			if (seafoam)
+			{
+				npc.velocity.X *= 0.90f;
+				npc.velocity.Y += !npc.noTileCollide ? 0.10f : 0.01f;
+			}
 			if (honeySlow)
 			{
 				npc.velocity.X *= 0.75f;
 				npc.velocity.Y += !npc.noTileCollide ? 0.10f : 0.01f;
 			}
-			if (frozen)
+			if (oozed)
 			{
-				npc.position = npc.oldPosition;
-				npc.frameCounter = 0;
+				npc.velocity.X *= 0.5f;
+				npc.velocity.Y += !npc.noTileCollide ? 0.15f : 0.025f;
 			}
-			if (stunned)
+			if (frozen || stunned)
 			{
 				npc.position = npc.oldPosition;
 				npc.frameCounter = 0;
@@ -149,6 +158,10 @@ namespace ClickerClass.NPCs
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenClicker>(), 10));
 			}
+			else if (npc.type == NPCID.DD2OgreT2 || npc.type == NPCID.DD2OgreT3)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SnottyClicker>(), 5));
+			}
 			else if (npc.type == NPCID.MaggotZombie)
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TriggerFinger>(), 18));
@@ -190,6 +203,10 @@ namespace ClickerClass.NPCs
 					missingTwinRule.OnSuccess(ruleToAdd);
 					npcLoot.Add(missingTwinRule);
 				}
+			}
+			else if (npc.type == NPCID.DukeFishron)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SeafoamClicker>(), 5));
 			}
 			else if (npc.type == NPCID.WallofFlesh)
 			{
@@ -459,6 +476,38 @@ namespace ClickerClass.NPCs
 						Main.dust[dust].scale *= 0.5f;
 					}
 				}
+			}
+			if (seafoam)
+			{
+				if (!Main.rand.NextBool(4))
+				{
+					Dust dust = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 99, npc.velocity.X * 0.10f, 0.20f, 50);
+					Dust dust2 = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 101, npc.velocity.X * 0.10f, 0.20f, 50, default(Color), 1f);
+					if (Main.rand.NextBool(4))
+					{
+						dust.scale *= 0.5f;
+						dust2.scale *= 0.25f;
+					}
+				}
+				drawColor.R = (byte)(drawColor.R * 0.20f);
+				drawColor.G = (byte)(drawColor.G * 0.55f);
+				drawColor.B = (byte)(drawColor.B * 0.75f);
+			}
+			if (oozed)
+			{
+				if (!Main.rand.NextBool(4))
+				{
+					Dust dust = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 188, npc.velocity.X * 0.10f, 0.20f, 100);
+					Dust dust2 = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 256, npc.velocity.X * 0.10f, 0.20f, 100, default(Color), 1.2f);
+					if (Main.rand.NextBool(4))
+					{
+						dust.scale *= 0.5f;
+						dust2.scale *= 0.25f;
+					}
+				}
+				drawColor.R = (byte)(drawColor.R * 0.35f);
+				drawColor.G = (byte)(drawColor.G * 0.75f);
+				drawColor.B = (byte)(drawColor.B * 0.10f);
 			}
 			if (frozen)
 			{

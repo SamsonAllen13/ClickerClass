@@ -456,7 +456,13 @@ namespace ClickerClass.Items
 				//TODO dire: maybe "PreShoot" hook wrapping around the next NewProjectile
 
 				//Spawn normal click damage
-				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, type, damage, knockback, player.whoAmI);
+				Vector2 damageLocation = Main.MouseWorld;
+				if (clickerPlayer.accAimbotModuleTarget != -1 && clickerPlayer.accAimbotModuleFailsafe >= 10)
+				{
+					NPC target = Main.npc[clickerPlayer.accAimbotModuleTarget];
+					damageLocation = target.Center;
+				}
+				Projectile.NewProjectile(source, damageLocation, Vector2.Zero, type, damage, knockback, player.whoAmI);
 
 				//Portable Particle Accelerator acc
 				if (clickerPlayer.IsPortableParticleAcceleratorActive)

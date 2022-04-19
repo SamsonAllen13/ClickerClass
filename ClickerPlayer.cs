@@ -315,7 +315,6 @@ namespace ClickerClass
 			clickAmount++;
 			if (accSMedalAmount > 20)
 			{
-				clickAmount += 2; //End total of +3
 				accSMedalAmount -= 20;
 			}
 		}
@@ -573,39 +572,26 @@ namespace ClickerClass
 
 			if (ClickerClass.AutoClickKey.JustPressed)
 			{
-				if (Math.Abs(clickerClassTime - pressedAutoClick) > 60)
+				if (Math.Abs(clickerClassTime - pressedAutoClick) > 20)
 				{
 					pressedAutoClick = clickerClassTime;
 					
-					if (clickerAutoClick)
+					if (accHandCream || accIcePack)
 					{
 						SoundEngine.PlaySound(SoundID.MenuTick, Player.position);
 						clickerAutoClick = clickerAutoClick ? false : true;
 					}
 					
-					//TODO - Figure out optimal way to accomplish these effects:
-					//Pressing the key will select the enemy / nearest enemy to your cursor as your 'Target' (Currently isnt dictated by mouse proximity)
-					//Selected 'Target' will have AimbotModule_Glow DrawLayer drawn over them (Currently not working)
-					//Once selected, the click damage projectile in ClickerWeapon Shoot() will spawn over the 'Target' (Hasnt been implemented)
-					//Enemies that are killed or leave the radius are no longer considered the 'Target' (Should work currently)
-					//Optionally, though probably not even possible, just have the player's cursor snap to the 'Target's' center when active?
+					//TODO Optional - Figure out how to make the player's cursor snap to the 'Target' center while active
 					if (accAimbotModule)
 					{
 						SoundEngine.PlaySound(SoundID.MenuTick, Player.position);
 						for (int i = 0; i < Main.maxNPCs; i++)
 						{
 							NPC target = Main.npc[i];
-							int radius = (int)(95 * clickerRadius);
-							radius = radius > 500 ? 500 : radius;
-							
-							if (target.CanBeChasedBy() && target.active && target.DistanceSQ(Player.Center) < radius * radius)
+							if (target.CanBeChasedBy() && target.active && target.DistanceSQ(Main.MouseWorld) < 50 * 50)
 							{
 								accAimbotModuleTarget = target.whoAmI;
-								for (int k = 0; k < 10; k++)
-								{
-									Dust dust = Dust.NewDustDirect(target.Center, 20, 20, 90, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 75, default, 1.5f);
-									dust.noGravity = true;
-								}
 								break;
 							}
 						}
@@ -864,11 +850,8 @@ namespace ClickerClass
 			}
 			if (accAimbotModuleTarget != -1 && accAimbotModuleFailsafe >= 10)
 			{
-				NPC target = Main.npc[accAimbotModuleTarget];
-				int radius = (int)(95 * clickerRadius);
-				radius = radius > 350 ? 350 : radius;
-				
-				if (!target.active || target.DistanceSQ(Player.Center) > radius * radius)
+				NPC target = Main.npc[accAimbotModuleTarget];			
+				if (!target.active || target.DistanceSQ(Player.Center) > ClickerRadiusReal * ClickerRadiusReal || !Collision.CanHit(new Vector2(Player.Center.X, Player.Center.Y - 12), 1, 1, target.Center, 1, 1))
 				{
 					accAimbotModuleTarget = -1;
 				}
@@ -990,7 +973,7 @@ namespace ClickerClass
 							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
 							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
 							{
-								accAMedalAmount++;
+								accAMedalAmount += 2;
 								medalProj.ai[1] = 1f;
 								Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 								Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 86, Scale: 1.25f);
@@ -1052,7 +1035,7 @@ namespace ClickerClass
 								}
 								if (medalProj.type == sMedalType2 && accAMedalAmount < 200) //A Medal Equivalent
 								{
-									accAMedalAmount += 2;
+									accAMedalAmount += 3;
 									medalProj.ai[1] = 1f;
 									Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 									Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 87, Scale: 1.25f);
@@ -1061,7 +1044,7 @@ namespace ClickerClass
 								}
 								if (medalProj.type == sMedalType3 && accSMedalAmount < 200)
 								{
-									accSMedalAmount += 2;
+									accSMedalAmount += 3;
 									medalProj.ai[1] = 1f;
 									Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 									Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 89, Scale: 1.25f);
@@ -1096,6 +1079,11 @@ namespace ClickerClass
 					if (Player.ownedProjectileCounts[sMedalType3] == 0)
 					{
 						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType3, 0, 0f, Player.whoAmI, 2, 0.5f);
+					}
+					
+					if (accSMedalAmount > 20)
+					{
+						clickerBonusPercent -= 0.25f;
 					}
 				}
 				else
@@ -1351,6 +1339,14 @@ namespace ClickerClass
 						Projectile.NewProjectile(Player.GetProjectileSource_Misc(0), target.Center + toDir, target.velocity * 0f + toDir.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
 						i++;
 						spawnEffects = false;
+					}
+				}
+				
+				if (clickerNPC.seafoam)
+				{
+					if (Player.statLife < Player.statLifeMax)
+					{
+						Player.HealLife(2);
 					}
 				}
 

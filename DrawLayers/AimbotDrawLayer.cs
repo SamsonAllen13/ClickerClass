@@ -27,15 +27,12 @@ namespace ClickerClass.DrawLayers
 		public override bool GetDefaultVisibility(PlayerDrawSet drawInfo)
 		{
 			Player drawPlayer = drawInfo.drawPlayer;
-
-			if (drawInfo.shadow != 0f)
+			if (drawPlayer.dead)
 			{
-				//Gameplay only: no armor shadows
 				return false;
 			}
 
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
-
 			return modPlayer.accAimbotModuleTarget != -1 && modPlayer.accAimbotModuleFailsafe >= 10;
 		}
 
@@ -50,14 +47,10 @@ namespace ClickerClass.DrawLayers
 
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 			NPC target = Main.npc[modPlayer.accAimbotModuleTarget];
-			
-			int drawX = (int)(drawPlayer.Center.X - Main.screenPosition.X);
-			int drawY = (int)(drawPlayer.Center.Y + drawPlayer.gfxOffY - Main.screenPosition.Y);
-			Vector2 center = new Vector2(drawX, drawY);
-			Vector2 drawPos = center + target.Center;
+			Vector2 drawPos = target.Center - Main.screenPosition;
 
 			Texture2D texture = aimbotTexture.Value;
-			DrawData drawData = new DrawData(texture, drawPos, null, new Color(255, 255, 255, 100) * 0.5f, 0f, texture.Size() / 2, 1f, SpriteEffects.None, 0)
+			DrawData drawData = new DrawData(texture, drawPos, null, new Color(255, 255, 255, 50) * 0.65f, 0f, texture.Size() / 2, 1f, SpriteEffects.None, 0)
 			{
 				ignorePlayerRotation = true
 			};

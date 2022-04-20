@@ -59,7 +59,7 @@ namespace ClickerClass.Projectiles
 			{
 				if (Main.myPlayer == Projectile.owner)
 				{
-					Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), new Vector2(Projectile.Center.X + Main.rand.Next(-15, 16), Projectile.Center.Y), new Vector2(Main.rand.NextFloat(-0.4f, 0.4f), Main.rand.NextFloat(4f, 4.5f)), ModContent.ProjectileType<BlizzardClickerPro2>(), (int)(Projectile.damage * 0.5f), Projectile.knockBack, Projectile.owner);
+					Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X + Main.rand.Next(-15, 16), Projectile.Center.Y), new Vector2(Main.rand.NextFloat(-0.4f, 0.4f), Main.rand.NextFloat(4f, 4.5f)), ModContent.ProjectileType<BlizzardClickerPro2>(), (int)(Projectile.damage * 0.5f), Projectile.knockBack, Projectile.owner);
 				}
 				Timer = 0;
 			}

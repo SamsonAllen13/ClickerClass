@@ -122,7 +122,7 @@ namespace ClickerClass.Projectiles
 				if (Main.myPlayer == Projectile.owner)
 				{
 					float direction = Projectile.velocity.X > 0f ? 15f : -15f;
-					Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), new Vector2(Projectile.Center.X, Projectile.Center.Y + 16), new Vector2(direction, 12f), ModContent.ProjectileType<DraconicClickerPro2>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
+					Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X, Projectile.Center.Y + 16), new Vector2(direction, 12f), ModContent.ProjectileType<DraconicClickerPro2>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
 				}
 				AttackTimer = 0;
 			}

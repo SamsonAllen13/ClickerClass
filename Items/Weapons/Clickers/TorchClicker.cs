@@ -92,7 +92,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 50) * 0.75f, rotation, scale);
 		}
 		
-		//TODO this will break when onspawn tml branch is merged
+		//TODO maybe look into reworking this into OnSpawn with GlobalItem
 		//The following 2 go into any class (assuming it's a one-time thing, in the item class for organization, otherwise needs to generalize this into a system)
 		public override void Load()
 		{
@@ -109,12 +109,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 				*/
 			//If this causes a recursion somehow, im screaming
 			Player player = Main.LocalPlayer;
-			if (source is EntitySource_ByItemSourceId byItemSourceId &&
-				byItemSourceId.Entity == player && byItemSourceId.SourceId == ItemSourceID.TorchGod &&
+			if (source is EntitySource_TorchGod torchGodSource &&
+				torchGodSource.Context == "TorchGod_FavorLoot" &&
+				torchGodSource.TargetedEntity == player &&
 				Type == ItemID.TorchGodsFavor && Stack == 1)
 			{
 				int itemToDrop = ModContent.ItemType<TorchClicker>();
-				int number = Item.NewItem(new EntitySource_ByItemSourceId(player, ItemSourceID.TorchGod), player.getRect(), itemToDrop);
+				int number = Item.NewItem(source, player.getRect(), itemToDrop);
 				if (Main.netMode == NetmodeID.MultiplayerClient)
 				{
 					NetMessage.SendData(MessageID.SyncItem, -1, -1, null, number, 1f);

@@ -747,7 +747,7 @@ namespace ClickerClass
 						if (Main.myPlayer == Player.whoAmI)
 						{
 							int damage = Math.Max(1, (int)(heldItem.damage * 0.2f));
-							Projectile.NewProjectile(Player.GetProjectileSource_SetBonus(0), Main.MouseWorld.X + 8, Main.MouseWorld.Y + 11, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), damage, 0f, Player.whoAmI);
+							Projectile.NewProjectile(Player.GetSource_FromThis(context: "Set_Precursor"), Main.MouseWorld.X + 8, Main.MouseWorld.Y + 11, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), damage, 0f, Player.whoAmI);
 						}
 						setPrecursorTimer = 0;
 					}
@@ -880,7 +880,7 @@ namespace ClickerClass
 					{
 						frame= 1;
 					}
-					Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accCookieItem), (float)xOffset, (float)yOffset, 0f, 0f, ModContent.ProjectileType<CookiePro>(), 0, 0f, Player.whoAmI, frame);
+					Projectile.NewProjectile(Player.GetSource_Accessory(accCookieItem), (float)xOffset, (float)yOffset, 0f, 0f, ModContent.ProjectileType<CookiePro>(), 0, 0f, Player.whoAmI, frame);
 
 					accCookieTimer = 0;
 				}
@@ -1070,15 +1070,15 @@ namespace ClickerClass
 					
 					if (Player.ownedProjectileCounts[sMedalType1] == 0)
 					{
-						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType1, 0, 0f, Player.whoAmI, 0, 0.5f);
+						Projectile.NewProjectile(Player.GetSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType1, 0, 0f, Player.whoAmI, 0, 0.5f);
 					}
 					if (Player.ownedProjectileCounts[sMedalType2] == 0)
 					{
-						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType2, 0, 0f, Player.whoAmI, 1, 0.5f);
+						Projectile.NewProjectile(Player.GetSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType2, 0, 0f, Player.whoAmI, 1, 0.5f);
 					}
 					if (Player.ownedProjectileCounts[sMedalType3] == 0)
 					{
-						Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType3, 0, 0f, Player.whoAmI, 2, 0.5f);
+						Projectile.NewProjectile(Player.GetSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType3, 0, 0f, Player.whoAmI, 2, 0.5f);
 					}
 					
 					if (accSMedalAmount > 20)
@@ -1095,7 +1095,7 @@ namespace ClickerClass
 					{
 						if (Player.ownedProjectileCounts[aMedalType] == 0)
 						{
-							Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accAMedalItem), Player.Center, Vector2.Zero, aMedalType, 0, 0f, Player.whoAmI, 0, 0.5f);
+							Projectile.NewProjectile(Player.GetSource_Accessory(accAMedalItem), Player.Center, Vector2.Zero, aMedalType, 0, 0f, Player.whoAmI, 0, 0.5f);
 						}
 					}
 					else
@@ -1108,7 +1108,7 @@ namespace ClickerClass
 					{
 						if (Player.ownedProjectileCounts[fMedalType] == 0)
 						{
-							Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accFMedalItem), Player.Center, Vector2.Zero, fMedalType, 0, 0f, Player.whoAmI, 1, 0.5f);
+							Projectile.NewProjectile(Player.GetSource_Accessory(accFMedalItem), Player.Center, Vector2.Zero, fMedalType, 0, 0f, Player.whoAmI, 1, 0.5f);
 						}
 					}
 					else
@@ -1273,9 +1273,10 @@ namespace ClickerClass
 							int dust = Dust.NewDust(target.position, 20, 20, 11, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default(Color), 1.25f);
 							Main.dust[dust].noGravity = true;
 						}
-						
+
+						var entitySource = projectile.GetSource_OnHit(target, context: "GoldenTicket");
 						int amount = 1 + Main.rand.Next(6);
-						int coin = Item.NewItem(Main.player[projectile.owner].GetItemSource_OnHit(target, -1), target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
+						int coin = Item.NewItem(entitySource, target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
 						if (amount > 0)
 						{
 							clickerMoneyGenerated += amount;
@@ -1309,7 +1310,7 @@ namespace ClickerClass
 						{
 							for (int k = 0; k < 4; k++)
 							{
-								Projectile.NewProjectile(Player.GetProjectileSource_Accessory(accPaperclipsItem), Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
+								Projectile.NewProjectile(Player.GetSource_Accessory(accPaperclipsItem), Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
 							}
 						}
 
@@ -1325,6 +1326,7 @@ namespace ClickerClass
 
 					int crystal = ModContent.ProjectileType<ClearKeychainPro2>();
 					bool spawnEffects = true;
+					var entitySource = projectile.GetSource_OnHit(target, context: "Acc_Crystalized");
 
 					float total = 10f;
 					int i = 0;
@@ -1336,7 +1338,7 @@ namespace ClickerClass
 						toDir = toDir.RotatedBy(target.velocity.ToRotation());
 						int damageAmount = (int)(damage * 0.25f);
 						damageAmount = damageAmount < 1 ? 1 : damageAmount;
-						Projectile.NewProjectile(Player.GetProjectileSource_Misc(0), target.Center + toDir, target.velocity * 0f + toDir.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
+						Projectile.NewProjectile(entitySource, target.Center + toDir, target.velocity * 0f + toDir.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
 						i++;
 						spawnEffects = false;
 					}

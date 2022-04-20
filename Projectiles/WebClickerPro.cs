@@ -69,7 +69,7 @@ namespace ClickerClass.Projectiles
 
 			if (Main.myPlayer == Projectile.owner)
 			{
-				Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<WebClickerPro2>(), (int)(Projectile.damage * 0.50), 1f, Projectile.owner, leftFacing, 0f);
+				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<WebClickerPro2>(), (int)(Projectile.damage * 0.50), 1f, Projectile.owner, leftFacing, 0f);
 			}
 
 			for (int k = 0; k < 5; k++)

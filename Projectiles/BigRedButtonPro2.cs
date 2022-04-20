@@ -93,7 +93,7 @@ namespace ClickerClass.Projectiles
 						if (k == 3){spread = new Vector2(0.25f, -3.5f);}
 						if (k == 4){spread = new Vector2(0.25f, -2.5f);}
 						if (k == 5){spread = new Vector2(0.5f, -3f);}
-						Projectile.NewProjectile(Projectile.GetProjectileSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, spread.X, spread.Y, ModContent.ProjectileType<BigRedButtonPro3>(), (int)(Projectile.damage * 0.5f), 0f, Projectile.owner);
+						Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, spread.X, spread.Y, ModContent.ProjectileType<BigRedButtonPro3>(), (int)(Projectile.damage * 0.5f), 0f, Projectile.owner);
 					}
 				}
 				if (Projectile.scale <= 0f)

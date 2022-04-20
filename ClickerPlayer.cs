@@ -1274,7 +1274,7 @@ namespace ClickerClass
 							Main.dust[dust].noGravity = true;
 						}
 
-						var entitySource = projectile.GetSource_OnHit(target, context: "GoldenTicket");
+						var entitySource = projectile.GetSource_OnHit(target, context: "Acc_GoldenTicket");
 						int amount = 1 + Main.rand.Next(6);
 						int coin = Item.NewItem(entitySource, target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
 						if (amount > 0)

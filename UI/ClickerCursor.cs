@@ -76,6 +76,8 @@ namespace ClickerClass.UI
 				return true;
 			}
 
+			//TODO animated support
+
 			borderTexture = borderAsset.Value;
 			texture = TextureAssets.Item[item.type].Value;
 

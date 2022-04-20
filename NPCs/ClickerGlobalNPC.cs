@@ -111,7 +111,7 @@ namespace ClickerClass.NPCs
 			//This method is called once when the game loads (per NPC), so you can't make dynamic checks based on world state like "npc.value > 0f" here
 			if (npc.type == NPCID.GoblinSorcerer)
 			{
-				//20 is the dropsOutOfY argument, meaning its a 1/20 roll aka old Main.rand.NextBool(20)
+				//20 is the chanceDenominator argument, meaning its a 1/20 roll aka old Main.rand.NextBool(20)
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadowyClicker>(), 20));
 			}
 			else if (npc.type == NPCID.Frankenstein || npc.type == NPCID.SwampThing)
@@ -189,6 +189,7 @@ namespace ClickerClass.NPCs
 				npcLoot.Add(neverDropsRule);
 			}
 
+			//Here go drops for normal mode that mirror through boss bags in expert mode (see ClickerItemGlobal)
 			Conditions.NotExpert notExpert = new Conditions.NotExpert();
 			if (npc.type == NPCID.MoonLordCore)
 			{

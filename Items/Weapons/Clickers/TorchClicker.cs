@@ -92,6 +92,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 50) * 0.75f, rotation, scale);
 		}
 		
+		//TODO this will break when onspawn tml branch is merged
 		//The following 2 go into any class (assuming it's a one-time thing, in the item class for organization, otherwise needs to generalize this into a system)
 		public override void Load()
 		{

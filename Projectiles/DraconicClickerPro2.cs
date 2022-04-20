@@ -1,12 +1,6 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.Utilities;
-using Terraria.GameContent;
-using Terraria.ModLoader;
-using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
 {
@@ -55,9 +49,9 @@ namespace ClickerClass.Projectiles
 				Projectile.frame++;
 				Projectile.frameCounter = 0;
 			}
-			if (Projectile.frame >= 7)
+			if (Projectile.frame >= Main.projFrames[Projectile.type])
 			{
-				Projectile.frame = 7;
+				Projectile.frame = Main.projFrames[Projectile.type]; //Disappear after animation completed
 			}
 		}
 		

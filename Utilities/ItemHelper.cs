@@ -11,6 +11,7 @@ namespace ClickerClass.Utilities
 		/// </summary>
 		public static void BasicInWorldGlowmask(this Item item, SpriteBatch spriteBatch, Texture2D glowTexture, Color color, float rotation, float scale)
 		{
+			//TODO animated support
 			spriteBatch.Draw(
 				glowTexture,
 				new Vector2(

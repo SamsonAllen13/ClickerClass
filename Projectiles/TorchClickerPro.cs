@@ -1,8 +1,5 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.GameContent;
-using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -46,14 +43,13 @@ namespace ClickerClass.Projectiles
 		{
 			Player player = Main.player[Projectile.owner];
 			int dustType = 6;
-			
-			if (player.ZoneCrimson){dustType = 60;}
-			if (player.ZoneCorrupt){dustType = 62;}
-			if (player.ZoneDungeon || player.ZoneBeach){dustType = 59;}
-			if (player.ZoneSnow){dustType = 135;}
-			if (player.ZoneHallow){dustType = 164;}
-			if (player.ZoneJungle || player.ZoneLihzhardTemple){dustType = 61;}
-			if (player.ZoneUndergroundDesert || player.ZoneDesert){dustType = 64;}
+
+			if (player.ZoneJungle || player.ZoneLihzhardTemple) dustType = 61;
+			else if (player.ZoneHallow) dustType = 164;
+			else if (player.ZoneSnow) dustType = 135;
+			else if (player.ZoneDungeon || player.ZoneBeach) dustType = 59;
+			else if (player.ZoneCorrupt) dustType = 62;
+			else if (player.ZoneCrimson) dustType = 60;
 			
 			int index = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, dustType, 0f, 0f, 0, default(Color), 1.5f);
 			Dust dust = Main.dust[index];

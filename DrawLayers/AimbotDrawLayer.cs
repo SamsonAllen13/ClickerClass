@@ -47,7 +47,7 @@ namespace ClickerClass.DrawLayers
 
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 			NPC target = Main.npc[modPlayer.accAimbotModuleTarget];
-			Vector2 drawPos = target.Center - Main.screenPosition;
+			Vector2 drawPos = target.Center + new Vector2(0f, target.gfxOffY) - Main.screenPosition;
 
 			Texture2D texture = aimbotTexture.Value;
 			DrawData drawData = new DrawData(texture, drawPos, null, new Color(255, 255, 255, 50) * 0.65f, 0f, texture.Size() / 2, 1f, SpriteEffects.None, 0)

@@ -182,6 +182,12 @@ namespace ClickerClass.NPCs
 			{
 				DropHelper.NPCExpertGetsRerolls(npcLoot, ModContent.ItemType<ImpishClicker>(), 35);
 			}
+			else if (npc.type == NPCID.TorchGod)
+			{
+				LeadingConditionRule neverDropsRule = new LeadingConditionRule(new Conditions.NeverTrue());
+				neverDropsRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TorchClicker>()));
+				npcLoot.Add(neverDropsRule);
+			}
 
 			Conditions.NotExpert notExpert = new Conditions.NotExpert();
 			if (npc.type == NPCID.MoonLordCore)
@@ -203,6 +209,10 @@ namespace ClickerClass.NPCs
 					missingTwinRule.OnSuccess(ruleToAdd);
 					npcLoot.Add(missingTwinRule);
 				}
+			}
+			else if (npc.type == NPCID.DD2Betsy)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<DraconicClicker>(), 5));
 			}
 			else if (npc.type == NPCID.DukeFishron)
 			{

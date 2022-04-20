@@ -528,7 +528,7 @@ namespace ClickerClass
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 					//accCookieItem
-					//accAMedalItem, accFMedalItem, accPaperclipsItem
+					//accAMedalItem, accFMedalItem, accSMedalItem, accPaperclipsItem
 					if (accName == "Cookie")
 					{
 						return clickerPlayer.accCookieItem;
@@ -540,6 +540,10 @@ namespace ClickerClass
 					else if (accName == "FMedal")
 					{
 						return clickerPlayer.accFMedalItem;
+					}
+					else if (accName == "SMedal")
+					{
+						return clickerPlayer.accSMedalItem;
 					}
 					else if (accName == "BottomlessBoxOfPaperclips")
 					{
@@ -757,7 +761,7 @@ namespace ClickerClass
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 					//accCookieItem
-					//accAMedalItem, accFMedalItem, accPaperclipsItem
+					//accAMedalItem, accFMedalItem, accSMedalItem, accPaperclipsItem
 					if (accName == "Cookie")
 					{
 						clickerPlayer.accCookieItem = item;
@@ -771,6 +775,11 @@ namespace ClickerClass
 					else if (accName == "FMedal")
 					{
 						clickerPlayer.accFMedalItem = item;
+						return success;
+					}
+					else if (accName == "SMedal")
+					{
+						clickerPlayer.accSMedalItem = item;
 						return success;
 					}
 					else if (accName == "BottomlessBoxOfPaperclips")

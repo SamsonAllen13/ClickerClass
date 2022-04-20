@@ -22,7 +22,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(Item, 5.65f);
+			SetRadius(Item, 5.85f);
 			SetColor(Item, new Color(95, 210, 160));
 			SetDust(Item, 99);
 			AddEffect(Item, ClickEffect.SeaSpray);

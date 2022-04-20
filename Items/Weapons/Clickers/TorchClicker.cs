@@ -1,16 +1,27 @@
+using ClickerClass.Dusts;
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.ModLoader;
 using Terraria.DataStructures;
+using ReLogic.Content;
+using Microsoft.Xna.Framework.Graphics;
+using ClickerClass.Utilities;
+using ClickerClass.DrawLayers;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class TorchClicker : ClickerWeapon
 	{
+		public static Asset<Texture2D> glowmask;
+
+		public override void Unload()
+		{
+			glowmask = null;
+		}
+		
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -42,6 +53,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 					Projectile.NewProjectile(source, startSpot, vector, torch, (int)(damage * 0.25f), 0f, player.whoAmI, 0f, 0f);
 				}
 			});
+			
+			if (!Main.dedServ)
+			{
+				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
+
+				HeldItemLayer.RegisterData(Item.type, new DrawLayerData()
+				{
+					Texture = glowmask,
+					Color = (PlayerDrawSet drawInfo) => new Color(255, 255, 255, 50) * 0.75f
+				});
+			}
 		}
 
 		public override void SetDefaults()
@@ -57,9 +79,50 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.height = 30;
 			Item.knockBack = 1f;
 			Item.value = 35000;
-			Item.rare = 2;
+			Item.rare = 3;
 		}
 		
-		//TODO - Add dire's figured out 'Torch God loot' feature
+		public override void PostUpdate()
+		{
+			Lighting.AddLight(Item.Center, 0.2f, 0.15f, 0.15f);
+		}
+
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+		{
+			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 50) * 0.75f, rotation, scale);
+		}
+		
+		//The following 2 go into any class (assuming it's a one-time thing, in the item class for organization, otherwise needs to generalize this into a system)
+		public override void Load()
+		{
+			On.Terraria.Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool;
+		}
+
+		private int Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool(On.Terraria.Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, Terraria.DataStructures.IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
+		{
+			int ret = orig(source, X, Y, Width, Height, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup);
+
+			/*
+				* Try dropping when these conditions are true
+				* int number = Item.NewItem(new EntitySource_ByItemSourceId(this, 6), (int)position.X, (int)position.Y, width, height, 5043);
+					if (Main.netMode == 1)
+						NetMessage.SendData(21, -1, -1, null, number, 1f);
+				*/
+			//If this causes a recursion somehow, im screaming
+			Player player = Main.LocalPlayer;
+			if (source is EntitySource_ByItemSourceId byItemSourceId &&
+				byItemSourceId.Entity == player && byItemSourceId.SourceId == ItemSourceID.TorchGod &&
+				Type == ItemID.TorchGodsFavor && Stack == 1)
+			{
+				int itemToDrop = ModContent.ItemType<TorchClicker>();
+				int number = Item.NewItem(new EntitySource_ByItemSourceId(player, ItemSourceID.TorchGod), player.getRect(), itemToDrop);
+				if (Main.netMode == NetmodeID.MultiplayerClient)
+				{
+					NetMessage.SendData(MessageID.SyncItem, -1, -1, null, number, 1f);
+				}
+			}
+
+			return ret;
+		}
 	}
 }

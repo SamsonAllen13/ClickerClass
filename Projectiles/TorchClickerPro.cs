@@ -44,7 +44,18 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
-			int index = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, 6, 0f, 0f, 0, default(Color), 1.5f);
+			Player player = Main.player[Projectile.owner];
+			int dustType = 6;
+			
+			if (player.ZoneCrimson){dustType = 60;}
+			if (player.ZoneCorrupt){dustType = 62;}
+			if (player.ZoneDungeon || player.ZoneBeach){dustType = 59;}
+			if (player.ZoneSnow){dustType = 135;}
+			if (player.ZoneHallow){dustType = 164;}
+			if (player.ZoneJungle || player.ZoneLihzhardTemple){dustType = 61;}
+			if (player.ZoneUndergroundDesert || player.ZoneDesert){dustType = 64;}
+			
+			int index = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, dustType, 0f, 0f, 0, default(Color), 1.5f);
 			Dust dust = Main.dust[index];
 			dust.position.X = Projectile.Center.X;
 			dust.position.Y = Projectile.Center.Y;
@@ -62,7 +73,7 @@ namespace ClickerClass.Projectiles
 					Vector2 vector2 = Vector2.Zero;
 					vector2 += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / max)) * new Vector2(2f, 2f);
 					vector2 = vector2.RotatedBy(Projectile.velocity.ToRotation(), default(Vector2));
-					int index2 = Dust.NewDust(Projectile.Center, 0, 0, 6, 0f, 0f, 0, default(Color), 1.5f);
+					int index2 = Dust.NewDust(Projectile.Center, 0, 0, dustType, 0f, 0f, 0, default(Color), 1.5f);
 					Dust dust2 = Main.dust[index2];
 					dust2.noGravity = true;
 					dust2.position = Projectile.Center + vector2;

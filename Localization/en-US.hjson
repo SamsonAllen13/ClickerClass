@@ -344,6 +344,11 @@ Mods: {
 				Description: Slows nearby enemies and allows you to steal life from them
 			}
 			
+			WyvernsRoar: {
+				Name: Wyvern's Roar
+				Description: Calls in a wyvern to blast the area with flames
+			}
+			
 			HolyNova: {
 				Name: Holy Nova
 				Description: Damages every enemy within the clicker's radius with a guaranteed critical hit

@@ -44,7 +44,8 @@ namespace ClickerClass.Projectiles
 			Player player = Main.player[Projectile.owner];
 			int dustType = 6;
 
-			if (player.ZoneJungle || player.ZoneLihzhardTemple) dustType = 61;
+			if (player.ZoneUndergroundDesert || player.ZoneDesert) dustType = 64;
+			else if (player.ZoneJungle || player.ZoneLihzhardTemple) dustType = 61;
 			else if (player.ZoneHallow) dustType = 164;
 			else if (player.ZoneSnow) dustType = 135;
 			else if (player.ZoneDungeon || player.ZoneBeach) dustType = 59;

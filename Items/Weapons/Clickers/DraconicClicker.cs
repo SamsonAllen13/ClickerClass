@@ -17,9 +17,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			{
 				int offSet = player.direction * 300;
 				float direction = player.direction * 3f;
-				Vector2 truePosition = player.GetModPlayer<ClickerPlayer>().clickerPosition;
 				
-				Projectile.NewProjectile(source, new Vector2(truePosition.X - offSet, truePosition.Y - 225), new Vector2(direction, 0f), ModContent.ProjectileType<DraconicClickerPro>(), damage * 2, knockBack, player.whoAmI);
+				Projectile.NewProjectile(source, new Vector2(position.X - offSet, position.Y - 225), new Vector2(direction, 0f), ModContent.ProjectileType<DraconicClickerPro>(), damage * 2, knockBack, player.whoAmI);
 			});
 		}
 

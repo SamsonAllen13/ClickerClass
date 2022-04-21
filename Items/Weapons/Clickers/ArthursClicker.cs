@@ -17,14 +17,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.HolyNova = ClickerSystem.RegisterClickEffect(Mod, "HolyNova", null, null, 12, new Color(255, 225, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Vector2 truePosition = player.GetModPlayer<ClickerPlayer>().clickerPosition;
-				
 				for (int u = 0; u < Main.maxNPCs; u++)
 				{
 					NPC target = Main.npc[u];
-					if (target.CanBeChasedBy() && target.DistanceSQ(truePosition) < 350 * 350 && Collision.CanHit(target.Center, 1, 1, truePosition, 1, 1))
+					if (target.CanBeChasedBy() && target.DistanceSQ(position) < 350 * 350 && Collision.CanHit(target.Center, 1, 1, position, 1, 1))
 					{
-						Vector2 vector = target.Center - truePosition;
+						Vector2 vector = target.Center - position;
 						float speed = 8f;
 						float mag = vector.Length();
 						if (mag > speed)
@@ -37,7 +35,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				}
 
 				//Can't properly offload this into projectiles as the visuals spawn on the cursor, but projectiles don't
-				SoundEngine.PlaySound(SoundID.NPCHit, (int)truePosition.X, (int)truePosition.Y, 5);
+				SoundEngine.PlaySound(SoundID.NPCHit, (int)position.X, (int)position.Y, 5);
 
 				float max = 100f;
 				int i = 0;
@@ -46,10 +44,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 					Vector2 vector12 = Vector2.UnitX * 0f;
 					vector12 += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / max)) * new Vector2(2f, 2f);
 					vector12 = vector12.RotatedBy((double)Vector2.Zero.ToRotation(), default(Vector2));
-					int index = Dust.NewDust(truePosition, 0, 0, 87, 0f, 0f, 0, default(Color), 2f);
+					int index = Dust.NewDust(position, 0, 0, 87, 0f, 0f, 0, default(Color), 2f);
 					Dust dust = Main.dust[index];
 					dust.noGravity = true;
-					dust.position = truePosition + vector12;
+					dust.position = position + vector12;
 					dust.velocity = vector12.SafeNormalize(Vector2.UnitY) * 15f;
 					i++;
 				}

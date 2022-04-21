@@ -433,7 +433,8 @@ namespace ClickerClass.Items
 		{
 			if (ClickerSystem.IsClickerWeapon(item))
 			{
-				position = Main.MouseWorld;
+				var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+				position = clickerPlayer.clickerPosition;
 			}
 		}
 
@@ -456,18 +457,12 @@ namespace ClickerClass.Items
 				//TODO dire: maybe "PreShoot" hook wrapping around the next NewProjectile
 
 				//Spawn normal click damage
-				Vector2 damageLocation = Main.MouseWorld;
-				if (clickerPlayer.accAimbotModuleTarget != -1 && clickerPlayer.accAimbotModuleFailsafe >= 10)
-				{
-					NPC target = Main.npc[clickerPlayer.accAimbotModuleTarget];
-					damageLocation = target.Center;
-				}
-				Projectile.NewProjectile(source, damageLocation, Vector2.Zero, type, damage, knockback, player.whoAmI);
+				Projectile.NewProjectile(source, position, Vector2.Zero, type, damage, knockback, player.whoAmI);
 
 				//Portable Particle Accelerator acc
 				if (clickerPlayer.IsPortableParticleAcceleratorActive)
 				{
-					Vector2 vec = Main.MouseWorld;
+					Vector2 vec = position;
 					float num102 = 25f;
 					int num103 = 0;
 					while ((float)num103 < num102)
@@ -497,16 +492,15 @@ namespace ClickerClass.Items
 				//Hot Keychain 
 				if (clickerPlayer.accHotKeychain2)
 				{
-					int damageAmount = (int)(damage * 0.25f);
-					if (damageAmount <= 1){damageAmount = 1;}
-					Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<HotKeychainPro>(), damageAmount, knockback, player.whoAmI);
+					int damageAmount = Math.Max(1, (int)(damage * 0.25f));
+					Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<HotKeychainPro>(), damageAmount, knockback, player.whoAmI);
 				}
 
 				int overclockType = ModContent.BuffType<OverclockBuff>();
 				//Overclock armor set bonus
 				if (clickerPlayer.clickAmount % 100 == 0 && clickerPlayer.setOverclock)
 				{
-					SoundEngine.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 94);
+					SoundEngine.PlaySound(2, (int)position.X, (int)position.Y, 94);
 					player.AddBuff(overclockType, 180, false);
 					for (int i = 0; i < 25; i++)
 					{

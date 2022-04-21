@@ -93,6 +93,10 @@ namespace ClickerClass
 		/// Used for double tap dash effects
 		/// </summary>
 		public int clickerDoubleTap = 0;
+		/// <summary>
+		/// Used for cursor positioning and the Aimbot Module effect
+		/// </summary>
+		public Vector2 clickerPosition = Main.MouseWorld;
 
 		//Click effects
 		/// <summary>
@@ -173,6 +177,7 @@ namespace ClickerClass
 
 		public int accAimbotModuleTarget = 0;
 		public int accAimbotModuleFailsafe = 0;
+		public float accAimbotModuleScale = 1f;
 		public int accClickingGloveTimer = 0;
 		public int accCookieTimer = 0;
 		public int accAMedalAmount = 0; //Only updated clientside
@@ -589,9 +594,10 @@ namespace ClickerClass
 						for (int i = 0; i < Main.maxNPCs; i++)
 						{
 							NPC target = Main.npc[i];
-							if (target.CanBeChasedBy() && target.active && target.DistanceSQ(Main.MouseWorld) < 50 * 50)
+							if (target.CanBeChasedBy() && target.active && target.DistanceSQ(Main.MouseWorld) < 100 * 100)
 							{
 								accAimbotModuleTarget = target.whoAmI;
+								accAimbotModuleScale = 2f;
 								break;
 							}
 						}
@@ -850,11 +856,20 @@ namespace ClickerClass
 			}
 			if (accAimbotModuleTarget != -1 && accAimbotModuleFailsafe >= 10)
 			{
-				NPC target = Main.npc[accAimbotModuleTarget];			
+				NPC target = Main.npc[accAimbotModuleTarget];
+				clickerPosition = target.Center;
 				if (!target.active || target.DistanceSQ(Player.Center) > ClickerRadiusReal * ClickerRadiusReal || !Collision.CanHit(new Vector2(Player.Center.X, Player.Center.Y - 12), 1, 1, target.Center, 1, 1))
 				{
 					accAimbotModuleTarget = -1;
 				}
+				if (accAimbotModuleScale > 1f)
+				{
+					accAimbotModuleScale -= 0.05f;
+				}
+			}
+			else
+			{
+				clickerPosition = Main.MouseWorld;
 			}
 			
 			//Cookie acc
@@ -1348,7 +1363,7 @@ namespace ClickerClass
 				{
 					if (Player.statLife < Player.statLifeMax)
 					{
-						Player.HealLife(2);
+						Player.HealLife(1);
 					}
 				}
 

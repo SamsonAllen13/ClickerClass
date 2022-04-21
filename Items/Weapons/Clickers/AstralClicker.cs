@@ -27,7 +27,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Spiral = ClickerSystem.RegisterClickEffect(Mod, "Spiral", null, null, 15, new Color(150, 150, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<AstralClickerPro>(), (int)(damage * 3f), 0f, player.whoAmI);
+				Projectile.NewProjectile(source, player.GetModPlayer<ClickerPlayer>().clickerPosition, Vector2.Zero, ModContent.ProjectileType<AstralClickerPro>(), (int)(damage * 3f), 0f, player.whoAmI);
 			});
 
 			if (!Main.dedServ)

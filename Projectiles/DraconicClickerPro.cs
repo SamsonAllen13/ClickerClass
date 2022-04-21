@@ -65,7 +65,7 @@ namespace ClickerClass.Projectiles
 			{
 				Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
 				Color color = Projectile.GetAlpha((lightColor * 0.25f) * Projectile.Opacity) * ((float)(Projectile.oldPos.Length - k) / (float)Projectile.oldPos.Length);
-				Main.EntitySpriteDraw(texture2D, drawPos, null, color * 0.025f, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
+				Main.EntitySpriteDraw(texture2D, drawPos, null, color * 0.1f, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
 			}
 			return true;
 		}
@@ -117,7 +117,7 @@ namespace ClickerClass.Projectiles
 			Projectile.velocity.Y = FlightTimer;
 			
 			AttackTimer++;
-			if (AttackTimer > 5)
+			if (AttackTimer > 5 && Projectile.timeLeft > 20)
 			{
 				if (Main.myPlayer == Projectile.owner)
 				{

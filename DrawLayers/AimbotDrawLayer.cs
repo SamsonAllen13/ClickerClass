@@ -50,7 +50,8 @@ namespace ClickerClass.DrawLayers
 			Vector2 drawPos = target.Center + new Vector2(0f, target.gfxOffY) - Main.screenPosition;
 
 			Texture2D texture = aimbotTexture.Value;
-			DrawData drawData = new DrawData(texture, drawPos, null, new Color(255, 255, 255, 50) * 0.65f, 0f, texture.Size() / 2, 1f, SpriteEffects.None, 0)
+			float percentage = modPlayer.accAimbotModuleScale;
+			DrawData drawData = new DrawData(texture, drawPos, null, new Color(255, 255, 255, 50) * (0.4f - (0.2f * percentage)), 0f, texture.Size() / 2, percentage, SpriteEffects.None, 0)
 			{
 				ignorePlayerRotation = true
 			};

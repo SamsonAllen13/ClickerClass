@@ -59,7 +59,7 @@ namespace ClickerClass.Projectiles
 		{
 			Projectile.tileCollide = false;
 			Projectile.friendly = false;
-			Projectile.velocity = Projectile.oldVelocity;
+			Projectile.velocity = Projectile.oldVelocity / 3;
 			if (Projectile.timeLeft > 20)
 			{
 				Projectile.timeLeft = 20;

@@ -167,7 +167,6 @@ Mods: {
 				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will select a target under your cursor
 				When clicking, your click damage is dealt to that target, regardless of your cursor's position
 				Your target is lost if they exit your radius or you lose direct line of sight of them
-				Click effects will still originate from your cursor's position
 				'''
 			AMedal:
 				'''

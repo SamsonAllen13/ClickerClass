@@ -45,7 +45,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage<ClickerDamage>() += 0.06f;
+			player.GetDamage<ClickerDamage>() += 0.1f;
 			player.moveSpeed += 0.20f;
 		}
 

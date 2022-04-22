@@ -278,17 +278,17 @@ Mods: {
 				'''
 			MiceBoots:
 				'''
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%
+				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
 				Increases movement speed by 20%
 				'''
 			MiceMask:
 				'''
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 4%
+				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%
 				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} by 6%
 				'''
 			MiceSuit:
 				'''
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
+				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 14%
 				{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%
 				'''
 			MotherboardBoots: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%"
@@ -299,14 +299,14 @@ Mods: {
 			RGBBreastplate: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%"
 			OverclockBoots: Increases movement speed by 10%
 			OverclockHelmet: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1"
-			OverclockSuit: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%"
+			OverclockSuit: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 15%"
 			PrecursorBreastplate:
 				'''
 				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 15%
 				{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius} by 50%
 				'''
 			PrecursorGreaves: Increases movement speed by 15%
-			PrecursorHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 8%"
+			PrecursorHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%"
 			InfluencePotion: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%"
 			SpectreClicker: Click on an enemy within sight to damage them
 		}

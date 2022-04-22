@@ -38,7 +38,7 @@ namespace ClickerClass.DrawLayers
 
 		public override Position GetDefaultPosition()
 		{
-			return new BeforeParent(PlayerDrawLayers.JimsCloak); //Furthest back layer
+			return new AfterParent(PlayerDrawLayers.Leggings);
 		}
 
 		protected override void Draw(ref PlayerDrawSet drawInfo)
@@ -51,7 +51,7 @@ namespace ClickerClass.DrawLayers
 
 			Texture2D texture = aimbotTexture.Value;
 			float percentage = modPlayer.accAimbotModuleScale;
-			DrawData drawData = new DrawData(texture, drawPos, null, new Color(255, 255, 255, 50) * (0.4f - (0.2f * percentage)), 0f, texture.Size() / 2, percentage, SpriteEffects.None, 0)
+			DrawData drawData = new DrawData(texture, drawPos, null, new Color(255, 255, 255, 100) * (2f - (1f * percentage)), 0f, texture.Size() / 2, percentage, SpriteEffects.None, 0)
 			{
 				ignorePlayerRotation = true
 			};

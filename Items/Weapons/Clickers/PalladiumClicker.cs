@@ -16,7 +16,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Regenerate = ClickerSystem.RegisterClickEffect(Mod, "Regenerate", null, null, 8, new Color(250, 150, 100), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
+				SoundEngine.PlaySound(SoundID.Item, (int)player.Center.X, (int)player.Center.Y, 24);
 				player.AddBuff(BuffID.RapidHealing, 120, false);
 				for (int i = 0; i < 15; i++)
 				{

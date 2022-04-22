@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.SeaSpray = ClickerSystem.RegisterClickEffect(Mod, "SeaSpray", null, null, 25, new Color(160, 230, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<SeafoamClickerPro>(), 0, knockBack, player.whoAmI);
+				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<SeafoamClickerPro>(), 0, knockBack, player.whoAmI);
 			});
 		}
 

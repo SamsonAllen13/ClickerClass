@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.WebSplash = ClickerSystem.RegisterClickEffect(Mod, "WebSplash", null, null, 10, new Color(190, 190, 175), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Vector2 mouse = Main.MouseWorld;
+				Vector2 mouse = position;
 
 				int index = -1;
 				float maxDistSQ = 400f * 400f;
@@ -42,7 +42,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 						mag = speed / mag;
 						vector *= mag;
 					}
-					Projectile.NewProjectile(source, Main.MouseWorld, vector, ModContent.ProjectileType<WebClickerPro>(), damage, knockBack, player.whoAmI);
+					Projectile.NewProjectile(source, position, vector, ModContent.ProjectileType<WebClickerPro>(), damage, knockBack, player.whoAmI);
 				}
 			});
 		}

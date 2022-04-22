@@ -17,12 +17,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Bombard = ClickerSystem.RegisterClickEffect(Mod, "Bombard", null, null, 12, new Color(255, 225, 50), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 14);
+				SoundEngine.PlaySound(SoundID.Item, (int)position.X, (int)position.Y, 14);
 
 				for (int k = 0; k < 4; k++)
 				{
-					Vector2 startSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-150, 151), Main.MouseWorld.Y - 500 + Main.rand.Next(-25, 26));
-					Vector2 endSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-25, 26), Main.MouseWorld.Y + Main.rand.Next(-25, 26));
+					Vector2 startSpot = new Vector2(position.X + Main.rand.Next(-150, 151), position.Y - 500 + Main.rand.Next(-25, 26));
+					Vector2 endSpot = new Vector2(position.X + Main.rand.Next(-25, 26), position.Y + Main.rand.Next(-25, 26));
 					Vector2 vector = endSpot - startSpot;
 					float speed = 8f + Main.rand.NextFloat(-1f, 1f);
 					float mag = vector.Length();

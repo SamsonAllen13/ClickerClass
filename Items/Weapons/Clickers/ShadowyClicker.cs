@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Curse = ClickerSystem.RegisterClickEffect(Mod, "Curse", null, null, 12, new Color(150, 100, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Vector2 pos = Main.MouseWorld;
+				Vector2 pos = position;
 
 				int index = -1;
 				for (int i = 0; i < Main.maxNPCs; i++)

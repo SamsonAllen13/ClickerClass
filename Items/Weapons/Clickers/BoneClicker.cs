@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Lacerate = ClickerSystem.RegisterClickEffect(Mod, "Lacerate", null, null, 12, new Color(225, 225, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<BoneClickerPro>(), damage, knockBack, player.whoAmI);
+				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<BoneClickerPro>(), damage, knockBack, player.whoAmI);
 			});
 		}
 

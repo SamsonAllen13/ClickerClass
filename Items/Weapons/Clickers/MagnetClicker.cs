@@ -19,7 +19,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				for (int j = 0; j < Main.maxItems; j++)
 				{
 					Item item = Main.item[j];
-					if (item.active && item.noGrabDelay == 0 && !item.beingGrabbed && Vector2.DistanceSquared(Main.MouseWorld, item.Center) < 50 * 50 && Collision.CanHit(Main.MouseWorld, 1, 1, item.Center, 1, 1))
+					if (item.active && item.noGrabDelay == 0 && !item.beingGrabbed && Vector2.DistanceSquared(position, item.Center) < 50 * 50 && Collision.CanHit(position, 1, 1, item.Center, 1, 1))
 					{
 						item.Center = player.Center;
 					}

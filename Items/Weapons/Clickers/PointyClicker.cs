@@ -16,7 +16,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.StingingThorn = ClickerSystem.RegisterClickEffect(Mod, "StingingThorn", null, null, 8, new Color(100, 175, 75), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Vector2 pos = Main.MouseWorld;
+				Vector2 pos = position;
 
 				int index = -1;
 				for (int i = 0; i < Main.maxNPCs; i++)

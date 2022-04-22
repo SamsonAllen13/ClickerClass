@@ -19,7 +19,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				for (int index = 0; index < 5; index++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
-					Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<TitaniumClickerPro>(), (int)(damage * 0.5f), 0f, player.whoAmI, index, hasSpawnEffects);
+					Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<TitaniumClickerPro>(), (int)(damage * 0.5f), 0f, player.whoAmI, index, hasSpawnEffects);
 					spawnEffects = false;
 				}
 			});

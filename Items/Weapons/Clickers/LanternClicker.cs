@@ -18,7 +18,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				for (int k = 0; k < 8; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
-					Projectile.NewProjectile(source, Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(3f, 6f), ModContent.ProjectileType<LanternClickerPro>(), (int)(damage * 0.1f), 1f, player.whoAmI, hasSpawnEffects);
+					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(3f, 6f), ModContent.ProjectileType<LanternClickerPro>(), (int)(damage * 0.1f), 1f, player.whoAmI, hasSpawnEffects);
 					spawnEffects = false;
 				}
 			});

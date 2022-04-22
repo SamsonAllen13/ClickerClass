@@ -18,7 +18,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				for (int k = 0; k < 5; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
-					Projectile.NewProjectile(source, Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-0.5f, 0.5f), Main.rand.NextFloat(-4f, -2f), ModContent.ProjectileType<MyceliumClickerPro>(), (int)(damage * 0.5f), 2f, player.whoAmI, hasSpawnEffects);
+					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-0.5f, 0.5f), Main.rand.NextFloat(-4f, -2f), ModContent.ProjectileType<MyceliumClickerPro>(), (int)(damage * 0.5f), 2f, player.whoAmI, hasSpawnEffects);
 					spawnEffects = false;
 				}
 			});

@@ -28,7 +28,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Smite = ClickerSystem.RegisterClickEffect(Mod, "Smite", null, null, 10, new Color(255, 245, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 42);
+				SoundEngine.PlaySound(SoundID.Item, (int)position.X, (int)position.Y, 42);
 				
 				//Temporary effect//
 				//Consider idea where up to 10 nearby torches fire their respective flame color towards cursor and each one does something different on hit
@@ -38,8 +38,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					float yChoice = Main.rand.Next(-100, 101);
 					xChoice += xChoice > 0 ? 200 : -200;
 					yChoice += yChoice > 0 ? 200 : -200;
-					Vector2 startSpot = new Vector2(Main.MouseWorld.X + xChoice, Main.MouseWorld.Y + yChoice);
-					Vector2 endSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-10, 11), Main.MouseWorld.Y + Main.rand.Next(-10, 11));
+					Vector2 startSpot = new Vector2(position.X + xChoice, position.Y + yChoice);
+					Vector2 endSpot = new Vector2(position.X + Main.rand.Next(-10, 11), position.Y + Main.rand.Next(-10, 11));
 					Vector2 vector = endSpot - startSpot;
 					float speed = 2f;
 					float mag = vector.Length();

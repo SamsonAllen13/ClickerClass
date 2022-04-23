@@ -29,7 +29,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetDefaults();
 			SetRadius(Item, 5.8f);
 			SetColor(Item, new Color(215, 150, 150));
-			SetDust(Item, 224);
+			SetDust(Item, 5);
 			AddEffect(Item, ClickEffect.Presents);
 
 			Item.damage = 82;

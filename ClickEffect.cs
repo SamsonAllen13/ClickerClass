@@ -141,6 +141,7 @@ namespace ClickerClass
 		public static string ChromaticBurst { get; internal set; } = string.Empty;
 		
 		//Clicker
+		public static string Insanity { get; internal set; } = string.Empty;
 		public static string Presents { get; internal set; } = string.Empty;
 		public static string WyvernsRoar { get; internal set; } = string.Empty;
 		public static string SeaSpray { get; internal set; } = string.Empty;

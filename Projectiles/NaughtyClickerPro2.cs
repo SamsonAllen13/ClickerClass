@@ -58,7 +58,7 @@ namespace ClickerClass.Projectiles
 			}
 			else if (Projectile.alpha < 150)
 			{
-				Projectile.alpha += 5;
+				Projectile.alpha += 2;
 			}
 		}
 

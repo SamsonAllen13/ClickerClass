@@ -358,6 +358,11 @@ Mods: {
 				Description: Creates a burst of parachute-presents that can be clicked to release mines
 			}
 			
+			Insanity: {
+				Name: Insanity
+				Description: Summons a shadowy claw that strikes the area
+			}
+			
 			HolyNova: {
 				Name: Holy Nova
 				Description: Damages every enemy within the clicker's radius with a guaranteed critical hit

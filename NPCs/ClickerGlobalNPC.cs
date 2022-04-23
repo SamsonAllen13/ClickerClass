@@ -154,6 +154,10 @@ namespace ClickerClass.NPCs
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WitchClicker>(), 10));
 			}
+			else if (npc.type == NPCID.SantaNK1)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NaughtyClicker>(), 10));
+			}
 			else if (npc.type == NPCID.IceQueen)
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenClicker>(), 10));

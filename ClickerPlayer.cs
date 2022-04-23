@@ -973,6 +973,21 @@ namespace ClickerClass
 							}
 						}
 					}
+					
+					int parachuteType = ModContent.ProjectileType<NaughtyClickerPro>();
+					for (int i = 0; i < Main.maxProjectiles; i++)
+					{
+						Projectile parachuteProj = Main.projectile[i];
+
+						if (parachuteProj.active && clickerSelected && parachuteProj.owner == Player.whoAmI && parachuteProj.type == parachuteType && 
+						parachuteProj.ai[1] == 0f && parachuteProj.frame == 1 && parachuteProj.ModProjectile is NaughtyClickerPro parachute && !parachute.hasChanged)
+						{
+							if (Main.mouseLeft && Main.mouseLeftRelease && parachuteProj.DistanceSQ(new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y)) < 30 * 30)
+							{
+								parachuteProj.ai[1] = 1f; //Handled in the AI
+							}
+						}
+					}
 				}
 				
 				//A Medal effect

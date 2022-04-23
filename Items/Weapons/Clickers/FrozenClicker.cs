@@ -27,7 +27,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 92);
 			AddEffect(Item, ClickEffect.Freeze);
 
-			Item.damage = 82;
+			Item.damage = 88;
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 2f;

@@ -11,7 +11,9 @@ Mods: {
 			HoneySlow: Honey
 			InfluenceBuff: Influence
 			OverclockBuff: Overclock
+			Oozed: Oozed
 			HotWingsBuff: Hot Wings
+			Seafoam: Seafoam
 			Stunned: Stunned
 		}
 
@@ -23,9 +25,11 @@ Mods: {
 			Frozen: Frozen in place
 			Gouge: Rapidly losing life
 			Haste: Movement speed and jump speed increased
-			HoneySlow: Movement speed significantly reduced
+			HoneySlow: Movement speed reduced
 			InfluenceBuff: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%"
 			OverclockBuff: Every click will trigger a click effect
+			Oozed: Movement speed significantly reduced
+			Seafoam: Heals the clicker user when damaged by a clicker
 			Stunned: Stunned in place
 			HotWingsBuff: Double tap to perform a fiery dash
 		}
@@ -134,6 +138,7 @@ Mods: {
 			MiceClicker: Mice Clicker
 			MyceliumClicker: Mycelium Clicker
 			MythrilClicker: Mythril Clicker
+			NaughtyClicker: Naughty Clicker
 			OrichalcumClicker: Orichalcum Clicker
 			PalladiumClicker: Palladium Clicker
 			PlatinumClicker: Platinum Clicker
@@ -346,6 +351,11 @@ Mods: {
 			WyvernsRoar: {
 				Name: Wyvern's Roar
 				Description: Calls in a wyvern to blast the area with flames
+			}
+			
+			Presents: {
+				Name: Presents
+				Description: Creates a burst of parachute-presents that can be clicked to release mines
 			}
 			
 			HolyNova: {

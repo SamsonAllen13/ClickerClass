@@ -363,6 +363,11 @@ Mods: {
 				Description: Summons a shadowy claw that strikes the area
 			}
 			
+			Rainbolt: {
+				Name: Rainbolt
+				Description: Releases multiple homing rainbow fragments
+			}
+			
 			HolyNova: {
 				Name: Holy Nova
 				Description: Damages every enemy within the clicker's radius with a guaranteed critical hit

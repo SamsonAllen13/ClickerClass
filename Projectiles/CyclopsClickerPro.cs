@@ -53,7 +53,7 @@ namespace ClickerClass.Projectiles
 			return true;
 		}
 		
-		//TODO - Figure out how to replicate Deerclops 'Insanity Hands' draw effect
+		//TODO - Figure out how to replicate Deerclops 'Insanity Hands' draw effects
 
 		public override void AI()
 		{

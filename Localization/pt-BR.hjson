@@ -474,7 +474,7 @@ Mods: {
 			TotalClicks: Cliques totais
 			MoneyGenerated: Dinheiro gerado
 			ClickDamage: "{0} de dano por clique"
-			ForMoreInfo: Segure a tecla 'Selecionar Automaticamente' ({0}) quando não estiver na pausa automática para exibir efeitos de clique
+			ForMoreInfo: Segure a tecla 'Selecionar Automaticamente' ({0}) para exibir efeitos de clique
 		}
 
 		ClickerConfigClient: {

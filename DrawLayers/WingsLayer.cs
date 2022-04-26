@@ -60,7 +60,7 @@ namespace ClickerClass.DrawLayers
 				return;
 			}
 
-			Color color = drawPlayer.GetImmuneAlphaPure(data.Color(drawInfo), drawInfo.shadow);
+			Color color = drawPlayer.GetImmuneAlphaPure(data.Color(drawInfo) * drawInfo.stealth * (1f - drawInfo.shadow), drawInfo.shadow); //Wing glowmasks need the additional stealth/shadow multiplier for some reason
 
 			Texture2D texture = data.Texture.Value;
 

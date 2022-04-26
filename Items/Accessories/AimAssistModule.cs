@@ -2,7 +2,7 @@
 
 namespace ClickerClass.Items.Accessories
 {
-	public class AimbotModule : ClickerItem
+	public class AimAssistModule : ClickerItem
 	{
 		public override void SetStaticDefaults()
 		{
@@ -14,16 +14,13 @@ namespace ClickerClass.Items.Accessories
 			Item.width = 20;
 			Item.height = 20;
 			Item.accessory = true;
-			Item.value = 50000;
-			Item.rare = 6;
+			Item.value = 25000;
+			Item.rare = 4;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.clickerRadius += 0.5f;
-			clickerPlayer.accAimbotModule = true;
-			clickerPlayer.accAimbotModule2 = true;
+			player.GetModPlayer<ClickerPlayer>().accAimbotModule = true;
 		}
 	}
 }

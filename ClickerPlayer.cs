@@ -174,6 +174,7 @@ namespace ClickerClass
 		public bool accHotKeychain2 = false;
 		public bool accButtonMasher = false;
 		public bool accAimbotModule = false;
+		public bool accAimbotModule2 = false;
 
 		public int accAimbotModuleTarget = 0;
 		public int accAimbotModuleFailsafe = 0;
@@ -529,6 +530,8 @@ namespace ClickerClass
 			accHotKeychain = false;
 			accHotKeychain2 = false;
 			accButtonMasher = false;
+			accAimbotModule = false;
+			accAimbotModule2 = false;
 
 			//Stats
 			clickerBonus = 0;
@@ -861,6 +864,19 @@ namespace ClickerClass
 				if (!target.active || target.DistanceSQ(Player.Center) > ClickerRadiusReal * ClickerRadiusReal || !Collision.CanHit(new Vector2(Player.Center.X, Player.Center.Y - 12), 1, 1, target.Center, 1, 1))
 				{
 					accAimbotModuleTarget = -1;
+					if (accAimbotModule2)
+					{
+						for (int i = 0; i < Main.maxNPCs; i++)
+						{
+							NPC newTarget = Main.npc[i];
+							if (newTarget.CanBeChasedBy() && newTarget.active && target.DistanceSQ(Player.Center) < ClickerRadiusReal * ClickerRadiusReal && newTarget.DistanceSQ(target.Center) < 400 * 400)
+							{
+								accAimbotModuleTarget = newTarget.whoAmI;
+								accAimbotModuleScale = 2f;
+								break;
+							}
+						}
+					}
 				}
 				if (accAimbotModuleScale > 1f)
 				{

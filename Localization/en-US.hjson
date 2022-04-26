@@ -57,6 +57,7 @@ Mods: {
 
 		ItemName: {
 			MiceFragment: Mice Fragment
+			AimAssistModule: Aim Assist Module
 			AimbotModule: Aimbot Module
 			ABlissfulDay: A Blissful Day
 			OutsideTheCave: Outside The Cave
@@ -168,6 +169,12 @@ Mods: {
 		ItemTooltip: {
 			MiceFragment: "'Erratic sparks skitter across this fragment'"
 			AimbotModule:
+				'''
+				{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%
+				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will select a target with aim assist
+				If the target dies or is lost, a new nearby target is selected instantly
+				'''
+			AimAssistModule:
 				'''
 				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will select a target under your cursor
 				When clicking, your click damage is dealt to that target, regardless of your cursor's position

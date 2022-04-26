@@ -11,6 +11,7 @@ using Terraria.Graphics.Shaders;
 
 namespace ClickerClass.Projectiles
 {
+	//Currently unused, replaced by vanilla projectile
 	public class RainbowClickerPro : ClickerProjectile
 	{
 		public bool HasSpawnEffects

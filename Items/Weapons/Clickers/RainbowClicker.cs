@@ -28,12 +28,18 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Rainbolt = ClickerSystem.RegisterClickEffect(Mod, "Rainbolt", null, null, 4, () => Color.Lerp(Color.White, Main.DiscoColor, 0.75f), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				bool spawnEffects = true;
+				//bool spawnEffects = true;
 				for (int k = 0; k < 4; k++)
 				{
-					float hasSpawnEffects = spawnEffects ? 1f : 0f;
-					Projectile.NewProjectile(source, position, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)), ModContent.ProjectileType<RainbowClickerPro>(), (int)(damage * 0.5f), knockBack, player.whoAmI, hasSpawnEffects);
-					spawnEffects = false;
+					//float hasSpawnEffects = spawnEffects ? 1f : 0f;
+					//Projectile.NewProjectile(source, position, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)), ModContent.ProjectileType<RainbowClickerPro>(), (int)(damage * 0.5f), knockBack, player.whoAmI, hasSpawnEffects);
+					//spawnEffects = false;
+
+					Vector2 spawnVelocity = Main.rand.NextVector2Circular(1f, 1f) + Main.rand.NextVector2CircularEdge(3f, 3f);
+					int projType = ProjectileID.FairyQueenMagicItemShot; //This projectile decreases damage by 20% each hit, fixed homing speed of 30
+					float targetIndex = -1f;
+					float randomColor = player.miscCounterNormalized % 1f;
+					Projectile.NewProjectile(source, position, spawnVelocity, projType, (int)(damage * 0.5f), knockBack, player.whoAmI, targetIndex, randomColor);
 				}
 			});
 			
@@ -68,6 +74,26 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
 		{
 			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 50) * 0.75f, rotation, scale);
+		}
+	}
+
+	public class RainbowClickerVanillaAdjustment : GlobalProjectile
+	{
+		public override bool AppliesToEntity(Projectile entity, bool lateInstantiation)
+		{
+			return entity.type == ProjectileID.FairyQueenMagicItemShot;
+		}
+
+		public override void OnSpawn(Projectile projectile, IEntitySource source)
+		{
+			if (source is not EntitySource_ItemUse_WithAmmo itemSource || !ClickerSystem.IsClickerItem(itemSource.Item))
+			{
+				return;
+			}
+
+			projectile.DamageType = ModContent.GetInstance<ClickerDamage>();
+			projectile.penetrate = -1; //3 by default
+			projectile.timeLeft = 190; //240 by default, this controls its behavior: 140 starts homing
 		}
 	}
 }

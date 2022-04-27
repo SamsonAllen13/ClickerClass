@@ -457,7 +457,31 @@ namespace ClickerClass.Items
 				//TODO dire: maybe "PreShoot" hook wrapping around the next NewProjectile
 
 				//Spawn normal click damage
-				Projectile.NewProjectile(source, position, Vector2.Zero, type, damage, knockback, player.whoAmI);
+				int projClick = Projectile.NewProjectile(source, position, Vector2.Zero, type, damage, knockback, player.whoAmI);
+				
+				if (clickerPlayer.accEnlarge)
+				{
+					Projectile extendedPro = Main.projectile[projClick];
+					extendedPro.height = extendedPro.height * 2;
+					extendedPro.width = extendedPro.width * 2;
+					extendedPro.position -= new Vector2(extendedPro.width / 4, extendedPro.height / 4);
+					
+					Vector2 vec = position;
+					float num102 = 30f;
+					int num103 = 0;
+					while ((float)num103 < num102)
+					{
+						Vector2 vector12 = Vector2.UnitX * 0f;
+						vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (6.28318548f / num102)), default(Vector2)) * new Vector2(30f, 30f);
+						vector12 = vector12.RotatedBy((double)player.velocity.ToRotation(), default(Vector2));
+						int num104 = Dust.NewDust(vec, 0, 0, 205, 0f, 0f, 0, default(Color), 1f);
+						Main.dust[num104].noGravity = true;
+						Main.dust[num104].position = vec + vector12;
+						Main.dust[num104].velocity = player.velocity * 0f + vector12.SafeNormalize(Vector2.UnitY) * 1f;
+						int num = num103;
+						num103 = num + 1;
+					}
+				}
 
 				//Portable Particle Accelerator acc
 				if (clickerPlayer.IsPortableParticleAcceleratorActive)

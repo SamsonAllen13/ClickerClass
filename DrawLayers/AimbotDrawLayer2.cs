@@ -7,7 +7,9 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.DrawLayers
 {
-	public class AimbotDrawLayer : PlayerDrawLayer
+	//TODO - Very redudant, should be reduced down to one .cs file but I ran into an issue:
+	//Only issue was the fade-in of the scaling was off center when a second frame was introduced
+	public class AimbotDrawLayer2 : PlayerDrawLayer
 	{
 		private Asset<Texture2D> aimbotTexture;
 
@@ -15,7 +17,7 @@ namespace ClickerClass.DrawLayers
 		{
 			if (!Main.dedServ)
 			{
-				aimbotTexture = Mod.Assets.Request<Texture2D>("DrawLayers/AimbotModule_Glow");
+				aimbotTexture = Mod.Assets.Request<Texture2D>("DrawLayers/AimbotModule2_Glow");
 			}
 		}
 
@@ -33,7 +35,7 @@ namespace ClickerClass.DrawLayers
 			}
 
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
-			return modPlayer.accAimbotModule2 && modPlayer.accAimbotModuleTarget != -1 && modPlayer.accAimbotModuleFailsafe >= 10;
+			return !modPlayer.accAimbotModule2 && modPlayer.accAimbotModuleTarget != -1 && modPlayer.accAimbotModuleFailsafe >= 10;
 		}
 
 		public override Position GetDefaultPosition()

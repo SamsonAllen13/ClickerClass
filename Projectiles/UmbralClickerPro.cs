@@ -48,7 +48,7 @@ namespace ClickerClass.Projectiles
 			Projectile.width = 10;
 			Projectile.height = 10;
 			Projectile.aiStyle = -1;
-			Projectile.penetrate = 1;
+			Projectile.penetrate = 5;
 			Projectile.alpha = 255;
 			Projectile.timeLeft = 180;
 			Projectile.extraUpdates = 2;
@@ -58,7 +58,7 @@ namespace ClickerClass.Projectiles
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			target.AddBuff(BuffID.ShadowFlame, 60, false);
+			target.AddBuff(BuffID.ShadowFlame, 300, false);
 
 			for (int k = 0; k < 5; k++)
 			{

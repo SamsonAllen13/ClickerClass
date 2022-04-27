@@ -175,6 +175,7 @@ namespace ClickerClass
 		public bool accButtonMasher = false;
 		public bool accAimbotModule = false;
 		public bool accAimbotModule2 = false;
+		public bool accEnlarge = false;
 
 		public int accAimbotModuleTarget = 0;
 		public int accAimbotModuleFailsafe = 0;
@@ -532,6 +533,7 @@ namespace ClickerClass
 			accButtonMasher = false;
 			accAimbotModule = false;
 			accAimbotModule2 = false;
+			accEnlarge = false;
 
 			//Stats
 			clickerBonus = 0;

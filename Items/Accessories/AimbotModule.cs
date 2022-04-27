@@ -1,7 +1,10 @@
 ﻿using Terraria;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
 {
+	[AutoloadEquip(EquipType.Face)]
 	public class AimbotModule : ClickerItem
 	{
 		public override void SetStaticDefaults()

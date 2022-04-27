@@ -15,6 +15,7 @@ Mods: {
 			HotWingsBuff: Hot Wings
 			Seafoam: Seafoam
 			Stunned: Stunned
+			ArcaneEnchantment: Arcane Enchantment
 		}
 
 		BuffDescription: {
@@ -32,6 +33,7 @@ Mods: {
 			Seafoam: Heals the clicker user when damaged by a clicker
 			Stunned: Stunned in place
 			HotWingsBuff: Double tap to perform a fiery dash
+			ArcaneEnchantment: Your click damage and click damage hitbox are boosted
 		}
 
 		Common: {
@@ -110,6 +112,7 @@ Mods: {
 			MiceDrill: Mice Drill
 			MiceHamaxe: Mice Hamaxe
 			MicePickaxe: Mice Pickaxe
+			ArcaneClicker: Arcane Clicker
 			AdamantiteClicker: Adamantite Clicker
 			ArthursClicker: Arthur's Clicker
 			AstralClicker: Astral Clicker
@@ -373,6 +376,11 @@ Mods: {
 			Rainbolt: {
 				Name: Rainbolt
 				Description: Releases multiple homing rainbow fragments
+			}
+			
+			ArcaneEnchantment: {
+				Name: Arcane Enchantment
+				Description: Grants increased click damage and a bigger click hitbox
 			}
 			
 			HolyNova: {

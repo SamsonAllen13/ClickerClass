@@ -162,6 +162,10 @@ namespace ClickerClass.NPCs
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenClicker>(), 10));
 			}
+			else if (npc.type == NPCID.DD2DarkMageT1 || npc.type == NPCID.DD2DarkMageT3)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArcaneClicker>(), 5));
+			}
 			else if (npc.type == NPCID.DD2OgreT2 || npc.type == NPCID.DD2OgreT3)
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SnottyClicker>(), 5));

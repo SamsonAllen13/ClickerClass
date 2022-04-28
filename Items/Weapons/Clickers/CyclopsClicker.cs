@@ -14,14 +14,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Insanity = ClickerSystem.RegisterClickEffect(Mod, "Insanity", null, null, 8, new Color(75, 75, 75), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				bool spawnEffects = true;
-				for (int k = 0; k < 1; k++)
-				{
-					float hasSpawnEffects = spawnEffects ? 1f : 0f;
-					int direction = player.direction;
-					Projectile.NewProjectile(source, position.X, position.Y, 0f, 0f, ModContent.ProjectileType<CyclopsClickerPro>(), damage, 0f, player.whoAmI, hasSpawnEffects, direction);
-					spawnEffects = false;
-				}
+				float dist = 100f;
+				float randomCircle = Main.rand.NextFloat(MathHelper.TwoPi);
+				Vector2 randomCircleVector = randomCircle.ToRotationVector2();
+
+				Vector2 spawnposition = position - randomCircleVector * (dist * 0.5f);
+				Vector2 spawnvelocity = randomCircleVector * 2;
+				Projectile.NewProjectile(source, spawnposition, spawnvelocity, ModContent.ProjectileType<CyclopsClickerPro>(), damage, knockBack, Main.myPlayer);
 			});
 		}
 

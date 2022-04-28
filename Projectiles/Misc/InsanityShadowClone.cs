@@ -78,6 +78,9 @@ namespace ClickerClass.Projectiles.Misc
 			}
 		}
 
+		/// <summary>
+		/// Changes how it draws (purple or red)
+		/// </summary>
 		public bool Hostile => true;
 
 		public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.InsanityShadowFriendly;
@@ -116,11 +119,7 @@ namespace ClickerClass.Projectiles.Misc
 			Projectile.ignoreWater = true;
 			Projectile.tileCollide = false;
 			Projectile.extraUpdates = 1;
-			//Projectile.scale = 0.7f;
-
-			Projectile.penetrate = -1;
-			Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = 20;
+			Projectile.scale = 0.7f;
 		}
 
 		public override Color? GetAlpha(Color lightColor)
@@ -146,7 +145,6 @@ namespace ClickerClass.Projectiles.Misc
 			//Extra offset
 			origin.X = (Projectile.spriteDirection == 1) ? (origSourceRect.Width - 20) : 20;
 
-			//TODO Generic projectile trail code, maybe make a method?
 			int trailMax = 5;
 			int trailStep = 1;
 			int trailStart = 1;

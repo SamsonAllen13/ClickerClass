@@ -589,7 +589,7 @@ namespace ClickerClass
 					if (accHandCream || accIcePack)
 					{
 						SoundEngine.PlaySound(SoundID.MenuTick, Player.position);
-						clickerAutoClick = clickerAutoClick ? false : true;
+						clickerAutoClick = !clickerAutoClick;
 					}
 					
 					if (accAimbotModule)
@@ -598,7 +598,7 @@ namespace ClickerClass
 						for (int i = 0; i < Main.maxNPCs; i++)
 						{
 							NPC target = Main.npc[i];
-							if (target.CanBeChasedBy() && target.active && target.DistanceSQ(Main.MouseWorld) < 100 * 100)
+							if (target.CanBeChasedBy() && target.DistanceSQ(Main.MouseWorld) < 100 * 100)
 							{
 								accAimbotModuleTarget = target.whoAmI;
 								accAimbotModuleScale = 2f;
@@ -862,29 +862,30 @@ namespace ClickerClass
 			{
 				NPC target = Main.npc[accAimbotModuleTarget];
 				clickerPosition = target.Center;
-				if (!target.active || target.DistanceSQ(Player.Center) > ClickerRadiusReal * ClickerRadiusReal || !Collision.CanHit(new Vector2(Player.Center.X, Player.Center.Y - 12), 1, 1, target.Center, 1, 1))
+				float radiusSQ = ClickerRadiusReal * ClickerRadiusReal;
+				if (!target.active || target.DistanceSQ(Player.Center) > radiusSQ || !Collision.CanHit(new Vector2(Player.Center.X, Player.Center.Y - 12), 1, 1, target.Center, 1, 1))
 				{
 					accAimbotModuleTarget = -1;
+
 					if (accAimbotModule2)
 					{
 						for (int i = 0; i < Main.maxNPCs; i++)
 						{
 							NPC newTarget = Main.npc[i];
-							if (newTarget.CanBeChasedBy() && newTarget.active && target.DistanceSQ(Player.Center) < ClickerRadiusReal * ClickerRadiusReal && newTarget.DistanceSQ(target.Center) < 400 * 400)
+							if (newTarget.CanBeChasedBy() && target.DistanceSQ(Player.Center) < radiusSQ)
 							{
-								accAimbotModuleTarget = newTarget.whoAmI;
-								accAimbotModuleScale = 2f;
-								break;
-							}
-							else if (newTarget.CanBeChasedBy() && newTarget.active && target.DistanceSQ(Player.Center) < ClickerRadiusReal * ClickerRadiusReal && newTarget.DistanceSQ(Player.Center) < 200 * 200)
-							{
-								accAimbotModuleTarget = newTarget.whoAmI;
-								accAimbotModuleScale = 2f;
-								break;
+								if (newTarget.DistanceSQ(target.Center) < 400 * 400 ||
+									newTarget.DistanceSQ(Player.Center) < 200 * 200)
+								{
+									accAimbotModuleTarget = newTarget.whoAmI;
+									accAimbotModuleScale = 2f;
+									break;
+								}
 							}
 						}
 					}
 				}
+
 				if (accAimbotModuleScale > 1f)
 				{
 					accAimbotModuleScale -= 0.05f;

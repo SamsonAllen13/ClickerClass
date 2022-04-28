@@ -17,7 +17,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			ClickEffect.ArcaneEnchantment = ClickerSystem.RegisterClickEffect(Mod, "ArcaneEnchantment", null, null, 10, new Color(255, 180, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				SoundEngine.PlaySound(SoundID.Item, (int)player.Center.X, (int)player.Center.Y, 24);
-				player.AddBuff(ModContent.BuffType<ArcaneEnchantment>(), 180, false);
+				player.AddBuff(ModContent.BuffType<ArcaneEnchantment>(), 300, false);
 				for (int i = 0; i < 15; i++)
 				{
 					int index = Dust.NewDust(player.position, player.width, player.height, 205, 0f, 0f, 0, Color.White, 1f);
@@ -46,13 +46,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 2f;
-			Item.value = 92000;
+			Item.value = 15000;
 			Item.rare = 2;
-		}
-
-		public override void AddRecipes()
-		{
-			CreateRecipe(1).AddIngredient(ItemID.PalladiumBar, 8).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

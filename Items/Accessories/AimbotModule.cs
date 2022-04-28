@@ -24,9 +24,15 @@ namespace ClickerClass.Items.Accessories
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.clickerRadius += 0.5f;
+			player.GetDamage<ClickerDamage>() += 0.10f;
+			clickerPlayer.clickerRadius += 0.2f;
 			clickerPlayer.accAimbotModule = true;
 			clickerPlayer.accAimbotModule2 = true;
+		}
+		
+		public override void AddRecipes()
+		{
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<AimAssistModule>(), 1).AddIngredient(ItemID.AvengerEmblem, 1).AddTile(TileID.TinkerersWorkbench).Register();
 		}
 	}
 }

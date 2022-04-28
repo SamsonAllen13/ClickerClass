@@ -173,9 +173,10 @@ Mods: {
 			MiceFragment: "'Erratic sparks skitter across this fragment'"
 			AimbotModule:
 				'''
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%
+				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
+				{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 10%
 				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will select a target with aim assist
-				If the target dies or is lost, a new nearby target is selected instantly
+				If the target dies or is lost, a new nearby target will be selected if possible
 				'''
 			AimAssistModule:
 				'''
@@ -355,7 +356,7 @@ Mods: {
 			
 			SeaSpray: {
 				Name: Sea Spray
-				Description: Slows nearby enemies and allows you to steal life from them
+				Description: Slows nearby enemies and steals life from them
 			}
 			
 			WyvernsRoar: {

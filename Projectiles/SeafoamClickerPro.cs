@@ -1,4 +1,5 @@
 using ClickerClass.Buffs;
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -37,16 +38,22 @@ namespace ClickerClass.Projectiles
 
 				for (int k = 0; k < 30; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 99, Main.rand.NextFloat(-12f, 12f), Main.rand.NextFloat(-12f, 12f), 125, default, 1.25f);
+					Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 99, Main.rand.NextFloat(-15f, 15f), Main.rand.NextFloat(-15f, 15f), 50, default, 1.5f);
 					dust.noGravity = true;
 				}
 
 				for (int u = 0; u < Main.maxNPCs; u++)
 				{
 					NPC target = Main.npc[u];
-					if (target.CanBeChasedBy() && target.DistanceSQ(Projectile.Center) < 175 * 175)
+					if (target.CanBeChasedBy() && target.DistanceSQ(Projectile.Center) < 200 * 200)
 					{
 						target.AddBuff(ModContent.BuffType<Seafoam>(), 300, false);
+						
+						Player player = Main.player[Projectile.owner];
+						if (player.statLife < player.statLifeMax)
+						{
+							player.HealLife(1);
+						}
 						
 						for (int i = 0; i < 15; i++)
 						{

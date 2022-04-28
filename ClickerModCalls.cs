@@ -444,7 +444,7 @@ namespace ClickerClass
 
 					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					//accGoldenTicket, accPortableParticleAccelerator
-					//accIcePack, accMouseTrap, accHotKeychain, accTriggerFinger, accButtonMasher
+					//accIcePack, accMouseTrap, accHotKeychain, accTriggerFinger, accButtonMasher, accAimbotModule, accAimbotModule2
 					if (accName == "EnchantedLED")
 					{
 						return clickerPlayer.accEnchantedLED;
@@ -508,6 +508,14 @@ namespace ClickerClass
 					else if (accName == "ButtonMasher")
 					{
 						return clickerPlayer.accButtonMasher;
+					}
+					else if (accName == "AimAssistModule")
+					{
+						return clickerPlayer.accAimbotModule;
+					}
+					else if (accName == "AimbotModule")
+					{
+						return clickerPlayer.accAimbotModule2;
 					}
 
 					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
@@ -656,7 +664,7 @@ namespace ClickerClass
 
 					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					//accGoldenTicket, accPortableParticleAccelerator
-					//accIcePack, accMouseTrap, accHotKeychain, accTriggerFinger, accButtonMasher
+					//accIcePack, accMouseTrap, accHotKeychain, accTriggerFinger, accButtonMasher, accAimbotModule, accAimbotModule2
 					if (accName == "EnchantedLED")
 					{
 						clickerPlayer.accEnchantedLED = true;
@@ -735,6 +743,16 @@ namespace ClickerClass
 					else if (accName == "ButtonMasher")
 					{
 						clickerPlayer.accButtonMasher = true;
+						return success;
+					}
+					else if (accName == "AimAssistModule")
+					{
+						clickerPlayer.accAimbotModule = true;
+						return success;
+					}
+					else if (accName == "AimbotModule")
+					{
+						clickerPlayer.accAimbotModule2 = true;
 						return success;
 					}
 

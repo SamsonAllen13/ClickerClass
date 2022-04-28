@@ -47,9 +47,21 @@ namespace ClickerClass.Items
 							}
 							break;
 						case ItemID.BossBagBetsy:
-							if (Main.rand.NextBool(5))
+							if (Main.rand.NextBool(4))
 							{
 								player.QuickSpawnItem(source, ModContent.ItemType<DraconicClicker>());
+							}
+							break;
+						case ItemID.FairyQueenBossBag:
+							if (Main.rand.NextBool(4))
+							{
+								player.QuickSpawnItem(source, ModContent.ItemType<RainbowClicker>());
+							}
+							break;
+						case ItemID.DeerclopsBossBag:
+							if (Main.rand.NextBool(4))
+							{
+								player.QuickSpawnItem(source, ModContent.ItemType<CyclopsClicker>());
 							}
 							break;
 						case ItemID.FishronBossBag:

@@ -126,6 +126,10 @@ namespace ClickerClass.NPCs
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Milk>(), 15));
 			}
+			else if (npc.type == NPCID.IceMimic)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AimAssistModule>(), 4));
+			}
 			else if (npc.type == NPCID.Gastropod)
 			{
 				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ChocolateChip>(), 20));
@@ -221,7 +225,15 @@ namespace ClickerClass.NPCs
 			}
 			else if (npc.type == NPCID.DD2Betsy)
 			{
-				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<DraconicClicker>(), 5));
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<DraconicClicker>(), 4));
+			}
+			else if (npc.type == NPCID.Deerclops)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<CyclopsClicker>(), 4));
+			}
+			else if (npc.type == NPCID.HallowBoss)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<RainbowClicker>(), 4));
 			}
 			else if (npc.type == NPCID.DukeFishron)
 			{

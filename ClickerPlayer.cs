@@ -592,7 +592,6 @@ namespace ClickerClass
 						clickerAutoClick = clickerAutoClick ? false : true;
 					}
 					
-					//TODO Optional - Figure out how to make the player's cursor snap to the 'Target' center while active
 					if (accAimbotModule)
 					{
 						SoundEngine.PlaySound(SoundID.MenuTick, Player.position);
@@ -872,6 +871,12 @@ namespace ClickerClass
 						{
 							NPC newTarget = Main.npc[i];
 							if (newTarget.CanBeChasedBy() && newTarget.active && target.DistanceSQ(Player.Center) < ClickerRadiusReal * ClickerRadiusReal && newTarget.DistanceSQ(target.Center) < 400 * 400)
+							{
+								accAimbotModuleTarget = newTarget.whoAmI;
+								accAimbotModuleScale = 2f;
+								break;
+							}
+							else if (newTarget.CanBeChasedBy() && newTarget.active && target.DistanceSQ(Player.Center) < ClickerRadiusReal * ClickerRadiusReal && newTarget.DistanceSQ(Player.Center) < 200 * 200)
 							{
 								accAimbotModuleTarget = newTarget.whoAmI;
 								accAimbotModuleScale = 2f;
@@ -1389,14 +1394,6 @@ namespace ClickerClass
 						Projectile.NewProjectile(entitySource, target.Center + toDir, target.velocity * 0f + toDir.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
 						i++;
 						spawnEffects = false;
-					}
-				}
-				
-				if (clickerNPC.seafoam)
-				{
-					if (Player.statLife < Player.statLifeMax)
-					{
-						Player.HealLife(1);
 					}
 				}
 

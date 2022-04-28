@@ -55,6 +55,7 @@ Mods: {
 
 		Hotkeys: {
 			ClickerAccessory: Clicker Accessory
+			ClickerAimAssist: Clicker Aim Assist
 		}
 
 		ItemName: {
@@ -175,12 +176,12 @@ Mods: {
 				'''
 				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
 				{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 10%
-				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will select a target with aim assist
+				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' key will select a target with aim assist
 				If the target dies or is lost, a new nearby target will be selected if possible
 				'''
 			AimAssistModule:
 				'''
-				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will select a target under your cursor
+				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' key will select a target under your cursor
 				When clicking, your click damage is dealt to that target, regardless of your cursor's position
 				Your target is lost if they exit your radius or you lose direct line of sight of them
 				'''

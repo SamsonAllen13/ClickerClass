@@ -14,6 +14,7 @@ namespace ClickerClass
 	public class ClickerClass : Mod
 	{
 		public static ModKeybind AutoClickKey;
+		public static ModKeybind AimAssistKey;
 		internal static ClickerClass mod;
 
 		/// <summary>
@@ -32,6 +33,7 @@ namespace ClickerClass
 			mod = this;
 			BossBuffImmunity = new HashSet<int>();
 			AutoClickKey = KeybindLoader.RegisterKeybind(this, "Clicker Accessory", "G"); //Can't localize this
+			AimAssistKey = KeybindLoader.RegisterKeybind(this, "Clicker Aim Assist", "Mouse3"); //Can't localize this
 			ClickerSystem.Load();
 
 			ClickEffect.LoadMiscEffects();
@@ -52,6 +54,7 @@ namespace ClickerClass
 			NetHandler.Unload();
 			ClickerInterfaceResources.Unload();
 			AutoClickKey = null;
+			AimAssistKey = null;
 			BossBuffImmunity = null;
 			mod = null;
 		}

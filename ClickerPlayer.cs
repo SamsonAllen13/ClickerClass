@@ -591,19 +591,21 @@ namespace ClickerClass
 						SoundEngine.PlaySound(SoundID.MenuTick, Player.position);
 						clickerAutoClick = !clickerAutoClick;
 					}
-					
-					if (accAimbotModule)
+				}
+			}
+			if (ClickerClass.AimAssistKey.JustPressed)
+			{
+				if (accAimbotModule)
+				{
+					SoundEngine.PlaySound(SoundID.MenuTick, Player.position);
+					for (int i = 0; i < Main.maxNPCs; i++)
 					{
-						SoundEngine.PlaySound(SoundID.MenuTick, Player.position);
-						for (int i = 0; i < Main.maxNPCs; i++)
+						NPC target = Main.npc[i];
+						if (target.CanBeChasedBy() && target.DistanceSQ(Main.MouseWorld) < 100 * 100)
 						{
-							NPC target = Main.npc[i];
-							if (target.CanBeChasedBy() && target.DistanceSQ(Main.MouseWorld) < 100 * 100)
-							{
-								accAimbotModuleTarget = target.whoAmI;
-								accAimbotModuleScale = 2f;
-								break;
-							}
+							accAimbotModuleTarget = target.whoAmI;
+							accAimbotModuleScale = 2f;
+							break;
 						}
 					}
 				}

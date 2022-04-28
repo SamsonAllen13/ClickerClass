@@ -177,7 +177,7 @@ namespace ClickerClass.Projectiles
 			float windUp = Utils.Remap(progress, 0.3f, 0.5f, 0f, 1f) * Utils.Remap(progress, 0.45f, 0.5f, 1f, 0f);
 			float swing = Utils.Remap(progress, 0.5f, 0.55f, 0f, 1f) * Utils.Remap(progress, 0.5f, 0.95f, 1f, 0.05f);
 			float bonusRot = windUp * MathHelper.Pi / 60f;
-			bonusRot += swing * -MathHelper.Pi * 8f / 60f;
+			bonusRot += swing * -MathHelper.Pi * 5.5f / 60f;
 			Projectile.rotation += bonusRot * -Projectile.direction;
 			Projectile.rotation = MathHelper.WrapAngle(Projectile.rotation);
 			Projectile.Center = value + Projectile.rotation.ToRotationVector2() * offset;

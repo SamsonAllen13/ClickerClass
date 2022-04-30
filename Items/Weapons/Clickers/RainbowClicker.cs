@@ -67,8 +67,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 1f;
-			Item.value = 27000;
-			Item.rare = 3;
+			Item.value = 500000;
+			Item.rare = 8;
 		}
 		
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)

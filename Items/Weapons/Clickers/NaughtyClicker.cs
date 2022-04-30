@@ -36,8 +36,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 1f;
-			Item.value = 10000;
-			Item.rare = 1;
+			Item.value = 500000;
+			Item.rare = 8;
 		}
 	}
 }

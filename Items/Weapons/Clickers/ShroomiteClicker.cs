@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -12,10 +14,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.AutoClick = ClickerSystem.RegisterClickEffect(mod, "AutoClick", null, null, 20, new Color(150, 150, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.AutoClick = ClickerSystem.RegisterClickEffect(Mod, "AutoClick", null, null, 20, new Color(150, 150, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				player.GetModPlayer<ClickerPlayer>().clickAmount++;
-				Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
+				SoundEngine.PlaySound(2, (int)player.Center.X, (int)player.Center.Y, 24);
 				player.AddBuff(ModContent.BuffType<AutoClick>(), 300, false);
 				for (int i = 0; i < 15; i++)
 				{
@@ -36,26 +37,22 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 6f);
-			SetColor(item, new Color(150, 150, 255));
-			SetDust(item, 113);
-			AddEffect(item, ClickEffect.AutoClick);
+			SetRadius(Item, 6f);
+			SetColor(Item, new Color(150, 150, 255));
+			SetDust(Item, 113);
+			AddEffect(Item, ClickEffect.AutoClick);
 
-			item.damage = 64;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 2f;
-			item.value = 450000;
-			item.rare = 8;
+			Item.damage = 64;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 2f;
+			Item.value = 450000;
+			Item.rare = 8;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.ShroomiteBar, 8);
-			recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.ShroomiteBar, 8).AddTile(TileID.MythrilAnvil).Register();
 		}
 	}
 }

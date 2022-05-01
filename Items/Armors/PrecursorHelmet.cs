@@ -1,5 +1,9 @@
+using ClickerClass.DrawLayers;
 using ClickerClass.Utilities;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -8,18 +12,32 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Head)]
 	public class PrecursorHelmet : ClickerItem
 	{
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+
+			if (!Main.dedServ)
+			{
+				HeadLayer.RegisterData(Item.headSlot, new DrawLayerData()
+				{
+					Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow"),
+					Color = (PlayerDrawSet drawInfo) => Color.White * 0.8f * 0.5f
+				});
+			}
+		}
+
 		public override void SetDefaults()
 		{
-			item.width = 18;
-			item.height = 18;
-			item.value = 50000;
-			item.rare = 8;
-			item.defense = 12;
+			Item.width = 18;
+			Item.height = 18;
+			Item.value = 50000;
+			Item.rare = 8;
+			Item.defense = 12;
 		}
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.08f;
+			player.GetDamage<ClickerDamage>() += 0.1f;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -33,13 +51,14 @@ namespace ClickerClass.Items.Armors
 			player.GetModPlayer<ClickerPlayer>().setPrecursor = true;
 		}
 
+		public override void UpdateVanitySet(Player player)
+		{
+			Lighting.AddLight(player.Center, 0.2f, 0.15f, 0.05f);
+		}
+
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.LunarTabletFragment, 12);
-			recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.LunarTabletFragment, 12).AddTile(TileID.MythrilAnvil).Register();
 		}
 	}
 }

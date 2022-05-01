@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -12,26 +13,26 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Freeze = ClickerSystem.RegisterClickEffect(mod, "Freeze", null, null, 1, new Color(175, 255, 255), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Freeze = ClickerSystem.RegisterClickEffect(Mod, "Freeze", null, null, 1, new Color(175, 255, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<FrozenClickerPro>(), 0, 0f, player.whoAmI);
+				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<FrozenClickerPro>(), 0, 0f, player.whoAmI);
 			});
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 6f);
-			SetColor(item, new Color(175, 255, 255));
-			SetDust(item, 92);
-			AddEffect(item, ClickEffect.Freeze);
+			SetRadius(Item, 6f);
+			SetColor(Item, new Color(175, 255, 255));
+			SetDust(Item, 92);
+			AddEffect(Item, ClickEffect.Freeze);
 
-			item.damage = 82;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 2f;
-			item.value = 500000;
-			item.rare = 8;
+			Item.damage = 88;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 2f;
+			Item.value = 500000;
+			Item.rare = 8;
 		}
 	}
 }

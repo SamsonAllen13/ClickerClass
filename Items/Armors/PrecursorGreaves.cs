@@ -1,4 +1,8 @@
+using ClickerClass.DrawLayers;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -10,15 +14,24 @@ namespace ClickerClass.Items.Armors
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			if (!Main.dedServ)
+			{
+				LegsLayer.RegisterData(Item.legSlot, new DrawLayerData()
+				{
+					Texture = ModContent.Request<Texture2D>(Texture + "_Legs_Glow"),
+					Color = (PlayerDrawSet drawInfo) => Color.White * 0.8f * 0.5f
+				});
+			}
 		}
 
 		public override void SetDefaults()
 		{
-			item.width = 18;
-			item.height = 18;
-			item.value = 65000;
-			item.rare = 8;
-			item.defense = 14;
+			Item.width = 18;
+			Item.height = 18;
+			Item.value = 65000;
+			Item.rare = 8;
+			Item.defense = 14;
 		}
 
 		public override void UpdateEquip(Player player)
@@ -28,11 +41,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.LunarTabletFragment, 15);
-			recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.LunarTabletFragment, 15).AddTile(TileID.MythrilAnvil).Register();
 		}
 	}
 }

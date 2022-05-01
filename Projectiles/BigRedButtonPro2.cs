@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
 {
@@ -13,24 +14,26 @@ namespace ClickerClass.Projectiles
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Main.projFrames[projectile.type] = 4;
+			Main.projFrames[Projectile.type] = 4;
 		}
 		
 		public override void SetDefaults()
 		{
-			projectile.width = 54;
-			projectile.height = 54;
-			projectile.penetrate = -1;
-			projectile.timeLeft = 300;
-			projectile.extraUpdates = 4;
-			projectile.tileCollide = false;
-			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 30;
+			base.SetDefaults();
+
+			Projectile.width = 54;
+			Projectile.height = 54;
+			Projectile.penetrate = -1;
+			Projectile.timeLeft = 300;
+			Projectile.extraUpdates = 4;
+			Projectile.tileCollide = false;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 30;
 		}
 		
 		public override Color? GetAlpha(Color lightColor)
 		{
-			return new Color(255, 255, 255, 50) * projectile.ai[1];
+			return new Color(255, 255, 255, 50) * Projectile.ai[1];
 		}
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
@@ -41,45 +44,45 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
-			projectile.ai[0]++;
-			if (projectile.ai[0] < 90)
+			Projectile.ai[0]++;
+			if (Projectile.ai[0] < 90)
 			{
-				projectile.velocity.Y /= 1.0065f;
+				Projectile.velocity.Y /= 1.0065f;
 				
-				if (projectile.ai[0] % 15 == 0)
+				if (Projectile.ai[0] % 15 == 0)
 				{
-					projectile.velocity.Y += 1.05f;
+					Projectile.velocity.Y += 1.05f;
 				}
 				
 				for (int num363 = 0; num363 < 3; num363++)
 				{
-					float num364 = projectile.velocity.X / 3f * (float)num363;
-					float num365 = projectile.velocity.Y / 3f * (float)num363;
-					int num366 = Dust.NewDust(projectile.position, projectile.width, projectile.height, 55, 0f, 0f, 75, default(Color), 1f);
-					Main.dust[num366].position.X = projectile.Center.X - num364;
-					Main.dust[num366].position.Y = projectile.Center.Y - num365;
+					float num364 = Projectile.velocity.X / 3f * (float)num363;
+					float num365 = Projectile.velocity.Y / 3f * (float)num363;
+					int num366 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 55, 0f, 0f, 75, default(Color), 1f);
+					Main.dust[num366].position.X = Projectile.Center.X - num364;
+					Main.dust[num366].position.Y = Projectile.Center.Y - num365;
 					Main.dust[num366].velocity *= 0f;
 					Main.dust[num366].noGravity = true;
 				}
 			}
 			else
 			{
-				if (projectile.ai[1] < 1f)
+				if (Projectile.ai[1] < 1f)
 				{
-					Main.PlaySound(2, (int)projectile.Center.X, (int)projectile.Center.Y, 110);
+					SoundEngine.PlaySound(2, (int)Projectile.Center.X, (int)Projectile.Center.Y, 110);
 					for (int k = 0; k < 10; k++)
 					{
-						Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, 55, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
+						Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 55, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
 						dust.noGravity = true;
 					}
-					projectile.ai[1] = 1f;
+					Projectile.ai[1] = 1f;
 				}
-				projectile.velocity = Vector2.Zero;
-				projectile.friendly = true;
-				projectile.extraUpdates = 0;
-				projectile.rotation += 0.25f;
-				projectile.scale += !pulseShift ? 0.04f : -0.08f;
-				if (projectile.scale > 1.5f)
+				Projectile.velocity = Vector2.Zero;
+				Projectile.friendly = true;
+				Projectile.extraUpdates = 0;
+				Projectile.rotation += 0.25f;
+				Projectile.scale += !pulseShift ? 0.04f : -0.08f;
+				if (Projectile.scale > 1.5f)
 				{
 					pulseShift = true;
 					for (int k = 0; k < 6; k++)
@@ -90,27 +93,27 @@ namespace ClickerClass.Projectiles
 						if (k == 3){spread = new Vector2(0.25f, -3.5f);}
 						if (k == 4){spread = new Vector2(0.25f, -2.5f);}
 						if (k == 5){spread = new Vector2(0.5f, -3f);}
-						Projectile.NewProjectile(projectile.Center.X, projectile.Center.Y, spread.X, spread.Y, ModContent.ProjectileType<BigRedButtonPro3>(), (int)(projectile.damage * 0.5f), 0f, projectile.owner);
+						Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center.X, Projectile.Center.Y, spread.X, spread.Y, ModContent.ProjectileType<BigRedButtonPro3>(), (int)(Projectile.damage * 0.5f), 0f, Projectile.owner);
 					}
 				}
-				if (projectile.scale <= 0f)
+				if (Projectile.scale <= 0f)
 				{
-					projectile.Kill();
+					Projectile.Kill();
 				}
 			}
 		}
 		
 		public override void PostAI()
 		{
-			projectile.frameCounter++;
-			if (projectile.frameCounter > 4)
+			Projectile.frameCounter++;
+			if (Projectile.frameCounter > 4)
 			{
-				projectile.frame++;
-				projectile.frameCounter = 0;
+				Projectile.frame++;
+				Projectile.frameCounter = 0;
 			}
-			if (projectile.frame >= 4)
+			if (Projectile.frame >= 4)
 			{
-				projectile.frame = 0;
+				Projectile.frame = 0;
 				return;
 			}
 		}

@@ -92,7 +92,7 @@ namespace ClickerClass.Core
 			SetMousePosition();
 
 			mousePosition = Vector2.Zero;
-			if (player.whoAmI == Main.myPlayer)
+			if (Player.whoAmI == Main.myPlayer)
 			{
 				mousePosition = Main.MouseWorld;
 				return true;
@@ -110,7 +110,7 @@ namespace ClickerClass.Core
 		/// </summary>
 		private void SetMousePosition()
 		{
-			if (Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer)
+			if (Main.netMode == NetmodeID.MultiplayerClient && Player.whoAmI == Main.myPlayer)
 			{
 				if (!sentThisTick && (NextMousePosition == null || Main.GameUpdateCount % updateRate == 0))
 				{
@@ -120,13 +120,13 @@ namespace ClickerClass.Core
 					//Send packet
 					if (NextMousePosition != Main.MouseWorld)
 					{
-						new MousePacket(player, Main.MouseWorld).Send();
+						new MousePacket(Player, Main.MouseWorld).Send();
 					}
 					else
 					{
 						//If mouse position didn't change, reset timeout and send a packet that does the same
 						ResetTimeout();
-						new MouseResetTimeoutPacket(player).Send();
+						new MouseResetTimeoutPacket(Player).Send();
 					}
 
 					//Required so client also updates this variable even though its not used directly
@@ -140,7 +140,7 @@ namespace ClickerClass.Core
 		/// </summary>
 		public void SetNextMousePosition(Vector2 position)
 		{
-			if (player.whoAmI != Main.myPlayer)
+			if (Player.whoAmI != Main.myPlayer)
 			{
 				NextMousePosition = position;
 			}

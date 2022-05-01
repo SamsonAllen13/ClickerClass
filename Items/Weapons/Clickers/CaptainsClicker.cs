@@ -4,6 +4,8 @@ using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -13,23 +15,23 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Bombard = ClickerSystem.RegisterClickEffect(mod, "Bombard", null, null, 12, new Color(255, 225, 50), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Bombard = ClickerSystem.RegisterClickEffect(Mod, "Bombard", null, null, 12, new Color(255, 225, 50), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 14);
+				SoundEngine.PlaySound(SoundID.Item, (int)position.X, (int)position.Y, 14);
 
 				for (int k = 0; k < 4; k++)
 				{
-					Vector2 startSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-150, 151), Main.MouseWorld.Y - 500 + Main.rand.Next(-25, 26));
-					Vector2 endSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-25, 26), Main.MouseWorld.Y + Main.rand.Next(-25, 26));
+					Vector2 startSpot = new Vector2(position.X + Main.rand.Next(-150, 151), position.Y - 500 + Main.rand.Next(-25, 26));
+					Vector2 endSpot = new Vector2(position.X + Main.rand.Next(-25, 26), position.Y + Main.rand.Next(-25, 26));
 					Vector2 vector = endSpot - startSpot;
 					float speed = 8f + Main.rand.NextFloat(-1f, 1f);
 					float mag = vector.Length();
 					if (mag > speed)
 					{
 						mag = speed / mag;
+						vector *= mag;
 					}
-					vector *= mag;
-					Projectile.NewProjectile(startSpot, vector, ModContent.ProjectileType<CaptainsClickerPro>(), damage, knockBack, player.whoAmI, endSpot.X, endSpot.Y);
+					Projectile.NewProjectile(source, startSpot, vector, ModContent.ProjectileType<CaptainsClickerPro>(), damage, knockBack, player.whoAmI, endSpot.X, endSpot.Y);
 				}
 			});
 		}
@@ -37,17 +39,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 3.15f);
-			SetColor(item, new Color(255, 225, 50));
-			SetDust(item, 10);
-			AddEffect(item, ClickEffect.Bombard);
+			SetRadius(Item, 3.15f);
+			SetColor(Item, new Color(255, 225, 50));
+			SetDust(Item, 10);
+			AddEffect(Item, ClickEffect.Bombard);
 
-			item.damage = 26;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 180000;
-			item.rare = 4;
+			Item.damage = 26;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 180000;
+			Item.rare = 4;
 		}
 	}
 }

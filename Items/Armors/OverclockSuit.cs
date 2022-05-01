@@ -1,3 +1,5 @@
+using ClickerClass.Core;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -7,28 +9,33 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Body)]
 	public class OverclockSuit : ClickerItem
 	{
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+
+			if (!Main.dedServ)
+			{
+				BodyGlowmaskPlayer.RegisterData(Item.bodySlot, () => new Color(255, 255, 255, 0) * 0.8f * 0.75f);
+			}
+		}
+
 		public override void SetDefaults()
 		{
-			item.width = 18;
-			item.height = 18;
-			item.value = 55000;
-			item.rare = 6;
-			item.defense = 14;
+			Item.width = 18;
+			Item.height = 18;
+			Item.value = 55000;
+			Item.rare = 6;
+			Item.defense = 14;
 		}
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerDamage += 0.08f;
+			player.GetDamage<ClickerDamage>() += 0.15f;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.HallowedBar, 22);
-			recipe.AddIngredient(ItemID.SoulofMight, 6);
-			recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.HallowedBar, 22).AddIngredient(ItemID.SoulofMight, 6).AddTile(TileID.MythrilAnvil).Register();
 		}
 	}
 }

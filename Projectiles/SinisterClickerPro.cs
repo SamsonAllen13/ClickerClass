@@ -2,6 +2,7 @@ using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
 {
@@ -9,24 +10,26 @@ namespace ClickerClass.Projectiles
 	{
 		public bool Spawned
 		{
-			get => projectile.ai[0] == 1f;
-			set => projectile.ai[0] = value ? 1f : 0f;
+			get => Projectile.ai[0] == 1f;
+			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
 
 		public override void SetDefaults()
 		{
-			projectile.width = 8;
-			projectile.height = 8;
-			projectile.penetrate = 1;
-			projectile.timeLeft = 10;
-			projectile.alpha = 255;
-			projectile.friendly = true;
-			projectile.extraUpdates = 3;
+			base.SetDefaults();
+
+			Projectile.width = 8;
+			Projectile.height = 8;
+			Projectile.penetrate = 1;
+			Projectile.timeLeft = 10;
+			Projectile.alpha = 255;
+			Projectile.friendly = true;
+			Projectile.extraUpdates = 3;
 		}
 
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			Player player = Main.player[projectile.owner];
+			Player player = Main.player[Projectile.owner];
 			player.HealLife(5);
 		}
 
@@ -36,10 +39,10 @@ namespace ClickerClass.Projectiles
 			{
 				Spawned = true;
 
-				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 112);
+				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 112);
 				for (int i = 0; i < 15; i++)
 				{
-					int index = Dust.NewDust(projectile.Center, 4, 4, 5, 0f, 0f, 75, default(Color), 1.5f);
+					int index = Dust.NewDust(Projectile.Center, 4, 4, 5, 0f, 0f, 75, default(Color), 1.5f);
 					Dust dust = Main.dust[index];
 					dust.noGravity = true;
 					dust.velocity *= 0.75f;

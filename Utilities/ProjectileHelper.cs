@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Utilities
@@ -117,6 +118,23 @@ namespace ClickerClass.Utilities
 			}
 
 			return false;
+		}
+
+		/// <summary>
+		/// Syncs the projectile through the net, as long as the current client is the owner. Use in conjunction with non-AI related hooks as netUpdate = true only works there.
+		/// </summary>
+		/// <param name="projectile"></param>
+		public static void NetSync(this Projectile projectile)
+		{
+			projectile.netUpdate = projectile.netUpdate2 = false;
+			if (projectile.netSpam < 60)
+			{
+				projectile.netSpam += 5;
+			}
+			if (Main.netMode != NetmodeID.SinglePlayer && projectile.owner == Main.myPlayer)
+			{
+				NetMessage.SendData(MessageID.SyncProjectile, -1, -1, null, projectile.whoAmI);
+			}
 		}
 	}
 }

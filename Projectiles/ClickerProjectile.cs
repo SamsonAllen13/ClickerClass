@@ -11,5 +11,13 @@ namespace ClickerClass.Projectiles
 		{
 			ClickerSystem.RegisterClickerProjectile(this);
 		}
+
+		/// <summary>
+		/// Call this in the inherited class as base.SetDefaults() at the start of SetDefaults. You can change the default values after it
+		/// </summary>
+		public override void SetDefaults()
+		{
+			ClickerSystem.SetClickerProjectileDefaults(Projectile);
+		}
 	}
 }

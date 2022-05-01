@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -12,9 +14,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Haste = ClickerSystem.RegisterClickEffect(mod, "Haste", null, null, 5, new Color(50, 125, 200), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Haste = ClickerSystem.RegisterClickEffect(Mod, "Haste", null, null, 5, new Color(50, 125, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 24);
+				SoundEngine.PlaySound(SoundID.Item, (int)player.Center.X, (int)player.Center.Y, 24);
 				player.AddBuff(ModContent.BuffType<Haste>(), 300, false);
 				for (int i = 0; i < 15; i++)
 				{
@@ -35,26 +37,22 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 2.75f);
-			SetColor(item, new Color(50, 125, 200));
-			SetDust(item, 48);
-			AddEffect(item, ClickEffect.Haste);
+			SetRadius(Item, 2.75f);
+			SetColor(Item, new Color(50, 125, 200));
+			SetDust(Item, 48);
+			AddEffect(Item, ClickEffect.Haste);
 
-			item.damage = 20;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 45000;
-			item.rare = 4;
+			Item.damage = 20;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 45000;
+			Item.rare = 4;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.CobaltBar, 8);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.CobaltBar, 8).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

@@ -4,29 +4,55 @@ using Terraria;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.GameContent.Creative;
+using ReLogic.Content;
+using Microsoft.Xna.Framework.Graphics;
+using ClickerClass.DrawLayers;
+using ClickerClass.Utilities;
 
 namespace ClickerClass.Items.Accessories
 {
 	[AutoloadEquip(EquipType.Wings)]
 	public class TheScroller : ModItem
 	{
+		public static Asset<Texture2D> glowmask;
+
+		public override void Unload()
+		{
+			glowmask = null;
+		}
+
 		public override void SetStaticDefaults()
 		{
+			if (!Main.dedServ)
+			{
+				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
 
+				WingsLayer.RegisterData(Item.wingSlot, new DrawLayerData()
+				{
+					Texture = ModContent.Request<Texture2D>(Texture + "_Wings_Glow"),
+					Color = (PlayerDrawSet drawInfo) => Color.White * 0.8f
+				});
+			}
+
+			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(180, 3.5f, 1.15f);
+
+			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
 		}
 
 		public override void SetDefaults()
 		{
-			item.width = 22;
-			item.height = 20;
-			item.value = 100000;
-			item.rare = 10;
-			item.accessory = true;
+			Item.width = 22;
+			Item.height = 20;
+			Item.value = 100000;
+			Item.rare = 10;
+			Item.accessory = true;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.wingTimeMax = 180;
 			if (player.controlUp)
 			{
 				player.maxFallSpeed /= 2f;
@@ -46,11 +72,13 @@ namespace ClickerClass.Items.Accessories
 			constantAscend = 0.35f;
 		}
 
+		/*
 		public override void HorizontalWingSpeeds(Player player, ref float speed, ref float acceleration)
 		{
 			speed = 3.5f;
 			acceleration *= 1.15f;
 		}
+		*/
 
 		public override bool WingUpdate(Player player, bool inUse)
 		{
@@ -71,7 +99,7 @@ namespace ClickerClass.Items.Accessories
 				}
 				if (player.miscCounter % (rate * 2) == 0)
 				{
-					Main.PlaySound(SoundID.Item24, player.position);
+					SoundEngine.PlaySound(SoundID.Item24, player.position);
 				}
 
 				if (player.miscCounter % rate == 0)
@@ -114,14 +142,19 @@ namespace ClickerClass.Items.Accessories
 			return base.WingUpdate(player, inUse);
 		}
 
+		public override void PostUpdate()
+		{
+			Lighting.AddLight(Item.Center, 0.1f, 0.1f, 0.3f);
+		}
+
+		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
+		{
+			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
+		}
+
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<MiceFragment>(), 14);
-			recipe.AddIngredient(ItemID.LunarBar, 10);
-			recipe.AddTile(TileID.LunarCraftingStation);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<MiceFragment>(), 14).AddIngredient(ItemID.LunarBar, 10).AddTile(TileID.LunarCraftingStation).Register();
 		}
 	}
 }

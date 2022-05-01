@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass
 {
@@ -21,6 +22,8 @@ namespace ClickerClass
 
 		private static HashSet<int> ClickerWeapons { get; set; }
 
+		private static HashSet<int> ClickerWeaponProjectiles { get; set; }
+
 		private static HashSet<int> ClickerProjectiles { get; set; }
 
 		/// <summary>
@@ -34,6 +37,7 @@ namespace ClickerClass
 			ClickerWeaponBorderTexture = new Dictionary<int, string>();
 			ClickerWeapons = new HashSet<int>();
 			ClickerProjectiles = new HashSet<int>();
+			ClickerWeaponProjectiles = new HashSet<int>();
 			ClickEffectsByName = new Dictionary<string, ClickEffect>();
 		}
 
@@ -44,6 +48,7 @@ namespace ClickerClass
 			ClickerWeaponBorderTexture = null;
 			ClickerWeapons = null;
 			ClickerProjectiles = null;
+			ClickerWeaponProjectiles = null;
 			ClickEffectsByName?.Clear();
 			ClickEffectsByName = null;
 		}
@@ -71,14 +76,14 @@ namespace ClickerClass
 
 		/// <summary>
 		/// Mod Compat way of accessing an effect's stats. <see cref="null"/> if not found.
-		/// "Mod": The mod the effect belongs to (string).
+		/// "Mod": The mod the effect belongs to (Mod).
 		/// | "InternalName": The internal name (string).
-		/// | "UniqueName": The unique name (string).
+		/// | "UniqueName": The unique name (string) (should match the input string).
 		/// | "DisplayName": The displayed name (string).
 		/// | "Description": The description (string).
 		/// | "Amount": The amount of clicks to trigger the effect (int).
-		/// | "Color": The color (Color).
-		/// | "Action": The method ran when triggered (Action[Player, Vector2, int, int, float]).
+		/// | "ColorFunc": The color (Color) if invoked.
+		/// | "Action": The method ran when triggered (Action[Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float]).
 		/// </summary>
 		/// <param name="name">The unique name</param>
 		/// <returns>Dictionary[string, object]</returns>
@@ -140,10 +145,11 @@ namespace ClickerClass
 		/// <param name="displayName">The name of the effect, null if you use lang keys (Defaults to ClickEffect.[internalName].Name)</param>
 		/// <param name="description">The basic description of the effect, string.Empty for none, null if you use lang keys (Defaults to ClickEffect.[internalName].Description)</param>
 		/// <param name="amount">The amount of clicks required to trigger the effect</param>
+		/// <param name="colorFunc">The (dynamic) text color representing the effect in the tooltip</param>
 		/// <param name="action">The method that runs when the effect is triggered</param>
 		/// <returns>The unique identifier</returns>
 		/// <exception cref="InvalidOperationException"/>
-		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, Vector2, int, int, float> action)
+		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action)
 		{
 			if (ClickerClass.finalizedRegisterCompat)
 			{
@@ -156,9 +162,9 @@ namespace ClickerClass
 
 			string uniqueName = UniqueEffectName(mod, internalName);
 
-			ClickEffect effect = new ClickEffect(mod, internalName, displayName, description, amount, color, action);
+			ClickEffect effect = new ClickEffect(mod, internalName, displayName, description, amount, colorFunc, action);
 
-			if (!IsClickEffect(uniqueName, out _))
+			if (!IsClickEffect(uniqueName))
 			{
 				ClickEffectsByName.Add(uniqueName, effect);
 				return uniqueName;
@@ -167,6 +173,24 @@ namespace ClickerClass
 			{
 				throw new InvalidOperationException($"The effect '{uniqueName}' has already been registered, duplicate detected");
 			}
+		}
+
+		/// <summary>
+		/// Call this in <see cref="Mod.PostSetupContent"/> or <see cref="ModItem.SetStaticDefaults"/> to register this click effect
+		/// </summary>
+		/// <param name="mod">The mod this effect belongs to. ONLY USE YOUR OWN MOD INSTANCE FOR THIS!</param>
+		/// <param name="internalName">The internal name of the effect. Turns into the unique name combined with the associated mod</param>
+		/// <param name="displayName">The name of the effect, null if you use lang keys (Defaults to ClickEffect.[internalName].Name)</param>
+		/// <param name="description">The basic description of the effect, string.Empty for none, null if you use lang keys (Defaults to ClickEffect.[internalName].Description)</param>
+		/// <param name="amount">The amount of clicks required to trigger the effect</param>
+		/// <param name="color">The text color representing the effect in the tooltip</param>
+		/// <param name="action">The method that runs when the effect is triggered</param>
+		/// <remarks>For dynamic colors, use the Func[Color] overload</remarks>
+		/// <returns>The unique identifier</returns>
+		/// <exception cref="InvalidOperationException"/>
+		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action)
+		{
+			return RegisterClickEffect(mod, internalName, displayName, description, amount, () => color, action);
 		}
 
 		internal static void FinalizeLocalization()
@@ -180,19 +204,31 @@ namespace ClickerClass
 
 		/// <summary>
 		/// Call in <see cref="ModItem.SetDefaults"/> to set important default fields for a clicker weapon. Set fields:
-		/// useTime, useAnimation, useStyle, holdStyle, noMelee, shoot, shootSpeed.
+		/// DamageType, useTime, useAnimation, useStyle, holdStyle, noMelee, shoot, shootSpeed.
 		/// Only change them afterwards if you know what you are doing!
 		/// </summary>
 		/// <param name="item">The <see cref="Item"/> to set the defaults for</param>
 		public static void SetClickerWeaponDefaults(Item item)
 		{
-			item.useTime = 1;
-			item.useAnimation = 1;
-			item.useStyle = ItemUseStyleID.HoldingOut;
+			item.DamageType = ModContent.GetInstance<ClickerDamage>();
+			item.useTime = 2;
+			item.useAnimation = 2;
+			item.useStyle = ItemUseStyleID.Shoot;
 			item.holdStyle = 3;
 			item.noMelee = true;
 			item.shoot = ModContent.ProjectileType<ClickDamage>();
 			item.shootSpeed = 1f;
+		}
+
+		/// <summary>
+		/// Call in <see cref="ModProjectile.SetDefaults"/> to set important default fields for a clicker projectile. Set fields:
+		/// DamageType.
+		/// Only change them afterwards if you know what you are doing!
+		/// </summary>
+		/// <param name="projectile">The <see cref="Projectile"/> to set the defaults for</param>
+		public static void SetClickerProjectileDefaults(Projectile projectile)
+		{
+			projectile.DamageType = ModContent.GetInstance<ClickerDamage>();
 		}
 
 		/// <summary>
@@ -206,10 +242,30 @@ namespace ClickerClass
 			{
 				throw new InvalidOperationException("Tried to register a clicker projectile at the wrong time, do so in ModProjectile.SetStaticDefaults");
 			}
-			int type = modProj.projectile.type;
+			int type = modProj.Projectile.type;
 			if (!ClickerProjectiles.Contains(type))
 			{
 				ClickerProjectiles.Add(type);
+			}
+		}
+
+		/// <summary>
+		/// Call this in <see cref="ModProjectile.SetStaticDefaults"/> to register this projectile into the "clicker weapon" category.
+		/// <br>This is only for projectiles spawned by clickers directly (Item.shoot). Clicker Class only uses one such projectile for all it's clickers. Only use this if you know what you are doing!</br>
+		/// <br>Various effects will only proc "on click" by checking this category instead of "all clicker class projectiles"</br>
+		/// </summary>
+		/// <param name="modProj">The <see cref="ModProjectile"/> that is to be registered</param>
+		/// <exception cref="InvalidOperationException"/>
+		public static void RegisterClickerWeaponProjectile(ModProjectile modProj)
+		{
+			if (ClickerClass.finalizedRegisterCompat)
+			{
+				throw new InvalidOperationException("Tried to register a clicker weapon projectile at the wrong time, do so in ModProjectile.SetStaticDefaults");
+			}
+			int type = modProj.Projectile.type;
+			if (!ClickerWeaponProjectiles.Contains(type))
+			{
+				ClickerWeaponProjectiles.Add(type);
 			}
 		}
 
@@ -224,7 +280,7 @@ namespace ClickerClass
 			{
 				throw new InvalidOperationException("Tried to register a clicker item at the wrong time, do so in ModItem.SetStaticDefaults");
 			}
-			int type = modItem.item.type;
+			int type = modItem.Item.type;
 			if (!ClickerItems.Contains(type))
 			{
 				ClickerItems.Add(type);
@@ -246,13 +302,13 @@ namespace ClickerClass
 				throw new InvalidOperationException("Tried to register a clicker weapon at the wrong time, do so in ModItem.SetStaticDefaults");
 			}
 			RegisterClickerItem(modItem);
-			int type = modItem.item.type;
+			int type = modItem.Item.type;
 			if (!ClickerWeapons.Contains(type))
 			{
 				ClickerWeapons.Add(type);
 				if (borderTexture != null)
 				{
-					if (ModContent.TextureExists(borderTexture))
+					if (ModContent.HasAsset(borderTexture))
 					{
 						if (!ClickerWeaponBorderTexture.ContainsKey(type))
 						{
@@ -289,7 +345,7 @@ namespace ClickerClass
 		/// <summary>
 		/// Call this to check if a projectile type belongs to the "clicker class" category
 		/// </summary>
-		/// <param name="type">The item type to be checked</param>
+		/// <param name="type">The projectile type to be checked</param>
 		/// <returns><see langword="true"/> if that category</returns>
 		public static bool IsClickerProj(int type)
 		{
@@ -304,6 +360,28 @@ namespace ClickerClass
 		public static bool IsClickerProj(Projectile proj)
 		{
 			return IsClickerProj(proj.type);
+		}
+
+		/// <summary>
+		/// Call this to check if a projectile type belongs to the "clicker weapon" category.
+		/// <br>Various effects will only proc "on click" by checking this category instead of "all clicker class projectiles"</br>
+		/// </summary>
+		/// <param name="type">The projectile type to be checked</param>
+		/// <returns><see langword="true"/> if that category</returns>
+		public static bool IsClickerWeaponProj(int type)
+		{
+			return ClickerWeaponProjectiles.Contains(type);
+		}
+
+		/// <summary>
+		/// Call this to check if a projectile belongs to the "clicker weapon" category.
+		/// <br>Various effects will only proc "on click" by checking this category instead of "all clicker class projectiles"</br>
+		/// </summary>
+		/// <param name="proj">The <see cref="Projectile"/> to be checked</param>
+		/// <returns><see langword="true"/> if that category</returns>
+		public static bool IsClickerWeaponProj(Projectile proj)
+		{
+			return IsClickerWeaponProj(proj.type);
 		}
 
 		/// <summary>

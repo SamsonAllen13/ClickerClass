@@ -5,7 +5,7 @@ namespace ClickerClass.Buffs
 {
 	public class Haste : ModBuff
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			Main.buffNoSave[Type] = false;
 		}
@@ -13,8 +13,8 @@ namespace ClickerClass.Buffs
 		public override void Update(Player player, ref int buffIndex)
 		{
 			player.jumpSpeedBoost = 2f;
-			player.moveSpeed += 0.2f;
-			player.maxRunSpeed += 0.2f;
+			player.moveSpeed += 0.25f;
+			player.maxRunSpeed += 0.25f;
 		}
 	}
 }

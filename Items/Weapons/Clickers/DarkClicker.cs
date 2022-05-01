@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -12,35 +13,31 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.DarkBurst = ClickerSystem.RegisterClickEffect(mod, "DarkBurst", null, null, 8, new Color(100, 50, 200), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.DarkBurst = ClickerSystem.RegisterClickEffect(Mod, "DarkBurst", null, null, 8, new Color(100, 50, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<DarkClickerPro>(), damage, knockBack, player.whoAmI);
+				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<DarkClickerPro>(), damage, knockBack, player.whoAmI);
 			});
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 2.1f);
-			SetColor(item, new Color(100, 50, 200));
-			SetDust(item, 14);
-			AddEffect(item, ClickEffect.DarkBurst);
+			SetRadius(Item, 2.1f);
+			SetColor(Item, new Color(100, 50, 200));
+			SetDust(Item, 14);
+			AddEffect(Item, ClickEffect.DarkBurst);
 
-			item.damage = 6;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 18000;
-			item.rare = 1;
+			Item.damage = 6;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 18000;
+			Item.rare = 1;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.DemoniteBar, 8);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.DemoniteBar, 8).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

@@ -1,5 +1,9 @@
+using ClickerClass.DrawLayers;
 using ClickerClass.Utilities;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -11,15 +15,24 @@ namespace ClickerClass.Items.Armors
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			if (!Main.dedServ)
+			{
+				HeadLayer.RegisterData(Item.headSlot, new DrawLayerData()
+				{
+					Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow"),
+					Color = (PlayerDrawSet drawInfo) => Color.White * 0.8f * 0.75f
+				});
+			}
 		}
 
 		public override void SetDefaults()
 		{
-			item.width = 18;
-			item.height = 18;
-			item.value = 30000;
-			item.rare = 6;
-			item.defense = 8;
+			Item.width = 18;
+			Item.height = 18;
+			Item.value = 30000;
+			Item.rare = 6;
+			Item.defense = 8;
 		}
 
 		public override void UpdateEquip(Player player)
@@ -38,14 +51,14 @@ namespace ClickerClass.Items.Armors
 			player.GetModPlayer<ClickerPlayer>().setOverclock = true;
 		}
 
+		public override void UpdateVanitySet(Player player)
+		{
+			Lighting.AddLight(player.Center, 0.3f, 0.075f, 0.075f);
+		}
+
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.HallowedBar, 14);
-			recipe.AddIngredient(ItemID.SoulofSight, 6);
-			recipe.AddTile(TileID.MythrilAnvil);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.HallowedBar, 14).AddIngredient(ItemID.SoulofSight, 6).AddTile(TileID.MythrilAnvil).Register();
 		}
 	}
 }

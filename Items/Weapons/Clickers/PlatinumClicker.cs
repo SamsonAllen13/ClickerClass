@@ -13,26 +13,22 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 1.65f);
-			SetColor(item, new Color(125, 150, 175));
-			SetDust(item, 11);
-			AddEffect(item, ClickEffect.DoubleClick2);
+			SetRadius(Item, 1.65f);
+			SetColor(Item, new Color(125, 150, 175));
+			SetDust(Item, 11);
+			AddEffect(Item, ClickEffect.DoubleClick2);
 
-			item.damage = 5;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 13500;
-			item.rare = 0;
+			Item.damage = 5;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 13500;
+			Item.rare = 0;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.PlatinumBar, 8);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.PlatinumBar, 8).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent.Generation;
 using Terraria.ID;
+using Terraria.IO;
 using Terraria.ModLoader;
-using Terraria.World.Generation;
+using Terraria.WorldBuilding;
 
 namespace ClickerClass
 {
-	public class ClickerWorld : ModWorld
+	public class ClickerWorld : ModSystem
 	{
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
 		{
@@ -22,7 +23,7 @@ namespace ClickerClass
 			}
 		}
 
-		private void GenerateExtraLoot(GenerationProgress progress)
+		private void GenerateExtraLoot(GenerationProgress progress, GameConfiguration configuration)
 		{
 			progress.Message = "Clicker Class: Generating Extra Loot";
 
@@ -31,7 +32,7 @@ namespace ClickerClass
 				ChestStyle.Wooden, ChestStyle.Gold, ChestStyle.LockedGold, ChestStyle.RichMahogany,
 				ChestStyle.Ivy, ChestStyle.LivingWood, ChestStyle.WebCovered, ChestStyle.Water,
 				ChestStyle.Mushroom, ChestStyle.Granite, ChestStyle.Marble, ChestStyle.Lihzahrd,
-				ChestStyle.LockedShadow
+				ChestStyle.LockedShadow, ChestStyle.Skyware, ChestStyle.Ice, ChestStyle.DeadMans
 			};
 
 			Dictionary<ChestStyle, List<Chest>> chestLists = new Dictionary<ChestStyle, List<Chest>>();
@@ -45,20 +46,27 @@ namespace ClickerClass
 				}
 
 				Tile tile = Main.tile[chest.x, chest.y];
-				if (tile.type != TileID.Containers || chest.item == null)
+				if (chest.item == null || (tile.TileType != TileID.Containers && tile.TileType != TileID.Containers2))
 				{
 					continue;
 				}
 
-				ChestStyle style = (ChestStyle)(tile.frameX / 36);
+				int chestStyleOffset = 0;
+				if (tile.TileType == TileID.Containers2)
+				{
+					chestStyleOffset = (int)ChestStyle.Containers2Offset;
+				}
+				int styleNum = tile.TileFrameX / 36 + chestStyleOffset;
+
+				ChestStyle style = (ChestStyle)styleNum;
 				if (chestStyles.Contains(style))
 				{
-					if (style == ChestStyle.LockedGold && !Main.wallDungeon[tile.wall]) // not actually a dungeon chest, maybe some mod added this
+					if (style == ChestStyle.LockedGold && !Main.wallDungeon[tile.WallType]) // not actually a dungeon chest, maybe some mod added this
 					{
 						continue;
 					}
 
-					if (style == ChestStyle.Wooden && Main.wallDungeon[tile.wall]) // wooden chests generated inside the dungeon always have golden keys
+					if (style == ChestStyle.Wooden && Main.wallDungeon[tile.WallType]) // wooden chests generated inside the dungeon always have golden keys
 					{
 						continue;
 					}
@@ -77,10 +85,25 @@ namespace ClickerClass
 					chestLists[style].Add(chest);
 				}
 			}
-
+			
 			if (chestLists.ContainsKey(ChestStyle.Gold))
 			{
 				ReplaceRareItemsInChests(chestLists[ChestStyle.Gold], new int[] { ModContent.ItemType<EnchantedLED>() });
+			}
+
+			if (chestLists.ContainsKey(ChestStyle.DeadMans))
+			{
+				ReplaceRareItemsInChests(chestLists[ChestStyle.DeadMans], new int[] { ModContent.ItemType<FaultyClicker>() });
+			}
+			
+			if (chestLists.ContainsKey(ChestStyle.Skyware))
+			{
+				ReplaceRareItemsInChests(chestLists[ChestStyle.Skyware], new int[] { ModContent.ItemType<StarryClicker>() });
+			}
+			
+			if (chestLists.ContainsKey(ChestStyle.Ice))
+			{
+				ReplaceRareItemsInChests(chestLists[ChestStyle.Ice], new int[] { ModContent.ItemType<IcePack>() });
 			}
 			
 			if (chestLists.ContainsKey(ChestStyle.Mushroom))
@@ -204,7 +227,7 @@ namespace ClickerClass
 				}
 				availableChests.RemoveAt(index); // then we remove the current chest from the list
 			}
-			return; // note that this doesn't handle cases were the list of chests provided as a parameter is smaller than the amount of items to generate
+			return; // note that this doesn't handle cases where the list of chests provided as a parameter is smaller than the amount of items to generate
 		}
 	}
 }

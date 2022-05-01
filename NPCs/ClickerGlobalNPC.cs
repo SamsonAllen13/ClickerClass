@@ -1,9 +1,12 @@
 using ClickerClass.Items;
 using ClickerClass.Items.Accessories;
+using ClickerClass.Items.Consumables;
+using ClickerClass.Items.Placeable;
 using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -18,6 +21,10 @@ namespace ClickerClass.NPCs
 		public bool frozen = false;
 		public bool honeySlow = false;
 		public bool embrittle = false;
+		public bool crystalSlime = false;
+		public bool crystalSlimeFatigue = false;
+		public bool oozed = false;
+		public bool seafoam = false;
 		public bool stunned = false;
 
 		public bool buffImmunitiesSet = false;
@@ -47,6 +54,10 @@ namespace ClickerClass.NPCs
 			frozen = false;
 			honeySlow = false;
 			embrittle = false;
+			crystalSlime = false;
+			crystalSlimeFatigue = false;
+			oozed = false;
+			seafoam = false;
 			stunned = false;
 		}
 
@@ -61,23 +72,212 @@ namespace ClickerClass.NPCs
 				npc.lifeRegen -= 60;
 				damage = 10;
 			}
+			if (seafoam)
+			{
+				npc.velocity.X *= 0.90f;
+				npc.velocity.Y += !npc.noTileCollide ? 0.10f : 0.01f;
+			}
 			if (honeySlow)
 			{
 				npc.velocity.X *= 0.75f;
 				npc.velocity.Y += !npc.noTileCollide ? 0.10f : 0.01f;
 			}
-			if (frozen)
+			if (oozed)
 			{
-				npc.position = npc.oldPosition;
-				npc.frameCounter = 0;
+				npc.velocity.X *= 0.5f;
+				npc.velocity.Y += !npc.noTileCollide ? 0.15f : 0.025f;
 			}
-			if (stunned)
+			if (frozen || stunned)
 			{
 				npc.position = npc.oldPosition;
 				npc.frameCounter = 0;
 			}
 		}
 
+		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
+		{
+			//HOW TO SEE DROP RATES IN THE BESTIARY:
+			/*
+			 * 1. Get the "GamerMod (Debug Tools)" mod
+			 * 2. Enter a world, type "/bestiary" in chat
+			 * 3. If it says "done?", leave the world (so that the 100% progress saves on that world)
+			 * 4. ???
+			 * 5. profit (check bestiary for drops)
+			 * 
+			 * You need to do this for every world you are using (ideally a normal and an expert world)
+			 * You only have to do this once or when new NPCs get added. New drops to existing NPCs do not need redoing the steps
+			 */
+
+			//This method is called once when the game loads (per NPC), so you can't make dynamic checks based on world state like "npc.value > 0f" here
+			if (npc.type == NPCID.GoblinSorcerer)
+			{
+				//20 is the chanceDenominator argument, meaning its a 1/20 roll aka old Main.rand.NextBool(20)
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadowyClicker>(), 20));
+			}
+			else if (npc.type == NPCID.Frankenstein || npc.type == NPCID.SwampThing)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EclipticClicker>(), 25));
+			}
+			else if (npc.type == NPCID.BloodZombie || npc.type == NPCID.Drippler)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HemoClicker>(), 25));
+			}
+			else if (npc.type == NPCID.DarkCaster)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Milk>(), 15));
+			}
+			else if (npc.type == NPCID.IceMimic)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AimAssistModule>(), 4));
+			}
+			else if (npc.type == NPCID.Gastropod)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ChocolateChip>(), 20));
+			}
+			else if (npc.type == NPCID.SandElemental)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SandstormClicker>(), 2));
+			}
+			else if (npc.type == NPCID.IceGolem)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BlizzardClicker>(), 2));
+			}
+			else if (npc.type == NPCID.PirateCaptain)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CaptainsClicker>(), 8));
+			}
+			else if (npc.type == NPCID.PirateShip)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoldenTicket>(), 4));
+			}
+			else if (npc.type == NPCID.Pumpking)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LanternClicker>(), 10));
+			}
+			else if (npc.type == NPCID.MourningWood)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WitchClicker>(), 10));
+			}
+			else if (npc.type == NPCID.SantaNK1)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NaughtyClicker>(), 10));
+			}
+			else if (npc.type == NPCID.IceQueen)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenClicker>(), 10));
+			}
+			else if (npc.type == NPCID.DD2DarkMageT1 || npc.type == NPCID.DD2DarkMageT3)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArcaneClicker>(), 5));
+			}
+			else if (npc.type == NPCID.DD2OgreT2 || npc.type == NPCID.DD2OgreT3)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SnottyClicker>(), 5));
+			}
+			else if (npc.type == NPCID.MaggotZombie)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TriggerFinger>(), 18));
+			}
+			else if (npc.type == NPCID.MartianSaucerCore)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HighTechClicker>(), 4));
+			}
+			else if (npc.type == NPCID.WindyBalloon)
+			{
+				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BalloonClicker>(), 10));
+			}
+			else if (npc.type == NPCID.BloodNautilus)
+			{
+				npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<SpiralClicker>(), 2, 1));
+			}
+			else if (npc.type == NPCID.FireImp)
+			{
+				DropHelper.NPCExpertGetsRerolls(npcLoot, ModContent.ItemType<ImpishClicker>(), 35);
+			}
+			else if (npc.type == NPCID.TorchGod)
+			{
+				LeadingConditionRule neverDropsRule = new LeadingConditionRule(new Conditions.NeverTrue());
+				neverDropsRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TorchClicker>()));
+				npcLoot.Add(neverDropsRule);
+			}
+
+			//Here go drops for normal mode that mirror through boss bags in expert mode (see ClickerItemGlobal)
+			Conditions.NotExpert notExpert = new Conditions.NotExpert();
+			if (npc.type == NPCID.MoonLordCore)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LordsClicker>()));
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TheClicker>(), 5));
+			}
+			else if (npc.type == NPCID.TheDestroyer || npc.type == NPCID.SkeletronPrime || npc.type == NPCID.Retinazer || npc.type == NPCID.Spazmatism)
+			{
+				var ruleToAdd = ItemDropRule.ByCondition(notExpert, ModContent.ItemType<BottomlessBoxofPaperclips>(), 4);
+
+				if (npc.type == NPCID.TheDestroyer || npc.type == NPCID.SkeletronPrime)
+				{
+					npcLoot.Add(ruleToAdd);
+				}
+				else
+				{
+					LeadingConditionRule missingTwinRule = new LeadingConditionRule(new Conditions.MissingTwin());
+					missingTwinRule.OnSuccess(ruleToAdd);
+					npcLoot.Add(missingTwinRule);
+				}
+			}
+			else if (npc.type == NPCID.DD2Betsy)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<DraconicClicker>(), 4));
+			}
+			else if (npc.type == NPCID.Deerclops)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<CyclopsClicker>(), 4));
+			}
+			else if (npc.type == NPCID.HallowBoss)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<RainbowClicker>(), 4));
+			}
+			else if (npc.type == NPCID.DukeFishron)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SeafoamClicker>(), 5));
+			}
+			else if (npc.type == NPCID.WallofFlesh)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<ClickerEmblem>(), 4));
+			}
+			else if (npc.type == NPCID.KingSlime)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<StickyKeychain>(), 4));
+			}
+			else if (npc.type == NPCID.QueenSlimeBoss)
+			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<ClearKeychain>(), 4));
+			}
+			else if (npc.type == NPCID.LunarTowerStardust || npc.type == NPCID.LunarTowerSolar || npc.type == NPCID.LunarTowerVortex || npc.type == NPCID.LunarTowerNebula)
+			{
+				int miceFragment = ModContent.ItemType<MiceFragment>();
+
+				var pNormal = default(DropOneByOne.Parameters);
+				pNormal.ChanceDenominator = 1;
+				pNormal.ChanceNumerator = 1;
+				pNormal.MinimumStackPerChunkBase = 1;
+				pNormal.MaximumStackPerChunkBase = 1;
+				pNormal.BonusMinDropsPerChunkPerPlayer = 0;
+				pNormal.BonusMaxDropsPerChunkPerPlayer = 0;
+
+				pNormal.MinimumItemDropsCount = 3;
+				pNormal.MaximumItemDropsCount = 15;
+
+				var pExpert = pNormal; //Since DropOneByOne.Parameters is a struct, this is a copy/new assignment
+				pExpert.MinimumItemDropsCount = 5;
+				pExpert.MaximumItemDropsCount = 22;
+
+				var normalModeRule = new DropOneByOne(miceFragment, pNormal);
+				var expertModeRule = new DropOneByOne(miceFragment, pExpert);
+				npcLoot.Add(new DropBasedOnExpertMode(normalModeRule, expertModeRule));
+			}
+		}
+
+		/*
+		//Old code to compare with
 		public override void NPCLoot(NPC npc)
 		{
 			if (npc.type == NPCID.GoblinSorcerer && npc.value > 0f)
@@ -202,9 +402,17 @@ namespace ClickerClass.NPCs
 				}
 			}
 		}
+		*/
 
 		public override void SetupShop(int type, Chest shop, ref int nextSlot)
 		{
+			Player player = Main.LocalPlayer;
+			if (!player.TryGetModPlayer(out ClickerPlayer clickerPlayer))
+			{
+				//Avoid incompatibility with TRAI calling SetupShop during mod load when no players exist
+				return;
+			}
+
 			switch (type)
 			{
 				case NPCID.Merchant:
@@ -217,13 +425,43 @@ namespace ClickerClass.NPCs
 					}
 					break;
 				case NPCID.TravellingMerchant:
+					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ButtonMasher>());
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Soda>());
 					break;
 				case NPCID.Mechanic:
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HandCream>());
+					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MagnetClicker>());
 					break;
 				case NPCID.GoblinTinkerer:
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MousePad>());
+					break;
+				case NPCID.Painter:
+					if (clickerPlayer.clickerSelected)
+					{
+						if (clickerPlayer.clickerTotal >= 1000)
+						{
+							shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OutsideTheCave>());
+						}
+
+						if (clickerPlayer.clickerTotal >= 2500)
+						{
+							shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ABlissfulDay>());
+						}
+					}
+					break;
+				case NPCID.Stylist:
+					if (clickerPlayer.clickerSelected)
+					{
+						if (clickerPlayer.clickerTotal >= 2500)
+						{
+							shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ClickerEffectHairDye>());
+						}
+
+						if (clickerPlayer.clickerTotal >= 5000)
+						{
+							shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ClickSpeedHairDye>());
+						}
+					}
 					break;
 				case NPCID.SkeletonMerchant:
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CandleClicker>());
@@ -270,6 +508,38 @@ namespace ClickerClass.NPCs
 					}
 				}
 			}
+			if (seafoam)
+			{
+				if (!Main.rand.NextBool(4))
+				{
+					Dust dust = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 99, npc.velocity.X * 0.10f, 0.20f, 50);
+					Dust dust2 = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 101, npc.velocity.X * 0.10f, 0.20f, 50, default(Color), 1f);
+					if (Main.rand.NextBool(4))
+					{
+						dust.scale *= 0.5f;
+						dust2.scale *= 0.25f;
+					}
+				}
+				drawColor.R = (byte)(drawColor.R * 0.20f);
+				drawColor.G = (byte)(drawColor.G * 0.55f);
+				drawColor.B = (byte)(drawColor.B * 0.75f);
+			}
+			if (oozed)
+			{
+				if (!Main.rand.NextBool(4))
+				{
+					Dust dust = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 188, npc.velocity.X * 0.10f, 0.20f, 100);
+					Dust dust2 = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 256, npc.velocity.X * 0.10f, 0.20f, 100, default(Color), 1.2f);
+					if (Main.rand.NextBool(4))
+					{
+						dust.scale *= 0.5f;
+						dust2.scale *= 0.25f;
+					}
+				}
+				drawColor.R = (byte)(drawColor.R * 0.35f);
+				drawColor.G = (byte)(drawColor.G * 0.75f);
+				drawColor.B = (byte)(drawColor.B * 0.10f);
+			}
 			if (frozen)
 			{
 				if (!Main.rand.NextBool(5))
@@ -292,6 +562,19 @@ namespace ClickerClass.NPCs
 					dust.noGravity = true;
 					dust.velocity *= 0f;
 					dust.fadeIn = 1.75f;
+				}
+				drawColor.R = (byte)(drawColor.R * 1f);
+				drawColor.G = (byte)(drawColor.G * 1f);
+				drawColor.B = (byte)(drawColor.B * 1f);
+			}
+			if (crystalSlime)
+			{
+				if (!Main.rand.NextBool(5))
+				{
+					Dust dust = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 71, 0f, 0f, 255, default(Color), 0.4f);
+					dust.noGravity = true;
+					dust.velocity *= 0f;
+					dust.fadeIn = 1.25f;
 				}
 				drawColor.R = (byte)(drawColor.R * 1f);
 				drawColor.G = (byte)(drawColor.G * 1f);

@@ -12,18 +12,27 @@ namespace ClickerClass.Projectiles
 	/// </summary>
 	public class ClickDamage : ClickerProjectile
 	{
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+
+			ClickerSystem.RegisterClickerWeaponProjectile(this);
+		}
+
 		public override void SetDefaults()
 		{
-			projectile.width = 30;
-			projectile.height = 30;
-			projectile.aiStyle = -1;
-			projectile.alpha = 255;
-			projectile.friendly = true;
-			projectile.tileCollide = false;
-			projectile.penetrate = -1;
-			projectile.timeLeft = 10;
-			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 10;
+			base.SetDefaults();
+
+			Projectile.width = 30;
+			Projectile.height = 30;
+			Projectile.aiStyle = -1;
+			Projectile.alpha = 255;
+			Projectile.friendly = true;
+			Projectile.tileCollide = false;
+			Projectile.penetrate = -1;
+			Projectile.timeLeft = 10;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 10;
 		}
 
 		bool spawned = false;
@@ -35,7 +44,7 @@ namespace ClickerClass.Projectiles
 
 		public override void Kill(int timeLeft)
 		{
-			Player player = Main.player[projectile.owner];
+			Player player = Main.player[Projectile.owner];
 			Item item = player.HeldItem;
 
 			int dustType = 0;
@@ -46,7 +55,7 @@ namespace ClickerClass.Projectiles
 
 			for (int k = 0; k < 5; k++)
 			{
-				Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
+				Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
 				dust.noGravity = true;
 			}
 
@@ -55,7 +64,7 @@ namespace ClickerClass.Projectiles
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, 90, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
+					Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 90, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
 					dust.noGravity = true;
 				}
 			}
@@ -71,7 +80,7 @@ namespace ClickerClass.Projectiles
 						case 1: dustType1 = 57; break;
 						default: dustType1 = 58; break;
 					}
-					Dust dust = Dust.NewDustDirect(projectile.Center, 10, 10, dustType1, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 100, default, 1.5f);
+					Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, dustType1, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 100, default, 1.5f);
 					dust.velocity *= 1.5f;
 					dust.noGravity = true;
 				}
@@ -85,7 +94,7 @@ namespace ClickerClass.Projectiles
 				return;
 			}
 
-			if (Main.myPlayer == projectile.owner)
+			if (Main.myPlayer == Projectile.owner)
 			{
 				//If self
 				if (!ClickerConfigClient.Instance.ShowClickIndicator)
@@ -106,7 +115,7 @@ namespace ClickerClass.Projectiles
 			{
 				spawned = true;
 
-				Player player = Main.player[projectile.owner];
+				Player player = Main.player[Projectile.owner];
 				Item item = player.HeldItem;
 
 				Color dustColor;
@@ -127,7 +136,7 @@ namespace ClickerClass.Projectiles
 				{
 					float rot = MathHelper.TwoPi * i / amount;
 					Vector2 velocity = vel.RotatedBy(rot);
-					Dust dust = Dust.NewDustPerfect(projectile.Center, ModContent.DustType<ColorableDust>(), velocity, newColor: dustColor, Alpha: 25);
+					Dust dust = Dust.NewDustPerfect(Projectile.Center, ModContent.DustType<ColorableDust>(), velocity, newColor: dustColor, Alpha: 25);
 					dust.scale = 1f;
 				}
 			}

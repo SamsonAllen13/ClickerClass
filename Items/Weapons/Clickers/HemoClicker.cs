@@ -2,6 +2,7 @@ using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -11,13 +12,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Linger = ClickerSystem.RegisterClickEffect(mod, "Linger", null, null, 10, new Color(255, 50, 50), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Linger = ClickerSystem.RegisterClickEffect(Mod, "Linger", null, null, 10, new Color(255, 50, 50), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				for (int k = 0; k < 5; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-3f, -1f), ModContent.ProjectileType<HemoClickerPro>(), damage / 2, 0f, player.whoAmI, hasSpawnEffects);
+					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-3f, -1f), ModContent.ProjectileType<HemoClickerPro>(), damage / 2, 0f, player.whoAmI, hasSpawnEffects);
 					spawnEffects = false;
 				}
 			});
@@ -26,17 +27,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 1.75f);
-			SetColor(item, new Color(255, 50, 50));
-			SetDust(item, 5);
-			AddEffect(item, ClickEffect.Linger);
+			SetRadius(Item, 1.75f);
+			SetColor(Item, new Color(255, 50, 50));
+			SetDust(Item, 5);
+			AddEffect(Item, ClickEffect.Linger);
 
-			item.damage = 5;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 13000;
-			item.rare = 1;
+			Item.damage = 5;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 13000;
+			Item.rare = 1;
 		}
 	}
 }

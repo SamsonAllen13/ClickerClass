@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
+using Terraria.Audio;
+using Terraria.GameContent;
 
 namespace ClickerClass.Projectiles
 {
@@ -10,34 +12,36 @@ namespace ClickerClass.Projectiles
 	{
 		public bool Spawned
 		{
-			get => projectile.ai[0] == 1f;
-			set => projectile.ai[0] = value ? 1f : 0f;
+			get => Projectile.ai[0] == 1f;
+			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
 
 		public int Timer
 		{
-			get => (int)projectile.ai[1];
-			set => projectile.ai[1] = value;
+			get => (int)Projectile.ai[1];
+			set => Projectile.ai[1] = value;
 		}
 
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			ProjectileID.Sets.TrailCacheLength[projectile.type] = 20;
-			ProjectileID.Sets.TrailingMode[projectile.type] = 2;
+			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 20;
+			ProjectileID.Sets.TrailingMode[Projectile.type] = 2;
 		}
 
 		public override void SetDefaults()
 		{
-			projectile.width = 14;
-			projectile.height = 14;
-			projectile.aiStyle = -1;
-			projectile.penetrate = -1;
-			projectile.friendly = true;
-			projectile.timeLeft = 120;
-			projectile.extraUpdates = 2;
-			projectile.usesLocalNPCImmunity = true;
-			projectile.localNPCHitCooldown = 60;
+			base.SetDefaults();
+
+			Projectile.width = 14;
+			Projectile.height = 14;
+			Projectile.aiStyle = -1;
+			Projectile.penetrate = -1;
+			Projectile.friendly = true;
+			Projectile.timeLeft = 120;
+			Projectile.extraUpdates = 2;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 60;
 		}
 
 		public override void AI()
@@ -45,22 +49,22 @@ namespace ClickerClass.Projectiles
 			if (!Spawned)
 			{
 				Spawned = true;
-				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 17);
+				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 17);
 			}
 
-			projectile.SineWaveMovement(Timer, -10f, MathHelper.TwoPi / 40, Timer == 0);
+			Projectile.SineWaveMovement(Timer, -10f, MathHelper.TwoPi / 40, Timer == 0);
 			Timer++;
 		}
 
-		public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
+		public override bool PreDraw(ref Color lightColor)
 		{
-			Texture2D texture2D = Main.projectileTexture[projectile.type];
-			Vector2 drawOrigin = new Vector2(texture2D.Width * 0.5f, projectile.height * 0.5f);
-			for (int i = projectile.oldPos.Length - 1; i >= 0; i--)
+			Texture2D texture2D = TextureAssets.Projectile[Projectile.type].Value;
+			Vector2 drawOrigin = new Vector2(texture2D.Width * 0.5f, Projectile.height * 0.5f);
+			for (int i = Projectile.oldPos.Length - 1; i >= 0; i--)
 			{
-				Vector2 drawPos = projectile.oldPos[i] - Main.screenPosition + drawOrigin + new Vector2(0f, projectile.gfxOffY);
-				Color color = projectile.GetAlpha(lightColor * 0.25f) * ((projectile.oldPos.Length - i) / (float)projectile.oldPos.Length);
-				spriteBatch.Draw(texture2D, drawPos, null, color, projectile.oldRot[i], drawOrigin, projectile.scale, SpriteEffects.None, 0f);
+				Vector2 drawPos = Projectile.oldPos[i] - Main.screenPosition + drawOrigin + new Vector2(0f, Projectile.gfxOffY);
+				Color color = Projectile.GetAlpha(lightColor * 0.25f) * ((Projectile.oldPos.Length - i) / (float)Projectile.oldPos.Length);
+				Main.EntitySpriteDraw(texture2D, drawPos, null, color, Projectile.oldRot[i], drawOrigin, Projectile.scale, SpriteEffects.None, 0);
 			}
 			return false;
 		}

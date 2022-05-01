@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
 {
@@ -12,29 +13,31 @@ namespace ClickerClass.Projectiles
 		
 		public bool Spawned
 		{
-			get => projectile.ai[1] == 1f;
-			set => projectile.ai[1] = value ? 1f : 0f;
+			get => Projectile.ai[1] == 1f;
+			set => Projectile.ai[1] = value ? 1f : 0f;
 		}
 
 		public int Timer
 		{
-			get => (int)projectile.ai[0];
-			set => projectile.ai[0] = value;
+			get => (int)Projectile.ai[0];
+			set => Projectile.ai[0] = value;
 		}
 
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			Main.projFrames[projectile.type] = 6;
+			Main.projFrames[Projectile.type] = 6;
 		}
 		
 		public override void SetDefaults()
 		{
-			projectile.width = 54;
-			projectile.height = 54;
-			projectile.aiStyle = -1;
-			projectile.penetrate = -1;
-			projectile.timeLeft = 300;
+			base.SetDefaults();
+
+			Projectile.width = 54;
+			Projectile.height = 54;
+			Projectile.aiStyle = -1;
+			Projectile.penetrate = -1;
+			Projectile.timeLeft = 300;
 		}
 
 		public override void AI()
@@ -43,10 +46,10 @@ namespace ClickerClass.Projectiles
 			{
 				Spawned = true;
 
-				Main.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 24);
+				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 24);
 				for (int k = 0; k < 15; k++)
 				{
-					Dust dust = Dust.NewDustDirect(projectile.Center - new Vector2(4), 8, 8, 92, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1f);
+					Dust dust = Dust.NewDustDirect(Projectile.Center - new Vector2(4), 8, 8, 92, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 1f);
 					dust.noGravity = true;
 				}
 			}
@@ -54,9 +57,9 @@ namespace ClickerClass.Projectiles
 			Timer++;
 			if (Timer > 15)
 			{
-				if (Main.myPlayer == projectile.owner)
+				if (Main.myPlayer == Projectile.owner)
 				{
-					Projectile.NewProjectile(new Vector2(projectile.Center.X + Main.rand.Next(-15, 16), projectile.Center.Y), new Vector2(Main.rand.NextFloat(-0.4f, 0.4f), Main.rand.NextFloat(4f, 4.5f)), ModContent.ProjectileType<BlizzardClickerPro2>(), (int)(projectile.damage * 0.5f), projectile.knockBack, projectile.owner);
+					Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X + Main.rand.Next(-15, 16), Projectile.Center.Y), new Vector2(Main.rand.NextFloat(-0.4f, 0.4f), Main.rand.NextFloat(4f, 4.5f)), ModContent.ProjectileType<BlizzardClickerPro2>(), (int)(Projectile.damage * 0.5f), Projectile.knockBack, Projectile.owner);
 				}
 				Timer = 0;
 			}
@@ -67,7 +70,7 @@ namespace ClickerClass.Projectiles
 				hoverAmount++;
 				if (hoverAmount % 15 == 0)
 				{
-					projectile.position.Y++;
+					Projectile.position.Y++;
 				}
 				if (hoverAmount > 90)
 				{
@@ -80,7 +83,7 @@ namespace ClickerClass.Projectiles
 				hoverAmount++;
 				if (hoverAmount % 15 == 0)
 				{
-					projectile.position.Y--;
+					Projectile.position.Y--;
 				}
 				if (hoverAmount > 90)
 				{
@@ -89,23 +92,23 @@ namespace ClickerClass.Projectiles
 				}
 			}
 			
-			if (projectile.timeLeft < 30)
+			if (Projectile.timeLeft < 30)
 			{
-				projectile.alpha += 8;
+				Projectile.alpha += 8;
 			}
 		}
 		
 		public override void PostAI()
 		{
-			projectile.frameCounter++;
-			if (projectile.frameCounter > 6)
+			Projectile.frameCounter++;
+			if (Projectile.frameCounter > 6)
 			{
-				projectile.frame++;
-				projectile.frameCounter = 0;
+				Projectile.frame++;
+				Projectile.frameCounter = 0;
 			}
-			if (projectile.frame >= 6)
+			if (Projectile.frame >= 6)
 			{
-				projectile.frame = 0;
+				Projectile.frame = 0;
 			}
 		}
 	}

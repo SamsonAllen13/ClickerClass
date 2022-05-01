@@ -13,28 +13,24 @@ namespace ClickerClass.Items.Accessories
 
 		public override void SetDefaults()
 		{
-			item.width = 20;
-			item.height = 20;
-			item.accessory = true;
-			item.value = 65000;
-			item.rare = 3;
+			Item.width = 20;
+			Item.height = 20;
+			Item.accessory = true;
+			Item.value = 65000;
+			Item.rare = 3;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+			clickerPlayer.accCookieItem = Item;
 			clickerPlayer.accCookie2 = true;
 			clickerPlayer.accGlassOfMilk = true;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ModContent.ItemType<Cookie>(), 1);
-			recipe.AddIngredient(ModContent.ItemType<Milk>(), 1);
-			recipe.AddTile(TileID.TinkerersWorkbench);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<Cookie>(), 1).AddIngredient(ModContent.ItemType<Milk>(), 1).AddTile(TileID.TinkerersWorkbench).Register();
 		}
 	}
 }

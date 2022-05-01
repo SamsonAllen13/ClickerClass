@@ -6,26 +6,25 @@ using Terraria.ModLoader;
 
 namespace ClickerClass
 {
-	internal class ClickerRecipes
+	internal class ClickerRecipes : ModSystem
 	{
-		private static ModRecipe GetNewRecipe()
+		private static Recipe CreateRecipe(int result, int amount = 1)
 		{
-			return new ModRecipe(ClickerClass.mod);
+			return ClickerClass.mod.CreateRecipe(result, amount);
 		}
 
-		public static void AddRecipes()
+		public override void AddRecipes()
 		{
-			ModRecipe recipe = GetNewRecipe();
+			Recipe recipe = CreateRecipe(ItemID.AvengerEmblem);
 			recipe.AddIngredient(ModContent.ItemType<ClickerEmblem>(), 1);
 			recipe.AddIngredient(ItemID.SoulofMight, 5);
 			recipe.AddIngredient(ItemID.SoulofSight, 5);
 			recipe.AddIngredient(ItemID.SoulofFright, 5);
 			recipe.AddTile(TileID.TinkerersWorkbench);
-			recipe.SetResult(ItemID.AvengerEmblem, 1);
-			recipe.AddRecipe();
+			recipe.Register();
 		}
 
-		public static void AddRecipeGroups()
+		public override void AddRecipeGroups()
 		{
 			RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.SilverBar), new int[]
 			{
@@ -33,6 +32,12 @@ namespace ClickerClass
 				ItemID.TungstenBar,
 			});
 			RecipeGroup.RegisterGroup("ClickerClass:SilverBar", group);
+			group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.GoldBar), new int[]
+			{
+				ItemID.GoldBar,
+				ItemID.PlatinumBar,
+			});
+			RecipeGroup.RegisterGroup("ClickerClass:GoldBar", group);
 		}
 	}
 }

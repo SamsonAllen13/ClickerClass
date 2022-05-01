@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ClickerClass
 {
@@ -24,11 +26,11 @@ namespace ClickerClass
 
 		public int Amount { get; private set; }
 
-		public Color Color { get; private set; }
+		public Func<Color> ColorFunc { get; private set; }
 
-		public Action<Player, Vector2, int, int, float> Action { get; private set; }
+		public Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> Action { get; private set; }
 
-		public ClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, Vector2, int, int, float> action)
+		public ClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action)
 		{
 			Mod = mod ?? throw new Exception("No mod specified");
 			InternalName = internalName ?? throw new Exception("No internal name specified");
@@ -36,18 +38,18 @@ namespace ClickerClass
 			Description = description ?? LangHelper.GetText("Common.Unknown");
 			TryUsingTranslation = displayName == null || description == null;
 			Amount = amount;
-			Color = color;
-			Action = action ?? (new Action<Player, Vector2, int, int, float>((a, b, c, d, e) => { }));
+			ColorFunc = colorFunc;
+			Action = action ?? (new Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>((a, b, c, d, e, f) => { }));
 		}
 
 		public object Clone()
 		{
-			return new ClickEffect(Mod, InternalName, DisplayName, Description, Amount, Color, (Action<Player, Vector2, int, int, float>)Action.Clone());
+			return new ClickEffect(Mod, InternalName, DisplayName, Description, Amount, ColorFunc, (Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>)Action.Clone());
 		}
 
 		public TooltipLine ToTooltip(int amount, float alpha, bool showDesc)
 		{
-			string color = (Color * alpha).Hex3();
+			string color = (ColorFunc() * alpha).Hex3();
 			string text;
 			if (amount > 1)
 			{
@@ -101,7 +103,7 @@ namespace ClickerClass
 				["DisplayName"] = DisplayName,
 				["Description"] = Description,
 				["Amount"] = Amount,
-				["Color"] = Color,
+				["ColorFunc"] = ColorFunc,
 				["Action"] = Action
 			};
 		}
@@ -111,20 +113,20 @@ namespace ClickerClass
 		/// </summary>
 		internal static void LoadMiscEffects()
 		{
-			ClickEffect.DoubleClick = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick", null, null, 10, Color.White, delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.DoubleClick = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick", null, null, 10, Color.White, delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				DoubleClick(player, position, type, damage, knockBack);
+				DoubleClick(player, source, position, type, damage, knockBack);
 			});
 
-			ClickEffect.DoubleClick2 = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick2", null, null, 8, Color.White, delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.DoubleClick2 = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick2", null, null, 8, Color.White, delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				DoubleClick(player, position, type, damage, knockBack);
+				DoubleClick(player, source, position, type, damage, knockBack);
 			});
 
-			void DoubleClick(Player player, Vector2 position, int type, int damage, float knockBack)
+			void DoubleClick(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Main.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 37);
-				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, type, damage, knockBack, player.whoAmI);
+				SoundEngine.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 37);
+				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, type, damage, knockBack, player.whoAmI);
 			}
 		}
 
@@ -133,20 +135,39 @@ namespace ClickerClass
 		public static string StickyKeychain { get; internal set; } = string.Empty;
 		public static string ChocolateChip { get; internal set; } = string.Empty;
 		public static string BigRedButton { get; internal set; } = string.Empty;
-
+		public static string ClearKeychain { get; internal set; } = string.Empty;
+		
+		//Armor
+		public static string ChromaticBurst { get; internal set; } = string.Empty;
+		
 		//Clicker
+		public static string ArcaneEnchantment { get; internal set; } = string.Empty;
+		public static string Rainbolt { get; internal set; } = string.Empty;
+		public static string Insanity { get; internal set; } = string.Empty;
+		public static string Presents { get; internal set; } = string.Empty;
+		public static string WyvernsRoar { get; internal set; } = string.Empty;
+		public static string SeaSpray { get; internal set; } = string.Empty;
+		public static string OgreGold { get; internal set; } = string.Empty;
+		public static string Smite { get; internal set; } = string.Empty;
 		public static string TrueStrike { get; internal set; } = string.Empty;
 		public static string HolyNova { get; internal set; } = string.Empty;
 		public static string Spiral { get; internal set; } = string.Empty;
 		public static string Lacerate { get; internal set; } = string.Empty;
+		public static string HotWings { get; internal set; } = string.Empty;
 		public static string Illuminate { get; internal set; } = string.Empty;
+		public static string Incinerate { get; internal set; } = string.Empty;
+		public static string BalloonDefense { get; internal set; } = string.Empty;
 		public static string Bombard { get; internal set; } = string.Empty;
+		public static string Starfall { get; internal set; } = string.Empty;
 		public static string ToxicRelease { get; internal set; } = string.Empty;
 		public static string Haste { get; internal set; } = string.Empty;
+		public static string Yoink { get; internal set; } = string.Empty;
 		public static string DoubleClick { get; internal set; } = string.Empty;
 		public static string DoubleClick2 { get; internal set; } = string.Empty;
 		public static string CursedEruption { get; internal set; } = string.Empty;
+		public static string Fritz { get; internal set; } = string.Empty;
 		public static string Infest { get; internal set; } = string.Empty;
+		public static string BloodSucker { get; internal set; } = string.Empty;
 		public static string Dazzle { get; internal set; } = string.Empty;
 		public static string DarkBurst { get; internal set; } = string.Empty;
 		public static string DustDevil { get; internal set; } = string.Empty;

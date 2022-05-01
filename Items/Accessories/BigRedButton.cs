@@ -2,6 +2,8 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.Audio;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -11,9 +13,10 @@ namespace ClickerClass.Items.Accessories
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.BigRedButton = ClickerSystem.RegisterClickEffect(mod, "BigRedButton", null, null, 25, new Color(230, 100, 20, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)			{
-				Main.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 14);
-				Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, 0f, 0f, ModContent.ProjectileType<BigRedButtonPro>(), (int)(damage * 3f), 1f, player.whoAmI, Main.rand.Next(3));
+			ClickEffect.BigRedButton = ClickerSystem.RegisterClickEffect(Mod, "BigRedButton", null, null, 25, new Color(230, 100, 20, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			{
+				SoundEngine.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 14);
+				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<BigRedButtonPro>(), (int)(damage * 3f), 1f, player.whoAmI, Main.rand.Next(3));
 				for (int k = 0; k < 6; k++)
 				{
 					Vector2 spread = new Vector2(-0.5f, -3f);
@@ -22,7 +25,7 @@ namespace ClickerClass.Items.Accessories
 					if (k == 3){spread = new Vector2(0.25f, -3.5f);}
 					if (k == 4){spread = new Vector2(0.25f, -2.5f);}
 					if (k == 5){spread = new Vector2(0.5f, -3f);}
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, spread.X, spread.Y, ModContent.ProjectileType<BigRedButtonPro2>(), damage, 0f, player.whoAmI);
+					Projectile.NewProjectile(source, Main.MouseWorld, spread, ModContent.ProjectileType<BigRedButtonPro2>(), damage, 0f, player.whoAmI);
 				}
 				for (int k = 0; k < 20; k++)
 				{
@@ -35,11 +38,11 @@ namespace ClickerClass.Items.Accessories
 
 		public override void SetDefaults()
 		{
-			item.width = 20;
-			item.height = 20;
-			item.accessory = true;
-			item.value = 250000;
-			item.rare = 4;
+			Item.width = 20;
+			Item.height = 20;
+			Item.accessory = true;
+			Item.value = 250000;
+			Item.rare = 4;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

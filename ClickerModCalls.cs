@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ModLoader;
 
 namespace ClickerClass
@@ -40,6 +41,17 @@ namespace ClickerClass
 					ClickerSystem.SetClickerWeaponDefaults(item);
 					return success;
 				}
+				else if (message == "SetClickerProjectileDefaults")
+				{
+					var projectile = args[index + 0] as Projectile;
+					if (projectile == null)
+					{
+						throw new Exception($"Call Error: The projectile argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerSystem.SetClickerProjectileDefaults(projectile);
+					return success;
+				}
 				else if (message == "RegisterClickerProjectile")
 				{
 					var modProj = args[index + 0] as ModProjectile;
@@ -49,6 +61,17 @@ namespace ClickerClass
 					}
 
 					ClickerSystem.RegisterClickerProjectile(modProj);
+					return success;
+				}
+				else if (message == "RegisterClickerWeaponProjectile")
+				{
+					var modProj = args[index + 0] as ModProjectile;
+					if (modProj == null)
+					{
+						throw new Exception($"Call Error: The modProjectile argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerSystem.RegisterClickerWeaponProjectile(modProj);
 					return success;
 				}
 				else if (message == "RegisterClickerItem")
@@ -74,7 +97,7 @@ namespace ClickerClass
 					ClickerSystem.RegisterClickerWeapon(modItem, borderTexture);
 					return success;
 				}
-				//Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, Vector2, int, int, float> action
+				//Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action
 				else if (message == "RegisterClickEffect")
 				{
 					var mod = args[index + 0] as Mod;
@@ -83,21 +106,17 @@ namespace ClickerClass
 					var description = args[index + 3] as string;
 					var amount = args[index + 4] as int?;
 					var color = args[index + 5] as Color?;
-					var action = args[index + 6] as Action<Player, Vector2, int, int, float>;
+					var colorFunc = args[index + 5] as Func<Color>; //Try another type variation because of overload
+					var action = args[index + 6] as Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>;
 
 					string nameOfargument = string.Empty;
 					if (mod == null)
 						nameOfargument = "mod";
 					if (internalName == null)
 						nameOfargument = "internalName";
-					//null -> localized
-					//if (displayName == null)
-					//	nameOfargument = "displayName";
-					//if (description == null)
-					//	nameOfargument = "description";
 					if (amount == null)
 						nameOfargument = "amount";
-					if (color == null)
+					if (color == null && colorFunc == null)
 						nameOfargument = "color";
 					if (action == null)
 						nameOfargument = "action";
@@ -107,7 +126,14 @@ namespace ClickerClass
 						throw new Exception($"Call Error: The {nameOfargument} argument for the attempted message, \"{message}\" has returned null.");
 					}
 
-					ClickerSystem.RegisterClickEffect(mod, internalName, displayName, description, amount.Value, color.Value, action);
+					Func<Color> useColor = colorFunc;
+					if (colorFunc == null)
+					{
+						//Fall back to old (regular) call without func
+						useColor = () => color.Value;
+					}
+
+					ClickerSystem.RegisterClickEffect(mod, internalName, displayName, description, amount.Value, useColor, action);
 					return success;
 				}
 				else if (message == "GetPathToBorderTexture")
@@ -131,6 +157,24 @@ namespace ClickerClass
 					else if (type != null)
 					{
 						return ClickerSystem.IsClickerProj(type.Value);
+					}
+					else
+					{
+						throw new Exception($"Call Error: The projectile/type argument for the attempted message, \"{message}\" has returned null.");
+					}
+				}
+				else if (message == "IsClickerWeaponProj")
+				{
+					var proj = args[index + 0] as Projectile;
+					var type = args[index + 0] as int?; //Try another type variation because of overload
+
+					if (proj != null)
+					{
+						return ClickerSystem.IsClickerWeaponProj(proj);
+					}
+					else if (type != null)
+					{
+						return ClickerSystem.IsClickerWeaponProj(type.Value);
 					}
 					else
 					{
@@ -238,32 +282,6 @@ namespace ClickerClass
 					ClickerWeapon.SetDust(item, dust.Value);
 					return success;
 				}
-				else if (message == "SetEffect")
-				{
-					if (apiVersion < new Version(1, 2, 2))
-					{
-						var item = args[index + 0] as Item;
-						var name = args[index + 1] as string;
-						if (item == null)
-						{
-							throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
-						}
-						if (name == null)
-						{
-							name = string.Empty;
-						}
-						//Old mods could only register with old ClickerClass effect display names before
-						if (ClickerSystem.GetNewNameFromOldDisplayName(name, out string internalName))
-						{
-							ClickerWeapon.AddEffect(item, internalName);
-						}
-						return success;
-					}
-					else
-					{
-						throw new Exception($"Use AddEffect instead, SetEffect is obsolete in {latestVersion}");
-					}
-				}
 				else if (message == "SetRadius")
 				{
 					var item = args[index + 0] as Item;
@@ -319,18 +337,6 @@ namespace ClickerClass
 						throw new Exception($"Call Error: The effectName argument for the attempted message, \"{message}\" has returned null.");
 					}
 
-					if (apiVersion < new Version(1, 2, 4))
-					{
-						var dict = ClickerSystem.GetClickEffectAsDict(effectName);
-						dict["InternalName"] = dict["UniqueName"];
-						dict.Remove("UniqueName");
-						dict.Remove("Mod");
-
-						//API Change: InternalName now not prefixed with Mod, separate thing -> UniqueName
-						//restore data suitable for the old version
-						return dict;
-					}
-
 					//Dictionary<string, object>
 					return ClickerSystem.GetClickEffectAsDict(effectName);
 				}
@@ -362,20 +368,7 @@ namespace ClickerClass
 							throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
 						}
 
-						string name;
-
-						if (apiVersion < new Version(1, 2, 2))
-						{
-							//Before it assumed the effect of the item used. Since 1.2.2 it is now a list, and requires a specific effect
-							//For the purpose of backwards compatibility, assume the first effect on the clicker as the main one
-
-							var effects = item.GetGlobalItem<ClickerItemCore>().itemClickEffects;
-							name = effects.Count == 0 ? null : effects[0];
-						}
-						else
-						{
-							name = args[index + 3] as string;
-						}
+						string name = args[index + 3] as string;
 
 						if (name == null)
 						{
@@ -427,6 +420,10 @@ namespace ClickerClass
 					{
 						return clickerPlayer.setMice;
 					}
+					else if (setName == "RGB")
+					{
+						return clickerPlayer.setRGB;
+					}
 
 					throw new Exception($"Call Error: The setName argument for the attempted message, \"{message}\" has no valid entry point.");
 				}
@@ -447,39 +444,30 @@ namespace ClickerClass
 
 					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					//accGoldenTicket, accPortableParticleAccelerator
-					if (accName == "ChocolateChip")
+					//accIcePack, accMouseTrap, accHotKeychain, accTriggerFinger, accButtonMasher, accAimbotModule, accAimbotModule2
+					if (accName == "EnchantedLED")
 					{
-						if (apiVersion < new Version(1, 2, 2))
-						{
-							//Kept for backwards compatibility
-							return clickerPlayer.HasClickEffect(ClickEffect.ChocolateChip);
-						}
-						throw new Exception("GetAccessory+'ChocolateChip' is obsolete, use HasClickEffect+'ClickerClass:ChocolateChip'");
+						return clickerPlayer.accEnchantedLED;
 					}
-					else if (accName == "EnchantedLED")
+					else if (accName == "EnchantedLED2")
 					{
-						return clickerPlayer.accEnchantedLED || clickerPlayer.accEnchantedLED2;
+						return clickerPlayer.accEnchantedLED2;
 					}
 					else if (accName == "HandCream")
 					{
 						return clickerPlayer.accHandCream;
 					}
-					else if (accName == "StickyKeychain")
-					{
-						if (apiVersion < new Version(1, 2, 2))
-						{
-							//Kept for backwards compatibility
-							return clickerPlayer.HasClickEffect(ClickEffect.StickyKeychain);
-						}
-						throw new Exception("GetAccessory+'StickyKeychain' is obsolete, use HasClickEffect+'ClickerClass:StickyKeychain'");
-					}
 					else if (accName == "GlassOfMilk")
 					{
 						return clickerPlayer.accGlassOfMilk;
 					}
-					else if (accName == "Cookie")
+					else if (accName == "CookieVisual")
 					{
-						return clickerPlayer.accCookie || clickerPlayer.accCookie2;
+						return clickerPlayer.accCookie;
+					}
+					else if (accName == "CookieVisual2")
+					{
+						return clickerPlayer.accCookie2;
 					}
 					else if (accName == "ClickingGlove")
 					{
@@ -500,6 +488,74 @@ namespace ClickerClass
 					else if (accName == "PortableParticleAccelerator")
 					{
 						return clickerPlayer.accPortableParticleAccelerator;
+					}
+					else if (accName == "IcePack")
+					{
+						return clickerPlayer.accIcePack;
+					}
+					else if (accName == "MouseTrap")
+					{
+						return clickerPlayer.accMouseTrap;
+					}
+					else if (accName == "HotKeychain")
+					{
+						return clickerPlayer.accHotKeychain;
+					}
+					else if (accName == "TriggerFinger")
+					{
+						return clickerPlayer.accTriggerFinger;
+					}
+					else if (accName == "ButtonMasher")
+					{
+						return clickerPlayer.accButtonMasher;
+					}
+					else if (accName == "AimAssistModule")
+					{
+						return clickerPlayer.accAimbotModule;
+					}
+					else if (accName == "AimbotModule")
+					{
+						return clickerPlayer.accAimbotModule2;
+					}
+
+					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
+				}
+				else if (message == "GetAccessoryItem")
+				{
+					var player = args[index + 0] as Player;
+					var accName = args[index + 1] as string;
+					if (accName == null)
+					{
+						throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has returned null.");
+					}
+					if (player == null)
+					{
+						throw new Exception($"Call Error: The player argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+
+					//accCookieItem
+					//accAMedalItem, accFMedalItem, accSMedalItem, accPaperclipsItem
+					if (accName == "Cookie")
+					{
+						return clickerPlayer.accCookieItem;
+					}
+					else if (accName == "AMedal")
+					{
+						return clickerPlayer.accAMedalItem;
+					}
+					else if (accName == "FMedal")
+					{
+						return clickerPlayer.accFMedalItem;
+					}
+					else if (accName == "SMedal")
+					{
+						return clickerPlayer.accSMedalItem;
+					}
+					else if (accName == "BottomlessBoxOfPaperclips")
+					{
+						return clickerPlayer.accPaperclipsItem;
 					}
 
 					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
@@ -526,8 +582,9 @@ namespace ClickerClass
 						{
 							throw new Exception($"Call Error: The crit argument for the attempted message, \"{message}\" has returned null.");
 						}
-						clickerPlayer.clickerCrit += crit.Value;
-						clickerPlayer.clickerCrit = Utils.Clamp(clickerPlayer.clickerCrit, 0, 100);
+						ref var critChance = ref player.GetCritChance<ClickerDamage>();
+						critChance += crit.Value;
+						critChance = Utils.Clamp(critChance, 0, 100);
 						return success;
 					}
 					else if (statName == "clickerDamageFlatAdd")
@@ -537,8 +594,9 @@ namespace ClickerClass
 						{
 							throw new Exception($"Call Error: The flat argument for the attempted message, \"{message}\" has returned null.");
 						}
-						clickerPlayer.clickerDamageFlat += flat.Value;
-						clickerPlayer.clickerDamageFlat = Math.Max(0, clickerPlayer.clickerDamageFlat);
+						ref var clickerDamage = ref player.GetDamage<ClickerDamage>();
+						clickerDamage.Flat += flat.Value;
+						//clickerDamage.Flat = Math.Max(0, clickerDamage.Flat);
 						return success;
 					}
 					else if (statName == "clickerDamageAdd")
@@ -548,8 +606,9 @@ namespace ClickerClass
 						{
 							throw new Exception($"Call Error: The damage argument for the attempted message, \"{message}\" has returned null.");
 						}
-						clickerPlayer.clickerDamage += damage.Value;
-						clickerPlayer.clickerDamage = Math.Max(0f, clickerPlayer.clickerDamage);
+						ref var clickerDamage = ref player.GetDamage<ClickerDamage>();
+						clickerDamage += damage.Value;
+						//clickerDamage = Math.Max(0f, clickerDamage);
 						return success;
 					}
 					else if (statName == "clickerBonusAdd")
@@ -605,17 +664,8 @@ namespace ClickerClass
 
 					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					//accGoldenTicket, accPortableParticleAccelerator
-					if (accName == "ChocolateChip")
-					{
-						//Kept for backwards compatibility
-						if (apiVersion < new Version(1, 2, 2))
-						{
-							clickerPlayer.EnableClickEffect(ClickEffect.ChocolateChip);
-							return success;
-						}
-						throw new Exception("SetAccessory+'ChocolateChip' is obsolete, use EnableClickEffect+'ClickerClass:ChocolateChip'");
-					}
-					else if (accName == "EnchantedLED")
+					//accIcePack, accMouseTrap, accHotKeychain, accTriggerFinger, accButtonMasher, accAimbotModule, accAimbotModule2
+					if (accName == "EnchantedLED")
 					{
 						clickerPlayer.accEnchantedLED = true;
 						return success;
@@ -630,27 +680,17 @@ namespace ClickerClass
 						clickerPlayer.accHandCream = true;
 						return success;
 					}
-					else if (accName == "StickyKeychain")
-					{
-						//Kept for backwards compatibility
-						if (apiVersion < new Version(1, 2, 2))
-						{
-							clickerPlayer.EnableClickEffect(ClickEffect.StickyKeychain);
-							return success;
-						}
-						throw new Exception("SetAccessory+'StickyKeychain' is obsolete, use EnableClickEffect+'ClickerClass:StickyKeychain'");
-					}
 					else if (accName == "GlassOfMilk")
 					{
 						clickerPlayer.accGlassOfMilk = true;
 						return success;
 					}
-					else if (accName == "Cookie")
+					else if (accName == "CookieVisual")
 					{
 						clickerPlayer.accCookie = true;
 						return success;
 					}
-					else if (accName == "Cookie2")
+					else if (accName == "CookieVisual2")
 					{
 						clickerPlayer.accCookie2 = true;
 						return success;
@@ -678,6 +718,91 @@ namespace ClickerClass
 					else if (accName == "PortableParticleAccelerator")
 					{
 						clickerPlayer.accPortableParticleAccelerator = true;
+						return success;
+					}
+					else if (accName == "IcePack")
+					{
+						clickerPlayer.accIcePack = true;
+						return success;
+					}
+					else if (accName == "MouseTrap")
+					{
+						clickerPlayer.accMouseTrap = true;
+						return success;
+					}
+					else if (accName == "HotKeychain")
+					{
+						clickerPlayer.accHotKeychain = true;
+						return success;
+					}
+					else if (accName == "TriggerFinger")
+					{
+						clickerPlayer.accTriggerFinger = true;
+						return success;
+					}
+					else if (accName == "ButtonMasher")
+					{
+						clickerPlayer.accButtonMasher = true;
+						return success;
+					}
+					else if (accName == "AimAssistModule")
+					{
+						clickerPlayer.accAimbotModule = true;
+						return success;
+					}
+					else if (accName == "AimbotModule")
+					{
+						clickerPlayer.accAimbotModule2 = true;
+						return success;
+					}
+
+					throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has no valid entry point.");
+				}
+				else if (message == "SetAccessoryItem")
+				{
+					var player = args[index + 0] as Player;
+					var accName = args[index + 1] as string;
+					var item = args[index + 2] as Item;
+					if (accName == null)
+					{
+						throw new Exception($"Call Error: The accName argument for the attempted message, \"{message}\" has returned null.");
+					}
+					if (player == null)
+					{
+						throw new Exception($"Call Error: The player argument for the attempted message, \"{message}\" has returned null.");
+					}
+					if (item == null)
+					{
+						throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+
+					//accCookieItem
+					//accAMedalItem, accFMedalItem, accSMedalItem, accPaperclipsItem
+					if (accName == "Cookie")
+					{
+						clickerPlayer.accCookieItem = item;
+						return success;
+					}
+					else if (accName == "AMedal")
+					{
+						clickerPlayer.accAMedalItem = item;
+						return success;
+					}
+					else if (accName == "FMedal")
+					{
+						clickerPlayer.accFMedalItem = item;
+						return success;
+					}
+					else if (accName == "SMedal")
+					{
+						clickerPlayer.accSMedalItem = item;
+						return success;
+					}
+					else if (accName == "BottomlessBoxOfPaperclips")
+					{
+						clickerPlayer.accPaperclipsItem = item;
 						return success;
 					}
 

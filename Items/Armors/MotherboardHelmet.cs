@@ -15,11 +15,11 @@ namespace ClickerClass.Items.Armors
 
 		public override void SetDefaults()
 		{
-			item.width = 18;
-			item.height = 18;
-			item.value = 20000;
-			item.rare = 3;
-			item.defense = 4;
+			Item.width = 18;
+			Item.height = 18;
+			Item.value = 20000;
+			Item.rare = 3;
+			Item.defense = 4;
 		}
 
 		public override void UpdateEquip(Player player)
@@ -40,12 +40,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddRecipeGroup("ClickerClass:SilverBar", 15);
-			recipe.AddIngredient(ItemID.Wire, 25);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddRecipeGroup("ClickerClass:SilverBar", 15).AddIngredient(ItemID.Wire, 25).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

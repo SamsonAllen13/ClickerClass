@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -12,35 +13,31 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.StickyHoney = ClickerSystem.RegisterClickEffect(mod, "StickyHoney", null, null, 1, new Color(255, 175, 0), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.StickyHoney = ClickerSystem.RegisterClickEffect(Mod, "StickyHoney", null, null, 1, new Color(255, 175, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<HoneyGlazedClickerPro>(), 0, 0f, player.whoAmI);
+				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<HoneyGlazedClickerPro>(), 0, 0f, player.whoAmI);
 			});
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 2.45f);
-			SetColor(item, new Color(255, 175, 0));
-			SetDust(item, 153);
-			AddEffect(item, ClickEffect.StickyHoney);
+			SetRadius(Item, 2.45f);
+			SetColor(Item, new Color(255, 175, 0));
+			SetDust(Item, 153);
+			AddEffect(Item, ClickEffect.StickyHoney);
 
-			item.damage = 8;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 10000;
-			item.rare = 3;
+			Item.damage = 8;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 10000;
+			Item.rare = 3;
 		}
 
 		public override void AddRecipes()
 		{
-			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.BeeWax, 8);
-			recipe.AddTile(TileID.Anvils);
-			recipe.SetResult(this);
-			recipe.AddRecipe();
+			CreateRecipe(1).AddIngredient(ItemID.BeeWax, 8).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

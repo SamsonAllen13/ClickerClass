@@ -2,6 +2,7 @@ using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -11,26 +12,26 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Conqueror = ClickerSystem.RegisterClickEffect(mod, "Conqueror", null, null, 15, new Color(100, 255, 200), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Conqueror = ClickerSystem.RegisterClickEffect(Mod, "Conqueror", null, null, 15, new Color(100, 255, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				Projectile.NewProjectile(Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<LordsClickerPro>(), (int)(damage * 2f), 0f, player.whoAmI);
+				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<LordsClickerPro>(), (int)(damage * 2f), 0f, player.whoAmI);
 			});
 		}
 
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 6f);
-			SetColor(item, new Color(100, 255, 200));
-			SetDust(item, 110);
-			AddEffect(item, ClickEffect.Conqueror);
+			SetRadius(Item, 6f);
+			SetColor(Item, new Color(100, 255, 200));
+			SetDust(Item, 110);
+			AddEffect(Item, ClickEffect.Conqueror);
 
-			item.damage = 110;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 2f;
-			item.value = Item.sellPrice(0, 5, 0, 0);
-			item.rare = 10;
+			Item.damage = 110;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 2f;
+			Item.value = Item.sellPrice(0, 5, 0, 0);
+			Item.rare = 10;
 		}
 	}
 }

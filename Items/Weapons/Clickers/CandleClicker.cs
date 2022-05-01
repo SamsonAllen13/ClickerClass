@@ -2,6 +2,7 @@ using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -11,13 +12,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Illuminate = ClickerSystem.RegisterClickEffect(mod, "Illuminate", null, null, 10, new Color(255, 175, 75), delegate (Player player, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Illuminate = ClickerSystem.RegisterClickEffect(Mod, "Illuminate", null, null, 10, new Color(255, 175, 75), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				for (int k = 0; k < 8; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
-					Projectile.NewProjectile(Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<CandleClickerPro>(), 0, 0f, player.whoAmI, hasSpawnEffects);
+					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<CandleClickerPro>(), 0, 0f, player.whoAmI, hasSpawnEffects);
 					spawnEffects = false;
 				}
 			});
@@ -26,17 +27,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(item, 1.5f);
-			SetColor(item, new Color(255, 175, 75));
-			SetDust(item, 55);
-			AddEffect(item, ClickEffect.Illuminate);
+			SetRadius(Item, 1.5f);
+			SetColor(Item, new Color(255, 175, 75));
+			SetDust(Item, 55);
+			AddEffect(Item, ClickEffect.Illuminate);
 
-			item.damage = 6;
-			item.width = 30;
-			item.height = 30;
-			item.knockBack = 1f;
-			item.value = 25000;
-			item.rare = 2;
+			Item.damage = 6;
+			Item.width = 30;
+			Item.height = 30;
+			Item.knockBack = 1f;
+			Item.value = 25000;
+			Item.rare = 2;
 		}
 	}
 }

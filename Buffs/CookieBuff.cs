@@ -5,7 +5,7 @@ namespace ClickerClass.Buffs
 {
 	public class CookieBuff : ModBuff
 	{
-		public override void SetDefaults()
+		public override void SetStaticDefaults()
 		{
 			Main.buffNoSave[Type] = false;
 		}
@@ -14,7 +14,7 @@ namespace ClickerClass.Buffs
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			clickerPlayer.clickerRadius += 0.4f;
-			clickerPlayer.clickerDamage += 0.1f;
+			player.GetDamage<ClickerDamage>() += 0.1f;
 			player.lifeRegen += 2;
 		}
 	}

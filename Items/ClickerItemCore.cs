@@ -136,16 +136,7 @@ namespace ClickerClass.Items
 
 				if (!clickerPlayer.HasClickEffect(ClickEffect.PhaseReach))
 				{
-					//collision
-					Vector2 motherboardPosition = clickerPlayer.setMotherboardPosition;
-					float radiusSQ = clickerPlayer.ClickerRadiusReal;
-					radiusSQ *= radiusSQ;
-					bool inRange = Vector2.DistanceSquared(Main.MouseWorld, player.Center) < radiusSQ && Collision.CanHit(new Vector2(player.Center.X, player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1);
-					radiusSQ = clickerPlayer.ClickerRadiusMotherboard;
-					radiusSQ *= radiusSQ;
-					bool inRangeMotherboard = Vector2.DistanceSquared(Main.MouseWorld, motherboardPosition) < radiusSQ && Collision.CanHit(motherboardPosition, 1, 1, Main.MouseWorld, 1, 1);
-					//bool allowMotherboard = player.GetModPlayer<ClickerPlayer>().clickerMotherboardSet && player.altFunctionUse == 2;
-
+					clickerPlayer.CheckPositionInRange(Main.MouseWorld, out bool inRange, out bool inRangeMotherboard);
 					if (inRange || (inRangeMotherboard && player.altFunctionUse != 2))
 					{
 						return true;

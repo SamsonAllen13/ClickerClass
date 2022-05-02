@@ -38,11 +38,11 @@ namespace ClickerClass
 		public Color clickerRadiusColorDraw = Color.Transparent;
 		public float ClickerRadiusColorMultiplier => clickerRadiusRangeAlpha * clickerRadiusSwitchAlpha;
 		/// <summary>
-		/// Visual indicator that the cursor is inside clicker radius
+		/// Visual (clientside) indicator that the cursor is inside clicker radius
 		/// </summary>
 		public bool clickerInRange = false;
 		/// <summary>
-		/// Visual indicator that the cursor is inside Motherboard radius
+		/// Visual (clientside) indicator that the cursor is inside Motherboard radius
 		/// </summary>
 		public bool clickerInRangeMotherboard = false;
 		public bool GlowVisual => clickerInRange || clickerInRangeMotherboard;
@@ -131,7 +131,7 @@ namespace ClickerClass
 		public int setMotherboardFrame = 0;
 		public bool setMotherboardFrameShift = false;
 		public bool setMotherboard = false;
-		public bool SetMotherboardDraw => setMotherboard && setMotherboardRatio > 0;
+		public bool SetMotherboardPlaced => setMotherboard && setMotherboardRatio > 0;
 
 		public bool setMice = false;
 		public bool setPrecursor = false;
@@ -433,8 +433,45 @@ namespace ClickerClass
 		/// </summary>
 		public void ResetMotherboardPosition()
 		{
+			setMotherboardPosition = Vector2.Zero;
 			setMotherboardRatio = 0f;
 			setMotherboardAngle = 0f;
+		}
+
+		/// <summary>
+		/// For checking if the given position is in range of the clicker radius (and by default, the motherboard set position)
+		/// </summary>
+		public void CheckPositionInRange(Vector2 position, out bool inRange, out bool inRangeMotherboard, bool checkMotherboard = true)
+		{
+			inRange = false;
+			inRangeMotherboard = false;
+			float radiusSQ = ClickerRadiusReal * ClickerRadiusReal;
+
+			bool? collision = null; //Since it uses the same collision check twice, but it shouldn't just be calculated twice too
+
+			if (Vector2.DistanceSquared(position, Player.Center) < radiusSQ)
+			{
+				collision = Collision.CanHit(new Vector2(Player.Center.X, Player.Center.Y - 12), 1, 1, position, 1, 1);
+				if (collision == true)
+				{
+					inRange = true;
+				}
+			}
+
+			if (!checkMotherboard || !SetMotherboardPlaced)
+			{
+				return;
+			}
+
+			radiusSQ = ClickerRadiusMotherboard * ClickerRadiusMotherboard;
+			if (Vector2.DistanceSquared(position, setMotherboardPosition) < radiusSQ)
+			{
+				collision ??= Collision.CanHit(new Vector2(Player.Center.X, Player.Center.Y - 12), 1, 1, position, 1, 1);
+				if (collision == true)
+				{
+					inRangeMotherboard = true;
+				}
+			}
 		}
 
 		internal int originalSelectedItem;
@@ -669,9 +706,7 @@ namespace ClickerClass
 
 			if (!setMotherboard)
 			{
-				setMotherboardPosition = Vector2.Zero;
-				setMotherboardRatio = 0f;
-				setMotherboardAngle = 0f;
+				ResetMotherboardPosition();
 			}
 			else
 			{
@@ -718,24 +753,17 @@ namespace ClickerClass
 				//Cache for draw
 				clickerRadiusDraw = clickerRadius;
 
-				//collision
-				float radiusSQ = ClickerRadiusReal * ClickerRadiusReal;
-				if (Vector2.DistanceSquared(Main.MouseWorld, Player.Center) < radiusSQ && Collision.CanHit(new Vector2(Player.Center.X, Player.Center.Y - 12), 1, 1, Main.MouseWorld, 1, 1))
-				{
-					clickerInRange = true;
-				}
 				if (setMotherboard)
 				{
 					//Important: has to be after final clickerRadius calculation because it depends on it
 					setMotherboardPosition = Player.Center + CalculateMotherboardPosition(ClickerRadiusReal);
 				}
 
-				//collision
-				radiusSQ = ClickerRadiusMotherboard * ClickerRadiusMotherboard;
-				if (Vector2.DistanceSquared(Main.MouseWorld, setMotherboardPosition) < radiusSQ && Collision.CanHit(setMotherboardPosition, 1, 1, Main.MouseWorld, 1, 1))
-				{
-					clickerInRangeMotherboard = true;
-				}
+				//Collision
+				CheckPositionInRange(Main.MouseWorld, out bool inRange, out bool inRangeMotherboard);
+				clickerInRange = inRange;
+				clickerInRangeMotherboard = inRangeMotherboard;
+
 				clickerRadiusColor = clickerItem.clickerRadiusColor;
 
 				//Cache for draw

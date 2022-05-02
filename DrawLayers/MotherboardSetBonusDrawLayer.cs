@@ -41,7 +41,7 @@ namespace ClickerClass.DrawLayers
 
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
 
-			return modPlayer.CanDrawRadius && modPlayer.SetMotherboardDraw;
+			return modPlayer.CanDrawRadius && modPlayer.SetMotherboardPlaced;
 		}
 
 		public override Position GetDefaultPosition()

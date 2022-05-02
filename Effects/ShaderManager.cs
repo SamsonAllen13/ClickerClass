@@ -69,7 +69,7 @@ namespace ClickerClass.Effects
 				int radius = (int)modPlayer.ClickerRadiusRealDraw;
 				int motherboardRadius = 0;
 
-				if (modPlayer.SetMotherboardDraw)
+				if (modPlayer.SetMotherboardPlaced)
 				{
 					//Don't use clickerMotherboardSetPosition here as it includes the wrong player.Center and possibly radius
 					motherboardCenter = center + modPlayer.CalculateMotherboardPosition(radius).Floor();

@@ -70,6 +70,7 @@ Mods: {
 			ChocolateChip: Chocolate Chip
 			BigRedButton: Big Red Button
 			ChocolateMilkCookies: Chocolate Milk n' Cookies
+			ClearKeychain: Clear Keychain
 			ClickerEmblem: Clicker Emblem
 			ClickingGlove: Clicking Glove
 			Cookie: Cookie
@@ -78,6 +79,7 @@ Mods: {
 			HandCream: Hand Cream
 			HotKeychain: Hot Keychain
 			IcePack: Ice Pack
+			MasterKeychain: Master Keychain
 			Milk: Glass of Milk
 			MilkCookies: Milk n' Cookies
 			MousePad: Mouse Pad
@@ -85,7 +87,7 @@ Mods: {
 			PortableParticleAccelerator: Portable Particle Accelerator
 			GoldenTicket: Golden Ticket
 			RegalClickingGlove: Regal Clicking Glove
-			SMedal: S Medal
+			AMedal: A Medal
 			FMedal: F Medal
 			SMedal: S Medal
 			Soda: Soda
@@ -117,6 +119,7 @@ Mods: {
 			AdamantiteClicker: Adamantite Clicker
 			ArthursClicker: Arthur's Clicker
 			AstralClicker: Astral Clicker
+			BalloonClicker: Balloon Clicker
 			BoneClicker: Bone Clicker
 			BlizzardClicker: Blizzard Clicker
 			CandleClicker: Candle Clicker
@@ -127,7 +130,9 @@ Mods: {
 			CorruptClicker: Corrupt Clicker
 			CrimsonClicker: Crimson Clicker
 			CrystalClicker: Crystal Clicker
+			CyclopsClicker: Cyclops Clicker
 			DarkClicker: Dark Clicker
+			DraconicClicker: Draconic Clicker
 			EclipticClicker: Ecliptic Clicker
 			FaultyClicker: Faulty Clicker
 			FrozenClicker: Frozen Clicker
@@ -137,9 +142,11 @@ Mods: {
 			HoneyGlazedClicker: Honey Glazed Clicker
 			ImpishClicker: Impish Clicker
 			IronClicker: Iron Clicker
+			LanternClicker: Lantern Clicker
 			LeadClicker: Lead Clicker
 			LihzahrdClicker: Lihzahrd Clicker
 			LordsClicker: Lord's Clicker
+			MagnetClicker: Magnet Clicker
 			MiceClicker: Mice Clicker
 			MyceliumClicker: Mycelium Clicker
 			MythrilClicker: Mythril Clicker
@@ -148,6 +155,7 @@ Mods: {
 			PalladiumClicker: Palladium Clicker
 			PlatinumClicker: Platinum Clicker
 			PointyClicker: Pointy Clicker
+			RainbowClicker: Rainbow Clicker
 			RedHotClicker: Red Hot Clicker
 			SandstormClicker: Sandstorm Clicker
 			SeafoamClicker: Seafoam Clicker
@@ -159,10 +167,12 @@ Mods: {
 			SnottyClicker: Snotty Clicker
 			SpaceClicker: Space Clicker
 			SpectreClicker: Spectre Clicker
+			SpiralClicker: Spiral Clicker
 			StarryClicker: Starry Clicker
 			TheClicker: The Clicker
 			TinClicker: Tin Clicker
 			TitaniumClicker: Titanium Clicker
+			TorchClicker: Torch Clicker
 			TungstenClicker: Tungsten Clicker
 			UmbralClicker: Umbral Clicker
 			WitchClicker: Witch Clicker

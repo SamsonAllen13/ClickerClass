@@ -36,7 +36,7 @@ namespace ClickerClass.DrawLayers
 			}
 
 			ClickerPlayer modPlayer = drawPlayer.GetModPlayer<ClickerPlayer>();
-			return modPlayer.accAimbotModuleTarget != -1 && modPlayer.accAimbotModuleFailsafe >= 10;
+			return modPlayer.HasAimbotModuleTarget;
 		}
 
 		public override Position GetDefaultPosition()
@@ -54,8 +54,10 @@ namespace ClickerClass.DrawLayers
 
 			Texture2D texture = aimbotTexture.Value;
 			texture = modPlayer.accAimbotModule2 ? texture : aimbotTexture2.Value;
-			float percentage = modPlayer.accAimbotModuleScale;
-			DrawData drawData = new DrawData(texture, drawPos, null, new Color(255, 255, 255, 100) * (2f - (1f * percentage)), 0f, texture.Size() / 2, percentage, SpriteEffects.None, 0)
+			float scale = modPlayer.accAimbotModuleScale;
+			float alpha = 2f - (1f * scale);
+			alpha *= modPlayer.accAimbotModuleTargetInRange ? 1f : 0.5f;
+			DrawData drawData = new DrawData(texture, drawPos, null, new Color(255, 255, 255, 100) * alpha, 0f, texture.Size() / 2, scale, SpriteEffects.None, 0)
 			{
 				ignorePlayerRotation = true
 			};

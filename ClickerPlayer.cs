@@ -180,6 +180,8 @@ namespace ClickerClass
 		public int accAimbotModuleTarget = 0;
 		public int accAimbotModuleFailsafe = 0;
 		public float accAimbotModuleScale = 1f;
+		public bool accAimbotModuleTargetInRange = false; //Controls the target being drawn greyed out
+		public bool HasAimbotModuleTarget => accAimbotModuleTarget != -1 && accAimbotModuleFailsafe >= 10;
 		public int accClickingGloveTimer = 0;
 		public int accCookieTimer = 0;
 		public int accAMedalAmount = 0; //Only updated clientside
@@ -399,6 +401,110 @@ namespace ClickerClass
 			}
 		}
 
+		private void HandleAimbotModuleTargeting()
+		{
+			if (accAimbotModuleFailsafe < 10)
+			{
+				accAimbotModuleTarget = -1;
+				accAimbotModuleFailsafe++;
+			}
+
+			if (accAimbotModuleScale > 1f)
+			{
+				accAimbotModuleScale -= 0.05f;
+			}
+
+			if (!HasAimbotModuleTarget)
+			{
+				return;
+			}
+			accAimbotModuleTargetInRange = clickerSelected;
+
+			NPC target = Main.npc[accAimbotModuleTarget];
+			clickerPosition = target.Center;
+			CheckPositionInRange(target.Center, out bool targetInRange, out bool targetInRangeMotherboard);
+			bool targetInRangeCombined = targetInRange || targetInRangeMotherboard;
+
+			if (target.active && targetInRangeCombined)
+			{
+				return;
+			}
+
+			if (!target.active)
+			{
+				accAimbotModuleTarget = -1; //Target died/despawned, reset
+			}
+
+			bool canRetarget = accAimbotModule2 && clickerSelected;
+			if (!targetInRangeCombined)
+			{
+				accAimbotModuleTargetInRange = false; //Target out of range, go inactive
+
+				float radiusSQ = 1920; //Use doubled screen width check for hardcoded retargeting if outside
+				radiusSQ *= radiusSQ;
+				if (target.DistanceSQ(Player.Center) >= radiusSQ)
+				{
+					accAimbotModuleTarget = -1; //Target too far away, reset
+					canRetarget = false;
+				}
+			}
+
+			if (!canRetarget)
+			{
+				return;
+			}
+
+			//Retarget to closest enemy to either the old target or the player
+			NPC nearOldTarget = null;
+			float oldToDistSQMax = float.MaxValue;
+			NPC nearPlayerTarget = null;
+			float playerToDistSQMax = float.MaxValue;
+			for (int i = 0; i < Main.maxNPCs; i++)
+			{
+				NPC newTarget = Main.npc[i];
+				if (newTarget.CanBeChasedBy())
+				{
+					CheckPositionInRange(newTarget.Center, out bool newTargetInRange, out bool newTargetInRangeMotherboard);
+					bool newTargetInRangeCombined = newTargetInRange || newTargetInRangeMotherboard;
+					if (!newTargetInRangeCombined)
+					{
+						//Skip enemies not clicker radius
+						continue;
+					}
+
+					float toOldDistSQ = newTarget.DistanceSQ(clickerPosition);
+					if (toOldDistSQ < oldToDistSQMax)
+					{
+						oldToDistSQMax = toOldDistSQ;
+						nearOldTarget = newTarget;
+					}
+
+					float toPlayerDistSQ = newTarget.DistanceSQ(Player.Center);
+					if (toPlayerDistSQ < playerToDistSQMax)
+					{
+						playerToDistSQMax = toPlayerDistSQ;
+						nearPlayerTarget = newTarget;
+					}
+				}
+			}
+
+			NPC preferredTarget = null;
+			if (nearPlayerTarget != null)
+			{
+				preferredTarget = nearPlayerTarget;
+			}
+
+			if (nearOldTarget != null && oldToDistSQMax < playerToDistSQMax)
+			{
+				preferredTarget = nearOldTarget;
+			}
+
+			if (preferredTarget != null)
+			{
+				SetAimbotModuleTarget(preferredTarget);
+			}
+		}
+
 		/// <summary>
 		/// Returns the position from the ratio and angle, given the radius in pixels
 		/// </summary>
@@ -472,6 +578,13 @@ namespace ClickerClass
 					inRangeMotherboard = true;
 				}
 			}
+		}
+
+		public void SetAimbotModuleTarget(NPC target)
+		{
+			accAimbotModuleTarget = target.whoAmI;
+			accAimbotModuleScale = 2f;
+			accAimbotModuleTargetInRange = true;
 		}
 
 		internal int originalSelectedItem;
@@ -570,6 +683,7 @@ namespace ClickerClass
 			accButtonMasher = false;
 			accAimbotModule = false;
 			accAimbotModule2 = false;
+			accAimbotModuleTargetInRange = false;
 			accEnlarge = false;
 
 			//Stats
@@ -638,11 +752,15 @@ namespace ClickerClass
 					for (int i = 0; i < Main.maxNPCs; i++)
 					{
 						NPC target = Main.npc[i];
-						if (target.CanBeChasedBy() && target.DistanceSQ(Main.MouseWorld) < 100 * 100)
+						if (target.CanBeChasedBy())
 						{
-							accAimbotModuleTarget = target.whoAmI;
-							accAimbotModuleScale = 2f;
-							break;
+							Rectangle inflatedHitbox = target.getRect();
+							inflatedHitbox.Inflate(50, 50);
+							if (inflatedHitbox.Contains(Main.MouseWorld.ToPoint()))
+							{
+								SetAimbotModuleTarget(target);
+								break;
+							}
 						}
 					}
 				}
@@ -726,7 +844,7 @@ namespace ClickerClass
 					setMotherboardFrameShift = false;
 				}
 			}
-			
+
 			clickerRadius += 0.005f * accFMedalAmount;
 
 			Item heldItem = Player.HeldItem;
@@ -807,12 +925,12 @@ namespace ClickerClass
 			{
 				Player.armorEffectDrawShadow = true;
 			}
-			
+
 			if (clickerDoubleTap > 0)
 			{
 				clickerDoubleTap--;
 			}
-			
+
 			//Clicker Effects
 			//Hot Wings
 			if (effectHotWings && Player.grappling[0] == -1 && !Player.tongued)
@@ -884,51 +1002,13 @@ namespace ClickerClass
 
 			//Acc
 			//Aimbot Module
-			if (accAimbotModuleFailsafe < 10)
-			{
-				accAimbotModuleTarget = -1;
-				accAimbotModuleFailsafe++;
-			}
-			if (accAimbotModuleTarget != -1 && accAimbotModuleFailsafe >= 10)
-			{
-				NPC target = Main.npc[accAimbotModuleTarget];
-				clickerPosition = target.Center;
-				float radiusSQ = ClickerRadiusReal * ClickerRadiusReal;
-				CheckPositionInRange(target.Center, out bool targetInRange, out bool targetInRangeMotherboard);
-				bool targetInRangeCombined = targetInRange || targetInRangeMotherboard;
-				if (!target.active || !targetInRangeCombined)
-				{
-					accAimbotModuleTarget = -1;
+			HandleAimbotModuleTargeting();
 
-					if (accAimbotModule2)
-					{
-						for (int i = 0; i < Main.maxNPCs; i++)
-						{
-							NPC newTarget = Main.npc[i];
-							if (newTarget.CanBeChasedBy() && target.DistanceSQ(Player.Center) < radiusSQ)
-							{
-								if (newTarget.DistanceSQ(target.Center) < 400 * 400 ||
-									newTarget.DistanceSQ(Player.Center) < 200 * 200)
-								{
-									accAimbotModuleTarget = newTarget.whoAmI;
-									accAimbotModuleScale = 2f;
-									break;
-								}
-							}
-						}
-					}
-				}
-
-				if (accAimbotModuleScale > 1f)
-				{
-					accAimbotModuleScale -= 0.05f;
-				}
-			}
-			else
+			if (!accAimbotModuleTargetInRange)
 			{
 				clickerPosition = Main.MouseWorld;
 			}
-			
+
 			//Cookie acc
 			if (accCookieItem != null && !accCookieItem.IsAir && (accCookie || accCookie2) && clickerSelected)
 			{
@@ -950,7 +1030,7 @@ namespace ClickerClass
 					int frame = 0;
 					if (accCookie2 && Main.rand.NextFloat() <= 0.1f)
 					{
-						frame= 1;
+						frame = 1;
 					}
 					Projectile.NewProjectile(Player.GetSource_Accessory(accCookieItem), (float)xOffset, (float)yOffset, 0f, 0f, ModContent.ProjectileType<CookiePro>(), 0, 0f, Player.whoAmI, frame);
 
@@ -1010,7 +1090,7 @@ namespace ClickerClass
 			{
 				Player.GetDamage<ClickerDamage>().Flat += 8;
 			}
-			
+
 			//Effects related to having cursor within the radius
 			if (Player.whoAmI == Main.myPlayer)
 			{
@@ -1030,13 +1110,13 @@ namespace ClickerClass
 							}
 						}
 					}
-					
+
 					int parachuteType = ModContent.ProjectileType<NaughtyClickerPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
 						Projectile parachuteProj = Main.projectile[i];
 
-						if (parachuteProj.active && clickerSelected && parachuteProj.owner == Player.whoAmI && parachuteProj.type == parachuteType && 
+						if (parachuteProj.active && clickerSelected && parachuteProj.owner == Player.whoAmI && parachuteProj.type == parachuteType &&
 						parachuteProj.ai[1] == 0f && parachuteProj.frame == 1 && parachuteProj.ModProjectile is NaughtyClickerPro parachute && !parachute.hasChanged)
 						{
 							if (Main.mouseLeft && Main.mouseLeftRelease && parachuteProj.DistanceSQ(new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y)) < 30 * 30)
@@ -1046,7 +1126,7 @@ namespace ClickerClass
 						}
 					}
 				}
-				
+
 				//A Medal effect
 				if (accAMedalAmount < 200 && clickerSelected && AccAMedal)
 				{
@@ -1070,7 +1150,7 @@ namespace ClickerClass
 						}
 					}
 				}
-				
+
 				//F Medal effect
 				if (accFMedalAmount < 200 && clickerSelected && AccFMedal)
 				{
@@ -1094,14 +1174,14 @@ namespace ClickerClass
 						}
 					}
 				}
-				
+
 				//S Medal effect
 				if (clickerSelected && AccSMedal)
 				{
 					int sMedalType1 = ModContent.ProjectileType<SMedalPro>();
 					int sMedalType2 = ModContent.ProjectileType<SMedalPro2>();
 					int sMedalType3 = ModContent.ProjectileType<SMedalPro3>();
-					
+
 					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
 						Projectile medalProj = Main.projectile[i];
@@ -1154,7 +1234,7 @@ namespace ClickerClass
 					int sMedalType1 = ModContent.ProjectileType<SMedalPro>();
 					int sMedalType2 = ModContent.ProjectileType<SMedalPro2>();
 					int sMedalType3 = ModContent.ProjectileType<SMedalPro3>();
-					
+
 					if (Player.ownedProjectileCounts[sMedalType1] == 0)
 					{
 						Projectile.NewProjectile(Player.GetSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType1, 0, 0f, Player.whoAmI, 0, 0.5f);
@@ -1167,7 +1247,7 @@ namespace ClickerClass
 					{
 						Projectile.NewProjectile(Player.GetSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType3, 0, 0f, Player.whoAmI, 2, 0.5f);
 					}
-					
+
 					if (accSMedalAmount > 20)
 					{
 						clickerBonusPercent -= 0.25f;
@@ -1176,7 +1256,7 @@ namespace ClickerClass
 				else
 				{
 					accSMedalAmount = 0;
-					
+
 					int aMedalType = ModContent.ProjectileType<AMedalPro>();
 					if (AccAMedal)
 					{
@@ -1204,7 +1284,7 @@ namespace ClickerClass
 					}
 				}
 			}
-			
+
 			HandleCPS();
 
 			HandleRadiusAlphas();
@@ -1219,7 +1299,7 @@ namespace ClickerClass
 				}
 				Player.GetDamage<ClickerDamage>() += bonusDamage;
 			}
-			
+
 			//Hot Keychain
 			if (accHotKeychain && !OutOfCombat)
 			{

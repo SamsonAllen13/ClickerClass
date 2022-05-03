@@ -17,7 +17,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 				{
 					ClickEffect.WildMagic,
 					ClickEffect.Conqueror,
-					ClickEffect.AutoClick
+					ClickEffect.AutoClick,
+					ClickEffect.PhaseReach
 				};
 
 				List<string> allowed = new List<string>();

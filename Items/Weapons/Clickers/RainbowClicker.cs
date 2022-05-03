@@ -28,18 +28,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Rainbolt = ClickerSystem.RegisterClickEffect(Mod, "Rainbolt", null, null, 8, () => Color.Lerp(Color.White, Main.DiscoColor, 0.5f), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				//bool spawnEffects = true;
+				bool spawnEffects = true;
 				for (int k = 0; k < 4; k++)
 				{
-					//float hasSpawnEffects = spawnEffects ? 1f : 0f;
 					//Projectile.NewProjectile(source, position, new Vector2(Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f)), ModContent.ProjectileType<RainbowClickerPro>(), (int)(damage * 0.5f), knockBack, player.whoAmI, hasSpawnEffects);
-					//spawnEffects = false;
 
 					Vector2 spawnVelocity = Main.rand.NextVector2Circular(1f, 1f) + Main.rand.NextVector2CircularEdge(3f, 3f);
 					int projType = ProjectileID.FairyQueenMagicItemShot; //This projectile decreases damage by 20% each hit, fixed homing speed of 30
-					float targetIndex = -1f;
+					float targetIndex = spawnEffects ? - 2f : -1f; //Normally -1f, we intercept it
 					float randomColor = player.miscCounterNormalized % 1f;
 					Projectile.NewProjectile(source, position, spawnVelocity, projType, (int)(damage * 0.5f), knockBack, player.whoAmI, targetIndex, randomColor);
+					spawnEffects = false;
 				}
 			});
 			
@@ -94,6 +93,16 @@ namespace ClickerClass.Items.Weapons.Clickers
 			projectile.DamageType = ModContent.GetInstance<ClickerDamage>();
 			projectile.penetrate = -1; //3 by default
 			projectile.timeLeft = 190; //240 by default, this controls its behavior: 140 starts homing
+		}
+
+		public override bool PreAI(Projectile projectile)
+		{
+			if (projectile.ai[0] == -2f)
+			{
+				projectile.ai[0] = -1f; //Initializer for no target
+				SoundEngine.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 43);
+			}
+			return base.PreAI(projectile);
 		}
 	}
 }

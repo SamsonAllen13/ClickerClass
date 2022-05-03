@@ -186,7 +186,7 @@ Mods: {
 				'''
 				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
 				{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 10%
-				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' key will select a target with aim assist
+				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' key will toggle aimbot, targeting nearby enemies automatically
 				If the target dies or is lost, a new nearby target will be selected if possible
 				'''
 			AimAssistModule:
@@ -689,6 +689,8 @@ Mods: {
 			MoneyGenerated: Money Generated
 			ClickDamage: "{0} click damage"
 			ForMoreInfo: Hold 'Auto Select' key ({0}) to show click effects
+			AimbotModuleEnabled: Aimbot enabled
+			AimbotModuleDisabled: Aimbot disabled
 		}
 
 		DeathMessage: {

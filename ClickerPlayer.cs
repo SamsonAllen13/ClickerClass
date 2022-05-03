@@ -175,13 +175,15 @@ namespace ClickerClass
 		public bool accButtonMasher = false;
 		public bool accAimbotModule = false;
 		public bool accAimbotModule2 = false;
+		public bool accAimbotModule2Toggle = false; //If enabled, automatically seeks enemies
+		public int accAimbotModule2ToggleTimer = 0; //To not do it every tick
 		public bool accEnlarge = false;
 
-		public int accAimbotModuleTarget = 0;
+		public int accAimbotModuleTarget = -1;
 		public int accAimbotModuleFailsafe = 0;
 		public float accAimbotModuleScale = 1f;
 		public bool accAimbotModuleTargetInRange = false; //Controls the target being drawn greyed out
-		public bool HasAimbotModuleTarget => accAimbotModuleTarget != -1 && accAimbotModuleFailsafe >= 10;
+		public bool HasAimbotModuleTarget => accAimbotModuleTarget > -1 && accAimbotModuleFailsafe >= 10;
 		public int accClickingGloveTimer = 0;
 		public int accCookieTimer = 0;
 		public int accAMedalAmount = 0; //Only updated clientside
@@ -405,13 +407,30 @@ namespace ClickerClass
 		{
 			if (accAimbotModuleFailsafe < 10)
 			{
-				accAimbotModuleTarget = -1;
+				ResetAimbotModuleTarget();
 				accAimbotModuleFailsafe++;
 			}
 
 			if (accAimbotModuleScale > 1f)
 			{
 				accAimbotModuleScale -= 0.05f;
+			}
+
+			if (accAimbotModule2)
+			{
+				if (accAimbotModule2Toggle && !HasAimbotModuleTarget && clickerSelected)
+				{
+					accAimbotModule2ToggleTimer++;
+					if (accAimbotModule2ToggleTimer > 5)
+					{
+						accAimbotModule2ToggleTimer = 0;
+						AimbotModuleTargestClosest();
+					}
+				}
+			}
+			else
+			{
+				accAimbotModule2Toggle = false;
 			}
 
 			if (!HasAimbotModuleTarget)
@@ -432,7 +451,7 @@ namespace ClickerClass
 
 			if (!target.active)
 			{
-				accAimbotModuleTarget = -1; //Target died/despawned, reset
+				ResetAimbotModuleTarget(); //Target died/despawned, reset
 			}
 
 			bool canRetarget = accAimbotModule2 && clickerSelected;
@@ -444,7 +463,7 @@ namespace ClickerClass
 				radiusSQ *= radiusSQ;
 				if (target.DistanceSQ(Player.Center) >= radiusSQ)
 				{
-					accAimbotModuleTarget = -1; //Target too far away, reset
+					ResetAimbotModuleTarget(); //Target too far away, reset
 					canRetarget = false;
 				}
 			}
@@ -454,6 +473,11 @@ namespace ClickerClass
 				return;
 			}
 
+			AimbotModuleTargestClosest();
+		}
+
+		private void AimbotModuleTargestClosest()
+		{
 			//Retarget to closest enemy to either the old target or the player
 			NPC nearOldTarget = null;
 			float oldToDistSQMax = float.MaxValue;
@@ -585,6 +609,12 @@ namespace ClickerClass
 			accAimbotModuleTarget = target.whoAmI;
 			accAimbotModuleScale = 2f;
 			accAimbotModuleTargetInRange = true;
+		}
+
+		public void ResetAimbotModuleTarget()
+		{
+			accAimbotModuleTarget = -1;
+			accAimbotModuleTargetInRange = false;
 		}
 
 		internal int originalSelectedItem;
@@ -749,17 +779,33 @@ namespace ClickerClass
 				if (accAimbotModule)
 				{
 					SoundEngine.PlaySound(SoundID.MenuTick, Player.position);
-					for (int i = 0; i < Main.maxNPCs; i++)
+
+					if (accAimbotModule2)
 					{
-						NPC target = Main.npc[i];
-						if (target.CanBeChasedBy())
+						if (accAimbotModule2Toggle)
 						{
-							Rectangle inflatedHitbox = target.getRect();
-							inflatedHitbox.Inflate(50, 50);
-							if (inflatedHitbox.Contains(Main.MouseWorld.ToPoint()))
+							accAimbotModule2Toggle = false;
+							ResetAimbotModuleTarget();
+						}
+						else
+						{
+							accAimbotModule2Toggle = true;
+						}
+					}
+					else
+					{
+						for (int i = 0; i < Main.maxNPCs; i++)
+						{
+							NPC target = Main.npc[i];
+							if (target.CanBeChasedBy())
 							{
-								SetAimbotModuleTarget(target);
-								break;
+								Rectangle inflatedHitbox = target.getRect();
+								inflatedHitbox.Inflate(50, 50);
+								if (inflatedHitbox.Contains(Main.MouseWorld.ToPoint()))
+								{
+									SetAimbotModuleTarget(target);
+									break;
+								}
 							}
 						}
 					}

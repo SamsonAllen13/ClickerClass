@@ -737,6 +737,7 @@ namespace ClickerClass
 				clickerDrawRadius = true;
 				if (HasClickEffect(ClickEffect.PhaseReach))
 				{
+					clickerRadiusSwitchAlpha = clickerRadiusSwitchAlphaMin;
 					clickerDrawRadius = false;
 				}
 

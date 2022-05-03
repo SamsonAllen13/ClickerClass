@@ -17,7 +17,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(Item, 5f);
+			SetRadius(Item, 8.5f); //Radius doesn't matter with the Phase Reach effect, except for aimbot module.
+								   //This is set to cover pretty much the entire screen with no buffs
 			SetColor(Item, new Color(100, 255, 255));
 			SetDust(Item, 88);
 			AddEffect(Item, ClickEffect.PhaseReach);

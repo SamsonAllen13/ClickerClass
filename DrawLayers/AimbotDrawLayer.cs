@@ -41,7 +41,7 @@ namespace ClickerClass.DrawLayers
 
 		public override Position GetDefaultPosition()
 		{
-			return new AfterParent(PlayerDrawLayers.Leggings);
+			return new Between(PlayerDrawLayers.JimsCloak, PlayerDrawLayers.MountBack); //This decouples parenting relations, adds somewhere to the back of the player
 		}
 
 		protected override void Draw(ref PlayerDrawSet drawInfo)

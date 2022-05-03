@@ -125,8 +125,8 @@ namespace ClickerClass
 
 			void DoubleClick(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 37);
-				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, type, damage, knockBack, player.whoAmI);
+				SoundEngine.PlaySound(SoundID.Item, (int)position.X, (int)position.Y, 37);
+				Projectile.NewProjectile(source, position, Vector2.Zero, type, damage, knockBack, player.whoAmI);
 			}
 		}
 

@@ -15,8 +15,8 @@ namespace ClickerClass.Items.Accessories
 
 			ClickEffect.BigRedButton = ClickerSystem.RegisterClickEffect(Mod, "BigRedButton", null, null, 25, new Color(230, 100, 20, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(2, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 14);
-				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, ModContent.ProjectileType<BigRedButtonPro>(), (int)(damage * 3f), 1f, player.whoAmI, Main.rand.Next(3));
+				SoundEngine.PlaySound(2, (int)position.X, (int)position.Y, 14);
+				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<BigRedButtonPro>(), (int)(damage * 3f), 1f, player.whoAmI, Main.rand.Next(3));
 				for (int k = 0; k < 6; k++)
 				{
 					Vector2 spread = new Vector2(-0.5f, -3f);
@@ -25,11 +25,11 @@ namespace ClickerClass.Items.Accessories
 					if (k == 3){spread = new Vector2(0.25f, -3.5f);}
 					if (k == 4){spread = new Vector2(0.25f, -2.5f);}
 					if (k == 5){spread = new Vector2(0.5f, -3f);}
-					Projectile.NewProjectile(source, Main.MouseWorld, spread, ModContent.ProjectileType<BigRedButtonPro2>(), damage, 0f, player.whoAmI);
+					Projectile.NewProjectile(source, position, spread, ModContent.ProjectileType<BigRedButtonPro2>(), damage, 0f, player.whoAmI);
 				}
 				for (int k = 0; k < 20; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Main.MouseWorld, 8, 8, 174, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 0, default, 1.75f);
+					Dust dust = Dust.NewDustDirect(position, 8, 8, 174, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 0, default, 1.75f);
 					dust.noGravity = true;
 					dust.noLight = true;
 				}

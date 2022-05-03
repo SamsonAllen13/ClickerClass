@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Audio;
 using Terraria.Graphics.Shaders;
+using ClickerClass.Core;
 
 namespace ClickerClass.Projectiles
 {
@@ -144,10 +145,11 @@ namespace ClickerClass.Projectiles
 						}
 					}
 				}
-			
-				if (Main.myPlayer == Projectile.owner)
+
+				MousePlayer mousePlayer = Main.player[Projectile.owner].GetModPlayer<MousePlayer>();
+				if (mousePlayer.TryGetMousePosition(out Vector2 mouseWorld))
 				{
-					Vector2 vector = Main.MouseWorld - Projectile.Center;
+					Vector2 vector = mouseWorld - Projectile.Center;
 					float speed = 5f;
 					float mag = vector.Length();
 					if (mag > speed)

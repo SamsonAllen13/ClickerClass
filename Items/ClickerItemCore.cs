@@ -348,10 +348,9 @@ namespace ClickerClass.Items
 						bool canTeleport = false;
 						if (!clickerPlayer.HasClickEffect(ClickEffect.PhaseReach))
 						{
-							//collision
-							float radiusSQ = clickerPlayer.ClickerRadiusReal;
-							radiusSQ *= radiusSQ;
-							if (player.DistanceSQ(Main.MouseWorld) < radiusSQ && Collision.CanHitLine(player.Center, 1, 1, Main.MouseWorld, 1, 1))
+							//Collision
+							clickerPlayer.CheckPositionInRange(Main.MouseWorld, out bool inRange, out bool _, false);
+							if (inRange)
 							{
 								canTeleport = true;
 							}
@@ -363,9 +362,10 @@ namespace ClickerClass.Items
 
 						if (canTeleport)
 						{
-							SoundEngine.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 115);
+							Vector2 teleportPos = Main.MouseWorld;
+							SoundEngine.PlaySound(SoundID.Item, (int)teleportPos.X, (int)teleportPos.Y, 115);
 
-							player.ClickerTeleport(Main.MouseWorld);
+							player.ClickerTeleport(teleportPos);
 
 							NetMessage.SendData(MessageID.PlayerControls, number: player.whoAmI);
 							clickerPlayer.setAbilityDelayTimer = 60;
@@ -377,9 +377,9 @@ namespace ClickerClass.Items
 								Vector2 vector12 = Vector2.UnitX * 0f;
 								vector12 += -Vector2.UnitY.RotatedBy((double)((float)num103 * (MathHelper.TwoPi / num102)), default(Vector2)) * new Vector2(2f, 2f);
 								vector12 = vector12.RotatedBy((double)Vector2.Zero.ToRotation(), default(Vector2));
-								int num104 = Dust.NewDust(Main.MouseWorld, 0, 0, ModContent.DustType<MiceDust>(), 0f, 0f, 0, default(Color), 2f);
+								int num104 = Dust.NewDust(teleportPos, 0, 0, ModContent.DustType<MiceDust>(), 0f, 0f, 0, default(Color), 2f);
 								Main.dust[num104].noGravity = true;
-								Main.dust[num104].position = Main.MouseWorld + vector12;
+								Main.dust[num104].position = teleportPos + vector12;
 								Main.dust[num104].velocity = Vector2.Zero * 0f + vector12.SafeNormalize(Vector2.UnitY) * 4f;
 								int num = num103;
 								num103 = num + 1;
@@ -388,18 +388,19 @@ namespace ClickerClass.Items
 					}
 					else if (clickerPlayer.setMotherboard)
 					{
-						SoundEngine.PlaySound(SoundID.Camera, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 0);
+						Vector2 motherboardPos = Main.MouseWorld;
+						SoundEngine.PlaySound(SoundID.Camera, (int)motherboardPos.X, (int)motherboardPos.Y, 0);
 
 						Vector2 sensorLocation = player.Center + clickerPlayer.CalculateMotherboardPosition(clickerPlayer.ClickerRadiusReal);
 
-						if (sensorLocation.DistanceSQ(Main.MouseWorld) < 20 * 20)
+						if (sensorLocation.DistanceSQ(motherboardPos) < 20 * 20)
 						{
 							//Clicked onto the sensor
 							clickerPlayer.ResetMotherboardPosition();
 						}
 						else
 						{
-							clickerPlayer.SetMotherboardRelativePosition(Main.MouseWorld);
+							clickerPlayer.SetMotherboardRelativePosition(motherboardPos);
 						}
 
 						clickerPlayer.setAbilityDelayTimer = 60;

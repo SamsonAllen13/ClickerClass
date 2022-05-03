@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
+using System;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -19,7 +20,7 @@ namespace ClickerClass.Items.Accessories
 				for (int k = 0; k < 6; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
-					Projectile.NewProjectile(source, Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-10f, 10f), chocolate, (int)(damage * 0.2), 0f, player.whoAmI, Main.rand.Next(Main.projFrames[chocolate]), hasSpawnEffects);
+					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-10f, 10f), chocolate, Math.Max(1, (int)(damage * 0.2f)), 0f, player.whoAmI, Main.rand.Next(Main.projFrames[chocolate]), hasSpawnEffects);
 					spawnEffects = false;
 				}
 			});

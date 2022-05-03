@@ -94,7 +94,7 @@ namespace ClickerClass
 		/// </summary>
 		public int clickerDoubleTap = 0;
 		/// <summary>
-		/// Used for cursor positioning and the Aimbot Module effect
+		/// Used for cursor positioning and the Aimbot Module effect (and similar). Defaults to Main.MouseWorld otherwise
 		/// </summary>
 		public Vector2 clickerPosition = Main.MouseWorld;
 
@@ -787,7 +787,7 @@ namespace ClickerClass
 						if (Main.myPlayer == Player.whoAmI)
 						{
 							int damage = Math.Max(1, (int)(heldItem.damage * 0.2f));
-							Projectile.NewProjectile(Player.GetSource_FromThis(context: "Set_Precursor"), Main.MouseWorld.X + 8, Main.MouseWorld.Y + 11, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), damage, 0f, Player.whoAmI);
+							Projectile.NewProjectile(Player.GetSource_FromThis(context: "Set_Precursor"), clickerPosition.X + 8, clickerPosition.Y + 11, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), damage, 0f, Player.whoAmI);
 						}
 						setPrecursorTimer = 0;
 					}
@@ -893,7 +893,9 @@ namespace ClickerClass
 				NPC target = Main.npc[accAimbotModuleTarget];
 				clickerPosition = target.Center;
 				float radiusSQ = ClickerRadiusReal * ClickerRadiusReal;
-				if (!target.active || target.DistanceSQ(Player.Center) > radiusSQ || !Collision.CanHit(new Vector2(Player.Center.X, Player.Center.Y - 12), 1, 1, target.Center, 1, 1))
+				CheckPositionInRange(target.Center, out bool targetInRange, out bool targetInRangeMotherboard);
+				bool targetInRangeCombined = targetInRange || targetInRangeMotherboard;
+				if (!target.active || !targetInRangeCombined)
 				{
 					accAimbotModuleTarget = -1;
 
@@ -996,8 +998,8 @@ namespace ClickerClass
 			//Portable Particle Accelerator acc
 			if (accPortableParticleAccelerator && Main.myPlayer == Player.whoAmI)
 			{
-				float radius = ClickerRadiusReal * 0.5f;
-				if (Player.DistanceSQ(Main.MouseWorld) < radius * radius)
+				float radius = ClickerRadiusReal * 0.5f; //No need to check motherboard as that isn't ever relevant with half the radius
+				if (Player.DistanceSQ(clickerPosition) < radius * radius)
 				{
 					accPortableParticleAccelerator2 = true;
 				}
@@ -1394,7 +1396,7 @@ namespace ClickerClass
 						{
 							for (int k = 0; k < 4; k++)
 							{
-								Projectile.NewProjectile(Player.GetSource_Accessory(accPaperclipsItem), Main.MouseWorld.X, Main.MouseWorld.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
+								Projectile.NewProjectile(Player.GetSource_Accessory(accPaperclipsItem), clickerPosition.X, clickerPosition.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
 							}
 						}
 

@@ -17,12 +17,12 @@ namespace ClickerClass.Items.Accessories
 
 			ClickEffect.ClearKeychain = ClickerSystem.RegisterClickEffect(Mod, "ClearKeychain", null, null, 15, new Color(225, 200, 255, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.Item, (int)Main.MouseWorld.X, (int)Main.MouseWorld.Y, 86);
+				SoundEngine.PlaySound(SoundID.Item, (int)position.X, (int)position.Y, 86);
 
 				for (int k = 0; k < 5; k++)
 				{
-					Vector2 startSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-150, 151), Main.MouseWorld.Y - 500 + Main.rand.Next(-25, 26));
-					Vector2 endSpot = new Vector2(Main.MouseWorld.X + Main.rand.Next(-50, 51), Main.MouseWorld.Y + Main.rand.Next(-50, 51));
+					Vector2 startSpot = new Vector2(position.X + Main.rand.Next(-150, 151), position.Y - 500 + Main.rand.Next(-25, 26));
+					Vector2 endSpot = new Vector2(position.X + Main.rand.Next(-50, 51), position.Y + Main.rand.Next(-50, 51));
 					Vector2 vector = endSpot - startSpot;
 					float speed = 8f + Main.rand.NextFloat(-1f, 1f);
 					float mag = vector.Length();

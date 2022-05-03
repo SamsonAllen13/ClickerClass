@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Accessories
 			ClickEffect.StickyKeychain = ClickerSystem.RegisterClickEffect(Mod, "StickyKeychain", null, null, 10, new Color(145, 180, 230, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				int keychain = ModContent.ProjectileType<StickyKeychainPro>();
-				Projectile.NewProjectile(source, Main.MouseWorld, Vector2.Zero, keychain, (int)(damage * 0.5), 3f, player.whoAmI, Main.rand.Next(Main.projFrames[keychain]));
+				Projectile.NewProjectile(source, position, Vector2.Zero, keychain, (int)(damage * 0.5), 3f, player.whoAmI, Main.rand.Next(Main.projFrames[keychain]));
 			});
 		}
 

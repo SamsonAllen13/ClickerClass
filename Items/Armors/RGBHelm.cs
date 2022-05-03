@@ -40,7 +40,7 @@ namespace ClickerClass.Items.Armors
 					toDir += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / total)) * new Vector2(10f, 10f);
 					int damageAmount = (int)(damage * 0.33f);
 					damageAmount = damageAmount < 1 ? 1 : damageAmount;
-					Projectile.NewProjectile(source, Main.MouseWorld, toDir.SafeNormalize(Vector2.UnitY) * 10f, chromatic, damageAmount, 1f, Main.myPlayer, 0f, hasSpawnEffects);
+					Projectile.NewProjectile(source, position, toDir.SafeNormalize(Vector2.UnitY) * 10f, chromatic, damageAmount, 1f, Main.myPlayer, 0f, hasSpawnEffects);
 					i++;
 					spawnEffects = false;
 				}

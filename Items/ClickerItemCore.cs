@@ -85,7 +85,7 @@ namespace ClickerClass.Items
 				//6f = 2 * 6 = 12 => 60 / 12 = 5 cps
 				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
 				{
-					if (player.ShouldAutoReuseItem(item))
+					if (player.CanAutoReuseItem(item))
 					{
 						if (clickerPlayer.accHandCream)
 						{

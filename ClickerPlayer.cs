@@ -444,14 +444,22 @@ namespace ClickerClass
 			CheckPositionInRange(target.Center, out bool targetInRange, out bool targetInRangeMotherboard);
 			bool targetInRangeCombined = targetInRange || targetInRangeMotherboard;
 
-			if (target.active && targetInRangeCombined)
+			//If target still alive (keeps target until death)
+			bool keepTargetCheck = target.active;
+			if (accAimbotModule2)
+			{
+				//Or if target still targetable (moonlord hand, granite golem etc.)
+				keepTargetCheck = target.CanBeChasedBy();
+			}
+
+			if (keepTargetCheck && targetInRangeCombined)
 			{
 				return;
 			}
 
-			if (!target.active)
+			if (!keepTargetCheck)
 			{
-				ResetAimbotModuleTarget(); //Target died/despawned, reset
+				ResetAimbotModuleTarget();
 			}
 
 			bool canRetarget = accAimbotModule2 && clickerSelected;

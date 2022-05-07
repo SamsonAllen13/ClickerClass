@@ -1,8 +1,0 @@
-zh-Hans 268
-ru-RU 27
-pt-BR 237
-pl-PL 268
-it-IT 268
-fr-FR 268
-es-ES 268
-de-DE 268

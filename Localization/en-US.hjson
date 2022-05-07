@@ -1,738 +1,736 @@
-Mods: {
-	ClickerClass: {
-		BuffName: {
-			AutoClick: Auto Click
-			CookieBuff: Cookie
-			Crystalized: Crystalized
-			Embrittle: Embrittle
-			Frozen: Frozen
-			Gouge: Gouge
-			Haste: Haste
-			HoneySlow: Honey
-			InfluenceBuff: Influence
-			OverclockBuff: Overclock
-			Oozed: Oozed
-			HotWingsBuff: Hot Wings
-			Seafoam: Seafoam
-			Stunned: Stunned
-			ArcaneEnchantment: Arcane Enchantment
+Mods.ClickerClass: {
+	BuffName: {
+		AutoClick: Auto Click
+		CookieBuff: Cookie
+		Crystalized: Crystalized
+		Embrittle: Embrittle
+		Frozen: Frozen
+		Gouge: Gouge
+		Haste: Haste
+		HoneySlow: Honey
+		InfluenceBuff: Influence
+		OverclockBuff: Overclock
+		Oozed: Oozed
+		HotWingsBuff: Hot Wings
+		Seafoam: Seafoam
+		Stunned: Stunned
+		ArcaneEnchantment: Arcane Enchantment
+	}
+
+	BuffDescription: {
+		AutoClick: Hold down the Left Mouse Button to auto click
+		CookieBuff: Increases your click damage, radius, and life regeneration
+		Crystalized: Clicks will release a spread of crystal shards
+		Embrittle: Clicks will deal 8 extra damage to this target
+		Frozen: Frozen in place
+		Gouge: Rapidly losing life
+		Haste: Movement speed and jump speed increased
+		HoneySlow: Movement speed reduced
+		InfluenceBuff: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%"
+		OverclockBuff: Every click will trigger a click effect
+		Oozed: Movement speed significantly reduced
+		Seafoam: Heals the clicker user when damaged by a clicker
+		Stunned: Stunned in place
+		HotWingsBuff: Double tap to perform a fiery dash
+		ArcaneEnchantment: Your click damage and click damage hitbox are boosted
+	}
+
+	Common: {
+		Tooltips: {
+			IncreasesClickDamage: Increases click damage
+			IncreasedClickerDamage: increased clicker damage
+			IncreasesClickCritChance: Increases click critical strike chance
+			IncreasesBaseClickRadius: Increases your base click radius
+			ReducesBaseClickRadius: Reduces your base click radius
+			ReducesAmountOfClicks: Reduces the amount of clicks required for a click effect
+			ClickingGloveEvery: While in combat, automatically clicks your current clicker every
+			Clicker: Click on an enemy within range and sight to damage them
+			MoreThanOneClick: "{0} clicks"
+			OneClick: 1 click
 		}
 
-		BuffDescription: {
-			AutoClick: Hold down the Left Mouse Button to auto click
-			CookieBuff: Increases your click damage, radius, and life regeneration
-			Crystalized: Clicks will release a spread of crystal shards
-			Embrittle: Clicks will deal 8 extra damage to this target
-			Frozen: Frozen in place
-			Gouge: Rapidly losing life
-			Haste: Movement speed and jump speed increased
-			HoneySlow: Movement speed reduced
-			InfluenceBuff: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%"
-			OverclockBuff: Every click will trigger a click effect
-			Oozed: Movement speed significantly reduced
-			Seafoam: Heals the clicker user when damaged by a clicker
-			Stunned: Stunned in place
-			HotWingsBuff: Double tap to perform a fiery dash
-			ArcaneEnchantment: Your click damage and click damage hitbox are boosted
-		}
-
-		Common: {
-			Tooltips: {
-				IncreasesClickDamage: Increases click damage
-				IncreasedClickerDamage: increased clicker damage
-				IncreasesClickCritChance: Increases click critical strike chance
-				IncreasesBaseClickRadius: Increases your base click radius
-				ReducesBaseClickRadius: Reduces your base click radius
-				ReducesAmountOfClicks: Reduces the amount of clicks required for a click effect
-				ClickingGloveEvery: While in combat, automatically clicks your current clicker every
-				Clicker: Click on an enemy within range and sight to damage them
-				MoreThanOneClick: "{0} clicks"
-				OneClick: 1 click
-			}
-
-			Unknown: Unknown
-		}
+		Unknown: Unknown
+	}
 		
-		# DO NOT TRANSLATE THESE ONES, HOTKEYS ARENT LOCALIZABLE YET
-		Hotkeys: {
-			ClickerAccessory: Clicker Accessory
-			ClickerAimAssist: Clicker Aim Assist
+	# DO NOT TRANSLATE THESE ONES, HOTKEYS ARENT LOCALIZABLE YET
+	Hotkeys: {
+		ClickerAccessory: Clicker Accessory
+		ClickerAimAssist: Clicker Aim Assist
+	}
+
+	ItemName: {
+		MiceFragment: Mice Fragment
+		AimAssistModule: Aim Assist Module
+		AimbotModule: Aimbot Module
+		ABlissfulDay: A Blissful Day
+		OutsideTheCave: Outside The Cave
+		AncientClickingGlove: Ancient Clicking Glove
+		BottomlessBoxofPaperclips: Bottomless Box of Paperclips
+		ButtonMasher: Button Masher
+		ChocolateChip: Chocolate Chip
+		BigRedButton: Big Red Button
+		ChocolateMilkCookies: Chocolate Milk n' Cookies
+		ClearKeychain: Clear Keychain
+		ClickerEmblem: Clicker Emblem
+		ClickingGlove: Clicking Glove
+		Cookie: Cookie
+		EnchantedLED: Enchanted LED
+		GamerCrate: Gamer Crate
+		HandCream: Hand Cream
+		HotKeychain: Hot Keychain
+		IcePack: Ice Pack
+		MasterKeychain: Master Keychain
+		Milk: Glass of Milk
+		MilkCookies: Milk n' Cookies
+		MousePad: Mouse Pad
+		MouseTrap: Mouse Trap
+		PortableParticleAccelerator: Portable Particle Accelerator
+		GoldenTicket: Golden Ticket
+		RegalClickingGlove: Regal Clicking Glove
+		AMedal: A Medal
+		FMedal: F Medal
+		SMedal: S Medal
+		Soda: Soda
+		StickyKeychain: Sticky Keychain
+		TheScroller: The Scroller
+		TriggerFinger: Trigger Finger
+		MiceBoots: Mice Boots
+		MiceMask: Mice Mask
+		MiceSuit: Mice Suit
+		MotherboardBoots: Motherboard Boots
+		MotherboardHelmet: Motherboard Helmet
+		MotherboardSuit: Motherboard Suit
+		OverclockBoots: Overclock Boots
+		OverclockHelmet: Overclock Helmet
+		OverclockSuit: Overclock Suit
+		PrecursorBreastplate: Precursor Breastplate
+		PrecursorGreaves: Precursor Greaves
+		PrecursorHelmet: Precursor Helmet
+		RGBBreastplate: RGB Breastplate
+		RGBGreaves: RGB Greaves
+		RGBHelm: RGB Helm
+		ClickerEffectHairDye: Clicker Effect Hair Dye
+		ClickSpeedHairDye: Click Speed Hair Dye
+		InfluencePotion: Influence Potion
+		MiceDrill: Mice Drill
+		MiceHamaxe: Mice Hamaxe
+		MicePickaxe: Mice Pickaxe
+		ArcaneClicker: Arcane Clicker
+		AdamantiteClicker: Adamantite Clicker
+		ArthursClicker: Arthur's Clicker
+		AstralClicker: Astral Clicker
+		BalloonClicker: Balloon Clicker
+		BoneClicker: Bone Clicker
+		BlizzardClicker: Blizzard Clicker
+		CandleClicker: Candle Clicker
+		CaptainsClicker: Captain's Clicker
+		ChlorophyteClicker: Chlorophyte Clicker
+		CobaltClicker: Cobalt Clicker
+		CopperClicker: Copper Clicker
+		CorruptClicker: Corrupt Clicker
+		CrimsonClicker: Crimson Clicker
+		CrystalClicker: Crystal Clicker
+		CyclopsClicker: Cyclops Clicker
+		DarkClicker: Dark Clicker
+		DraconicClicker: Draconic Clicker
+		EclipticClicker: Ecliptic Clicker
+		FaultyClicker: Faulty Clicker
+		FrozenClicker: Frozen Clicker
+		GoldClicker: Gold Clicker
+		HemoClicker: Hemo Clicker
+		HighTechClicker: High Tech Clicker
+		HoneyGlazedClicker: Honey Glazed Clicker
+		ImpishClicker: Impish Clicker
+		IronClicker: Iron Clicker
+		LanternClicker: Lantern Clicker
+		LeadClicker: Lead Clicker
+		LihzahrdClicker: Lihzahrd Clicker
+		LordsClicker: Lord's Clicker
+		MagnetClicker: Magnet Clicker
+		MiceClicker: Mice Clicker
+		MyceliumClicker: Mycelium Clicker
+		MythrilClicker: Mythril Clicker
+		NaughtyClicker: Naughty Clicker
+		OrichalcumClicker: Orichalcum Clicker
+		PalladiumClicker: Palladium Clicker
+		PlatinumClicker: Platinum Clicker
+		PointyClicker: Pointy Clicker
+		RainbowClicker: Rainbow Clicker
+		RedHotClicker: Red Hot Clicker
+		SandstormClicker: Sandstorm Clicker
+		SeafoamClicker: Seafoam Clicker
+		ShadowyClicker: Shadowy Clicker
+		ShroomiteClicker: Shroomite Clicker
+		SilverClicker: Silver Clicker
+		SinisterClicker: Sinister Clicker
+		SlickClicker: Slick Clicker
+		SnottyClicker: Snotty Clicker
+		SpaceClicker: Space Clicker
+		SpectreClicker: Spectre Clicker
+		SpiralClicker: Spiral Clicker
+		StarryClicker: Starry Clicker
+		TheClicker: The Clicker
+		TinClicker: Tin Clicker
+		TitaniumClicker: Titanium Clicker
+		TorchClicker: Torch Clicker
+		TungstenClicker: Tungsten Clicker
+		UmbralClicker: Umbral Clicker
+		WitchClicker: Witch Clicker
+		WebClicker: Web Clicker
+		WoodenClicker: Wooden Clicker
+	}
+
+	ItemTooltip: {
+		MiceFragment: "'Erratic sparks skitter across this fragment'"
+		AimbotModule:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 10%
+			Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' key will toggle aimbot, targeting nearby enemies automatically
+			If the target dies or is lost, a new nearby target will be selected if possible
+			'''
+		AimAssistModule:
+			'''
+			Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' key will select a target under your cursor
+			When clicking, your click damage is dealt to that target, regardless of your cursor's position
+			Your target is lost if they exit your radius or you lose direct line of sight of them
+			'''
+		AMedal:
+			'''
+			While equipped, an empowering circle will rotate around you
+			Keeping your cursor within the circle will build up to 10 free clicker critical strikes
+			'''
+		AncientClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} second"
+		ChocolateChip: Every 15 clicks releases a burst of damaging chocolate
+		ButtonMasher: Displays your clicks per second while a clicker is held
+		BigRedButton: Every 25 clicks causes a large, fiery explosion
+		BottomlessBoxofPaperclips:
+			'''
+			Collects enemy matter as you click on enemies
+			Creates a burst of gouging paperclips when enough matter is collected
+			'''
+		ABlissfulDay: 'M. B. Nana'
+		OutsideTheCave: 'S. Streak'
+		ChocolateMilkCookies:
+			'''
+			{$Mods.ClickerClass.ItemTooltip.MilkCookies}
+			{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
+			'''
+		ClearKeychain: 
+			'''
+			Every 15 clicks covers nearby enemies with crystal slime
+			Click on an affected enemy to expel a burst of crystal shards from the target
+			'''
+		ClickerEmblem: 15% {$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}
+		ClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 3 seconds"
+		Cookie:
+			'''
+			While equipped, cookies will periodically spawn within your clicker radius
+			Click the cookie to gain bonus clicker damage, radius, and life regeneration
+			'''
+		EnchantedLED:
+			'''
+			Your clicks produce an enchanted burst of light, while accessory is visible
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 2
+			'''
+		FMedal:
+			'''
+			While equipped, an empowering circle will rotate around you
+			Keeping your cursor within the circle will build up to 100% increased clicker radius
+			'''
+		GamerCrate:
+			'''
+			'You don't actually think someone would play this, do you?'
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 50%
+			{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 20%
+			Your clicks produce an enchanted burst of mechanical light, while accessory is visible
+			{$Mods.ClickerClass.ItemTooltip.HandCream}
+			'''
+		HandCream:
+			'''
+			Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will toggle auto click on all Clickers
+			While auto click is enabled, click rates are moderately decreased
+			'''
+		HotKeychain:
+			'''
+			While in combat, clicks cause an additional delayed fiery click
+			Burns you if you click too slowly
+			'''
+		IcePack:
+			'''
+			Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will toggle auto click on all Clickers
+			While auto click is enabled, click rates are greatly decreased
+			'''
+		MasterKeychain:
+			'''
+			'I can never find the right one...'
+			Your clicks are imbued with all things slimey, hot, and crystalline
+			'''
+		Milk: Gain up to 15% clicker damage based on your amount of clicks within a second
+		MilkCookies:
+			'''
+			{$Mods.ClickerClass.ItemTooltip.Cookie}
+			{$Mods.ClickerClass.ItemTooltip.Milk}
+			'''
+		MousePad: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%"
+		MouseTrap:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 15%
+			{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 10%
+			Clicks have a small chance to briefly curse you
+			'''
+		PortableParticleAccelerator: Clickers within the inner 50% of your clicker radius deal 8 more damage
+		GoldenTicket:
+			'''
+			Generates some coins as you click on enemies
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 10%
+			'''
+		RegalClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} half-second"
+		SMedal:
+			'''
+			While equipped, empowering circles will rotate around you
+			Keeping your cursor within the circles will build up clicker critical strikes, clicker radius, and clicker effects
+			'''
+		Soda: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1"
+		StickyKeychain: Every 10 clicks sticks damaging slime on to your screen
+		TheScroller:
+			'''
+			{$CommonItemTooltip.FlightAndSlowfall}
+			Hold DOWN to fall faster
+			'''
+		TriggerFinger: 
+			'''
+			Your first click when out of combat will automatically trigger its clicker effect
+			'''
+		MiceBoots:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
+			Increases movement speed by 20%
+			'''
+		MiceMask:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} by 6%
+			'''
+		MiceSuit:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 14%
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%
+			'''
+		MotherboardBoots: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%"
+		MotherboardHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%"
+		MotherboardSuit: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%"
+		RGBGreaves: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%"
+		RGBHelm: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1"
+		RGBBreastplate: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%"
+		OverclockBoots: Increases movement speed by 10%
+		OverclockHelmet: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1"
+		OverclockSuit: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 15%"
+		PrecursorBreastplate:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 15%
+			{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius} by 50%
+			'''
+		PrecursorGreaves: Increases movement speed by 15%
+		PrecursorHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%"
+		InfluencePotion: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%"
+		SpectreClicker: Click on an enemy within sight to damage them
+	}
+
+	SetBonus: {
+		Mice: Right clicking a position within your clicker radius will teleport you to it
+		Motherboard: Right click to place a radius extending sensor
+		Overclock:
+			'''
+			Every 100 clicks briefly grants you 'Overclock', making every click trigger its effect
+			While Overclock is active, you deal 50% less click damage
+			'''
+		Precursor: While in combat, your cursor constantly leaves behind damaging afterimages
+		RGB: Every 20 clicks propels a chromatic burst from your cursor
+	}
+
+	InfoDisplayName: {
+		CPSInfoDisplay: Clicks per second
+	}
+
+	ClickEffect: {
+		TrueStrike: {
+			Name: True Strike
+			Description: Deals double damage and always inflicts a critical hit
+		}
+			
+		OgreGold: {
+			Name: Ogre Gold
+			Description: Covers enemies under cursor in snot, greatly slowing them
+		}
+			
+		SeaSpray: {
+			Name: Sea Spray
+			Description: Slows nearby enemies and steals life from them
+		}
+			
+		WyvernsRoar: {
+			Name: Wyvern's Roar
+			Description: Calls in a wyvern to blast the area with flames
+		}
+			
+		Presents: {
+			Name: Presents
+			Description: Creates a burst of parachute-presents that can be clicked to release mines
+		}
+			
+		Insanity: {
+			Name: Insanity
+			Description: Summons a shadowy claw that strikes the area
+		}
+			
+		Rainbolt: {
+			Name: Rainbolt
+			Description: Releases multiple homing rainbow fragments
+		}
+			
+		ArcaneEnchantment: {
+			Name: Arcane Enchantment
+			Description: Grants increased click damage and a bigger click hitbox
+		}
+			
+		HolyNova: {
+			Name: Holy Nova
+			Description: Damages every enemy within the clicker's radius with a guaranteed critical hit
 		}
 
-		ItemName: {
-			MiceFragment: Mice Fragment
-			AimAssistModule: Aim Assist Module
-			AimbotModule: Aimbot Module
-			ABlissfulDay: A Blissful Day
-			OutsideTheCave: Outside The Cave
-			AncientClickingGlove: Ancient Clicking Glove
-			BottomlessBoxofPaperclips: Bottomless Box of Paperclips
-			ButtonMasher: Button Masher
-			ChocolateChip: Chocolate Chip
-			BigRedButton: Big Red Button
-			ChocolateMilkCookies: Chocolate Milk n' Cookies
-			ClearKeychain: Clear Keychain
-			ClickerEmblem: Clicker Emblem
-			ClickingGlove: Clicking Glove
-			Cookie: Cookie
-			EnchantedLED: Enchanted LED
-			GamerCrate: Gamer Crate
-			HandCream: Hand Cream
-			HotKeychain: Hot Keychain
-			IcePack: Ice Pack
-			MasterKeychain: Master Keychain
-			Milk: Glass of Milk
-			MilkCookies: Milk n' Cookies
-			MousePad: Mouse Pad
-			MouseTrap: Mouse Trap
-			PortableParticleAccelerator: Portable Particle Accelerator
-			GoldenTicket: Golden Ticket
-			RegalClickingGlove: Regal Clicking Glove
-			AMedal: A Medal
-			FMedal: F Medal
-			SMedal: S Medal
-			Soda: Soda
-			StickyKeychain: Sticky Keychain
-			TheScroller: The Scroller
-			TriggerFinger: Trigger Finger
-			MiceBoots: Mice Boots
-			MiceMask: Mice Mask
-			MiceSuit: Mice Suit
-			MotherboardBoots: Motherboard Boots
-			MotherboardHelmet: Motherboard Helmet
-			MotherboardSuit: Motherboard Suit
-			OverclockBoots: Overclock Boots
-			OverclockHelmet: Overclock Helmet
-			OverclockSuit: Overclock Suit
-			PrecursorBreastplate: Precursor Breastplate
-			PrecursorGreaves: Precursor Greaves
-			PrecursorHelmet: Precursor Helmet
-			RGBBreastplate: RGB Breastplate
-			RGBGreaves: RGB Greaves
-			RGBHelm: RGB Helm
-			ClickerEffectHairDye: Clicker Effect Hair Dye
-			ClickSpeedHairDye: Click Speed Hair Dye
-			InfluencePotion: Influence Potion
-			MiceDrill: Mice Drill
-			MiceHamaxe: Mice Hamaxe
-			MicePickaxe: Mice Pickaxe
-			ArcaneClicker: Arcane Clicker
-			AdamantiteClicker: Adamantite Clicker
-			ArthursClicker: Arthur's Clicker
-			AstralClicker: Astral Clicker
-			BalloonClicker: Balloon Clicker
-			BoneClicker: Bone Clicker
-			BlizzardClicker: Blizzard Clicker
-			CandleClicker: Candle Clicker
-			CaptainsClicker: Captain's Clicker
-			ChlorophyteClicker: Chlorophyte Clicker
-			CobaltClicker: Cobalt Clicker
-			CopperClicker: Copper Clicker
-			CorruptClicker: Corrupt Clicker
-			CrimsonClicker: Crimson Clicker
-			CrystalClicker: Crystal Clicker
-			CyclopsClicker: Cyclops Clicker
-			DarkClicker: Dark Clicker
-			DraconicClicker: Draconic Clicker
-			EclipticClicker: Ecliptic Clicker
-			FaultyClicker: Faulty Clicker
-			FrozenClicker: Frozen Clicker
-			GoldClicker: Gold Clicker
-			HemoClicker: Hemo Clicker
-			HighTechClicker: High Tech Clicker
-			HoneyGlazedClicker: Honey Glazed Clicker
-			ImpishClicker: Impish Clicker
-			IronClicker: Iron Clicker
-			LanternClicker: Lantern Clicker
-			LeadClicker: Lead Clicker
-			LihzahrdClicker: Lihzahrd Clicker
-			LordsClicker: Lord's Clicker
-			MagnetClicker: Magnet Clicker
-			MiceClicker: Mice Clicker
-			MyceliumClicker: Mycelium Clicker
-			MythrilClicker: Mythril Clicker
-			NaughtyClicker: Naughty Clicker
-			OrichalcumClicker: Orichalcum Clicker
-			PalladiumClicker: Palladium Clicker
-			PlatinumClicker: Platinum Clicker
-			PointyClicker: Pointy Clicker
-			RainbowClicker: Rainbow Clicker
-			RedHotClicker: Red Hot Clicker
-			SandstormClicker: Sandstorm Clicker
-			SeafoamClicker: Seafoam Clicker
-			ShadowyClicker: Shadowy Clicker
-			ShroomiteClicker: Shroomite Clicker
-			SilverClicker: Silver Clicker
-			SinisterClicker: Sinister Clicker
-			SlickClicker: Slick Clicker
-			SnottyClicker: Snotty Clicker
-			SpaceClicker: Space Clicker
-			SpectreClicker: Spectre Clicker
-			SpiralClicker: Spiral Clicker
-			StarryClicker: Starry Clicker
-			TheClicker: The Clicker
-			TinClicker: Tin Clicker
-			TitaniumClicker: Titanium Clicker
-			TorchClicker: Torch Clicker
-			TungstenClicker: Tungsten Clicker
-			UmbralClicker: Umbral Clicker
-			WitchClicker: Witch Clicker
-			WebClicker: Web Clicker
-			WoodenClicker: Wooden Clicker
+		Spiral: {
+			Name: Spiral
+			Description: Creates a spiral galaxy that draws in enemies within close proximity
+		}
+			
+		Yoink: {
+			Name: Yoink
+			Description: Grabs items and coins near your cursor
+		}
+			
+		ChromaticBurst: {
+			Name: Chromatic Burst
+			Description: Propels chromatic energy out and then towards your cursor
+		}
+			
+		BloodSucker: {
+			Name: Blood Sucker
+			Description: Creates 2 blood globules that spiral inwards from the cursor radius
+		}
+			
+		BalloonDefense: {
+			Name: Balloon Defense
+			Description: Calls forth a friendly slime on a poppable balloon
+		}
+			
+		Incinerate: {
+			Name: Incinerate
+			Description: Creates 8 sparks downwards along nearby tiles that burn the area
 		}
 
-		ItemTooltip: {
-			MiceFragment: "'Erratic sparks skitter across this fragment'"
-			AimbotModule:
-				'''
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 10%
-				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' key will toggle aimbot, targeting nearby enemies automatically
-				If the target dies or is lost, a new nearby target will be selected if possible
-				'''
-			AimAssistModule:
-				'''
-				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' key will select a target under your cursor
-				When clicking, your click damage is dealt to that target, regardless of your cursor's position
-				Your target is lost if they exit your radius or you lose direct line of sight of them
-				'''
-			AMedal:
-				'''
-				While equipped, an empowering circle will rotate around you
-				Keeping your cursor within the circle will build up to 10 free clicker critical strikes
-				'''
-			AncientClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} second"
-			ChocolateChip: Every 15 clicks releases a burst of damaging chocolate
-			ButtonMasher: Displays your clicks per second while a clicker is held
-			BigRedButton: Every 25 clicks causes a large, fiery explosion
-			BottomlessBoxofPaperclips:
-				'''
-				Collects enemy matter as you click on enemies
-				Creates a burst of gouging paperclips when enough matter is collected
-				'''
-			ABlissfulDay: 'M. B. Nana'
-			OutsideTheCave: 'S. Streak'
-			ChocolateMilkCookies:
-				'''
-				{$Mods.ClickerClass.ItemTooltip.MilkCookies}
-				{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
-				'''
-			ClearKeychain: 
-				'''
-				Every 15 clicks covers nearby enemies with crystal slime
-				Click on an affected enemy to expel a burst of crystal shards from the target
-				'''
-			ClickerEmblem: 15% {$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}
-			ClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 3 seconds"
-			Cookie:
-				'''
-				While equipped, cookies will periodically spawn within your clicker radius
-				Click the cookie to gain bonus clicker damage, radius, and life regeneration
-				'''
-			EnchantedLED:
-				'''
-				Your clicks produce an enchanted burst of light, while accessory is visible
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 2
-				'''
-			FMedal:
-				'''
-				While equipped, an empowering circle will rotate around you
-				Keeping your cursor within the circle will build up to 100% increased clicker radius
-				'''
-			GamerCrate:
-				'''
-				'You don't actually think someone would play this, do you?'
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 50%
-				{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 20%
-				Your clicks produce an enchanted burst of mechanical light, while accessory is visible
-				{$Mods.ClickerClass.ItemTooltip.HandCream}
-				'''
-			HandCream:
-				'''
-				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will toggle auto click on all Clickers
-				While auto click is enabled, click rates are moderately decreased
-				'''
-			HotKeychain:
-				'''
-				While in combat, clicks cause an additional delayed fiery click
-				Burns you if you click too slowly
-				'''
-			IcePack:
-				'''
-				Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will toggle auto click on all Clickers
-				While auto click is enabled, click rates are greatly decreased
-				'''
-			MasterKeychain:
-				'''
-				'I can never find the right one...'
-				Your clicks are imbued with all things slimey, hot, and crystalline
-				'''
-			Milk: Gain up to 15% clicker damage based on your amount of clicks within a second
-			MilkCookies:
-				'''
-				{$Mods.ClickerClass.ItemTooltip.Cookie}
-				{$Mods.ClickerClass.ItemTooltip.Milk}
-				'''
-			MousePad: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%"
-			MouseTrap:
-				'''
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 15%
-				{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 10%
-				Clicks have a small chance to briefly curse you
-				'''
-			PortableParticleAccelerator: Clickers within the inner 50% of your clicker radius deal 8 more damage
-			GoldenTicket:
-				'''
-				Generates some coins as you click on enemies
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 10%
-				'''
-			RegalClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} half-second"
-			SMedal:
-				'''
-				While equipped, empowering circles will rotate around you
-				Keeping your cursor within the circles will build up clicker critical strikes, clicker radius, and clicker effects
-				'''
-			Soda: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1"
-			StickyKeychain: Every 10 clicks sticks damaging slime on to your screen
-			TheScroller:
-				'''
-				{$CommonItemTooltip.FlightAndSlowfall}
-				Hold DOWN to fall faster
-				'''
-			TriggerFinger: 
-				'''
-				Your first click when out of combat will automatically trigger its clicker effect
-				'''
-			MiceBoots:
-				'''
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
-				Increases movement speed by 20%
-				'''
-			MiceMask:
-				'''
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} by 6%
-				'''
-			MiceSuit:
-				'''
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 14%
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%
-				'''
-			MotherboardBoots: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%"
-			MotherboardHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%"
-			MotherboardSuit: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%"
-			RGBGreaves: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%"
-			RGBHelm: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1"
-			RGBBreastplate: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%"
-			OverclockBoots: Increases movement speed by 10%
-			OverclockHelmet: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1"
-			OverclockSuit: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 15%"
-			PrecursorBreastplate:
-				'''
-				{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 15%
-				{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius} by 50%
-				'''
-			PrecursorGreaves: Increases movement speed by 15%
-			PrecursorHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%"
-			InfluencePotion: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%"
-			SpectreClicker: Click on an enemy within sight to damage them
+		Lacerate: {
+			Name: Lacerate
+			Description: Inflicts the Gouge debuff, dealing 30 damage per second
+		}
+			
+		Starfall: {
+			Name: Starfall
+			Description: Calls down a piercing star from the heavens
+		}
+			
+		Fritz: {
+			Name: Fritz
+			Description: Releases a random shock within your clicker radius
 		}
 
-		SetBonus: {
-			Mice: Right clicking a position within your clicker radius will teleport you to it
-			Motherboard: Right click to place a radius extending sensor
-			Overclock:
+		Flurry: {
+			Name: Flurry
+			Description: Creates a blizzard cloud that rains freezing hail downwards
+		}
+
+		HotWings: {
+			Name: Hot Wings
+			Description: Grants a single-use dash; use by double-tapping a direction
+		}
+			
+		Illuminate: {
+			Name: Illuminate
+			Description: Creates 8 sparks along nearby tiles that illuminate the area
+		}
+
+		Bombard: {
+			Name: Bombard
+			Description: Causes 4 cannonballs to rain from the sky
+		}
+
+		ToxicRelease: {
+			Name: Toxic Release
+			Description: Expels 10 poisonous clouds around the cursor that linger
+		}
+
+		Haste: {
+			Name: Haste
+			Description: Grants a jump boost and increased movement speed
+		}
+
+		CursedEruption: {
+			Name: Cursed Eruption
+			Description: Deals damage in a large area of effect and inflicts {$BuffName.Oiled} and {$BuffName.CursedInferno}
+		}
+
+		Infest: {
+			Name: Infest
+			Description: Fires 8 ichor streams that home in at enemies
+		}
+
+		Dazzle: {
+			Name: Dazzle
+			Description: Inflicts the {$BuffName.Confused} debuff: {$BuffDescription.Confused}
+		}
+
+		DarkBurst: {
+			Name: Dark Burst
+			Description: Deals damage in a large area of effect
+		}
+
+		Totality: {
+			Name: Totality
+			Description: Creates a miniature eclipse, repeatedly firing out homing projectiles
+		}
+
+		Freeze: {
+			Name: Freeze
+			Description: Freezes enemies under your cursor, stopping them in place
+		}
+
+		Linger: {
+			Name: Linger
+			Description: Creates 5 gravity-affected blood globules that linger
+		}
+
+		Discharge: {
+			Name: Discharge
+			Description: Blasts out 4 short-ranged lasers around the cursor
+		}
+
+		StickyHoney: {
+			Name: Sticky Honey
+			Description: Covers enemies under cursor in sticky honey, slowing them
+		}
+
+		SolarFlare: {
+			Name: Solar Flare
+			Description: Spawns a lingering sun projectile that damages and inflicts the Oiled and On Fire! debuffs
+		}
+			
+		Smite: {
+			Name: Smite
+			Description: Propels up to 8 torch flames towards your cursor
+		}
+
+		Conqueror: {
+			Name: Conqueror
+			Description: Creates an area-of-effect phantasmal explosion that deals double damage and a guaranteed critical hit
+		}
+
+		Collision: {
+			Name: Collision
+			Description: Fires out 8 erratic bolts outwards that, after a second, collapse back
+		}
+
+		Spores: {
+			Name: Spores
+			Description: Spits out a volley of drifting spores
+		}
+
+		Embrittle: {
+			Name: Embrittle
+			Description: Inflicts the {$Mods.ClickerClass.BuffName.Embrittle} debuff: {$Mods.ClickerClass.BuffDescription.Embrittle}
+		}
+
+		PetalStorm: {
+			Name: Petal Storm
+			Description: Causes 5 petal projectiles to be summoned near the player and shoot across the screen
+		}
+
+		Regenerate: {
+			Name: Regenerate
+			Description: Grants the {$BuffName.RapidHealing} buff: {$BuffDescription.RapidHealing}
+		}
+
+		StingingThorn: {
+			Name: Stinging Thorn
+			Description: Fires a thorn projectile that travels towards the nearest enemy
+		}
+
+		Inferno: {
+			Name: Inferno
+			Description: Creates an explosion, dealing damage and inflicting the {$BuffName.Oiled} and {$BuffName.OnFire} debuffs
+		}
+
+		DustDevil: {
+			Name: Dust Devil
+			Description: Creates a violent tornado that chases down enemies
+		}
+
+		Curse: {
+			Name: Curse
+			Description: Fires a shadowflame skull towards the nearest enemy
+		}
+
+		AutoClick: {
+			Name: Auto Click
+			Description: Grants the {$Mods.ClickerClass.BuffName.AutoClick} buff, reducing the use time, but granting auto-use
+		}
+
+		Siphon: {
+			Name: Siphon
+			Description: Deals a small amount of damage and restores the player's health by 5
+		}
+
+		Splash: {
+			Name: Splash
+			Description: Creates a fountain of 6 damaging water projectiles
+		}
+
+		StarStorm: {
+			Name: Star Storm
+			Description: Causes 3 stars to fall from the sky and explode
+		}
+
+		PhaseReach: {
+			Name: Phase Reach
+			Description: Damage enemies regardless of location
+		}
+
+		TheClick: {
+			Name: The Click
+			Description: Deals an additional 1% of the enemy's maximum life as damage
+		}
+
+		RazorsEdge: {
+			Name: Razor's Edge
+			Description: Fires out 5 orbiting sawblades that spread outwards
+		}
+
+		ShadowLash: {
+			Name: Shadow Lash
+			Description: Causes a burst of 5 shadow projectiles to seek out nearby enemies
+		}
+
+		WildMagic: {
+			Name: Wild Magic
+			Description: Randomly acts as any possible click effect
+		}
+
+		WebSplash: {
+			Name: Web Splash
+			Description: Fires out a globule of sticky web towards the nearest enemy
+		}
+
+		ChocolateChip: {
+			Name: Chocolate Chip
+			Description: Releases a burst of damaging chocolate
+		}
+
+		DoubleClick: {
+			Name: Double Click
+			Description: Deals damage twice with one attack
+		}
+
+		DoubleClick2: {
+			Name: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Name}"
+			Description: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Description}"
+		}
+
+		StickyKeychain: {
+			Name: Sticky Keychain
+			Description: Sticks damaging slime on to your screen
+		}
+
+		BigRedButton: {
+			Name: Kaboom
+			Description: Causes a large explosion
+		}
+			
+		ClearKeychain: {
+			Name: Crystalize
+			Description: Covers nearby enemies in crystal slime; Click them to deal AOE damage
+		}
+	}
+
+	Prefix: {
+		ClickerRadius: {
+			$parentVal: Reaching
+			Tooltip: +15% base clicker radius
+		}
+
+		Elite: Elite
+		Pro: Pro
+		Amateur: Amateur
+		Novice: Novice
+		Laggy: Laggy
+		Disconnected: Disconnected
+
+		PrefixClickerRadius: {
+			Tooltip: "{0}% base clicker radius"
+		}
+
+		PrefixClickBoost: {
+			Tooltip: "{0} clicks required"
+		}
+	}
+
+	Tooltip: {
+		ClickerTag: Clicker Class
+		TotalClicks: Total clicks
+		MoneyGenerated: Money Generated
+		ClickDamage: "{0} click damage"
+		ForMoreInfo: Hold 'Auto Select' key ({0}) to show click effects
+		AimbotModuleEnabled: Aimbot enabled
+		AimbotModuleDisabled: Aimbot disabled
+	}
+
+	DeathMessage: {
+		HotKeychain: "{0} fell for the spicy keychain."
+	}
+
+	ClickerConfigClient: {
+		Label: Configuration
+
+		Header: {
+			GeneralOptions: General Options
+		}
+
+		ShowClassTags: {
+			Label: Display Class Tags
+			Tooltip: Toggle the display of class tags for items made for custom classes on the tooltip
+		}
+
+		ShowEffectSuggestion: {
+			Label: Display 'hold auto select' text
+			Tooltip:
 				'''
-				Every 100 clicks briefly grants you 'Overclock', making every click trigger its effect
-				While Overclock is active, you deal 50% less click damage
+				Toggle the display of the 'Hold auto select for clicker effects' suggestion text for clicker weapons
+				-The key will continue to work regardless of this toggle-
 				'''
-			Precursor: While in combat, your cursor constantly leaves behind damaging afterimages
-			RGB: Every 20 clicks propels a chromatic burst from your cursor
 		}
 
-		InfoDisplayName: {
-			CPSInfoDisplay: Clicks per second
+		ShowCustomCursors: {
+			Label: Display Custom Cursors
+			Tooltip: Toggle the display of 'Custom Cursors' for clicker weapons
 		}
 
-		ClickEffect: {
-			TrueStrike: {
-				Name: True Strike
-				Description: Deals double damage and always inflicts a critical hit
-			}
-			
-			OgreGold: {
-				Name: Ogre Gold
-				Description: Covers enemies under cursor in snot, greatly slowing them
-			}
-			
-			SeaSpray: {
-				Name: Sea Spray
-				Description: Slows nearby enemies and steals life from them
-			}
-			
-			WyvernsRoar: {
-				Name: Wyvern's Roar
-				Description: Calls in a wyvern to blast the area with flames
-			}
-			
-			Presents: {
-				Name: Presents
-				Description: Creates a burst of parachute-presents that can be clicked to release mines
-			}
-			
-			Insanity: {
-				Name: Insanity
-				Description: Summons a shadowy claw that strikes the area
-			}
-			
-			Rainbolt: {
-				Name: Rainbolt
-				Description: Releases multiple homing rainbow fragments
-			}
-			
-			ArcaneEnchantment: {
-				Name: Arcane Enchantment
-				Description: Grants increased click damage and a bigger click hitbox
-			}
-			
-			HolyNova: {
-				Name: Holy Nova
-				Description: Damages every enemy within the clicker's radius with a guaranteed critical hit
-			}
-
-			Spiral: {
-				Name: Spiral
-				Description: Creates a spiral galaxy that draws in enemies within close proximity
-			}
-			
-			Yoink: {
-				Name: Yoink
-				Description: Grabs items and coins near your cursor
-			}
-			
-			ChromaticBurst: {
-				Name: Chromatic Burst
-				Description: Propels chromatic energy out and then towards your cursor
-			}
-			
-			BloodSucker: {
-				Name: Blood Sucker
-				Description: Creates 2 blood globules that spiral inwards from the cursor radius
-			}
-			
-			BalloonDefense: {
-				Name: Balloon Defense
-				Description: Calls forth a friendly slime on a poppable balloon
-			}
-			
-			Incinerate: {
-				Name: Incinerate
-				Description: Creates 8 sparks downwards along nearby tiles that burn the area
-			}
-
-			Lacerate: {
-				Name: Lacerate
-				Description: Inflicts the Gouge debuff, dealing 30 damage per second
-			}
-			
-			Starfall: {
-				Name: Starfall
-				Description: Calls down a piercing star from the heavens
-			}
-			
-			Fritz: {
-				Name: Fritz
-				Description: Releases a random shock within your clicker radius
-			}
-
-			Flurry: {
-				Name: Flurry
-				Description: Creates a blizzard cloud that rains freezing hail downwards
-			}
-
-			HotWings: {
-				Name: Hot Wings
-				Description: Grants a single-use dash; use by double-tapping a direction
-			}
-			
-			Illuminate: {
-				Name: Illuminate
-				Description: Creates 8 sparks along nearby tiles that illuminate the area
-			}
-
-			Bombard: {
-				Name: Bombard
-				Description: Causes 4 cannonballs to rain from the sky
-			}
-
-			ToxicRelease: {
-				Name: Toxic Release
-				Description: Expels 10 poisonous clouds around the cursor that linger
-			}
-
-			Haste: {
-				Name: Haste
-				Description: Grants a jump boost and increased movement speed
-			}
-
-			CursedEruption: {
-				Name: Cursed Eruption
-				Description: Deals damage in a large area of effect and inflicts {$BuffName.Oiled} and {$BuffName.CursedInferno}
-			}
-
-			Infest: {
-				Name: Infest
-				Description: Fires 8 ichor streams that home in at enemies
-			}
-
-			Dazzle: {
-				Name: Dazzle
-				Description: Inflicts the {$BuffName.Confused} debuff: {$BuffDescription.Confused}
-			}
-
-			DarkBurst: {
-				Name: Dark Burst
-				Description: Deals damage in a large area of effect
-			}
-
-			Totality: {
-				Name: Totality
-				Description: Creates a miniature eclipse, repeatedly firing out homing projectiles
-			}
-
-			Freeze: {
-				Name: Freeze
-				Description: Freezes enemies under your cursor, stopping them in place
-			}
-
-			Linger: {
-				Name: Linger
-				Description: Creates 5 gravity-affected blood globules that linger
-			}
-
-			Discharge: {
-				Name: Discharge
-				Description: Blasts out 4 short-ranged lasers around the cursor
-			}
-
-			StickyHoney: {
-				Name: Sticky Honey
-				Description: Covers enemies under cursor in sticky honey, slowing them
-			}
-
-			SolarFlare: {
-				Name: Solar Flare
-				Description: Spawns a lingering sun projectile that damages and inflicts the Oiled and On Fire! debuffs
-			}
-			
-			Smite: {
-				Name: Smite
-				Description: Propels up to 8 torch flames towards your cursor
-			}
-
-			Conqueror: {
-				Name: Conqueror
-				Description: Creates an area-of-effect phantasmal explosion that deals double damage and a guaranteed critical hit
-			}
-
-			Collision: {
-				Name: Collision
-				Description: Fires out 8 erratic bolts outwards that, after a second, collapse back
-			}
-
-			Spores: {
-				Name: Spores
-				Description: Spits out a volley of drifting spores
-			}
-
-			Embrittle: {
-				Name: Embrittle
-				Description: Inflicts the {$Mods.ClickerClass.BuffName.Embrittle} debuff: {$Mods.ClickerClass.BuffDescription.Embrittle}
-			}
-
-			PetalStorm: {
-				Name: Petal Storm
-				Description: Causes 5 petal projectiles to be summoned near the player and shoot across the screen
-			}
-
-			Regenerate: {
-				Name: Regenerate
-				Description: Grants the {$BuffName.RapidHealing} buff: {$BuffDescription.RapidHealing}
-			}
-
-			StingingThorn: {
-				Name: Stinging Thorn
-				Description: Fires a thorn projectile that travels towards the nearest enemy
-			}
-
-			Inferno: {
-				Name: Inferno
-				Description: Creates an explosion, dealing damage and inflicting the {$BuffName.Oiled} and {$BuffName.OnFire} debuffs
-			}
-
-			DustDevil: {
-				Name: Dust Devil
-				Description: Creates a violent tornado that chases down enemies
-			}
-
-			Curse: {
-				Name: Curse
-				Description: Fires a shadowflame skull towards the nearest enemy
-			}
-
-			AutoClick: {
-				Name: Auto Click
-				Description: Grants the {$Mods.ClickerClass.BuffName.AutoClick} buff, reducing the use time, but granting auto-use
-			}
-
-			Siphon: {
-				Name: Siphon
-				Description: Deals a small amount of damage and restores the player's health by 5
-			}
-
-			Splash: {
-				Name: Splash
-				Description: Creates a fountain of 6 damaging water projectiles
-			}
-
-			StarStorm: {
-				Name: Star Storm
-				Description: Causes 3 stars to fall from the sky and explode
-			}
-
-			PhaseReach: {
-				Name: Phase Reach
-				Description: Damage enemies regardless of location
-			}
-
-			TheClick: {
-				Name: The Click
-				Description: Deals an additional 1% of the enemy's maximum life as damage
-			}
-
-			RazorsEdge: {
-				Name: Razor's Edge
-				Description: Fires out 5 orbiting sawblades that spread outwards
-			}
-
-			ShadowLash: {
-				Name: Shadow Lash
-				Description: Causes a burst of 5 shadow projectiles to seek out nearby enemies
-			}
-
-			WildMagic: {
-				Name: Wild Magic
-				Description: Randomly acts as any possible click effect
-			}
-
-			WebSplash: {
-				Name: Web Splash
-				Description: Fires out a globule of sticky web towards the nearest enemy
-			}
-
-			ChocolateChip: {
-				Name: Chocolate Chip
-				Description: Releases a burst of damaging chocolate
-			}
-
-			DoubleClick: {
-				Name: Double Click
-				Description: Deals damage twice with one attack
-			}
-
-			DoubleClick2: {
-				Name: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Name}"
-				Description: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Description}"
-			}
-
-			StickyKeychain: {
-				Name: Sticky Keychain
-				Description: Sticks damaging slime on to your screen
-			}
-
-			BigRedButton: {
-				Name: Kaboom
-				Description: Causes a large explosion
-			}
-			
-			ClearKeychain: {
-				Name: Crystalize
-				Description: Covers nearby enemies in crystal slime; Click them to deal AOE damage
-			}
+		ShowClickIndicator: {
+			Label: Display Click Indicator
+			Tooltip: Toggle the display of click indicators where you used a clicker
 		}
 
-		Prefix: {
-			ClickerRadius: {
-				$parentVal: Reaching
-				Tooltip: +15% base clicker radius
-			}
-
-			Elite: Elite
-			Pro: Pro
-			Amateur: Amateur
-			Novice: Novice
-			Laggy: Laggy
-			Disconnected: Disconnected
-
-			PrefixClickerRadius: {
-				Tooltip: "{0}% base clicker radius"
-			}
-
-			PrefixClickBoost: {
-				Tooltip: "{0} clicks required"
-			}
-		}
-
-		Tooltip: {
-			ClickerTag: Clicker Class
-			TotalClicks: Total clicks
-			MoneyGenerated: Money Generated
-			ClickDamage: "{0} click damage"
-			ForMoreInfo: Hold 'Auto Select' key ({0}) to show click effects
-			AimbotModuleEnabled: Aimbot enabled
-			AimbotModuleDisabled: Aimbot disabled
-		}
-
-		DeathMessage: {
-			HotKeychain: "{0} fell for the spicy keychain."
-		}
-
-		ClickerConfigClient: {
-			Label: Configuration
-
-			Header: {
-				GeneralOptions: General Options
-			}
-
-			ShowClassTags: {
-				Label: Display Class Tags
-				Tooltip: Toggle the display of class tags for items made for custom classes on the tooltip
-			}
-
-			ShowEffectSuggestion: {
-				Label: Display 'hold auto select' text
-				Tooltip:
-					'''
-					Toggle the display of the 'Hold auto select for clicker effects' suggestion text for clicker weapons
-					-The key will continue to work regardless of this toggle-
-					'''
-			}
-
-			ShowCustomCursors: {
-				Label: Display Custom Cursors
-				Tooltip: Toggle the display of 'Custom Cursors' for clicker weapons
-			}
-
-			ShowClickIndicator: {
-				Label: Display Click Indicator
-				Tooltip: Toggle the display of click indicators where you used a clicker
-			}
-
-			ShowOthersClickIndicator: {
-				Label: Display Others Click Indicator
-				Tooltip: Toggle the display of click indicators where others used a clicker
-			}
+		ShowOthersClickIndicator: {
+			Label: Display Others Click Indicator
+			Tooltip: Toggle the display of click indicators where others used a clicker
 		}
 	}
 }

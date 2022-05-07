@@ -53,6 +53,7 @@ Mods: {
 			Unknown: Неизвестно
 		}
 
+		# DO NOT TRANSLATE THESE ONES, HOTKEYS ARENT LOCALIZABLE YET
 		Hotkeys: {
 			ClickerAccessory: Clicker Accessory
 			ClickerAimAssist: Clicker Aim Assist

@@ -664,7 +664,7 @@ Mods.ClickerClass: {
 
 	Prefix: {
 		ClickerRadius: {
-			$parentVal: Alcance
+			$parentVal: (Distante)
 			Tooltip: +15% de raio de clique básico
 		}
 

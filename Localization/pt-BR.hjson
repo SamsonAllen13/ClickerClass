@@ -18,7 +18,7 @@ Mods.ClickerClass: {
 	}
 
 	BuffDescription: {
-		AutoClick: Segure o botão direito do mouse para clicar automaticamente
+		AutoClick: Segure o botão esquerdo do mouse para clicar automaticamente
 		CookieBuff: Aumenta o seu dano por clique, raio, e regeneração de vida
 		Crystalized: Cliques liberarão fragmentos de cristal em várias direções
 		Embrittle: Cliques causarão 8 danos extra a este alvo

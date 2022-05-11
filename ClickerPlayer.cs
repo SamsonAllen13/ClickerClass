@@ -1451,7 +1451,7 @@ namespace ClickerClass
 			{
 				enteredWorldOnceThisSession = true;
 
-				Main.NewText($"[c/{Color.Orange.Hex3()}:Welcome to {Mod.DisplayName}!] If your clickers attack slowly, this may be caused by using mods which enable auto-reuse, such as OmniSwing.");
+				Main.NewText(LangHelper.GetText("Common.OnEnterWorldWarning", Color.Orange.Hex3(), Mod.DisplayName));
 			}
 		}
 

@@ -18,7 +18,7 @@ Mods.ClickerClass: {
 	}
 
 	BuffDescription: {
-		AutoClick: Segure o botão direito do mouse para clicar automaticamente
+		AutoClick: Segure o botão esquerdo do mouse para clicar automaticamente
 		CookieBuff: Aumenta o seu dano por clique, raio, e regeneração de vida
 		Crystalized: Cliques liberarão fragmentos de cristal em várias direções
 		Embrittle: Cliques causarão 8 danos extra a este alvo
@@ -50,6 +50,11 @@ Mods.ClickerClass: {
 		}
 
 		Unknown: Desconhecido
+		OnEnterWorldWarning: "[c/{0}:Seja bem-vindo ao {1}!] Se seus clickers atacarem lentamente, isso pode ser causado pelo uso de mods que ativam o reuso automático, como Omniswing."
+	}
+
+	DamageClassName: {
+		ClickerDamage : dano por clique
 	}
 
 	# DO NOT TRANSLATE THESE ONES, HOTKEYS ARENT LOCALIZABLE YET

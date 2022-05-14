@@ -122,7 +122,7 @@ namespace ClickerClass.UI
 			if (frame.Contains(Main.mouseX, Main.mouseY))
 			{
 				//player.showItemIcon = false;
-				string text = "Charges: " + (int)(GetValue() / 20) + " / 10";
+				string text = $"{LangHelper.GetText("UI.MedalGauge")}: " + (int)(GetValue() / 20) + " / 10";
 				Main.instance.MouseTextHackZoom(text, TextColor());
 				Main.mouseText = true;
 			}

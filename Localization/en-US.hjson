@@ -702,6 +702,12 @@ Mods.ClickerClass: {
 		HotKeychain: "{0} fell for the spicy keychain."
 	}
 
+	UI: {
+		HotKeychainGauge: Heat
+		MedalGauge: Charges
+		PaperclipsGauge: Matter
+	}
+
 	ClickerConfigClient: {
 		Label: Configuration
 

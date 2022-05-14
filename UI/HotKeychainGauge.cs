@@ -117,7 +117,7 @@ namespace ClickerClass.UI
 			if (frame.Contains(Main.mouseX, Main.mouseY))
 			{
 				//player.showItemIcon = false;
-				string text = "Heat: " + clickerPlayer.accHotKeychainAmount + " / 50";
+				string text = $"{LangHelper.GetText("UI.HotKeychainGauge")}: " + clickerPlayer.accHotKeychainAmount + " / 50";
 				Main.instance.MouseTextHackZoom(text, Terraria.ID.ItemRarityID.Orange);
 				Main.mouseText = true;
 			}

@@ -699,6 +699,16 @@ Mods.ClickerClass: {
 		AimbotModuleDisabled: Aimbot desativado
 	}
 
+	DeathMessage: {
+		HotKeychain: "{0} caiu no chaveiro picante."
+	}
+
+	UI: {
+		HotKeychainGauge: Calor
+		MedalGauge: Cargas
+		PaperclipsGauge: Matéria
+	}
+
 	ClickerConfigClient: {
 		Label: Configuração
 

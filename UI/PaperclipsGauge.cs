@@ -117,7 +117,7 @@ namespace ClickerClass.UI
 			if (frame.Contains(Main.mouseX, Main.mouseY))
 			{
 				//player.showItemIcon = false;
-				string text = "Matter: " + clickerPlayer.accPaperclipsAmount + " / 100";
+				string text = $"{LangHelper.GetText("UI.PaperclipsGauge")}: " + clickerPlayer.accPaperclipsAmount + " / 100";
 				Main.instance.MouseTextHackZoom(text, Terraria.ID.ItemRarityID.White);
 				Main.mouseText = true;
 			}

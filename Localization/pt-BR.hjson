@@ -99,9 +99,9 @@ Mods.ClickerClass: {
 		StickyKeychain: Chaveiro Pegajoso
 		TheScroller: O Rolador
 		TriggerFinger: Dedo do Gatilho
-		MiceBoots: Botas do Mouse
-		MiceMask: Máscara do Mouse
-		MiceSuit: Armadura do Mouse
+		MiceBoots: Botas de Mouse
+		MiceMask: Máscara de Mouse
+		MiceSuit: Armadura de Mouse
 		MotherboardBoots: Botas de Placa-Mãe
 		MotherboardHelmet: Elmo de Placa-Mãe
 		MotherboardSuit: Armadura da Placa-Mãe
@@ -117,9 +117,9 @@ Mods.ClickerClass: {
 		ClickerEffectHairDye: Tintura para Cabelo de Efeito do Clicker
 		ClickSpeedHairDye: Tintura para Cabelo de Velocidade do Clique
 		InfluencePotion: Poção da Influência
-		MiceDrill: Furadeira do Mouse
-		MiceHamaxe: Martelo-machado do Mouse
-		MicePickaxe: Picareta do Mouse
+		MiceDrill: Furadeira de Mouse
+		MiceHamaxe: Martelo-machado de Mouse
+		MicePickaxe: Picareta de Mouse
 		ArcaneClicker: Clicker Arcano
 		AdamantiteClicker: Clicker de Adamantina
 		ArthursClicker: Clicker de Artur
@@ -127,7 +127,7 @@ Mods.ClickerClass: {
 		BalloonClicker: Clicker Balão
 		BoneClicker: Clicker de Osso
 		BlizzardClicker: Clicker da Nevasca
-		CandleClicker: Clicker da Vela
+		CandleClicker: Clicker Vela
 		CaptainsClicker: Clicker do Capitão
 		ChlorophyteClicker: Clicker de Clorofita
 		CobaltClicker: Clicker de Cobalto
@@ -152,7 +152,7 @@ Mods.ClickerClass: {
 		LihzahrdClicker: Clicker Lagharto
 		LordsClicker: Clicker do Senhor
 		MagnetClicker: Clicker Magnético
-		MiceClicker: Clicker do Mouse
+		MiceClicker: Clicker de Mouse
 		MyceliumClicker: Clicker de Micélio
 		MythrilClicker: Clicker de Mithril
 		NaughtyClicker: Clicker Malcriado
@@ -231,7 +231,7 @@ Mods.ClickerClass: {
 		Cookie:
 			'''
 			Enquanto equipado, biscoitos serão gerados periodicamente dentro do seu raio de clique
-			Clique o biscoito para ganhar danos por clique, raio e regeneração de vida extra
+			Clique no biscoito para ganhar danos por clique, raio e regeneração de vida extra
 			'''
 		EnchantedLED:
 			'''
@@ -697,6 +697,16 @@ Mods.ClickerClass: {
 		ForMoreInfo: Segure a tecla 'Selecionar Automaticamente' ({0}) para exibir efeitos de clique
 		AimbotModuleEnabled: Aimbot ativado
 		AimbotModuleDisabled: Aimbot desativado
+	}
+
+	DeathMessage: {
+		HotKeychain: "{0} caiu no chaveiro picante."
+	}
+
+	UI: {
+		HotKeychainGauge: Calor
+		MedalGauge: Cargas
+		PaperclipsGauge: Matéria
 	}
 
 	ClickerConfigClient: {

@@ -861,12 +861,6 @@ namespace ClickerClass
 		public override void PostUpdateEquips()
 		{
 			clickerClassTime++;
-
-			if (clickerClassTime % 60 == 0)
-			{
-				SoundEngine.PlaySound(SoundID.Drip with { Variants = stackalloc int[] { 0, 1, 2 } }, Player.Center);
-			}
-
 			if (clickerClassTime > 36000)
 			{
 				clickerClassTime = 0;

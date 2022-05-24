@@ -58,13 +58,13 @@ namespace ClickerClass.Projectiles
 			{
 				Spawned = true;
 
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 17);
+				SoundEngine.PlaySound(SoundID.Item17, Projectile.Center);
 			}
 		}
 
 		public override void Kill(int timeLeft)
 		{
-			SoundEngine.PlaySound(SoundID.NPCHit, (int)Projectile.Center.X, (int)Projectile.Center.Y, 11);
+			SoundEngine.PlaySound(SoundID.NPCHit11, Projectile.Center);
 			float leftFacing = Projectile.velocity.X > 0f ? 1f : 0f;
 
 			if (Main.myPlayer == Projectile.owner)

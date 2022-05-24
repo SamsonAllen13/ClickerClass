@@ -17,7 +17,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Bombard = ClickerSystem.RegisterClickEffect(Mod, "Bombard", null, null, 12, new Color(255, 225, 50), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.Item, (int)position.X, (int)position.Y, 14);
+				SoundEngine.PlaySound(SoundID.Item14, position);
 
 				for (int k = 0; k < 4; k++)
 				{

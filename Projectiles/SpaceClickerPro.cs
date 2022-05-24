@@ -103,7 +103,7 @@ namespace ClickerClass.Projectiles
 			{
 				if (Projectile.timeLeft > 4)
 				{
-					SoundEngine.PlaySound(2, (int)Projectile.Center.X, (int)Projectile.Center.Y, 110);
+					SoundEngine.PlaySound(SoundID.Item110, Projectile.Center);
 					Projectile.timeLeft = 4;
 
 					float max = 30f;

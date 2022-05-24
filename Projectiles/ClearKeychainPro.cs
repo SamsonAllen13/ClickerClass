@@ -69,7 +69,7 @@ namespace ClickerClass.Projectiles
 			Vector2 vec = Location;
 			if (Projectile.DistanceSQ(vec) <= 10 * 10)
 			{
-				SoundEngine.PlaySound(2, (int)Projectile.Center.X, (int)Projectile.Center.Y, 86);
+				SoundEngine.PlaySound(SoundID.Item86, Projectile.Center);
 				Projectile.timeLeft = 4;
 
 				for (int k = 0; k < 10; k++)

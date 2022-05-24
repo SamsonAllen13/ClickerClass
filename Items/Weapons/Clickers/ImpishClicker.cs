@@ -20,7 +20,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.HotWings = ClickerSystem.RegisterClickEffect(Mod, "HotWings", null, null, 15, new Color(240, 35, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.Item, (int)player.Center.X, (int)player.Center.Y, 24);
+				SoundEngine.PlaySound(SoundID.Item24, player.Center);
 				player.AddBuff(ModContent.BuffType<HotWingsBuff>(), 300, false);
 				for (int i = 0; i < 15; i++)
 				{

@@ -363,7 +363,7 @@ namespace ClickerClass.Items
 						if (canTeleport)
 						{
 							Vector2 teleportPos = Main.MouseWorld;
-							SoundEngine.PlaySound(SoundID.Item, (int)teleportPos.X, (int)teleportPos.Y, 115);
+							SoundEngine.PlaySound(SoundID.Item115, teleportPos);
 
 							player.ClickerTeleport(teleportPos);
 
@@ -389,7 +389,7 @@ namespace ClickerClass.Items
 					else if (clickerPlayer.setMotherboard)
 					{
 						Vector2 motherboardPos = Main.MouseWorld;
-						SoundEngine.PlaySound(SoundID.Camera, (int)motherboardPos.X, (int)motherboardPos.Y, 0);
+						SoundEngine.PlaySound(SoundID.Camera, motherboardPos);
 
 						Vector2 sensorLocation = player.Center + clickerPlayer.CalculateMotherboardPosition(clickerPlayer.ClickerRadiusReal);
 
@@ -500,7 +500,7 @@ namespace ClickerClass.Items
 				{
 					if (Main.rand.NextBool(50))
 					{
-						SoundEngine.PlaySound(2, (int)player.position.X, (int)player.position.Y, 153);
+						SoundEngine.PlaySound(SoundID.Item153, player.Center);
 						player.AddBuff(BuffID.Cursed, 60, false);
 					}
 				}
@@ -516,7 +516,7 @@ namespace ClickerClass.Items
 				//Overclock armor set bonus
 				if (clickerPlayer.clickAmount % 100 == 0 && clickerPlayer.setOverclock)
 				{
-					SoundEngine.PlaySound(2, (int)position.X, (int)position.Y, 94);
+					SoundEngine.PlaySound(SoundID.Item94, position);
 					player.AddBuff(overclockType, 180, false);
 					for (int i = 0; i < 25; i++)
 					{

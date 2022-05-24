@@ -82,6 +82,7 @@ namespace ClickerClass.Projectiles.Misc
 		/// Changes how it draws (purple or red)
 		/// </summary>
 		public bool Hostile => true;
+		public ref float SoundSlot => ref Projectile.localAI[1];
 
 		public override string Texture => "Terraria/Images/Projectile_" + ProjectileID.InsanityShadowFriendly;
 
@@ -269,17 +270,16 @@ namespace ClickerClass.Projectiles.Misc
 			float fromValue = fakeCounter / counterMax;
 			if (fakeCounter == 0f)
 			{
-				Projectile.localAI[1] = SoundEngine.PlayTrackedSound(SoundID.DD2_GhastlyGlaiveImpactGhost, Projectile.Center).ToFloat();
+				SoundSlot = SoundEngine.PlaySound(SoundID.DD2_GhastlyGlaiveImpactGhost, Projectile.Center).ToFloat();
 			}
 
-			ActiveSound activeSound = SoundEngine.GetActiveSound(SlotId.FromFloat(Projectile.localAI[1]));
-			if (activeSound == null)
+			if (!SoundEngine.TryGetActiveSound(SlotId.FromFloat(SoundSlot), out var sound))
 			{
-				Projectile.localAI[1] = SlotId.Invalid.ToFloat();
+				SoundSlot = SlotId.Invalid.ToFloat();
 			}
 			else
 			{
-				activeSound.Position = Projectile.Center;
+				sound.Position = Projectile.Center;
 			}
 
 			float fadeOutTime = counterMax - 15f;

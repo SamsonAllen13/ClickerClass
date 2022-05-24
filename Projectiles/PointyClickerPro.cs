@@ -49,7 +49,7 @@ namespace ClickerClass.Projectiles
 			if (!Spawned)
 			{
 				Spawned = true;
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 17);
+				SoundEngine.PlaySound(SoundID.Item17, Projectile.Center);
 			}
 
 			Projectile.SineWaveMovement(Timer, -10f, MathHelper.TwoPi / 40, Timer == 0);

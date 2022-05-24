@@ -55,7 +55,7 @@ namespace ClickerClass.Projectiles
 			{
 				Spawned = true;
 
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 74);
+				SoundEngine.PlaySound(SoundID.Item74, Projectile.Center);
 
 				for (int k = 0; k < 30; k++)
 				{

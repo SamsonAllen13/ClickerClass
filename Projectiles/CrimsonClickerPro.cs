@@ -70,7 +70,7 @@ namespace ClickerClass.Projectiles
 			if (HasSpawnEffects)
 			{
 				HasSpawnEffects = false;
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 24);
+				SoundEngine.PlaySound(SoundID.Item24, Projectile.Center);
 			}
 
 			WobbleTimer++;

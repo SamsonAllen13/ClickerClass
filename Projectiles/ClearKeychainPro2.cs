@@ -50,7 +50,7 @@ namespace ClickerClass.Projectiles
 			if (HasSpawnEffects)
 			{
 				HasSpawnEffects = false;
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 102);
+				SoundEngine.PlaySound(SoundID.Item102, Projectile.Center);
 			}
 
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;

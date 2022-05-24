@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.Audio;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -60,7 +61,7 @@ namespace ClickerClass.Projectiles
 			{
 				Spawned = true;
 
-				SoundEngine.PlaySound(3, (int)Projectile.Center.X, (int)Projectile.Center.Y, 13);
+				SoundEngine.PlaySound(SoundID.NPCHit13, Projectile.Center);
 			}
 
 			Player player = Main.player[Projectile.owner];

@@ -35,7 +35,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				}
 
 				//Can't properly offload this into projectiles as the visuals spawn on the cursor, but projectiles don't
-				SoundEngine.PlaySound(SoundID.NPCHit, (int)position.X, (int)position.Y, 5);
+				SoundEngine.PlaySound(SoundID.NPCHit5, position);
 
 				float max = 100f;
 				int i = 0;

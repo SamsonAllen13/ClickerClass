@@ -101,7 +101,7 @@ namespace ClickerClass.Projectiles
 			{
 				HasSpawnEffects = false;
 
-				SoundEngine.PlaySound(2, (int)Projectile.Center.X, (int)Projectile.Center.Y, 94);
+				SoundEngine.PlaySound(SoundID.Item94, Projectile.Center);
 
 				for (int k = 0; k < 20; k++)
 				{

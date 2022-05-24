@@ -39,7 +39,7 @@ namespace ClickerClass.Projectiles
 			{
 				Spawned = true;
 
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 112);
+				SoundEngine.PlaySound(SoundID.Item112, Projectile.Center);
 				for (int i = 0; i < 15; i++)
 				{
 					int index = Dust.NewDust(Projectile.Center, 4, 4, 5, 0f, 0f, 75, default(Color), 1.5f);

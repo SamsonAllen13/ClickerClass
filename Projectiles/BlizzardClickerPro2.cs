@@ -74,7 +74,7 @@ namespace ClickerClass.Projectiles
 
 		public override void Kill(int timeLeft)
 		{
-			SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 30, volumeScale: 0.7f);
+			SoundEngine.PlaySound(SoundID.Item30 with { Volume = 0.7f }, Projectile.Center);
 			for (int u = 0; u < 15; u++)
 			{
 				int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 92, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 255, default(Color), 1.25f);

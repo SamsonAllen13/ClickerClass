@@ -66,7 +66,7 @@ namespace ClickerClass.Projectiles
 			if (!Spawned)
 			{
 				Spawned = true;
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 43);
+				SoundEngine.PlaySound(SoundID.Item43, Projectile.Center);
 			}
 
 			rotation += 0.01f;

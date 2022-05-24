@@ -62,7 +62,7 @@ namespace ClickerClass.Projectiles
 			{
 				HasSpawnEffects = false;
 
-				SoundEngine.PlaySound(3, (int)Projectile.Center.X, (int)Projectile.Center.Y, 13);
+				SoundEngine.PlaySound(SoundID.NPCHit13, Projectile.Center);
 				for (int k = 0; k < 20; k++)
 				{
 					Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 41, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 200, default, 1.25f);

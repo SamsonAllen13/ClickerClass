@@ -105,7 +105,7 @@ namespace ClickerClass.Projectiles
 			{
 				HasSpawnEffects = false;
 
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 109);
+				SoundEngine.PlaySound(SoundID.Item109, Projectile.Center);
 				for (int k = 0; k < 20; k++)
 				{
 					Dust dust = Dust.NewDustDirect(Projectile.Center - new Vector2(4), 8, 8, 22, Main.rand.NextFloat(-6f, 6f), Main.rand.NextFloat(-6f, 6f), 125, default, 1.5f);
@@ -125,7 +125,7 @@ namespace ClickerClass.Projectiles
 			else if (State_Decide)
 			{
 				Projectile.extraUpdates = 1;
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 86);
+				SoundEngine.PlaySound(SoundID.Item86, Projectile.Center);
 				
 				for (int l = 0; l < 7; l++)
 				{

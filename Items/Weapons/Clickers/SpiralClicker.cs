@@ -17,7 +17,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.BloodSucker = ClickerSystem.RegisterClickEffect(Mod, "BloodSucker", null, null, 8, new Color(160, 40, 35), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.NPCHit, (int)position.X, (int)position.Y, 13);
+				SoundEngine.PlaySound(SoundID.NPCHit13, position);
 
 				for (int index = 0; index < 2; index++)
 				{

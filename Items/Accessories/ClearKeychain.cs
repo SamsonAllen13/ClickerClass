@@ -17,7 +17,7 @@ namespace ClickerClass.Items.Accessories
 
 			ClickEffect.ClearKeychain = ClickerSystem.RegisterClickEffect(Mod, "ClearKeychain", null, null, 15, new Color(225, 200, 255, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.Item, (int)position.X, (int)position.Y, 86);
+				SoundEngine.PlaySound(SoundID.Item86, position);
 
 				for (int k = 0; k < 5; k++)
 				{

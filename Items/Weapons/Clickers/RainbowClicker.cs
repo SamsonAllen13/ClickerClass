@@ -100,7 +100,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			if (projectile.ai[0] == -2f)
 			{
 				projectile.ai[0] = -1f; //Initializer for no target
-				SoundEngine.PlaySound(SoundID.Item, (int)projectile.Center.X, (int)projectile.Center.Y, 43);
+				SoundEngine.PlaySound(SoundID.Item43, projectile.Center);
 			}
 			return base.PreAI(projectile);
 		}

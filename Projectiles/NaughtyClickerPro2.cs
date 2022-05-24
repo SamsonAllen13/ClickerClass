@@ -33,7 +33,7 @@ namespace ClickerClass.Projectiles
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 74);
+			SoundEngine.PlaySound(SoundID.Item74, Projectile.Center);
 			if (Main.myPlayer == Projectile.owner)
 			{
 				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<NaughtyClickerPro3>(), Projectile.damage, Projectile.knockBack, Projectile.owner);

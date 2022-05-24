@@ -645,7 +645,7 @@ namespace ClickerClass
 				}
 				else
 				{
-					SoundEngine.PlaySound(SoundID.Drip, (int)Player.Center.X, (int)Player.Center.Y, Main.rand.Next(3));
+					SoundEngine.PlaySound(SoundID.Drip with { Variants = stackalloc int[] { 0, 1, 2} }, Player.Center);
 				}
 			}
 		}
@@ -861,6 +861,12 @@ namespace ClickerClass
 		public override void PostUpdateEquips()
 		{
 			clickerClassTime++;
+
+			if (clickerClassTime % 60 == 0)
+			{
+				SoundEngine.PlaySound(SoundID.Drip with { Variants = stackalloc int[] { 0, 1, 2 } }, Player.Center);
+			}
+
 			if (clickerClassTime > 36000)
 			{
 				clickerClassTime = 0;
@@ -1011,7 +1017,7 @@ namespace ClickerClass
 				{
 					effectHotWingsTimer = EffectHotWingsTimerMax;
 
-					SoundEngine.PlaySound(SoundID.Item, (int)Player.position.X, (int)Player.position.Y, 73);
+					SoundEngine.PlaySound(SoundID.Item73, Player.Center);
 					Player.ClearBuff(ModContent.BuffType<HotWingsBuff>());
 					//if (Player.velocity.Y > 0f) Player.velocity.Y = 0f;
 					//if (Player.velocity.X < 0f) Player.velocity.X = 0f;
@@ -1104,7 +1110,7 @@ namespace ClickerClass
 							{
 								if (cookieProjectile.ai[0] == 1f)
 								{
-									SoundEngine.PlaySound(2, (int)Player.position.X, (int)Player.position.Y, 4);
+									SoundEngine.PlaySound(SoundID.Item4, Player.Center);
 									Player.AddBuff(ModContent.BuffType<CookieBuff>(), 600);
 									Player.HealLife(10);
 									for (int k = 0; k < 10; k++)
@@ -1115,7 +1121,7 @@ namespace ClickerClass
 								}
 								else
 								{
-									SoundEngine.PlaySound(2, (int)Player.position.X, (int)Player.position.Y, 2);
+									SoundEngine.PlaySound(SoundID.Item2, Player.Center);
 									Player.AddBuff(ModContent.BuffType<CookieBuff>(), 300);
 									for (int k = 0; k < 10; k++)
 									{
@@ -1391,7 +1397,7 @@ namespace ClickerClass
 						if (accHotKeychainAmount > 50)
 						{
 							Player.AddBuff(BuffID.OnFire3, 300);
-							SoundEngine.PlaySound(2, (int)Player.position.X, (int)Player.position.Y, 74);
+							SoundEngine.PlaySound(SoundID.Item74, Player.Center);
 							for (int k = 0; k < 10; k++)
 							{
 								Vector2 offset = new Vector2(Main.rand.Next(-25, 26), Main.rand.Next(-25, 26));
@@ -1520,7 +1526,7 @@ namespace ClickerClass
 
 					if (accPaperclipsAmount >= 100)
 					{
-						SoundEngine.PlaySound(2, (int)Player.position.X, (int)Player.position.Y, 108);
+						SoundEngine.PlaySound(SoundID.Item108, Player.Center);
 						for (int k = 0; k < 15; k++)
 						{
 							int dust = Dust.NewDust(target.position, 20, 20, 1, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 150, default(Color), 1.35f);

@@ -88,7 +88,7 @@ namespace ClickerClass.Projectiles
 			{
 				HasSpawnEffects = false;
 
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 103);
+				SoundEngine.PlaySound(SoundID.Item103, Projectile.Center);
 			}
 
 			if (Projectile.timeLeft < 150)

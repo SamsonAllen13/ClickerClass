@@ -31,7 +31,7 @@ namespace ClickerClass.Projectiles
 			{
 				Spawned = true;
 
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 28);
+				SoundEngine.PlaySound(SoundID.Item28, Projectile.Center);
 
 				int[] dusts = new int[] { 86, 88 };
 

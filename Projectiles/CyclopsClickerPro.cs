@@ -128,17 +128,16 @@ namespace ClickerClass.Projectiles
 			float progress = Counter / Lifetime;
 			if (Counter == 0f)
 			{
-				SoundSlot = SoundEngine.PlayTrackedSound(SoundID.DD2_GhastlyGlaiveImpactGhost, Projectile.Center).ToFloat();
+				SoundSlot = SoundEngine.PlaySound(SoundID.DD2_GhastlyGlaiveImpactGhost, Projectile.Center).ToFloat();
 			}
 
-			ActiveSound activeSound = SoundEngine.GetActiveSound(SlotId.FromFloat(SoundSlot));
-			if (activeSound == null)
+			if (!SoundEngine.TryGetActiveSound(SlotId.FromFloat(SoundSlot), out var sound))
 			{
 				SoundSlot = SlotId.Invalid.ToFloat();
 			}
 			else
 			{
-				activeSound.Position = Projectile.Center;
+				sound.Position = Projectile.Center;
 			}
 
 			float fadeOutTime = Lifetime - 15f;

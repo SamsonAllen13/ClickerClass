@@ -69,7 +69,7 @@ namespace ClickerClass.Projectiles
 			if (HasSpawnEffects)
 			{
 				HasSpawnEffects = false;
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 43);
+				SoundEngine.PlaySound(SoundID.Item43, Projectile.Center);
 				for (int l = 0; l < 7; l++)
 				{
 					int dustType = 86 + l;

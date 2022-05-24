@@ -28,7 +28,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Smite = ClickerSystem.RegisterClickEffect(Mod, "Smite", null, null, 10, new Color(255, 245, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.Item, (int)position.X, (int)position.Y, 42);
+				SoundEngine.PlaySound(SoundID.Item42, position);
 				
 				//Temporary effect//
 				//Consider idea where up to 10 nearby torches fire their respective flame color towards cursor and each one does something different on hit

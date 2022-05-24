@@ -72,7 +72,7 @@ namespace ClickerClass.Projectiles
 			{
 				if (Projectile.timeLeft > 4)
 				{
-					SoundEngine.PlaySound(2, (int)Projectile.Center.X, (int)Projectile.Center.Y, 89);
+					SoundEngine.PlaySound(SoundID.Item89, Projectile.Center);
 					Projectile.timeLeft = 4;
 
 					for (int k = 0; k < 10; k++)

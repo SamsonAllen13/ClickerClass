@@ -39,7 +39,7 @@ namespace ClickerClass.Projectiles
 			if (HasSpawnEffects)
 			{
 				HasSpawnEffects = false;
-				SoundEngine.PlaySound(SoundID.Item, (int)Projectile.Center.X, (int)Projectile.Center.Y, 104);
+				SoundEngine.PlaySound(SoundID.Item104, Projectile.Center);
 			}
 
 			Projectile.rotation += Projectile.velocity.X > 0f ? 0.1f : -0.1f;

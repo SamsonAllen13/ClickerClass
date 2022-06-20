@@ -1,0 +1,40 @@
+[img]https://i.imgur.com/nGCNZC9.png[/img]
+
+The [b]Clicker Class[/b] mod adds a set of weapons inspired by idle games like [i]Cookie Clicker[/i]. Show your enemies who's the boss by clicking them to death with a new line of weapons, the [b]Clickers[/b]. Add some silly spice to your full-game playthrough and prove who can click the fastest with the Clicker Class mod today!
+
+[img]https://i.imgur.com/uhEwN1b.png[/img]
+[list]
+  [*] Built for the [b]1.4 version of tModLoader[/b]!
+  [*] New content![list]
+    [*] [b]60+[/b] new Clicker weapons
+    [*] [b]30+[/b] new Clicker accessories
+    [*] [b]5[/b] new Clicker armor sets
+    [*] [b]1[/b] new Clicker buff potion
+    [*] [b]7[/b] new Clicker prefix modifiers for items / accessories
+    [*] [b]1[/b] new way of getting Carpal Tunnel (seriously, don't hurt yourself!)
+    [*] [b]+[/b] new miscellaneous content (hair dyes, paintings, etc.)
+  [/list]
+  [*] Full support for [b]cross-mod compatibility[/b] and [b]language localization[/b]!
+[/list]
+
+[img]https://i.imgur.com/H8FlWSD.png[/img]
+[list]
+  [*] Quickly access info related to the Clicker Class on the official [img]https://i.imgur.com/6aABPKy.png[/img] [b][url=https://terrariamods.fandom.com/wiki/Clicker_Class]Clicker Class wiki![/url][/b]
+  [*] Leave feedback, ask questions, and chat with other players in our [img]https://i.imgur.com/GB1M4Hv.png[/img] [b][url=https://discord.gg/csumDgv]Discord channel![/url][/b] [i](Note the Clicker Class Discord channel is part of the Thorium Mod Discord server)[/i]
+  [*] Want to add Clicker content into your own mod? Check out our [img]https://i.imgur.com/Sc9j65M.png [/img] [b][url=https://github.com/SamsonAllen13/ClickerClassExampleMod/wiki]GitHub wiki![/url][/b]
+  [*] Want to help localize the mod to another language? Check out the [img]https://i.imgur.com/Sc9j65M.png [/img] [b][url=https://github.com/tModLoader/tModLoader/wiki/Contributing-Localization]tModLoader wiki![/url][/b]
+[/list]
+
+[img]https://i.imgur.com/TONURLh.png[/img]
+[list]
+  [*] [b]direwolf420[/b] for extensive coding help, code legibility, and cross-mod compatibility.
+  [*] [b]Barometz[/b] for many sprites and accessory / armor ideas, as well as creating and maintaining the Clicker Class wiki.
+  [*] [b]Amber[/b] for the idea and sprite for Mice Fragment.
+  [*] Everyone who helped push us into creating this mod, including [b]catsounds[/b], [b]Citrus[/b], [b]Verveine[/b], and [b]Stevie[/b].
+  [*] The contributors who helped with language localizations:[list]
+    [*] 🇫🇷 French: [b]Verveine[/b]
+    [*] 🇨🇳 Simplified Chinese: [b]Celestepic[/b]
+    [*] 🇷🇺 Russian: [b]RazzSG[/b]
+    [*] 🇧🇷 Brazilian Portuguese: [b]Pixelnado[/b]
+  [/list]
+[/list]

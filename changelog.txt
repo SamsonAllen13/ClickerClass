@@ -1,0 +1,5 @@
+THE CLICKER CLASS v1.3.2.5 - CHANGELOG:
+- Added French and Simplified Chinese localizations.
+- Fixed incorrect pixel on Mice Fragment.
+
+See the Clicker Class wiki for full details!

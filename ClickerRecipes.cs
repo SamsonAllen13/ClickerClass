@@ -8,14 +8,9 @@ namespace ClickerClass
 {
 	internal class ClickerRecipes : ModSystem
 	{
-		private static Recipe CreateRecipe(int result, int amount = 1)
-		{
-			return ClickerClass.mod.CreateRecipe(result, amount);
-		}
-
 		public override void AddRecipes()
 		{
-			Recipe recipe = CreateRecipe(ItemID.AvengerEmblem);
+			Recipe recipe = Recipe.Create(ItemID.AvengerEmblem);
 			recipe.AddIngredient(ModContent.ItemType<ClickerEmblem>(), 1);
 			recipe.AddIngredient(ItemID.SoulofMight, 5);
 			recipe.AddIngredient(ItemID.SoulofSight, 5);

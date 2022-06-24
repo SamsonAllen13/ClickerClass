@@ -133,8 +133,7 @@ namespace ClickerClass
 						useColor = () => color.Value;
 					}
 
-					ClickerSystem.RegisterClickEffect(mod, internalName, displayName, description, amount.Value, useColor, action);
-					return success;
+					return ClickerSystem.RegisterClickEffect(mod, internalName, displayName, description, amount.Value, useColor, action);
 				}
 				else if (message == "GetPathToBorderTexture")
 				{

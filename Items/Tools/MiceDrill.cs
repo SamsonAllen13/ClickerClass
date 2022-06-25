@@ -21,19 +21,7 @@ namespace ClickerClass.Items.Tools
 
 		public override void SetStaticDefaults()
 		{
-			ItemID.Sets.IsDrill[Type] = true; //This causes the following changes:
-			/*
-			 * useTime = (int)((double)useTime * 0.6);
-				if (useTime < 1)
-					useTime = 1;
-
-				useAnimation = (int)((double)useAnimation * 0.6);
-				if (useAnimation < 1)
-					useAnimation = 1;
-
-				tileBoost--;
-			 */
-
+			ItemID.Sets.IsDrill[Type] = true; // Needs to be mirrored in SetDefaults as the vanilla check for this runs before modded items
 
 			if (!Main.dedServ)
 			{
@@ -45,6 +33,7 @@ namespace ClickerClass.Items.Tools
 
 		public override void SetDefaults()
 		{
+			//Stats copied from vanilla lunar fragment drills
 			Item.width = 54;
 			Item.height = 26;
 			Item.DamageType = DamageClass.Melee;
@@ -63,6 +52,23 @@ namespace ClickerClass.Items.Tools
 			Item.channel = true;
 			Item.shootSpeed = 32f;
 			Item.shoot = ModContent.ProjectileType<MiceDrillPro>();
+
+			//IsDrill/IsChainsaw application:
+			Item.useTime = (int)(Item.useTime * 0.6f);
+			if (Item.useTime < 1)
+			{
+
+				Item.useTime = 1;
+			}
+
+			Item.useAnimation = (int)(Item.useAnimation * 0.6f);
+			if (Item.useAnimation < 1)
+			{
+				Item.useAnimation = 1;
+			}
+
+			Item.tileBoost--;
+			//End
 		}
 
 		public override void PostUpdate()

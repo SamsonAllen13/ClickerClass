@@ -72,6 +72,8 @@ namespace ClickerClass
 
 		public override void PostSetupContent()
 		{
+			DoWikithisSupport();
+
 			//Only clicker weapons
 			RecipeBrowser_AddToCategory("Clickers", "Weapons", "UI/RecipeBrowser_Clickers", (Item item) =>
 			{
@@ -94,6 +96,15 @@ namespace ClickerClass
 		public override void HandlePacket(BinaryReader reader, int whoAmI)
 		{
 			NetHandler.HandlePackets(reader, whoAmI);
+		}
+
+		private static void DoWikithisSupport()
+		{
+			if (ModLoader.TryGetMod("Wikithis", out Mod wikithis))
+			{
+				wikithis.Call(0, mod, "terrariamods.fandom.com$Clicker_Class");
+				wikithis.Call("AddModURL", mod, "terrariamods.fandom.com$Clicker_Class");
+			}
 		}
 
 		/// <summary>

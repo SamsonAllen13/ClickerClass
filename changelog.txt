@@ -1,7 +1,3 @@
-THE CLICKER CLASS v1.3.2.5 - CHANGELOG:
-- Added a custom Steam Workshop page icon & description.
-- Added French and Simplified Chinese localizations.
-- Fixed issues with the cross-mod API.
-- Fixed incorrect pixel on Mice Fragment.
+- Added "Wikithis" mod support.
 
 See the Clicker Class wiki for full details!

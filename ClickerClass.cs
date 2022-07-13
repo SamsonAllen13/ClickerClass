@@ -100,9 +100,8 @@ namespace ClickerClass
 
 		private static void DoWikithisSupport()
 		{
-			if (ModLoader.TryGetMod("Wikithis", out Mod wikithis))
+			if (!Main.dedServ && ModLoader.TryGetMod("Wikithis", out Mod wikithis))
 			{
-				wikithis.Call(0, mod, "terrariamods.fandom.com$Clicker_Class");
 				wikithis.Call("AddModURL", mod, "terrariamods.fandom.com$Clicker_Class");
 			}
 		}

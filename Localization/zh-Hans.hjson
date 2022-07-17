@@ -54,7 +54,7 @@ Mods.ClickerClass: {
 	}
 
 	DamageClassName: {
-		ClickerDamage : 点击伤害
+		ClickerDamage: 点击伤害
 	}
 		
 	# DO NOT TRANSLATE THESE ONES, HOTKEYS ARENT LOCALIZABLE YET
@@ -692,7 +692,6 @@ Mods.ClickerClass: {
 		ClickerTag: 点击大师
 		TotalClicks: 共计点击次数
 		MoneyGenerated: 总计金币生成
-		ClickDamage: "{0} 点击伤害"
 		ForMoreInfo: 按住'自动选择'键({0})显示点击效果详细信息
 		AimbotModuleEnabled: 自动瞄准启用
 		AimbotModuleDisabled: 自动瞄准禁用

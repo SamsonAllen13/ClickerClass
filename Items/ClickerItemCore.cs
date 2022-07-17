@@ -224,13 +224,6 @@ namespace ClickerClass.Items
 
 				if (ClickerSystem.IsClickerWeapon(item))
 				{
-					TooltipLine tooltip = tooltips.Find(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Damage"));
-					if (tooltip != null)
-					{
-						string number = tooltip.Text.Split(' ')[0];
-						tooltip.Text = LangHelper.GetText("Tooltip.ClickDamage", number);
-					}
-
 					//Show the clicker's effects
 					//Then show ones missing through the players enabled effects (respecting overlap, ignoring the currently held clickers effect if its not the same type)
 					List<string> effects = new List<string>(itemClickEffects);

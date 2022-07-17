@@ -687,7 +687,6 @@ Mods.ClickerClass: {
 		ClickerTag: Кликер
 		TotalClicks: Всего кликов
 		MoneyGenerated: Количество созданных монет
-		ClickDamage: "{0} ед. урона клика"
 		ForMoreInfo: Зажмите кнопку 'Auto Select' ({0}) для отображения эффектов кликов
 	}
 

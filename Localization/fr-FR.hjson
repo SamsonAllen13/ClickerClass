@@ -54,7 +54,7 @@ Mods.ClickerClass: {
 	}
 
 	DamageClassName: {
-		ClickerDamage : dégâts de clic
+		ClickerDamage: dégats de clic
 	}
 		
 	# DO NOT TRANSLATE THESE ONES, HOTKEYS ARENT LOCALIZABLE YET
@@ -692,7 +692,6 @@ Mods.ClickerClass: {
 		ClickerTag: Classe Cliqueur
 		TotalClicks: Clics Totaux
 		MoneyGenerated: Monnaie Générée
-		ClickDamage: "{0} dégats de clic"
 		ForMoreInfo: Maintenez la touche 'Sélection Automatique' ({0}) pour voir les effets de clic
 		AimbotModuleEnabled: Visée automatique activée
 		AimbotModuleDisabled: Visée automatique désactivée

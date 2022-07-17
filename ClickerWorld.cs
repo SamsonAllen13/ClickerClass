@@ -88,7 +88,7 @@ namespace ClickerClass
 			
 			if (chestLists.ContainsKey(ChestStyle.Gold))
 			{
-				ReplaceRareItemsInChests(chestLists[ChestStyle.Gold], new int[] { ModContent.ItemType<EnchantedLED>() });
+				ReplaceRareItemsInChests(chestLists[ChestStyle.Gold], new int[] { ModContent.ItemType<EnchantedLED>(), ModContent.ItemType<EnchantedLED>() });
 			}
 
 			if (chestLists.ContainsKey(ChestStyle.DeadMans))

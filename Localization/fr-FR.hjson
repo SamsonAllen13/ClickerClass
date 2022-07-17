@@ -54,7 +54,7 @@ Mods.ClickerClass: {
 	}
 
 	DamageClassName: {
-		ClickerDamage: dégats de clic
+		ClickerDamage: dégâts de clic
 	}
 		
 	# DO NOT TRANSLATE THESE ONES, HOTKEYS ARENT LOCALIZABLE YET

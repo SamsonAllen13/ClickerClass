@@ -50,6 +50,11 @@ Mods.ClickerClass: {
 		}
 
 		Unknown: Неизвестно
+		OnEnterWorldWarning: "[c/{0}:Добро пожаловать в {1}!] Если ваши курсоры атакуют медленно, это может быть связано с использованием модов, активирующих автоматическое использование, таких как OmniSwing."
+	}
+
+	DamageClassName: {
+		ClickerDamage : ед. урона клика
 	}
 
 	# DO NOT TRANSLATE THESE ONES, HOTKEYS ARENT LOCALIZABLE YET
@@ -186,7 +191,7 @@ Mods.ClickerClass: {
 			'''
 			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%
 			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 10%
-			Нажатие кнопки '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' выбирает цель в режиме помощи при прицеливании
+			Нажатие кнопки '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' переключает автонаводку, автоматически целясь в ближайших врагов
 			Если цель погибает или упущена, по возможности выбирается новая ближайшая цель
 			'''
 		AimAssistModule:
@@ -621,13 +626,13 @@ Mods.ClickerClass: {
 		}
 
 		WildMagic: {
-			Name: Раскатистая паутина
-			Description: Выпускает сгусток липкой паутины в сторону ближайшего врага
+			Name: Необузданная магия
+			Description: Случайно срабатывает как любой возможный эффект клика
 		}
 
 		WebSplash: {
-			Name: Необузданная магия
-			Description: Случайно срабатывает как любой возможный эффект клика
+			Name: Раскатистая паутина
+			Description: Выпускает сгусток липкой паутины в сторону ближайшего врага
 		}
 
 		ChocolateChip: {
@@ -688,10 +693,18 @@ Mods.ClickerClass: {
 		TotalClicks: Всего кликов
 		MoneyGenerated: Количество созданных монет
 		ForMoreInfo: Зажмите кнопку 'Auto Select' ({0}) для отображения эффектов кликов
+		AimbotModuleEnabled: Автонаводка включена
+        AimbotModuleDisabled: Автонаводка выключена
 	}
 
 	DeathMessage: {
 		HotKeychain: "{0} влюбился в пикантную связку ключей."
+	}
+	
+	UI: {
+		HotKeychainGauge: Жара
+		MedalGauge: Зарядов
+		PaperclipsGauge: Веществ
 	}
 
 	ClickerConfigClient: {

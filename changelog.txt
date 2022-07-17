@@ -1,3 +1,6 @@
 - Added "Wikithis" mod support.
+- Updated Russian localization.
+- Updated Clicking Gloves so only one can be equipped at a time.
+- Buffed Enchanted LED spawn rate.
 
 See the Clicker Class wiki for full details!

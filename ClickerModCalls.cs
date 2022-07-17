@@ -243,6 +243,28 @@ namespace ClickerClass
 					ClickerWeapon.SetColor(item, color.Value);
 					return success;
 				}
+				else if (message == "SetAccessoryType")
+				{
+					var item = args[index + 0] as Item;
+					var accessoryTypeString = args[index + 1] as string;
+					if (item == null)
+					{
+						throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					if (accessoryTypeString == null)
+					{
+						throw new Exception($"Call Error: The accessoryTypeString argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					if (!Enum.TryParse(typeof(ClickerAccessoryType), accessoryTypeString, out object result))
+					{
+						throw new Exception($"Call Error: The accessoryTypeString argument for the attempted message, \"{message}\" is not valid.");
+					}
+
+					ClickerItem.SetAccessoryType(item, (ClickerAccessoryType)result);
+					return success;
+				}
 				else if (message == "SetDisplayTotalClicks")
 				{
 					var item = args[index + 0] as Item;

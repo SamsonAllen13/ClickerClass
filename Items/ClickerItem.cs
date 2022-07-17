@@ -22,6 +22,18 @@ namespace ClickerClass.Items
 		}
 
 		/// <summary>
+		/// Call in <see cref="ModItem.SetDefaults"/> for a clicker item to assign it an accessory type, so that items with that accessory type cannot be equipped together
+		/// </summary>
+		/// <param name="item">The clicker class item</param>
+		public static void SetAccessoryType(Item item, ClickerAccessoryType accessoryType)
+		{
+			if (ClickerSystem.IsClickerItem(item, out ClickerItemCore clickerItem))
+			{
+				clickerItem.accessoryType = accessoryType;
+			}
+		}
+
+		/// <summary>
 		/// Call in <see cref="ModItem.SetDefaults"/> for a clicker item to make it display total click count in the tooltip
 		/// </summary>
 		/// <param name="item">The clicker class item</param>

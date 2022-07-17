@@ -39,6 +39,11 @@ namespace ClickerClass.Items
 		public int clickerDustColor = 0;
 
 		/// <summary>
+		/// Makes it so that this item cannot be equiped when other items of the same type are already equipped
+		/// </summary>
+		public ClickerAccessoryType accessoryType = ClickerAccessoryType.None;
+
+		/// <summary>
 		/// Displays total clicks in the tooltip
 		/// </summary>
 		public bool isClickerDisplayTotal = false;
@@ -63,6 +68,7 @@ namespace ClickerClass.Items
 			myClone.itemClickEffects = new List<string>(itemClickEffects);
 			myClone.clickerDustColor = clickerDustColor;
 			myClone.clickBoostPrefix = clickBoostPrefix;
+			myClone.accessoryType = accessoryType;
 			myClone.isClickerDisplayTotal = isClickerDisplayTotal;
 			myClone.isClickerDisplayMoneyGenerated = isClickerDisplayMoneyGenerated;
 			myClone.radiusBoost = radiusBoost;
@@ -312,6 +318,22 @@ namespace ClickerClass.Items
 					}
 				}
 			}
+		}
+
+		public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
+		{
+			if (ClickerSystem.IsClickerItem(equippedItem, out ClickerItemCore equippedClickerItem) &&
+				ClickerSystem.IsClickerItem(incomingItem, out ClickerItemCore incomingClickerItem))
+			{
+				if (equippedClickerItem.accessoryType != ClickerAccessoryType.None &&
+					incomingClickerItem.accessoryType != ClickerAccessoryType.None)
+				{
+					//If accessory types match, return false. This prevents the player from equipping two of the same accessory type, and it will instead swap them (if applicable)
+					return equippedClickerItem.accessoryType != incomingClickerItem.accessoryType;
+				}
+			}
+
+			return base.CanAccessoryBeEquippedWith(equippedItem, incomingItem, player);
 		}
 
 		public override bool PreReforge(Item item)

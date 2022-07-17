@@ -14,6 +14,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void SetDefaults()
 		{
+			SetAccessoryType(Item, ClickerAccessoryType.ClickingGlove);
 			Item.width = 20;
 			Item.height = 20;
 			Item.accessory = true;

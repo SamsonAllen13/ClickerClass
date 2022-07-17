@@ -694,7 +694,7 @@ Mods.ClickerClass: {
 		MoneyGenerated: Количество созданных монет
 		ForMoreInfo: Зажмите кнопку 'Auto Select' ({0}) для отображения эффектов кликов
 		AimbotModuleEnabled: Автонаводка включена
-        AimbotModuleDisabled: Автонаводка выключена
+		AimbotModuleDisabled: Автонаводка выключена
 	}
 
 	DeathMessage: {

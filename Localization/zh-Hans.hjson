@@ -50,7 +50,6 @@ Mods.ClickerClass: {
 		}
 
 		Unknown: 未知
-		OnEnterWorldWarning: "[c/{0}:欢迎使用{1}模组!] 如果你的点击器攻击缓慢,有可能是你使用了按住鼠标左键就能自动使用武器的模组,比如说OmniSwing模组."
 	}
 
 	DamageClassName: {

@@ -21,11 +21,6 @@ namespace ClickerClass
 {
 	public partial class ClickerPlayer : ModPlayer
 	{
-		/// <summary>
-		/// Static bool, not unloaded, carry over into other worlds if needed (no message if you enter world a second time in a game session)
-		/// </summary>
-		public static bool enteredWorldOnceThisSession = false;
-
 		//Key presses
 		public double pressedAutoClick;
 		public int clickerClassTime = 0;
@@ -1507,17 +1502,6 @@ namespace ClickerClass
 			if (outOfCombatTimer > 0)
 			{
 				outOfCombatTimer--;
-			}
-		}
-
-		public override void OnEnterWorld(Player player)
-		{
-			// Clientside
-			if (!enteredWorldOnceThisSession)
-			{
-				enteredWorldOnceThisSession = true;
-
-				Main.NewText(LangHelper.GetText("Common.OnEnterWorldWarning", Color.Orange.Hex3(), Mod.DisplayName));
 			}
 		}
 

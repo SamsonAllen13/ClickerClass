@@ -50,7 +50,6 @@ Mods.ClickerClass: {
 		}
 
 		Unknown: Unknown
-		OnEnterWorldWarning: "[c/{0}:Welcome to {1}!] If your clickers attack slowly, this may be caused by using mods which enable auto-reuse, such as OmniSwing."
 	}
 
 	DamageClassName: {

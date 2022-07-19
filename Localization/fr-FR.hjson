@@ -50,7 +50,6 @@ Mods.ClickerClass: {
 		}
 
 		Unknown: Inconnu
-		OnEnterWorldWarning: "[c/{0}:Bienvenue sur {1}!] Si vos cliqueurs attaquent lentement, cela peut être causé par un mod activant les attaques automatiques, comme OmniSwing."
 	}
 
 	DamageClassName: {

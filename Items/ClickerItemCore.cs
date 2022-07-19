@@ -89,31 +89,28 @@ namespace ClickerClass.Items
 				//Examples:
 				//1f => 2 * 1 = 2 => 60 / 2 = 30 cps
 				//6f = 2 * 6 = 12 => 60 / 12 = 5 cps
-				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
+				if (player.CanAutoReuseItem(item))
 				{
-					if (player.CanAutoReuseItem(item))
+					if (player.HasBuff(ModContent.BuffType<AutoClick>()))
 					{
-						if (clickerPlayer.accHandCream)
-						{
-							return 6f;
-						}
-						else if (clickerPlayer.accIcePack)
-						{
-							return 8f;
-						}
-						else
-						{
-							return 10f; //non-clicker induced autoswing
-						}
+						return 3f; //AutoClick buff
+					}
+					else if (clickerPlayer.accHandCream)
+					{
+						return 6f;
+					}
+					else if (clickerPlayer.accIcePack)
+					{
+						return 8f;
 					}
 					else
 					{
-						return 1f; //No change
+						return 10f; //non-clicker induced autoswing
 					}
 				}
 				else
 				{
-					return 3f; //AutoClick buff
+					return 1f; //No change
 				}
 			}
 

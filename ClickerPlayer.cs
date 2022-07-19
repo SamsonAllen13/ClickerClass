@@ -352,6 +352,8 @@ namespace ClickerClass
 					clickerPerSecond += value * 2; //* 2 is because the average click timer "state" is 0.5f
 				}
 			}
+
+			clickerPerSecond = Math.Clamp(clickerPerSecond, 0, 60);
 		}
 
 		private void HandleRadiusAlphas()

@@ -105,7 +105,7 @@ namespace ClickerClass.Items
 					}
 					else
 					{
-						return 10f; //non-clicker induced autoswing
+						return 10f; //non-clicker induced autoswing (just a fallback, shouldn't ever happen with CanAutoReuseItem returning false)
 					}
 				}
 				else
@@ -128,7 +128,7 @@ namespace ClickerClass.Items
 				}
 			}
 
-			return base.CanAutoReuseItem(item, player);
+			return false;
 		}
 
 		public override bool CanUseItem(Item item, Player player)

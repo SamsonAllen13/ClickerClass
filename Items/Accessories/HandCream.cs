@@ -4,6 +4,8 @@ namespace ClickerClass.Items.Accessories
 {
 	public class HandCream : ClickerItem
 	{
+		public static readonly AutoReuseEffect autoReuseEffect = new(12f, ControlledByKeyBind: true);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -20,7 +22,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().accHandCream = true;
+			player.GetModPlayer<ClickerPlayer>().SetAutoReuseEffect(autoReuseEffect);
 		}
 	}
 }

@@ -1,5 +1,4 @@
 ﻿using Terraria;
-using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -7,6 +6,8 @@ namespace ClickerClass.Items.Accessories
 	[AutoloadEquip(EquipType.Waist)]
 	public class IcePack : ClickerItem
 	{
+		public static readonly AutoReuseEffect autoReuseEffect = new(16f, ControlledByKeyBind: true);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -23,7 +24,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().accIcePack = true;
+			player.GetModPlayer<ClickerPlayer>().SetAutoReuseEffect(autoReuseEffect);
 		}
 	}
 }

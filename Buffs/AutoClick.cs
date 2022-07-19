@@ -5,6 +5,8 @@ namespace ClickerClass.Buffs
 {
 	public class AutoClick : ModBuff
 	{
+		public static readonly AutoReuseEffect autoReuseEffect = new(6f, PreventsClickEffects: true);
+
 		public override void SetStaticDefaults()
 		{
 			Main.buffNoSave[Type] = false;
@@ -12,7 +14,7 @@ namespace ClickerClass.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-
+			player.GetModPlayer<ClickerPlayer>().SetAutoReuseEffect(autoReuseEffect);
 		}
 	}
 }

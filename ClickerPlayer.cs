@@ -15,6 +15,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Audio;
 using ClickerClass.Items.Accessories;
+using ClickerClass.Core.Netcode.Packets;
 
 namespace ClickerClass
 {
@@ -66,6 +67,7 @@ namespace ClickerClass
 
 		/// <summary>
 		/// Set via hotkey, reset if no autoclick-giving effects are applied (i.e. Hand Cream)
+		/// <br/>Synced whenever changed
 		/// </summary>
 		public bool clickerAutoClick = false;
 		/// <summary>
@@ -97,6 +99,16 @@ namespace ClickerClass
 		/// Used for cursor positioning and the Aimbot Module effect (and similar). Defaults to Main.MouseWorld otherwise
 		/// </summary>
 		public Vector2 clickerPosition = Main.MouseWorld;
+
+		/// <summary>
+		/// Represents the currently active (fastest) auto-reuse effect applied to the player
+		/// </summary>
+		public AutoReuseEffect ActiveAutoReuseEffect { get; private set; }
+
+		/// <summary>
+		/// Represents all auto-reuse effects applied this tick
+		/// </summary>
+		private List<AutoReuseEffect> AutoReuseEffects { get; set; } = new List<AutoReuseEffect>();
 
 		//Click effects
 		/// <summary>
@@ -145,7 +157,6 @@ namespace ClickerClass
 		public bool accChocolateChip = false;
 		public bool accEnchantedLED = false;
 		public bool accEnchantedLED2 = false; //different visuals
-		public bool accHandCream = false;
 		[Obsolete("Use HasClickEffect(\"ClickerClass:StickyKeychain\") and EnableClickEffect(\"ClickerClass:StickyKeychain\") instead", false)]
 		public bool accStickyKeychain = false;
 		public Item accAMedalItem = null;
@@ -166,7 +177,6 @@ namespace ClickerClass
 		public bool IsPortableParticleAcceleratorActive => accPortableParticleAccelerator && accPortableParticleAccelerator2;
 		public bool accGoldenTicket = false;
 		public bool accTriggerFinger = false;
-		public bool accIcePack = false;
 		public bool accMouseTrap = false;
 		public Item accPaperclipsItem = null;
 		public bool AccPaperclips => accPaperclipsItem != null && !accPaperclipsItem.IsAir;
@@ -306,6 +316,40 @@ namespace ClickerClass
 			foreach (var key in ClickEffectActive.Keys.ToList())
 			{
 				ClickEffectActive[key] = false;
+			}
+		}
+
+		/// <summary>
+		/// Adds the given auto-reuse effect to the list of available effects applicable this tick, aswell as deciding on the fastest one to use
+		/// </summary>
+		internal void SetAutoReuseEffect(AutoReuseEffect effect)
+		{
+			AutoReuseEffects.Add(effect);
+
+			//Pick the fastest one available
+			for (int i = 0; i < AutoReuseEffects.Count; i++)
+			{
+				var iter = AutoReuseEffects[i];
+				if (iter.ControlledByKeyBind && !clickerAutoClick)
+				{
+					//"Not enabled", skip
+					continue;
+				}
+
+				//Pick if none, or faster than current
+				if (ActiveAutoReuseEffect == default || iter.SpeedFactor < ActiveAutoReuseEffect.SpeedFactor)
+				{
+					ActiveAutoReuseEffect = iter;
+				}
+			}
+		}
+
+		internal void ResetAutoClickToggle()
+		{
+			if (!AutoReuseEffects.Any(effect => effect.ControlledByKeyBind))
+			{
+				//If no reuse effects need the keybind, unset the toggle
+				clickerAutoClick = false;
 			}
 		}
 
@@ -684,6 +728,9 @@ namespace ClickerClass
 			clickerSelected = false;
 			clickerDrawRadius = false;
 
+			ActiveAutoReuseEffect = default;
+			AutoReuseEffects.Clear();
+
 			//Click Effects
 			ResetAllClickEffects();
 			effectHotWings = false;
@@ -698,7 +745,6 @@ namespace ClickerClass
 			//Acc
 			accEnchantedLED = false;
 			accEnchantedLED2 = false;
-			accHandCream = false;
 			accAMedalItem = null;
 			accFMedalItem = null;
 			accSMedalItem = null;
@@ -713,7 +759,6 @@ namespace ClickerClass
 			accPortableParticleAccelerator2 = false;
 			accGoldenTicket = false;
 			accTriggerFinger = false;
-			accIcePack = false;
 			accMouseTrap = false;
 			accPaperclipsItem = null;
 			accHotKeychain = false;
@@ -739,7 +784,9 @@ namespace ClickerClass
 		{
 			clickerTotal = 0;
 			clickerMoneyGenerated = 0;
-			
+
+			AutoReuseEffects = new List<AutoReuseEffect>();
+
 			ClickEffectActive = new Dictionary<string, bool>();
 			foreach (var name in ClickerSystem.GetAllEffectNames())
 			{
@@ -761,6 +808,28 @@ namespace ClickerClass
 			clickerMoneyGenerated = tag.GetInt("clickerMoneyGenerated");
 		}
 
+		public override void clientClone(ModPlayer clientClone)
+		{
+			var clickerClone = clientClone as ClickerPlayer;
+
+			clickerClone.clickerAutoClick = clickerAutoClick;
+		}
+
+		public override void SendClientChanges(ModPlayer clientPlayer)
+		{
+			var clickerClone = clientPlayer as ClickerPlayer;
+
+			if (clickerClone.clickerAutoClick != clickerAutoClick)
+			{
+				new ClickerAutoClickPacket(Player, clickerAutoClick).Send();
+			}
+		}
+
+		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
+		{
+			new SyncClickerPlayerPacket(this).Send(toWho, fromWho);
+		}
+
 		public override void ProcessTriggers(TriggersSet triggersSet)
 		{
 			// checks for frozen, webbed and stoned
@@ -774,8 +843,8 @@ namespace ClickerClass
 				if (Math.Abs(clickerClassTime - pressedAutoClick) > 20)
 				{
 					pressedAutoClick = clickerClassTime;
-					
-					if (accHandCream || accIcePack)
+
+					if (AutoReuseEffects.Any(effect => effect.ControlledByKeyBind))
 					{
 						SoundEngine.PlaySound(SoundID.MenuTick, Player.position);
 						clickerAutoClick = !clickerAutoClick;
@@ -866,10 +935,7 @@ namespace ClickerClass
 				clickerClassTime = 0;
 			}
 
-			if (!accHandCream && !accIcePack)
-			{
-				clickerAutoClick = false;
-			}
+			ResetAutoClickToggle();
 
 			if (setAbilityDelayTimer > 0)
 			{

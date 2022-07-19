@@ -28,7 +28,7 @@ namespace ClickerClass.Items.Accessories
 			clickerPlayer.clickerRadius += 1f;
 			player.GetDamage<ClickerDamage>() += 0.10f;
 			clickerPlayer.clickerBonusPercent -= 0.20f;
-			clickerPlayer.accHandCream = true;
+			clickerPlayer.SetAutoReuseEffect(HandCream.autoReuseEffect);
 			if (!hideVisual)
 			{
 				clickerPlayer.accEnchantedLED2 = true;

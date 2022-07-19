@@ -122,13 +122,10 @@ namespace ClickerClass.Items
 			if (ClickerSystem.IsClickerWeapon(item))
 			{
 				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-				if (clickerPlayer.clickerAutoClick || player.HasBuff(ModContent.BuffType<AutoClick>()))
-				{
-					return true;
-				}
+				return clickerPlayer.clickerAutoClick || player.HasBuff(ModContent.BuffType<AutoClick>());
 			}
 
-			return false;
+			return base.CanAutoReuseItem(item, player);
 		}
 
 		public override bool CanUseItem(Item item, Player player)

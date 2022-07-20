@@ -435,10 +435,19 @@ namespace ClickerClass
 				accAimbotModule2Toggle = false;
 			}
 
+			//No target: return
 			if (!HasAimbotModuleTarget)
 			{
 				return;
 			}
+
+			//No aimbot giving accessories equipped: reset and return
+			if (!(accAimbotModule || accAimbotModule2))
+			{
+				ResetAimbotModuleTarget();
+				return;
+			}
+
 			accAimbotModuleTargetInRange = clickerSelected;
 
 			NPC target = Main.npc[accAimbotModuleTarget];

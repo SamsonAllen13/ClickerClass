@@ -1585,7 +1585,7 @@ namespace ClickerClass
 			outOfCombatTimer = OutOfCombatTimeMax;
 		}
 
-		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit)
+		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
 		{
 			outOfCombatTimer = OutOfCombatTimeMax;
 		}

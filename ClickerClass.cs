@@ -73,6 +73,7 @@ namespace ClickerClass
 		public override void PostSetupContent()
 		{
 			DoWikithisSupport();
+			DoColoredDamageTypesSupport();
 
 			//Only clicker weapons
 			RecipeBrowser_AddToCategory("Clickers", "Weapons", "UI/RecipeBrowser_Clickers", (Item item) =>
@@ -103,6 +104,17 @@ namespace ClickerClass
 			if (!Main.dedServ && ModLoader.TryGetMod("Wikithis", out Mod wikithis))
 			{
 				wikithis.Call("AddModURL", mod, "terrariamods.fandom.com$Clicker_Class");
+			}
+		}
+
+		private static void DoColoredDamageTypesSupport()
+		{
+			if (!Main.dedServ && ModLoader.TryGetMod("ColoredDamageTypes", out Mod coloreddamagetypes))
+			{
+				var tooltipColor = (130, 143, 242);
+				var damageColor = (172, 189, 246);
+				var critColor = (88, 92, 222);
+				coloreddamagetypes.Call("AddDamageType", ModContent.GetInstance<ClickerDamage>(), tooltipColor, damageColor, critColor);
 			}
 		}
 

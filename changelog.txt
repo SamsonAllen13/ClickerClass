@@ -1,4 +1,7 @@
-- Added "Wikithis" mod support.
+- Added "Wikithis" and "Colored Damage Types" mod support.
+- Removed the welcome message about auto-use incompatibilities with other mods.
+- Changed Clickers to only have auto-use with Clicker Class sources that provide it.
+- Updated cross-mod API.
 - Updated Russian localization.
 - Updated Clicking Gloves so only one can be equipped at a time.
 - Buffed Enchanted LED spawn rate.

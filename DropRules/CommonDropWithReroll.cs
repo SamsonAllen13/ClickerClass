@@ -28,7 +28,7 @@ namespace ClickerClass.DropRules
 			ItemDropAttemptResult result;
 			if (flag)
 			{
-				CommonCode.DropItemFromNPC(info.npc, itemId, info.rng.Next(amountDroppedMinimum, amountDroppedMaximum + 1));
+				CommonCode.DropItem(info, itemId, info.rng.Next(amountDroppedMinimum, amountDroppedMaximum + 1));
 				result = default(ItemDropAttemptResult);
 				result.State = ItemDropAttemptResultState.Success;
 				return result;

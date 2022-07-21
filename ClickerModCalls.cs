@@ -463,9 +463,9 @@ namespace ClickerClass
 
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
-					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
+					//accEnchantedLED, accEnchantedLED2, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					//accGoldenTicket, accPortableParticleAccelerator
-					//accIcePack, accMouseTrap, accHotKeychain, accTriggerFinger, accButtonMasher, accAimbotModule, accAimbotModule2
+					//accMouseTrap, accHotKeychain, accTriggerFinger, accButtonMasher, accAimbotModule, accAimbotModule2
 					if (accName == "EnchantedLED")
 					{
 						return clickerPlayer.accEnchantedLED;
@@ -473,10 +473,6 @@ namespace ClickerClass
 					else if (accName == "EnchantedLED2")
 					{
 						return clickerPlayer.accEnchantedLED2;
-					}
-					else if (accName == "HandCream")
-					{
-						return clickerPlayer.accHandCream;
 					}
 					else if (accName == "GlassOfMilk")
 					{
@@ -509,10 +505,6 @@ namespace ClickerClass
 					else if (accName == "PortableParticleAccelerator")
 					{
 						return clickerPlayer.accPortableParticleAccelerator;
-					}
-					else if (accName == "IcePack")
-					{
-						return clickerPlayer.accIcePack;
 					}
 					else if (accName == "MouseTrap")
 					{
@@ -683,9 +675,9 @@ namespace ClickerClass
 
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
-					//accEnchantedLED, accEnchantedLED2, accHandCream, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
+					//accEnchantedLED, accEnchantedLED2, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
 					//accGoldenTicket, accPortableParticleAccelerator
-					//accIcePack, accMouseTrap, accHotKeychain, accTriggerFinger, accButtonMasher, accAimbotModule, accAimbotModule2
+					//accMouseTrap, accHotKeychain, accTriggerFinger, accButtonMasher, accAimbotModule, accAimbotModule2
 					if (accName == "EnchantedLED")
 					{
 						clickerPlayer.accEnchantedLED = true;
@@ -694,11 +686,6 @@ namespace ClickerClass
 					else if (accName == "EnchantedLED2")
 					{
 						clickerPlayer.accEnchantedLED2 = true;
-						return success;
-					}
-					else if (accName == "HandCream")
-					{
-						clickerPlayer.accHandCream = true;
 						return success;
 					}
 					else if (accName == "GlassOfMilk")
@@ -739,11 +726,6 @@ namespace ClickerClass
 					else if (accName == "PortableParticleAccelerator")
 					{
 						clickerPlayer.accPortableParticleAccelerator = true;
-						return success;
-					}
-					else if (accName == "IcePack")
-					{
-						clickerPlayer.accIcePack = true;
 						return success;
 					}
 					else if (accName == "MouseTrap")
@@ -874,6 +856,30 @@ namespace ClickerClass
 
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 					return clickerPlayer.HasClickEffect(effectName);
+				}
+				else if (message == "SetAutoReuseEffect")
+				{
+					var player = args[index + 0] as Player;
+					var speedFactor = args[index + 1] as float?;
+					var controlledByKeyBind = args[index + 2] as bool?;
+					var preventsClickEffects = args[index + 3] as bool?;
+					if (speedFactor == null)
+					{
+						throw new Exception($"Call Error: The speedFactor argument for the attempted message, \"{message}\" has returned null.");
+					}
+					if (controlledByKeyBind == null)
+					{
+						throw new Exception($"Call Error: The controlledByKeyBind argument for the attempted message, \"{message}\" has returned null.");
+					}
+					if (preventsClickEffects == null)
+					{
+						throw new Exception($"Call Error: The preventsClickEffects argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+
+					clickerPlayer.SetAutoReuseEffect(new AutoReuseEffect(speedFactor.Value, controlledByKeyBind.Value, preventsClickEffects.Value));
+					return success;
 				}
 			}
 			catch (Exception e)

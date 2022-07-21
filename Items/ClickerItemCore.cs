@@ -78,42 +78,37 @@ namespace ClickerClass.Items
 
 		public override float UseTimeMultiplier(Item item, Player player)
 		{
-			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			
 			if (ClickerSystem.IsClickerWeapon(item))
 			{
 				//Current value calculation:
 				//Use time 2
 				//60 ticks per second
 				//
-				//Examples:
-				//1f => 2 * 1 = 2 => 60 / 2 = 30 cps
-				//6f = 2 * 6 = 12 => 60 / 12 = 5 cps
-				if (!player.HasBuff(ModContent.BuffType<AutoClick>()))
+				//Examples (SpeedFactor on the left):
+				//SpeedFactor of below 2 is not possible due to limitation
+				//2f => 1 * 2 = 2 => 60 / 2 = 30 cps
+				//6f = 1 * 6 = 6 => 60 / 6 = 10 cps
+
+				//Disclaimer: the use time on the wiki is halved, it's listed as use time 1 (whereas code is 2 due to limitation of the game),
+				//So the multiplier is halved here aswell, it makes it easier to conceptualize when starting at 1
+
+				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+				var activeAutoReuseEffect = clickerPlayer.ActiveAutoReuseEffect;
+
+				if (player.CanAutoReuseItem(item))
 				{
-					if (player.CanAutoReuseItem(item))
+					if (activeAutoReuseEffect != default)
 					{
-						if (clickerPlayer.accHandCream)
-						{
-							return 6f;
-						}
-						else if (clickerPlayer.accIcePack)
-						{
-							return 8f;
-						}
-						else
-						{
-							return 10f; //non-clicker induced autoswing
-						}
+						return Math.Max(1, activeAutoReuseEffect.SpeedFactor / 2);
 					}
 					else
 					{
-						return 1f; //No change
+						return 10f; //non-clicker induced autoswing (just a fallback, shouldn't ever happen with CanAutoReuseItem returning false)
 					}
 				}
 				else
 				{
-					return 3f; //AutoClick buff
+					return 1f; //No change when not autoswinging
 				}
 			}
 
@@ -125,10 +120,7 @@ namespace ClickerClass.Items
 			if (ClickerSystem.IsClickerWeapon(item))
 			{
 				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-				if (clickerPlayer.clickerAutoClick || player.HasBuff(ModContent.BuffType<AutoClick>()))
-				{
-					return true;
-				}
+				return clickerPlayer.ActiveAutoReuseEffect != default;
 			}
 
 			return base.CanAutoReuseItem(item, player);
@@ -455,8 +447,8 @@ namespace ClickerClass.Items
 				SoundEngine.PlaySound(SoundID.MenuTick, player.position);
 				clickerPlayer.AddClick();
 
-				bool hasAutoClick = player.HasBuff(ModContent.BuffType<AutoClick>());
-				if (!hasAutoClick)
+				bool preventsClickEffects = player.CanAutoReuseItem(item) && clickerPlayer.ActiveAutoReuseEffect.PreventsClickEffects;
+				if (!preventsClickEffects)
 				{
 					clickerPlayer.AddClickAmount();
 				}
@@ -551,7 +543,7 @@ namespace ClickerClass.Items
 
 				bool overclock = player.HasBuff(overclockType);
 
-				if (!hasAutoClick)
+				if (!preventsClickEffects)
 				{
 					foreach (var name in ClickerSystem.GetAllEffectNames())
 					{

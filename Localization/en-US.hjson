@@ -130,6 +130,7 @@ Mods.ClickerClass: {
 		CaptainsClicker: Captain's Clicker
 		ChlorophyteClicker: Chlorophyte Clicker
 		CobaltClicker: Cobalt Clicker
+		ConfettiClicker: Confetti Clicker
 		CopperClicker: Copper Clicker
 		CorruptClicker: Corrupt Clicker
 		CrimsonClicker: Crimson Clicker
@@ -138,6 +139,7 @@ Mods.ClickerClass: {
 		DarkClicker: Dark Clicker
 		DraconicClicker: Draconic Clicker
 		EclipticClicker: Ecliptic Clicker
+		FamishedClicker: Famished Clicker
 		FaultyClicker: Faulty Clicker
 		FrozenClicker: Frozen Clicker
 		GoldClicker: Gold Clicker
@@ -382,6 +384,16 @@ Mods.ClickerClass: {
 		Presents: {
 			Name: Presents
 			Description: Creates a burst of parachute-presents that can be clicked to release mines
+		}
+		
+		PartyTime: {
+			Name: Party Time!
+			Description: Throws out some confetti
+		}
+		
+		Devour: {
+			Name: Devour
+			Description: Releases a ravenous leech that gets stronger against enemy defense
 		}
 			
 		Insanity: {

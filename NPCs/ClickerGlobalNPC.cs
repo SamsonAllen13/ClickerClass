@@ -241,6 +241,7 @@ namespace ClickerClass.NPCs
 			}
 			else if (npc.type == NPCID.WallofFlesh)
 			{
+				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<FamishedClicker>(), 4));
 				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<ClickerEmblem>(), 4));
 			}
 			else if (npc.type == NPCID.KingSlime)

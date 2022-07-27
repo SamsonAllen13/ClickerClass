@@ -1,24 +1,33 @@
-using ClickerClass.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class ConfettiClicker : ClickerWeapon
 	{
-		//TODO - I'll need dire to help me out on this one
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.PartyTime = ClickerSystem.RegisterClickEffect(Mod, "PartyTime", null, null, 1, new Color(0, 175, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.PartyTime = ClickerSystem.RegisterClickEffect(Mod, "PartyTime", null, null, 1, new Color(25, 175, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.Item24, player.Center); 
-				//Make confetti here
+				SoundEngine.PlaySound(SoundID.Item24, player.Center);
+
+				var dustRect = Utils.CenteredRectangle(position, new Vector2(10));
+				for (int i = 0; i < 10; i++)
+				{
+					int dustType = Main.rand.Next(139, 143); //Confetti dusts
+					var dust = Dust.NewDustDirect(dustRect.TopLeft(), dustRect.Width, dustRect.Height, dustType);
+
+					dust.velocity.X += Main.rand.NextFloat(-0.05f, 0.05f);
+					dust.velocity.Y += Main.rand.NextFloat(-0.05f, 0.05f);
+
+					dust.scale *= 1f + Main.rand.NextFloat(-0.03f, 0.03f);
+				}
 			});
 		}
 
@@ -37,7 +46,18 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = 10000;
 			Item.rare = 2;
 		}
-		
-		//Make it drop from Pigronatas
+	}
+
+	public class ConfettiClickerPigronataTile : GlobalTile
+	{
+		public override bool Drop(int i, int j, int type)
+		{
+			if (type == TileID.Pigronata && Main.tile[i, j] is Tile tile && tile.TileFrameX == 0 && tile.TileFrameY == 0 && Main.rand.NextBool(50))
+			{
+				Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 32, 32, ModContent.ItemType<ConfettiClicker>());
+			}
+
+			return base.Drop(i, j, type);
+		}
 	}
 }

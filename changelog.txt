@@ -1,11 +1,5 @@
-- Added "Wikithis" and "Colored Damage Types" mod support.
-- Removed the welcome message about auto-use incompatibilities with other mods.
-- Changed clickers to only have auto-use with Clicker Class sources that provide it.
-	- Mods such as "Omniswing" will no longer affect clickers.
-- Updated the cross-mod API.
-- Updated Russian and French localization.
-- Buffed Enchanted LED spawn rates.
-- Fixed Clicking Gloves being equippable together.
-- Fixed Aim Assist Module and Aimbot Module not resetting when unequipped.
+- Added Party Clicker and Burning Super Death Clicker!
+- Added Mycelium Clicker to Spore Skeleton drop pool.
+- Added Starry Clicker, Slick Clicker, and Umbral Clicker to their respective fishing crate/lock box pools.
 
 See the Clicker Class wiki for full details!

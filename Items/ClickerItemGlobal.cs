@@ -18,70 +18,122 @@ namespace ClickerClass.Items
 
 			switch (context)
 			{
-				case "bossBag":
-					switch (arg)
+				case "crate":
 					{
-						case ItemID.MoonLordBossBag:
-							player.QuickSpawnItem(source, ModContent.ItemType<LordsClicker>());
-							if (Main.rand.NextBool(5))
-							{
-								player.QuickSpawnItem(source, ModContent.ItemType<TheClicker>());
-							}
-							break;
-						case ItemID.WallOfFleshBossBag:
-							if (Main.rand.NextBool(4))
-							{
-								player.QuickSpawnItem(source, ModContent.ItemType<BurningSuperDeathClicker>());
-							}
-							if (Main.rand.NextBool(4))
-							{
-								player.QuickSpawnItem(source, ModContent.ItemType<ClickerEmblem>());
-							}
-							break;
-						case ItemID.KingSlimeBossBag:
-							if (Main.rand.NextBool(4))
-							{
-								player.QuickSpawnItem(source, ModContent.ItemType<StickyKeychain>());
-							}
-							break;
-						case ItemID.QueenSlimeBossBag:
-							if (Main.rand.NextBool(4))
-							{
-								player.QuickSpawnItem(source, ModContent.ItemType<ClearKeychain>());
-							}
-							break;
-						case ItemID.BossBagBetsy:
-							if (Main.rand.NextBool(4))
-							{
-								player.QuickSpawnItem(source, ModContent.ItemType<DraconicClicker>());
-							}
-							break;
-						case ItemID.FairyQueenBossBag:
-							if (Main.rand.NextBool(4))
-							{
-								player.QuickSpawnItem(source, ModContent.ItemType<RainbowClicker>());
-							}
-							break;
-						case ItemID.DeerclopsBossBag:
-							if (Main.rand.NextBool(4))
-							{
-								player.QuickSpawnItem(source, ModContent.ItemType<CyclopsClicker>());
-							}
-							break;
-						case ItemID.FishronBossBag:
-							if (Main.rand.NextBool(5))
-							{
-								player.QuickSpawnItem(source, ModContent.ItemType<SeafoamClicker>());
-							}
-							break;
-						case ItemID.TwinsBossBag:
-						case ItemID.SkeletronPrimeBossBag:
-						case ItemID.DestroyerBossBag:
-							if (Main.rand.NextBool(4))
-							{
-								player.QuickSpawnItem(source, ModContent.ItemType<BottomlessBoxofPaperclips>());
-							}
-							break;
+						switch (arg)
+						{
+							case ItemID.FloatingIslandFishingCrate:
+								{
+									if (Main.rand.NextBool(3))
+									{
+										player.QuickSpawnItem(source, ModContent.ItemType<StarryClicker>());
+									}
+								}
+								break;
+							case ItemID.FloatingIslandFishingCrateHard: goto case ItemID.FloatingIslandFishingCrate;
+						}
+					}
+					break;
+				case "lockBox":
+					{
+						if (Main.rand.NextBool(7))
+						{
+							player.QuickSpawnItem(source, ModContent.ItemType<SlickClicker>());
+						}
+					}
+					break;
+				case "obsidianLockBox":
+					{
+						if (Main.rand.NextBool(6))
+						{
+							player.QuickSpawnItem(source, ModContent.ItemType<UmbralClicker>());
+						}
+					}
+					break;
+				case "bossBag":
+					{
+						switch (arg)
+						{
+							case ItemID.KingSlimeBossBag:
+								{
+									if (Main.rand.NextBool(4))
+									{
+										player.QuickSpawnItem(source, ModContent.ItemType<StickyKeychain>());
+									}
+								}
+								break;
+							case ItemID.DeerclopsBossBag:
+								{
+									if (Main.rand.NextBool(4))
+									{
+										player.QuickSpawnItem(source, ModContent.ItemType<CyclopsClicker>());
+									}
+								}
+								break;
+							case ItemID.WallOfFleshBossBag:
+								{
+									if (Main.rand.NextBool(4))
+									{
+										player.QuickSpawnItem(source, ModContent.ItemType<BurningSuperDeathClicker>());
+									}
+									if (Main.rand.NextBool(4))
+									{
+										player.QuickSpawnItem(source, ModContent.ItemType<ClickerEmblem>());
+									}
+								}
+								break;
+							case ItemID.QueenSlimeBossBag:
+								{
+									if (Main.rand.NextBool(4))
+									{
+										player.QuickSpawnItem(source, ModContent.ItemType<ClearKeychain>());
+									}
+								}
+								break;
+							case ItemID.TwinsBossBag:
+								{
+									if (Main.rand.NextBool(4))
+									{
+										player.QuickSpawnItem(source, ModContent.ItemType<BottomlessBoxofPaperclips>());
+									}
+								}
+								break;
+							case ItemID.SkeletronPrimeBossBag: goto case ItemID.TwinsBossBag;
+							case ItemID.DestroyerBossBag: goto case ItemID.TwinsBossBag;
+							case ItemID.BossBagBetsy:
+								{
+									if (Main.rand.NextBool(4))
+									{
+										player.QuickSpawnItem(source, ModContent.ItemType<DraconicClicker>());
+									}
+								}
+								break;
+							case ItemID.FishronBossBag:
+								{
+									if (Main.rand.NextBool(5))
+									{
+										player.QuickSpawnItem(source, ModContent.ItemType<SeafoamClicker>());
+									}
+								}
+								break;
+							case ItemID.FairyQueenBossBag:
+								{
+									if (Main.rand.NextBool(4))
+									{
+										player.QuickSpawnItem(source, ModContent.ItemType<RainbowClicker>());
+									}
+								}
+								break;
+							case ItemID.MoonLordBossBag:
+								{
+									player.QuickSpawnItem(source, ModContent.ItemType<LordsClicker>());
+									if (Main.rand.NextBool(5))
+									{
+										player.QuickSpawnItem(source, ModContent.ItemType<TheClicker>());
+									}
+								}
+								break;
+						}
 					}
 					break;
 			}

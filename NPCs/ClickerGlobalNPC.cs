@@ -109,171 +109,282 @@ namespace ClickerClass.NPCs
 			 */
 
 			//This method is called once when the game loads (per NPC), so you can't make dynamic checks based on world state like "npc.value > 0f" here
-			if (npc.type == NPCID.GoblinSorcerer)
-			{
-				//20 is the chanceDenominator argument, meaning its a 1/20 roll aka old Main.rand.NextBool(20)
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadowyClicker>(), 20));
-			}
-			else if (npc.type == NPCID.Frankenstein || npc.type == NPCID.SwampThing)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EclipticClicker>(), 25));
-			}
-			else if (npc.type == NPCID.BloodZombie || npc.type == NPCID.Drippler)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HemoClicker>(), 25));
-			}
-			else if (npc.type == NPCID.DarkCaster)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Milk>(), 15));
-			}
-			else if (npc.type == NPCID.IceMimic)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AimAssistModule>(), 4));
-			}
-			else if (npc.type == NPCID.Gastropod)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ChocolateChip>(), 20));
-			}
-			else if (npc.type == NPCID.SandElemental)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SandstormClicker>(), 2));
-			}
-			else if (npc.type == NPCID.IceGolem)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BlizzardClicker>(), 2));
-			}
-			else if (npc.type == NPCID.PirateCaptain)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CaptainsClicker>(), 8));
-			}
-			else if (npc.type == NPCID.PirateShip)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoldenTicket>(), 4));
-			}
-			else if (npc.type == NPCID.Pumpking)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LanternClicker>(), 10));
-			}
-			else if (npc.type == NPCID.MourningWood)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WitchClicker>(), 10));
-			}
-			else if (npc.type == NPCID.SantaNK1)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NaughtyClicker>(), 10));
-			}
-			else if (npc.type == NPCID.IceQueen)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenClicker>(), 10));
-			}
-			else if (npc.type == NPCID.DD2DarkMageT1 || npc.type == NPCID.DD2DarkMageT3)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArcaneClicker>(), 5));
-			}
-			else if (npc.type == NPCID.DD2OgreT2 || npc.type == NPCID.DD2OgreT3)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SnottyClicker>(), 5));
-			}
-			else if (npc.type == NPCID.MaggotZombie)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TriggerFinger>(), 18));
-			}
-			else if (npc.type == NPCID.MartianSaucerCore)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HighTechClicker>(), 4));
-			}
-			else if (npc.type == NPCID.WindyBalloon)
-			{
-				npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BalloonClicker>(), 10));
-			}
-			else if (npc.type == NPCID.BloodNautilus)
-			{
-				npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<SpiralClicker>(), 2, 1));
-			}
-			else if (npc.type == NPCID.FireImp)
-			{
-				DropHelper.NPCExpertGetsRerolls(npcLoot, ModContent.ItemType<ImpishClicker>(), 35);
-			}
-			else if (npc.type == NPCID.TorchGod)
-			{
-				LeadingConditionRule neverDropsRule = new LeadingConditionRule(new Conditions.NeverTrue());
-				neverDropsRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TorchClicker>()));
-				npcLoot.Add(neverDropsRule);
-			}
 
-			//Here go drops for normal mode that mirror through boss bags in expert mode (see ClickerItemGlobal)
 			Conditions.NotExpert notExpert = new Conditions.NotExpert();
-			if (npc.type == NPCID.MoonLordCore)
-			{
-				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LordsClicker>()));
-				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TheClicker>(), 5));
-			}
-			else if (npc.type == NPCID.TheDestroyer || npc.type == NPCID.SkeletronPrime || npc.type == NPCID.Retinazer || npc.type == NPCID.Spazmatism)
-			{
-				var ruleToAdd = ItemDropRule.ByCondition(notExpert, ModContent.ItemType<BottomlessBoxofPaperclips>(), 4);
+			Conditions.IsExpert isExpert = new Conditions.IsExpert();
 
-				if (npc.type == NPCID.TheDestroyer || npc.type == NPCID.SkeletronPrime)
-				{
-					npcLoot.Add(ruleToAdd);
-				}
-				else
-				{
-					LeadingConditionRule missingTwinRule = new LeadingConditionRule(new Conditions.MissingTwin());
-					missingTwinRule.OnSuccess(ruleToAdd);
-					npcLoot.Add(missingTwinRule);
-				}
-			}
-			else if (npc.type == NPCID.DD2Betsy)
+			switch (npc.type)
 			{
-				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<DraconicClicker>(), 4));
-			}
-			else if (npc.type == NPCID.Deerclops)
-			{
-				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<CyclopsClicker>(), 4));
-			}
-			else if (npc.type == NPCID.HallowBoss)
-			{
-				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<RainbowClicker>(), 4));
-			}
-			else if (npc.type == NPCID.DukeFishron)
-			{
-				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SeafoamClicker>(), 5));
-			}
-			else if (npc.type == NPCID.WallofFlesh)
-			{
-				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<BurningSuperDeathClicker>(), 4));
-				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<ClickerEmblem>(), 4));
-			}
-			else if (npc.type == NPCID.KingSlime)
-			{
-				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<StickyKeychain>(), 4));
-			}
-			else if (npc.type == NPCID.QueenSlimeBoss)
-			{
-				npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<ClearKeychain>(), 4));
-			}
-			else if (npc.type == NPCID.LunarTowerStardust || npc.type == NPCID.LunarTowerSolar || npc.type == NPCID.LunarTowerVortex || npc.type == NPCID.LunarTowerNebula)
-			{
-				int miceFragment = ModContent.ItemType<MiceFragment>();
+				/* Biomes */
+				#region Snow/Ice biome
+				case NPCID.IceMimic:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<AimAssistModule>(), 4));
+					}
+					break;
+				#endregion
 
-				var pNormal = default(DropOneByOne.Parameters);
-				pNormal.ChanceDenominator = 1;
-				pNormal.ChanceNumerator = 1;
-				pNormal.MinimumStackPerChunkBase = 1;
-				pNormal.MaximumStackPerChunkBase = 1;
-				pNormal.BonusMinDropsPerChunkPerPlayer = 0;
-				pNormal.BonusMaxDropsPerChunkPerPlayer = 0;
+				#region Glowing Mushroom biome
+				case NPCID.SporeSkeleton:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MyceliumClicker>(), 100));
+					}
+					break;
+				#endregion
 
-				pNormal.MinimumItemDropsCount = 3;
-				pNormal.MaximumItemDropsCount = 15;
+				#region Dungeon
+				case NPCID.DarkCaster:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<Milk>(), 15));
+					}
+					break;
+				#endregion
 
-				var pExpert = pNormal; //Since DropOneByOne.Parameters is a struct, this is a copy/new assignment
-				pExpert.MinimumItemDropsCount = 5;
-				pExpert.MaximumItemDropsCount = 22;
+				#region Underworld
+				case NPCID.FireImp:
+					{
+						DropHelper.NPCExpertGetsRerolls(npcLoot, ModContent.ItemType<ImpishClicker>(), 35);
+					}
+					break;
+				#endregion
 
-				var normalModeRule = new DropOneByOne(miceFragment, pNormal);
-				var expertModeRule = new DropOneByOne(miceFragment, pExpert);
-				npcLoot.Add(new DropBasedOnExpertMode(normalModeRule, expertModeRule));
+				#region Hallow
+				case NPCID.Gastropod:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ChocolateChip>(), 20));
+					}
+					break;
+				#endregion
+
+				#region Graveyard
+				case NPCID.MaggotZombie:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<TriggerFinger>(), 18));
+					}
+					break;
+				#endregion
+
+				/* Events */
+				#region Windy Day
+				case NPCID.WindyBalloon:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BalloonClicker>(), 10));
+					}
+					break;
+				#endregion
+
+				#region Rain
+				case NPCID.IceGolem:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<BlizzardClicker>(), 2));
+					}
+					break;
+				#endregion
+
+				#region Sandstorm
+				case NPCID.SandElemental:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SandstormClicker>(), 2));
+					}
+					break;
+				#endregion
+
+				#region Blood Moon
+				case NPCID.BloodZombie:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HemoClicker>(), 25));
+					}
+					break;
+				case NPCID.Drippler: goto case NPCID.BloodZombie;
+				case NPCID.BloodNautilus:
+					{
+						npcLoot.Add(ItemDropRule.NormalvsExpert(ModContent.ItemType<SpiralClicker>(), 2, 1));
+					}
+					break;
+				#endregion
+
+				#region Solar Eclipse
+				case NPCID.Frankenstein:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EclipticClicker>(), 25));
+					}
+					break;
+				case NPCID.SwampThing: goto case NPCID.Frankenstein;
+				#endregion
+
+				#region Goblin Army
+				case NPCID.GoblinSorcerer:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ShadowyClicker>(), 20));
+					}
+					break;
+				#endregion
+
+				#region Pirate Invasion
+				case NPCID.PirateCaptain:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CaptainsClicker>(), 8));
+					}
+					break;
+				case NPCID.PirateShip:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<GoldenTicket>(), 4));
+					}
+					break;
+				#endregion
+
+				#region Pumpkin Moon
+				case NPCID.MourningWood:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<WitchClicker>(), 10));
+					}
+					break;
+				case NPCID.Pumpking:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<LanternClicker>(), 10));
+					}
+					break;
+				#endregion
+
+				#region Frost Moon
+				case NPCID.SantaNK1:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<NaughtyClicker>(), 10));
+					}
+					break;
+				case NPCID.IceQueen:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<FrozenClicker>(), 10));
+					}
+					break;
+				#endregion
+
+				#region Martian Madness
+				case NPCID.MartianSaucerCore:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<HighTechClicker>(), 4));
+					}
+					break;
+				#endregion
+
+				#region Old One's Army
+				case NPCID.DD2DarkMageT1:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<ArcaneClicker>(), 5));
+					}
+					break;
+				case NPCID.DD2DarkMageT3: goto case NPCID.DD2DarkMageT1;
+				case NPCID.DD2OgreT2:
+					{
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<SnottyClicker>(), 5));
+					}
+					break;
+				case NPCID.DD2OgreT3: goto case NPCID.DD2OgreT2;
+				case NPCID.DD2Betsy:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<DraconicClicker>(), 4));
+					}
+					break;
+				#endregion
+
+				#region Lunar Events
+				case NPCID.LunarTowerSolar:
+					{
+						LeadingConditionRule notExpertRule = new LeadingConditionRule(notExpert);
+						LeadingConditionRule isExpertRule = new LeadingConditionRule(isExpert);
+						int miceFragment = ModContent.ItemType<MiceFragment>();
+
+						var dropParametersNormal = new DropOneByOne.Parameters()
+						{
+							ChanceNumerator = 1,
+							ChanceDenominator = 1,
+							MinimumStackPerChunkBase = 1,
+							MaximumStackPerChunkBase = 1,
+							MinimumItemDropsCount = 3,
+							MaximumItemDropsCount = 15
+						};
+						var dropParametersExpert = dropParametersNormal;
+						dropParametersExpert.MinimumItemDropsCount = 5;
+						dropParametersExpert.MaximumItemDropsCount = 22;
+
+						isExpertRule.OnSuccess(new DropOneByOne(miceFragment, dropParametersExpert));
+						notExpertRule.OnSuccess(new DropOneByOne(miceFragment, dropParametersNormal));
+
+						npcLoot.Add(isExpertRule);
+						npcLoot.Add(notExpertRule);
+					}
+					break;
+				case NPCID.LunarTowerVortex: goto case NPCID.LunarTowerSolar;
+				case NPCID.LunarTowerNebula: goto case NPCID.LunarTowerSolar;
+				case NPCID.LunarTowerStardust: goto case NPCID.LunarTowerSolar;
+				#endregion
+
+				#region Torch God
+				case NPCID.TorchGod:
+					{
+						LeadingConditionRule neverDropsRule = new LeadingConditionRule(new Conditions.NeverTrue());
+						neverDropsRule.OnSuccess(ItemDropRule.Common(ModContent.ItemType<TorchClicker>()));
+						npcLoot.Add(neverDropsRule);
+					}
+					break;
+				#endregion
+
+				/* Bosses */
+				#region Bosses
+				case NPCID.KingSlime:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<StickyKeychain>(), 4));
+					}
+					break;
+				case NPCID.Deerclops:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<CyclopsClicker>(), 4));
+					}
+					break;
+				case NPCID.WallofFlesh:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<BurningSuperDeathClicker>(), 4));
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<ClickerEmblem>(), 4));
+					}
+					break;
+				case NPCID.QueenSlimeBoss:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<ClearKeychain>(), 4));
+					}
+					break;
+				case NPCID.Retinazer:
+					{
+						LeadingConditionRule notExpertRule = new LeadingConditionRule(notExpert);
+
+						notExpertRule.OnSuccess(ItemDropRule.ByCondition(new Conditions.MissingTwin(), ModContent.ItemType<BottomlessBoxofPaperclips>(), 4));
+
+						npcLoot.Add(notExpertRule);
+					}
+					break;
+				case NPCID.Spazmatism: goto case NPCID.Retinazer;
+				case NPCID.TheDestroyer:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<BottomlessBoxofPaperclips>(), 4));
+					}
+					break;
+				case NPCID.SkeletronPrime: goto case NPCID.TheDestroyer;
+				case NPCID.DukeFishron:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SeafoamClicker>(), 5));
+					}
+					break;
+				case NPCID.HallowBoss:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<RainbowClicker>(), 4));
+					}
+					break;
+				case NPCID.MoonLordCore:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LordsClicker>()));
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TheClicker>(), 5));
+					}
+					break;
+				#endregion
 			}
 		}
 

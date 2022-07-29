@@ -25,14 +25,16 @@ namespace ClickerClass
 		public bool TryUsingTranslation { get; private set; }
 
 		public int Amount { get; private set; }
-		
-		//public bool PreHardMode { get; private set; }
 
 		public Func<Color> ColorFunc { get; private set; }
 
 		public Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> Action { get; private set; }
 
-		public ClickEffect(Mod mod, string internalName, string displayName, string description, int amount, /*bool preHardMode, */Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action)
+		public bool PreHardMode { get; private set; }
+
+		private static void DoNothingAction(Player a, EntitySource_ItemUse_WithAmmo b, Vector2 c, int d, int e, float f) { }
+
+		public ClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false)
 		{
 			Mod = mod ?? throw new Exception("No mod specified");
 			InternalName = internalName ?? throw new Exception("No internal name specified");
@@ -40,14 +42,14 @@ namespace ClickerClass
 			Description = description ?? LangHelper.GetText("Common.Unknown");
 			TryUsingTranslation = displayName == null || description == null;
 			Amount = amount;
-			//PreHardMode = preHardMode;
 			ColorFunc = colorFunc;
-			Action = action ?? (new Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>((a, b, c, d, e, f) => { }));
+			Action = action ?? DoNothingAction;
+			PreHardMode = preHardMode;
 		}
 
 		public object Clone()
 		{
-			return new ClickEffect(Mod, InternalName, DisplayName, Description, Amount, ColorFunc, (Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>)Action.Clone());
+			return new ClickEffect(Mod, InternalName, DisplayName, Description, Amount, ColorFunc, (Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>)Action.Clone(), PreHardMode);
 		}
 
 		public TooltipLine ToTooltip(int amount, float alpha, bool showDesc)
@@ -106,9 +108,9 @@ namespace ClickerClass
 				["DisplayName"] = DisplayName,
 				["Description"] = Description,
 				["Amount"] = Amount,
-				//["PreHardMode"] = PreHardMode,
 				["ColorFunc"] = ColorFunc,
-				["Action"] = Action
+				["Action"] = Action,
+				["PreHardMode"] = PreHardMode,
 			};
 		}
 
@@ -120,14 +122,16 @@ namespace ClickerClass
 			ClickEffect.DoubleClick = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick", null, null, 10, Color.White, delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				DoubleClick(player, source, position, type, damage, knockBack);
-			});
+			},
+			preHardMode: true);
 
 			ClickEffect.DoubleClick2 = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick2", null, null, 8, Color.White, delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				DoubleClick(player, source, position, type, damage, knockBack);
-			});
+			},
+			preHardMode: true);
 
-			void DoubleClick(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			static void DoubleClick(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				SoundEngine.PlaySound(SoundID.Item37, position);
 				Projectile.NewProjectile(source, position, Vector2.Zero, type, damage, knockBack, player.whoAmI);

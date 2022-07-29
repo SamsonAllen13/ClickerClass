@@ -31,7 +31,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					dust.velocity.X = -x * 0.075f;
 					dust.velocity.Y = -y * 0.075f;
 				}
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

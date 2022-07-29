@@ -38,7 +38,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					}
 					Projectile.NewProjectile(source, pos, vector, ModContent.ProjectileType<ShadowyClickerPro>(), damage, knockBack, player.whoAmI);
 				}
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

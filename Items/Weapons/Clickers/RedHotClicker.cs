@@ -16,7 +16,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			ClickEffect.Inferno = ClickerSystem.RegisterClickEffect(Mod, "Inferno", null, null, 8, new Color(255, 125, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<RedHotClickerPro>(), 0, knockBack, player.whoAmI);
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

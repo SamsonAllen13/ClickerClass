@@ -26,7 +26,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 					dust.scale *= 1f + Main.rand.NextFloat(-0.03f, 0.03f);
 				}
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

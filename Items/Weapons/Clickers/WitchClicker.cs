@@ -21,23 +21,20 @@ namespace ClickerClass.Items.Weapons.Clickers
 					ClickEffect.PhaseReach
 				};
 
-				List<string> allowed = new List<string>();
+				List<ClickEffect> allowed = new List<ClickEffect>();
 
 				foreach (var name in ClickerSystem.GetAllEffectNames())
 				{
-					if (!excluded.Contains(name))
+					if (!excluded.Contains(name) && ClickerSystem.IsClickEffect(name, out ClickEffect effect))
 					{
-						allowed.Add(name);
+						allowed.Add(effect);
 					}
 				}
 
 				if (allowed.Count == 0) return;
 
-				string random = Main.rand.Next(allowed);
-				if (ClickerSystem.IsClickEffect(random, out ClickEffect effect))
-				{
-					effect.Action?.Invoke(player, source, position, type, damage, knockBack);
-				}
+				ClickEffect random = Main.rand.Next(allowed);
+				random.Action?.Invoke(player, source, position, type, damage, knockBack);
 			});
 		}
 

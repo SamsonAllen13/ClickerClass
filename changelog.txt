@@ -1,5 +1,6 @@
 - Added Party Clicker and Burning Super Death Clicker!
 - Added Mycelium Clicker to Spore Skeleton drop pool.
 - Added Starry Clicker, Slick Clicker, and Umbral Clicker to their respective fishing crate/lock box pools.
+- Updated the cross-mod API.
 
 See the Clicker Class wiki for full details!

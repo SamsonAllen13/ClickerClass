@@ -23,7 +23,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), ModContent.ProjectileType<UmbralClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI, (int)DateTime.Now.Ticks, hasSpawnEffects);
 					spawnEffects = false;
 				}
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

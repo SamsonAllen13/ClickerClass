@@ -97,7 +97,7 @@ namespace ClickerClass
 					ClickerSystem.RegisterClickerWeapon(modItem, borderTexture);
 					return success;
 				}
-				//Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action
+				//Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode
 				else if (message == "RegisterClickEffect")
 				{
 					var mod = args[index + 0] as Mod;
@@ -108,6 +108,12 @@ namespace ClickerClass
 					var color = args[index + 5] as Color?;
 					var colorFunc = args[index + 5] as Func<Color>; //Try another type variation because of overload
 					var action = args[index + 6] as Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>;
+					var preHardMode = args[index + 7] as bool?;
+					if (preHardMode == null && apiVersion < new Version(1, 3, 3))
+					{
+						//New parameter, default to false
+						preHardMode = false;
+					}
 
 					string nameOfargument = string.Empty;
 					if (mod == null)
@@ -120,6 +126,8 @@ namespace ClickerClass
 						nameOfargument = "color";
 					if (action == null)
 						nameOfargument = "action";
+					if (preHardMode == null)
+						nameOfargument = "preHardMode";
 
 					if (nameOfargument != string.Empty)
 					{
@@ -133,7 +141,7 @@ namespace ClickerClass
 						useColor = () => color.Value;
 					}
 
-					return ClickerSystem.RegisterClickEffect(mod, internalName, displayName, description, amount.Value, useColor, action);
+					return ClickerSystem.RegisterClickEffect(mod, internalName, displayName, description, amount.Value, useColor, action, preHardMode.Value);
 				}
 				else if (message == "GetPathToBorderTexture")
 				{

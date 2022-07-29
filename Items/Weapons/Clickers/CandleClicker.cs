@@ -21,7 +21,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<CandleClickerPro>(), 0, 0f, player.whoAmI, hasSpawnEffects);
 					spawnEffects = false;
 				}
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

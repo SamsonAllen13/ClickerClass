@@ -16,7 +16,8 @@ namespace ClickerClass.Items.Accessories
 			{
 				int keychain = ModContent.ProjectileType<StickyKeychainPro>();
 				Projectile.NewProjectile(source, position, Vector2.Zero, keychain, (int)(damage * 0.5), 3f, player.whoAmI, Main.rand.Next(Main.projFrames[keychain]));
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

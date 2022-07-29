@@ -39,7 +39,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 				}
 
 				Projectile.NewProjectile(source, offset, Vector2.Zero, ModContent.ProjectileType<FaultyClickerPro>(), (int)(damage * 2f), 0f, player.whoAmI);
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

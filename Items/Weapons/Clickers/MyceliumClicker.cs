@@ -21,7 +21,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-0.5f, 0.5f), Main.rand.NextFloat(-4f, -2f), ModContent.ProjectileType<MyceliumClickerPro>(), (int)(damage * 0.5f), 2f, player.whoAmI, hasSpawnEffects);
 					spawnEffects = false;
 				}
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

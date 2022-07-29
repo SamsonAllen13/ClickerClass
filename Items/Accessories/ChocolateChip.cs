@@ -23,7 +23,8 @@ namespace ClickerClass.Items.Accessories
 					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-10f, 10f), chocolate, Math.Max(1, (int)(damage * 0.2f)), 0f, player.whoAmI, Main.rand.Next(Main.projFrames[chocolate]), hasSpawnEffects);
 					spawnEffects = false;
 				}
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

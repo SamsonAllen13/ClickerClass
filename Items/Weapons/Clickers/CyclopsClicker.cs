@@ -21,7 +21,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 				Vector2 spawnposition = position - randomCircleVector * (dist * 0.5f);
 				Vector2 spawnvelocity = randomCircleVector * 2;
 				Projectile.NewProjectile(source, spawnposition, spawnvelocity, ModContent.ProjectileType<CyclopsClickerPro>(), damage, knockBack, Main.myPlayer);
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

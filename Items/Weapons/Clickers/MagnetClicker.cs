@@ -24,7 +24,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 						item.Center = player.Center;
 					}
 				}
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

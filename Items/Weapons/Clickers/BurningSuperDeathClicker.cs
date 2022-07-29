@@ -5,6 +5,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using System.Collections.Generic;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -16,8 +17,27 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Mania = ClickerSystem.RegisterClickEffect(Mod, "Mania", null, null, 8, new Color(200, 100, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				
-			});
+				List<string> excluded = new List<string>
+				{
+					//ClickEffect.PartyTime,
+				};
+
+				List<ClickEffect> allowed = new List<ClickEffect>();
+
+				foreach (var name in ClickerSystem.GetAllEffectNames())
+				{
+					if (!excluded.Contains(name) && ClickerSystem.IsClickEffect(name, out ClickEffect effect) && effect.PreHardMode)
+					{
+						allowed.Add(effect);
+					}
+				}
+
+				if (allowed.Count == 0) return;
+
+				ClickEffect random = Main.rand.Next(allowed);
+				random.Action?.Invoke(player, source, position, type, damage, knockBack);
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

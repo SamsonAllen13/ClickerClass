@@ -33,7 +33,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					}
 					Projectile.NewProjectile(source, startSpot, vector, ModContent.ProjectileType<SpaceClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI, endSpot.X, endSpot.Y);
 				}
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()

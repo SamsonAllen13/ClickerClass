@@ -84,6 +84,7 @@ namespace ClickerClass
 		/// | "Amount": The amount of clicks to trigger the effect (int).
 		/// | "ColorFunc": The color (Color) if invoked.
 		/// | "Action": The method ran when triggered (Action[Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float]).
+		/// | "PreHardMode": Belongs to something available pre-hardmode (bool).
 		/// </summary>
 		/// <param name="name">The unique name</param>
 		/// <returns>Dictionary[string, object]</returns>
@@ -147,9 +148,10 @@ namespace ClickerClass
 		/// <param name="amount">The amount of clicks required to trigger the effect</param>
 		/// <param name="colorFunc">The (dynamic) text color representing the effect in the tooltip</param>
 		/// <param name="action">The method that runs when the effect is triggered</param>
+		/// <param name="preHardMode">If this effect primarily belongs to something available pre-hardmode</param>
 		/// <returns>The unique identifier</returns>
 		/// <exception cref="InvalidOperationException"/>
-		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action)
+		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false)
 		{
 			if (ClickerClass.finalizedRegisterCompat)
 			{
@@ -162,7 +164,7 @@ namespace ClickerClass
 
 			string uniqueName = UniqueEffectName(mod, internalName);
 
-			ClickEffect effect = new ClickEffect(mod, internalName, displayName, description, amount, colorFunc, action);
+			ClickEffect effect = new ClickEffect(mod, internalName, displayName, description, amount, colorFunc, action, preHardMode);
 
 			if (!IsClickEffect(uniqueName))
 			{
@@ -186,11 +188,12 @@ namespace ClickerClass
 		/// <param name="color">The text color representing the effect in the tooltip</param>
 		/// <param name="action">The method that runs when the effect is triggered</param>
 		/// <remarks>For dynamic colors, use the Func[Color] overload</remarks>
+		/// <param name="preHardMode">If this effect primarily belongs to something available pre-hardmode</param>
 		/// <returns>The unique identifier</returns>
 		/// <exception cref="InvalidOperationException"/>
-		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action)
+		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false)
 		{
-			return RegisterClickEffect(mod, internalName, displayName, description, amount, () => color, action);
+			return RegisterClickEffect(mod, internalName, displayName, description, amount, () => color, action, preHardMode);
 		}
 
 		internal static void FinalizeLocalization()

@@ -52,8 +52,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 					int torch = ModContent.ProjectileType<TorchClickerPro>();
 					Projectile.NewProjectile(source, startSpot, vector, torch, (int)(damage * 0.25f), 0f, player.whoAmI, 0f, 0f);
 				}
-			});
-			
+			},
+			preHardMode: true);
+
 			if (!Main.dedServ)
 			{
 				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");

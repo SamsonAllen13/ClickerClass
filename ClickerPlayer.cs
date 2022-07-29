@@ -125,6 +125,9 @@ namespace ClickerClass
 		public const int OutOfCombatTimeMax = 300;
 		public bool OutOfCombat => outOfCombatTimer <= 0;
 		public int outOfCombatTimer = 0;
+		
+		//Item
+		public bool itemBurningSuperDeath = false;
 
 		//Armor
 		public int setAbilityDelayTimer = 0;
@@ -740,6 +743,9 @@ namespace ClickerClass
 			//Click Effects
 			ResetAllClickEffects();
 			effectHotWings = false;
+			
+			//Item
+			itemBurningSuperDeath = false;
 
 			//Armor
 			setMotherboard = false;

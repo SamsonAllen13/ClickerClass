@@ -15,8 +15,6 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.PartyTime = ClickerSystem.RegisterClickEffect(Mod, "PartyTime", null, null, 1, new Color(25, 175, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.Item24, player.Center);
-
 				var dustRect = Utils.CenteredRectangle(position, new Vector2(10));
 				for (int i = 0; i < 10; i++)
 				{

@@ -18,6 +18,10 @@ namespace ClickerClass.UI
 		private static bool _lastMouseInterface = false;
 		private static bool _lastMouseText = false;
 		internal static bool detourSecondCursorDraw = false;
+		
+		public const int ItemFlameCountMax = 5;
+		public int itemFlameCount = ItemFlameCountMax;
+		public Vector2[] itemFlamePos = new Vector2[7];
 
 		/// <summary>
 		/// Helper method that determines when the cursor can be drawn/replaced
@@ -65,6 +69,10 @@ namespace ClickerClass.UI
 			{
 				borderAsset = ModContent.Request<Texture2D>(borderTexturePath);
 			}
+			else if (player.GetModPlayer<ClickerPlayer>().itemBurningSuperDeath)
+			{
+				borderAsset = ClickerClass.mod.Assets.Request<Texture2D>("UI/CursorOutline2");
+			}
 			else
 			{
 				//Default border
@@ -93,9 +101,33 @@ namespace ClickerClass.UI
 
 			Color color = Color.White;
 			color.A = (byte)(_clickerAlpha * 255);
+			
+			if (player.GetModPlayer<ClickerPlayer>().itemBurningSuperDeath)
+			{
+				itemFlameCount--;
+				if (itemFlameCount <= 0)
+				{
+					itemFlameCount = ItemFlameCountMax;
+					for (int k = 0; k < 7; k++)
+					{
+						itemFlamePos[k].X = Main.rand.Next(-10, 11) * 0.15f;
+						itemFlamePos[k].Y = Main.rand.Next(-10, 1) * 0.35f;
+					}
+				}
+				
+				for (int i = 0; i < itemFlamePos.Length; i++)
+				{
+					Color flameColor = new Color(100, 100, 100, 0);
+					Vector2 flameDrawPos = borderPosition + itemFlamePos[i];
+					Main.spriteBatch.Draw(borderTexture, flameDrawPos, borderFrame, flameColor, 0f, Vector2.Zero, _clickerScale + 0.1f, SpriteEffects.FlipHorizontally, 0f);
+				}
+			}
+			else
+			{
+				// Draw cursor border
+				Main.spriteBatch.Draw(borderTexture, borderPosition, borderFrame, Main.mouseBorderColorSlider.GetColor(), 0f, Vector2.Zero, _clickerScale, SpriteEffects.FlipHorizontally, 0f);
+			}
 
-			// Draw cursor border
-			Main.spriteBatch.Draw(borderTexture, borderPosition, borderFrame, Main.mouseBorderColorSlider.GetColor(), 0f, Vector2.Zero, _clickerScale, SpriteEffects.FlipHorizontally, 0f);
 			// Actual cursor
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, Vector2.Zero, _clickerScale, SpriteEffects.FlipHorizontally, 0f);
 

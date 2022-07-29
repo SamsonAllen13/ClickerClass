@@ -25,12 +25,14 @@ namespace ClickerClass
 		public bool TryUsingTranslation { get; private set; }
 
 		public int Amount { get; private set; }
+		
+		//public bool PreHardMode { get; private set; }
 
 		public Func<Color> ColorFunc { get; private set; }
 
 		public Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> Action { get; private set; }
 
-		public ClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action)
+		public ClickEffect(Mod mod, string internalName, string displayName, string description, int amount, /*bool preHardMode, */Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action)
 		{
 			Mod = mod ?? throw new Exception("No mod specified");
 			InternalName = internalName ?? throw new Exception("No internal name specified");
@@ -38,6 +40,7 @@ namespace ClickerClass
 			Description = description ?? LangHelper.GetText("Common.Unknown");
 			TryUsingTranslation = displayName == null || description == null;
 			Amount = amount;
+			//PreHardMode = preHardMode;
 			ColorFunc = colorFunc;
 			Action = action ?? (new Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>((a, b, c, d, e, f) => { }));
 		}
@@ -103,6 +106,7 @@ namespace ClickerClass
 				["DisplayName"] = DisplayName,
 				["Description"] = Description,
 				["Amount"] = Amount,
+				//["PreHardMode"] = PreHardMode,
 				["ColorFunc"] = ColorFunc,
 				["Action"] = Action
 			};
@@ -141,6 +145,7 @@ namespace ClickerClass
 		public static string ChromaticBurst { get; internal set; } = string.Empty;
 		
 		//Clicker
+		public static string Mania { get; internal set; } = string.Empty;
 		public static string PartyTime { get; internal set; } = string.Empty;
 		public static string Devour { get; internal set; } = string.Empty;
 		public static string ArcaneEnchantment { get; internal set; } = string.Empty;

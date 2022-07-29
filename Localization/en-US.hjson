@@ -126,6 +126,7 @@ Mods.ClickerClass: {
 		BalloonClicker: Balloon Clicker
 		BoneClicker: Bone Clicker
 		BlizzardClicker: Blizzard Clicker
+		BurningSuperDeathClicker: Burning Super Death Clicker
 		CandleClicker: Candle Clicker
 		CaptainsClicker: Captain's Clicker
 		ChlorophyteClicker: Chlorophyte Clicker
@@ -393,7 +394,7 @@ Mods.ClickerClass: {
 		
 		Devour: {
 			Name: Devour
-			Description: Releases a ravenous leech that gets stronger against enemy defense
+			Description: N/A
 		}
 			
 		Insanity: {
@@ -409,6 +410,11 @@ Mods.ClickerClass: {
 		ArcaneEnchantment: {
 			Name: Arcane Enchantment
 			Description: Grants increased click damage and a bigger click hitbox
+		}
+		
+		Mania: {
+			Name: Mania
+			Description: Randomly acts as any possible lesser click effect
 		}
 			
 		HolyNova: {

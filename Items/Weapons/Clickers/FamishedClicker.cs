@@ -16,8 +16,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Devour = ClickerSystem.RegisterClickEffect(Mod, "Devour", null, null, 15, new Color(200, 125, 125), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				SoundEngine.PlaySound(SoundID.Item24, player.Center);
-				//Add effect here when I have the time -Diver
+				//Add effect here when I have the time
 			});
 		}
 
@@ -34,7 +33,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.height = 30;
 			Item.knockBack = 1f;
 			Item.value = 50000;
-			Item.rare = 4;
+			Item.rare = -1;
 		}
 	}
 }

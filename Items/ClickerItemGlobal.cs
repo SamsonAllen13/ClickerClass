@@ -31,7 +31,7 @@ namespace ClickerClass.Items
 						case ItemID.WallOfFleshBossBag:
 							if (Main.rand.NextBool(4))
 							{
-								player.QuickSpawnItem(source, ModContent.ItemType<FamishedClicker>());
+								player.QuickSpawnItem(source, ModContent.ItemType<BurningSuperDeathClicker>());
 							}
 							if (Main.rand.NextBool(4))
 							{

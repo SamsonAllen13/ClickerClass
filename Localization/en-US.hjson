@@ -389,7 +389,7 @@ Mods.ClickerClass: {
 		
 		PartyTime: {
 			Name: Party Time!
-			Description: Throws out some confetti
+			Description: Throws out some confetti!
 		}
 		
 		Devour: {

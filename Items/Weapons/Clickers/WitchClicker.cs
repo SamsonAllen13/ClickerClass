@@ -16,6 +16,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				List<string> excluded = new List<string>
 				{
 					ClickEffect.WildMagic,
+					ClickEffect.Mania,
 					ClickEffect.Conqueror,
 					ClickEffect.AutoClick,
 					ClickEffect.PhaseReach

@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Mania = ClickerSystem.RegisterClickEffect(Mod, "Mania", null, null, 8, new Color(200, 100, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Mania = ClickerSystem.RegisterClickEffect(Mod, "Mania", null, null, 6, new Color(255, 150, 150), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				List<string> excluded = new List<string>
 				{
@@ -36,8 +36,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 				ClickEffect random = Main.rand.Next(allowed);
 				random.Action?.Invoke(player, source, position, type, damage, knockBack);
-			},
-			preHardMode: true);
+			});
 		}
 
 		public override void SetDefaults()
@@ -45,7 +44,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetDefaults();
 			SetRadius(Item, 2.75f);
 			SetColor(Item, new Color(200, 100, 0));
-			SetDust(Item, 6);
+			SetDust(Item, 174);
 			AddEffect(Item, ClickEffect.Mania);
 
 			Item.damage = 20;
@@ -53,7 +52,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.height = 30;
 			Item.knockBack = 1f;
 			Item.value = 50000;
-			Item.rare = 3;
+			Item.rare = 4;
 		}
 		
 		public override void HoldItem(Player player)

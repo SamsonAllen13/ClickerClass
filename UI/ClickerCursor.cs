@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.GameContent;
@@ -31,6 +32,12 @@ namespace ClickerClass.UI
 			return !_lastMouseInterface && !_lastMouseText && ClickerSystem.IsClickerWeapon(item);
 		}
 
+		public Dictionary<int, Asset<Texture2D>> customCursorTexturesByType = new();
+
+		public Lazy<Asset<Texture2D>> outlineTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/CursorOutline"));
+
+		public Lazy<Asset<Texture2D>> burningSuperDeathOutlineTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/CursorOutline2"));
+
 		public override void Update(GameTime gameTime)
 		{
 			_clickerScale = Main.cursorScale;
@@ -58,25 +65,31 @@ namespace ClickerClass.UI
 			Texture2D borderTexture;
 			Texture2D texture;
 			Item item = player.HeldItem;
+			int itemType = item.type;
 
 			if (!CanDrawCursor(item))
 			{
 				return true;
 			}
 
-			string borderTexturePath = ClickerSystem.GetPathToBorderTexture(item.type);
+			string borderTexturePath = ClickerSystem.GetPathToBorderTexture(itemType);
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			if (borderTexturePath != null)
 			{
-				borderAsset = ModContent.Request<Texture2D>(borderTexturePath);
+				if (!customCursorTexturesByType.ContainsKey(itemType))
+				{
+					customCursorTexturesByType[itemType] = ModContent.Request<Texture2D>(borderTexturePath);
+				}
+				borderAsset = customCursorTexturesByType[itemType];
 			}
-			else if (player.GetModPlayer<ClickerPlayer>().itemBurningSuperDeath)
+			else if (clickerPlayer.itemBurningSuperDeath)
 			{
-				borderAsset = ClickerClass.mod.Assets.Request<Texture2D>("UI/CursorOutline2");
+				borderAsset = burningSuperDeathOutlineTexture.Value;
 			}
 			else
 			{
 				//Default border
-				borderAsset = ClickerClass.mod.Assets.Request<Texture2D>("UI/CursorOutline");
+				borderAsset = outlineTexture.Value;
 			}
 
 			if (!borderAsset.IsLoaded)
@@ -87,7 +100,7 @@ namespace ClickerClass.UI
 			//TODO animated support
 
 			borderTexture = borderAsset.Value;
-			texture = TextureAssets.Item[item.type].Value;
+			texture = TextureAssets.Item[itemType].Value;
 
 			Rectangle borderFrame = borderTexture.Frame(1, 1);
 			Vector2 borderOrigin = borderFrame.Size() / 2;
@@ -102,7 +115,7 @@ namespace ClickerClass.UI
 			Color color = Color.White;
 			color.A = (byte)(_clickerAlpha * 255);
 			
-			if (player.GetModPlayer<ClickerPlayer>().itemBurningSuperDeath)
+			if (clickerPlayer.itemBurningSuperDeath)
 			{
 				itemFlameCount--;
 				if (itemFlameCount <= 0)

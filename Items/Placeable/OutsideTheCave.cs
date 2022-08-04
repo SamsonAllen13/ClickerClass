@@ -7,6 +7,11 @@ namespace ClickerClass.Items.Placeable
 {
 	public class OutsideTheCave : ModItem
 	{
+		public override void SetStaticDefaults()
+		{
+			SacrificeTotal = 1;
+		}
+		
 		public override void SetDefaults() 
 		{
 			Item.DefaultToPlaceableTile(ModContent.TileType<PaintingLarge>(), 0); //tile, style

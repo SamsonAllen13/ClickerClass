@@ -1,6 +1,3 @@
-- Added Party Clicker and Burning Super Death Clicker!
-- Added Mycelium Clicker to Spore Skeleton drop pool.
-- Added Starry Clicker, Slick Clicker, and Umbral Clicker to their respective fishing crate/lock box pools.
-- Updated the cross-mod API.
+- Fixed "A Blissful Day" and "Outside the Cave" not being researchable.
 
 See the Clicker Class wiki for full details!

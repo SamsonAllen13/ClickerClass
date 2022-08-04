@@ -28,7 +28,7 @@ namespace ClickerClass.Items.Tools
 				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
 			}
 
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults()

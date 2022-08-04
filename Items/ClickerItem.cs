@@ -18,7 +18,7 @@ namespace ClickerClass.Items
 
 			//Set sacrifies to 1 by default. Let inheriting classes overwrite it if necessary
 			//Most things in this mod are unstackable items, those all have 1
-			CreativeItemSacrificesCatalog.Instance.SacrificeCountNeededByItemId[Type] = 1;
+			SacrificeTotal = 1;
 		}
 
 		/// <summary>

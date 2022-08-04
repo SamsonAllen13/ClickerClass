@@ -1,3 +1,4 @@
+- Added Mice Brick, Mice Brick Wall, Mice furniture.
 - Fixed "A Blissful Day" and "Outside the Cave" not being researchable.
 
 See the Clicker Class wiki for full details!

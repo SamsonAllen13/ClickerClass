@@ -1,3 +1,4 @@
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -10,11 +11,11 @@ namespace ClickerClass.Projectiles
 {
 	public class TotalityClickerPro : ClickerProjectile
 	{
-		public static Asset<Texture2D> effect;
+		public static Lazy<Asset<Texture2D>> effect;
 
 		public override void Load()
 		{
-			effect = Mod.Assets.Request<Texture2D>("Projectiles/TotalityClickerPro_Effect");
+			effect = new(() => ModContent.Request<Texture2D>(Texture + "_Effect"));
 		}
 
 		public override void Unload()
@@ -56,7 +57,7 @@ namespace ClickerClass.Projectiles
 
 		public override bool PreDraw(ref Color lightColor)
 		{
-			Texture2D texture = effect.Value;
+			Texture2D texture = effect.Value.Value;
 			Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, new Color(255, 255, 255, 0) * ((0.65f + pulse) * (0.01f * Projectile.timeLeft)), rotation, new Vector2(58, 58), 1.35f + pulse, SpriteEffects.None, 0);
 			return true;
 		}

@@ -1,25 +1,28 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.ModLoader;
-using Terraria.GameContent;
 using ReLogic.Content;
 using Terraria;
 using Terraria.ID;
 using Terraria.Audio;
 using Terraria.Graphics.Shaders;
 using ClickerClass.Core;
+using System;
 
 namespace ClickerClass.Projectiles
 {
 	public class RGBPro : ClickerProjectile
 	{
-		public static Asset<Texture2D> effect;
-		public static Asset<Texture2D> effect2;
+		public static Lazy<Asset<Texture2D>> effect;
+		public static Lazy<Asset<Texture2D>> effect2;
 
 		public override void Load()
 		{
-			effect = Mod.Assets.Request<Texture2D>("Projectiles/RGBPro_Effect");
-			effect2 = Mod.Assets.Request<Texture2D>("Projectiles/RGBPro_Effect2");
+			if (!Main.dedServ)
+			{
+				effect = new(() => ModContent.Request<Texture2D>(Texture + "_Effect"));
+				effect2 = new(() => ModContent.Request<Texture2D>(Texture + "_Effect2"));
+			}
 		}
 
 		public override void Unload()
@@ -74,7 +77,7 @@ namespace ClickerClass.Projectiles
 		
 		public override bool PreDraw(ref Color lightColor)
 		{
-			Texture2D texture = effect.Value;
+			Texture2D texture = effect.Value.Value;
 			Rectangle frame = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 			Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * (0.8f * Projectile.Opacity), Projectile.rotation, new Vector2(14, 14), Projectile.scale, SpriteEffects.None, 0);
 		
@@ -94,7 +97,7 @@ namespace ClickerClass.Projectiles
 		
 		public override void PostDraw(Color lightColor)
 		{
-			Texture2D texture = effect2.Value;
+			Texture2D texture = effect2.Value.Value;
 			Rectangle frame = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 			Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 50) * (0.25f * Projectile.Opacity), Projectile.rotation, new Vector2(14, 14), Projectile.scale, SpriteEffects.None, 0);
 		}

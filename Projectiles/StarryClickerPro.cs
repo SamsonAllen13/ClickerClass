@@ -1,4 +1,4 @@
-using ClickerClass.Buffs;
+using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
@@ -12,11 +12,11 @@ namespace ClickerClass.Projectiles
 {
 	public class StarryClickerPro : ClickerProjectile
 	{
-		public static Asset<Texture2D> effect;
+		public static Lazy<Asset<Texture2D>> effect;
 
 		public override void Load()
 		{
-			effect = Mod.Assets.Request<Texture2D>("Projectiles/StarryClickerPro_Effect");
+			effect = new(() => ModContent.Request<Texture2D>(Texture + "_Effect"));
 		}
 
 		public override void Unload()
@@ -70,7 +70,7 @@ namespace ClickerClass.Projectiles
 
 		public override bool PreDraw(ref Color lightColor)
 		{
-			Texture2D texture = effect.Value;
+			Texture2D texture = effect.Value.Value;
 			Rectangle frame = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 			for (int k = 0; k < Projectile.oldPos.Length; k++)
 			{

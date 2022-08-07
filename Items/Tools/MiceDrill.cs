@@ -1,10 +1,10 @@
+using System;
 using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -12,7 +12,7 @@ namespace ClickerClass.Items.Tools
 {
 	public class MiceDrill : ModItem
 	{
-		public static Asset<Texture2D> glowmask;
+		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Unload()
 		{
@@ -25,7 +25,7 @@ namespace ClickerClass.Items.Tools
 
 			if (!Main.dedServ)
 			{
-				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
+				glowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
 			}
 
 			SacrificeTotal = 1;
@@ -78,7 +78,7 @@ namespace ClickerClass.Items.Tools
 
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
 		{
-			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 50) * 0.7f, rotation, scale);
+			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value.Value, new Color(255, 255, 255, 50) * 0.7f, rotation, scale);
 		}
 
 		public override void AddRecipes()

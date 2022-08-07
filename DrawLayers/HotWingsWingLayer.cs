@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
@@ -9,13 +10,13 @@ namespace ClickerClass.DrawLayers
 {
 	public class HotWingsWingLayer : PlayerDrawLayer
 	{
-		private Asset<Texture2D> wingTexture;
+		private Lazy<Asset<Texture2D>> wingTexture;
 
 		public override void Load()
 		{
 			if (!Main.dedServ)
 			{
-				wingTexture = Mod.Assets.Request<Texture2D>("DrawLayers/HotWings_Wings");
+				wingTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/DrawLayers/HotWings_Wings"));
 			}
 		}
 
@@ -46,7 +47,7 @@ namespace ClickerClass.DrawLayers
 			//Mostly copied from vanilla
 			Player drawPlayer = drawInfo.drawPlayer;
 
-			Asset<Texture2D> asset = wingTexture;
+			Asset<Texture2D> asset = wingTexture.Value;
 			Texture2D texture = asset.Value;
 
 			Vector2 directions = drawPlayer.Directions;

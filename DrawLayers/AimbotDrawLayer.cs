@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
@@ -9,15 +10,15 @@ namespace ClickerClass.DrawLayers
 {
 	public class AimbotDrawLayer : PlayerDrawLayer
 	{
-		private Asset<Texture2D> aimbotTexture;
-		private Asset<Texture2D> aimbotTexture2;
+		private Lazy<Asset<Texture2D>> aimbotTexture;
+		private Lazy<Asset<Texture2D>> aimbotTexture2;
 
 		public override void Load()
 		{
 			if (!Main.dedServ)
 			{
-				aimbotTexture = Mod.Assets.Request<Texture2D>("DrawLayers/AimbotModule_Glow");
-				aimbotTexture2 = Mod.Assets.Request<Texture2D>("DrawLayers/AimbotModule2_Glow");
+				aimbotTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/DrawLayers/AimbotModule_Glow"));
+				aimbotTexture2 = new(() => ModContent.Request<Texture2D>("ClickerClass/DrawLayers/AimbotModule2_Glow"));
 			}
 		}
 
@@ -52,8 +53,8 @@ namespace ClickerClass.DrawLayers
 			NPC target = Main.npc[modPlayer.accAimbotModuleTarget];
 			Vector2 drawPos = target.Center + new Vector2(0f, target.gfxOffY) - Main.screenPosition;
 
-			Texture2D texture = aimbotTexture.Value;
-			texture = modPlayer.accAimbotModule2 ? texture : aimbotTexture2.Value;
+			Texture2D texture = aimbotTexture.Value.Value;
+			texture = modPlayer.accAimbotModule2 ? texture : aimbotTexture2.Value.Value;
 			float scale = modPlayer.accAimbotModuleScale;
 			float alpha = 2f - (1f * scale);
 			alpha *= modPlayer.accAimbotModuleTargetInRange ? 1f : 0.5f;

@@ -1,3 +1,4 @@
+using System;
 using Terraria;
 using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
@@ -8,11 +9,11 @@ namespace ClickerClass.Projectiles
 {
 	public class MiceDrillPro : ModProjectile
 	{
-		public static Asset<Texture2D> glowmask;
+		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Load()
 		{
-			glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
+			glowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
 		}
 
 		public override void Unload()
@@ -45,7 +46,7 @@ namespace ClickerClass.Projectiles
 
 			int offsetY = 0;
 			int offsetX = 0;
-			Texture2D glowmaskTexture = glowmask.Value;
+			Texture2D glowmaskTexture = glowmask.Value.Value;
 			float originX = (glowmaskTexture.Width - Projectile.width) * 0.5f + Projectile.width * 0.5f;
 			ProjectileLoader.DrawOffset(Projectile, ref offsetX, ref offsetY, ref originX);
 

@@ -1,3 +1,4 @@
+using System;
 using ClickerClass.Core;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
@@ -12,7 +13,7 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Body)]
 	public class MiceSuit : ClickerItem
 	{
-		public static Asset<Texture2D> glowmask;
+		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Unload()
 		{
@@ -25,7 +26,7 @@ namespace ClickerClass.Items.Armors
 
 			if (!Main.dedServ)
 			{
-				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
+				glowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
 
 				BodyGlowmaskPlayer.RegisterData(Item.bodySlot, () => new Color(255, 255, 255, 0) * 0.8f);
 			}
@@ -54,7 +55,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
 		{
-			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
+			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
 		}
 
 		public override void AddRecipes()

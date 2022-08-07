@@ -6,6 +6,7 @@ using ReLogic.Content;
 using Terraria;
 using Terraria.UI;
 using ClickerClass.Utilities;
+using Terraria.ModLoader;
 
 namespace ClickerClass.UI
 {
@@ -17,6 +18,8 @@ namespace ClickerClass.UI
 		public const int FADE_DELAY = 5;
 		public static int FadeTime { get; internal set; }
 		private int _delay = 0;
+
+		private Lazy<Asset<Texture2D>> sheetAsset = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/PaperclipsGauge_Sheet"));
 
 		public override void Update(GameTime gameTime)
 		{
@@ -57,7 +60,7 @@ namespace ClickerClass.UI
 			float alphaMult = Math.Min((float)FadeTime / MAX_FADE_TIME, 1);
 			
 			Asset<Texture2D> borderAsset;
-			borderAsset = ClickerClass.mod.Assets.Request<Texture2D>("UI/PaperclipsGauge_Sheet");
+			borderAsset = sheetAsset.Value;
 
 			if (!borderAsset.IsLoaded)
 			{

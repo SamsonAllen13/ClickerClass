@@ -13,11 +13,11 @@ namespace ClickerClass.Projectiles
 {
 	public class SandstormClickerPro : ClickerProjectile
 	{
-		public static Asset<Texture2D> effect;
+		public static Lazy<Asset<Texture2D>> effect;
 
 		public override void Load()
 		{
-			effect = Mod.Assets.Request<Texture2D>("Projectiles/SandstormClickerPro_Effect");
+			effect = new(() => ModContent.Request<Texture2D>(Texture + "_Effect"));
 		}
 
 		public override void Unload()
@@ -68,7 +68,7 @@ namespace ClickerClass.Projectiles
 		public override void PostDraw(Color lightColor)
 		{
 			SpriteEffects effects = Projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
-			Texture2D texture2D = effect.Value;
+			Texture2D texture2D = effect.Value.Value;
 			Vector2 drawOrigin = new Vector2(texture2D.Width * 0.5f, Projectile.height * 0.5f);
 			for (int k = 0; k < Projectile.oldPos.Length; k++)
 			{

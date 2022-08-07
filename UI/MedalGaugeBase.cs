@@ -6,6 +6,7 @@ using ReLogic.Content;
 using Terraria;
 using Terraria.UI;
 using ClickerClass.Utilities;
+using Terraria.ModLoader;
 
 namespace ClickerClass.UI
 {
@@ -15,16 +16,21 @@ namespace ClickerClass.UI
 		public const int FADE_DELAY = 5;
 		public int FadeTime { get; internal set; }
 
+		private Lazy<Asset<Texture2D>> sheetAsset;
+
 		protected MedalGaugeBase(string name, InterfaceScaleType scaleType) : base(name, scaleType)
 		{
-
+			sheetAsset = new(() => ModContent.Request<Texture2D>("ClickerClass/" + TexturePath));
 		}
 
 		protected abstract int GetValue();
 
 		protected abstract int TextColor();
 
-		protected abstract string TexturePath();
+		/// <summary>
+		/// Has to be a fixed, relative path, no conditions, as it's cached
+		/// </summary>
+		protected abstract string TexturePath { get; }
 
 		public override void Update(GameTime gameTime)
 		{
@@ -57,9 +63,8 @@ namespace ClickerClass.UI
 
 			// Transparency Multiplier
 			float alphaMult = Math.Min((float)FadeTime / MAX_FADE_TIME, 1);
-			
-			Asset<Texture2D> borderAsset;
-			borderAsset = ClickerClass.mod.Assets.Request<Texture2D>(TexturePath());
+
+			Asset<Texture2D> borderAsset = sheetAsset.Value;
 
 			if (!borderAsset.IsLoaded)
 			{

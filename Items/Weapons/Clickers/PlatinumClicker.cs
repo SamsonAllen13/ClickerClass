@@ -1,6 +1,8 @@
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+
 namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class PlatinumClicker : ClickerWeapon
@@ -22,8 +24,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 1f;
-			Item.value = 13500;
-			Item.rare = 0;
+			Item.value = Item.sellPrice(0, 0, 27, 0);
+			Item.rare = ItemRarityID.White;
 		}
 
 		public override void AddRecipes()

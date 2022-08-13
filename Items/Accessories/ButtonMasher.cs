@@ -16,8 +16,8 @@ namespace ClickerClass.Items.Accessories
 			Item.width = 20;
 			Item.height = 20;
 			Item.accessory = true;
-			Item.value = 50000;
-			Item.rare = 2;
+			Item.value = Item.sellPrice(0, 1, 0, 0);
+			Item.rare = ItemRarityID.Green;
 		}
 		
 		//Sharing to party members handled in ClickerPlayer.PostUpdateEquips

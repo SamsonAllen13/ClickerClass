@@ -44,7 +44,7 @@ namespace ClickerClass.Items.Tools
 			Item.useTime = 4;
 			Item.pick = 225;
 			Item.UseSound = SoundID.Item23;
-			Item.rare = 10;
+			Item.rare = ItemRarityID.Red;
 			Item.value = Item.sellPrice(0, 7, 0, 0);
 			Item.tileBoost += 3;
 			Item.noMelee = true;

@@ -2,6 +2,7 @@ using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 
@@ -43,7 +44,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.height = 30;
 			Item.knockBack = 1f;
 			Item.value = Item.sellPrice(0, 10, 0, 0);
-			Item.rare = 8;
+			Item.rare = ItemRarityID.Yellow;
 		}
 	}
 }

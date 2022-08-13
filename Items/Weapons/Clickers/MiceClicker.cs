@@ -62,7 +62,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.height = 30;
 			Item.knockBack = 2f;
 			Item.value = Item.sellPrice(0, 5, 0, 0);
-			Item.rare = 10;
+			Item.rare = ItemRarityID.Red;
 		}
 
 		public override void PostUpdate()

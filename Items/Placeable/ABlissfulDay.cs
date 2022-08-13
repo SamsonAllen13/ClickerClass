@@ -18,7 +18,7 @@ namespace ClickerClass.Items.Placeable
 			Item.width = 30;
 			Item.height = 30;
 			Item.maxStack = 99;
-			Item.value = 15000;
+			Item.value = Item.sellPrice(0, 0, 20, 0);
 			Item.rare = ItemRarityID.White;
 		}
 	}

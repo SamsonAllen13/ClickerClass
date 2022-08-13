@@ -1,4 +1,5 @@
 using Microsoft.Xna.Framework;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -23,8 +24,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 0.5f;
-			Item.value = 450;
-			Item.rare = 0;
+			Item.value = Item.sellPrice(0, 0, 0, 90);
+			Item.rare = ItemRarityID.White;
 		}
 
 		public override void AddRecipes()

@@ -49,7 +49,7 @@ namespace ClickerClass.Items.Tools
 			Item.hammer = 100;
 			Item.useStyle = 1;
 			Item.knockBack = 7f;
-			Item.rare = 10;
+			Item.rare = ItemRarityID.Red;
 			Item.value = Item.sellPrice(0, 5, 0, 0);
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;

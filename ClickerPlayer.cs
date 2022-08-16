@@ -380,7 +380,7 @@ namespace ClickerClass
 			clickerPerSecond = 0f; //Recalculates every tick
 
 			//Loop from back to front, removing ran out timers and adding existing timers
-			for (int i = clickTimers.Count - 1; i > 0; i--)
+			for (int i = clickTimers.Count - 1; i >= 0; i--)
 			{
 				clickTimers[i].Value -= 1f / ClickTimerCount; //Decrement timer
 				if (clickTimers[i].Value <= 0f)

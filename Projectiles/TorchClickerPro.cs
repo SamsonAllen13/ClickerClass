@@ -41,18 +41,9 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
-			Player player = Main.player[Projectile.owner];
-			int dustType = 6;
-
-			if (player.ZoneUndergroundDesert || player.ZoneDesert) dustType = 64;
-			else if (player.ZoneJungle || player.ZoneLihzhardTemple) dustType = 61;
-			else if (player.ZoneHallow) dustType = 164;
-			else if (player.ZoneSnow) dustType = 135;
-			else if (player.ZoneDungeon || player.ZoneBeach) dustType = 59;
-			else if (player.ZoneCorrupt) dustType = 62;
-			else if (player.ZoneCrimson) dustType = 60;
+			int dustType = getTorchType(Main.player[Projectile.owner]);
 			
-			int index = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, dustType, 0f, 0f, 0, default(Color), 1.5f);
+			int index = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, dustType, 0f, 0f, 0, dustType == 66 ? Main.DiscoColor : default(Color), 1.5f);
 			Dust dust = Main.dust[index];
 			dust.position.X = Projectile.Center.X;
 			dust.position.Y = Projectile.Center.Y;
@@ -78,6 +69,35 @@ namespace ClickerClass.Projectiles
 					i++;
 				}
 			}
+		}
+
+		private int getTorchType(Player player)
+		{
+			int returnType = 6; // Torch
+
+			if (player.ZoneHallow)
+			{
+				if (player.ZoneRockLayerHeight) returnType = 297; // Hallowed Torch
+				else returnType = 66; // Rainbow Torch
+			}
+			else if (player.ZoneCorrupt)
+			{
+				if (player.ZoneRockLayerHeight) returnType = 75; // Cursed Torch
+				else returnType = 295; // Corrupt Torch
+			}
+			else if (player.ZoneCrimson)
+			{
+				if (player.ZoneRockLayerHeight) returnType = 169; // Ichor Torch
+				else returnType = 296; // Crimson Torch
+			}
+			else if (player.ZoneDungeon) returnType = 234; // Bone Torch
+			else if (player.ZoneUnderworldHeight) returnType = 65; // Demon Torch
+			else if (player.ZoneJungle || player.ZoneLihzhardTemple) returnType = 298; // Jungle Torch
+			else if (player.ZoneUndergroundDesert || player.ZoneDesert) returnType = 293; // Desert Torch
+			else if (player.ZoneSnow) returnType = 135; // Ice Torch
+			else if (player.ZoneBeach) returnType = 294; // Coral Torch
+
+			return returnType;
 		}
 	}
 }

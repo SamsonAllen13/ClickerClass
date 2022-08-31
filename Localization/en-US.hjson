@@ -52,6 +52,13 @@ Mods.ClickerClass: {
 		Unknown: Unknown
 	}
 
+	# Can't actually use substitutions here for ItemName
+	Containers: {
+		MiceDresser: Mice Dresser
+		MiceChest: Mice Chest
+		TrappedMiceChest: Mice Chest
+	}
+
 	DamageClassName: {
 		ClickerDamage: click damage
 	}
@@ -66,6 +73,29 @@ Mods.ClickerClass: {
 		MiceFragment: Mice Fragment
 		AimAssistModule: Aim Assist Module
 		AimbotModule: Aimbot Module
+		MiceBathtub: Mice Bathtub
+		MiceBed: Mice Bed
+		MiceBookcase: Mice Bookcase
+		MiceBrick: Mice Brick
+		MiceBrickWall: Mice Brick Wall
+		MiceCandelabra: Mice Candelabra
+		MiceCandle: Mice Candle
+		MiceChair: Mice Chair
+		MiceChandelier: Mice Chandelier
+		MiceChest: Mice Chest
+		MiceChest_Trapped: Trapped Mice Chest
+		MiceClock: Mice Clock
+		MiceDoor: Mice Door
+		MiceDresser: Mice Dresser
+		MiceLamp: Mice Lamp
+		MiceLantern: Mice Lantern
+		MicePiano: Mice Piano
+		MicePlatform: Mice Platform
+		MiceSink: Mice Sink
+		MiceSofa: Mice Sofa
+		MiceTable: Mice Table
+		MiceToilet: Mice Toilet
+		MiceWorkbench: Mice Work Bench
 		ABlissfulDay: A Blissful Day
 		OutsideTheCave: Outside The Cave
 		AncientClickingGlove: Ancient Clicking Glove

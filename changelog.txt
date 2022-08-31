@@ -1,3 +1,4 @@
+- Added Mice Brick, Mice Brick Wall, and Mice furniture.
 - Updated Smite torch flame types.
 - Fixed "A Blissful Day" and "Outside the Cave" not being researchable.
 

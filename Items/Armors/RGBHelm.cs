@@ -51,8 +51,8 @@ namespace ClickerClass.Items.Armors
 		{
 			Item.width = 18;
 			Item.height = 18;
-			Item.value = 40000;
-			Item.rare = 4;
+			Item.value = Item.sellPrice(0, 0, 80, 0);
+			Item.rare = ItemRarityID.LightRed;
 			Item.defense = 5;
 		}
 

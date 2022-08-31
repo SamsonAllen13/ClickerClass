@@ -33,8 +33,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.height = 30;
 			Item.knockBack = 1f;
 			Item.noMelee = true;
-			Item.value = 15000;
-			Item.rare = 1;
+			Item.value = Item.sellPrice(0, 0, 30, 0);
+			Item.rare = ItemRarityID.Blue;
 		}
 
 		public override void AddRecipes()

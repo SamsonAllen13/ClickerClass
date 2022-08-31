@@ -22,9 +22,6 @@ namespace ClickerClass.UI
 			return clickerPlayer.AccSMedal ? Terraria.ID.ItemRarityID.Blue : Terraria.ID.ItemRarityID.LightPurple;
 		}
 
-		protected override string TexturePath()
-		{
-			return "UI/FMedalGauge_Sheet";
-		}
+		protected override string TexturePath => "UI/FMedalGauge_Sheet";
 	}
 }

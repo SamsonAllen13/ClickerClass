@@ -21,7 +21,7 @@ namespace ClickerClass.Items
 			Item.height = 20;
 			Item.maxStack = 999;
 			Item.value = Item.sellPrice(0, 0, 20, 0);
-			Item.rare = 9;
+			Item.rare = ItemRarityID.Cyan;
 		}
 
 		public override Color? GetAlpha(Color lightColor)

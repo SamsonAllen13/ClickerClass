@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using System;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
@@ -11,15 +12,15 @@ namespace ClickerClass.DrawLayers
 	{
 		private const int GlowFrameCount = 4;
 
-		private Asset<Texture2D> backTexture;
-		private Asset<Texture2D> glowTexture;
+		private Lazy<Asset<Texture2D>> backTexture;
+		private Lazy<Asset<Texture2D>> glowTexture;
 
 		public override void Load()
 		{
 			if (!Main.dedServ)
 			{
-				backTexture = Mod.Assets.Request<Texture2D>("DrawLayers/MotherboardSetBonus_Back");
-				glowTexture = Mod.Assets.Request<Texture2D>("DrawLayers/MotherboardSetBonus_Glow");
+				backTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/DrawLayers/MotherboardSetBonus_Back"));
+				glowTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/DrawLayers/MotherboardSetBonus_Glow"));
 			}
 		}
 
@@ -61,14 +62,14 @@ namespace ClickerClass.DrawLayers
 			Vector2 center = new Vector2(drawX, drawY);
 			Vector2 drawPos = center + modPlayer.CalculateMotherboardPosition(modPlayer.ClickerRadiusRealDraw).Floor();
 
-			Texture2D texture = backTexture.Value;
+			Texture2D texture = backTexture.Value.Value;
 			DrawData drawData = new DrawData(texture, drawPos, null, Color.White * alpha, 0f, texture.Size() / 2, 1f, SpriteEffects.None, 0)
 			{
 				ignorePlayerRotation = true
 			};
 			drawInfo.DrawDataCache.Add(drawData);
 
-			texture = glowTexture.Value;
+			texture = glowTexture.Value.Value;
 			Rectangle frame = texture.Frame(1, GlowFrameCount, frameY: modPlayer.setMotherboardFrame);
 			drawData = new DrawData(texture, drawPos, frame, new Color(255, 255, 255, 100) * modPlayer.setMotherboardAlpha * alpha, 0f, new Vector2(texture.Width / 2, frame.Height / 2), 1f, SpriteEffects.None, 0)
 			{

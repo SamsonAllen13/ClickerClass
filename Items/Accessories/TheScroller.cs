@@ -1,3 +1,4 @@
+using System;
 using ClickerClass.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -6,7 +7,6 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.DataStructures;
-using Terraria.GameContent.Creative;
 using ReLogic.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ClickerClass.DrawLayers;
@@ -17,7 +17,7 @@ namespace ClickerClass.Items.Accessories
 	[AutoloadEquip(EquipType.Wings)]
 	public class TheScroller : ModItem
 	{
-		public static Asset<Texture2D> glowmask;
+		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Unload()
 		{
@@ -28,7 +28,7 @@ namespace ClickerClass.Items.Accessories
 		{
 			if (!Main.dedServ)
 			{
-				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
+				glowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
 
 				WingsLayer.RegisterData(Item.wingSlot, new DrawLayerData()
 				{
@@ -46,9 +46,9 @@ namespace ClickerClass.Items.Accessories
 		{
 			Item.width = 22;
 			Item.height = 20;
-			Item.value = 100000;
-			Item.rare = 10;
 			Item.accessory = true;
+			Item.value = Item.sellPrice(0, 8, 0, 0);
+			Item.rare = ItemRarityID.Red;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
@@ -149,7 +149,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
 		{
-			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
+			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
 		}
 
 		public override void AddRecipes()

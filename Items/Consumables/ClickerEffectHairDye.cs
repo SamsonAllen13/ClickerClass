@@ -34,8 +34,8 @@ namespace ClickerClass.Items.Consumables
 			base.SetDefaults();
 
 			//TODO price/rarity
-			Item.rare = 2;
-			Item.value = Item.buyPrice(0, 5);
+			Item.value = Item.sellPrice(0, 1, 0, 0);
+			Item.rare = ItemRarityID.Green;
 		}
 	}
 }

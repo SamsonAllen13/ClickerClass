@@ -1,4 +1,4 @@
-using ClickerClass.Dusts;
+using System;
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class TorchClicker : ClickerWeapon
 	{
-		public static Asset<Texture2D> glowmask;
+		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Unload()
 		{
@@ -57,11 +57,11 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			if (!Main.dedServ)
 			{
-				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
+				glowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
 
 				HeldItemLayer.RegisterData(Item.type, new DrawLayerData()
 				{
-					Texture = glowmask,
+					Texture = glowmask.Value,
 					Color = (PlayerDrawSet drawInfo) => new Color(255, 255, 255, 50) * 0.75f
 				});
 			}
@@ -79,8 +79,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 1f;
-			Item.value = 35000;
-			Item.rare = 3;
+			Item.value = Item.sellPrice(0, 0, 70, 0);
+			Item.rare = ItemRarityID.Orange;
 		}
 		
 		public override void PostUpdate()
@@ -90,7 +90,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
 		{
-			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 50) * 0.75f, rotation, scale);
+			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value.Value, new Color(255, 255, 255, 50) * 0.75f, rotation, scale);
 		}
 		
 		//TODO maybe look into reworking this into OnSpawn with GlobalItem

@@ -20,9 +20,6 @@ namespace ClickerClass.UI
 			return Terraria.ID.ItemRarityID.Green;
 		}
 
-		protected override string TexturePath()
-		{
-			return "UI/SMedalGauge_Sheet";
-		}
+		protected override string TexturePath => "UI/SMedalGauge_Sheet";
 	}
 }

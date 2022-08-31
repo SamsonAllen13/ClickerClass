@@ -1,3 +1,4 @@
+using System;
 using ClickerClass.DrawLayers;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
@@ -12,7 +13,7 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Legs)]
 	public class MiceBoots : ClickerItem
 	{
-		public static Asset<Texture2D> glowmask;
+		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Unload()
 		{
@@ -25,7 +26,7 @@ namespace ClickerClass.Items.Armors
 
 			if (!Main.dedServ)
 			{
-				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
+				glowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
 
 				LegsLayer.RegisterData(Item.legSlot, new DrawLayerData()
 				{
@@ -38,8 +39,8 @@ namespace ClickerClass.Items.Armors
 		{
 			Item.width = 18;
 			Item.height = 18;
-			Item.value = 105000;
-			Item.rare = 10;
+			Item.value = Item.sellPrice(0, 10, 50, 0);
+			Item.rare = ItemRarityID.Red;
 			Item.defense = 24;
 		}
 
@@ -56,7 +57,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
 		{
-			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
+			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value.Value, new Color(255, 255, 255, 0) * 0.8f, rotation, scale);
 		}
 
 		public override void AddRecipes()

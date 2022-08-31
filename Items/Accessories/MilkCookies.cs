@@ -16,8 +16,8 @@ namespace ClickerClass.Items.Accessories
 			Item.width = 20;
 			Item.height = 20;
 			Item.accessory = true;
-			Item.value = 65000;
-			Item.rare = 3;
+			Item.value = Item.sellPrice(0, 1, 30, 0);
+			Item.rare = ItemRarityID.Orange;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)

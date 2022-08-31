@@ -43,8 +43,8 @@ namespace ClickerClass.Items.Consumables
 			Item.useTime = 17;
 			Item.consumable = true;
 
-			Item.rare = 2;
-			Item.value = Item.buyPrice(0, 5);
+			Item.value = Item.sellPrice(0, 1, 0, 0);
+			Item.rare = ItemRarityID.Green;
 		}
 	}
 }

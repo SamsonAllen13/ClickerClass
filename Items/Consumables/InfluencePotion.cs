@@ -30,7 +30,7 @@ namespace ClickerClass.Items.Consumables
 			Item.value = Item.sellPrice(0, 0, 2, 0);
 			Item.consumable = true;
 			Item.maxStack = 30;
-			Item.rare = 1;
+			Item.rare = ItemRarityID.Blue;
 			Item.UseSound = SoundID.Item3;
 			Item.buffType = ModContent.BuffType<InfluenceBuff>();
 			Item.buffTime = 18000;

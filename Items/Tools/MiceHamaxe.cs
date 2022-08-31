@@ -1,10 +1,10 @@
+using System;
 using ClickerClass.DrawLayers;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
-using Terraria.GameContent.Creative;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Tools
 {
 	public class MiceHamaxe : ModItem
 	{
-		public static Asset<Texture2D> glowmask;
+		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Unload()
 		{
@@ -24,11 +24,11 @@ namespace ClickerClass.Items.Tools
 		{
 			if (!Main.dedServ)
 			{
-				glowmask = ModContent.Request<Texture2D>(Texture + "_Glow");
+				glowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
 
 				HeldItemLayer.RegisterData(Item.type, new DrawLayerData()
 				{
-					Texture = glowmask,
+					Texture = glowmask.Value,
 					Color = (PlayerDrawSet drawInfo) => new Color(255, 255, 255, 50) * 0.7f
 				});
 			}
@@ -49,7 +49,7 @@ namespace ClickerClass.Items.Tools
 			Item.hammer = 100;
 			Item.useStyle = 1;
 			Item.knockBack = 7f;
-			Item.rare = 10;
+			Item.rare = ItemRarityID.Red;
 			Item.value = Item.sellPrice(0, 5, 0, 0);
 			Item.UseSound = SoundID.Item1;
 			Item.autoReuse = true;
@@ -63,7 +63,7 @@ namespace ClickerClass.Items.Tools
 
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
 		{
-			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value, new Color(255, 255, 255, 50) * 0.7f, rotation, scale);
+			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value.Value, new Color(255, 255, 255, 50) * 0.7f, rotation, scale);
 		}
 
 		public override void AddRecipes()

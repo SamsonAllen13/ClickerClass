@@ -52,6 +52,12 @@ Mods.ClickerClass: {
 		Unknown: Неизвестно
 	}
 
+	Containers: {
+		MiceDresser: Комод мышки
+		MiceChest: Сундук мышки
+		TrappedMiceChest: Сундук мышки
+	}
+
 	DamageClassName: {
 		ClickerDamage : ед. урона клика
 	}
@@ -66,6 +72,29 @@ Mods.ClickerClass: {
 		MiceFragment: Фрагмент мышки
 		AimAssistModule: Модуль помощи для прицеливания
 		AimbotModule: Модуль аимбота
+		MiceBathtub: Ванна мышки
+		MiceBed: Кровать мышки
+		MiceBookcase: Книжный шкаф мышки
+		MiceBrick: Кирпич мышки
+		MiceBrickWall: Кирпичная стена мышки
+		MiceCandelabra: Подсвечник мышки
+		MiceCandle: Свеча мышки
+		MiceChair: Стул мышки
+		MiceChandelier: Люстра мышки
+		MiceChest: Сундук мышки
+		MiceChest_Trapped: Заминированный сундук мышки
+		MiceClock: Часы мышки
+		MiceDoor: Двери мышки
+		MiceDresser: Комод мышки
+		MiceLamp: Лампа мышки
+		MiceLantern: Фонарь мышки
+		MicePiano: Пианино мышки
+		MicePlatform: Платформа мышки
+		MiceSink: Раковина мышки
+		MiceSofa: Диван мышки
+		MiceTable: Стол мышки
+		MiceToilet: Унитаз мышки
+		MiceWorkbench: Верстак мышки
 		ABlissfulDay: Блаженный день
 		OutsideTheCave: За пределами пещеры
 		AncientClickingGlove: Древняя кликающая перчатка
@@ -126,10 +155,12 @@ Mods.ClickerClass: {
 		BalloonClicker: Курсор-воздушный шар
 		BoneClicker: Костяной курсор
 		BlizzardClicker: Курсор снежной бури
+		BurningSuperDeathClicker: Горящий суперсмертельный курсор
 		CandleClicker: Курсор-свеча
 		CaptainsClicker: Курсор капитана
 		ChlorophyteClicker: Хлорофитовый курсор
 		CobaltClicker: Кобальтовый курсор
+		ConfettiClicker: Курсор-конфетти
 		CopperClicker: Медный курсор
 		CorruptClicker: Искажённый курсор
 		CrimsonClicker: Багряный курсор
@@ -138,6 +169,7 @@ Mods.ClickerClass: {
 		DarkClicker: Тёмный курсор
 		DraconicClicker: Драконий курсор
 		EclipticClicker: Потускневший курсор
+		FamishedClicker: Изголодавшийся курсор
 		FaultyClicker: Неисправный курсор
 		FrozenClicker: Замороженный курсор
 		GoldClicker: Золотой курсор
@@ -384,6 +416,16 @@ Mods.ClickerClass: {
 			Description: Создаёт всплеск парашютных презентов, на которые можно кликнуть, чтобы выпустить мины
 		}
 
+		PartyTime: {
+			Name: Вечеринка!
+			Description: Разбрасывает конфетти!
+		}
+
+		Devour: {
+			Name: Пожирание
+			Description: Н/Д
+		}
+
 		Insanity: {
 			Name: Безумие
 			Description: Призывает теневой коготь, атакующий область вокруг себя
@@ -397,6 +439,11 @@ Mods.ClickerClass: {
 		ArcaneEnchantment: {
 			Name: Мистическое улучшение
 			Description: Увеличивает урон и хитбокс урона кликов
+		}
+
+		Mania: {
+			Name: Мания
+			Description: Активирует любой случайный эффект прехардмодных курсоров
 		}
 
 		HolyNova: {

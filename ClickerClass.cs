@@ -1,6 +1,4 @@
 using ClickerClass.Core.Netcode;
-using ClickerClass.Effects;
-using ClickerClass.UI;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,21 +20,13 @@ namespace ClickerClass
 		/// </summary>
 		internal static HashSet<int> BossBuffImmunity;
 
-		/// <summary>
-		/// To prevent certain methods being called when they shouldn't
-		/// </summary>
-		internal static bool finalizedRegisterCompat = false;
-
 		public override void Load()
 		{
-			finalizedRegisterCompat = false;
 			mod = this;
 			BossBuffImmunity = new HashSet<int>();
 			AutoClickKey = KeybindLoader.RegisterKeybind(this, "Clicker Accessory", "G"); //Can't localize this
 			AimAssistKey = KeybindLoader.RegisterKeybind(this, "Clicker Aim Assist", "Mouse3"); //Can't localize this
-			ClickerSystem.Load();
 
-			ClickEffect.LoadMiscEffects();
 			NetHandler.Load();
 
 			if (!Main.dedServ)
@@ -47,12 +37,8 @@ namespace ClickerClass
 
 		public override void Unload()
 		{
-			finalizedRegisterCompat = false;
-			ShaderManager.Unload();
-			ClickerSystem.Unload();
 			ClickEffect.Unload();
 			NetHandler.Unload();
-			ClickerInterfaceResources.Unload();
 			AutoClickKey = null;
 			AimAssistKey = null;
 			BossBuffImmunity = null;
@@ -61,8 +47,7 @@ namespace ClickerClass
 
 		private void LoadClient()
 		{
-			ShaderManager.Load();
-			ClickerInterfaceResources.Load();
+
 		}
 
 		public override object Call(params object[] args)
@@ -86,12 +71,6 @@ namespace ClickerClass
 			{
 				return ClickerSystem.IsClickerItem(item) && !ClickerSystem.IsClickerWeapon(item);
 			});
-		}
-
-		public override void PostAddRecipes()
-		{
-			finalizedRegisterCompat = true;
-			ClickerSystem.FinalizeLocalization();
 		}
 
 		public override void HandlePacket(BinaryReader reader, int whoAmI)

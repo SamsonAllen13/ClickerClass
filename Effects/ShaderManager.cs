@@ -3,14 +3,15 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.GameContent;
-using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Effects
 {
 	/// <summary>
 	/// Responsible for dealing with shaders
 	/// </summary>
-	public static class ShaderManager
+	[Autoload(true, Side = ModSide.Client)]
+	public class ShaderManager : ModSystem
 	{
 		#region Circle Effect
 		public static Asset<Effect> CircleEffect { get; private set; }
@@ -116,16 +117,13 @@ namespace ClickerClass.Effects
 			spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, Main.DefaultSamplerState, DepthStencilState.None, Main.Rasterizer, null, Main.GameViewMatrix.TransformationMatrix);
 		}
 
-		internal static void Load()
+		public override void OnModLoad()
 		{
-			if (Main.netMode != NetmodeID.Server)
-			{
-				CircleEffect = ClickerClass.mod.Assets.Request<Effect>("Effects/CircleShader/Circle");
-				LoadCircleEffectAdds();
-			}
+			CircleEffect = ClickerClass.mod.Assets.Request<Effect>("Effects/CircleShader/Circle");
+			LoadCircleEffectAdds();
 		}
 
-		internal static void Unload()
+		public override void OnModUnload()
 		{
 			CircleEffect = null;
 		}

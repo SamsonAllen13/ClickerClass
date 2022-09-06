@@ -1,14 +1,17 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using System.Collections.Generic;
+using Terraria.ModLoader;
 using Terraria.UI;
 
 namespace ClickerClass.UI
 {
-	internal class ClickerInterfaceResources
+	[Autoload(true, Side = ModSide.Client)]
+	internal class ClickerInterfaceResources : ModSystem
 	{
 		private static List<InterfaceResource> Resources;
 
-		internal static void Load()
+		public override void OnModLoad()
 		{
 			Resources = new List<InterfaceResource>
 			{
@@ -21,12 +24,18 @@ namespace ClickerClass.UI
 			};
 		}
 
-		internal static void Unload()
+		public override void OnModUnload()
 		{
 			Resources = null;
 		}
 
-		internal static void Update(GameTime gameTime)
+		public override void PostDrawInterface(SpriteBatch spriteBatch)
+		{
+			//Only called if not in the ingame menu/fancyUI
+			InterfaceResource.ResetClickerGaugeOffset();
+		}
+
+		public override void UpdateUI(GameTime gameTime)
 		{
 			if (Resources != null)
 			{
@@ -37,7 +46,8 @@ namespace ClickerClass.UI
 			}
 		}
 
-		internal static void AddDrawLayers(List<GameInterfaceLayer> layers)
+		//No override, has to be called manually before the cursor layer is removed (which may be used for determining GetInsertIndex)
+		public static void AddInterfaceLayers(List<GameInterfaceLayer> layers)
 		{
 			if (Resources != null)
 			{

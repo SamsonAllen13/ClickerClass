@@ -7,10 +7,10 @@ using Terraria.ModLoader;
 using Terraria.UI;
 using System.Linq;
 using System;
-using Microsoft.Xna.Framework.Graphics;
 
 namespace ClickerClass
 {
+	[Autoload(true, Side = ModSide.Client)]
 	public class ClickerUISystem : ModSystem
 	{
 		private GameTime _lastUpdateUIGameTime;
@@ -19,18 +19,11 @@ namespace ClickerClass
 		public override void UpdateUI(GameTime gameTime)
 		{
 			_lastUpdateUIGameTime = gameTime;
-			ClickerInterfaceResources.Update(gameTime);
-		}
-
-		public override void PostDrawInterface(SpriteBatch spriteBatch)
-		{
-			//Only called if not in the ingame menu/fancyUI
-			InterfaceResource.ResetClickerGaugeOffset();
 		}
 
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
 		{
-			ClickerInterfaceResources.AddDrawLayers(layers);
+			ClickerInterfaceResources.AddInterfaceLayers(layers);
 
 			//Remove Mouse Cursor
 			if (Main.cursorOverride == -1 && ClickerConfigClient.Instance.ShowCustomCursors)
@@ -56,7 +49,7 @@ namespace ClickerClass
 			On.Terraria.Main.DrawInterface_36_Cursor += DetourSecondCursor;
 		}
 
-		public override void Unload()
+		public override void OnModUnload()
 		{
 			reflectionFailedOnceDoNotRetry = false;
 		}

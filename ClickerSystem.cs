@@ -14,8 +14,13 @@ namespace ClickerClass
 	/// <summary>
 	/// Manages registering clicker class related content and provides basic methods to check for content being clicker class related
 	/// </summary>
-	public static class ClickerSystem
+	public class ClickerSystem : ModSystem
 	{
+		/// <summary>
+		/// To prevent certain methods being called when they shouldn't
+		/// </summary>
+		internal static bool FinalizedRegisterCompat { get; private set; }
+
 		private static HashSet<int> ClickerItems { get; set; }
 
 		private static Dictionary<int, string> ClickerWeaponBorderTexture { get; set; }
@@ -31,8 +36,9 @@ namespace ClickerClass
 		/// </summary>
 		private static Dictionary<string, ClickEffect> ClickEffectsByName { get; set; }
 
-		internal static void Load()
+		public override void OnModLoad()
 		{
+			FinalizedRegisterCompat = false;
 			ClickerItems = new HashSet<int>();
 			ClickerWeaponBorderTexture = new Dictionary<int, string>();
 			ClickerWeapons = new HashSet<int>();
@@ -41,8 +47,9 @@ namespace ClickerClass
 			ClickEffectsByName = new Dictionary<string, ClickEffect>();
 		}
 
-		internal static void Unload()
+		public override void OnModUnload()
 		{
+			FinalizedRegisterCompat = false;
 			ClickerItems = null;
 			ClickerWeaponBorderTexture?.Clear();
 			ClickerWeaponBorderTexture = null;
@@ -51,6 +58,17 @@ namespace ClickerClass
 			ClickerWeaponProjectiles = null;
 			ClickEffectsByName?.Clear();
 			ClickEffectsByName = null;
+		}
+
+		public override void SetStaticDefaults()
+		{
+			ClickEffect.LoadMiscEffects();
+		}
+
+		public override void PostAddRecipes()
+		{
+			FinalizedRegisterCompat = true;
+			FinalizeLocalization();
 		}
 
 		public static string UniqueEffectName(Mod mod, string internalName) => $"{mod.Name}:{internalName}";
@@ -153,7 +171,7 @@ namespace ClickerClass
 		/// <exception cref="InvalidOperationException"/>
 		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false)
 		{
-			if (ClickerClass.finalizedRegisterCompat)
+			if (FinalizedRegisterCompat)
 			{
 				throw new InvalidOperationException("Tried to register a click effect at the wrong time, do so in Mod.PostSetupContent or ModItem.SetStaticDefaults");
 			}
@@ -241,7 +259,7 @@ namespace ClickerClass
 		/// <exception cref="InvalidOperationException"/>
 		public static void RegisterClickerProjectile(ModProjectile modProj)
 		{
-			if (ClickerClass.finalizedRegisterCompat)
+			if (FinalizedRegisterCompat)
 			{
 				throw new InvalidOperationException("Tried to register a clicker projectile at the wrong time, do so in ModProjectile.SetStaticDefaults");
 			}
@@ -261,7 +279,7 @@ namespace ClickerClass
 		/// <exception cref="InvalidOperationException"/>
 		public static void RegisterClickerWeaponProjectile(ModProjectile modProj)
 		{
-			if (ClickerClass.finalizedRegisterCompat)
+			if (FinalizedRegisterCompat)
 			{
 				throw new InvalidOperationException("Tried to register a clicker weapon projectile at the wrong time, do so in ModProjectile.SetStaticDefaults");
 			}
@@ -279,7 +297,7 @@ namespace ClickerClass
 		/// <exception cref="InvalidOperationException"/>
 		public static void RegisterClickerItem(ModItem modItem)
 		{
-			if (ClickerClass.finalizedRegisterCompat)
+			if (FinalizedRegisterCompat)
 			{
 				throw new InvalidOperationException("Tried to register a clicker item at the wrong time, do so in ModItem.SetStaticDefaults");
 			}
@@ -300,7 +318,7 @@ namespace ClickerClass
 		/// <exception cref="InvalidOperationException"/>
 		public static void RegisterClickerWeapon(ModItem modItem, string borderTexture = null)
 		{
-			if (ClickerClass.finalizedRegisterCompat)
+			if (FinalizedRegisterCompat)
 			{
 				throw new InvalidOperationException("Tried to register a clicker weapon at the wrong time, do so in ModItem.SetStaticDefaults");
 			}

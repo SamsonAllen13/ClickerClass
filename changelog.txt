@@ -1,6 +1,3 @@
-- Added Mice Brick, Mice Brick Wall, and Mice furniture.
-- Updated Smite torch flame types.
-- Fixed "A Blissful Day" and "Outside the Cave" not being researchable.
-- Fixed The Scroller, Mice armor pieces, and "A Blissful Day" having incorrect sell values.
+- Updated "Wikithis" link to wiki.gg.
 
 See the Clicker Class wiki for full details!

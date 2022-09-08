@@ -82,7 +82,7 @@ namespace ClickerClass
 		{
 			if (!Main.dedServ && ModLoader.TryGetMod("Wikithis", out Mod wikithis))
 			{
-				wikithis.Call("AddModURL", mod, "terrariamods.fandom.com$Clicker_Class");
+				wikithis.Call("AddModURL", mod, "terrariamods.wiki.gg$Clicker_Class");
 			}
 		}
 

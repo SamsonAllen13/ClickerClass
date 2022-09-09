@@ -3,10 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Core;
 
 namespace ClickerClass.Core.Netcode
 {
@@ -40,7 +40,7 @@ namespace ClickerClass.Core.Netcode
 		private static void RegisterPackets()
 		{
 			Type mpPacketType = typeof(MPPacket);
-			IEnumerable<Type> mpPacketTypes = Assembly.GetExecutingAssembly().GetTypes().Where(t => !t.IsAbstract && t.IsSubclassOf(mpPacketType));
+			IEnumerable<Type> mpPacketTypes = AssemblyManager.GetLoadableTypes(ClickerClass.mod.Code).Where(t => !t.IsAbstract && t.IsSubclassOf(mpPacketType));
 
 			foreach (var type in mpPacketTypes)
 			{

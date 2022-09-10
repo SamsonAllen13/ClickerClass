@@ -1,3 +1,4 @@
+- Added Ice Pack to Frozen and Boreal Crate pool.
 - Updated "Wikithis" link to wiki.gg.
 
 See the Clicker Class wiki for full details!

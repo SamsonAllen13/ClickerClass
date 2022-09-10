@@ -19,6 +19,12 @@ namespace ClickerClass.Items
 			{
 				/* Crates */
 				#region Crates
+				case ItemID.FrozenCrate:
+					{
+						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<IcePack>(), 6));
+					}
+					break;
+				case ItemID.FrozenCrateHard: goto case ItemID.FrozenCrate;
 				case ItemID.FloatingIslandFishingCrate:
 					{
 						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<StarryClicker>(), 3));

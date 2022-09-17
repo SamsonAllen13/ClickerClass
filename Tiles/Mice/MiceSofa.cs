@@ -1,7 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Enums;
 using Terraria.GameContent;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
@@ -12,7 +11,7 @@ namespace ClickerClass.Tiles.Mice
 {
 	public class MiceSofa : ModTile
 	{
-		public const int NextStyleHeight = 38;
+		public const int Height = 38;
 		public const int NextStyleWidth = 54;
 
 		public override void SetStaticDefaults()
@@ -22,6 +21,7 @@ namespace ClickerClass.Tiles.Mice
 			Main.tileLavaDeath[Type] = true;
 			TileID.Sets.HasOutlines[Type] = true;
 			TileID.Sets.CanBeSatOnForPlayers[Type] = true;
+			//No TileID.Sets.DisableSmartCursor[Type] = true;
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
@@ -61,7 +61,7 @@ namespace ClickerClass.Tiles.Mice
 			info.AnchorTilePosition.X = i;
 			info.AnchorTilePosition.Y = j;
 
-			if (tile.TileFrameY % NextStyleHeight == 0)
+			if (tile.TileFrameY % Height == 0)
 			{
 				info.AnchorTilePosition.Y++;
 			}
@@ -110,7 +110,7 @@ namespace ClickerClass.Tiles.Mice
 			player.cursorItemIconEnabled = true;
 
 			Tile tile = Main.tile[i, j];
-			int style = tile.TileFrameY / NextStyleHeight;
+			int style = tile.TileFrameX / NextStyleWidth;
 			int item = ModContent.ItemType<Items.Placeable.Mice.MiceSofa>();
 			if (item > 0)
 			{

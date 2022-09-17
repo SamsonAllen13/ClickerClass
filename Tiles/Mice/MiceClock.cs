@@ -17,6 +17,7 @@ namespace ClickerClass.Tiles.Mice
 			Main.tileLavaDeath[Type] = true;
 			TileID.Sets.Clock[Type] = true;
 			TileID.Sets.HasOutlines[Type] = true;
+			TileID.Sets.DisableSmartCursor[Type] = true;
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2xX);
 			TileObjectData.newTile.StyleHorizontal = true;

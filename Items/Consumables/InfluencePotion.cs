@@ -11,6 +11,7 @@ namespace ClickerClass.Items.Consumables
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			SacrificeTotal = 20;
 
 			ItemID.Sets.DrinkParticleColors[Type] = new Color[3] {
 				new Color(255, 163, 255),

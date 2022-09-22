@@ -1,4 +1,5 @@
 - Added Ice Pack to Frozen and Boreal Crate pool.
 - Updated "Wikithis" link to wiki.gg.
+- Fixed Influence Potions having an incorrect Research value.
 
 See the Clicker Class wiki for full details!

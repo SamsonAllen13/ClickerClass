@@ -508,7 +508,7 @@ namespace ClickerClass.Items
 					if (Main.rand.NextBool(50))
 					{
 						SoundEngine.PlaySound(SoundID.Item153, player.Center);
-						player.AddBuff(BuffID.Cursed, 60, false);
+						player.AddBuff(BuffID.Cursed, 60 * 3, false);
 					}
 				}
 

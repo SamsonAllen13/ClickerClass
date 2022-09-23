@@ -30,7 +30,9 @@ namespace ClickerClass.Items.Accessories
 		
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddCondition(Recipe.Condition.InGraveyardBiome).AddRecipeGroup("IronBar", 8).AddRecipeGroup("Wood", 6).AddTile(TileID.Anvils).Register();
+			CreateRecipe(1).AddCondition(Recipe.Condition.InGraveyardBiome).AddRecipeGroup("IronBar", 8).AddRecipeGroup("Wood", 6).AddIngredient(ItemID.ShadowScale, 6).AddTile(TileID.Anvils).Register();
+			
+			CreateRecipe(1).AddCondition(Recipe.Condition.InGraveyardBiome).AddRecipeGroup("IronBar", 8).AddRecipeGroup("Wood", 6).AddIngredient(ItemID.TissueSample, 6).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

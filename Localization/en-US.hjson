@@ -790,4 +790,12 @@ Mods.ClickerClass: {
 			Tooltip: Toggle the display of click indicators where others used a clicker
 		}
 	}
+
+	GameTips: {
+		ClickerClassTip0: "Clicker Class: Clicker weapons can only be used within its area of effect and with proper line of sight."
+		ClickerClassTip1: "Clicker Class: Your total number of clicks with Clickers are tracked. Check it out with a Gamer Crate!"
+		ClickerClassTip2: "Clicker Class: Certain items will only be sold if you've used Clicker weapons enough times."
+		ClickerClassTip3: "Clicker Class: Remember to rest your hands if they start to hurt!"
+		ClickerClassTip4: "Clicker Class: Find a nice Ice Pack to cool your hands if clicking is cramping them up!"
+	}
 }

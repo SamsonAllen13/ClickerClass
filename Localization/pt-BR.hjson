@@ -52,6 +52,12 @@ Mods.ClickerClass: {
 		Unknown: Desconhecido
 	}
 
+	Containers: {
+		MiceDresser: Cômoda de Mouse
+		MiceChest: Baú de Mouse
+		TrappedMiceChest: Baú de Mouse
+	}
+
 	DamageClassName: {
 		ClickerDamage: dano por clique
 	}
@@ -66,6 +72,29 @@ Mods.ClickerClass: {
 		MiceFragment: Fragmento de Mouse
 		AimAssistModule: Módulo de Auxiliar de Mira
 		AimbotModule: Módulo de Aimbot
+		MiceBathtub: Banheira de Mouse
+		MiceBed: Cama de Mouse
+		MiceBookcase: Estante de Mouse
+		MiceBrick: Tijolo de Mouse
+		MiceBrickWall: Parede de Tijolos de Mouse
+		MiceCandelabra: Candelabro de Mouse
+		MiceCandle: Vela de Mouse
+		MiceChair: Cadeira de Mouse
+		MiceChandelier: Lustre de Mouse
+		MiceChest: Baú de Mouse
+		MiceChest_Trapped: Baú Armadilha de Mouse
+		MiceClock: Relógio de Mouse
+		MiceDoor: Porta de Mouse
+		MiceDresser: Cômoda de Mouse
+		MiceLamp: Lâmpada de Mouse
+		MiceLantern: Lanterna de Mouse
+		MicePiano: Piano de Mouse
+		MicePlatform: Plataforma de Mouse
+		MiceSink: Pia de Mouse
+		MiceSofa: Sofá de Mouse
+		MiceTable: Mesa de Mouse
+		MiceToilet: Privada de Mouse
+		MiceWorkbench: Bancada de Trabalho de Mouse
 		ABlissfulDay: Um Dia Feliz
 		OutsideTheCave: Fora da Caverna
 		AncientClickingGlove: Luva para Clicar Antiga
@@ -126,10 +155,12 @@ Mods.ClickerClass: {
 		BalloonClicker: Clicker Balão
 		BoneClicker: Clicker de Osso
 		BlizzardClicker: Clicker da Nevasca
+		BurningSuperDeathClicker: Clicker da Super Morte Ardente
 		CandleClicker: Clicker Vela
 		CaptainsClicker: Clicker do Capitão
 		ChlorophyteClicker: Clicker de Clorofita
 		CobaltClicker: Clicker de Cobalto
+		ConfettiClicker: Clicker de Confete
 		CopperClicker: Clicker de Cobre
 		CorruptClicker: Clicker Corrompido
 		CrimsonClicker: Clicker de Carmim
@@ -138,6 +169,7 @@ Mods.ClickerClass: {
 		DarkClicker: Clicker das Sombras
 		DraconicClicker: Clicker Dracônico
 		EclipticClicker: Clicker Elíptico
+		FamishedClicker: Clicker Faminto
 		FaultyClicker: Clicker Defeituoso
 		FrozenClicker: Clicker Congelado
 		GoldClicker: Clicker de Ouro
@@ -383,6 +415,16 @@ Mods.ClickerClass: {
 			Name: Presentes
 			Description: Cria uma explosão de presentes de paraquedas que podem ser clicados para liberar minas
 		}
+		
+		PartyTime: {
+			Name: Hora da Festa!
+			Description: Dispara alguns confetes!
+		}
+
+		Devour: {
+			Name: Devorar
+			Description: N/D
+		}
 			
 		Insanity: {
 			Name: Insanidade
@@ -397,6 +439,11 @@ Mods.ClickerClass: {
 		ArcaneEnchantment: {
 			Name: Encantamento Arcano
 			Description: Fornece um aumento no dano por clique e uma hitbox de clique maior
+		}
+
+		Mania: {
+			Name: Loucura
+			Description: Funciona aleatoriamente como qualquer efeito de clique simples possível
 		}
 
 		HolyNova: {

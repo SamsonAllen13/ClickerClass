@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -21,9 +22,7 @@ namespace ClickerClass.Tiles
 			TileObjectData.newTile.StyleWrapLimit = 36;
 			TileObjectData.addTile(Type);
 			DustType = 7;
-			ModTranslation name = CreateMapEntryName();
-			name.SetDefault("Painting");
-			AddMapEntry(new Color(90, 50, 30), name);
+			AddMapEntry(new Color(90, 50, 30), Language.GetText("MapObject.Painting"));
 		}
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY) 

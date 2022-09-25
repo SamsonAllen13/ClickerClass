@@ -1,6 +1,7 @@
 - Added 5 new loading screen tips.
 - Added Ice Pack to Frozen and Boreal Crate pool.
 - Updated "Wikithis" link to wiki.gg.
+- Updated Russian and Brazilian Portuguese localization.
 - Updated Mouse Trap crafting recipe to now require 6 Shadow Scales/Tissue Samples.
 - Nerfed Mouse Trap by increasing Cursed duration from 1s to 3s.
 - Fixed Influence Potions having an incorrect Research value.

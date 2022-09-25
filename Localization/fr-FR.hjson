@@ -182,6 +182,9 @@ Mods.ClickerClass: {
 		WitchClicker: Cliqueur de la Sorcière
 		WebClicker: Cliqueur Toile d'Araignée
 		WoodenClicker: Cliqueur en Bois
+		BurningSuperDeathClicker: Cliqueur de la Mort Super Brûlante
+		ConfettiClicker: Cliqueur Confetti
+		FamishedClicker: Cliqueur Affamé
 	}
 
 	ItemTooltip: {
@@ -662,6 +665,21 @@ Mods.ClickerClass: {
 		ClearKeychain: {
 			Name: Cristaliser
 			Description: Couvre les ennemis proches de slime cristal; Cliquez dessus pour infliger des dégâts de zone
+		}
+			
+		PartyTime: {
+			Name: C'est la fête!
+			Description: Lance des confettis!
+		}
+			
+		Devour: {
+			Name: Dévorer
+			Description: N/A
+		}
+			
+		Mania: {
+			Name: Manie
+			Description: Agit comme un effet de clic mineur aléatoire
 		}
 	}
 

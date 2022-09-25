@@ -760,4 +760,12 @@ Mods.ClickerClass: {
 			Tooltip: Active l'affichage des indicateurs de clic là où un cliqueur est utilisé par un autre joueur
 		}
 	}
+
+	GameTips: {
+		ClickerClassTip0: "Clicker Class: Les armes de Cliqueur ne peuvent être utilisées que dans leurs zones d'effets, avec une ligne de vue valide."
+		ClickerClassTip1: "Clicker Class: Votre nombre total de clics avec des Cliqueurs est enregistré. Vérifiez-le avec une Caisse de Gamer!"
+		ClickerClassTip2: "Clicker Class: Certains objets ne peuvent être vendus que si vous avez assez utilisé des armes de Cliqueur."
+		ClickerClassTip3: "Clicker Class: Pensez à reposer vos mains si elles commencent à faire mal!"
+		ClickerClassTip4: "Clicker Class: Trouvez un Pack de Glace pour reposer vos mains si cliquer vous cause des crampes!"
+	}
 }

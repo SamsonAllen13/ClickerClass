@@ -182,6 +182,9 @@ Mods.ClickerClass: {
 		WitchClicker: Cliqueur de la Sorcière
 		WebClicker: Cliqueur Toile d'Araignée
 		WoodenClicker: Cliqueur en Bois
+		BurningSuperDeathClicker: Cliqueur de la Mort Super Brûlante
+		ConfettiClicker: Cliqueur Confetti
+		FamishedClicker: Cliqueur Affamé
 	}
 
 	ItemTooltip: {
@@ -663,6 +666,21 @@ Mods.ClickerClass: {
 			Name: Cristaliser
 			Description: Couvre les ennemis proches de slime cristal; Cliquez dessus pour infliger des dégâts de zone
 		}
+			
+		PartyTime: {
+			Name: C'est la fête!
+			Description: Lance des confettis!
+		}
+			
+		Devour: {
+			Name: Dévorer
+			Description: N/A
+		}
+			
+		Mania: {
+			Name: Manie
+			Description: Agit comme un effet de clic mineur aléatoire
+		}
 	}
 
 	Prefix: {
@@ -741,5 +759,13 @@ Mods.ClickerClass: {
 			Label: Affichage des indicateurs de clic d'autres joueurs
 			Tooltip: Active l'affichage des indicateurs de clic là où un cliqueur est utilisé par un autre joueur
 		}
+	}
+
+	GameTips: {
+		ClickerClassTip0: "Clicker Class: Les armes de Cliqueur ne peuvent être utilisées que dans leurs zones d'effets, avec une ligne de vue valide."
+		ClickerClassTip1: "Clicker Class: Votre nombre total de clics avec des Cliqueurs est enregistré. Vérifiez-le avec une Caisse de Gamer!"
+		ClickerClassTip2: "Clicker Class: Certains objets ne peuvent être vendus que si vous avez assez utilisé des armes de Cliqueur."
+		ClickerClassTip3: "Clicker Class: Pensez à reposer vos mains si elles commencent à faire mal!"
+		ClickerClassTip4: "Clicker Class: Trouvez un Pack de Glace pour reposer vos mains si cliquer vous cause des crampes!"
 	}
 }

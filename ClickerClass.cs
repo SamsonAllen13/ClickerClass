@@ -24,8 +24,8 @@ namespace ClickerClass
 		{
 			mod = this;
 			BossBuffImmunity = new HashSet<int>();
-			AutoClickKey = KeybindLoader.RegisterKeybind(this, "ClickerAccessory", "G"); //Can't localize this
-			AimAssistKey = KeybindLoader.RegisterKeybind(this, "ClickerAimAssist", "Mouse3"); //Can't localize this
+			AutoClickKey = KeybindLoader.RegisterKeybind(this, "ClickerAccessory", "G");
+			AimAssistKey = KeybindLoader.RegisterKeybind(this, "ClickerAimAssist", "Mouse3");
 
 			NetHandler.Load();
 

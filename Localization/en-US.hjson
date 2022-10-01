@@ -62,9 +62,8 @@ Mods.ClickerClass: {
 	DamageClassName: {
 		ClickerDamage: click damage
 	}
-		
-	# DO NOT TRANSLATE THESE ONES, HOTKEYS ARENT LOCALIZABLE YET
-	Hotkeys: {
+
+	Keybind: {
 		ClickerAccessory: Clicker Accessory
 		ClickerAimAssist: Clicker Aim Assist
 	}
@@ -286,7 +285,7 @@ Mods.ClickerClass: {
 			'''
 		HandCream:
 			'''
-			Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will toggle auto click on all Clickers
+			Pressing the '{$Mods.ClickerClass.Keybind.ClickerAccessory}' key will toggle auto click on all Clickers
 			While auto click is enabled, click rates are moderately decreased
 			'''
 		HotKeychain:
@@ -296,7 +295,7 @@ Mods.ClickerClass: {
 			'''
 		IcePack:
 			'''
-			Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' key will toggle auto click on all Clickers
+			Pressing the '{$Mods.ClickerClass.Keybind.ClickerAccessory}' key will toggle auto click on all Clickers
 			While auto click is enabled, click rates are greatly decreased
 			'''
 		MasterKeychain:

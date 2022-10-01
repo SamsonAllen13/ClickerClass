@@ -62,8 +62,7 @@ Mods.ClickerClass: {
 		ClickerDamage: dano por clique
 	}
 
-	# DO NOT TRANSLATE THESE ONES, HOTKEYS ARENT LOCALIZABLE YET
-	Hotkeys: {
+	Keybind: {
 		ClickerAccessory: Clicker Accessory
 		ClickerAimAssist: Clicker Aim Assist
 	}
@@ -285,7 +284,7 @@ Mods.ClickerClass: {
 			'''
 		HandCream:
 			'''
-			Apertar a tecla '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' ativará clique automático em todos os Clickers
+			Apertar a tecla '{$Mods.ClickerClass.Keybind.ClickerAccessory}' ativará clique automático em todos os Clickers
 			Enquanto o clique automático está ativado, a taxa de cliques é diminuída moderadamente
 			'''
 		HotKeychain:
@@ -295,7 +294,7 @@ Mods.ClickerClass: {
 			'''
 		IcePack:
 			'''
-			Apertar a tecla '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' ativará clique automático em todos os Clickers
+			Apertar a tecla '{$Mods.ClickerClass.Keybind.ClickerAccessory}' ativará clique automático em todos os Clickers
 			Enquanto o clique automático está ativado, a taxa de cliques é diminuída consideravelmente
 			'''
 		MasterKeychain:

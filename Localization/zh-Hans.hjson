@@ -55,9 +55,8 @@ Mods.ClickerClass: {
 	DamageClassName: {
 		ClickerDamage: 点击伤害
 	}
-		
-	# DO NOT TRANSLATE THESE ONES, HOTKEYS ARENT LOCALIZABLE YET
-	Hotkeys: {
+
+	Keybind: {
 		ClickerAccessory: Clicker Accessory
 		ClickerAimAssist: Clicker Aim Assist
 	}
@@ -253,7 +252,7 @@ Mods.ClickerClass: {
 			'''
 		HandCream:
 			'''
-			按下'{$Mods.ClickerClass.Hotkeys.ClickerAccessory}'键切换按住不动持续点击
+			按下'{$Mods.ClickerClass.Keybind.ClickerAccessory}'键切换按住不动持续点击
 			启用按住不动持续点击后,手动点击最大频率将轻微降低
 			'''
 		HotKeychain:
@@ -263,7 +262,7 @@ Mods.ClickerClass: {
 			'''
 		IcePack:
 			'''
-			按下'{$Mods.ClickerClass.Hotkeys.ClickerAccessory}'键切换按住不动持续点击
+			按下'{$Mods.ClickerClass.Keybind.ClickerAccessory}'键切换按住不动持续点击
 			启用按住不动持续点击后,手动点击最大频率将显著降低
 			'''
 		MasterKeychain:

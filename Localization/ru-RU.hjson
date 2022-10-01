@@ -62,9 +62,8 @@ Mods.ClickerClass: {
 		ClickerDamage : ед. урона клика
 	}
 
-	# DO NOT TRANSLATE THESE ONES, HOTKEYS ARENT LOCALIZABLE YET
-	Hotkeys: {
-		ClickerAccessory: Clicker Accessory
+	Keybind: {
+		ClickerAccessory: Clicker Accessory asdasdasdasd
 		ClickerAimAssist: Clicker Aim Assist
 	}
 
@@ -285,7 +284,7 @@ Mods.ClickerClass: {
 			'''
 		HandCream:
 			'''
-			Нажатие кнопки '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' переключает на авто-клик все курсоры
+			Нажатие кнопки '{$Mods.ClickerClass.Keybind.ClickerAccessory}' переключает на авто-клик все курсоры
 			Пока авто-клик активирован, частота кликов незначительно снижена
 			'''
 		HotKeychain:
@@ -295,7 +294,7 @@ Mods.ClickerClass: {
 			'''
 		IcePack:
 			'''
-			Нажатии кнопки '{$Mods.ClickerClass.Hotkeys.ClickerAccessory}' переключает авто-клики на всех курсорах
+			Нажатии кнопки '{$Mods.ClickerClass.Keybind.ClickerAccessory}' переключает авто-клики на всех курсорах
 			Пока авто-клик активирован, частота кликов значительно снижена
 			'''
 		MasterKeychain:

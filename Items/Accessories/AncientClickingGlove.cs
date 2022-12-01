@@ -29,7 +29,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddIngredient(ModContent.ItemType<ClickingGlove>(), 1).AddIngredient(ItemID.AncientCloth, 8).AddTile(TileID.MythrilAnvil).Register();
+			CreateRecipe(1).AddIngredient(ModContent.ItemType<ClickingGlove>(), 1).AddIngredient(ItemID.AncientCloth, 3).AddTile(TileID.MythrilAnvil).Register();
 		}
 	}
 }

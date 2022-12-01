@@ -206,7 +206,7 @@ namespace ClickerClass.NPCs
 				#region Solar Eclipse
 				case NPCID.Frankenstein:
 					{
-						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EclipticClicker>(), 25));
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<EclipticClicker>(), 36));
 					}
 					break;
 				case NPCID.SwampThing: goto case NPCID.Frankenstein;

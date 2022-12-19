@@ -40,14 +40,6 @@ namespace ClickerClass.Tiles.Mice
 			Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 32, 80, ModContent.ItemType<Items.Placeable.Mice.MiceClock>());
 		}
 
-		public override void NearbyEffects(int i, int j, bool closer)
-		{
-			if (closer)
-			{
-				Main.SceneMetrics.HasClock = true;
-			}
-		}
-
 		public override bool RightClick(int x, int y)
 		{
 			string text = "AM";

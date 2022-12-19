@@ -69,7 +69,7 @@ namespace ClickerClass.Projectiles
 		{
 			if (!hasChanged)
 			{
-				Texture2D effectTexture = effect.Value.Value	;
+				Texture2D effectTexture = effect.Value.Value;
 				Rectangle frame = effectTexture.Frame();
 				Vector2 drawOrigin = new Vector2(effectTexture.Width * 0.5f, Projectile.height * 0.5f - DrawOriginOffsetY + BalloonOffset);
 				Main.EntitySpriteDraw(effectTexture, new Vector2(Projectile.Center.X /*+ DrawOffsetX*/ - 1, Projectile.Center.Y /*- BalloonOffset*/) - Main.screenPosition, frame, lightColor, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);

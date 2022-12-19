@@ -443,6 +443,9 @@ namespace ClickerClass.Items
 			{
 				var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
+				//This shouldn't be here, but some mods (DormantDawnMOD) override projectile position, so we set it again like in ModifyShootStats
+				position = clickerPlayer.clickerPosition;
+
 				//Base 
 				SoundEngine.PlaySound(SoundID.MenuTick, player.position);
 				clickerPlayer.AddClick();

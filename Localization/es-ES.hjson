@@ -1162,7 +1162,7 @@ Mods: {
 
 			Embrittle: {
 				// Name: Embrittle
-				// Description: Inflicts the {$Mods.ClickerClass.BuffName.Embrittle} debuff: {$Mods.ClickerClass.BuffDescription.Embrittle}
+				// Description: Inflicts the {$Mods.ClickerClass.Buffs.Embrittle.DisplayName} debuff: {$Mods.ClickerClass.Buffs.Embrittle.Description}
 			}
 
 			PetalStorm: {
@@ -1197,7 +1197,7 @@ Mods: {
 
 			AutoClick: {
 				// Name: Auto Click
-				// Description: Grants the {$Mods.ClickerClass.BuffName.AutoClick} buff, reducing the use time, but granting auto-use
+				// Description: Grants the {$Mods.ClickerClass.Buffs.DisplayName.AutoClick} buff, reducing the use time, but granting auto-use
 			}
 
 			Siphon: {

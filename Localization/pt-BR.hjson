@@ -1162,7 +1162,7 @@ Mods: {
 
 			Embrittle: {
 				Name: Fragilizar
-				Description: Inflige o efeito negativo {$Mods.ClickerClass.BuffName.Embrittle}: {$Mods.ClickerClass.BuffDescription.Embrittle}
+				Description: Inflige o efeito negativo {$Mods.ClickerClass.Buffs.Embrittle.DisplayName}: {$Mods.ClickerClass.Buffs.Embrittle.Description}
 			}
 
 			PetalStorm: {

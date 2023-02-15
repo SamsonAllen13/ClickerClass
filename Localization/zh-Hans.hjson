@@ -1162,7 +1162,7 @@ Mods: {
 
 			Embrittle: {
 				Name: 脆化
-				Description: 给予范围目标{$Mods.ClickerClass.BuffName.Embrittle}减益,效果:{$Mods.ClickerClass.BuffDescription.Embrittle}
+				Description: 给予范围目标{$Mods.ClickerClass.Buffs.Embrittle.DisplayName}减益,效果:{$Mods.ClickerClass.Buffs.Embrittle.Description}
 			}
 
 			PetalStorm: {

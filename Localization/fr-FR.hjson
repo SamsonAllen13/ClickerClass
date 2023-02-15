@@ -1162,7 +1162,7 @@ Mods: {
 
 			Embrittle: {
 				Name: Fragiliser
-				Description: Inflige {$Mods.ClickerClass.BuffName.Embrittle}: {$Mods.ClickerClass.BuffDescription.Embrittle}
+				Description: Inflige {$Mods.ClickerClass.Buffs.Embrittle.DisplayName}: {$Mods.ClickerClass.Buffs.Embrittle.Description}
 			}
 
 			PetalStorm: {

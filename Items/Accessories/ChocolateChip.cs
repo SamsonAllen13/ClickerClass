@@ -14,7 +14,7 @@ namespace ClickerClass.Items.Accessories
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.ChocolateChip = ClickerSystem.RegisterClickEffect(Mod, "ChocolateChip", null, null, 15, new Color(165, 110, 60, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.ChocolateChip = ClickerSystem.RegisterClickEffect(Mod, "ChocolateChip", 15, new Color(165, 110, 60, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				int chocolate = ModContent.ProjectileType<ChocolateChipPro>();

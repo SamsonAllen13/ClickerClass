@@ -12,7 +12,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			//Special tooltip set before this normally, but we use lang keys so it's handled automatically
 			base.SetStaticDefaults();
 
-			ClickEffect.PhaseReach = ClickerSystem.RegisterClickEffect(Mod, "PhaseReach", null, null, 1, new Color(100, 255, 255), null);
+			ClickEffect.PhaseReach = ClickerSystem.RegisterClickEffect(Mod, "PhaseReach", 1, new Color(100, 255, 255), null);
 		}
 
 		public override void SetDefaults()

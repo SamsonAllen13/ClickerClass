@@ -26,7 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Collision = ClickerSystem.RegisterClickEffect(Mod, "Collision", null, null, 10, new Color(150, 150, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Collision = ClickerSystem.RegisterClickEffect(Mod, "Collision", 10, new Color(150, 150, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				for (int k = 0; k < 8; k++)

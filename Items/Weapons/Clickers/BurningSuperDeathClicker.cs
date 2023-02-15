@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Mania = ClickerSystem.RegisterClickEffect(Mod, "Mania", null, null, 6, new Color(255, 150, 150), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Mania = ClickerSystem.RegisterClickEffect(Mod, "Mania", 6, new Color(255, 150, 150), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				List<string> excluded = new List<string>
 				{

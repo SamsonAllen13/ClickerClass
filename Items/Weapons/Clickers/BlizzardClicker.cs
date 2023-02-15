@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Flurry = ClickerSystem.RegisterClickEffect(Mod, "Flurry", null, null, 15, new Color(150, 220, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Flurry = ClickerSystem.RegisterClickEffect(Mod, "Flurry", 15, new Color(150, 220, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<BlizzardClickerPro>(), damage, knockBack, player.whoAmI);
 			});

@@ -14,7 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Curse = ClickerSystem.RegisterClickEffect(Mod, "Curse", null, null, 12, new Color(150, 100, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Curse = ClickerSystem.RegisterClickEffect(Mod, "Curse", 12, new Color(150, 100, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Vector2 pos = position;
 

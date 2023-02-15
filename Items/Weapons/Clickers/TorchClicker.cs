@@ -26,7 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Smite = ClickerSystem.RegisterClickEffect(Mod, "Smite", null, null, 10, new Color(255, 245, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Smite = ClickerSystem.RegisterClickEffect(Mod, "Smite", 10, new Color(255, 245, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				SoundEngine.PlaySound(SoundID.Item42, position);
 				

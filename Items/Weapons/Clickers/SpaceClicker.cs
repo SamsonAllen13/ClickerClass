@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.StarStorm = ClickerSystem.RegisterClickEffect(Mod, "StarStorm", null, null, 6, new Color(175, 75, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.StarStorm = ClickerSystem.RegisterClickEffect(Mod, "StarStorm", 6, new Color(175, 75, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				SoundEngine.PlaySound(SoundID.Item42, position);
 

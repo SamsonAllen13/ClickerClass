@@ -68,7 +68,6 @@ namespace ClickerClass
 		public override void PostAddRecipes()
 		{
 			FinalizedRegisterCompat = true;
-			FinalizeLocalization();
 		}
 
 		public static string UniqueEffectName(Mod mod, string internalName) => $"{mod.Name}:{internalName}";
@@ -151,7 +150,7 @@ namespace ClickerClass
 		internal static bool GetNewNameFromOldDisplayName(string oldName, out string internalName)
 		{
 			var allEffects = GetAllEffects();
-			var found = allEffects.FirstOrDefault(e => e.Value.DisplayName == oldName);
+			var found = allEffects.FirstOrDefault(e => e.Value.DisplayName.Value == oldName);
 			internalName = found.Key;
 			return internalName != null;
 		}
@@ -161,15 +160,13 @@ namespace ClickerClass
 		/// </summary>
 		/// <param name="mod">The mod this effect belongs to. ONLY USE YOUR OWN MOD INSTANCE FOR THIS!</param>
 		/// <param name="internalName">The internal name of the effect. Turns into the unique name combined with the associated mod</param>
-		/// <param name="displayName">The name of the effect, null if you use lang keys (Defaults to ClickEffect.[internalName].Name)</param>
-		/// <param name="description">The basic description of the effect, string.Empty for none, null if you use lang keys (Defaults to ClickEffect.[internalName].Description)</param>
 		/// <param name="amount">The amount of clicks required to trigger the effect</param>
 		/// <param name="colorFunc">The (dynamic) text color representing the effect in the tooltip</param>
 		/// <param name="action">The method that runs when the effect is triggered</param>
 		/// <param name="preHardMode">If this effect primarily belongs to something available pre-hardmode</param>
 		/// <returns>The unique identifier</returns>
 		/// <exception cref="InvalidOperationException"/>
-		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false)
+		public static string RegisterClickEffect(Mod mod, string internalName, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false)
 		{
 			if (FinalizedRegisterCompat)
 			{
@@ -182,7 +179,7 @@ namespace ClickerClass
 
 			string uniqueName = UniqueEffectName(mod, internalName);
 
-			ClickEffect effect = new ClickEffect(mod, internalName, displayName, description, amount, colorFunc, action, preHardMode);
+			ClickEffect effect = new ClickEffect(mod, internalName, amount, colorFunc, action, preHardMode);
 
 			if (!IsClickEffect(uniqueName))
 			{
@@ -200,8 +197,6 @@ namespace ClickerClass
 		/// </summary>
 		/// <param name="mod">The mod this effect belongs to. ONLY USE YOUR OWN MOD INSTANCE FOR THIS!</param>
 		/// <param name="internalName">The internal name of the effect. Turns into the unique name combined with the associated mod</param>
-		/// <param name="displayName">The name of the effect, null if you use lang keys (Defaults to ClickEffect.[internalName].Name)</param>
-		/// <param name="description">The basic description of the effect, string.Empty for none, null if you use lang keys (Defaults to ClickEffect.[internalName].Description)</param>
 		/// <param name="amount">The amount of clicks required to trigger the effect</param>
 		/// <param name="color">The text color representing the effect in the tooltip</param>
 		/// <param name="action">The method that runs when the effect is triggered</param>
@@ -209,18 +204,9 @@ namespace ClickerClass
 		/// <param name="preHardMode">If this effect primarily belongs to something available pre-hardmode</param>
 		/// <returns>The unique identifier</returns>
 		/// <exception cref="InvalidOperationException"/>
-		public static string RegisterClickEffect(Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false)
+		public static string RegisterClickEffect(Mod mod, string internalName, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false)
 		{
-			return RegisterClickEffect(mod, internalName, displayName, description, amount, () => color, action, preHardMode);
-		}
-
-		internal static void FinalizeLocalization()
-		{
-			// Modded Localization keys are initialized before AddRecipes, so we need to do this late.
-			foreach (var effect in ClickEffectsByName.Values)
-			{
-				effect.FinalizeLocalization();
-			}
+			return RegisterClickEffect(mod, internalName, amount, () => color, action, preHardMode);
 		}
 
 		/// <summary>

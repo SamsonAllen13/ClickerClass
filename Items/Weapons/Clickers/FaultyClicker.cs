@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Fritz = ClickerSystem.RegisterClickEffect(Mod, "Fritz", null, null, 3, new Color(100, 100, 100), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Fritz = ClickerSystem.RegisterClickEffect(Mod, "Fritz", 3, new Color(100, 100, 100), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 				

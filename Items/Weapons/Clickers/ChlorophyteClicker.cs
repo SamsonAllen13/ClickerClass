@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.ToxicRelease = ClickerSystem.RegisterClickEffect(Mod, "ToxicRelease", null, null, 10, new Color(175, 255, 100), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.ToxicRelease = ClickerSystem.RegisterClickEffect(Mod, "ToxicRelease", 10, new Color(175, 255, 100), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				for (int k = 0; k < 10; k++)

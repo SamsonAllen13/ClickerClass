@@ -14,7 +14,7 @@ namespace ClickerClass.Items.Accessories
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.BigRedButton = ClickerSystem.RegisterClickEffect(Mod, "BigRedButton", null, null, 25, new Color(230, 100, 20, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.BigRedButton = ClickerSystem.RegisterClickEffect(Mod, "BigRedButton", 25, new Color(230, 100, 20, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				SoundEngine.PlaySound(SoundID.Item14, position);
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<BigRedButtonPro>(), (int)(damage * 3f), 1f, player.whoAmI, Main.rand.Next(3));

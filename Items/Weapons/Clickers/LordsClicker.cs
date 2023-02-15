@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Conqueror = ClickerSystem.RegisterClickEffect(Mod, "Conqueror", null, null, 15, new Color(100, 255, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Conqueror = ClickerSystem.RegisterClickEffect(Mod, "Conqueror", 15, new Color(100, 255, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<LordsClickerPro>(), (int)(damage * 2f), 0f, player.whoAmI);
 			});

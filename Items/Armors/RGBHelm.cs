@@ -26,7 +26,7 @@ namespace ClickerClass.Items.Armors
 				});
 			}
 			
-			ClickEffect.ChromaticBurst = ClickerSystem.RegisterClickEffect(Mod, "ChromaticBurst", null, null, 20, () => Color.Lerp(Color.White, Main.DiscoColor, 0.5f), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.ChromaticBurst = ClickerSystem.RegisterClickEffect(Mod, "ChromaticBurst", 20, () => Color.Lerp(Color.White, Main.DiscoColor, 0.5f), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				int chromatic = ModContent.ProjectileType<RGBPro>();

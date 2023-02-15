@@ -102,13 +102,11 @@ namespace ClickerClass
 				{
 					var mod = args[index + 0] as Mod;
 					var internalName = args[index + 1] as string;
-					var displayName = args[index + 2] as string;
-					var description = args[index + 3] as string;
-					var amount = args[index + 4] as int?;
-					var color = args[index + 5] as Color?;
-					var colorFunc = args[index + 5] as Func<Color>; //Try another type variation because of overload
-					var action = args[index + 6] as Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>;
-					var preHardMode = args[index + 7] as bool?;
+					var amount = args[index + 2] as int?;
+					var color = args[index + 3] as Color?;
+					var colorFunc = args[index + 3] as Func<Color>; //Try another type variation because of overload
+					var action = args[index + 4] as Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>;
+					var preHardMode = args[index + 5] as bool?;
 					if (preHardMode == null && apiVersion < new Version(1, 3, 3))
 					{
 						//New parameter, default to false
@@ -141,7 +139,7 @@ namespace ClickerClass
 						useColor = () => color.Value;
 					}
 
-					return ClickerSystem.RegisterClickEffect(mod, internalName, displayName, description, amount.Value, useColor, action, preHardMode.Value);
+					return ClickerSystem.RegisterClickEffect(mod, internalName, amount.Value, useColor, action, preHardMode.Value);
 				}
 				else if (message == "GetPathToBorderTexture")
 				{

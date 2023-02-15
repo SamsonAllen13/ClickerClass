@@ -14,7 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.AutoClick = ClickerSystem.RegisterClickEffect(Mod, "AutoClick", null, null, 20, new Color(150, 150, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.AutoClick = ClickerSystem.RegisterClickEffect(Mod, "AutoClick", 20, new Color(150, 150, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				SoundEngine.PlaySound(SoundID.Item24, player.Center);
 				player.AddBuff(ModContent.BuffType<AutoClick>(), 300, false);

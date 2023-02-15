@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.RazorsEdge = ClickerSystem.RegisterClickEffect(Mod, "RazorsEdge", null, null, 12, new Color(150, 150, 150), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.RazorsEdge = ClickerSystem.RegisterClickEffect(Mod, "RazorsEdge", 12, new Color(150, 150, 150), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				for (int index = 0; index < 5; index++)

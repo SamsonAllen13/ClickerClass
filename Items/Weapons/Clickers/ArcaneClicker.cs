@@ -14,7 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.ArcaneEnchantment = ClickerSystem.RegisterClickEffect(Mod, "ArcaneEnchantment", null, null, 10, new Color(255, 180, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.ArcaneEnchantment = ClickerSystem.RegisterClickEffect(Mod, "ArcaneEnchantment", 10, new Color(255, 180, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				SoundEngine.PlaySound(SoundID.Item24, player.Center);
 				player.AddBuff(ModContent.BuffType<ArcaneEnchantment>(), 300, false);

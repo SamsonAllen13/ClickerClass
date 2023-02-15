@@ -96,8 +96,8 @@ namespace ClickerClass
 		/// "Mod": The mod the effect belongs to (Mod).
 		/// | "InternalName": The internal name (string).
 		/// | "UniqueName": The unique name (string) (should match the input string).
-		/// | "DisplayName": The displayed name (string).
-		/// | "Description": The description (string).
+		/// | "DisplayName": The displayed name (LocalizedText).
+		/// | "Description": The description (LocalizedText).
 		/// | "Amount": The amount of clicks to trigger the effect (int).
 		/// | "ColorFunc": The color (Color) if invoked.
 		/// | "Action": The method ran when triggered (Action[Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float]).

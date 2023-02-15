@@ -107,11 +107,6 @@ namespace ClickerClass
 					var colorFunc = args[index + 3] as Func<Color>; //Try another type variation because of overload
 					var action = args[index + 4] as Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>;
 					var preHardMode = args[index + 5] as bool?;
-					if (preHardMode == null && apiVersion < new Version(1, 3, 3))
-					{
-						//New parameter, default to false
-						preHardMode = false;
-					}
 
 					string nameOfargument = string.Empty;
 					if (mod == null)

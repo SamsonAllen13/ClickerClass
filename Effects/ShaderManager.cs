@@ -49,10 +49,10 @@ namespace ClickerClass.Effects
 
 		internal static void LoadCircleEffectAdds()
 		{
-			On.Terraria.Main.DrawInfernoRings += DrawCircles;
+			On_Main.DrawInfernoRings += DrawCircles;
 		}
 
-		private static void DrawCircles(On.Terraria.Main.orig_DrawInfernoRings orig, Main self)
+		private static void DrawCircles(Terraria.On_Main.orig_DrawInfernoRings orig, Main self)
 		{
 			orig(self);
 

@@ -8,12 +8,12 @@ namespace ClickerClass.Items.Placeable.Mice
 	{
 		public override void SetStaticDefaults()
 		{
-			SacrificeTotal = 400;
+			Item.ResearchUnlockCount = 400;
 		}
 
 		public override void SetDefaults()
 		{
-			Item.DefaultToPlacableWall((ushort)ModContent.WallType<Walls.MiceBrickWall>());
+			Item.DefaultToPlaceableWall((ushort)ModContent.WallType<Walls.MiceBrickWall>());
 		}
 
 		public override void AddRecipes()

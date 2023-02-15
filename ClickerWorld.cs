@@ -13,7 +13,7 @@ namespace ClickerClass
 {
 	public class ClickerWorld : ModSystem
 	{
-		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
+		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
 		{
 			int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Micro Biomes"));
 			if (genIndex != -1)

@@ -36,7 +36,7 @@ namespace ClickerClass.Tiles.Mice
 
 			AdjTiles = new int[] { TileID.FakeContainers };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
-			AddMapEntry(new Color(172, 189, 246), ContainerName);
+			AddMapEntry(new Color(172, 189, 246), CreateMapEntryName());
 		}
 
 		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;

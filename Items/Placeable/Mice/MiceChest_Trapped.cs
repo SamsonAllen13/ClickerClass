@@ -9,7 +9,6 @@ namespace ClickerClass.Items.Placeable.Mice
 		public override void SetStaticDefaults()
 		{
 			ItemID.Sets.TrapSigned[Item.type] = true;
-			SacrificeTotal = 1;
 		}
 
 		public override string Texture => (GetType().Namespace + ".MiceChest").Replace('.', '/');

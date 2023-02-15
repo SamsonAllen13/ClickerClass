@@ -32,8 +32,6 @@ namespace ClickerClass.Items.Tools
 					Color = (PlayerDrawSet drawInfo) => new Color(255, 255, 255, 50) * 0.7f
 				});
 			}
-
-			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults()

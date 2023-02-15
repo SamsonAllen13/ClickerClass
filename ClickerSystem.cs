@@ -310,7 +310,6 @@ namespace ClickerClass
 
 		/// <summary>
 		/// Call this in <see cref="ModItem.SetStaticDefaults"/> to register this weapon into the "clicker class" category as a "clicker".
-		/// You can change the default tooltip BEFORE it.
 		/// Do not call <see cref="RegisterClickerItem"/> with it as this method does this already by itself
 		/// </summary>
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
@@ -341,11 +340,6 @@ namespace ClickerClass
 						ClickerClass.mod.Logger.Info($"Border texture for {modItem.Name} not found: {borderTexture}");
 					}
 				}
-			}
-
-			if (modItem.Tooltip.GetDefault() == null)
-			{
-				modItem.Tooltip.SetDefault("{$Mods.ClickerClass.Common.Tooltips.Clicker}");
 			}
 		}
 

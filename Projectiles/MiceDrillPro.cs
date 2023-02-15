@@ -21,11 +21,6 @@ namespace ClickerClass.Projectiles
 			glowmask = null;
 		}
 
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("Mice Drill");
-		}
-
 		public override void SetDefaults()
 		{
 			Projectile.width = 26;

@@ -197,7 +197,7 @@ namespace ClickerClass.Items
 					if (index != -1)
 					{
 						string color = (new Color(252, 210, 44) * alpha).Hex3();
-						tooltips.Insert(index + 1, new TooltipLine(Mod, "TransformationText", $"{LangHelper.GetText("Tooltip.TotalClicks")}: [c/{color}:{clickerPlayer.clickerTotal}]"));
+						tooltips.Insert(index + 1, new TooltipLine(Mod, "TotalClicks", $"{LangHelper.GetText("Tooltip.TotalClicks")}: [c/{color}:{clickerPlayer.clickerTotal}]"));
 					}
 				}
 				
@@ -210,7 +210,7 @@ namespace ClickerClass.Items
 						int currentValue = clickerPlayer.clickerMoneyGenerated;
 						string displayValue = " " + PopupText.ValueToName(currentValue);
 						string color = (new Color(252, 210, 44) * alpha).Hex3();
-						tooltips.Insert(index + 1, new TooltipLine(Mod, "TransformationText", $"{LangHelper.GetText("Tooltip.MoneyGenerated")}:[c/{color}:" + displayValue + "]"));
+						tooltips.Insert(index + 1, new TooltipLine(Mod, "MoneyGenerated", $"{LangHelper.GetText("Tooltip.MoneyGenerated")}:[c/{color}:" + displayValue + "]"));
 					}
 				}
 
@@ -285,7 +285,7 @@ namespace ClickerClass.Items
 				{
 					if (radiusBoostPrefix != 0)
 					{
-						TooltipLine tt = new TooltipLine(Mod, "PrefixClickerRadius", (radiusBoostPrefix > 0 ? "+" : "") + LangHelper.GetText("Prefix.PrefixClickerRadius.Tooltip", (int)((radiusBoostPrefix / 2) * 100)))
+						TooltipLine tt = new TooltipLine(Mod, "PrefixClickerRadius", (radiusBoostPrefix > 0 ? "+" : "") + LangHelper.GetText("Prefixes.Common.RadiusBoost", (int)((radiusBoostPrefix / 2) * 100)))
 						{
 							IsModifier = true,
 							IsModifierBad = radiusBoostPrefix < 0
@@ -294,7 +294,7 @@ namespace ClickerClass.Items
 					}
 					if (clickBoostPrefix != 0)
 					{
-						TooltipLine tt = new TooltipLine(Mod, "PrefixClickBoost", (clickBoostPrefix < 0 ? "" : "+") + LangHelper.GetText("Prefix.PrefixClickBoost.Tooltip", clickBoostPrefix))
+						TooltipLine tt = new TooltipLine(Mod, "PrefixClickBoost", (clickBoostPrefix < 0 ? "" : "+") + LangHelper.GetText("Prefixes.Common.ClickBoost", clickBoostPrefix))
 						{
 							IsModifier = true,
 							IsModifierBad = clickBoostPrefix > 0

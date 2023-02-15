@@ -19,15 +19,13 @@ namespace ClickerClass.Prefixes.ClickerPrefixes
 		internal float radiusBonus = 0;
 		internal int clickBonus = 0;
 		internal int critBonus = 0;
-		internal string displayName;
 
 		public override PrefixCategory Category => PrefixCategory.Custom;
 
 		public ClickerPrefix() { }
 
-		public ClickerPrefix(string displayName, float damageMult, float radiusBonus, int clickBonus, int critBonus)
+		public ClickerPrefix(float damageMult, float radiusBonus, int clickBonus, int critBonus)
 		{
-			this.displayName = displayName;
 			this.damageMult = damageMult;
 			this.radiusBonus = radiusBonus;
 			this.clickBonus = clickBonus;
@@ -46,8 +44,6 @@ namespace ClickerClass.Prefixes.ClickerPrefixes
 
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault(displayName);
-
 			ClickerPrefixes.Add(Type);
 		}
 

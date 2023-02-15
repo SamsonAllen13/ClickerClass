@@ -38,7 +38,7 @@ namespace ClickerClass.Tiles.Mice
 
 			AdjTiles = new int[] { TileID.Dressers };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-			AddMapEntry(new Color(191, 142, 111), ContainerName, MapChestName);
+			AddMapEntry(new Color(191, 142, 111), CreateMapEntryName(), MapChestName);
 			DresserDrop = ModContent.ItemType<Items.Placeable.Mice.MiceDresser>();
 		}
 
@@ -49,6 +49,10 @@ namespace ClickerClass.Tiles.Mice
 			width = 3;
 			height = 1;
 			extraY = 0;
+		}
+		public override LocalizedText ContainerName(int frameX, int frameY)
+		{
+			return this.GetLocalization("MapEntry");
 		}
 
 		public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / 54);
@@ -207,9 +211,9 @@ namespace ClickerClass.Tiles.Mice
 				}
 				else
 				{
-					player.cursorItemIconText = TileLoader.ContainerName(Type);
+					player.cursorItemIconText = TileLoader.ContainerName(Type, tile.TileFrameX, tile.TileFrameY);
 				}
-				if (player.cursorItemIconText == TileLoader.ContainerName(Type))
+				if (player.cursorItemIconText == TileLoader.ContainerName(Type, tile.TileFrameX, tile.TileFrameY))
 				{
 					int style = tile.TileFrameX / 54;
 					player.cursorItemIconID = ModContent.ItemType<Items.Placeable.Mice.MiceDresser>();

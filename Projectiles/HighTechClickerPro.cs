@@ -50,8 +50,6 @@ namespace ClickerClass.Projectiles
 		{
 			base.SetStaticDefaults();
 
-			DisplayName.SetDefault("High Tech Clicker");
-
 			ProjectileID.Sets.CanDistortWater[Projectile.type] = false;
 		}
 

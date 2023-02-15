@@ -1,792 +1,1432 @@
-Mods.ClickerClass: {
-	BuffName: {
-		AutoClick: Авто-клик
-		CookieBuff: Печенье
-		Crystalized: Кристаллизованный
-		Embrittle: Хрупкость
-		Frozen: Заморозка
-		Gouge: Глубокий порез
-		Haste: Спешка
-		HoneySlow: Мёд
-		InfluenceBuff: Воздействие
-		OverclockBuff: Разгон
-		Oozed: Липкий
-		HotWingsBuff: Горячие крылья
-		Seafoam: Морская пена
-		Stunned: Ошеломлённый
-		ArcaneEnchantment: Мистическое улучшение
-	}
-
-	BuffDescription: {
-		AutoClick: Зажмите ЛКМ, для авто-кликов
-		CookieBuff: Увеличивает урон кликов, радиус курсора и регенерацию здоровья
-		Crystalized: Клики будут выпускать скопление кристаллических осколков
-		Embrittle: Клики будут наносить дополнительно 8 единиц урона этой цели
-		Frozen: В замороженном состоянии
-		Gouge: Стремительная потеря здоровья
-		Haste: Скорость передвижения и прыжка увеличены
-		HoneySlow: Скорость передвижения снижена
-		InfluenceBuff: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%"
-		OverclockBuff: Каждый клик активирует эффект курсора
-		Oozed: Скорость передвижения значительно снижена
-		Seafoam: Лечит пользователя курсора при нанесении ему урона курсором
-		Stunned: Вы не можете сдвинуться с места
-		HotWingsBuff: Дважды нажмите в сторону направления для огненного рывка
-		ArcaneEnchantment: Ваш урон и хитбокс урона кликов увеличены
-	}
-
-	Common: {
-		Tooltips: {
-			IncreasesClickDamage: Увеличивает урон кликов
-			IncreasedClickerDamage: Увеличивает урон курсоров
-			IncreasesClickCritChance: Увеличивает шанс критического удара кликов
-			IncreasesBaseClickRadius: Увеличивает базовый радиус кликов
-			ReducesBaseClickRadius: Уменьшает базовый радиус кликов
-			ReducesAmountOfClicks: Снижает требуемое количество кликов для эффекта курсора
-			ClickingGloveEvery: Пока вы в бою, автоматически активирует курсор каждую(ые)
-			Clicker: Кликните на врага в пределах радиуса курсора и его видимости, чтобы нанести ему урон
-			MoreThanOneClick: "{0} кликов"
-			OneClick: 1 клик
-		}
-
-		Unknown: Неизвестно
-	}
-
-	Containers: {
-		MiceDresser: Комод мышки
-		MiceChest: Сундук мышки
-		TrappedMiceChest: Сундук мышки
-	}
-
-	DamageClassName: {
-		ClickerDamage : ед. урона клика
-	}
-
-	Keybind: {
-		ClickerAccessory: Clicker Accessory asdasdasdasd
-		ClickerAimAssist: Clicker Aim Assist
-	}
-
-	ItemName: {
-		MiceFragment: Фрагмент мышки
-		AimAssistModule: Модуль помощи для прицеливания
-		AimbotModule: Модуль аимбота
-		MiceBathtub: Ванна мышки
-		MiceBed: Кровать мышки
-		MiceBookcase: Книжный шкаф мышки
-		MiceBrick: Кирпич мышки
-		MiceBrickWall: Кирпичная стена мышки
-		MiceCandelabra: Подсвечник мышки
-		MiceCandle: Свеча мышки
-		MiceChair: Стул мышки
-		MiceChandelier: Люстра мышки
-		MiceChest: Сундук мышки
-		MiceChest_Trapped: Заминированный сундук мышки
-		MiceClock: Часы мышки
-		MiceDoor: Двери мышки
-		MiceDresser: Комод мышки
-		MiceLamp: Лампа мышки
-		MiceLantern: Фонарь мышки
-		MicePiano: Пианино мышки
-		MicePlatform: Платформа мышки
-		MiceSink: Раковина мышки
-		MiceSofa: Диван мышки
-		MiceTable: Стол мышки
-		MiceToilet: Унитаз мышки
-		MiceWorkbench: Верстак мышки
-		ABlissfulDay: Блаженный день
-		OutsideTheCave: За пределами пещеры
-		AncientClickingGlove: Древняя кликающая перчатка
-		BottomlessBoxofPaperclips: Бездонная коробочка скрепок
-		ButtonMasher: Кнопочный экспандер
-		ChocolateChip: Кусок шоколада
-		BigRedButton: Большая красная кнопка
-		ChocolateMilkCookies: Шоколадное молоко с печеньем
-		ClearKeychain: Очищенная связка ключей
-		ClickerEmblem: Эмблема нажимателя
-		ClickingGlove: Кликающая перчатка
-		Cookie: Печенье
-		EnchantedLED: Зачарованный светодиод
-		GamerCrate: Игровой ящик
-		HandCream: Крем для рук
-		HotKeychain: Горячая связка ключей
-		IcePack: Пакет льда
-		MasterKeychain: Мастер-связка ключей
-		Milk: Стакан молока
-		MilkCookies: Молоко с печеньем
-		MousePad: Коврик для мышки
-		MouseTrap: Мышеловка
-		PortableParticleAccelerator: Карманный ускоритель частиц
-		GoldenTicket: Золотой билет
-		RegalClickingGlove: Королевская кликающая перчатка
-		AMedal: Медаль A
-		FMedal: Медаль F
-		SMedal: Медаль S
-		Soda: Сода
-		StickyKeychain: Липкая связка ключей
-		TheScroller: Колёсико
-		TriggerFinger: Указательный палец
-		MiceBoots: Сапоги фрагмента мышки
-		MiceMask: Маска фрагмента мышки
-		MiceSuit: Костюм фрагмента мышки
-		MotherboardBoots: Сапоги материнской платы
-		MotherboardHelmet: Шлем материнской платы
-		MotherboardSuit: Костюм материнской платы
-		OverclockBoots: Сапоги разгона
-		OverclockHelmet: Шлем разгона
-		OverclockSuit: Костюм разгона
-		PrecursorBreastplate: Нагрудник предтечей
-		PrecursorGreaves: Поножи предтечей
-		PrecursorHelmet: Шлем предтечей
-		RGBBreastplate: РГБ нагрудник
-		RGBGreaves: РГБ поножи
-		RGBHelm: РГБ шлем
-		ClickerEffectHairDye: Краска для волос с эффектом курсора
-		ClickSpeedHairDye: Краска для волос скоростных кликов
-		InfluencePotion: Зелье влияния
-		MiceDrill: Бур фрагмента мышки
-		MiceHamaxe: Молотопор фрагмента мышки
-		MicePickaxe: Кирка фрагмента мышки
-		ArcaneClicker: Мистический курсор
-		AdamantiteClicker: Адамантитовый курсор
-		ArthursClicker: Курсор Артура
-		AstralClicker: Астральный курсор
-		BalloonClicker: Курсор-воздушный шар
-		BoneClicker: Костяной курсор
-		BlizzardClicker: Курсор снежной бури
-		BurningSuperDeathClicker: Горящий суперсмертельный курсор
-		CandleClicker: Курсор-свеча
-		CaptainsClicker: Курсор капитана
-		ChlorophyteClicker: Хлорофитовый курсор
-		CobaltClicker: Кобальтовый курсор
-		ConfettiClicker: Курсор-конфетти
-		CopperClicker: Медный курсор
-		CorruptClicker: Искажённый курсор
-		CrimsonClicker: Багряный курсор
-		CrystalClicker: Кристальный курсор
-		CyclopsClicker: Курсор циклопа
-		DarkClicker: Тёмный курсор
-		DraconicClicker: Драконий курсор
-		EclipticClicker: Потускневший курсор
-		FamishedClicker: Изголодавшийся курсор
-		FaultyClicker: Неисправный курсор
-		FrozenClicker: Замороженный курсор
-		GoldClicker: Золотой курсор
-		HemoClicker: Кровавый курсор
-		HighTechClicker: Высокотехнологичный курсор
-		HoneyGlazedClicker: Глазированный мёдом курсор
-		ImpishClicker: Озорной курсор
-		IronClicker: Железный курсор
-		LanternClicker: Курсор-фонарь
-		LeadClicker: Свинцовый курсор
-		LihzahrdClicker: Курсор ящщеров
-		LordsClicker: Курсор Лорда
-		MagnetClicker: Магнитный курсор
-		MiceClicker: Курсор фрагмента мышки
-		MyceliumClicker: Мицелиевый курсор
-		MythrilClicker: Мифриловый курсор
-		NaughtyClicker: Непослушный курсор
-		OrichalcumClicker: Орихалковый курсор
-		PalladiumClicker: Палладиевый курсор
-		PlatinumClicker: Платиновый курсор
-		PointyClicker: Заострённый курсор
-		RainbowClicker: Радужный курсор
-		RedHotClicker: Пылающий красный курсор
-		SandstormClicker: Курсор песчаной бури
-		SeafoamClicker: Курсор морской пены
-		ShadowyClicker: Мрачный курсор
-		ShroomiteClicker: Грибной курсор
-		SilverClicker: Серебряный курсор
-		SinisterClicker: Зловещий курсор
-		SlickClicker: Скользкий курсор
-		SnottyClicker: Сопливый курсор
-		SpaceClicker: Космический курсор
-		SpectreClicker: Спектральный курсор
-		SpiralClicker: Спиральный курсор
-		StarryClicker: Звёздный курсор
-		TheClicker: Курсор
-		TinClicker: Оловянный курсор
-		TitaniumClicker: Титановый курсор
-		TorchClicker: Курсор-факел
-		TungstenClicker: Вольфрамовый курсор
-		UmbralClicker: Теневой курсор
-		WitchClicker: Курсор ведьмы
-		WebClicker: Курсор паутины
-		WoodenClicker: Деревянный курсор
-	}
-
-	ItemTooltip: {
-		MiceFragment: "'Вокруг этого фрагмента витают беспорядочные искры'"
-		AimbotModule:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 10%
-			Нажатие кнопки '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' переключает автонаводку, автоматически целясь в ближайших врагов
-			Если цель погибает или упущена, по возможности выбирается новая ближайшая цель
-			'''
-		AimAssistModule:
-			'''
-			Нажатие кнопки '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' выбирает цель под вашим курсором
-			При клике, урон от вашего клика наносится цели, независимо от позиции курсора
-			Упускает цель, если она выходит из радиуса действия или вы теряете её из прямой видимости
-			'''
-		AMedal:
-			'''
-			Будучи надетым, вокруг вас вращаются круги, наделяющие вас силой
-			При наведении курсора на круг, накапливает до 10 бесплатных критических ударов курсора
-			'''
-		AncientClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} секунду"
-		ChocolateChip: Через каждые 15 кликов выпускает скопление наносящего урон шоколада
-		ButtonMasher: Отображает количество кликов в секунду, когда в руках находится курсор
-		BigRedButton: Через каждые 25 кликов вызывает огромный огненный взрыв
-		BottomlessBoxofPaperclips:
-			'''
-			Собирает вражеское вещество, когда вы кликаете на врагов
-			При сборе достаточного количества вещества создаёт всплеск пронзающих скрепок
-			'''
-		ABlissfulDay: 'M. B. Nana'
-		OutsideTheCave: 'S. Streak'
-		ChocolateMilkCookies:
-			'''
-			{$Mods.ClickerClass.ItemTooltip.MilkCookies}
-			{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
-			'''
-		ClearKeychain: 
-			'''
-			Каждые 15 кликов покрывает ближайших врагов кристаллической слизью
-			Кликните на поражённого врага, извергнув из него всплеск кристаллических осколков
-			'''
-		ClickerEmblem: "{$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage} на 15%"
-		ClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 3 секунды"
-		Cookie:
-			'''
-			Будучи надетым, в радиусе вашего курсора будет периодически появляться печенье
-			Кликните на печенье, чтобы увеличить урон кликов, радиус курсора и регенерацию здоровья
-			'''
-		EnchantedLED:
-			'''
-			Ваши клики оставляют зачарованную вспышку света, пока видимость аксессуара включена
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 2 единицы
-			'''
-		FMedal:
-			'''
-			Будучи надетым, вокруг вас вращаются круги, наделяющие вас силой
-			При наведении курсора на круг, увеличивает радиус курсора до 100%
-			'''
-		GamerCrate:
-			'''
-			'Вы же не думаете, что кто-то будет играть в это, не так ли?'
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 50%
-			{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 20%
-			Ваши клики оставляют механическую вспышку света, пока видимость аксессуара включена
-			{$Mods.ClickerClass.ItemTooltip.HandCream}
-			'''
-		HandCream:
-			'''
-			Нажатие кнопки '{$Mods.ClickerClass.Keybind.ClickerAccessory}' переключает на авто-клик все курсоры
-			Пока авто-клик активирован, частота кликов незначительно снижена
-			'''
-		HotKeychain:
-			'''
-			Во время боя клики вызывают дополнительный затяжной огненный клик
-			Поджигает вас, если вы кликаете слишком медленно
-			'''
-		IcePack:
-			'''
-			Нажатии кнопки '{$Mods.ClickerClass.Keybind.ClickerAccessory}' переключает авто-клики на всех курсорах
-			Пока авто-клик активирован, частота кликов значительно снижена
-			'''
-		MasterKeychain:
-			'''
-			'Я никак не могу найти нужный...'
-			Ваши клики насыщены всем слизистым, горячим и кристаллическим
-			'''
-		Milk: Увеличивает урон кликов до 15% в зависимости от количества совершённых кликов в секунду
-		MilkCookies:
-			'''
-			{$Mods.ClickerClass.ItemTooltip.Cookie}
-			{$Mods.ClickerClass.ItemTooltip.Milk}
-			'''
-		MousePad: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%"
-		MouseTrap:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 15%
-			{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 10%
-			У кликов есть небольшой шанс ненадолго проклясть вас
-			'''
-		PortableParticleAccelerator: Клики в пределах 50% общего радиуса вашего курсора наносят на 8 больше урона
-		GoldenTicket:
-			'''
-			Создаёт несколько монет, когда вы кликаете на врагов
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 10%
-			'''
-		RegalClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} полсекунды"
-		SMedal:
-			'''
-			Будучи надетым, вокруг вас вращаются круги, наделяющие вас силой
-			При наведении курсора на круги, накапливает заряды критического удара, радиуса курсора и эффектов курсора
-			'''
-		Soda: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 1 единицу"
-		StickyKeychain: Каждые 10 кликов приклеивает наносящую урон слизь на экран
-		TheScroller:
-			'''
-			{$CommonItemTooltip.FlightAndSlowfall}
-			Удерживайте ВНИЗ, чтобы быстрее падать
-			'''
-		TriggerFinger: 
-			'''
-			Ваш первый клик вне боя автоматически активирует эффект курсора
-			'''
-		MiceBoots:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%
-			Увеличивает скорость передвижения на 20%
-			'''
-		MiceMask:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 6%
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} на 6%
-			'''
-		MiceSuit:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 14%
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%
-			'''
-		MotherboardBoots: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 6%"
-		MotherboardHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%"
-		MotherboardSuit: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 6%"
-		RGBGreaves: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%"
-		RGBHelm: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 1"
-		RGBBreastplate: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%"
-		OverclockBoots: Увеличивает скорость передвижения на 10%
-		OverclockHelmet: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 1 единицу"
-		OverclockSuit: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 15%"
-		PrecursorBreastplate:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 15%
-			{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius} на 50%
-			'''
-		PrecursorGreaves: Увеличивает скорость передвижения на 15%
-		PrecursorHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%"
-		InfluencePotion: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%"
-		SpectreClicker: Кликните на врага в пределах экрана, чтобы нанести ему урон
-	}
-
-	SetBonus: {
-		Mice: Нажмите ПКМ, чтобы телепортироваться в пределах радиуса курсора
-		Motherboard: Нажмите ПКМ, чтобы поставить датчик расширения радиуса курсора
-		Overclock:
-			'''
-			Каждые 100 кликов на короткий промежуток времени дарует бафф «{$Mods.ClickerClass.BuffName.OverclockBuff}», заставляя каждый клик активировать свой эффект
-			Пока активен «{$Mods.ClickerClass.BuffName.OverclockBuff}», вы наносите на 50% меньше урона от клика
-			'''
-		Precursor: Во время боя ваш курсор постоянно оставляет после себя наносящие урон послеобразы
-		RGB: Каждые 20 кликов вызывает цветовой всплеск из вашего курсора
-	}
-
-	InfoDisplayName: {
-		CPSInfoDisplay: Кликов в секунду
-	}
-
-	ClickEffect: {
-		TrueStrike: {
-			Name: Истинный удар
-			Description: Наносит двойной урон с гарантированным критическим ударом
-		}
-
-		OgreGold: {
-			Name: Золото людоедов
-			Description: Покрывает врагов под курсором соплями, значительно замедляя их
-		}
-
-		SeaSpray: {
-			Name: Морские брызги
-			Description: Замедляет ближайших врагов и ворует у них здоровье
-		}
-
-		WyvernsRoar: {
-			Name: Рёв виверны
-			Description: Призывает виверну, охватывая всё вокруг пламенем
-		}
-
-		Presents: {
-			Name: Презенты
-			Description: Создаёт всплеск парашютных презентов, на которые можно кликнуть, чтобы выпустить мины
-		}
-
-		PartyTime: {
-			Name: Вечеринка!
-			Description: Разбрасывает конфетти!
-		}
-
-		Devour: {
-			Name: Пожирание
-			Description: Н/Д
-		}
-
-		Insanity: {
-			Name: Безумие
-			Description: Призывает теневой коготь, атакующий область вокруг себя
-		}
-
-		Rainbolt: {
-			Name: Радужный заряд
-			Description: Выпускает несколько самонаводящихся фрагментов радуги
-		}
-
-		ArcaneEnchantment: {
-			Name: Мистическое улучшение
-			Description: Увеличивает урон и хитбокс урона кликов
-		}
-
-		Mania: {
-			Name: Мания
-			Description: Активирует любой случайный эффект прехардмодных курсоров
-		}
-
-		HolyNova: {
-			Name: Кольцо света
-			Description: Наносит урон каждому врагу в радиусе курсора с гарантированным критическим ударом
-		}
-
-		Spiral: {
-			Name: Спираль
-			Description: Создаёт спиральную галактику, которая притягивает врагов в непосредственной близости от себя
-		}
-
-		Yoink: {
-			Name: Захват
-			Description: Подбирает предметы и монеты рядом с курсором
-		}
-
-		ChromaticBurst: {
-			Name: Цветовой всплеск
-			Description: Выбрасывает цветовую энергию наружу, а затем направляет в сторону вашего курсора
-		}
-
-		BloodSucker: {
-			Name: Кровосос
-			Description: Создаёт 2 сгустка крови, которые закручиваются по спирали внутрь от радиуса курсора
-		}
-
-		BalloonDefense: {
-			Name: Защищающий воздушный шарик
-			Description: Призывает дружественную слизь на воздушном шарике
-		}
-
-		Incinerate: {
-			Name: Испепеление
-			Description: Создаёт 8 искр, направленные вниз вдоль ближайших блоков, которые поджигают область
-		}
-
-		Lacerate: {
-			Name: Разрыв
-			Description: Накладывает дебафф «{$Mods.ClickerClass.BuffName.Gouge}», нанося 30 единиц урона в секунду
-		}
-
-		Starfall: {
-			Name: Звездопад
-			Description: Призывает с небес пронзающую звезду
-		}
-
-		Fritz: {
-			Name: Фритц
-			Description: Выпускает разряд в случайной точке, в пределах радиуса курсора
-		}
-
-		Flurry: {
-			Name: Ливень
-			Description: Создаёт облако снежной бури, осыпая врагов ледяным градом
-		}
-
-		HotWings: {
-			Name: Горячие крылья
-			Description: Дарует одноразовый рывок; Используется двойным нажатием в сторону направления
-		}
-
-		Illuminate: {
-			Name: Просветление
-			Description: Создаёт 8 искр вдоль ближайших блоков, которые освещают местность
-		}
-
-		Bombard: {
-			Name: Бомбардировка
-			Description: Сбрасывает с неба 4 пушечных ядра
-		}
-
-		ToxicRelease: {
-			Name: Токсичный выброс
-			Description: Выбрасывает 10 ядовитых облаков вокруг курсора, которые задерживаются на месте
-		}
-
-		Haste: {
-			Name: Спешка
-			Description: Увеличивает высоту прыжка и скорость передвижения
-		}
-
-		CursedEruption: {
-			Name: Проклятое извержение
-			Description: Наносит урон в большом радиусе и накладывает дебаффы «{$BuffName.Oiled}» и «{$BuffName.CursedInferno}»
-		}
-
-		Infest: {
-			Name: Заражение
-			Description: Стреляет 8 струями ихора, которые направляются на врагов
-		}
-
-		Dazzle: {
-			Name: Ослепление
-			Description: Накладывает дебафф «{$BuffName.Confused}»: {$BuffDescription.Confused}
-		}
-
-		DarkBurst: {
-			Name: Тёмный взрыв
-			Description: Наносит урон в большом радиусе
-		}
-
-		Totality: {
-			Name: Тотальность
-			Description: Создаёт миниатюрное затмение, многократно стреляя самонаводящимися снарядами
-		}
-
-		Freeze: {
-			Name: Заморозка
-			Description: Замораживает врагов под вашим курсором, удерживая их на месте
-		}
-
-		Linger: {
-			Name: Промедление
-			Description: Создаёт 5 подверженных гравитации сгустков крови, которые задерживаются на месте
-		}
-
-		Discharge: {
-			Name: Разряд
-			Description: Взрывает 4 лазера вокруг курсора
-		}
-
-		StickyHoney: {
-			Name: Липкий мёд
-			Description: Покрывает врагов под курсором липким мёдом, замедляя их
-		}
-
-		SolarFlare: {
-			Name: Солнечная вспышка
-			Description: Создаёт продолжительный солнечный снаряд, который наносит урон и накладывает дебаффы «{$BuffName.Oiled}» и «{$BuffName.OnFire}»
-		}
-
-		Smite: {
-			Name: Кара
-			Description: Направляет до 8 языков пламени факела в сторону курсора
-		}
-
-		Conqueror: {
-			Name: Завоеватель
-			Description: Создаёт фантомный взрыв по площади наносящий двойной урон с гарантированным критическим ударом
-		}
-
-		Collision: {
-			Name: Столкновение
-			Description: Стреляет 8 неустойчивыми зарядами, которые через секунду следуют за курсором
-		}
-
-		Spores: {
-			Name: Споры
-			Description: Выплёвывает залп разлетающихся спор
-		}
-
-		Embrittle: {
-			Name: Хрупкость
-			Description: Накладывает дебафф «{$Mods.ClickerClass.BuffName.Embrittle}»: {$Mods.ClickerClass.BuffDescription.Embrittle}
-		}
-
-		PetalStorm: {
-			Name: Лепестковая буря
-			Description: Создаёт 5 лепестков, которые призываются рядом с игроком и стреляют по всему экрану
-		}
-
-		Regenerate: {
-			Name: Регенерация
-			Description: Дарует бафф «{$BuffName.RapidHealing}»: {$BuffDescription.RapidHealing}
-		}
-
-		StingingThorn: {
-			Name: Жалящий шип
-			Description: Стреляет шипом, который движется в сторону ближайшего врага
-		}
-
-		Inferno: {
-			Name: Ад
-			Description: Создаёт взрыв, наносящий урон и накладывающий дебаффы «{$BuffName.Oiled}» и «{$BuffName.OnFire}»
-		}
-
-		DustDevil: {
-			Name: Пылевой дьявол
-			Description: Создаёт стремительный торнадо, который преследует врагов
-		}
-
-		Curse: {
-			Name: Проклятие
-			Description: Стреляет черепом теневого пламени в сторону ближайшего врага
-		}
-
-		AutoClick: {
-			Name: Авто-клик
-			Description: Дарует бафф «{$Mods.ClickerClass.BuffName.AutoClick}», снижая частоту кликов, но даруя авто-клики
-		}
-
-		Siphon: {
-			Name: Сифон
-			Description: Наносит небольшой урон и восстанавливает 5 единиц здоровья
-		}
-
-		Splash: {
-			Name: Всплеск
-			Description: Создаёт фонтан из 6 водяных снарядов
-		}
-
-		StarStorm: {
-			Name: Звёздная буря
-			Description: Сбрасывает с неба 3 взрывающиеся звезды
-		}
-
-		PhaseReach: {
-			Name: Фазовая досягаемость
-			Description: Наносит урон врагам независимо от их расположения
-		}
-
-		TheClick: {
-			Name: Клик
-			Description: Наносит дополнительно 1% урона максимального здоровья врага
-		}
-
-		RazorsEdge: {
-			Name: Лезвие бритвы
-			Description: Стреляет 5 орбитальными дисковыми пилами, которые разлетаются в стороны
-		}
-
-		ShadowLash: {
-			Name: Теневая плеть
-			Description: Вызывает всплеск 5 теневых снарядов ищущих ближайших врагов
-		}
-
-		WildMagic: {
-			Name: Необузданная магия
-			Description: Случайно срабатывает как любой возможный эффект клика
-		}
-
-		WebSplash: {
-			Name: Раскатистая паутина
-			Description: Выпускает сгусток липкой паутины в сторону ближайшего врага
-		}
-
-		ChocolateChip: {
-			Name: Шоколадная крошка
-			Description: Выпускает взрыв шоколада
-		}
 
-		DoubleClick: {
-			Name: Двойной клик
-			Description: Дважды наносит урон одной атакой
-		}
-
-		DoubleClick2: {
-			Name: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Name}"
-			Description: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Description}"
-		}
-
-		StickyKeychain: {
-			Name: Липкий брелок
-			Description: Приклеивает слизь к вашему экрану
-		}
-
-		BigRedButton: {
-			Name: Бабах
-			Description: Вызывает огромный взрыв
-		}
-
-		ClearKeychain: {
-			Name: Кристаллизация
-			Description: Покрывает ближайших врагов кристаллической слизью; Кликните на них, для нанесения урона по области
-		}
-	}
-
-	Prefix: {
-		ClickerRadius: {
-			$parentVal: Простирающийся
-			Tooltip: +15% базового радиуса курсора
-		}
-
-		Elite: Элитный
-		Pro: Профессиональный
-		Amateur: Любительский
-		Novice: Начинающий
-		Laggy: Лагающий
-		Disconnected: Отключённый
-
-		PrefixClickerRadius: {
-			Tooltip: "{0}% базового радиуса курсора"
-		}
-
-		PrefixClickBoost: {
-			Tooltip: "{0} кликов для эффекта"
-		}
-	}
-
-	Tooltip: {
-		ClickerTag: Кликер
-		TotalClicks: Всего кликов
-		MoneyGenerated: Количество созданных монет
-		ForMoreInfo: Зажмите кнопку 'Auto Select' ({0}) для отображения эффектов кликов
-		AimbotModuleEnabled: Автонаводка включена
-		AimbotModuleDisabled: Автонаводка выключена
-	}
-
-	DeathMessage: {
-		HotKeychain: "{0} влюбился в пикантную связку ключей."
-	}
-	
-	UI: {
-		HotKeychainGauge: Жара
-		MedalGauge: Зарядов
-		PaperclipsGauge: Веществ
-	}
-
-	ClickerConfigClient: {
-		Label: Настройки
-
-		Header: {
-			GeneralOptions: Общие настройки
-		}
-
-		ShowClassTags: {
-			Label: Показывать текст класс-тэга в описании курсоров
-			Tooltip: Переключает отображение класс-тэга в описании курсоров
-		}
+Mods: {
+	ClickerClass: {
+		Buffs: {
+			AutoClick: {
+				DisplayName: Авто-клик
+				Description: Зажмите ЛКМ, для авто-кликов
+			}
+
+			CookieBuff: {
+				DisplayName: Печенье
+				Description: Увеличивает урон кликов, радиус курсора и регенерацию здоровья
+			}
+
+			Crystalized: {
+				DisplayName: Кристаллизованный
+				Description: Клики будут выпускать скопление кристаллических осколков
+			}
+
+			CrystalizedFatigue: {
+				// DisplayName: Crystalized Fatigue
+				// Description: Cannot be Crystalized again
+			}
+
+			Embrittle: {
+				DisplayName: Хрупкость
+				Description: Клики будут наносить дополнительно 8 единиц урона этой цели
+			}
+
+			Frozen: {
+				DisplayName: Заморозка
+				Description: В замороженном состоянии
+			}
+
+			Gouge: {
+				DisplayName: Глубокий порез
+				Description: Стремительная потеря здоровья
+			}
+
+			Haste: {
+				DisplayName: Спешка
+				Description: Скорость передвижения и прыжка увеличены
+			}
+
+			HoneySlow: {
+				DisplayName: Мёд
+				Description: Скорость передвижения снижена
+			}
+
+			InfluenceBuff: {
+				DisplayName: Воздействие
+				Description: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%"
+			}
+
+			OverclockBuff: {
+				DisplayName: Разгон
+				Description: Каждый клик активирует эффект курсора
+			}
+
+			Oozed: {
+				DisplayName: Липкий
+				Description: Скорость передвижения значительно снижена
+			}
+
+			HotWingsBuff: {
+				DisplayName: Горячие крылья
+				Description: Дважды нажмите в сторону направления для огненного рывка
+			}
+
+			Seafoam: {
+				DisplayName: Морская пена
+				Description: Лечит пользователя курсора при нанесении ему урона курсором
+			}
+
+			Stunned: {
+				DisplayName: Ошеломлённый
+				Description: Вы не можете сдвинуться с места
+			}
+
+			ArcaneEnchantment: {
+				DisplayName: Мистическое улучшение
+				Description: Ваш урон и хитбокс урона кликов увеличены
+			}
+		}
+
+		Common: {
+			Tooltips: {
+				IncreasesClickDamage: Увеличивает урон кликов
+				IncreasedClickerDamage: Увеличивает урон курсоров
+				IncreasesClickCritChance: Увеличивает шанс критического удара кликов
+				IncreasesBaseClickRadius: Увеличивает базовый радиус кликов
+				ReducesBaseClickRadius: Уменьшает базовый радиус кликов
+				ReducesAmountOfClicks: Снижает требуемое количество кликов для эффекта курсора
+				ClickingGloveEvery: Пока вы в бою, автоматически активирует курсор каждую(ые)
+				Clicker: Кликните на врага в пределах радиуса курсора и его видимости, чтобы нанести ему урон
+				MoreThanOneClick: "{0} кликов"
+				OneClick: 1 клик
+			}
+
+			Unknown: Неизвестно
+		}
 
-		ShowEffectSuggestion: {
-			Label: Показывать текст: зажмите кнопку 'Auto Select'
-			Tooltip:
+		Tiles: {
+			// MiceDresser.MapEntry: Mice Dresser
+			// MiceChest.MapEntry: Mice Chest
+			// TrappedMiceChest.MapEntry: Trapped Mice Chest
+		}
+
+		DamageClasses.ClickerDamage.DisplayName: ед. урона клика
+
+		Keybinds: {
+			ClickerAccessory.DisplayName: Clicker Accessory
+			ClickerAimAssist.DisplayName: Clicker Aim Assist
+		}
+
+		Items: {
+			MiceFragment: {
+				DisplayName: Фрагмент мышки
+				Tooltip: "'Вокруг этого фрагмента витают беспорядочные искры'"
+			}
+
+			AimAssistModule: {
+				DisplayName: Модуль помощи для прицеливания
+				Tooltip:
+					'''
+					Нажатие кнопки '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' выбирает цель под вашим курсором
+					При клике, урон от вашего клика наносится цели, независимо от позиции курсора
+					Упускает цель, если она выходит из радиуса действия или вы теряете её из прямой видимости
+					'''
+			}
+
+			AimbotModule: {
+				DisplayName: Модуль аимбота
+				Tooltip:
+					'''
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 10%
+					Нажатие кнопки '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' переключает автонаводку, автоматически целясь в ближайших врагов
+					Если цель погибает или упущена, по возможности выбирается новая ближайшая цель
+					'''
+			}
+
+			MiceBathtub: {
+				DisplayName: Ванна мышки
+				Tooltip: ""
+			}
+
+			MiceBed: {
+				DisplayName: Кровать мышки
+				Tooltip: ""
+			}
+
+			MiceBookcase: {
+				DisplayName: Книжный шкаф мышки
+				Tooltip: ""
+			}
+
+			MiceBrick: {
+				DisplayName: Кирпич мышки
+				Tooltip: ""
+			}
+
+			MiceBrickWall: {
+				DisplayName: Кирпичная стена мышки
+				Tooltip: ""
+			}
+
+			MiceCandelabra: {
+				DisplayName: Подсвечник мышки
+				Tooltip: ""
+			}
+
+			MiceCandle: {
+				DisplayName: Свеча мышки
+				Tooltip: ""
+			}
+
+			MiceChair: {
+				DisplayName: Стул мышки
+				Tooltip: ""
+			}
+
+			MiceChandelier: {
+				DisplayName: Люстра мышки
+				Tooltip: ""
+			}
+
+			MiceChest: {
+				DisplayName: Сундук мышки
+				Tooltip: ""
+			}
+
+			MiceChest_Trapped: {
+				DisplayName: Заминированный сундук мышки
+				Tooltip: ""
+			}
+
+			MiceClock: {
+				DisplayName: Часы мышки
+				Tooltip: ""
+			}
+
+			MiceDoor: {
+				DisplayName: Двери мышки
+				Tooltip: ""
+			}
+
+			MiceDresser: {
+				DisplayName: Комод мышки
+				Tooltip: ""
+			}
+
+			MiceLamp: {
+				DisplayName: Лампа мышки
+				Tooltip: ""
+			}
+
+			MiceLantern: {
+				DisplayName: Фонарь мышки
+				Tooltip: ""
+			}
+
+			MicePiano: {
+				DisplayName: Пианино мышки
+				Tooltip: ""
+			}
+
+			MicePlatform: {
+				DisplayName: Платформа мышки
+				Tooltip: ""
+			}
+
+			MiceSink: {
+				DisplayName: Раковина мышки
+				Tooltip: ""
+			}
+
+			MiceSofa: {
+				DisplayName: Диван мышки
+				Tooltip: ""
+			}
+
+			MiceTable: {
+				DisplayName: Стол мышки
+				Tooltip: ""
+			}
+
+			MiceToilet: {
+				DisplayName: Унитаз мышки
+				Tooltip: ""
+			}
+
+			MiceWorkbench: {
+				DisplayName: Верстак мышки
+				Tooltip: ""
+			}
+
+			ABlissfulDay: {
+				DisplayName: Блаженный день
+				// Tooltip: M. B. Nana
+			}
+
+			OutsideTheCave: {
+				DisplayName: За пределами пещеры
+				// Tooltip: S. Streak
+			}
+
+			AncientClickingGlove: {
+				DisplayName: Древняя кликающая перчатка
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} секунду"
+			}
+
+			BottomlessBoxofPaperclips: {
+				DisplayName: Бездонная коробочка скрепок
+				Tooltip:
+					'''
+					Собирает вражеское вещество, когда вы кликаете на врагов
+					При сборе достаточного количества вещества создаёт всплеск пронзающих скрепок
+					'''
+			}
+
+			ButtonMasher: {
+				DisplayName: Кнопочный экспандер
+				Tooltip: Отображает количество кликов в секунду, когда в руках находится курсор
+			}
+
+			ChocolateChip: {
+				DisplayName: Кусок шоколада
+				Tooltip: Через каждые 15 кликов выпускает скопление наносящего урон шоколада
+			}
+
+			BigRedButton: {
+				DisplayName: Большая красная кнопка
+				Tooltip: Через каждые 25 кликов вызывает огромный огненный взрыв
+			}
+
+			ChocolateMilkCookies: {
+				DisplayName: Шоколадное молоко с печеньем
+				/* Tooltip:
+					'''
+					{$Mods.ClickerClass.ItemTooltip.MilkCookies}
+					{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
+					''' */
+			}
+
+			ClearKeychain: {
+				DisplayName: Очищенная связка ключей
+				Tooltip:
+					'''
+					Каждые 15 кликов покрывает ближайших врагов кристаллической слизью
+					Кликните на поражённого врага, извергнув из него всплеск кристаллических осколков
+					'''
+			}
+
+			ClickerEmblem: {
+				DisplayName: Эмблема нажимателя
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage} на 15%"
+			}
+
+			ClickingGlove: {
+				DisplayName: Кликающая перчатка
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 3 секунды"
+			}
+
+			Cookie: {
+				DisplayName: Печенье
+				Tooltip:
+					'''
+					Будучи надетым, в радиусе вашего курсора будет периодически появляться печенье
+					Кликните на печенье, чтобы увеличить урон кликов, радиус курсора и регенерацию здоровья
+					'''
+			}
+
+			EnchantedLED: {
+				DisplayName: Зачарованный светодиод
+				Tooltip:
+					'''
+					Ваши клики оставляют зачарованную вспышку света, пока видимость аксессуара включена
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 2 единицы
+					'''
+			}
+
+			GamerCrate: {
+				DisplayName: Игровой ящик
+				Tooltip:
+					'''
+					'Вы же не думаете, что кто-то будет играть в это, не так ли?'
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 50%
+					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 20%
+					Ваши клики оставляют механическую вспышку света, пока видимость аксессуара включена
+					{$Mods.ClickerClass.ItemTooltip.HandCream}
+					'''
+			}
+
+			HandCream: {
+				DisplayName: Крем для рук
+				Tooltip:
+					'''
+					Нажатие кнопки '{$Mods.ClickerClass.Keybind.ClickerAccessory}' переключает на авто-клик все курсоры
+					Пока авто-клик активирован, частота кликов незначительно снижена
+					'''
+			}
+
+			HotKeychain: {
+				DisplayName: Горячая связка ключей
+				Tooltip:
+					'''
+					Во время боя клики вызывают дополнительный затяжной огненный клик
+					Поджигает вас, если вы кликаете слишком медленно
+					'''
+			}
+
+			IcePack: {
+				DisplayName: Пакет льда
+				Tooltip:
+					'''
+					Нажатии кнопки '{$Mods.ClickerClass.Keybind.ClickerAccessory}' переключает авто-клики на всех курсорах
+					Пока авто-клик активирован, частота кликов значительно снижена
+					'''
+			}
+
+			MasterKeychain: {
+				DisplayName: Мастер-связка ключей
+				Tooltip:
+					'''
+					'Я никак не могу найти нужный...'
+					Ваши клики насыщены всем слизистым, горячим и кристаллическим
+					'''
+			}
+
+			Milk: {
+				DisplayName: Стакан молока
+				Tooltip: Увеличивает урон кликов до 15% в зависимости от количества совершённых кликов в секунду
+			}
+
+			MilkCookies: {
+				DisplayName: Молоко с печеньем
+				/* Tooltip:
+					'''
+					{$Mods.ClickerClass.ItemTooltip.Cookie}
+					{$Mods.ClickerClass.ItemTooltip.Milk}
+					''' */
+			}
+
+			MousePad: {
+				DisplayName: Коврик для мышки
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%"
+			}
+
+			MouseTrap: {
+				DisplayName: Мышеловка
+				Tooltip:
+					'''
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 15%
+					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 10%
+					У кликов есть небольшой шанс ненадолго проклясть вас
+					'''
+			}
+
+			PortableParticleAccelerator: {
+				DisplayName: Карманный ускоритель частиц
+				Tooltip: Клики в пределах 50% общего радиуса вашего курсора наносят на 8 больше урона
+			}
+
+			GoldenTicket: {
+				DisplayName: Золотой билет
+				Tooltip:
+					'''
+					Создаёт несколько монет, когда вы кликаете на врагов
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 10%
+					'''
+			}
+
+			RegalClickingGlove: {
+				DisplayName: Королевская кликающая перчатка
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} полсекунды"
+			}
+
+			AMedal: {
+				DisplayName: Медаль A
+				Tooltip:
+					'''
+					Будучи надетым, вокруг вас вращаются круги, наделяющие вас силой
+					При наведении курсора на круг, накапливает до 10 бесплатных критических ударов курсора
+					'''
+			}
+
+			FMedal: {
+				DisplayName: Медаль F
+				Tooltip:
+					'''
+					Будучи надетым, вокруг вас вращаются круги, наделяющие вас силой
+					При наведении курсора на круг, увеличивает радиус курсора до 100%
+					'''
+			}
+
+			SMedal: {
+				DisplayName: Медаль S
+				Tooltip:
+					'''
+					Будучи надетым, вокруг вас вращаются круги, наделяющие вас силой
+					При наведении курсора на круги, накапливает заряды критического удара, радиуса курсора и эффектов курсора
+					'''
+			}
+
+			Soda: {
+				DisplayName: Сода
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 1 единицу"
+			}
+
+			StickyKeychain: {
+				DisplayName: Липкая связка ключей
+				Tooltip: Каждые 10 кликов приклеивает наносящую урон слизь на экран
+			}
+
+			TheScroller: {
+				DisplayName: Колёсико
+				Tooltip:
+					'''
+					{$CommonItemTooltip.FlightAndSlowfall}
+					Удерживайте ВНИЗ, чтобы быстрее падать
+					'''
+			}
+
+			TriggerFinger: {
+				DisplayName: Указательный палец
+				Tooltip: Ваш первый клик вне боя автоматически активирует эффект курсора
+			}
+
+			MiceBoots: {
+				DisplayName: Сапоги фрагмента мышки
+				Tooltip:
+					'''
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%
+					Увеличивает скорость передвижения на 20%
+					'''
+			}
+
+			MiceMask: {
+				DisplayName: Маска фрагмента мышки
+				Tooltip:
+					'''
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 6%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} на 6%
+					'''
+			}
+
+			MiceSuit: {
+				DisplayName: Костюм фрагмента мышки
+				Tooltip:
+					'''
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 14%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%
+					'''
+			}
+
+			MotherboardBoots: {
+				DisplayName: Сапоги материнской платы
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 6%"
+			}
+
+			MotherboardHelmet: {
+				DisplayName: Шлем материнской платы
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%"
+			}
+
+			MotherboardSuit: {
+				DisplayName: Костюм материнской платы
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 6%"
+			}
+
+			OverclockBoots: {
+				DisplayName: Сапоги разгона
+				Tooltip: Увеличивает скорость передвижения на 10%
+			}
+
+			OverclockHelmet: {
+				DisplayName: Шлем разгона
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 1 единицу"
+			}
+
+			OverclockSuit: {
+				DisplayName: Костюм разгона
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 15%"
+			}
+
+			PrecursorBreastplate: {
+				DisplayName: Нагрудник предтечей
+				Tooltip:
+					'''
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 15%
+					{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius} на 50%
+					'''
+			}
+
+			PrecursorGreaves: {
+				DisplayName: Поножи предтечей
+				Tooltip: Увеличивает скорость передвижения на 15%
+			}
+
+			PrecursorHelmet: {
+				DisplayName: Шлем предтечей
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%"
+			}
+
+			RGBBreastplate: {
+				DisplayName: РГБ нагрудник
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%"
+			}
+
+			RGBGreaves: {
+				DisplayName: РГБ поножи
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%"
+			}
+
+			RGBHelm: {
+				DisplayName: РГБ шлем
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 1"
+			}
+
+			ClickerEffectHairDye: {
+				DisplayName: Краска для волос с эффектом курсора
+				Tooltip: ""
+			}
+
+			ClickSpeedHairDye: {
+				DisplayName: Краска для волос скоростных кликов
+				Tooltip: ""
+			}
+
+			InfluencePotion: {
+				DisplayName: Зелье влияния
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%"
+			}
+
+			MiceDrill: {
+				DisplayName: Бур фрагмента мышки
+				Tooltip: ""
+			}
+
+			MiceHamaxe: {
+				DisplayName: Молотопор фрагмента мышки
+				Tooltip: ""
+			}
+
+			MicePickaxe: {
+				DisplayName: Кирка фрагмента мышки
+				Tooltip: ""
+			}
+
+			ArcaneClicker: {
+				DisplayName: Мистический курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			AdamantiteClicker: {
+				DisplayName: Адамантитовый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			ArthursClicker: {
+				DisplayName: Курсор Артура
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			AstralClicker: {
+				DisplayName: Астральный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			BalloonClicker: {
+				DisplayName: Курсор-воздушный шар
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			BoneClicker: {
+				DisplayName: Костяной курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			BlizzardClicker: {
+				DisplayName: Курсор снежной бури
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			BurningSuperDeathClicker: {
+				DisplayName: Горящий суперсмертельный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			CandleClicker: {
+				DisplayName: Курсор-свеча
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			CaptainsClicker: {
+				DisplayName: Курсор капитана
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			ChlorophyteClicker: {
+				DisplayName: Хлорофитовый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			CobaltClicker: {
+				DisplayName: Кобальтовый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			ConfettiClicker: {
+				DisplayName: Курсор-конфетти
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			CopperClicker: {
+				DisplayName: Медный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			CorruptClicker: {
+				DisplayName: Искажённый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			CrimsonClicker: {
+				DisplayName: Багряный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			CrystalClicker: {
+				DisplayName: Кристальный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			CyclopsClicker: {
+				DisplayName: Курсор циклопа
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			DarkClicker: {
+				DisplayName: Тёмный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			DraconicClicker: {
+				DisplayName: Драконий курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			EclipticClicker: {
+				DisplayName: Потускневший курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			FamishedClicker: {
+				DisplayName: Изголодавшийся курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			FaultyClicker: {
+				DisplayName: Неисправный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			FrozenClicker: {
+				DisplayName: Замороженный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			GoldClicker: {
+				DisplayName: Золотой курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			HemoClicker: {
+				DisplayName: Кровавый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			HighTechClicker: {
+				DisplayName: Высокотехнологичный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			HoneyGlazedClicker: {
+				DisplayName: Глазированный мёдом курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			ImpishClicker: {
+				DisplayName: Озорной курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			IronClicker: {
+				DisplayName: Железный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			LanternClicker: {
+				DisplayName: Курсор-фонарь
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			LeadClicker: {
+				DisplayName: Свинцовый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			LihzahrdClicker: {
+				DisplayName: Курсор ящщеров
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			LordsClicker: {
+				DisplayName: Курсор Лорда
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			MagnetClicker: {
+				DisplayName: Магнитный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			MiceClicker: {
+				DisplayName: Курсор фрагмента мышки
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			MyceliumClicker: {
+				DisplayName: Мицелиевый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			MythrilClicker: {
+				DisplayName: Мифриловый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			NaughtyClicker: {
+				DisplayName: Непослушный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			OrichalcumClicker: {
+				DisplayName: Орихалковый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			PalladiumClicker: {
+				DisplayName: Палладиевый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			PlatinumClicker: {
+				DisplayName: Платиновый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			PointyClicker: {
+				DisplayName: Заострённый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			RainbowClicker: {
+				DisplayName: Радужный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			RedHotClicker: {
+				DisplayName: Пылающий красный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			SandstormClicker: {
+				DisplayName: Курсор песчаной бури
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			SeafoamClicker: {
+				DisplayName: Курсор морской пены
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			ShadowyClicker: {
+				DisplayName: Мрачный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			ShroomiteClicker: {
+				DisplayName: Грибной курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			SilverClicker: {
+				DisplayName: Серебряный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			SinisterClicker: {
+				DisplayName: Зловещий курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			SlickClicker: {
+				DisplayName: Скользкий курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			SnottyClicker: {
+				DisplayName: Сопливый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			SpaceClicker: {
+				DisplayName: Космический курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			SpectreClicker: {
+				DisplayName: Спектральный курсор
+				Tooltip: Кликните на врага в пределах экрана, чтобы нанести ему урон
+			}
+
+			SpiralClicker: {
+				DisplayName: Спиральный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			StarryClicker: {
+				DisplayName: Звёздный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			TheClicker: {
+				DisplayName: Курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			TinClicker: {
+				DisplayName: Оловянный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			TitaniumClicker: {
+				DisplayName: Титановый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			TorchClicker: {
+				DisplayName: Курсор-факел
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			TungstenClicker: {
+				DisplayName: Вольфрамовый курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			UmbralClicker: {
+				DisplayName: Теневой курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			WitchClicker: {
+				DisplayName: Курсор ведьмы
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			WebClicker: {
+				DisplayName: Курсор паутины
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			WoodenClicker: {
+				DisplayName: Деревянный курсор
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+		}
+
+		SetBonus: {
+			Mice: Нажмите ПКМ, чтобы телепортироваться в пределах радиуса курсора
+			Motherboard: Нажмите ПКМ, чтобы поставить датчик расширения радиуса курсора
+			Overclock:
 				'''
-				Переключает отображение текста в описании курсоров:
-				Зажмите кнопку 'Auto Select' для отображения эффектов кликов
-				-Ключ продолжит работать независимо от настройки-
+				Каждые 100 кликов на короткий промежуток времени дарует бафф «{$Mods.ClickerClass.BuffName.OverclockBuff}», заставляя каждый клик активировать свой эффект
+				Пока активен «{$Mods.ClickerClass.BuffName.OverclockBuff}», вы наносите на 50% меньше урона от клика
 				'''
+			Precursor: Во время боя ваш курсор постоянно оставляет после себя наносящие урон послеобразы
+			RGB: Каждые 20 кликов вызывает цветовой всплеск из вашего курсора
 		}
 
-		ShowCustomCursors: {
-			Label: Показывать новые курсоры
-			Tooltip: Заменяет игровой курсор на курсоры из мода
+		InfoDisplays.CPSInfoDisplay.DisplayName: Кликов в секунду
+
+		ClickEffect: {
+			TrueStrike: {
+				Name: Истинный удар
+				Description: Наносит двойной урон с гарантированным критическим ударом
+			}
+
+			OgreGold: {
+				Name: Золото людоедов
+				Description: Покрывает врагов под курсором соплями, значительно замедляя их
+			}
+
+			SeaSpray: {
+				Name: Морские брызги
+				Description: Замедляет ближайших врагов и ворует у них здоровье
+			}
+
+			WyvernsRoar: {
+				Name: Рёв виверны
+				Description: Призывает виверну, охватывая всё вокруг пламенем
+			}
+
+			Presents: {
+				Name: Презенты
+				Description: Создаёт всплеск парашютных презентов, на которые можно кликнуть, чтобы выпустить мины
+			}
+
+			PartyTime: {
+				Name: Вечеринка!
+				Description: Разбрасывает конфетти!
+			}
+
+			Devour: {
+				Name: Пожирание
+				Description: Н/Д
+			}
+
+			Insanity: {
+				Name: Безумие
+				Description: Призывает теневой коготь, атакующий область вокруг себя
+			}
+
+			Rainbolt: {
+				Name: Радужный заряд
+				Description: Выпускает несколько самонаводящихся фрагментов радуги
+			}
+
+			ArcaneEnchantment: {
+				Name: Мистическое улучшение
+				Description: Увеличивает урон и хитбокс урона кликов
+			}
+
+			Mania: {
+				Name: Мания
+				Description: Активирует любой случайный эффект прехардмодных курсоров
+			}
+
+			HolyNova: {
+				Name: Кольцо света
+				Description: Наносит урон каждому врагу в радиусе курсора с гарантированным критическим ударом
+			}
+
+			Spiral: {
+				Name: Спираль
+				Description: Создаёт спиральную галактику, которая притягивает врагов в непосредственной близости от себя
+			}
+
+			Yoink: {
+				Name: Захват
+				Description: Подбирает предметы и монеты рядом с курсором
+			}
+
+			ChromaticBurst: {
+				Name: Цветовой всплеск
+				Description: Выбрасывает цветовую энергию наружу, а затем направляет в сторону вашего курсора
+			}
+
+			BloodSucker: {
+				Name: Кровосос
+				Description: Создаёт 2 сгустка крови, которые закручиваются по спирали внутрь от радиуса курсора
+			}
+
+			BalloonDefense: {
+				Name: Защищающий воздушный шарик
+				Description: Призывает дружественную слизь на воздушном шарике
+			}
+
+			Incinerate: {
+				Name: Испепеление
+				Description: Создаёт 8 искр, направленные вниз вдоль ближайших блоков, которые поджигают область
+			}
+
+			Lacerate: {
+				Name: Разрыв
+				Description: Накладывает дебафф «{$Mods.ClickerClass.BuffName.Gouge}», нанося 30 единиц урона в секунду
+			}
+
+			Starfall: {
+				Name: Звездопад
+				Description: Призывает с небес пронзающую звезду
+			}
+
+			Fritz: {
+				Name: Фритц
+				Description: Выпускает разряд в случайной точке, в пределах радиуса курсора
+			}
+
+			Flurry: {
+				Name: Ливень
+				Description: Создаёт облако снежной бури, осыпая врагов ледяным градом
+			}
+
+			HotWings: {
+				Name: Горячие крылья
+				Description: Дарует одноразовый рывок; Используется двойным нажатием в сторону направления
+			}
+
+			Illuminate: {
+				Name: Просветление
+				Description: Создаёт 8 искр вдоль ближайших блоков, которые освещают местность
+			}
+
+			Bombard: {
+				Name: Бомбардировка
+				Description: Сбрасывает с неба 4 пушечных ядра
+			}
+
+			ToxicRelease: {
+				Name: Токсичный выброс
+				Description: Выбрасывает 10 ядовитых облаков вокруг курсора, которые задерживаются на месте
+			}
+
+			Haste: {
+				Name: Спешка
+				Description: Увеличивает высоту прыжка и скорость передвижения
+			}
+
+			CursedEruption: {
+				Name: Проклятое извержение
+				Description: Наносит урон в большом радиусе и накладывает дебаффы «{$BuffName.Oiled}» и «{$BuffName.CursedInferno}»
+			}
+
+			Infest: {
+				Name: Заражение
+				Description: Стреляет 8 струями ихора, которые направляются на врагов
+			}
+
+			Dazzle: {
+				Name: Ослепление
+				Description: Накладывает дебафф «{$BuffName.Confused}»: {$BuffDescription.Confused}
+			}
+
+			DarkBurst: {
+				Name: Тёмный взрыв
+				Description: Наносит урон в большом радиусе
+			}
+
+			Totality: {
+				Name: Тотальность
+				Description: Создаёт миниатюрное затмение, многократно стреляя самонаводящимися снарядами
+			}
+
+			Freeze: {
+				Name: Заморозка
+				Description: Замораживает врагов под вашим курсором, удерживая их на месте
+			}
+
+			Linger: {
+				Name: Промедление
+				Description: Создаёт 5 подверженных гравитации сгустков крови, которые задерживаются на месте
+			}
+
+			Discharge: {
+				Name: Разряд
+				Description: Взрывает 4 лазера вокруг курсора
+			}
+
+			StickyHoney: {
+				Name: Липкий мёд
+				Description: Покрывает врагов под курсором липким мёдом, замедляя их
+			}
+
+			SolarFlare: {
+				Name: Солнечная вспышка
+				Description: Создаёт продолжительный солнечный снаряд, который наносит урон и накладывает дебаффы «{$BuffName.Oiled}» и «{$BuffName.OnFire}»
+			}
+
+			Smite: {
+				Name: Кара
+				Description: Направляет до 8 языков пламени факела в сторону курсора
+			}
+
+			Conqueror: {
+				Name: Завоеватель
+				Description: Создаёт фантомный взрыв по площади наносящий двойной урон с гарантированным критическим ударом
+			}
+
+			Collision: {
+				Name: Столкновение
+				Description: Стреляет 8 неустойчивыми зарядами, которые через секунду следуют за курсором
+			}
+
+			Spores: {
+				Name: Споры
+				Description: Выплёвывает залп разлетающихся спор
+			}
+
+			Embrittle: {
+				Name: Хрупкость
+				Description: Накладывает дебафф «{$Mods.ClickerClass.BuffName.Embrittle}»: {$Mods.ClickerClass.BuffDescription.Embrittle}
+			}
+
+			PetalStorm: {
+				Name: Лепестковая буря
+				Description: Создаёт 5 лепестков, которые призываются рядом с игроком и стреляют по всему экрану
+			}
+
+			Regenerate: {
+				Name: Регенерация
+				Description: Дарует бафф «{$BuffName.RapidHealing}»: {$BuffDescription.RapidHealing}
+			}
+
+			StingingThorn: {
+				Name: Жалящий шип
+				Description: Стреляет шипом, который движется в сторону ближайшего врага
+			}
+
+			Inferno: {
+				Name: Ад
+				Description: Создаёт взрыв, наносящий урон и накладывающий дебаффы «{$BuffName.Oiled}» и «{$BuffName.OnFire}»
+			}
+
+			DustDevil: {
+				Name: Пылевой дьявол
+				Description: Создаёт стремительный торнадо, который преследует врагов
+			}
+
+			Curse: {
+				Name: Проклятие
+				Description: Стреляет черепом теневого пламени в сторону ближайшего врага
+			}
+
+			AutoClick: {
+				Name: Авто-клик
+				Description: Дарует бафф «{$Mods.ClickerClass.BuffName.AutoClick}», снижая частоту кликов, но даруя авто-клики
+			}
+
+			Siphon: {
+				Name: Сифон
+				Description: Наносит небольшой урон и восстанавливает 5 единиц здоровья
+			}
+
+			Splash: {
+				Name: Всплеск
+				Description: Создаёт фонтан из 6 водяных снарядов
+			}
+
+			StarStorm: {
+				Name: Звёздная буря
+				Description: Сбрасывает с неба 3 взрывающиеся звезды
+			}
+
+			PhaseReach: {
+				Name: Фазовая досягаемость
+				Description: Наносит урон врагам независимо от их расположения
+			}
+
+			TheClick: {
+				Name: Клик
+				Description: Наносит дополнительно 1% урона максимального здоровья врага
+			}
+
+			RazorsEdge: {
+				Name: Лезвие бритвы
+				Description: Стреляет 5 орбитальными дисковыми пилами, которые разлетаются в стороны
+			}
+
+			ShadowLash: {
+				Name: Теневая плеть
+				Description: Вызывает всплеск 5 теневых снарядов ищущих ближайших врагов
+			}
+
+			WildMagic: {
+				Name: Необузданная магия
+				Description: Случайно срабатывает как любой возможный эффект клика
+			}
+
+			WebSplash: {
+				Name: Раскатистая паутина
+				Description: Выпускает сгусток липкой паутины в сторону ближайшего врага
+			}
+
+			ChocolateChip: {
+				Name: Шоколадная крошка
+				Description: Выпускает взрыв шоколада
+			}
+
+			DoubleClick: {
+				Name: Двойной клик
+				Description: Дважды наносит урон одной атакой
+			}
+
+			DoubleClick2: {
+				Name: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Name}"
+				Description: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Description}"
+			}
+
+			StickyKeychain: {
+				Name: Липкий брелок
+				Description: Приклеивает слизь к вашему экрану
+			}
+
+			BigRedButton: {
+				Name: Бабах
+				Description: Вызывает огромный взрыв
+			}
+
+			ClearKeychain: {
+				Name: Кристаллизация
+				Description: Покрывает ближайших врагов кристаллической слизью; Кликните на них, для нанесения урона по области
+			}
 		}
 
-		ShowClickIndicator: {
-			Label: Визуальный индикатор кликов
-			Tooltip: Показывает визуальный индикатор кликов, когда вы атакуете курсором
+		Prefixes: {
+			ClickerRadius: {
+				DisplayName: Простирающийся
+				Tooltip: +15% базового радиуса курсора
+			}
+
+			Elite.DisplayName: Элитный
+			Pro.DisplayName: Профессиональный
+			Amateur.DisplayName: Любительский
+			Novice.DisplayName: Начинающий
+			Laggy.DisplayName: Лагающий
+			Disconnected.DisplayName: Отключённый
+
+			Common: {
+				RadiusBoost: "{0}% базового радиуса курсора"
+				ClickBoost: "{0} кликов для эффекта"
+			}
 		}
 
-		ShowOthersClickIndicator: {
-			Label: Визуальный индикатор кликов других игроков
-			Tooltip: Показывает визуальный индикатор кликов других игроков
+		Tooltip: {
+			ClickerTag: Кликер
+			TotalClicks: Всего кликов
+			MoneyGenerated: Количество созданных монет
+			ForMoreInfo: Зажмите кнопку 'Auto Select' ({0}) для отображения эффектов кликов
+			AimbotModuleEnabled: Автонаводка включена
+			AimbotModuleDisabled: Автонаводка выключена
+		}
+
+		DeathMessage.HotKeychain: "{0} влюбился в пикантную связку ключей."
+
+		UI: {
+			HotKeychainGauge: Жара
+			MedalGauge: Зарядов
+			PaperclipsGauge: Веществ
+		}
+
+		ClickerConfigClient: {
+			Label: Настройки
+			Header.GeneralOptions: Общие настройки
+
+			ShowClassTags: {
+				Label: Показывать текст класс-тэга в описании курсоров
+				Tooltip: Переключает отображение класс-тэга в описании курсоров
+			}
+
+			ShowEffectSuggestion: {
+				Label: Показывать текст: зажмите кнопку 'Auto Select'
+				Tooltip:
+					'''
+					Переключает отображение текста в описании курсоров:
+					Зажмите кнопку 'Auto Select' для отображения эффектов кликов
+					-Ключ продолжит работать независимо от настройки-
+					'''
+			}
+
+			ShowCustomCursors: {
+				Label: Показывать новые курсоры
+				Tooltip: Заменяет игровой курсор на курсоры из мода
+			}
+
+			ShowClickIndicator: {
+				Label: Визуальный индикатор кликов
+				Tooltip: Показывает визуальный индикатор кликов, когда вы атакуете курсором
+			}
+
+			ShowOthersClickIndicator: {
+				Label: Визуальный индикатор кликов других игроков
+				Tooltip: Показывает визуальный индикатор кликов других игроков
+			}
+		}
+
+		GameTips: {
+			// ClickerClassTip0: Clicker Class: Clicker weapons can only be used within its area of effect and with proper line of sight.
+			// ClickerClassTip1: Clicker Class: Your total number of clicks with Clickers are tracked. Check it out with a Gamer Crate!
+			// ClickerClassTip2: Clicker Class: Certain items will only be sold if you've used Clicker weapons enough times.
+			// ClickerClassTip3: Clicker Class: Remember to rest your hands if they start to hurt!
+			// ClickerClassTip4: Clicker Class: Find a nice Ice Pack to cool your hands if clicking is cramping them up!
+		}
+
+		Projectiles: {
+			// AdamantiteClickerPro.DisplayName: Adamantite Clicker Pro
+			// AMedalPro.DisplayName: A Medal Pro
+			// ArthursClickerPro.DisplayName: Arthurs Clicker Pro
+			// AstralClickerPro.DisplayName: Astral Clicker Pro
+			// BalloonClickerPro.DisplayName: Balloon Clicker Pro
+			// BigRedButtonPro.DisplayName: Big Red Button Pro
+			// BigRedButtonPro2.DisplayName: Big Red Button Pro2
+			// BigRedButtonPro3.DisplayName: Big Red Button Pro3
+			// BlizzardClickerPro.DisplayName: Blizzard Clicker Pro
+			// BlizzardClickerPro2.DisplayName: Blizzard Clicker Pro2
+			// BoneClickerPro.DisplayName: Bone Clicker Pro
+			// BottomlessBoxofPaperclipsPro.DisplayName: Bottomless Boxof Paperclips Pro
+			// CandleClickerPro.DisplayName: Candle Clicker Pro
+			// CaptainsClickerPro.DisplayName: Captains Clicker Pro
+			// ChlorophyteClickerPro.DisplayName: Chlorophyte Clicker Pro
+			// ChocolateChipPro.DisplayName: Chocolate Chip Pro
+			// ClearKeychainPro.DisplayName: Clear Keychain Pro
+			// ClearKeychainPro2.DisplayName: Clear Keychain Pro2
+			// ClickDamage.DisplayName: Click Damage
+			// CookiePro.DisplayName: Cookie Pro
+			// CorruptClickerPro.DisplayName: Corrupt Clicker Pro
+			// CrimsonClickerPro.DisplayName: Crimson Clicker Pro
+			// CrystalClickerPro.DisplayName: Crystal Clicker Pro
+			// CyclopsClickerPro.DisplayName: Cyclops Clicker Pro
+			// DarkClickerPro.DisplayName: Dark Clicker Pro
+			// DraconicClickerPro.DisplayName: Draconic Clicker Pro
+			// DraconicClickerPro2.DisplayName: Draconic Clicker Pro2
+			// FaultyClickerPro.DisplayName: Faulty Clicker Pro
+			// FMedalPro.DisplayName: F Medal Pro
+			// FrozenClickerPro.DisplayName: Frozen Clicker Pro
+			// HemoClickerPro.DisplayName: Hemo Clicker Pro
+			// HighTechClickerPro.DisplayName: High Tech Clicker
+			// HoneyGlazedClickerPro.DisplayName: Honey Glazed Clicker Pro
+			// HotKeychainPro.DisplayName: Hot Keychain Pro
+			// LanternClickerPro.DisplayName: Lantern Clicker Pro
+			// LihzarhdClickerPro.DisplayName: Lihzarhd Clicker Pro
+			// LordsClickerPro.DisplayName: Lords Clicker Pro
+			// MiceClickerPro.DisplayName: Mice Clicker Pro
+			// MiceDrillPro.DisplayName: Mice Drill
+			// MyceliumClickerPro.DisplayName: Mycelium Clicker Pro
+			// MythrilClickerPro.DisplayName: Mythril Clicker Pro
+			// NaughtyClickerPro.DisplayName: Naughty Clicker Pro
+			// NaughtyClickerPro2.DisplayName: Naughty Clicker Pro2
+			// NaughtyClickerPro3.DisplayName: Naughty Clicker Pro3
+			// OrichaclumClickerPro.DisplayName: Orichaclum Clicker Pro
+			// PointyClickerPro.DisplayName: Pointy Clicker Pro
+			// PrecursorPro.DisplayName: Precursor Pro
+			// RainbowClickerPro.DisplayName: Rainbow Clicker Pro
+			// RedHotClickerPro.DisplayName: Red Hot Clicker Pro
+			// RGBPro.DisplayName: R G B Pro
+			// SandstormClickerPro.DisplayName: Sandstorm Clicker
+			// SeafoamClickerPro.DisplayName: Seafoam Clicker Pro
+			// ShadowyClickerPro.DisplayName: Shadowy Clicker Pro
+			// SinisterClickerPro.DisplayName: Sinister Clicker Pro
+			// SlickClickerPro.DisplayName: Slick Clicker Pro
+			// SMedalPro.DisplayName: S Medal Pro
+			// SMedalPro2.DisplayName: S Medal Pro2
+			// SMedalPro3.DisplayName: S Medal Pro3
+			// SnottyClickerPro.DisplayName: Snotty Clicker Pro
+			// SpaceClickerPro.DisplayName: Space Clicker Pro
+			// SpiralClickerPro.DisplayName: Spiral Clicker Pro
+			// StarryClickerPro.DisplayName: Starry Clicker Pro
+			// StickyKeychainPro.DisplayName: Sticky Keychain Pro
+			// TheClickerPro.DisplayName: The Clicker Pro
+			// TitaniumClickerPro.DisplayName: Titanium Clicker Pro
+			// TorchClickerPro.DisplayName: Torch Clicker Pro
+			// TotalityClickerPro.DisplayName: Totality Clicker Pro
+			// TotalityClickerPro2.DisplayName: Totality Clicker Pro2
+			// UmbralClickerPro.DisplayName: Umbral Clicker Pro
+			// WebClickerPro.DisplayName: Web Clicker Pro
+			// WebClickerPro2.DisplayName: Web Clicker Pro2
 		}
 	}
 }

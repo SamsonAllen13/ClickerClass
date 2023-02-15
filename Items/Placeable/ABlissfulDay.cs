@@ -7,11 +7,6 @@ namespace ClickerClass.Items.Placeable
 {
 	public class ABlissfulDay : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			SacrificeTotal = 1;
-		}
-		
 		public override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(ModContent.TileType<PaintingMedium>(), 0); //tile, style

@@ -6,11 +6,6 @@ namespace ClickerClass.Items.Placeable.Mice
 {
 	public class MiceBookcase : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			SacrificeTotal = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Mice.MiceBookcase>());

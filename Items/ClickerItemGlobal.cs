@@ -125,7 +125,7 @@ namespace ClickerClass.Items
 				&& (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
 				if (index != -1)
 				{
-					tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccClickerRadius", LangHelper.GetText("Prefix.ClickerRadius.Tooltip"))
+					tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccClickerRadius", ModContent.GetInstance<ClickerRadius>().GetLocalization("Tooltip").Value)
 					{
 						IsModifier = true
 					});

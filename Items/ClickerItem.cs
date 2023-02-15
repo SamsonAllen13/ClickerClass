@@ -15,10 +15,6 @@ namespace ClickerClass.Items
 		public override void SetStaticDefaults()
 		{
 			ClickerSystem.RegisterClickerItem(this);
-
-			//Set sacrifies to 1 by default. Let inheriting classes overwrite it if necessary
-			//Most things in this mod are unstackable items, those all have 1
-			SacrificeTotal = 1;
 		}
 
 		/// <summary>

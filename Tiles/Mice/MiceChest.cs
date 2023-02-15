@@ -40,11 +40,16 @@ namespace ClickerClass.Tiles.Mice
 
 			AdjTiles = new int[] { TileID.Containers };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
-			AddMapEntry(new Color(172, 189, 246), ContainerName, MapChestName);
+			AddMapEntry(new Color(172, 189, 246), CreateMapEntryName(), MapChestName);
 			ChestDrop = ModContent.ItemType<Items.Placeable.Mice.MiceChest>();
 		}
 
 		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
+
+		public override LocalizedText ContainerName(int frameX, int frameY)
+		{
+			return this.GetLocalization("MapEntry");
+		}
 
 		public string MapChestName(string name, int i, int j)
 		{
@@ -157,7 +162,7 @@ namespace ClickerClass.Tiles.Mice
 			}
 			else
 			{
-				string defaultName = TileLoader.ContainerName(tile.TileType); // This gets the ContainerName text for the currently selected language
+				string defaultName = TileLoader.ContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName text for the currently selected language
 				player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : defaultName;
 				if (player.cursorItemIconText == defaultName)
 				{

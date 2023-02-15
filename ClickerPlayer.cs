@@ -694,7 +694,7 @@ namespace ClickerClass
 					autoRevertSelectedItem = true;
 					Player.selectedItem = index;
 					Player.controlUseItem = true;
-					Player.ItemCheck(Player.whoAmI);
+					Player.ItemCheck();
 				}
 				else
 				{
@@ -820,7 +820,7 @@ namespace ClickerClass
 			clickerMoneyGenerated = tag.GetInt("clickerMoneyGenerated");
 		}
 
-		public override void clientClone(ModPlayer clientClone)
+		public override void CopyClientState(ModPlayer clientClone)
 		{
 			var clickerClone = clientClone as ClickerPlayer;
 

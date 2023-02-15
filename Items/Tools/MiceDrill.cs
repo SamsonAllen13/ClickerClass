@@ -27,8 +27,6 @@ namespace ClickerClass.Items.Tools
 			{
 				glowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
 			}
-
-			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults()

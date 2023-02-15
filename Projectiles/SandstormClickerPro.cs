@@ -41,8 +41,6 @@ namespace ClickerClass.Projectiles
 		{
 			base.SetStaticDefaults();
 
-			DisplayName.SetDefault("Sandstorm Clicker");
-
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 15;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 		}

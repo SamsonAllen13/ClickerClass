@@ -3,6 +3,7 @@ Mods.ClickerClass: {
 		AutoClick: Auto Click
 		CookieBuff: Cookie
 		Crystalized: Crystalized
+		CrystalizedFatigue: Crystalized Fatigue
 		Embrittle: Embrittle
 		Frozen: Frozen
 		Gouge: Gouge
@@ -21,6 +22,7 @@ Mods.ClickerClass: {
 		AutoClick: Hold down the Left Mouse Button to auto click
 		CookieBuff: Increases your click damage, radius, and life regeneration
 		Crystalized: Clicks will release a spread of crystal shards
+		CrystalizedFatigue: Cannot be Crystalized again
 		Embrittle: Clicks will deal 8 extra damage to this target
 		Frozen: Frozen in place
 		Gouge: Rapidly losing life

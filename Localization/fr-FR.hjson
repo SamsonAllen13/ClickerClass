@@ -123,7 +123,7 @@ Mods: {
 				DisplayName: Module d'Assistance à la Visée
 				Tooltip:
 					'''
-					Appuyer sur la touche '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' sélectionnera une cible sous le curseur
+					Appuyer sur la touche '{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}' sélectionnera une cible sous le curseur
 					Lorsque vous cliquez, cette cible prendra des dégâts peu importe la position de votre curseur
 					Votre cible sera perdue si elle sort de votre champ de vision ou de votre rayon
 					'''
@@ -135,7 +135,7 @@ Mods: {
 					'''
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 10%
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} de 10%
-					Appuyer sur la touche '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' activera la visée automatique, ciblant automatiquement les ennemis proches
+					Appuyer sur la touche '{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}' activera la visée automatique, ciblant automatiquement les ennemis proches
 					Si la cible meurt ou est perdue, une nouvelle sera si-possible sélectionnée
 					'''
 			}
@@ -298,8 +298,8 @@ Mods: {
 				DisplayName: Lait au Chocolat et Cookies
 				/* Tooltip:
 					'''
-					{$Mods.ClickerClass.ItemTooltip.MilkCookies}
-					{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
+					{$Mods.ClickerClass.Items.MilkCookies.Tooltip}
+					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip}
 					''' */
 			}
 
@@ -349,7 +349,7 @@ Mods: {
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} de 50%
 					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} de 20%
 					Vos clics produisent un éclat de lumière mécanique tant que cet accessoire est visible
-					{$Mods.ClickerClass.ItemTooltip.HandCream}
+					{$Mods.ClickerClass.Items.HandCream.Tooltip}
 					'''
 			}
 
@@ -357,7 +357,7 @@ Mods: {
 				DisplayName: Crème pour les Mains
 				Tooltip:
 					'''
-					Appuyer sur la touche '{$Mods.ClickerClass.Keybind.ClickerAccessory}' activera le clic automatique sur tous les cliqueurs
+					Appuyer sur la touche '{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}' activera le clic automatique sur tous les cliqueurs
 					Quand l'auto-clic est activé, la vitesse de clic est modérément réduite
 					'''
 			}
@@ -375,7 +375,7 @@ Mods: {
 				DisplayName: Pack de Glace
 				Tooltip:
 					'''
-					Appuyer sur la touche '{$Mods.ClickerClass.Keybind.ClickerAccessory}' activera le clic automatique sur tous les cliqueurs
+					Appuyer sur la touche '{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}' activera le clic automatique sur tous les cliqueurs
 					Quand l'auto-clic est activé, la vitesse de clic est grandement réduite
 					'''
 			}
@@ -398,8 +398,8 @@ Mods: {
 				DisplayName: Lait et Cookies
 				/* Tooltip:
 					'''
-					{$Mods.ClickerClass.ItemTooltip.Cookie}
-					{$Mods.ClickerClass.ItemTooltip.Milk}
+					{$Mods.ClickerClass.Items.Cookie.Tooltip}
+					{$Mods.ClickerClass.Items.Milk.Tooltip}
 					''' */
 			}
 
@@ -478,7 +478,7 @@ Mods: {
 				DisplayName: La Molette
 				Tooltip:
 					'''
-					{$CommonItemTooltip.FlightAndSlowfall}
+					{$CommonItems.FlightAndSlowfall}
 					Maintenez BAS pour tomber plus vite
 					'''
 			}

@@ -123,7 +123,7 @@ Mods: {
 				DisplayName: Модуль помощи для прицеливания
 				Tooltip:
 					'''
-					Нажатие кнопки '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' выбирает цель под вашим курсором
+					Нажатие кнопки '{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}' выбирает цель под вашим курсором
 					При клике, урон от вашего клика наносится цели, независимо от позиции курсора
 					Упускает цель, если она выходит из радиуса действия или вы теряете её из прямой видимости
 					'''
@@ -135,7 +135,7 @@ Mods: {
 					'''
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 10%
-					Нажатие кнопки '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' переключает автонаводку, автоматически целясь в ближайших врагов
+					Нажатие кнопки '{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}' переключает автонаводку, автоматически целясь в ближайших врагов
 					Если цель погибает или упущена, по возможности выбирается новая ближайшая цель
 					'''
 			}
@@ -298,8 +298,8 @@ Mods: {
 				DisplayName: Шоколадное молоко с печеньем
 				/* Tooltip:
 					'''
-					{$Mods.ClickerClass.ItemTooltip.MilkCookies}
-					{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
+					{$Mods.ClickerClass.Items.MilkCookies.Tooltip}
+					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip}
 					''' */
 			}
 
@@ -349,7 +349,7 @@ Mods: {
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 50%
 					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 20%
 					Ваши клики оставляют механическую вспышку света, пока видимость аксессуара включена
-					{$Mods.ClickerClass.ItemTooltip.HandCream}
+					{$Mods.ClickerClass.Items.HandCream.Tooltip}
 					'''
 			}
 
@@ -357,7 +357,7 @@ Mods: {
 				DisplayName: Крем для рук
 				Tooltip:
 					'''
-					Нажатие кнопки '{$Mods.ClickerClass.Keybind.ClickerAccessory}' переключает на авто-клик все курсоры
+					Нажатие кнопки '{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}' переключает на авто-клик все курсоры
 					Пока авто-клик активирован, частота кликов незначительно снижена
 					'''
 			}
@@ -375,7 +375,7 @@ Mods: {
 				DisplayName: Пакет льда
 				Tooltip:
 					'''
-					Нажатии кнопки '{$Mods.ClickerClass.Keybind.ClickerAccessory}' переключает авто-клики на всех курсорах
+					Нажатии кнопки '{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}' переключает авто-клики на всех курсорах
 					Пока авто-клик активирован, частота кликов значительно снижена
 					'''
 			}
@@ -398,8 +398,8 @@ Mods: {
 				DisplayName: Молоко с печеньем
 				/* Tooltip:
 					'''
-					{$Mods.ClickerClass.ItemTooltip.Cookie}
-					{$Mods.ClickerClass.ItemTooltip.Milk}
+					{$Mods.ClickerClass.Items.Cookie.Tooltip}
+					{$Mods.ClickerClass.Items.Milk.Tooltip}
 					''' */
 			}
 
@@ -478,7 +478,7 @@ Mods: {
 				DisplayName: Колёсико
 				Tooltip:
 					'''
-					{$CommonItemTooltip.FlightAndSlowfall}
+					{$CommonItems.FlightAndSlowfall}
 					Удерживайте ВНИЗ, чтобы быстрее падать
 					'''
 			}

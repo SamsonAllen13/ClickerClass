@@ -123,7 +123,7 @@ Mods: {
 				DisplayName: Módulo de Auxiliar de Mira
 				Tooltip:
 					'''
-					Apertar a tecla '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' selecionará um alvo em baixo do seu cursor
+					Apertar a tecla '{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}' selecionará um alvo em baixo do seu cursor
 					Quando clicando, o seu dano de clique é causado naquele alvo, independentemente da posição do seu cursor
 					O seu alvo é perdido se ele sair do seu raio ou se você perder uma linha de visão direta dele
 					'''
@@ -135,7 +135,7 @@ Mods: {
 					'''
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} em 10%
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 10%
-					Apertar a tecla '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' ativará o aimbot, mirando em inimigos próximos automaticamente
+					Apertar a tecla '{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}' ativará o aimbot, mirando em inimigos próximos automaticamente
 					Se o alvo morrer ou for perdido, um novo alvo próximo será selecionado se possível
 					'''
 			}
@@ -298,8 +298,8 @@ Mods: {
 				DisplayName: Leite com Chocolate e Biscoitos
 				/* Tooltip:
 					'''
-					{$Mods.ClickerClass.ItemTooltip.MilkCookies}
-					{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
+					{$Mods.ClickerClass.Items.MilkCookies.Tooltip}
+					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip}
 					''' */
 			}
 
@@ -349,7 +349,7 @@ Mods: {
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} em 50%
 					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} em 20%
 					Seus cliques produzem uma explosão encantada de luz mecânica enquanto o acessório está visível
-					{$Mods.ClickerClass.ItemTooltip.HandCream}
+					{$Mods.ClickerClass.Items.HandCream.Tooltip}
 					'''
 			}
 
@@ -357,7 +357,7 @@ Mods: {
 				DisplayName: Creme para Mãos
 				Tooltip:
 					'''
-					Apertar a tecla '{$Mods.ClickerClass.Keybind.ClickerAccessory}' ativará clique automático em todos os Clickers
+					Apertar a tecla '{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}' ativará clique automático em todos os Clickers
 					Enquanto o clique automático está ativado, a taxa de cliques é diminuída moderadamente
 					'''
 			}
@@ -375,7 +375,7 @@ Mods: {
 				DisplayName: Pacote de Gelo
 				Tooltip:
 					'''
-					Apertar a tecla '{$Mods.ClickerClass.Keybind.ClickerAccessory}' ativará clique automático em todos os Clickers
+					Apertar a tecla '{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}' ativará clique automático em todos os Clickers
 					Enquanto o clique automático está ativado, a taxa de cliques é diminuída consideravelmente
 					'''
 			}
@@ -398,8 +398,8 @@ Mods: {
 				DisplayName: Leite com Biscoitos
 				/* Tooltip:
 					'''
-					{$Mods.ClickerClass.ItemTooltip.Cookie}
-					{$Mods.ClickerClass.ItemTooltip.Milk}
+					{$Mods.ClickerClass.Items.Cookie.Tooltip}
+					{$Mods.ClickerClass.Items.Milk.Tooltip}
 					''' */
 			}
 
@@ -478,7 +478,7 @@ Mods: {
 				DisplayName: O Rolador
 				Tooltip:
 					'''
-					{$CommonItemTooltip.FlightAndSlowfall}
+					{$CommonItems.FlightAndSlowfall}
 					Segure PARA BAIXO para cair mais rapidamente
 					'''
 			}

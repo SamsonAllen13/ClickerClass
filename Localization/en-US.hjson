@@ -123,7 +123,7 @@ Mods: {
 				DisplayName: Aim Assist Module
 				Tooltip:
 					'''
-					Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' key will select a target under your cursor
+					Pressing the '{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}' key will select a target under your cursor
 					When clicking, your click damage is dealt to that target, regardless of your cursor's position
 					Your target is lost if they exit your radius or you lose direct line of sight of them
 					'''
@@ -135,7 +135,7 @@ Mods: {
 					'''
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 10%
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 10%
-					Pressing the '{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}' key will toggle aimbot, targeting nearby enemies automatically
+					Pressing the '{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}' key will toggle aimbot, targeting nearby enemies automatically
 					If the target dies or is lost, a new nearby target will be selected if possible
 					'''
 			}
@@ -298,8 +298,8 @@ Mods: {
 				DisplayName: Chocolate Milk n' Cookies
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.ItemTooltip.MilkCookies}
-					{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
+					{$Mods.ClickerClass.Items.MilkCookies.Tooltip}
+					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip}
 					'''
 			}
 
@@ -349,7 +349,7 @@ Mods: {
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 50%
 					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 20%
 					Your clicks produce an enchanted burst of mechanical light, while accessory is visible
-					{$Mods.ClickerClass.ItemTooltip.HandCream}
+					{$Mods.ClickerClass.Items.HandCream.Tooltip}
 					'''
 			}
 
@@ -357,7 +357,7 @@ Mods: {
 				DisplayName: Hand Cream
 				Tooltip:
 					'''
-					Pressing the '{$Mods.ClickerClass.Keybind.ClickerAccessory}' key will toggle auto click on all Clickers
+					Pressing the '{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}' key will toggle auto click on all Clickers
 					While auto click is enabled, click rates are moderately decreased
 					'''
 			}
@@ -375,7 +375,7 @@ Mods: {
 				DisplayName: Ice Pack
 				Tooltip:
 					'''
-					Pressing the '{$Mods.ClickerClass.Keybind.ClickerAccessory}' key will toggle auto click on all Clickers
+					Pressing the '{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}' key will toggle auto click on all Clickers
 					While auto click is enabled, click rates are greatly decreased
 					'''
 			}
@@ -398,8 +398,8 @@ Mods: {
 				DisplayName: Milk n' Cookies
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.ItemTooltip.Cookie}
-					{$Mods.ClickerClass.ItemTooltip.Milk}
+					{$Mods.ClickerClass.Items.Cookie.Tooltip}
+					{$Mods.ClickerClass.Items.Milk.Tooltip}
 					'''
 			}
 
@@ -478,7 +478,7 @@ Mods: {
 				DisplayName: The Scroller
 				Tooltip:
 					'''
-					{$CommonItemTooltip.FlightAndSlowfall}
+					{$CommonItems.FlightAndSlowfall}
 					Hold DOWN to fall faster
 					'''
 			}

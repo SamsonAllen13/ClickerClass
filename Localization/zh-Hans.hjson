@@ -123,7 +123,7 @@ Mods: {
 				DisplayName: 瞄准辅助模块
 				Tooltip:
 					'''
-					按下'{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}'键将锁定光标下的敌人
+					按下'{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}'键将锁定光标下的敌人
 					左键单击时,无论光标的位置在哪,都会对该目标造成点击伤害
 					如果锁定的敌人离开了你的圆圈范围,或者他们不在你的直线视野内,你将无法对其造成伤害
 					'''
@@ -135,7 +135,7 @@ Mods: {
 					'''
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}10%
-					按下'{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}'键切换自动瞄准,自动锁定附近的敌人
+					按下'{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}'键切换自动瞄准,自动锁定附近的敌人
 					如果锁定的敌人死亡或消失,将搜寻并锁定附近一个新的敌人
 					'''
 			}
@@ -298,8 +298,8 @@ Mods: {
 				DisplayName: 巧克力牛奶与曲奇
 				/* Tooltip:
 					'''
-					{$Mods.ClickerClass.ItemTooltip.MilkCookies}
-					{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
+					{$Mods.ClickerClass.Items.MilkCookies.Tooltip}
+					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip}
 					''' */
 			}
 
@@ -349,7 +349,7 @@ Mods: {
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}50%
 					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}20%
 					每次点击会产生一些光尘,能够微弱的照明,调整饰品可见性开关光芒显示
-					{$Mods.ClickerClass.ItemTooltip.HandCream}
+					{$Mods.ClickerClass.Items.HandCream.Tooltip}
 					'''
 			}
 
@@ -357,7 +357,7 @@ Mods: {
 				DisplayName: 护手霜
 				Tooltip:
 					'''
-					按下'{$Mods.ClickerClass.Keybind.ClickerAccessory}'键切换按住不动持续点击
+					按下'{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}'键切换按住不动持续点击
 					启用按住不动持续点击后,手动点击最大频率将轻微降低
 					'''
 			}
@@ -375,7 +375,7 @@ Mods: {
 				DisplayName: 冰袋
 				Tooltip:
 					'''
-					按下'{$Mods.ClickerClass.Keybind.ClickerAccessory}'键切换按住不动持续点击
+					按下'{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}'键切换按住不动持续点击
 					启用按住不动持续点击后,手动点击最大频率将显著降低
 					'''
 			}
@@ -398,8 +398,8 @@ Mods: {
 				DisplayName: 牛奶与曲奇
 				/* Tooltip:
 					'''
-					{$Mods.ClickerClass.ItemTooltip.Cookie}
-					{$Mods.ClickerClass.ItemTooltip.Milk}
+					{$Mods.ClickerClass.Items.Cookie.Tooltip}
+					{$Mods.ClickerClass.Items.Milk.Tooltip}
 					''' */
 			}
 
@@ -478,7 +478,7 @@ Mods: {
 				DisplayName: 滚动条
 				Tooltip:
 					'''
-					{$CommonItemTooltip.FlightAndSlowfall}
+					{$CommonItems.FlightAndSlowfall}
 					按住下键加速下落
 					'''
 			}

@@ -257,12 +257,12 @@ Mods: {
 
 			ABlissfulDay: {
 				DisplayName: Блаженный день
-				// Tooltip: M. B. Nana
+				Tooltip: M. B. Nana
 			}
 
 			OutsideTheCave: {
 				DisplayName: За пределами пещеры
-				// Tooltip: S. Streak
+				Tooltip: S. Streak
 			}
 
 			AncientClickingGlove: {
@@ -296,11 +296,11 @@ Mods: {
 
 			ChocolateMilkCookies: {
 				DisplayName: Шоколадное молоко с печеньем
-				/* Tooltip:
+				Tooltip:
 					'''
 					{$Mods.ClickerClass.Items.MilkCookies.Tooltip}
 					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip}
-					''' */
+					'''
 			}
 
 			ClearKeychain: {
@@ -396,11 +396,11 @@ Mods: {
 
 			MilkCookies: {
 				DisplayName: Молоко с печеньем
-				/* Tooltip:
+				Tooltip:
 					'''
 					{$Mods.ClickerClass.Items.Cookie.Tooltip}
 					{$Mods.ClickerClass.Items.Milk.Tooltip}
-					''' */
+					'''
 			}
 
 			MousePad: {

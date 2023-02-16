@@ -26,20 +26,27 @@ namespace ClickerClass.Tiles.Mice
 			TileID.Sets.InteractibleByNPCs[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
 			TileID.Sets.BasicChest[Type] = true;
+			TileID.Sets.IsAContainer[Type] = true;
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
 			TileObjectData.newTile.Origin = new Point16(0, 1);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
 			TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(Chest.FindEmptyChest, -1, 0, true);
 			TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(Chest.AfterPlacement_Hook, -1, 0, false);
-			TileObjectData.newTile.AnchorInvalidTiles = new int[] { 127 };
+			TileObjectData.newTile.AnchorInvalidTiles = new int[]
+			{
+				TileID.MagicalIceBlock,
+				TileID.Boulder,
+				TileID.BouncyBoulder,
+				TileID.LifeCrystalBoulder,
+				TileID.RollingCactus
+			};
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
 			TileObjectData.addTile(Type);
 
 			AdjTiles = new int[] { TileID.Containers };
-			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
 			AddMapEntry(new Color(172, 189, 246), CreateMapEntryName(), MapChestName);
 			ChestDrop = ModContent.ItemType<Items.Placeable.Mice.MiceChest>();
 		}
@@ -110,7 +117,7 @@ namespace ClickerClass.Tiles.Mice
 			}
 			if (Main.netMode == NetmodeID.MultiplayerClient)
 			{
-				if (left == player.chestX && top == player.chestY && player.chest >= 0) {
+				if (left == player.chestX && top == player.chestY && player.chest != -1) {
 					player.chest = -1;
 					Recipe.FindRecipes();
 					SoundEngine.PlaySound(SoundID.MenuClose);
@@ -123,7 +130,7 @@ namespace ClickerClass.Tiles.Mice
 			else
 			{
 				int chest = Chest.FindChest(left, top);
-				if (chest >= 0) {
+				if (chest != -1) {
 					Main.stackSplit = 600;
 					if (chest == player.chest) {
 						player.chest = -1;

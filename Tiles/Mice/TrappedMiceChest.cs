@@ -22,13 +22,21 @@ namespace ClickerClass.Tiles.Mice
 			TileID.Sets.HasOutlines[Type] = true;
 			TileID.Sets.AvoidedByNPCs[Type] = true;
 			TileID.Sets.InteractibleByNPCs[Type] = true;
-			TileID.Sets.BasicChestFake[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
+			TileID.Sets.BasicChestFake[Type] = true;
+			TileID.Sets.IsATrigger[Type] = true;
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style2x2);
 			TileObjectData.newTile.Origin = new Point16(0, 1);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 18 };
-			TileObjectData.newTile.AnchorInvalidTiles = new int[] { 127 };
+			TileObjectData.newTile.AnchorInvalidTiles = new int[]
+			{
+				TileID.MagicalIceBlock,
+				TileID.Boulder,
+				TileID.BouncyBoulder,
+				TileID.LifeCrystalBoulder,
+				TileID.RollingCactus
+			};
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);

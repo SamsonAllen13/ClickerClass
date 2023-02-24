@@ -49,7 +49,6 @@ namespace ClickerClass.Tiles.Mice
 			AdjTiles = new int[] { TileID.Dressers };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 			AddMapEntry(new Color(191, 142, 111), CreateMapEntryName(), MapChestName);
-			DresserDrop = ModContent.ItemType<Items.Placeable.Mice.MiceDresser>();
 		}
 
 		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
@@ -90,7 +89,6 @@ namespace ClickerClass.Tiles.Mice
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Mice.MiceDresser>());
 			Chest.DestroyChest(i, j);
 		}
 

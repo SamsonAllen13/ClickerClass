@@ -35,11 +35,6 @@ namespace ClickerClass.Tiles.Mice
 
 		public override bool CreateDust(int i, int j, ref int type) => false;
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 32, 80, ModContent.ItemType<Items.Placeable.Mice.MiceClock>());
-		}
-
 		public override bool RightClick(int x, int y)
 		{
 			string text = "AM";

@@ -58,11 +58,6 @@ namespace ClickerClass.Tiles.Mice
 			}
 		}
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Placeable.Mice.MiceLantern>());
-		}
-
 		public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
 		{
 			Tile tile = Main.tile[i, j];

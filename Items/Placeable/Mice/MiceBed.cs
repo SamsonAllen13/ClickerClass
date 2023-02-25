@@ -11,7 +11,6 @@ namespace ClickerClass.Items.Placeable.Mice
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Mice.MiceBed>());
 			Item.width = 28;
 			Item.height = 20;
-			Item.maxStack = 99;
 			Item.value = Item.sellPrice(0, 0, 4, 0);
 			Item.rare = ItemRarityID.White;
 		}

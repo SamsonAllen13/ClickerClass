@@ -35,7 +35,7 @@ namespace ClickerClass.Items.Consumables
 		{
 			Item.width = 20;
 			Item.height = 26;
-			Item.maxStack = 99;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.UseSound = SoundID.Item3;
 			Item.useStyle = ItemUseStyleID.DrinkLiquid;
 			Item.useTurn = true;

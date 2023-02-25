@@ -12,7 +12,6 @@ namespace ClickerClass.Items.Placeable
 			Item.DefaultToPlaceableTile(ModContent.TileType<PaintingLarge>(), 0); //tile, style
 			Item.width = 30;
 			Item.height = 30;
-			Item.maxStack = 99;
 			Item.value = Item.sellPrice(0, 0, 20, 0);
 			Item.rare = ItemRarityID.White;
 		}

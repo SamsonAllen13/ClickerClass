@@ -7,7 +7,7 @@ namespace ClickerClass.Items.Accessories
 	public class MouseTrap : ClickerItem
 	{
 		public static readonly int DamageIncrease = 15;
-		public static readonly int ClickAmountDecrease = 1;
+		public static readonly int ClickAmountDecrease = 10;
 
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease, ClickAmountDecrease);
 

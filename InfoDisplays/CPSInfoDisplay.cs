@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -12,9 +13,15 @@ namespace ClickerClass.InfoDisplays
 			return clickerPlayer.clickerSelected && clickerPlayer.accButtonMasher;
 		}
 
-		public override string DisplayValue() {
+		public override string DisplayValue(ref Color displayColor)
+		{
 			Player player = Main.LocalPlayer;
-			return "" + Math.Floor(player.GetModPlayer<ClickerPlayer>().clickerPerSecond) + " " + DisplayName;
+			var val = Math.Floor(player.GetModPlayer<ClickerPlayer>().clickerPerSecond);
+			if (val == 0)
+			{
+				displayColor = InactiveInfoTextColor;
+			}
+			return $"{val} {DisplayName}";
 		}
 	}
 }

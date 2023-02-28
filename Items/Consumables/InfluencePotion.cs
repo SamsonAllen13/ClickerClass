@@ -2,12 +2,17 @@ using ClickerClass.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Consumables
 {
 	public class InfluencePotion : ClickerItem
 	{
+		public static readonly float RadiusIncrease = 0.2f;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease * 100f);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();

@@ -49,7 +49,7 @@ Mods: {
 
 			InfluenceBuff: {
 				DisplayName: Influence
-				Description: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} de 20%"
+				Description: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			OverclockBuff: {
@@ -85,12 +85,13 @@ Mods: {
 
 		Common: {
 			Tooltips: {
-				IncreasesClickDamage: Augmente les dégâts de vos clics
+				IncreasesClickDamageBy: Augmente les dégâts de vos clics de {0}%
 				IncreasedClickerDamage: Augmente les dégâts de clic
 				IncreasesClickCritChance: Augmente les chances de coup critique avec des clics
-				IncreasesBaseClickRadius: Augmente le rayon de base de vos clics
-				ReducesBaseClickRadius: Réduit le rayon de base de vos clics
-				ReducesAmountOfClicks: Réduit le nombre de clics nécessaire pour un effet de clic
+				IncreasesBaseClickRadiusBy: Augmente le rayon de base de vos clics de {0}%
+				ReducesBaseClickRadiusBy: Réduit le rayon de base de vos clics de {0}%
+				ReducesAmountOfClicksBy: Réduit le nombre de clics nécessaire pour un effet de clic de {0}%
+				ReducesAmountOfClicksByFlat: Réduit le nombre de clics nécessaire pour un effet de clic de {0}
 				ClickingGloveEvery: Pendant un combat, clique automatiquement avec votre cliqueur toutes les
 				Clicker: Cliquez sur un enemi à portée et dans votre champ de vision pour lui faire des dégâts
 				MoreThanOneClick: "{0} clics"
@@ -133,8 +134,8 @@ Mods: {
 				DisplayName: Module de Visée Automatique
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 10%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} de 10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy@1}
 					Appuyer sur la touche '{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}' activera la visée automatique, ciblant automatiquement les ennemis proches
 					Si la cible meurt ou est perdue, une nouvelle sera si-possible sélectionnée
 					'''
@@ -336,7 +337,7 @@ Mods: {
 				Tooltip:
 					'''
 					Vos clics produisent un éclat de lumière enchantée tant que cet accessoire est visible
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 2
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} de 2
 					'''
 			}
 
@@ -345,9 +346,9 @@ Mods: {
 				Tooltip:
 					'''
 					'Tu ne penses sérieusement pas que quelqu'un jouerait à ça, n'est-ce pas?'
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 10%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} de 50%
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} de 20%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy@1}
+					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy@2}
 					Vos clics produisent un éclat de lumière mécanique tant que cet accessoire est visible
 					{$Mods.ClickerClass.Items.HandCream.Tooltip}
 					'''
@@ -405,15 +406,15 @@ Mods: {
 
 			MousePad: {
 				DisplayName: Tapis de Souris
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} de 25%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MouseTrap: {
 				DisplayName: Pièce à Souris
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 15%
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} de 10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy@1}
 					Les clics ont une faible chance de vous maudire brièvement
 					'''
 			}
@@ -428,7 +429,7 @@ Mods: {
 				Tooltip:
 					'''
 					Génére des pièces lorsque vous cliquez sur des ennemis
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} de 10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
@@ -466,7 +467,7 @@ Mods: {
 
 			Soda: {
 				DisplayName: Soda
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} de 1"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			StickyKeychain: {
@@ -492,7 +493,7 @@ Mods: {
 				DisplayName: Botte de Souris
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} de 10%
 					Augmente la vitesse de déplacement de 20%
 					'''
 			}
@@ -501,7 +502,7 @@ Mods: {
 				DisplayName: Masque de Souris
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 6%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} de 6%
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} de 6%
 					'''
 			}
@@ -510,24 +511,24 @@ Mods: {
 				DisplayName: Costume de Souris
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 14%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} de 25%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} de 14%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
 			MotherboardBoots: {
 				DisplayName: Bottes de Carte Mère
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} de 6%"
 			}
 
 			MotherboardHelmet: {
 				DisplayName: Casque de Carte Mère
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} de 20%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MotherboardSuit: {
 				DisplayName: Tunique de Carte Mère
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} de 6%"
 			}
 
 			OverclockBoots: {
@@ -537,20 +538,20 @@ Mods: {
 
 			OverclockHelmet: {
 				DisplayName: Casque Overclocké
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} de 1"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			OverclockSuit: {
 				DisplayName: Tunique Overclockée
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 15%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} de 15%"
 			}
 
 			PrecursorBreastplate: {
 				DisplayName: Plastron de Précurseur
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 15%
-					{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius} de 50%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} de 15%
+					{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadiusBy} de 50%
 					'''
 			}
 
@@ -561,22 +562,22 @@ Mods: {
 
 			PrecursorHelmet: {
 				DisplayName: Casque de Précurseur
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} de 10%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} de 10%"
 			}
 
 			RGBBreastplate: {
 				DisplayName: Plastron RVB
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} de 25%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			RGBGreaves: {
 				DisplayName: Jambières RVB
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} de 25%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			RGBHelm: {
 				DisplayName: Casque RVB
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} de 1"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 
 			ClickerEffectHairDye: {
@@ -591,7 +592,7 @@ Mods: {
 
 			InfluencePotion: {
 				DisplayName: Potion d'Influence
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} de 20%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MiceDrill: {

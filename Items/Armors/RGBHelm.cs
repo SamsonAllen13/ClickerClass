@@ -7,12 +7,17 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Armors
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class RGBHelm : ClickerItem
 	{
+		public static readonly int ClickAmountDecreaseFlat = 1;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ClickAmountDecreaseFlat);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -58,7 +63,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerBonus += 1;
+			player.GetModPlayer<ClickerPlayer>().clickerBonus += ClickAmountDecreaseFlat;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)

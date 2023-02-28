@@ -49,7 +49,7 @@ Mods: {
 
 			InfluenceBuff: {
 				DisplayName: Воздействие
-				Description: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%"
+				Description: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			OverclockBuff: {
@@ -85,12 +85,13 @@ Mods: {
 
 		Common: {
 			Tooltips: {
-				IncreasesClickDamage: Увеличивает урон кликов
+				IncreasesClickDamageBy: Увеличивает урон кликов на {0}%
 				IncreasedClickerDamage: Увеличивает урон курсоров
 				IncreasesClickCritChance: Увеличивает шанс критического удара кликов
-				IncreasesBaseClickRadius: Увеличивает базовый радиус кликов
-				ReducesBaseClickRadius: Уменьшает базовый радиус кликов
-				ReducesAmountOfClicks: Снижает требуемое количество кликов для эффекта курсора
+				IncreasesBaseClickRadiusBy: Увеличивает базовый радиус кликов на {0}%
+				ReducesBaseClickRadiusBy: Уменьшает базовый радиус кликов на {0}%
+				ReducesAmountOfClicksBy: Снижает требуемое количество кликов для эффекта курсора на {0}%
+				ReducesAmountOfClicksByFlat: Снижает требуемое количество кликов для эффекта курсора на {0}
 				ClickingGloveEvery: Пока вы в бою, автоматически активирует курсор каждую(ые)
 				Clicker: Кликните на врага в пределах радиуса курсора и его видимости, чтобы нанести ему урон
 				MoreThanOneClick: "{0} кликов"
@@ -133,8 +134,8 @@ Mods: {
 				DisplayName: Модуль аимбота
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy@1}
 					Нажатие кнопки '{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}' переключает автонаводку, автоматически целясь в ближайших врагов
 					Если цель погибает или упущена, по возможности выбирается новая ближайшая цель
 					'''
@@ -336,7 +337,7 @@ Mods: {
 				Tooltip:
 					'''
 					Ваши клики оставляют зачарованную вспышку света, пока видимость аксессуара включена
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 2 единицы
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 2 единицы
 					'''
 			}
 
@@ -345,9 +346,9 @@ Mods: {
 				Tooltip:
 					'''
 					'Вы же не думаете, что кто-то будет играть в это, не так ли?'
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 50%
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 20%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy@1}
+					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy@2}
 					Ваши клики оставляют механическую вспышку света, пока видимость аксессуара включена
 					{$Mods.ClickerClass.Items.HandCream.Tooltip}
 					'''
@@ -405,15 +406,15 @@ Mods: {
 
 			MousePad: {
 				DisplayName: Коврик для мышки
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MouseTrap: {
 				DisplayName: Мышеловка
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 15%
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy@1}
 					У кликов есть небольшой шанс ненадолго проклясть вас
 					'''
 			}
@@ -428,7 +429,7 @@ Mods: {
 				Tooltip:
 					'''
 					Создаёт несколько монет, когда вы кликаете на врагов
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
@@ -466,7 +467,7 @@ Mods: {
 
 			Soda: {
 				DisplayName: Сода
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 1 единицу"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat} единицу"
 			}
 
 			StickyKeychain: {
@@ -492,7 +493,7 @@ Mods: {
 				DisplayName: Сапоги фрагмента мышки
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 10%
 					Увеличивает скорость передвижения на 20%
 					'''
 			}
@@ -501,7 +502,7 @@ Mods: {
 				DisplayName: Маска фрагмента мышки
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 6%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 6%
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} на 6%
 					'''
 			}
@@ -510,24 +511,24 @@ Mods: {
 				DisplayName: Костюм фрагмента мышки
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 14%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 14%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
 			MotherboardBoots: {
 				DisplayName: Сапоги материнской платы
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 6%"
 			}
 
 			MotherboardHelmet: {
 				DisplayName: Шлем материнской платы
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MotherboardSuit: {
 				DisplayName: Костюм материнской платы
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 6%"
 			}
 
 			OverclockBoots: {
@@ -537,20 +538,20 @@ Mods: {
 
 			OverclockHelmet: {
 				DisplayName: Шлем разгона
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 1 единицу"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat} единицу"
 			}
 
 			OverclockSuit: {
 				DisplayName: Костюм разгона
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 15%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 15%"
 			}
 
 			PrecursorBreastplate: {
 				DisplayName: Нагрудник предтечей
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 15%
-					{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius} на 50%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadiusBy@1}
 					'''
 			}
 
@@ -561,22 +562,22 @@ Mods: {
 
 			PrecursorHelmet: {
 				DisplayName: Шлем предтечей
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} на 10%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 10%"
 			}
 
 			RGBBreastplate: {
 				DisplayName: РГБ нагрудник
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			RGBGreaves: {
 				DisplayName: РГБ поножи
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 25%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			RGBHelm: {
 				DisplayName: РГБ шлем
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} на 1"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat} единицу"
 			}
 
 			ClickerEffectHairDye: {
@@ -591,7 +592,7 @@ Mods: {
 
 			InfluencePotion: {
 				DisplayName: Зелье влияния
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} на 20%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MiceDrill: {

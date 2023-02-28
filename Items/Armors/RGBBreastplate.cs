@@ -2,6 +2,7 @@ using ClickerClass.Core;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -9,6 +10,10 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Body)]
 	public class RGBBreastplate : ClickerItem
 	{
+		public static readonly float RadiusIncrease = 0.25f;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease * 100f);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -30,7 +35,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerRadius += 0.5f;
+			player.GetModPlayer<ClickerPlayer>().clickerRadius += 2 * RadiusIncrease;
 		}
 
 		public override void AddRecipes()

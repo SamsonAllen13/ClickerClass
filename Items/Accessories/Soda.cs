@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -7,6 +8,10 @@ namespace ClickerClass.Items.Accessories
 	[AutoloadEquip(EquipType.Waist)]
 	public class Soda : ClickerItem
 	{
+		public static readonly int ClickAmountDecreaseFlat = 1;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ClickAmountDecreaseFlat);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -23,7 +28,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerBonus += 1;
+			player.GetModPlayer<ClickerPlayer>().clickerBonus += ClickAmountDecreaseFlat;
 		}
 	}
 }

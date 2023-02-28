@@ -1,6 +1,7 @@
 using ClickerClass.Utilities;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -8,6 +9,10 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Head)]
 	public class MotherboardHelmet : ClickerItem
 	{
+		public static readonly float RadiusIncrease = 0.2f;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease * 100f);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -24,7 +29,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerRadius += 0.4f;
+			player.GetModPlayer<ClickerPlayer>().clickerRadius += 2 * RadiusIncrease;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)

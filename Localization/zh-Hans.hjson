@@ -49,7 +49,7 @@ Mods: {
 
 			InfluenceBuff: {
 				DisplayName: 影响力
-				Description: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}20%"
+				Description: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			OverclockBuff: {
@@ -85,12 +85,13 @@ Mods: {
 
 		Common: {
 			Tooltips: {
-				IncreasesClickDamage: 增加点击伤害
+				IncreasesClickDamageBy: 增加点击伤害{0}%
 				IncreasedClickerDamage: 增加点击器伤害
 				IncreasesClickCritChance: 增加点击暴击率
-				IncreasesBaseClickRadius: 增加基础点击范围
-				ReducesBaseClickRadius: 减少基础点击范围
-				ReducesAmountOfClicks: 减少触发点击效果所需的点击数
+				IncreasesBaseClickRadiusBy: 增加基础点击范围{0}%
+				ReducesBaseClickRadiusBy: 减少基础点击范围{0}%
+				ReducesAmountOfClicksBy: 减少触发点击效果所需的点击数{0}%
+				ReducesAmountOfClicksByFlat: 减少触发点击效果所需的点击数{0}次
 				ClickingGloveEvery: 进入战斗后,每隔一段时间自动点击一次,时间间隔:
 				Clicker: 点击无方块阻挡且在圆圈范围内的敌人对其造成伤害
 				MoreThanOneClick: "{0}次点击"
@@ -133,8 +134,8 @@ Mods: {
 				DisplayName: 自动瞄准模块
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy@1}
 					按下'{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}'键切换自动瞄准,自动锁定附近的敌人
 					如果锁定的敌人死亡或消失,将搜寻并锁定附近一个新的敌人
 					'''
@@ -336,7 +337,7 @@ Mods: {
 				Tooltip:
 					'''
 					每次点击都会喷发出闪耀的光芒,调整饰品可见性开关光芒显示
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}2点
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}2点
 					'''
 			}
 
@@ -345,9 +346,9 @@ Mods: {
 				Tooltip:
 					'''
 					'你不会真的认为有人会玩这个吧?'
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}50%
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}20%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
+					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy}
 					每次点击会产生一些光尘,能够微弱的照明,调整饰品可见性开关光芒显示
 					{$Mods.ClickerClass.Items.HandCream.Tooltip}
 					'''
@@ -405,15 +406,15 @@ Mods: {
 
 			MousePad: {
 				DisplayName: 鼠标垫
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}25%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MouseTrap: {
 				DisplayName: 老鼠夹
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}15%
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy@1}
 					点击时有很小的概率短暂被诅咒
 					'''
 			}
@@ -428,7 +429,7 @@ Mods: {
 				Tooltip:
 					'''
 					点击敌人时生成一些硬币
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
@@ -466,7 +467,7 @@ Mods: {
 
 			Soda: {
 				DisplayName: 苏打汽水
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}1次"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			StickyKeychain: {
@@ -492,7 +493,7 @@ Mods: {
 				DisplayName: 鼠标靴子
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}10%
 					增加20%移动速度
 					'''
 			}
@@ -501,7 +502,7 @@ Mods: {
 				DisplayName: 鼠标面具
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}6%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}6%
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance}6%
 					'''
 			}
@@ -510,24 +511,24 @@ Mods: {
 				DisplayName: 鼠标盔甲
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}14%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}25%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}14%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
 			MotherboardBoots: {
 				DisplayName: 主板靴子
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}6%"
 			}
 
 			MotherboardHelmet: {
 				DisplayName: 主板头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}20%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MotherboardSuit: {
 				DisplayName: 主板盔甲
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}6%"
 			}
 
 			OverclockBoots: {
@@ -537,20 +538,20 @@ Mods: {
 
 			OverclockHelmet: {
 				DisplayName: 超频头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}1次"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			OverclockSuit: {
 				DisplayName: 超频盔甲
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}15%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}15%"
 			}
 
 			PrecursorBreastplate: {
 				DisplayName: 先驱者胸甲
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}15%
-					{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius}50%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadiusBy@1}
 					'''
 			}
 
@@ -561,22 +562,22 @@ Mods: {
 
 			PrecursorHelmet: {
 				DisplayName: 先驱者头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}10%"
 			}
 
 			RGBBreastplate: {
 				DisplayName: RGB胸甲
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}25%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			RGBGreaves: {
 				DisplayName: RGB护胫
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}25%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			RGBHelm: {
 				DisplayName: RGB头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}1次"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			ClickerEffectHairDye: {
@@ -591,7 +592,7 @@ Mods: {
 
 			InfluencePotion: {
 				DisplayName: 影响力药水
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}20%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MiceDrill: {

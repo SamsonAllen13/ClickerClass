@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -7,6 +8,12 @@ namespace ClickerClass.Items.Accessories
 	[AutoloadEquip(EquipType.Waist)]
 	public class GamerCrate : ClickerItem
 	{
+		public static readonly float RadiusIncrease = 0.5f;
+		public static readonly float DamageIncrease = 0.1f;
+		public static readonly float ClickAmountDecrease = 0.2f;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease * 100f, RadiusIncrease * 100f, ClickAmountDecrease * 100f);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -25,9 +32,9 @@ namespace ClickerClass.Items.Accessories
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.clickerRadius += 1f;
-			player.GetDamage<ClickerDamage>() += 0.10f;
-			clickerPlayer.clickerBonusPercent -= 0.20f;
+			clickerPlayer.clickerRadius += 2 * RadiusIncrease;
+			player.GetDamage<ClickerDamage>() += DamageIncrease;
+			clickerPlayer.clickerBonusPercent -= ClickAmountDecrease;
 			clickerPlayer.SetAutoReuseEffect(HandCream.autoReuseEffect);
 			if (!hideVisual)
 			{

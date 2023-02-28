@@ -85,9 +85,11 @@ Mods: {
 
 		Common: {
 			Tooltips: {
+				IncreasesMovementSpeedBy: Увеличивает скорость передвижения на {0}%
 				IncreasesClickDamageBy: Увеличивает урон кликов на {0}%
-				IncreasedClickerDamage: Увеличивает урон курсоров
-				IncreasesClickCritChance: Увеличивает шанс критического удара кликов
+				IncreasesClickDamageByFlat: Увеличивает урон кликов на {0}
+				IncreasedClickerDamage: "{0}%-ное увеличение урона курсоров"
+				IncreasesClickCritChanceBy: Увеличивает шанс критического удара кликов на {0}%
 				IncreasesBaseClickRadiusBy: Увеличивает базовый радиус кликов на {0}%
 				ReducesBaseClickRadiusBy: Уменьшает базовый радиус кликов на {0}%
 				ReducesAmountOfClicksBy: Снижает требуемое количество кликов для эффекта курсора на {0}%
@@ -287,12 +289,12 @@ Mods: {
 
 			ChocolateChip: {
 				DisplayName: Кусок шоколада
-				Tooltip: Через каждые 15 кликов выпускает скопление наносящего урон шоколада
+				Tooltip: Через каждые {0} кликов выпускает скопление наносящего урон шоколада
 			}
 
 			BigRedButton: {
 				DisplayName: Большая красная кнопка
-				Tooltip: Через каждые 25 кликов вызывает огромный огненный взрыв
+				Tooltip: Через каждые {0} кликов вызывает огромный огненный взрыв
 			}
 
 			ChocolateMilkCookies: {
@@ -315,7 +317,7 @@ Mods: {
 
 			ClickerEmblem: {
 				DisplayName: Эмблема нажимателя
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage} на 15%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}"
 			}
 
 			ClickingGlove: {
@@ -337,7 +339,7 @@ Mods: {
 				Tooltip:
 					'''
 					Ваши клики оставляют зачарованную вспышку света, пока видимость аксессуара включена
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 2 единицы
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageByFlat}
 					'''
 			}
 
@@ -392,7 +394,7 @@ Mods: {
 
 			Milk: {
 				DisplayName: Стакан молока
-				Tooltip: Увеличивает урон кликов до 15% в зависимости от количества совершённых кликов в секунду
+				Tooltip: Увеличивает урон кликов до {0}% в зависимости от количества совершённых кликов в секунду
 			}
 
 			MilkCookies: {
@@ -421,7 +423,7 @@ Mods: {
 
 			PortableParticleAccelerator: {
 				DisplayName: Карманный ускоритель частиц
-				Tooltip: Клики в пределах 50% общего радиуса вашего курсора наносят на 8 больше урона
+				Tooltip: Клики в пределах {0}% общего радиуса вашего курсора наносят на 8 больше урона
 			}
 
 			GoldenTicket: {
@@ -443,7 +445,7 @@ Mods: {
 				Tooltip:
 					'''
 					Будучи надетым, вокруг вас вращаются круги, наделяющие вас силой
-					При наведении курсора на круг, накапливает до 10 бесплатных критических ударов курсора
+					При наведении курсора на круг, накапливает до {0} бесплатных критических ударов курсора
 					'''
 			}
 
@@ -452,7 +454,7 @@ Mods: {
 				Tooltip:
 					'''
 					Будучи надетым, вокруг вас вращаются круги, наделяющие вас силой
-					При наведении курсора на круг, увеличивает радиус курсора до 100%
+					При наведении курсора на круг, увеличивает радиус курсора до {0}%
 					'''
 			}
 
@@ -472,14 +474,14 @@ Mods: {
 
 			StickyKeychain: {
 				DisplayName: Липкая связка ключей
-				Tooltip: Каждые 10 кликов приклеивает наносящую урон слизь на экран
+				Tooltip: Каждые {0} кликов приклеивает наносящую урон слизь на экран
 			}
 
 			TheScroller: {
 				DisplayName: Колёсико
 				Tooltip:
 					'''
-					{$CommonItems.FlightAndSlowfall}
+					{$CommonItemTooltip.FlightAndSlowfall}
 					Удерживайте ВНИЗ, чтобы быстрее падать
 					'''
 			}
@@ -493,8 +495,8 @@ Mods: {
 				DisplayName: Сапоги фрагмента мышки
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 10%
-					Увеличивает скорость передвижения на 20%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy@1}
 					'''
 			}
 
@@ -502,8 +504,8 @@ Mods: {
 				DisplayName: Маска фрагмента мышки
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 6%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} на 6%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChanceBy}
 					'''
 			}
 
@@ -511,14 +513,14 @@ Mods: {
 				DisplayName: Костюм фрагмента мышки
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 14%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
 			MotherboardBoots: {
 				DisplayName: Сапоги материнской платы
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			MotherboardHelmet: {
@@ -528,12 +530,12 @@ Mods: {
 
 			MotherboardSuit: {
 				DisplayName: Костюм материнской платы
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			OverclockBoots: {
 				DisplayName: Сапоги разгона
-				Tooltip: Увеличивает скорость передвижения на 10%
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy}"
 			}
 
 			OverclockHelmet: {
@@ -543,7 +545,7 @@ Mods: {
 
 			OverclockSuit: {
 				DisplayName: Костюм разгона
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 15%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			PrecursorBreastplate: {
@@ -557,12 +559,12 @@ Mods: {
 
 			PrecursorGreaves: {
 				DisplayName: Поножи предтечей
-				Tooltip: Увеличивает скорость передвижения на 15%
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy}"
 			}
 
 			PrecursorHelmet: {
 				DisplayName: Шлем предтечей
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} на 10%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			RGBBreastplate: {
@@ -946,11 +948,11 @@ Mods: {
 			Motherboard: Нажмите ПКМ, чтобы поставить датчик расширения радиуса курсора
 			Overclock:
 				'''
-				Каждые 100 кликов на короткий промежуток времени дарует бафф «{$Mods.ClickerClass.BuffName.OverclockBuff}», заставляя каждый клик активировать свой эффект
-				Пока активен «{$Mods.ClickerClass.BuffName.OverclockBuff}», вы наносите на 50% меньше урона от клика
+				Каждые {0} кликов на короткий промежуток времени дарует бафф «{$Mods.ClickerClass.Buffs.OverclockBuff.DisplayName}», заставляя каждый клик активировать свой эффект
+				Пока активен «{$Mods.ClickerClass.Buffs.OverclockBuff.DisplayName}», вы наносите на {1}% меньше урона от клика
 				'''
 			Precursor: Во время боя ваш курсор постоянно оставляет после себя наносящие урон послеобразы
-			RGB: Каждые 20 кликов вызывает цветовой всплеск из вашего курсора
+			RGB: Каждые {0} кликов вызывает цветовой всплеск из вашего курсора
 		}
 
 		InfoDisplays.CPSInfoDisplay.DisplayName: Кликов в секунду
@@ -1048,7 +1050,7 @@ Mods: {
 
 			Lacerate: {
 				Name: Разрыв
-				Description: Накладывает дебафф «{$Mods.ClickerClass.BuffName.Gouge}», нанося 30 единиц урона в секунду
+				Description: Накладывает дебафф «{$Mods.ClickerClass.Buffs.Gouge.DisplayName}», нанося 30 единиц урона в секунду
 			}
 
 			Starfall: {
@@ -1198,7 +1200,7 @@ Mods: {
 
 			AutoClick: {
 				Name: Авто-клик
-				Description: Дарует бафф «{$Mods.ClickerClass.BuffName.AutoClick}», снижая частоту кликов, но даруя авто-клики
+				Description: Дарует бафф «{$Mods.ClickerClass.Buffs.AutoClick.DisplayName}», снижая частоту кликов, но даруя авто-клики
 			}
 
 			Siphon: {

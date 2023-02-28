@@ -85,9 +85,11 @@ Mods: {
 
 		Common: {
 			Tooltips: {
+				IncreasesMovementSpeedBy: 增加{0}%移动速度
 				IncreasesClickDamageBy: 增加点击伤害{0}%
-				IncreasedClickerDamage: 增加点击器伤害
-				IncreasesClickCritChance: 增加点击暴击率
+				IncreasesClickDamageByFlat: 增加点击伤害{0}点
+				IncreasedClickerDamage: "{0}%增加点击器伤害"
+				IncreasesClickCritChanceBy: 增加点击暴击率{0}%
 				IncreasesBaseClickRadiusBy: 增加基础点击范围{0}%
 				ReducesBaseClickRadiusBy: 减少基础点击范围{0}%
 				ReducesAmountOfClicksBy: 减少触发点击效果所需的点击数{0}%
@@ -287,12 +289,12 @@ Mods: {
 
 			ChocolateChip: {
 				DisplayName: 巧克力屑
-				Tooltip: 每15次点击释放出大量能造成伤害的巧克力
+				Tooltip: 每{0}次点击释放出大量能造成伤害的巧克力
 			}
 
 			BigRedButton: {
 				DisplayName: 红色大按钮
-				Tooltip: 每25次点击引起大型炽热爆炸
+				Tooltip: 每{0}次点击引起大型炽热爆炸
 			}
 
 			ChocolateMilkCookies: {
@@ -315,7 +317,7 @@ Mods: {
 
 			ClickerEmblem: {
 				DisplayName: 点击大师徽章
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}15%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}"
 			}
 
 			ClickingGlove: {
@@ -337,7 +339,7 @@ Mods: {
 				Tooltip:
 					'''
 					每次点击都会喷发出闪耀的光芒,调整饰品可见性开关光芒显示
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}2点
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageByFlat}
 					'''
 			}
 
@@ -346,7 +348,7 @@ Mods: {
 				Tooltip:
 					'''
 					'你不会真的认为有人会玩这个吧?'
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
 					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy}
 					每次点击会产生一些光尘,能够微弱的照明,调整饰品可见性开关光芒显示
@@ -392,7 +394,7 @@ Mods: {
 
 			Milk: {
 				DisplayName: 一杯牛奶
-				Tooltip: 根据每秒点击量增加最多15%点击伤害
+				Tooltip: 根据每秒点击量增加最多{0}%点击伤害
 			}
 
 			MilkCookies: {
@@ -421,7 +423,7 @@ Mods: {
 
 			PortableParticleAccelerator: {
 				DisplayName: 便携式粒子加速器
-				Tooltip: 点击范围圆圈内靠近自身50%半径内的区域能够额外造成8点伤害
+				Tooltip: 点击范围圆圈内靠近自身{0}%半径内的区域能够额外造成8点伤害
 			}
 
 			GoldenTicket: {
@@ -443,7 +445,7 @@ Mods: {
 				Tooltip:
 					'''
 					装备后,赋能圈将围绕着你旋转
-					将光标保持在赋能圈内将对A级勋章进行充能,获得最多10次必定暴击的点击
+					将光标保持在赋能圈内将对A级勋章进行充能,获得最多{0}次必定暴击的点击
 					'''
 			}
 
@@ -452,7 +454,7 @@ Mods: {
 				Tooltip:
 					'''
 					装备后,赋能圈将围绕着你旋转
-					将光标保持在赋能圈内将对F级勋章进行充能,增加最多100%点击范围
+					将光标保持在赋能圈内将对F级勋章进行充能,增加最多{0}%点击范围
 					'''
 			}
 
@@ -472,14 +474,14 @@ Mods: {
 
 			StickyKeychain: {
 				DisplayName: 凝胶钥匙串
-				Tooltip: 每10次点击,将能造成伤害的凝胶粘在屏幕上
+				Tooltip: 每{0}次点击,将能造成伤害的凝胶粘在屏幕上
 			}
 
 			TheScroller: {
 				DisplayName: 滚动条
 				Tooltip:
 					'''
-					{$CommonItems.FlightAndSlowfall}
+					{$CommonItemTooltip.FlightAndSlowfall}
 					按住下键加速下落
 					'''
 			}
@@ -493,8 +495,8 @@ Mods: {
 				DisplayName: 鼠标靴子
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}10%
-					增加20%移动速度
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy@1}
 					'''
 			}
 
@@ -502,8 +504,8 @@ Mods: {
 				DisplayName: 鼠标面具
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}6%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance}6%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChanceBy}6%
 					'''
 			}
 
@@ -511,14 +513,14 @@ Mods: {
 				DisplayName: 鼠标盔甲
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}14%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
 			MotherboardBoots: {
 				DisplayName: 主板靴子
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			MotherboardHelmet: {
@@ -528,12 +530,12 @@ Mods: {
 
 			MotherboardSuit: {
 				DisplayName: 主板盔甲
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			OverclockBoots: {
 				DisplayName: 超频靴子
-				Tooltip: 增加10%移动速度
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy}"
 			}
 
 			OverclockHelmet: {
@@ -543,7 +545,7 @@ Mods: {
 
 			OverclockSuit: {
 				DisplayName: 超频盔甲
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}15%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			PrecursorBreastplate: {
@@ -557,12 +559,12 @@ Mods: {
 
 			PrecursorGreaves: {
 				DisplayName: 先驱者护胫
-				Tooltip: 增加15%移动速度
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy}"
 			}
 
 			PrecursorHelmet: {
 				DisplayName: 先驱者头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}10%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			RGBBreastplate: {
@@ -946,11 +948,11 @@ Mods: {
 			Motherboard: 右键单击在视野中点击器范围内的某个位置放置范围延伸元件
 			Overclock:
 				'''
-				每100次点击,使你获得短暂的'超频',每次点击都会触发点击效果
-				当超频激活时,你的点击伤害减少50%
+				每{0}次点击,使你获得短暂的'超频',每次点击都会触发点击效果
+				当超频激活时,你的点击伤害减少{1}%
 				'''
 			Precursor: 进入战斗后,光标会不断留下能够点击一次的残像
-			RGB: 每20次点击,光标处就会产生色彩爆发
+			RGB: 每{0}次点击,光标处就会产生色彩爆发
 		}
 
 		InfoDisplays.CPSInfoDisplay.DisplayName: 次点击每秒
@@ -1280,7 +1282,7 @@ Mods: {
 		Prefixes: {
 			ClickerRadius: {
 				DisplayName: 延伸的
-				Tooltip: +15% 基础点击范围
+				Tooltip: +{0}% 基础点击范围
 			}
 
 			Elite.DisplayName: 精英的

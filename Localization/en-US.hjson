@@ -85,9 +85,11 @@ Mods: {
 
 		Common: {
 			Tooltips: {
+				IncreasesMovementSpeedBy: Increases movement speed by {0}%
 				IncreasesClickDamageBy: Increases click damage by {0}%
-				IncreasedClickerDamage: increased clicker damage
-				IncreasesClickCritChance: Increases click critical strike chance
+				IncreasesClickDamageByFlat: Increases click damage by {0}
+				IncreasedClickerDamage: "{0}% increased clicker damage"
+				IncreasesClickCritChanceBy: Increases click critical strike chance by {0}%
 				IncreasesBaseClickRadiusBy: Increases your base click radius by {0}%
 				ReducesBaseClickRadiusBy: Reduces your base click radius by {0}%
 				ReducesAmountOfClicksBy: Reduces the amount of clicks required for a click effect by {0}%
@@ -287,12 +289,12 @@ Mods: {
 
 			ChocolateChip: {
 				DisplayName: Chocolate Chip
-				Tooltip: Every 15 clicks releases a burst of damaging chocolate
+				Tooltip: Every {0} clicks releases a burst of damaging chocolate
 			}
 
 			BigRedButton: {
 				DisplayName: Big Red Button
-				Tooltip: Every 25 clicks causes a large, fiery explosion
+				Tooltip: Every {0} clicks causes a large, fiery explosion
 			}
 
 			ChocolateMilkCookies: {
@@ -315,7 +317,7 @@ Mods: {
 
 			ClickerEmblem: {
 				DisplayName: Clicker Emblem
-				Tooltip: 15% {$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}"
 			}
 
 			ClickingGlove: {
@@ -337,7 +339,7 @@ Mods: {
 				Tooltip:
 					'''
 					Your clicks produce an enchanted burst of light, while accessory is visible
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} by 2
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageByFlat}
 					'''
 			}
 
@@ -392,7 +394,7 @@ Mods: {
 
 			Milk: {
 				DisplayName: Glass of Milk
-				Tooltip: Gain up to 15% clicker damage based on your amount of clicks within a second
+				Tooltip: Gain up to {0}% clicker damage based on your amount of clicks within a second
 			}
 
 			MilkCookies: {
@@ -421,7 +423,7 @@ Mods: {
 
 			PortableParticleAccelerator: {
 				DisplayName: Portable Particle Accelerator
-				Tooltip: Clickers within the inner 50% of your clicker radius deal 8 more damage
+				Tooltip: Clickers within the inner {0}% of your clicker radius deal 8 more damage
 			}
 
 			GoldenTicket: {
@@ -443,7 +445,7 @@ Mods: {
 				Tooltip:
 					'''
 					While equipped, an empowering circle will rotate around you
-					Keeping your cursor within the circle will build up to 10 free clicker critical strikes
+					Keeping your cursor within the circle will build up to {0} free clicker critical strikes
 					'''
 			}
 
@@ -452,7 +454,7 @@ Mods: {
 				Tooltip:
 					'''
 					While equipped, an empowering circle will rotate around you
-					Keeping your cursor within the circle will build up to 100% increased clicker radius
+					Keeping your cursor within the circle will build up to {0}% increased clicker radius
 					'''
 			}
 
@@ -472,14 +474,14 @@ Mods: {
 
 			StickyKeychain: {
 				DisplayName: Sticky Keychain
-				Tooltip: Every 10 clicks sticks damaging slime on to your screen
+				Tooltip: Every {0} clicks sticks damaging slime on to your screen
 			}
 
 			TheScroller: {
 				DisplayName: The Scroller
 				Tooltip:
 					'''
-					{$CommonItems.FlightAndSlowfall}
+					{$CommonItemTooltip.FlightAndSlowfall}
 					Hold DOWN to fall faster
 					'''
 			}
@@ -493,8 +495,8 @@ Mods: {
 				DisplayName: Mice Boots
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} by 10%
-					Increases movement speed by 20%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy@1}
 					'''
 			}
 
@@ -502,8 +504,8 @@ Mods: {
 				DisplayName: Mice Mask
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} by 6%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance} by 6%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChanceBy@1}
 					'''
 			}
 
@@ -518,7 +520,7 @@ Mods: {
 
 			MotherboardBoots: {
 				DisplayName: Motherboard Boots
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} by 6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			MotherboardHelmet: {
@@ -528,12 +530,12 @@ Mods: {
 
 			MotherboardSuit: {
 				DisplayName: Motherboard Suit
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} by 6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			OverclockBoots: {
 				DisplayName: Overclock Boots
-				Tooltip: Increases movement speed by 10%
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy}"
 			}
 
 			OverclockHelmet: {
@@ -543,7 +545,7 @@ Mods: {
 
 			OverclockSuit: {
 				DisplayName: Overclock Suit
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} by 15%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			PrecursorBreastplate: {
@@ -557,12 +559,12 @@ Mods: {
 
 			PrecursorGreaves: {
 				DisplayName: Precursor Greaves
-				Tooltip: Increases movement speed by 15%
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy}"
 			}
 
 			PrecursorHelmet: {
 				DisplayName: Precursor Helmet
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy} by 10%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			RGBBreastplate: {
@@ -946,11 +948,11 @@ Mods: {
 			Motherboard: Right click to place a radius extending sensor
 			Overclock:
 				'''
-				Every 100 clicks briefly grants you 'Overclock', making every click trigger its effect
-				While Overclock is active, you deal 50% less click damage
+				Every {0} clicks briefly grants you 'Overclock', making every click trigger its effect
+				While Overclock is active, you deal {1}% less click damage
 				'''
 			Precursor: While in combat, your cursor constantly leaves behind damaging afterimages
-			RGB: Every 20 clicks propels a chromatic burst from your cursor
+			RGB: Every {0} clicks propels a chromatic burst from your cursor
 		}
 
 		InfoDisplays.CPSInfoDisplay.DisplayName: Clicks per second
@@ -1280,7 +1282,7 @@ Mods: {
 		Prefixes: {
 			ClickerRadius: {
 				DisplayName: Clicker Radius
-				Tooltip: +15% base clicker radius
+				Tooltip: +{0}% base clicker radius
 			}
 
 			Elite.DisplayName: Elite

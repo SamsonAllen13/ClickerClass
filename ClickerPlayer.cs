@@ -366,9 +366,10 @@ namespace ClickerClass
 		internal void AddClickAmount()
 		{
 			clickAmount++;
-			if (accSMedalAmount > 20)
+			int sMedalStep = SMedal.ChargeMeterStep;
+			if (accSMedalAmount >= sMedalStep)
 			{
-				accSMedalAmount -= 20;
+				accSMedalAmount -= sMedalStep;
 			}
 		}
 
@@ -1211,7 +1212,7 @@ namespace ClickerClass
 			//Portable Particle Accelerator acc
 			if (accPortableParticleAccelerator && Main.myPlayer == Player.whoAmI)
 			{
-				float radius = ClickerRadiusReal * 0.5f; //No need to check motherboard as that isn't ever relevant with half the radius
+				float radius = ClickerRadiusReal * PortableParticleAccelerator.InnerRadiusRatio / 100f; //No need to check motherboard as that isn't ever relevant with < 100% the radius
 				if (Player.DistanceSQ(clickerPosition) < radius * radius)
 				{
 					accPortableParticleAccelerator2 = true;
@@ -1260,7 +1261,7 @@ namespace ClickerClass
 				}
 
 				//A Medal effect
-				if (accAMedalAmount < 200 && clickerSelected && AccAMedal)
+				if (accAMedalAmount < AMedal.ChargeMeterMax && clickerSelected && AccAMedal)
 				{
 					int aMedalType = ModContent.ProjectileType<AMedalPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
@@ -1284,7 +1285,7 @@ namespace ClickerClass
 				}
 
 				//F Medal effect
-				if (accFMedalAmount < 200 && clickerSelected && AccFMedal)
+				if (accFMedalAmount < FMedal.ChargeMeterMax && clickerSelected && AccFMedal)
 				{
 					int fMedalType = ModContent.ProjectileType<FMedalPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
@@ -1323,7 +1324,7 @@ namespace ClickerClass
 							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
 							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
 							{
-								if (medalProj.type == sMedalType1 && accFMedalAmount < 200) //F Medal Equivalent
+								if (medalProj.type == sMedalType1 && accFMedalAmount < FMedal.ChargeMeterMax) //F Medal Equivalent
 								{
 									accFMedalAmount += 3;
 									medalProj.ai[1] = 1f;
@@ -1332,7 +1333,7 @@ namespace ClickerClass
 									dust.noGravity = true;
 									dust.velocity = -offset * 0.05f;
 								}
-								if (medalProj.type == sMedalType2 && accAMedalAmount < 200) //A Medal Equivalent
+								if (medalProj.type == sMedalType2 && accAMedalAmount < AMedal.ChargeMeterMax) //A Medal Equivalent
 								{
 									accAMedalAmount += 3;
 									medalProj.ai[1] = 1f;
@@ -1341,7 +1342,7 @@ namespace ClickerClass
 									dust.noGravity = true;
 									dust.velocity = -offset * 0.05f;
 								}
-								if (medalProj.type == sMedalType3 && accSMedalAmount < 200)
+								if (medalProj.type == sMedalType3 && accSMedalAmount < SMedal.ChargeMeterMax)
 								{
 									accSMedalAmount += 3;
 									medalProj.ai[1] = 1f;
@@ -1380,7 +1381,7 @@ namespace ClickerClass
 						Projectile.NewProjectile(Player.GetSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType3, 0, 0f, Player.whoAmI, 2, 0.5f);
 					}
 
-					if (accSMedalAmount > 20)
+					if (accSMedalAmount >= SMedal.ChargeMeterStep)
 					{
 						clickerBonusPercent -= 0.25f;
 					}
@@ -1424,10 +1425,11 @@ namespace ClickerClass
 			//Milk acc
 			if (accGlassOfMilk)
 			{
-				float bonusDamage = (float)(clickerPerSecond * 0.015f);
-				if (bonusDamage >= 0.15f)
+				float increase = Milk.DamageIncrease / 100f;
+				float bonusDamage = (float)(clickerPerSecond * increase / 10f);
+				if (bonusDamage >= increase)
 				{
-					bonusDamage = 0.15f;
+					bonusDamage = increase;
 				}
 				Player.GetDamage<ClickerDamage>() += bonusDamage;
 			}
@@ -1534,14 +1536,17 @@ namespace ClickerClass
 
 			if (ClickerSystem.IsClickerWeaponProj(proj))
 			{
-				if (accAMedalAmount >= 20)
+				int aMedalStep = AMedal.ChargeMeterStep;
+				if (accAMedalAmount >= aMedalStep)
 				{
 					crit = true;
-					accAMedalAmount -= 20;
+					accAMedalAmount -= aMedalStep;
 				}
-				if (accFMedalAmount >= 20)
+
+				int fMedalStep = FMedal.ChargeMeterStep;
+				if (accFMedalAmount >= fMedalStep)
 				{
-					accFMedalAmount -= 20;
+					accFMedalAmount -= fMedalStep;
 				}
 			}
 		}

@@ -10,9 +10,9 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Body)]
 	public class RGBBreastplate : ClickerItem
 	{
-		public static readonly float RadiusIncrease = 0.25f;
+		public static readonly int RadiusIncrease = 25;
 
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease * 100f);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease);
 
 		public override void SetStaticDefaults()
 		{
@@ -35,7 +35,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerRadius += 2 * RadiusIncrease;
+			player.GetModPlayer<ClickerPlayer>().clickerRadius += 2 * RadiusIncrease / 100f;
 		}
 
 		public override void AddRecipes()

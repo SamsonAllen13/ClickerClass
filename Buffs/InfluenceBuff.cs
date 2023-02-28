@@ -7,9 +7,9 @@ namespace ClickerClass.Buffs
 {
 	public class InfluenceBuff : ModBuff
 	{
-		public static readonly float RadiusIncrease = InfluencePotion.RadiusIncrease;
+		public static readonly int RadiusIncrease = InfluencePotion.RadiusIncrease;
 
-		public override LocalizedText Description => base.Description.WithFormatArgs(RadiusIncrease * 100f);
+		public override LocalizedText Description => base.Description.WithFormatArgs(RadiusIncrease);
 
 		public override void SetStaticDefaults()
 		{
@@ -18,7 +18,7 @@ namespace ClickerClass.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerRadius += 2 * RadiusIncrease;
+			player.GetModPlayer<ClickerPlayer>().clickerRadius += 2 * RadiusIncrease / 100f;
 		}
 	}
 }

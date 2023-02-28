@@ -11,10 +11,10 @@ namespace ClickerClass.Items.Accessories
 	[AutoloadEquip(EquipType.Face)]
 	public class AimbotModule : ClickerItem
 	{
-		public static readonly float DamageIncrease = 0.1f;
-		public static readonly float RadiusIncrease = 0.1f;
+		public static readonly int DamageIncrease = 10;
+		public static readonly int RadiusIncrease = 10;
 
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease * 100f, RadiusIncrease * 100f);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease, RadiusIncrease);
 
 		public override void SetStaticDefaults()
 		{
@@ -34,7 +34,7 @@ namespace ClickerClass.Items.Accessories
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			player.GetDamage<ClickerDamage>() += DamageIncrease / 100f;
-			clickerPlayer.clickerRadius += 2 * RadiusIncrease;
+			clickerPlayer.clickerRadius += 2 * RadiusIncrease / 100f;
 			clickerPlayer.accAimbotModule = true;
 			clickerPlayer.accAimbotModule2 = true;
 		}

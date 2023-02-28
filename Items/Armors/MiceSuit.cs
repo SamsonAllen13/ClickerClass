@@ -14,10 +14,10 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Body)]
 	public class MiceSuit : ClickerItem
 	{
-		public static readonly float DamageIncrease = 0.14f;
-		public static readonly float RadiusIncrease = 0.25f;
+		public static readonly int DamageIncrease = 14;
+		public static readonly int RadiusIncrease = 25;
 
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease * 100f, RadiusIncrease * 100f);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease, RadiusIncrease);
 
 		public static Lazy<Asset<Texture2D>> glowmask;
 
@@ -50,8 +50,8 @@ namespace ClickerClass.Items.Armors
 		public override void UpdateEquip(Player player)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			player.GetDamage<ClickerDamage>() += DamageIncrease;
-			clickerPlayer.clickerRadius += 2 * RadiusIncrease;
+			player.GetDamage<ClickerDamage>() += DamageIncrease / 100f;
+			clickerPlayer.clickerRadius += 2 * RadiusIncrease / 100f;
 		}
 
 		public override void PostUpdate()

@@ -8,11 +8,11 @@ namespace ClickerClass.Items.Accessories
 	[AutoloadEquip(EquipType.Waist)]
 	public class GamerCrate : ClickerItem
 	{
-		public static readonly float RadiusIncrease = 0.5f;
-		public static readonly float DamageIncrease = 0.1f;
-		public static readonly float ClickAmountDecrease = 0.2f;
+		public static readonly int RadiusIncrease = 50;
+		public static readonly int DamageIncrease = 10;
+		public static readonly int ClickAmountDecrease = 20;
 
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease * 100f, RadiusIncrease * 100f, ClickAmountDecrease * 100f);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease, RadiusIncrease, ClickAmountDecrease);
 
 		public override void SetStaticDefaults()
 		{
@@ -32,9 +32,9 @@ namespace ClickerClass.Items.Accessories
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.clickerRadius += 2 * RadiusIncrease;
-			player.GetDamage<ClickerDamage>() += DamageIncrease;
-			clickerPlayer.clickerBonusPercent -= ClickAmountDecrease;
+			clickerPlayer.clickerRadius += 2 * RadiusIncrease / 100f;
+			player.GetDamage<ClickerDamage>() += DamageIncrease / 100f;
+			clickerPlayer.clickerBonusPercent -= ClickAmountDecrease / 100f;
 			clickerPlayer.SetAutoReuseEffect(HandCream.autoReuseEffect);
 			if (!hideVisual)
 			{

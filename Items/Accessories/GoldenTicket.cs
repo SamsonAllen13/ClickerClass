@@ -6,9 +6,9 @@ namespace ClickerClass.Items.Accessories
 {
 	public class GoldenTicket : ClickerItem
 	{
-		public static readonly float RadiusIncrease = 0.1f;
+		public static readonly int RadiusIncrease = 10;
 
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease * 100f);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease);
 
 		public override void SetStaticDefaults()
 		{
@@ -28,7 +28,7 @@ namespace ClickerClass.Items.Accessories
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.clickerRadius += 2 * RadiusIncrease;
+			clickerPlayer.clickerRadius += 2 * RadiusIncrease / 100f;
 			clickerPlayer.accGoldenTicket = true;
 		}
 	}

@@ -9,9 +9,9 @@ namespace ClickerClass.Items.Consumables
 {
 	public class InfluencePotion : ClickerItem
 	{
-		public static readonly float RadiusIncrease = 0.2f;
+		public static readonly int RadiusIncrease = 20;
 
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease * 100f);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease);
 
 		public override void SetStaticDefaults()
 		{

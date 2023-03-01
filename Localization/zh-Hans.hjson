@@ -24,7 +24,7 @@ Mods: {
 
 			Embrittle: {
 				DisplayName: 脆化
-				Description: 点击会对目标造成8点额外伤害
+				Description: 点击会对目标造成{0}点额外伤害
 			}
 
 			Frozen: {
@@ -1035,7 +1035,7 @@ Mods: {
 
 			BloodSucker: {
 				Name: 血珠
-				Description: 创造2个从点击范围圈最外层向心旋转的血珠
+				Description: 创造{0}个从点击范围圈最外层向心旋转的血珠
 			}
 
 			BalloonDefense: {
@@ -1045,12 +1045,12 @@ Mods: {
 
 			Incinerate: {
 				Name: 焚尽
-				Description: 在附近不同的方块上生成8个火花灼烧敌人
+				Description: 在附近不同的方块上生成{0}个火花灼烧敌人
 			}
 
 			Lacerate: {
 				Name: 撕裂
-				Description: 给予目标重伤减益,效果:每秒造成30伤害
+				Description: 给予目标重伤减益,效果:每秒造成{0}伤害
 			}
 
 			Starfall: {
@@ -1075,17 +1075,17 @@ Mods: {
 
 			Illuminate: {
 				Name: 照明
-				Description: 在附近不同的方块上生成8个火花用于照明
+				Description: 在附近不同的方块上生成{0}个火花用于照明
 			}
 
 			Bombard: {
 				Name: 轰炸
-				Description: 召唤4颗炮弹从天而降
+				Description: 召唤{0}颗炮弹从天而降
 			}
 
 			ToxicRelease: {
 				Name: 喷毒
-				Description: 在光标周围产生10朵毒云
+				Description: 在光标周围产生{0}朵毒云
 			}
 
 			Haste: {
@@ -1100,7 +1100,7 @@ Mods: {
 
 			Infest: {
 				Name: 感染
-				Description: 发射8条自动追踪灵液射弹
+				Description: 发射{0}条自动追踪灵液射弹
 			}
 
 			Dazzle: {
@@ -1125,12 +1125,12 @@ Mods: {
 
 			Linger: {
 				Name: 溅血
-				Description: 喷出5个受重力影响的血球
+				Description: 喷出{0}个受重力影响的血球
 			}
 
 			Discharge: {
 				Name: 放电
-				Description: 在光标周围迸发出4条追踪电流
+				Description: 在光标周围迸发出{0}条追踪电流
 			}
 
 			StickyHoney: {
@@ -1145,7 +1145,7 @@ Mods: {
 
 			Smite: {
 				Name: 惩戒
-				Description: 在光标周围召唤8个火把之焰射向光标处
+				Description: 在光标周围召唤{0}个火把之焰射向光标处
 			}
 
 			Conqueror: {
@@ -1155,7 +1155,7 @@ Mods: {
 
 			Collision: {
 				Name: 碰撞
-				Description: 向外射出8个无序的光球,跟随光标移动
+				Description: 向外射出{0}个无序的光球,跟随光标移动
 			}
 
 			Spores: {
@@ -1170,7 +1170,7 @@ Mods: {
 
 			PetalStorm: {
 				Name: 花瓣风暴
-				Description: 在光标周围召唤5片花瓣射向光标处
+				Description: 在光标周围召唤{0}片花瓣射向光标处
 			}
 
 			Regenerate: {
@@ -1205,17 +1205,17 @@ Mods: {
 
 			Siphon: {
 				Name: 虹吸
-				Description: 造成少量伤害并恢复玩家5点生命值
+				Description: 造成少量伤害并恢复玩家{0}点生命值
 			}
 
 			Splash: {
 				Name: 洒水
-				Description: 喷出6个水射弹
+				Description: 喷出{0}个水射弹
 			}
 
 			StarStorm: {
 				Name: 星星风暴
-				Description: 从天空坠下3颗星星爆炸伤害敌人
+				Description: 从天空坠下{0}颗星星爆炸伤害敌人
 			}
 
 			PhaseReach: {
@@ -1225,17 +1225,17 @@ Mods: {
 
 			TheClick: {
 				Name: 大师点击
-				Description: 对敌人额外造成其生命上限1%的伤害
+				Description: 对敌人额外造成其生命上限{0}%的伤害
 			}
 
 			RazorsEdge: {
 				Name: 刀锋
-				Description: 发射5个向外发散的轨道锯片
+				Description: 发射{0}个向外发散的轨道锯片
 			}
 
 			ShadowLash: {
 				Name: 暗影鞭笞
-				Description: 发出5个暗影射弹,自动追踪附近的敌人
+				Description: 发出{0}个暗影射弹,自动追踪附近的敌人
 			}
 
 			WildMagic: {

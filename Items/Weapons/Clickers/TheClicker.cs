@@ -9,6 +9,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class TheClicker : ClickerWeapon
 	{
+		public static readonly int AdditionalDamageLifeRatio = 1;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -16,7 +18,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			ClickEffect.TheClick = ClickerSystem.RegisterClickEffect(Mod, "TheClick", 1, new Color(255, 255, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<TheClickerPro>(), damage, 0f, player.whoAmI);
-			});
+			},
+			descriptionArgs: new object[] { AdditionalDamageLifeRatio });
 		}
 
 		public override void SetDefaults()

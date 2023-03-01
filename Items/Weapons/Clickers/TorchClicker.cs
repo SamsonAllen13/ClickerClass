@@ -15,6 +15,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class TorchClicker : ClickerWeapon
 	{
+		public static readonly int FlameAmount = 8;
+
 		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Unload()
@@ -32,7 +34,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				
 				//Temporary effect//
 				//Consider idea where up to 10 nearby torches fire their respective flame color towards cursor and each one does something different on hit
-				for (int k = 0; k < 4 + Main.rand.Next(5); k++)
+				for (int k = 0; k < Main.rand.Next(FlameAmount / 2, FlameAmount); k++)
 				{
 					float xChoice = Main.rand.Next(-100, 101);
 					float yChoice = Main.rand.Next(-100, 101);
@@ -53,7 +55,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					Projectile.NewProjectile(source, startSpot, vector, torch, (int)(damage * 0.25f), 0f, player.whoAmI, 0f, 0f);
 				}
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { FlameAmount });
 
 			if (!Main.dedServ)
 			{

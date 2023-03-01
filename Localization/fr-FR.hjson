@@ -24,7 +24,7 @@ Mods: {
 
 			Embrittle: {
 				DisplayName: Fragilisé
-				Description: Les clics infligent 8 dégâts supplémentaires à cette cible
+				Description: Les clics infligent {0} dégâts supplémentaires à cette cible
 			}
 
 			Frozen: {
@@ -1035,7 +1035,7 @@ Mods: {
 
 			BloodSucker: {
 				Name: Suçeur de Sang
-				Description: Créée 2 globules de sang qui spiralent vers l'intérieur de votre rayon de clic
+				Description: Créée {0} globules de sang qui spiralent vers l'intérieur de votre rayon de clic
 			}
 
 			BalloonDefense: {
@@ -1045,12 +1045,12 @@ Mods: {
 
 			Incinerate: {
 				Name: Incinérateur
-				Description: Créée 8 étincelles qui descendent sur les blocs proches, brûlant la zone
+				Description: Créée {0} étincelles qui descendent sur les blocs proches, brûlant la zone
 			}
 
 			Lacerate: {
 				Name: Lacérer
-				Description: Surine, infligeant 30 dégâts par seconde
+				Description: Surine, infligeant {0} dégâts par seconde
 			}
 
 			Starfall: {
@@ -1075,17 +1075,17 @@ Mods: {
 
 			Illuminate: {
 				Name: Illumination
-				Description: Créée 8 étincelles sur les blocs proches, illuminant la zone
+				Description: Créée {0} étincelles sur les blocs proches, illuminant la zone
 			}
 
 			Bombard: {
 				Name: Bombarder
-				Description: Cause la chute de 4 boulets de canon depuis les cieux
+				Description: Cause la chute de {0} boulets de canon depuis les cieux
 			}
 
 			ToxicRelease: {
 				Name: Libération Toxique
-				Description: Expédie 10 nuages de poison flottants du curseur
+				Description: Expédie {0} nuages de poison flottants du curseur
 			}
 
 			Haste: {
@@ -1100,7 +1100,7 @@ Mods: {
 
 			Infest: {
 				Name: Infester
-				Description: Tire 8 jets d'ichor vers vos ennemis
+				Description: Tire {0} jets d'ichor vers vos ennemis
 			}
 
 			Dazzle: {
@@ -1125,12 +1125,12 @@ Mods: {
 
 			Linger: {
 				Name: Globules
-				Description: Créée 5 globules de sang effectés par la gravité
+				Description: Créée {0} globules de sang effectés par la gravité
 			}
 
 			Discharge: {
 				Name: Décharge
-				Description: Relâche 4 lasers à courte portée autour de votre curseur
+				Description: Relâche {0} lasers à courte portée autour de votre curseur
 			}
 
 			StickyHoney: {
@@ -1145,7 +1145,7 @@ Mods: {
 
 			Smite: {
 				Name: Châtier
-				Description: Projette jusqu'à 8 flammes de torche vers votre curseur
+				Description: Projette jusqu'à {0} flammes de torche vers votre curseur
 			}
 
 			Conqueror: {
@@ -1155,7 +1155,7 @@ Mods: {
 
 			Collision: {
 				Name: Collision
-				Description: Libère 8 projectiles erratiques qui, après une seconde, s'affaissent sur eux-même
+				Description: Libère {0} projectiles erratiques qui, après une seconde, s'affaissent sur eux-même
 			}
 
 			Spores: {
@@ -1170,7 +1170,7 @@ Mods: {
 
 			PetalStorm: {
 				Name: Tempête de Pétales
-				Description: Invoque 5 pétales qui traversent l'écran
+				Description: Invoque {0} pétales qui traversent l'écran
 			}
 
 			Regenerate: {
@@ -1205,17 +1205,17 @@ Mods: {
 
 			Siphon: {
 				Name: Siphon
-				Description: Inflige une petite quantité de dégâts et soigne le joueur de 5
+				Description: Inflige une petite quantité de dégâts et soigne le joueur de {0}
 			}
 
 			Splash: {
 				Name: Éclabousser
-				Description: Créée une fontaine libèrant 6 projectiles d'eau
+				Description: Créée une fontaine libèrant {0} projectiles d'eau
 			}
 
 			StarStorm: {
 				Name: Orage d'Étoiles
-				Description: Cause la chute de 3 étoiles explosives
+				Description: Cause la chute de {0} étoiles explosives
 			}
 
 			PhaseReach: {
@@ -1225,17 +1225,17 @@ Mods: {
 
 			TheClick: {
 				Name: Le Clic
-				Description: Inflige 1% de la vie de l'ennemi en bonus
+				Description: Inflige {0}% de la vie de l'ennemi en bonus
 			}
 
 			RazorsEdge: {
 				Name: Fil du Rasoir
-				Description: Tire 5 lames de scie orbitales qui qui s'éloignent
+				Description: Tire {0} lames de scie orbitales qui qui s'éloignent
 			}
 
 			ShadowLash: {
 				Name: Frappe Ombreuse
-				Description: Cause le déferlement de 5 projectiles d'ombre qui chassent vos ennemis
+				Description: Cause le déferlement de {0} projectiles d'ombre qui chassent vos ennemis
 			}
 
 			WildMagic: {

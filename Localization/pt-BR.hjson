@@ -24,7 +24,7 @@ Mods: {
 
 			Embrittle: {
 				DisplayName: Frágil
-				Description: Cliques causarão 8 danos extra a este alvo
+				Description: Cliques causarão {0} danos extra a este alvo
 			}
 
 			Frozen: {
@@ -1035,7 +1035,7 @@ Mods: {
 
 			BloodSucker: {
 				Name: Sugador de Sangue
-				Description: Cria 2 glóbulos de sangue que espiralam para dentro do raio do cursor
+				Description: Cria {0} glóbulos de sangue que espiralam para dentro do raio do cursor
 			}
 
 			BalloonDefense: {
@@ -1045,12 +1045,12 @@ Mods: {
 
 			Incinerate: {
 				Name: Incinerar
-				Description: Cria 8 faíscas para baixo ao longo de peças próximas que queimam a área
+				Description: Cria {0} faíscas para baixo ao longo de peças próximas que queimam a área
 			}
 
 			Lacerate: {
 				Name: Dilacerar
-				Description: Inflige o efeito negativo Cortado, causando 30 de dano por segundo
+				Description: Inflige o efeito negativo Cortado, causando {0} de dano por segundo
 			}
 
 			Starfall: {
@@ -1075,17 +1075,17 @@ Mods: {
 
 			Illuminate: {
 				Name: Iluminar
-				Description: Cria 8 faíscas ao longo das peças próximas que iluminam a área
+				Description: Cria {0} faíscas ao longo das peças próximas que iluminam a área
 			}
 
 			Bombard: {
 				Name: Bombardear
-				Description: Faz com que 4 balas de canhão chovam do céu
+				Description: Faz com que {0} balas de canhão chovam do céu
 			}
 
 			ToxicRelease: {
 				Name: Liberação Tóxica
-				Description: Expele 10 nuvens venenosas ao redor do cursor que permanecem por um tempo
+				Description: Expele {0} nuvens venenosas ao redor do cursor que permanecem por um tempo
 			}
 
 			Haste: {
@@ -1100,7 +1100,7 @@ Mods: {
 
 			Infest: {
 				Name: Infestar
-				Description: Dispara 8 fluxos de ichor que seguem os inimigos
+				Description: Dispara {0} fluxos de ichor que seguem os inimigos
 			}
 
 			Dazzle: {
@@ -1125,12 +1125,12 @@ Mods: {
 
 			Linger: {
 				Name: Permanecer
-				Description: Cria 5 glóbulos de sangue afetados pela gravidade que permanecem por um tempo
+				Description: Cria {0} glóbulos de sangue afetados pela gravidade que permanecem por um tempo
 			}
 
 			Discharge: {
 				Name: Descarga
-				Description: Dispara 4 lasers de curto alcance ao redor do cursor
+				Description: Dispara {0} lasers de curto alcance ao redor do cursor
 			}
 
 			StickyHoney: {
@@ -1145,7 +1145,7 @@ Mods: {
 
 			Smite: {
 				Name: Julgamento
-				Description: Libera até 8 chamas de tocha em direção ao seu cursor
+				Description: Libera até {0} chamas de tocha em direção ao seu cursor
 			}
 
 			Conqueror: {
@@ -1155,7 +1155,7 @@ Mods: {
 
 			Collision: {
 				Name: Colisão
-				Description: Dispara 8 feixes erráticos que, após um segundo, retrocedem
+				Description: Dispara {0} feixes erráticos que, após um segundo, retrocedem
 			}
 
 			Spores: {
@@ -1170,7 +1170,7 @@ Mods: {
 
 			PetalStorm: {
 				Name: Tempestade de Pétalas
-				Description: Faz com que 5 projéteis de pétalas sejam invocados perto do jogador e sejam atiradas pela tela
+				Description: Faz com que {0} projéteis de pétalas sejam invocados perto do jogador e sejam atiradas pela tela
 			}
 
 			Regenerate: {
@@ -1205,17 +1205,17 @@ Mods: {
 
 			Siphon: {
 				Name: Sifão
-				Description: Causa uma pequena quantidade de dano e restaura a vida do jogador em 5
+				Description: Causa uma pequena quantidade de dano e restaura a vida do jogador em {0}
 			}
 
 			Splash: {
 				Name: Respingo
-				Description: Cria uma fonte de 6 projéteis de água que causam dano
+				Description: Cria uma fonte de {0} projéteis de água que causam dano
 			}
 
 			StarStorm: {
 				Name: Tempestade de Estrelas
-				Description: Faz com que 3 estrelas caiam do céu e explodam
+				Description: Faz com que {0} estrelas caiam do céu e explodam
 			}
 
 			PhaseReach: {
@@ -1225,17 +1225,17 @@ Mods: {
 
 			TheClick: {
 				Name: O Clique
-				Description: Causa um adicional de 1% da vida máxima do inimigo como dano
+				Description: Causa um adicional de {0}% da vida máxima do inimigo como dano
 			}
 
 			RazorsEdge: {
 				Name: Lâmina de Navalha
-				Description: Dispara 5 serras em órbita que se espalham para fora
+				Description: Dispara {0} serras em órbita que se espalham para fora
 			}
 
 			ShadowLash: {
 				Name: Chicotada Sombria
-				Description: Provoca uma explosão de 5 projéteis de sombra para procurar os inimigos próximos
+				Description: Provoca uma explosão de {0} projéteis de sombra para procurar os inimigos próximos
 			}
 
 			WildMagic: {

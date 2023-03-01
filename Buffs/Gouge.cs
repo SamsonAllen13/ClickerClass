@@ -7,6 +7,8 @@ namespace ClickerClass.Buffs
 {
 	public class Gouge : ModBuff
 	{
+		public static readonly int DamageOverTime = 30;
+
 		public override void SetStaticDefaults()
 		{
 			Main.debuff[Type] = true;

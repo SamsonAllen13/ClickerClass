@@ -24,7 +24,7 @@ Mods: {
 
 			Embrittle: {
 				// DisplayName: Embrittle
-				// Description: Clicks will deal 8 extra damage to this target
+				// Description: Clicks will deal {0} extra damage to this target
 			}
 
 			Frozen: {
@@ -1035,7 +1035,7 @@ Mods: {
 
 			BloodSucker: {
 				// Name: Blood Sucker
-				// Description: Creates 2 blood globules that spiral inwards from the cursor radius
+				// Description: Creates {0} blood globules that spiral inwards from the cursor radius
 			}
 
 			BalloonDefense: {
@@ -1045,12 +1045,12 @@ Mods: {
 
 			Incinerate: {
 				// Name: Incinerate
-				// Description: Creates 8 sparks downwards along nearby tiles that burn the area
+				// Description: Creates {0} sparks downwards along nearby tiles that burn the area
 			}
 
 			Lacerate: {
 				// Name: Lacerate
-				// Description: Inflicts the Gouge debuff, dealing 30 damage per second
+				// Description: Inflicts the Gouge debuff, dealing {0} damage per second
 			}
 
 			Starfall: {
@@ -1075,17 +1075,17 @@ Mods: {
 
 			Illuminate: {
 				// Name: Illuminate
-				// Description: Creates 8 sparks along nearby tiles that illuminate the area
+				// Description: Creates {0} sparks along nearby tiles that illuminate the area
 			}
 
 			Bombard: {
 				// Name: Bombard
-				// Description: Causes 4 cannonballs to rain from the sky
+				// Description: Causes {0} cannonballs to rain from the sky
 			}
 
 			ToxicRelease: {
 				// Name: Toxic Release
-				// Description: Expels 10 poisonous clouds around the cursor that linger
+				// Description: Expels {0} poisonous clouds around the cursor that linger
 			}
 
 			Haste: {
@@ -1100,7 +1100,7 @@ Mods: {
 
 			Infest: {
 				// Name: Infest
-				// Description: Fires 8 ichor streams that home in at enemies
+				// Description: Fires {0} ichor streams that home in at enemies
 			}
 
 			Dazzle: {
@@ -1125,12 +1125,12 @@ Mods: {
 
 			Linger: {
 				// Name: Linger
-				// Description: Creates 5 gravity-affected blood globules that linger
+				// Description: Creates {0} gravity-affected blood globules that linger
 			}
 
 			Discharge: {
 				// Name: Discharge
-				// Description: Blasts out 4 short-ranged lasers around the cursor
+				// Description: Blasts out {0} short-ranged lasers around the cursor
 			}
 
 			StickyHoney: {
@@ -1145,7 +1145,7 @@ Mods: {
 
 			Smite: {
 				// Name: Smite
-				// Description: Propels up to 8 torch flames towards your cursor
+				// Description: Propels up to {0} torch flames towards your cursor
 			}
 
 			Conqueror: {
@@ -1155,7 +1155,7 @@ Mods: {
 
 			Collision: {
 				// Name: Collision
-				// Description: Fires out 8 erratic bolts outwards that, after a second, collapse back
+				// Description: Fires out {0} erratic bolts outwards that, after a second, collapse back
 			}
 
 			Spores: {
@@ -1170,7 +1170,7 @@ Mods: {
 
 			PetalStorm: {
 				// Name: Petal Storm
-				// Description: Causes 5 petal projectiles to be summoned near the player and shoot across the screen
+				// Description: Causes {0} petal projectiles to be summoned near the player and shoot across the screen
 			}
 
 			Regenerate: {
@@ -1205,17 +1205,17 @@ Mods: {
 
 			Siphon: {
 				// Name: Siphon
-				// Description: Deals a small amount of damage and restores the player's health by 5
+				// Description: Deals a small amount of damage and restores the player's health by {0}
 			}
 
 			Splash: {
 				// Name: Splash
-				// Description: Creates a fountain of 6 damaging water projectiles
+				// Description: Creates a fountain of {0} damaging water projectiles
 			}
 
 			StarStorm: {
 				// Name: Star Storm
-				// Description: Causes 3 stars to fall from the sky and explode
+				// Description: Causes {0} stars to fall from the sky and explode
 			}
 
 			PhaseReach: {
@@ -1225,17 +1225,17 @@ Mods: {
 
 			TheClick: {
 				// Name: The Click
-				// Description: Deals an additional 1% of the enemy's maximum life as damage
+				// Description: Deals an additional {0}% of the enemy's maximum life as damage
 			}
 
 			RazorsEdge: {
 				// Name: Razor's Edge
-				// Description: Fires out 5 orbiting sawblades that spread outwards
+				// Description: Fires out {0} orbiting sawblades that spread outwards
 			}
 
 			ShadowLash: {
 				// Name: Shadow Lash
-				// Description: Causes a burst of 5 shadow projectiles to seek out nearby enemies
+				// Description: Causes a burst of {0} shadow projectiles to seek out nearby enemies
 			}
 
 			WildMagic: {

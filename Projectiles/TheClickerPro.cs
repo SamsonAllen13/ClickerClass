@@ -1,3 +1,4 @@
+using ClickerClass.Items.Weapons.Clickers;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
@@ -23,7 +24,7 @@ namespace ClickerClass.Projectiles
 		
 		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
 		{
-			damage = (int)(target.lifeMax * 0.01f);
+			damage = (int)(target.lifeMax * TheClicker.AdditionalDamageLifeRatio / 100f);
 		}
 
 		public override void Kill(int timeLeft)

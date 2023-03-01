@@ -10,6 +10,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class UmbralClicker : ClickerWeapon
 	{
+		public static readonly int ShadowAmount = 5;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -17,14 +19,15 @@ namespace ClickerClass.Items.Weapons.Clickers
 			ClickEffect.ShadowLash = ClickerSystem.RegisterClickEffect(Mod, "ShadowLash", 12, new Color(150, 100, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
-				for (int k = 0; k < 5; k++)
+				for (int k = 0; k < ShadowAmount; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
 					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), ModContent.ProjectileType<UmbralClickerPro>(), (int)(damage * 0.5f), knockBack, player.whoAmI, (int)DateTime.Now.Ticks, hasSpawnEffects);
 					spawnEffects = false;
 				}
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { ShadowAmount });
 		}
 
 		public override void SetDefaults()

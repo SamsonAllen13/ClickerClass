@@ -1530,7 +1530,7 @@ namespace ClickerClass
 			{
 				if (target.GetGlobalNPC<ClickerGlobalNPC>().embrittle)
 				{
-					damage += 8;
+					damage += Embrittle.ExtraDamage;
 				}
 			}
 

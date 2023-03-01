@@ -151,12 +151,8 @@ namespace ClickerClass
 		public int setPrecursorTimer = 0;
 
 		//Acc
-		[Obsolete("Use HasClickEffect(\"ClickerClass:ChocolateChip\") and EnableClickEffect(\"ClickerClass:ChocolateChip\") instead", false)]
-		public bool accChocolateChip = false;
 		public bool accEnchantedLED = false;
 		public bool accEnchantedLED2 = false; //different visuals
-		[Obsolete("Use HasClickEffect(\"ClickerClass:StickyKeychain\") and EnableClickEffect(\"ClickerClass:StickyKeychain\") instead", false)]
-		public bool accStickyKeychain = false;
 		public Item accAMedalItem = null;
 		public bool AccAMedal => accAMedalItem != null && !accAMedalItem.IsAir;
 		public Item accFMedalItem = null;

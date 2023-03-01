@@ -142,20 +142,6 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Mod Compat way of getting obsolete effect names. Can return null if not found
-		/// </summary>
-		/// <param name="oldName">The old display name</param>
-		/// <param name="internalName">The associated internal name</param>
-		/// <returns><see langword="true"/> if exists</returns>
-		internal static bool GetNewNameFromOldDisplayName(string oldName, out string internalName)
-		{
-			var allEffects = GetAllEffects();
-			var found = allEffects.FirstOrDefault(e => e.Value.DisplayName.Value == oldName);
-			internalName = found.Key;
-			return internalName != null;
-		}
-
-		/// <summary>
 		/// Call this in <see cref="Mod.PostSetupContent"/> or <see cref="ModItem.SetStaticDefaults"/> to register this click effect
 		/// </summary>
 		/// <param name="mod">The mod this effect belongs to. ONLY USE YOUR OWN MOD INSTANCE FOR THIS!</param>

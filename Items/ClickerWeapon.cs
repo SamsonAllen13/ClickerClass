@@ -55,18 +55,6 @@ namespace ClickerClass.Items
 			}
 		}
 
-		[Obsolete("Use AddEffect instead", true)]
-		public static void SetAmount(Item item, int amount)
-		{
-			//Nothing
-		}
-
-		[Obsolete("Use AddEffect instead", true)]
-		public static void SetEffect(Item item, string effect)
-		{
-			AddEffect(item, effect);
-		}
-
 		/// <summary>
 		/// Call in <see cref="ModItem.SetDefaults"/> for a clicker weapon to add an effect to it
 		/// </summary>

@@ -13,6 +13,7 @@ using Terraria.Utilities;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using ClickerClass.Prefixes.ClickerPrefixes;
+using Terraria.GameContent.Drawing;
 
 namespace ClickerClass.Items
 {
@@ -483,6 +484,13 @@ namespace ClickerClass.Items
 						int num = num103;
 						num103 = num + 1;
 					}
+
+					// Resonance Scepter sparkles
+					ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.PrincessWeapon, new ParticleOrchestraSettings
+					{
+						PositionInWorld = position,
+						MovementVector = Main.rand.NextVector2Circular(2f, 2f)
+					}, player.whoAmI);
 				}
 
 				//Portable Particle Accelerator acc

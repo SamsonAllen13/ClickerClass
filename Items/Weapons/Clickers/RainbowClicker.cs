@@ -9,6 +9,7 @@ using ReLogic.Content;
 using Microsoft.Xna.Framework.Graphics;
 using ClickerClass.Utilities;
 using ClickerClass.DrawLayers;
+using Terraria.GameContent.Drawing;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -27,6 +28,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Rainbolt = ClickerSystem.RegisterClickEffect(Mod, "Rainbolt", 8, () => Color.Lerp(Color.White, Main.DiscoColor, 0.5f), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
+				// Rainbow Rod sparkles
+				ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.RainbowRodHit, new ParticleOrchestraSettings
+				{
+					PositionInWorld = position
+				}, player.whoAmI);
+
 				bool spawnEffects = true;
 				for (int k = 0; k < 4; k++)
 				{

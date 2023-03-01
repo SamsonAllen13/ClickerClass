@@ -127,7 +127,7 @@ namespace ClickerClass.NPCs
 				#region Glowing Mushroom biome
 				case NPCID.SporeSkeleton:
 					{
-						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MyceliumClicker>(), 100));
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MyceliumClicker>(), 40));
 					}
 					break;
 				#endregion

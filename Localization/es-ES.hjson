@@ -302,7 +302,7 @@ Mods: {
 				/* Tooltip:
 					'''
 					{$Mods.ClickerClass.Items.MilkCookies.Tooltip}
-					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip}
+					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip@1}
 					''' */
 			}
 
@@ -416,7 +416,7 @@ Mods: {
 				/* Tooltip:
 					'''
 					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy}
+					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy@1}
 					Clicks have a small chance to briefly curse you
 					''' */
 			}

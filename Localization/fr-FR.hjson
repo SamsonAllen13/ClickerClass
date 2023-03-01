@@ -302,7 +302,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$Mods.ClickerClass.Items.MilkCookies.Tooltip}
-					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip}
+					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip@1}
 					'''
 			}
 

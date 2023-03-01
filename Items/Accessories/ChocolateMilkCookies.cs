@@ -1,11 +1,14 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class ChocolateMilkCookies : ClickerItem
 	{
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(Milk.DamageIncrease, ChocolateChip.ClickAmount);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();

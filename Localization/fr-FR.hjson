@@ -1356,78 +1356,79 @@ Mods: {
 			ClickerClassTip4: Clicker Class: Trouvez un Pack de Glace pour reposer vos mains si cliquer vous cause des crampes!
 		}
 
+		# regex: DisplayName\: (.*?) Pro([0-9]*)? -> DisplayName: $1
 		Projectiles: {
-			// AdamantiteClickerPro.DisplayName: Adamantite Clicker Pro
-			// AMedalPro.DisplayName: A Medal Pro
-			// ArthursClickerPro.DisplayName: Arthurs Clicker Pro
-			// AstralClickerPro.DisplayName: Astral Clicker Pro
-			// BalloonClickerPro.DisplayName: Balloon Clicker Pro
-			// BigRedButtonPro.DisplayName: Big Red Button Pro
-			// BigRedButtonPro2.DisplayName: Big Red Button Pro2
-			// BigRedButtonPro3.DisplayName: Big Red Button Pro3
-			// BlizzardClickerPro.DisplayName: Blizzard Clicker Pro
-			// BlizzardClickerPro2.DisplayName: Blizzard Clicker Pro2
-			// BoneClickerPro.DisplayName: Bone Clicker Pro
-			// BottomlessBoxofPaperclipsPro.DisplayName: Bottomless Boxof Paperclips Pro
-			// CandleClickerPro.DisplayName: Candle Clicker Pro
-			// CaptainsClickerPro.DisplayName: Captains Clicker Pro
-			// ChlorophyteClickerPro.DisplayName: Chlorophyte Clicker Pro
-			// ChocolateChipPro.DisplayName: Chocolate Chip Pro
-			// ClearKeychainPro.DisplayName: Clear Keychain Pro
-			// ClearKeychainPro2.DisplayName: Clear Keychain Pro2
+			// AdamantiteClickerPro.DisplayName: Adamantite Clicker
+			// AMedalPro.DisplayName: A Medal
+			// ArthursClickerPro.DisplayName: Arthurs Clicker
+			// AstralClickerPro.DisplayName: Astral Clicker
+			// BalloonClickerPro.DisplayName: Balloon Clicker
+			// BigRedButtonPro.DisplayName: Big Red Button
+			// BigRedButtonPro2.DisplayName: Big Red Button
+			// BigRedButtonPro3.DisplayName: Big Red Button
+			// BlizzardClickerPro.DisplayName: Blizzard Clicker
+			// BlizzardClickerPro2.DisplayName: Blizzard Clicker
+			// BoneClickerPro.DisplayName: Bone Clicker
+			// BottomlessBoxofPaperclipsPro.DisplayName: Bottomless Box of Paperclips
+			// CandleClickerPro.DisplayName: Candle Clicker
+			// CaptainsClickerPro.DisplayName: Captains Clicker
+			// ChlorophyteClickerPro.DisplayName: Chlorophyte Clicker
+			// ChocolateChipPro.DisplayName: Chocolate Chip
+			// ClearKeychainPro.DisplayName: Clear Keychain
+			// ClearKeychainPro2.DisplayName: Clear Keychain
 			// ClickDamage.DisplayName: Click Damage
-			// CookiePro.DisplayName: Cookie Pro
-			// CorruptClickerPro.DisplayName: Corrupt Clicker Pro
-			// CrimsonClickerPro.DisplayName: Crimson Clicker Pro
-			// CrystalClickerPro.DisplayName: Crystal Clicker Pro
-			// CyclopsClickerPro.DisplayName: Cyclops Clicker Pro
-			// DarkClickerPro.DisplayName: Dark Clicker Pro
-			// DraconicClickerPro.DisplayName: Draconic Clicker Pro
-			// DraconicClickerPro2.DisplayName: Draconic Clicker Pro2
-			// FaultyClickerPro.DisplayName: Faulty Clicker Pro
-			// FMedalPro.DisplayName: F Medal Pro
-			// FrozenClickerPro.DisplayName: Frozen Clicker Pro
-			// HemoClickerPro.DisplayName: Hemo Clicker Pro
+			// CookiePro.DisplayName: Cookie
+			// CorruptClickerPro.DisplayName: Corrupt Clicker
+			// CrimsonClickerPro.DisplayName: Crimson Clicker
+			// CrystalClickerPro.DisplayName: Crystal Clicker
+			// CyclopsClickerPro.DisplayName: Cyclops Clicker
+			// DarkClickerPro.DisplayName: Dark Clicker
+			// DraconicClickerPro.DisplayName: Draconic Clicker
+			// DraconicClickerPro2.DisplayName: Draconic Clicker
+			// FaultyClickerPro.DisplayName: Faulty Clicker
+			// FMedalPro.DisplayName: F Medal
+			// FrozenClickerPro.DisplayName: Frozen Clicker
+			// HemoClickerPro.DisplayName: Hemo Clicker
 			// HighTechClickerPro.DisplayName: High Tech Clicker
-			// HoneyGlazedClickerPro.DisplayName: Honey Glazed Clicker Pro
-			// HotKeychainPro.DisplayName: Hot Keychain Pro
-			// LanternClickerPro.DisplayName: Lantern Clicker Pro
-			// LihzarhdClickerPro.DisplayName: Lihzarhd Clicker Pro
-			// LordsClickerPro.DisplayName: Lords Clicker Pro
-			// MiceClickerPro.DisplayName: Mice Clicker Pro
+			// HoneyGlazedClickerPro.DisplayName: Honey Glazed Clicker
+			// HotKeychainPro.DisplayName: Hot Keychain
+			// LanternClickerPro.DisplayName: Lantern Clicker
+			// LihzarhdClickerPro.DisplayName: Lihzarhd Clicker
+			// LordsClickerPro.DisplayName: Lords Clicker
+			// MiceClickerPro.DisplayName: Mice Clicker
 			// MiceDrillPro.DisplayName: Mice Drill
-			// MyceliumClickerPro.DisplayName: Mycelium Clicker Pro
-			// MythrilClickerPro.DisplayName: Mythril Clicker Pro
-			// NaughtyClickerPro.DisplayName: Naughty Clicker Pro
-			// NaughtyClickerPro2.DisplayName: Naughty Clicker Pro2
-			// NaughtyClickerPro3.DisplayName: Naughty Clicker Pro3
-			// OrichaclumClickerPro.DisplayName: Orichaclum Clicker Pro
-			// PointyClickerPro.DisplayName: Pointy Clicker Pro
-			// PrecursorPro.DisplayName: Precursor Pro
-			// RainbowClickerPro.DisplayName: Rainbow Clicker Pro
-			// RedHotClickerPro.DisplayName: Red Hot Clicker Pro
-			// RGBPro.DisplayName: R G B Pro
+			// MyceliumClickerPro.DisplayName: Mycelium Clicker
+			// MythrilClickerPro.DisplayName: Mythril Clicker
+			// NaughtyClickerPro.DisplayName: Naughty Clicker
+			// NaughtyClickerPro2.DisplayName: Naughty Clicker
+			// NaughtyClickerPro3.DisplayName: Naughty Clicker
+			// OrichaclumClickerPro.DisplayName: Orichaclum Clicker
+			// PointyClickerPro.DisplayName: Pointy Clicker
+			// PrecursorPro.DisplayName: Precursor
+			// RainbowClickerPro.DisplayName: Rainbow Clicker
+			// RedHotClickerPro.DisplayName: Red Hot Clicker
+			// RGBPro.DisplayName: RGB
 			// SandstormClickerPro.DisplayName: Sandstorm Clicker
-			// SeafoamClickerPro.DisplayName: Seafoam Clicker Pro
-			// ShadowyClickerPro.DisplayName: Shadowy Clicker Pro
-			// SinisterClickerPro.DisplayName: Sinister Clicker Pro
-			// SlickClickerPro.DisplayName: Slick Clicker Pro
-			// SMedalPro.DisplayName: S Medal Pro
-			// SMedalPro2.DisplayName: S Medal Pro2
-			// SMedalPro3.DisplayName: S Medal Pro3
-			// SnottyClickerPro.DisplayName: Snotty Clicker Pro
-			// SpaceClickerPro.DisplayName: Space Clicker Pro
-			// SpiralClickerPro.DisplayName: Spiral Clicker Pro
-			// StarryClickerPro.DisplayName: Starry Clicker Pro
-			// StickyKeychainPro.DisplayName: Sticky Keychain Pro
-			// TheClickerPro.DisplayName: The Clicker Pro
-			// TitaniumClickerPro.DisplayName: Titanium Clicker Pro
-			// TorchClickerPro.DisplayName: Torch Clicker Pro
-			// TotalityClickerPro.DisplayName: Totality Clicker Pro
-			// TotalityClickerPro2.DisplayName: Totality Clicker Pro2
-			// UmbralClickerPro.DisplayName: Umbral Clicker Pro
-			// WebClickerPro.DisplayName: Web Clicker Pro
-			// WebClickerPro2.DisplayName: Web Clicker Pro2
+			// SeafoamClickerPro.DisplayName: Seafoam Clicker
+			// ShadowyClickerPro.DisplayName: Shadowy Clicker
+			// SinisterClickerPro.DisplayName: Sinister Clicker
+			// SlickClickerPro.DisplayName: Slick Clicker
+			// SMedalPro.DisplayName: S Medal
+			// SMedalPro2.DisplayName: S Medal
+			// SMedalPro3.DisplayName: S Medal
+			// SnottyClickerPro.DisplayName: Snotty Clicker
+			// SpaceClickerPro.DisplayName: Space Clicker
+			// SpiralClickerPro.DisplayName: Spiral Clicker
+			// StarryClickerPro.DisplayName: Starry Clicker
+			// StickyKeychainPro.DisplayName: Sticky Keychain
+			// TheClickerPro.DisplayName: The Clicker
+			// TitaniumClickerPro.DisplayName: Titanium Clicker
+			// TorchClickerPro.DisplayName: Torch Clicker
+			// TotalityClickerPro.DisplayName: Totality Clicker
+			// TotalityClickerPro2.DisplayName: Totality Clicker
+			// UmbralClickerPro.DisplayName: Umbral Clicker
+			// WebClickerPro.DisplayName: Web Clicker
+			// WebClickerPro2.DisplayName: Web Clicker
 		}
 	}
 }

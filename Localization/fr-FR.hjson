@@ -96,8 +96,7 @@ Mods: {
 				ReducesAmountOfClicksByFlat: Réduit le nombre de clics nécessaire pour un effet de clic de {0}
 				ClickingGloveEvery: Pendant un combat, clique automatiquement avec votre cliqueur toutes les
 				Clicker: Cliquez sur un enemi à portée et dans votre champ de vision pour lui faire des dégâts
-				MoreThanOneClick: "{0} clics"
-				OneClick: 1 clic
+				Clicks: "{0} {^0:clic;clics}"
 			}
 
 			Unknown: Inconnu

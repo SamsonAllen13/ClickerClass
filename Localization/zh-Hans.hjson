@@ -96,8 +96,7 @@ Mods: {
 				ReducesAmountOfClicksByFlat: 减少触发点击效果所需的点击数{0}次
 				ClickingGloveEvery: 进入战斗后,每隔一段时间自动点击一次,时间间隔:
 				Clicker: 点击无方块阻挡且在圆圈范围内的敌人对其造成伤害
-				MoreThanOneClick: "{0}次点击"
-				OneClick: 1次点击
+				Clicks: "{0} {^0:次点击}"
 			}
 
 			Unknown: 未知

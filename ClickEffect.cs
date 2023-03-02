@@ -71,15 +71,7 @@ namespace ClickerClass
 		public TooltipLine ToTooltip(int amount, float alpha, bool showDesc)
 		{
 			string color = (ColorFunc() * alpha).Hex3();
-			string text;
-			if (amount > 1)
-			{
-				text = LangHelper.GetText("Common.Tooltips.MoreThanOneClick", amount);
-			}
-			else
-			{
-				text = LangHelper.GetText("Common.Tooltips.OneClick");
-			}
+			string text = LangHelper.GetText("Common.Tooltips.Clicks", amount);
 			text += $": [c/{color}:{DisplayName.Value}]";
 			if (showDesc && Description.Value != Description.Key)
 			{

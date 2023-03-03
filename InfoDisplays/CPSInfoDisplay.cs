@@ -8,7 +8,7 @@ namespace ClickerClass.InfoDisplays
 {
 	public class CPSInfoDisplay : InfoDisplay
 	{
-		public LocalizedText DisplayValueText;
+		public static LocalizedText DisplayValueText { get; private set; }
 
 		public override void SetStaticDefaults()
 		{

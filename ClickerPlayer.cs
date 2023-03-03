@@ -186,6 +186,7 @@ namespace ClickerClass
 		public bool accAimbotModule2Toggle = false; //If enabled, automatically seeks enemies
 		public int accAimbotModule2ToggleTimer = 0; //To not do it every tick
 		public bool accEnlarge = false;
+		public bool accSFXButtonSoundboard = false;
 
 		public int accAimbotModuleTarget = -1;
 		public int accAimbotModuleFailsafe = 0;
@@ -201,6 +202,14 @@ namespace ClickerClass
 		public int accPaperclipsAmount = 0;
 		public int accHotKeychainTimer = 0;
 		public int accHotKeychainAmount = 0;
+		public int accSFXButtonA = 0;
+		public int accSFXButtonB = 0;
+		public int accSFXButtonC = 0;
+		public int accSFXButtonD = 0;
+		public int accSFXButtonE = 0;
+		public int accSFXButtonF = 0;
+		public int accSFXButtonG = 0;
+		public int accSFXButtonH = 0;
 
 		//Stats
 		/// <summary>
@@ -780,11 +789,20 @@ namespace ClickerClass
 			accAimbotModule2 = false;
 			accAimbotModuleTargetInRange = false;
 			accEnlarge = false;
+			accSFXButtonSoundboard = false;
 
 			//Stats
 			clickerBonus = 0;
 			clickerBonusPercent = 1f;
 			clickerRadius = 1f;
+			accSFXButtonA = 0;
+			accSFXButtonB = 0;
+			accSFXButtonC = 0;
+			accSFXButtonD = 0;
+			accSFXButtonE = 0;
+			accSFXButtonF = 0;
+			accSFXButtonG = 0;
+			accSFXButtonH = 0;
 		}
 
 		public override void UpdateAutopause()

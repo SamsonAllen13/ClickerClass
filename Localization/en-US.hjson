@@ -49,6 +49,8 @@ Mods.ClickerClass: {
 			Clicker: Click on an enemy within range and sight to damage them
 			MoreThanOneClick: "{0} clicks"
 			OneClick: 1 click
+			SFXButtonTip1: Changes the sound your clicks make while equipped or in your inventory
+			SFXButtonTip2: Volume increases with stack size, up to 5
 		}
 
 		Unknown: Unknown
@@ -125,6 +127,14 @@ Mods.ClickerClass: {
 		AMedal: A Medal
 		FMedal: F Medal
 		SMedal: S Medal
+		SFXButtonA: SFX Button A
+		SFXButtonB: SFX Button B
+		SFXButtonC: SFX Button C
+		SFXButtonD: SFX Button D
+		SFXButtonE: SFX Button E
+		SFXButtonF: SFX Button F
+		SFXButtonG: SFX Button G
+		SFXButtonH: SFX Button H
 		Soda: Soda
 		StickyKeychain: Sticky Keychain
 		TheScroller: The Scroller
@@ -355,6 +365,46 @@ Mods.ClickerClass: {
 			'''
 			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 14%
 			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%
+			'''
+		SFXButtonA:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			'''
+		SFXButtonB:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			'''
+		SFXButtonC:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			'''
+		SFXButtonD:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			'''
+		SFXButtonE:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			'''
+		SFXButtonF:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			'''
+		SFXButtonG:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			'''
+		SFXButtonH:
+			'''
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
 			'''
 		MotherboardBoots: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%"
 		MotherboardHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%"

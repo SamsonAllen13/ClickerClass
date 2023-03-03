@@ -635,7 +635,9 @@ namespace ClickerClass.Items
 						break;
 					case 2:
 						// SFX Button C - Ogre OUAGH
-						style = new SoundStyle("Terraria/Sounds/Custom/dd2_ogre_attack_2") with
+						style = new SoundStyle(Main.rand.NextBool()
+							? "Terraria/Sounds/Custom/dd2_ogre_attack_2"
+							: "Terraria/Sounds/Custom/dd2_ogre_hurt_1") with
 						{
 							Volume = .4f * sfxOptionStates[sfxOption],
 							PitchVariance = .5f,
@@ -678,12 +680,15 @@ namespace ClickerClass.Items
 						SoundEngine.PlaySound(style);
 						break;
 					case 7:
-						// SFX Button H - Handgun fire
-						SoundEngine.PlaySound(SoundID.Item41
-							.WithVolumeScale(.5f * sfxOptionStates[sfxOption]) with
+						// SFX Button H - Research crusher + rare research complete jingle
+						style = new SoundStyle(Main.rand.NextBool(200)
+							? "Terraria/Sounds/Research_0"
+							: "Terraria/Sounds/Research_2") with
 						{
-							PitchVariance = .5f
-						}, player.position);
+							Volume = .5f * sfxOptionStates[sfxOption],
+							PitchVariance = .5f,
+						};
+						SoundEngine.PlaySound(style);
 						break;
 					case 8:
 						// SFX Soundboard - Random sound

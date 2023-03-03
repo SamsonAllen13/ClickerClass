@@ -443,67 +443,7 @@ namespace ClickerClass.Items
 			{
 				var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
-				if (clickerPlayer.accSFXButtonSoundboard)
-				{
-					//Random sound from SoundID.Item1 - SoundID.Item100 maybe?
-					//TODO
-				}
-				else if (clickerPlayer.accSFXButtonA > 0)
-				{
-					//Trumpet
-					SoundStyle style = new SoundStyle("ClickerClass/Sounds/Custom/Trumpet") with { Volume = .4f * clickerPlayer.accSFXButtonA,  PitchVariance = .5f, };
-					SoundEngine.PlaySound(style);
-				}
-				else if (clickerPlayer.accSFXButtonB > 0)
-				{
-					//Insect chirp
-					SoundEngine.PlaySound(SoundID.NPCHit29.WithVolumeScale(.5f * clickerPlayer.accSFXButtonB) with { PitchVariance = .5f }, player.position);
-				}
-				else if (clickerPlayer.accSFXButtonC > 0)
-				{
-					//OUAGH
-					SoundStyle style = new SoundStyle("Terraria/Sounds/Custom/dd2_ogre_attack_2") with { Volume = .4f * clickerPlayer.accSFXButtonC,  PitchVariance = .5f, };
-					SoundEngine.PlaySound(style);
-				}
-				else if (clickerPlayer.accSFXButtonD > 0)
-				{
-					//Fartè
-					SoundEngine.PlaySound(SoundID.Item16.WithVolumeScale(.5f * clickerPlayer.accSFXButtonD) with { PitchVariance = .5f }, player.position);
-				}
-				else if (clickerPlayer.accSFXButtonE > 0)
-				{
-					//Bell
-					SoundEngine.PlaySound(SoundID.Item35.WithVolumeScale(.5f * clickerPlayer.accSFXButtonE) with { PitchVariance = .5f }, player.position);
-				}
-				else if (clickerPlayer.accSFXButtonF > 0)
-				{
-					//Balloon pop
-					SoundEngine.PlaySound(SoundID.NPCDeath63.WithVolumeScale(.5f * clickerPlayer.accSFXButtonF) with { PitchVariance = .5f }, player.position);
-				}
-				else if (clickerPlayer.accSFXButtonG > 0)
-				{
-					//Duck quack + rare man-quack
-					if (Main.rand.NextBool(200))
-					{
-						SoundStyle style = new SoundStyle("Terraria/Sounds/Zombie_12") with { Volume = .5f * clickerPlayer.accSFXButtonG,  PitchVariance = .5f, };
-						SoundEngine.PlaySound(style);
-					}
-					else
-					{
-						SoundStyle style = new SoundStyle("Terraria/Sounds/Zombie_11") with { Volume = .5f * clickerPlayer.accSFXButtonG,  PitchVariance = .5f, };
-						SoundEngine.PlaySound(style);
-					}
-				}
-				else if (clickerPlayer.accSFXButtonH > 0)
-				{
-					//Handgun
-					SoundEngine.PlaySound(SoundID.Item41.WithVolumeScale(.5f * clickerPlayer.accSFXButtonH) with { PitchVariance = .5f }, player.position);
-				}
-				else
-				{
-					//Click
-					SoundEngine.PlaySound(SoundID.MenuTick, player.position);
-				}
+				handleClickSFX(player, clickerPlayer);
 				
 				//Base
 				//This shouldn't be here, but some mods (DormantDawnMOD) override projectile position, so we set it again like in ModifyShootStats
@@ -633,6 +573,128 @@ namespace ClickerClass.Items
 				return false;
 			}
 			return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
+		}
+
+		private void handleClickSFX(Player player, ClickerPlayer clickerPlayer)
+		{
+			bool sfxDefault = true;
+			List<int> sfxOptionStates = new()
+				{
+					clickerPlayer.accSFXButtonA,
+					clickerPlayer.accSFXButtonB,
+					clickerPlayer.accSFXButtonC,
+					clickerPlayer.accSFXButtonD,
+					clickerPlayer.accSFXButtonE,
+					clickerPlayer.accSFXButtonF,
+					clickerPlayer.accSFXButtonG,
+					clickerPlayer.accSFXButtonH,
+					clickerPlayer.accSFXButtonSoundboard ? 1 : 0,
+				};
+
+			foreach (var sfx in sfxOptionStates)
+			{
+				if (sfx > 0)
+				{
+					sfxDefault = false;
+				}
+			}
+
+			if (sfxDefault)
+			{
+				// Default click
+				SoundEngine.PlaySound(SoundID.MenuTick, player.position);
+			}
+			else
+			{
+				SoundStyle style;
+				int sfxOption = Main.rand.Next(0, sfxOptionStates.Count);
+				while (sfxOptionStates[sfxOption] == 0)
+				{
+					// Reroll until valid option
+					sfxOption = Main.rand.Next(0, sfxOptionStates.Count);
+				}
+
+				switch (sfxOption)
+				{
+					case 0:
+						// SFX Button A - Trumpet doot
+						style = new SoundStyle("ClickerClass/Sounds/Custom/Trumpet") with
+						{
+							Volume = .4f * sfxOptionStates[sfxOption],
+							PitchVariance = .5f,
+						};
+						SoundEngine.PlaySound(style);
+						break;
+					case 1:
+						// SFX Button B - Insect chirp
+						SoundEngine.PlaySound(SoundID.NPCHit29
+							.WithVolumeScale(.5f * sfxOptionStates[sfxOption]) with
+						{
+							PitchVariance = .5f
+						}, player.position);
+						break;
+					case 2:
+						// SFX Button C - Ogre OUAGH
+						style = new SoundStyle("Terraria/Sounds/Custom/dd2_ogre_attack_2") with
+						{
+							Volume = .4f * sfxOptionStates[sfxOption],
+							PitchVariance = .5f,
+						};
+						SoundEngine.PlaySound(style);
+						break;
+					case 3:
+						// SFX Button D - Fartè
+						SoundEngine.PlaySound(SoundID.Item16
+							.WithVolumeScale(.5f * sfxOptionStates[sfxOption]) with
+						{
+							PitchVariance = .5f
+						}, player.position);
+						break;
+					case 4:
+						// SFX Button E - Bell
+						SoundEngine.PlaySound(SoundID.Item35
+							.WithVolumeScale(.5f * sfxOptionStates[sfxOption]) with
+						{
+							PitchVariance = .5f
+						}, player.position);
+						break;
+					case 5:
+						// SFX Button F - Windy Balloon pop
+						SoundEngine.PlaySound(SoundID.NPCDeath63
+							.WithVolumeScale(.5f * sfxOptionStates[sfxOption]) with
+						{
+							PitchVariance = .5f
+						}, player.position);
+						break;
+					case 6:
+						// SFX Button G - Duck quack + rare man-quack
+						style = new SoundStyle(Main.rand.NextBool(200)
+							? "Terraria/Sounds/Zombie_12"
+							: "Terraria/Sounds/Zombie_11") with
+						{
+							Volume = .5f * sfxOptionStates[sfxOption],
+							PitchVariance = .5f,
+						};
+						SoundEngine.PlaySound(style);
+						break;
+					case 7:
+						// SFX Button H - Handgun fire
+						SoundEngine.PlaySound(SoundID.Item41
+							.WithVolumeScale(.5f * sfxOptionStates[sfxOption]) with
+						{
+							PitchVariance = .5f
+						}, player.position);
+						break;
+					case 8:
+						// SFX Soundboard - Random sound
+						// TODO
+						break;
+					default:
+						// Default click
+						SoundEngine.PlaySound(SoundID.MenuTick, player.position);
+						break;
+				}
+			}
 		}
 	}
 }

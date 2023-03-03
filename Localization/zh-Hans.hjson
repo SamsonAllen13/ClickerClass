@@ -954,7 +954,12 @@ Mods: {
 			RGB: 每{0}次点击,光标处就会产生色彩爆发
 		}
 
-		InfoDisplays.CPSInfoDisplay.DisplayName: 次点击每秒
+		InfoDisplays: {
+			CPSInfoDisplay: {
+				DisplayName: 次点击每秒
+				DisplayValue: "{$Mods.ClickerClass.Common.Tooltips.Clicks}每秒"
+			}
+		}
 
 		ClickEffect: {
 			TrueStrike: {

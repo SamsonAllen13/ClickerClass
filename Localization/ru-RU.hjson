@@ -954,7 +954,12 @@ Mods: {
 			RGB: Каждые {0} кликов вызывает цветовой всплеск из вашего курсора
 		}
 
-		InfoDisplays.CPSInfoDisplay.DisplayName: Кликов в секунду
+		InfoDisplays: {
+			CPSInfoDisplay: {
+				DisplayName: Кликов в секунду
+				DisplayValue: "{$Mods.ClickerClass.Common.Tooltips.Clicks} в секунду"
+			}
+		}
 
 		ClickEffect: {
 			TrueStrike: {

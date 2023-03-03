@@ -954,7 +954,12 @@ Mods: {
 			RGB: Uma explosão cromática será liberada de seu cursor a cada {0} cliques
 		}
 
-		InfoDisplays.CPSInfoDisplay.DisplayName: Cliques por segundo
+		InfoDisplays: {
+			CPSInfoDisplay: {
+				DisplayName: Cliques por segundo
+				DisplayValue: "{$Mods.ClickerClass.Common.Tooltips.Clicks} por segundo"
+			}
+		}
 
 		ClickEffect: {
 			TrueStrike: {

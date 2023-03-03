@@ -954,7 +954,12 @@ Mods: {
 			// RGB: Every {0} clicks propels a chromatic burst from your cursor
 		}
 
-		// InfoDisplays.CPSInfoDisplay.DisplayName: Clicks per second
+		InfoDisplays: {
+			CPSInfoDisplay: {
+				// DisplayName: Clicks per second
+				// DisplayValue: "{$Mods.ClickerClass.Common.Tooltips.Clicks} per second"
+			}
+		}
 
 		ClickEffect: {
 			TrueStrike: {

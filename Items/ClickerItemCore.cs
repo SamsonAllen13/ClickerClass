@@ -5,6 +5,7 @@ using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System;
+using System.Reflection;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ID;
@@ -692,7 +693,8 @@ namespace ClickerClass.Items
 						break;
 					case 8:
 						// SFX Soundboard - Random sound
-						// TODO
+						style = new SoundStyle("Terraria/Sounds/Item_" + Main.rand.Next(1, 100)) with { PitchVariance = .5f, };
+						SoundEngine.PlaySound(style);
 						break;
 					default:
 						// Default click

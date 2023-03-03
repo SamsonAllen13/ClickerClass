@@ -49,8 +49,11 @@ Mods.ClickerClass: {
 			Clicker: Click on an enemy within range and sight to damage them
 			MoreThanOneClick: "{0} clicks"
 			OneClick: 1 click
-			SFXButtonTip1: Changes the sound your clicks make while equipped or in your inventory
-			SFXButtonTip2: Volume increases with stack size, up to 5
+			SFXButtonTip:
+			'''
+			Changes the sound your clicks make while equipped or in your inventory
+			Volume increases with stack size, up to 5
+			'''
 		}
 
 		Unknown: Unknown
@@ -135,6 +138,7 @@ Mods.ClickerClass: {
 		SFXButtonF: SFX Button F
 		SFXButtonG: SFX Button G
 		SFXButtonH: SFX Button H
+		SFXSoundboard: SFX Soundboard
 		Soda: Soda
 		StickyKeychain: Sticky Keychain
 		TheScroller: The Scroller
@@ -368,43 +372,40 @@ Mods.ClickerClass: {
 			'''
 		SFXButtonA:
 			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
 			'''
 		SFXButtonB:
 			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
 			'''
 		SFXButtonC:
 			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
 			'''
 		SFXButtonD:
 			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
 			'''
 		SFXButtonE:
 			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
 			'''
 		SFXButtonF:
 			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
 			'''
 		SFXButtonG:
 			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
 			'''
 		SFXButtonH:
 			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip1}
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip2}
+			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
+			'''
+		SFXSoundboard:
+			'''
+			'Become the life of the party! ...or death of it'
+			Changes the sound your clicks make while equipped or in your inventory
 			'''
 		MotherboardBoots: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 6%"
 		MotherboardHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 20%"

@@ -948,7 +948,7 @@ namespace ClickerClass
 						QuickUseItemInSlot(Player.selectedItem);
 						accClickingGloveTimer = 0;
 					}
-					else if (accClickingGlove && accClickingGloveTimer > 180)
+					else if (accClickingGlove && accClickingGloveTimer > 120)
 					{
 						QuickUseItemInSlot(Player.selectedItem);
 						accClickingGloveTimer = 0;
@@ -1080,6 +1080,16 @@ namespace ClickerClass
 			{
 				clickerDoubleTap--;
 			}
+			
+			//SFX Button overflow handle
+			accSFXButtonA = accSFXButtonA >= 5 ? 5 : accSFXButtonA;
+			accSFXButtonB = accSFXButtonB >= 5 ? 5 : accSFXButtonB;
+			accSFXButtonC = accSFXButtonC >= 5 ? 5 : accSFXButtonC;
+			accSFXButtonD = accSFXButtonD >= 5 ? 5 : accSFXButtonD;
+			accSFXButtonE = accSFXButtonE >= 5 ? 5 : accSFXButtonE;
+			accSFXButtonF = accSFXButtonF >= 5 ? 5 : accSFXButtonF;
+			accSFXButtonG = accSFXButtonG >= 5 ? 5 : accSFXButtonG;
+			accSFXButtonH = accSFXButtonH >= 5 ? 5 : accSFXButtonH;
 
 			//Clicker Effects
 			//Hot Wings

@@ -276,7 +276,7 @@ Mods.ClickerClass: {
 			Click on an affected enemy to expel a burst of crystal shards from the target
 			'''
 		ClickerEmblem: 15% {$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}
-		ClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 3 seconds"
+		ClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 2 seconds"
 		Cookie:
 			'''
 			While equipped, cookies will periodically spawn within your clicker radius

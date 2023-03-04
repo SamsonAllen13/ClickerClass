@@ -8,12 +8,12 @@ namespace ClickerClass.Items.Accessories
 	{
 		public override void UpdateInventory(Player player) 
 		{
-			player.GetModPlayer<ClickerPlayer>().accSFXButtonH = Item.stack;
+			player.GetModPlayer<ClickerPlayer>().accSFXButtonH += Item.stack;
 		}
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().accSFXButtonH = Item.stack;
+			player.GetModPlayer<ClickerPlayer>().accSFXButtonH += Item.stack;
 		}
 	}
 }

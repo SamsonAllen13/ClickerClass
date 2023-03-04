@@ -11,6 +11,7 @@ namespace ClickerClass.Projectiles
 {
 	public class HeartyClickerPro : ClickerProjectile
 	{
+		public int activeTimer = 0;
 		public bool tileCollide = false;
 		
 		public bool HasSpawnEffects
@@ -27,15 +28,13 @@ namespace ClickerClass.Projectiles
 			Projectile.height = 16;
 			Projectile.aiStyle = -1;
 			Projectile.penetrate = -1;
-			Projectile.timeLeft = 1200;
+			Projectile.timeLeft = 1800;
 			Projectile.ignoreWater = true;
-			Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = 30;
 		}
 		
 		public override Color? GetAlpha(Color lightColor)
 		{
-			return new Color(255, 255, 255, 50) * 1f;
+			return new Color(activeTimer, activeTimer, activeTimer, 50) * 1f;
 		}
 		
 		public override void AI()
@@ -58,21 +57,31 @@ namespace ClickerClass.Projectiles
 				Projectile.velocity.X = 0f;
 			}
 			
-			for (int k = 0; k < Main.maxPlayers; k++)
+			//Takes about 1 second to become active
+			if (activeTimer >= 255)
 			{
-				Player target = Main.player[k];
-				if (target.active && target.statLife < target.statLifeMax2 && target.DistanceSQ(Projectile.Center) < (20 * 20))
+				activeTimer = 255;
+				for (int k = 0; k < Main.maxPlayers; k++)
 				{
-					target.HealLife(10);
-					SoundEngine.PlaySound(SoundID.Item85, Projectile.position);
-					for (int i = 0; i < 8; i++)
+					Player target = Main.player[k];
+					if (target.active && target.statLife < target.statLifeMax2 && target.DistanceSQ(Projectile.Center) < (20 * 20))
 					{
-						Dust dust = Dust.NewDustDirect(Projectile.Center, 8, 8, 90, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1f);
-						dust.noGravity = true;
+						target.HealLife(10);
+						SoundEngine.PlaySound(SoundID.Item85, Projectile.position);
+						for (int i = 0; i < 8; i++)
+						{
+							Dust dust = Dust.NewDustDirect(Projectile.Center, 8, 8, 90, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1f);
+							dust.noGravity = true;
+						}
+						Projectile.Kill();
 					}
-					Projectile.Kill();
 				}
 			}
+			else
+			{
+				activeTimer += 4;
+			}
+			
 			if (Projectile.ai[1] >= 5f)
 			{
 				Projectile.Kill();

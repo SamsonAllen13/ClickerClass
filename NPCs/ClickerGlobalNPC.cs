@@ -548,34 +548,18 @@ namespace ClickerClass.NPCs
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MousePad>());
 					break;
 				case NPCID.PartyGirl:
-					int buttonChoice = ModContent.ItemType<SFXButtonA>();
-					switch (Main.moonPhase)
+					int buttonChoice = Main.moonPhase switch
 					{
-						case 0:
-							buttonChoice = ModContent.ItemType<SFXButtonA>();
-							break;
-						case 1:
-							buttonChoice = ModContent.ItemType<SFXButtonB>();
-							break;
-						case 2:
-							buttonChoice = ModContent.ItemType<SFXButtonC>();
-							break;
-						case 3:
-							buttonChoice = ModContent.ItemType<SFXButtonD>();
-							break;
-						case 4:
-							buttonChoice = ModContent.ItemType<SFXButtonE>();
-							break;
-						case 5:
-							buttonChoice = ModContent.ItemType<SFXButtonF>();
-							break;
-						case 6:
-							buttonChoice = ModContent.ItemType<SFXButtonG>();
-							break;
-						case 7:
-							buttonChoice = ModContent.ItemType<SFXButtonH>();
-							break;
-					}
+						0 => ModContent.ItemType<SFXButtonA>(),
+						1 => ModContent.ItemType<SFXButtonB>(),
+						2 => ModContent.ItemType<SFXButtonC>(),
+						3 => ModContent.ItemType<SFXButtonD>(),
+						4 => ModContent.ItemType<SFXButtonE>(),
+						5 => ModContent.ItemType<SFXButtonF>(),
+						6 => ModContent.ItemType<SFXButtonG>(),
+						7 => ModContent.ItemType<SFXButtonH>(),
+						_ => ModContent.ItemType<SFXButtonA>(),
+					};
 					shop.item[nextSlot++].SetDefaults(buttonChoice);
 					break;
 				case NPCID.Painter:

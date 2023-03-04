@@ -7,7 +7,7 @@ namespace ClickerClass.Items.Accessories
 	[AutoloadEquip(EquipType.Waist)]
 	public class IcePack : ClickerItem
 	{
-		public static readonly AutoReuseEffect autoReuseEffect = new(16f, ControlledByKeyBind: true);
+		public static readonly AutoReuseEffect autoReuseEffect = new(15f, ControlledByKeyBind: true);
 
 		public override void SetStaticDefaults()
 		{

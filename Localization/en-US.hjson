@@ -189,6 +189,7 @@ Mods.ClickerClass: {
 		FaultyClicker: Faulty Clicker
 		FrozenClicker: Frozen Clicker
 		GoldClicker: Gold Clicker
+		HeartyClicker: Hearty Clicker
 		HemoClicker: Hemo Clicker
 		HighTechClicker: High Tech Clicker
 		HoneyGlazedClicker: Honey Glazed Clicker
@@ -206,6 +207,7 @@ Mods.ClickerClass: {
 		OrichalcumClicker: Orichalcum Clicker
 		PalladiumClicker: Palladium Clicker
 		PlatinumClicker: Platinum Clicker
+		PharaohsClicker: Pharaoh's Clicker
 		PointyClicker: Pointy Clicker
 		RainbowClicker: Rainbow Clicker
 		RedHotClicker: Red Hot Clicker
@@ -370,38 +372,14 @@ Mods.ClickerClass: {
 			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage} by 14%
 			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius} by 25%
 			'''
-		SFXButtonA:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
-			'''
-		SFXButtonB:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
-			'''
-		SFXButtonC:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
-			'''
-		SFXButtonD:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
-			'''
-		SFXButtonE:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
-			'''
-		SFXButtonF:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
-			'''
-		SFXButtonG:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
-			'''
-		SFXButtonH:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}
-			'''
+		SFXButtonA: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+		SFXButtonB: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+		SFXButtonC: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+		SFXButtonD: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+		SFXButtonE: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+		SFXButtonF: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+		SFXButtonG: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+		SFXButtonH: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
 		SFXSoundboard:
 			'''
 			'Become the life of the party! ...or death of it'
@@ -502,6 +480,16 @@ Mods.ClickerClass: {
 		HolyNova: {
 			Name: Holy Nova
 			Description: Damages every enemy within the clicker's radius with a guaranteed critical hit
+		}
+		
+		PharaohsCommand: {
+			Name: Pharaoh's Command
+			Description: Summons a mask that shoots at your cursor in response to your clicks
+		}
+		
+		HappyHeart: {
+			Name: Happy Heart
+			Description: Produces up to 5 lingering hearts that replenish player life
 		}
 
 		Spiral: {

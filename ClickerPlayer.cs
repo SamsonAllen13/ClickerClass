@@ -239,6 +239,11 @@ namespace ClickerClass
 		/// </summary>
 		public float ClickerRadiusMotherboardDraw => ClickerRadiusRealDraw * 0.5f;
 
+		/// <summary>
+		/// If player has consumed a Heavenly Chip and has its bonus clicker radius
+		/// </summary>
+		public bool consumedHeavenlyChip;
+
 		//Helper methods
 		/// <summary>
 		/// Enables the use of a click effect for this player
@@ -808,12 +813,14 @@ namespace ClickerClass
 		{
 			tag.Add("clickerTotal", clickerTotal);
 			tag.Add("clickerMoneyGenerated", clickerMoneyGenerated);
+			tag.Add("consumedHeavenlyChip", consumedHeavenlyChip);
 		}
 
 		public override void LoadData(TagCompound tag)
 		{
 			clickerTotal = tag.GetInt("clickerTotal");
 			clickerMoneyGenerated = tag.GetInt("clickerMoneyGenerated");
+			consumedHeavenlyChip = tag.GetBool("consumedHeavenlyChip");
 		}
 
 		public override void CopyClientState(ModPlayer clientClone)
@@ -948,6 +955,11 @@ namespace ClickerClass
 			if (setAbilityDelayTimer > 0)
 			{
 				setAbilityDelayTimer--;
+			}
+
+			if (consumedHeavenlyChip)
+			{
+				clickerRadius += 0.5f;
 			}
 
 			if (!setMotherboard)

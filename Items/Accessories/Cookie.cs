@@ -1,5 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
+using ClickerClass.Items.Consumables;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -8,6 +10,7 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<HeavenlyChip>();
 		}
 
 		public override void SetDefaults()

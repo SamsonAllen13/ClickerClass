@@ -938,6 +938,16 @@ Mods: {
 				DisplayName: Cliqueur en Bois
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
 			}
+
+			HeavenlyChip: {
+				// DisplayName: Heavenly Chip
+				// Tooltip: Permanently increases base clicker radius by 5%
+			}
+
+			HeavenlyChipReverter: {
+				// DisplayName: Heavenly Chip Reverter
+				// Tooltip: ""
+			}
 		}
 
 		SetBonus: {

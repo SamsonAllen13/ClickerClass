@@ -184,6 +184,7 @@ Mods.ClickerClass: {
 		CyclopsClicker: Cyclops Clicker
 		DarkClicker: Dark Clicker
 		DraconicClicker: Draconic Clicker
+		DreamClicker: Dream Clicker
 		EclipticClicker: Ecliptic Clicker
 		FamishedClicker: Famished Clicker
 		FaultyClicker: Faulty Clicker
@@ -480,6 +481,11 @@ Mods.ClickerClass: {
 		HolyNova: {
 			Name: Holy Nova
 			Description: Damages every enemy within the clicker's radius with a guaranteed critical hit
+		}
+		
+		StarSlice: {
+			Name: Star Slice
+			Description: Shoots out 4 slicing star strikes
 		}
 		
 		PharaohsCommand: {

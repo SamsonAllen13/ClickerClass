@@ -128,6 +128,7 @@ namespace ClickerClass
 		
 		//Item
 		public bool itemBurningSuperDeath = false;
+		public bool itemDreamClicker = false;
 
 		//Armor
 		public int setAbilityDelayTimer = 0;
@@ -755,6 +756,7 @@ namespace ClickerClass
 			
 			//Item
 			itemBurningSuperDeath = false;
+			itemDreamClicker = false;
 
 			//Armor
 			setMotherboard = false;

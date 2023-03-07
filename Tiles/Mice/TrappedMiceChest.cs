@@ -53,8 +53,6 @@ namespace ClickerClass.Tiles.Mice
 
 		public override bool CreateDust(int i, int j, ref int type) => false;
 
-		//TODO Drop might need to be re-added, TML doesn't handle the item drop for this tile
-
 		public override bool RightClick(int i, int j)
 		{
 			Tile tile = Main.tile[i, j];

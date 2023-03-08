@@ -30,14 +30,11 @@ namespace ClickerClass.Projectiles
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 30;
 		}
-		
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			SoundEngine.PlaySound(SoundID.Item74, Projectile.Center);
-			if (Main.myPlayer == Projectile.owner)
-			{
-				Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<NaughtyClickerPro3>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
-			}
+			Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, Vector2.Zero, ModContent.ProjectileType<NaughtyClickerPro3>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
 		}
 
 		public override void AI()

@@ -28,7 +28,7 @@ namespace ClickerClass.Projectiles
 			Projectile.localNPCHitCooldown = 10;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(BuffID.Oiled, 300, false);
 			target.AddBuff(BuffID.OnFire, 300, false);

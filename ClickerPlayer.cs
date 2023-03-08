@@ -1522,13 +1522,13 @@ namespace ClickerClass
 			}
 		}
 
-		public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
 		{
 			if (ClickerSystem.IsClickerProj(proj))
 			{
 				if (target.GetGlobalNPC<ClickerGlobalNPC>().embrittle)
 				{
-					damage += 8;
+					modifiers.SourceDamage.Flat += 8;
 				}
 			}
 
@@ -1536,7 +1536,7 @@ namespace ClickerClass
 			{
 				if (accAMedalAmount >= 20)
 				{
-					crit = true;
+					modifiers.SetCrit();
 					accAMedalAmount -= 20;
 				}
 				if (accFMedalAmount >= 20)
@@ -1546,10 +1546,10 @@ namespace ClickerClass
 			}
 		}
 
-		public override void OnHitNPCWithProj(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			//Proc effects only when an actual "click" happens, and not other clicker projectiles
-			if (ClickerSystem.IsClickerWeaponProj(projectile))
+			if (ClickerSystem.IsClickerWeaponProj(proj))
 			{
 				ClickerGlobalNPC clickerNPC = target.GetGlobalNPC<ClickerGlobalNPC>();
 				if (target.value > 0f)
@@ -1562,7 +1562,7 @@ namespace ClickerClass
 							Main.dust[dust].noGravity = true;
 						}
 
-						var entitySource = projectile.GetSource_OnHit(target, context: "Acc_GoldenTicket");
+						var entitySource = proj.GetSource_OnHit(target, context: "Acc_GoldenTicket");
 						int amount = 1 + Main.rand.Next(6);
 						int coin = Item.NewItem(entitySource, target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
 						if (amount > 0)
@@ -1598,7 +1598,7 @@ namespace ClickerClass
 						{
 							for (int k = 0; k < 4; k++)
 							{
-								Projectile.NewProjectile(Player.GetSource_Accessory(accPaperclipsItem), clickerPosition.X, clickerPosition.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
+								Projectile.NewProjectile(Player.GetSource_Accessory(accPaperclipsItem), clickerPosition.X, clickerPosition.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), hit.SourceDamage, 2f, Player.whoAmI);
 							}
 						}
 
@@ -1614,7 +1614,7 @@ namespace ClickerClass
 
 					int crystal = ModContent.ProjectileType<ClearKeychainPro2>();
 					bool spawnEffects = true;
-					var entitySource = projectile.GetSource_OnHit(target, context: "Acc_Crystalized");
+					var entitySource = proj.GetSource_OnHit(target, context: "Acc_Crystalized");
 
 					float total = 10f;
 					int i = 0;
@@ -1624,24 +1624,22 @@ namespace ClickerClass
 						Vector2 toDir = Vector2.UnitX * 0f;
 						toDir += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / total)) * new Vector2(10f, 10f);
 						toDir = toDir.RotatedBy(target.velocity.ToRotation());
-						int damageAmount = (int)(damage * 0.25f);
+						int damageAmount = (int)(hit.SourceDamage * 0.25f);
 						damageAmount = damageAmount < 1 ? 1 : damageAmount;
 						Projectile.NewProjectile(entitySource, target.Center + toDir, target.velocity * 0f + toDir.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
 						i++;
 						spawnEffects = false;
 					}
 				}
-
-				outOfCombatTimer = OutOfCombatTimeMax;
 			}
 		}
 
-		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			outOfCombatTimer = OutOfCombatTimeMax;
 		}
 
-		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
+		public override void OnHurt(Player.HurtInfo info)
 		{
 			outOfCombatTimer = OutOfCombatTimeMax;
 		}

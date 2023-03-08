@@ -37,11 +37,6 @@ namespace ClickerClass.Tiles.Mice
 
 		public override bool CreateDust(int i, int j, ref int type) => false;
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Mice.MiceSofa>());
-		}
-
 		public override void ModifySittingTargetInfo(int i, int j, ref TileRestingInfo info)
 		{
 			Tile tile = Framing.GetTileSafely(i, j);

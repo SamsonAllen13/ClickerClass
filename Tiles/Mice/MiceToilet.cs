@@ -47,11 +47,6 @@ namespace ClickerClass.Tiles.Mice
 
 		public override bool CreateDust(int i, int j, ref int type) => false;
 
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 32, ModContent.ItemType<Items.Placeable.Mice.MiceToilet>());
-		}
-
 		public override void ModifySittingTargetInfo(int i, int j, ref TileRestingInfo info)
 		{
 			//It is very important to know that this is called on both players and NPCs, so do not use Main.LocalPlayer for example, use info.restingEntity

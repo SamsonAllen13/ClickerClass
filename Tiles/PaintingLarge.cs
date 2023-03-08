@@ -26,20 +26,5 @@ namespace ClickerClass.Tiles
 			DustType = 7;
 			AddMapEntry(new Color(90, 50, 30), Language.GetText("MapObject.Painting"));
 		}
-
-		public override void KillMultiTile(int i, int j, int frameX, int frameY) 
-		{
-			int item = 0;
-			switch (frameX / 54)
-			{
-				case 0:
-					item = ModContent.ItemType<OutsideTheCave>();
-					break;
-			}
-			if (item > 0) 
-			{
-				Item.NewItem(new EntitySource_TileBreak(i, j), i * 16, j * 16, 48, 48, item);
-			}
-		}
 	}
 }

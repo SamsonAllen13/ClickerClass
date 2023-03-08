@@ -53,27 +53,6 @@ namespace ClickerClass.Tiles.Mice
 
 		public override bool CreateDust(int i, int j, ref int type) => false;
 
-		public override bool Drop(int i, int j)
-		{
-			Tile tile = Main.tile[i, j];
-			int left = i, top = j;
-			if (tile.TileFrameX % 36 != 0)
-			{
-				left--;
-			}
-			if (tile.TileFrameY != 0)
-			{
-				top--;
-			}
-			if (left != i || top != j)
-			{
-				return false;
-			}
-			var source = WorldGen.GetItemSource_FromTileBreak(i, j);
-			Item.NewItem(source, left * 16, top * 16, 32, 32, ModContent.ItemType<Items.Placeable.Mice.MiceChest_Trapped>());
-			return false;
-		}
-
 		public override bool RightClick(int i, int j)
 		{
 			Tile tile = Main.tile[i, j];

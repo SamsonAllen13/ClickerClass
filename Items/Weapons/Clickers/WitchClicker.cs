@@ -20,7 +20,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 					ClickEffect.Mania,
 					ClickEffect.Conqueror,
 					ClickEffect.AutoClick,
-					ClickEffect.PhaseReach
+					ClickEffect.PhaseReach,
+					ClickEffect.Yoink,
+					ClickEffect.Nab
 				};
 
 				List<ClickEffect> allowed = new List<ClickEffect>();

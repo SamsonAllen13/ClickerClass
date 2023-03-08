@@ -180,6 +180,7 @@ Mods.ClickerClass: {
 		CopperClicker: Copper Clicker
 		CorruptClicker: Corrupt Clicker
 		CrimsonClicker: Crimson Clicker
+		CritterClicker: Critter Clicker
 		CrystalClicker: Crystal Clicker
 		CyclopsClicker: Cyclops Clicker
 		DarkClicker: Dark Clicker
@@ -455,7 +456,7 @@ Mods.ClickerClass: {
 		
 		Devour: {
 			Name: Devour
-			Description: N/A
+			Description: Releases hungering leeches that deal bonus damage based on enemy defense
 		}
 			
 		Insanity: {
@@ -506,6 +507,11 @@ Mods.ClickerClass: {
 		Yoink: {
 			Name: Yoink
 			Description: Grabs items and coins near your cursor
+		}
+		
+		Nab: {
+			Name: Nab
+			Description: Catches critters near your cursor, dropping them to the ground
 		}
 			
 		ChromaticBurst: {

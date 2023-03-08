@@ -24,7 +24,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<DreamClickerPro>(), damage, knockBack, Main.myPlayer, hasSpawnEffects, k);
 					spawnEffects = false;
 				}
-			});
+			},
+			preHardMode: true);
 		}
 
 		public override void SetDefaults()
@@ -48,6 +49,6 @@ namespace ClickerClass.Items.Weapons.Clickers
 			player.GetModPlayer<ClickerPlayer>().itemDreamClicker = true;
 		}
 		
-		//TODO - Make it rarely fall out of the sky like fallen stars but only during a lantern night
+		//TODO - Make it rarely fall out of the sky like fallen stars but only during a shooting star night
 	}
 }

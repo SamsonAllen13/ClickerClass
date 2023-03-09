@@ -19,7 +19,7 @@ namespace ClickerClass.Projectiles
 			Player player = Main.player[projectile.owner];
 			modifiers.HitDirectionOverride = target.Center.X < player.Center.X ? -1 : 1;
 
-			if (target.type != NPCID.DungeonGuardian && target.defense < 999)
+			if (!target.SuperArmor)
 			{
 				modifiers.ScalingArmorPenetration += 1f;
 			}

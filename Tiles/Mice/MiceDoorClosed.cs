@@ -42,8 +42,8 @@ namespace ClickerClass.Tiles.Mice
 			TileObjectData.newAlternate.Origin = new Point16(0, 2);
 			TileObjectData.addAlternate(0);
 			TileObjectData.addTile(Type);
-			
-			OpenDoorID = ModContent.TileType<Tiles.Mice.MiceDoorOpen>();
+
+			TileID.Sets.OpenDoorID[Type] = ModContent.TileType<Tiles.Mice.MiceDoorOpen>();
 			AdjTiles = new int[] { TileID.ClosedDoor };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 			AddMapEntry(new Color(119, 105, 79), Language.GetText("MapObject.Door"));

@@ -27,7 +27,7 @@ namespace ClickerClass.Projectiles
 			Projectile.extraUpdates = 3;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			Player player = Main.player[Projectile.owner];
 			player.HealLife(5);

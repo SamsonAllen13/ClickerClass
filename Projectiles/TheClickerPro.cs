@@ -1,3 +1,4 @@
+using System;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
@@ -21,9 +22,13 @@ namespace ClickerClass.Projectiles
 			Projectile.localNPCHitCooldown = 10;
 		}
 		
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			damage = (int)(target.lifeMax * 0.01f);
+			//TODO use target.SuperArmor check?
+			//Projectile is spawned with 1 damage, so it will always guarantee dealing 1 damage, and we subtract it
+			int fixedDamage = (int)(target.lifeMax * 0.01f);
+			modifiers.SourceDamage.Flat += fixedDamage - 1;
+			modifiers.DamageVariationScale *= 0f;
 		}
 
 		public override void Kill(int timeLeft)

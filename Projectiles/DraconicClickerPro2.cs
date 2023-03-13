@@ -31,7 +31,7 @@ namespace ClickerClass.Projectiles
 			return new Color(255, 255 - colorLoss, 255 - colorLoss, 150) * Projectile.Opacity;
 		}
 		
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(BuffID.Oiled, 300, false);
 			target.AddBuff(BuffID.OnFire, 300, false);

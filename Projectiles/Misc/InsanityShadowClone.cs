@@ -128,7 +128,7 @@ namespace ClickerClass.Projectiles.Misc
 			return new Color(255, 255, 255, 255) * Projectile.Opacity;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			//Decreases damage after each hit
 			Projectile.damage = (int)(Projectile.damage * 0.85f);

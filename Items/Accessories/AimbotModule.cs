@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -10,6 +11,11 @@ namespace ClickerClass.Items.Accessories
 	[AutoloadEquip(EquipType.Face)]
 	public class AimbotModule : ClickerItem
 	{
+		public static readonly int DamageIncrease = 10;
+		public static readonly int RadiusIncrease = 10;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease, RadiusIncrease);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -27,8 +33,8 @@ namespace ClickerClass.Items.Accessories
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			player.GetDamage<ClickerDamage>() += 0.10f;
-			clickerPlayer.clickerRadius += 0.2f;
+			player.GetDamage<ClickerDamage>() += DamageIncrease / 100f;
+			clickerPlayer.clickerRadius += 2 * RadiusIncrease / 100f;
 			clickerPlayer.accAimbotModule = true;
 			clickerPlayer.accAimbotModule2 = true;
 		}

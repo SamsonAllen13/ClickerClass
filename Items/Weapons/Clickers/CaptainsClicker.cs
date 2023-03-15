@@ -11,6 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class CaptainsClicker : ClickerWeapon
 	{
+		public static readonly int CannonballAmount = 4;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -19,7 +21,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			{
 				SoundEngine.PlaySound(SoundID.Item14, position);
 
-				for (int k = 0; k < 4; k++)
+				for (int k = 0; k < CannonballAmount; k++)
 				{
 					Vector2 startSpot = new Vector2(position.X + Main.rand.Next(-150, 151), position.Y - 500 + Main.rand.Next(-25, 26));
 					Vector2 endSpot = new Vector2(position.X + Main.rand.Next(-25, 26), position.Y + Main.rand.Next(-25, 26));
@@ -33,7 +35,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					}
 					Projectile.NewProjectile(source, startSpot, vector, ModContent.ProjectileType<CaptainsClickerPro>(), damage, knockBack, player.whoAmI, endSpot.X, endSpot.Y);
 				}
-			});
+			},
+			descriptionArgs: new object[] { CannonballAmount });
 		}
 
 		public override void SetDefaults()

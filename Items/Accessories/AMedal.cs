@@ -1,10 +1,17 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class AMedal : ClickerItem
 	{
+		public static readonly int ChargeMeterMax = 200;
+		public static readonly int ChargeAmount = 10;
+		public static readonly int ChargeMeterStep = 20;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeAmount);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();

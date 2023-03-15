@@ -24,7 +24,7 @@ Mods: {
 
 			Embrittle: {
 				DisplayName: 脆化
-				Description: 点击会对目标造成8点额外伤害
+				Description: 点击会对目标造成{0}点额外伤害
 			}
 
 			Frozen: {
@@ -49,7 +49,7 @@ Mods: {
 
 			InfluenceBuff: {
 				DisplayName: 影响力
-				Description: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}20%"
+				Description: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			OverclockBuff: {
@@ -85,16 +85,23 @@ Mods: {
 
 		Common: {
 			Tooltips: {
-				IncreasesClickDamage: 增加点击伤害
-				IncreasedClickerDamage: 增加点击器伤害
-				IncreasesClickCritChance: 增加点击暴击率
-				IncreasesBaseClickRadius: 增加基础点击范围
-				ReducesBaseClickRadius: 减少基础点击范围
-				ReducesAmountOfClicks: 减少触发点击效果所需的点击数
+				IncreasesMovementSpeedBy: 增加{0}%移动速度
+				IncreasesClickDamageBy: 增加点击伤害{0}%
+				IncreasesClickDamageByFlat: 增加点击伤害{0}点
+				IncreasedClickerDamage: "{0}%增加点击器伤害"
+				IncreasesClickCritChanceBy: 增加点击暴击率{0}%
+				IncreasesBaseClickRadiusBy: 增加基础点击范围{0}%
+				ReducesBaseClickRadiusBy: 减少基础点击范围{0}%
+				ReducesAmountOfClicksBy: 减少触发点击效果所需的点击数{0}%
+				ReducesAmountOfClicksByFlat: 减少触发点击效果所需的点击数{0}次
 				ClickingGloveEvery: 进入战斗后,每隔一段时间自动点击一次,时间间隔:
 				Clicker: 点击无方块阻挡且在圆圈范围内的敌人对其造成伤害
-				MoreThanOneClick: "{0}次点击"
-				OneClick: 1次点击
+				Clicks: "{0} {^0:次点击}"
+				/* SFXButtonTip:
+					'''
+					Changes the sound your clicks make while equipped or in your inventory
+					Volume increases with stack size, up to 5
+					''' */
 			}
 
 			Unknown: 未知
@@ -133,8 +140,8 @@ Mods: {
 				DisplayName: 自动瞄准模块
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy@1}
 					按下'{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}'键切换自动瞄准,自动锁定附近的敌人
 					如果锁定的敌人死亡或消失,将搜寻并锁定附近一个新的敌人
 					'''
@@ -286,12 +293,12 @@ Mods: {
 
 			ChocolateChip: {
 				DisplayName: 巧克力屑
-				Tooltip: 每15次点击释放出大量能造成伤害的巧克力
+				Tooltip: 每{0}次点击释放出大量能造成伤害的巧克力
 			}
 
 			BigRedButton: {
 				DisplayName: 红色大按钮
-				Tooltip: 每25次点击引起大型炽热爆炸
+				Tooltip: 每{0}次点击引起大型炽热爆炸
 			}
 
 			ChocolateMilkCookies: {
@@ -299,7 +306,7 @@ Mods: {
 				Tooltip:
 					'''
 					{$Mods.ClickerClass.Items.MilkCookies.Tooltip}
-					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip}
+					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip@1}
 					'''
 			}
 
@@ -314,7 +321,7 @@ Mods: {
 
 			ClickerEmblem: {
 				DisplayName: 点击大师徽章
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}15%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}"
 			}
 
 			ClickingGlove: {
@@ -336,7 +343,7 @@ Mods: {
 				Tooltip:
 					'''
 					每次点击都会喷发出闪耀的光芒,调整饰品可见性开关光芒显示
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}2点
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageByFlat}
 					'''
 			}
 
@@ -345,9 +352,9 @@ Mods: {
 				Tooltip:
 					'''
 					'你不会真的认为有人会玩这个吧?'
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}50%
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}20%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
+					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy}
 					每次点击会产生一些光尘,能够微弱的照明,调整饰品可见性开关光芒显示
 					{$Mods.ClickerClass.Items.HandCream.Tooltip}
 					'''
@@ -391,7 +398,7 @@ Mods: {
 
 			Milk: {
 				DisplayName: 一杯牛奶
-				Tooltip: 根据每秒点击量增加最多15%点击伤害
+				Tooltip: 根据每秒点击量增加最多{0}%点击伤害
 			}
 
 			MilkCookies: {
@@ -405,22 +412,22 @@ Mods: {
 
 			MousePad: {
 				DisplayName: 鼠标垫
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}25%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MouseTrap: {
 				DisplayName: 老鼠夹
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}15%
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy@1}
 					点击时有很小的概率短暂被诅咒
 					'''
 			}
 
 			PortableParticleAccelerator: {
 				DisplayName: 便携式粒子加速器
-				Tooltip: 点击范围圆圈内靠近自身50%半径内的区域能够额外造成8点伤害
+				Tooltip: 点击范围圆圈内靠近自身{0}%半径内的区域能够额外造成8点伤害
 			}
 
 			GoldenTicket: {
@@ -428,7 +435,7 @@ Mods: {
 				Tooltip:
 					'''
 					点击敌人时生成一些硬币
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}10%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
@@ -442,7 +449,7 @@ Mods: {
 				Tooltip:
 					'''
 					装备后,赋能圈将围绕着你旋转
-					将光标保持在赋能圈内将对A级勋章进行充能,获得最多10次必定暴击的点击
+					将光标保持在赋能圈内将对A级勋章进行充能,获得最多{0}次必定暴击的点击
 					'''
 			}
 
@@ -451,7 +458,7 @@ Mods: {
 				Tooltip:
 					'''
 					装备后,赋能圈将围绕着你旋转
-					将光标保持在赋能圈内将对F级勋章进行充能,增加最多100%点击范围
+					将光标保持在赋能圈内将对F级勋章进行充能,增加最多{0}%点击范围
 					'''
 			}
 
@@ -466,19 +473,68 @@ Mods: {
 
 			Soda: {
 				DisplayName: 苏打汽水
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}1次"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
+			}
+
+			SFXButtonA: {
+				// DisplayName: SFX Button A
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonB: {
+				// DisplayName: SFX Button B
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonC: {
+				// DisplayName: SFX Button C
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonD: {
+				// DisplayName: SFX Button D
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonE: {
+				// DisplayName: SFX Button E
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonF: {
+				// DisplayName: SFX Button F
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonG: {
+				// DisplayName: SFX Button G
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonH: {
+				// DisplayName: SFX Button H
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXSoundboard: {
+				// DisplayName: SFX Soundboard
+				/* Tooltip:
+					'''
+					'Become the life of the party! ...or death of it'
+					Changes the sound your clicks make while equipped or in your inventory
+					''' */
 			}
 
 			StickyKeychain: {
 				DisplayName: 凝胶钥匙串
-				Tooltip: 每10次点击,将能造成伤害的凝胶粘在屏幕上
+				Tooltip: 每{0}次点击,将能造成伤害的凝胶粘在屏幕上
 			}
 
 			TheScroller: {
 				DisplayName: 滚动条
 				Tooltip:
 					'''
-					{$CommonItems.FlightAndSlowfall}
+					{$CommonItemTooltip.FlightAndSlowfall}
 					按住下键加速下落
 					'''
 			}
@@ -492,8 +548,8 @@ Mods: {
 				DisplayName: 鼠标靴子
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%
-					增加20%移动速度
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy@1}
 					'''
 			}
 
@@ -501,8 +557,8 @@ Mods: {
 				DisplayName: 鼠标面具
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}6%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance}6%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChanceBy}6%
 					'''
 			}
 
@@ -510,73 +566,73 @@ Mods: {
 				DisplayName: 鼠标盔甲
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}14%
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}25%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
 			MotherboardBoots: {
 				DisplayName: 主板靴子
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			MotherboardHelmet: {
 				DisplayName: 主板头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}20%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MotherboardSuit: {
 				DisplayName: 主板盔甲
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}6%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			OverclockBoots: {
 				DisplayName: 超频靴子
-				Tooltip: 增加10%移动速度
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy}"
 			}
 
 			OverclockHelmet: {
 				DisplayName: 超频头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}1次"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			OverclockSuit: {
 				DisplayName: 超频盔甲
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}15%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			PrecursorBreastplate: {
 				DisplayName: 先驱者胸甲
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}15%
-					{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius}50%
+					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
+					{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadiusBy@1}
 					'''
 			}
 
 			PrecursorGreaves: {
 				DisplayName: 先驱者护胫
-				Tooltip: 增加15%移动速度
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy}"
 			}
 
 			PrecursorHelmet: {
 				DisplayName: 先驱者头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			RGBBreastplate: {
 				DisplayName: RGB胸甲
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}25%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			RGBGreaves: {
 				DisplayName: RGB护胫
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}25%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			RGBHelm: {
 				DisplayName: RGB头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}1次"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			ClickerEffectHairDye: {
@@ -591,7 +647,7 @@ Mods: {
 
 			InfluencePotion: {
 				DisplayName: 影响力药水
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}20%"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MiceDrill: {
@@ -689,6 +745,11 @@ Mods: {
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
 			}
 
+			CritterClicker: {
+				// DisplayName: Critter Clicker
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
 			CrystalClicker: {
 				DisplayName: 水晶点击器
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
@@ -706,6 +767,11 @@ Mods: {
 
 			DraconicClicker: {
 				DisplayName: 飞龙点击器
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			DreamClicker: {
+				// DisplayName: Dream Clicker
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
 			}
 
@@ -731,6 +797,11 @@ Mods: {
 
 			GoldClicker: {
 				DisplayName: 金点击器
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			HeartyClicker: {
+				// DisplayName: Hearty Clicker
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
 			}
 
@@ -814,6 +885,11 @@ Mods: {
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
 			}
 
+			PharaohsClicker: {
+				// DisplayName: Pharaoh's Clicker
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
 			PlatinumClicker: {
 				DisplayName: 铂金点击器
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
@@ -821,6 +897,11 @@ Mods: {
 
 			PointyClicker: {
 				DisplayName: 尖刺点击器
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			QuintessenceClicker: {
+				// DisplayName: Quintessence Clicker
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
 			}
 
@@ -945,14 +1026,19 @@ Mods: {
 			Motherboard: 右键单击在视野中点击器范围内的某个位置放置范围延伸元件
 			Overclock:
 				'''
-				每100次点击,使你获得短暂的'超频',每次点击都会触发点击效果
-				当超频激活时,你的点击伤害减少50%
+				每{0}次点击,使你获得短暂的'超频',每次点击都会触发点击效果
+				当超频激活时,你的点击伤害减少{1}%
 				'''
 			Precursor: 进入战斗后,光标会不断留下能够点击一次的残像
-			RGB: 每20次点击,光标处就会产生色彩爆发
+			RGB: 每{0}次点击,光标处就会产生色彩爆发
 		}
 
-		InfoDisplays.CPSInfoDisplay.DisplayName: 次点击每秒
+		InfoDisplays: {
+			CPSInfoDisplay: {
+				DisplayName: 次点击每秒
+				DisplayValue: "{$Mods.ClickerClass.Common.Tooltips.Clicks}每秒"
+			}
+		}
 
 		ClickEffect: {
 			TrueStrike: {
@@ -1032,7 +1118,7 @@ Mods: {
 
 			BloodSucker: {
 				Name: 血珠
-				Description: 创造2个从点击范围圈最外层向心旋转的血珠
+				Description: 创造{0}个从点击范围圈最外层向心旋转的血珠
 			}
 
 			BalloonDefense: {
@@ -1042,12 +1128,12 @@ Mods: {
 
 			Incinerate: {
 				Name: 焚尽
-				Description: 在附近不同的方块上生成8个火花灼烧敌人
+				Description: 在附近不同的方块上生成{0}个火花灼烧敌人
 			}
 
 			Lacerate: {
 				Name: 撕裂
-				Description: 给予目标重伤减益,效果:每秒造成30伤害
+				Description: 给予目标重伤减益,效果:每秒造成{0}伤害
 			}
 
 			Starfall: {
@@ -1072,17 +1158,17 @@ Mods: {
 
 			Illuminate: {
 				Name: 照明
-				Description: 在附近不同的方块上生成8个火花用于照明
+				Description: 在附近不同的方块上生成{0}个火花用于照明
 			}
 
 			Bombard: {
 				Name: 轰炸
-				Description: 召唤4颗炮弹从天而降
+				Description: 召唤{0}颗炮弹从天而降
 			}
 
 			ToxicRelease: {
 				Name: 喷毒
-				Description: 在光标周围产生10朵毒云
+				Description: 在光标周围产生{0}朵毒云
 			}
 
 			Haste: {
@@ -1097,7 +1183,7 @@ Mods: {
 
 			Infest: {
 				Name: 感染
-				Description: 发射8条自动追踪灵液射弹
+				Description: 发射{0}条自动追踪灵液射弹
 			}
 
 			Dazzle: {
@@ -1122,12 +1208,12 @@ Mods: {
 
 			Linger: {
 				Name: 溅血
-				Description: 喷出5个受重力影响的血球
+				Description: 喷出{0}个受重力影响的血球
 			}
 
 			Discharge: {
 				Name: 放电
-				Description: 在光标周围迸发出4条追踪电流
+				Description: 在光标周围迸发出{0}条追踪电流
 			}
 
 			StickyHoney: {
@@ -1142,7 +1228,7 @@ Mods: {
 
 			Smite: {
 				Name: 惩戒
-				Description: 在光标周围召唤8个火把之焰射向光标处
+				Description: 在光标周围召唤{0}个火把之焰射向光标处
 			}
 
 			Conqueror: {
@@ -1152,7 +1238,7 @@ Mods: {
 
 			Collision: {
 				Name: 碰撞
-				Description: 向外射出8个无序的光球,跟随光标移动
+				Description: 向外射出{0}个无序的光球,跟随光标移动
 			}
 
 			Spores: {
@@ -1167,7 +1253,7 @@ Mods: {
 
 			PetalStorm: {
 				Name: 花瓣风暴
-				Description: 在光标周围召唤5片花瓣射向光标处
+				Description: 在光标周围召唤{0}片花瓣射向光标处
 			}
 
 			Regenerate: {
@@ -1202,17 +1288,17 @@ Mods: {
 
 			Siphon: {
 				Name: 虹吸
-				Description: 造成少量伤害并恢复玩家5点生命值
+				Description: 造成少量伤害并恢复玩家{0}点生命值
 			}
 
 			Splash: {
 				Name: 洒水
-				Description: 喷出6个水射弹
+				Description: 喷出{0}个水射弹
 			}
 
 			StarStorm: {
 				Name: 星星风暴
-				Description: 从天空坠下3颗星星爆炸伤害敌人
+				Description: 从天空坠下{0}颗星星爆炸伤害敌人
 			}
 
 			PhaseReach: {
@@ -1222,17 +1308,17 @@ Mods: {
 
 			TheClick: {
 				Name: 大师点击
-				Description: 对敌人额外造成其生命上限1%的伤害
+				Description: 对敌人额外造成其生命上限{0}%的伤害
 			}
 
 			RazorsEdge: {
 				Name: 刀锋
-				Description: 发射5个向外发散的轨道锯片
+				Description: 发射{0}个向外发散的轨道锯片
 			}
 
 			ShadowLash: {
 				Name: 暗影鞭笞
-				Description: 发出5个暗影射弹,自动追踪附近的敌人
+				Description: 发出{0}个暗影射弹,自动追踪附近的敌人
 			}
 
 			WildMagic: {
@@ -1274,12 +1360,37 @@ Mods: {
 				Name: 晶化
 				Description: 用水晶史莱姆砸向敌人;点击被水晶史莱姆缠上的敌人爆发AOE伤害
 			}
+
+			StarSlice: {
+				// Name: Star Slice
+				// Description: Shoots out 4 slicing star strikes
+			}
+
+			HappyHeart: {
+				// Name: Happy Heart
+				// Description: Produces up to 5 lingering hearts that replenish player life
+			}
+
+			PharaohsCommand: {
+				// Name: Pharaoh's Command
+				// Description: Summons a mask that shoots at your cursor in response to your clicks
+			}
+
+			Evolve: {
+				// Name: Evolve
+				// Description: "{$Mods.ClickerClass.Common.Unknown}"
+			}
+
+			Nab: {
+				// Name: Nab
+				// Description: "{$Mods.ClickerClass.Common.Unknown}"
+			}
 		}
 
 		Prefixes: {
 			ClickerRadius: {
 				DisplayName: 延伸的
-				Tooltip: +15% 基础点击范围
+				Tooltip: +{0}% 基础点击范围
 			}
 
 			Elite.DisplayName: 精英的
@@ -1354,78 +1465,84 @@ Mods: {
 			// ClickerClassTip4: Clicker Class: Find a nice Ice Pack to cool your hands if clicking is cramping them up!
 		}
 
+		# regex: DisplayName\: (.*?) Pro([0-9]*)? -> DisplayName: $1
 		Projectiles: {
-			// AdamantiteClickerPro.DisplayName: Adamantite Clicker Pro
-			// AMedalPro.DisplayName: A Medal Pro
-			// ArthursClickerPro.DisplayName: Arthurs Clicker Pro
-			// AstralClickerPro.DisplayName: Astral Clicker Pro
-			// BalloonClickerPro.DisplayName: Balloon Clicker Pro
-			// BigRedButtonPro.DisplayName: Big Red Button Pro
-			// BigRedButtonPro2.DisplayName: Big Red Button Pro2
-			// BigRedButtonPro3.DisplayName: Big Red Button Pro3
-			// BlizzardClickerPro.DisplayName: Blizzard Clicker Pro
-			// BlizzardClickerPro2.DisplayName: Blizzard Clicker Pro2
-			// BoneClickerPro.DisplayName: Bone Clicker Pro
-			// BottomlessBoxofPaperclipsPro.DisplayName: Bottomless Boxof Paperclips Pro
-			// CandleClickerPro.DisplayName: Candle Clicker Pro
-			// CaptainsClickerPro.DisplayName: Captains Clicker Pro
-			// ChlorophyteClickerPro.DisplayName: Chlorophyte Clicker Pro
-			// ChocolateChipPro.DisplayName: Chocolate Chip Pro
-			// ClearKeychainPro.DisplayName: Clear Keychain Pro
-			// ClearKeychainPro2.DisplayName: Clear Keychain Pro2
+			// AdamantiteClickerPro.DisplayName: Adamantite Clicker
+			// AMedalPro.DisplayName: A Medal
+			// ArthursClickerPro.DisplayName: Arthurs Clicker
+			// AstralClickerPro.DisplayName: Astral Clicker
+			// BalloonClickerPro.DisplayName: Balloon Clicker
+			// BigRedButtonPro.DisplayName: Big Red Button
+			// BigRedButtonPro2.DisplayName: Big Red Button
+			// BigRedButtonPro3.DisplayName: Big Red Button
+			// BlizzardClickerPro.DisplayName: Blizzard Clicker
+			// BlizzardClickerPro2.DisplayName: Blizzard Clicker
+			// BoneClickerPro.DisplayName: Bone Clicker
+			// BottomlessBoxofPaperclipsPro.DisplayName: Bottomless Box of Paperclips
+			// CandleClickerPro.DisplayName: Candle Clicker
+			// CaptainsClickerPro.DisplayName: Captains Clicker
+			// ChlorophyteClickerPro.DisplayName: Chlorophyte Clicker
+			// ChocolateChipPro.DisplayName: Chocolate Chip
+			// ClearKeychainPro.DisplayName: Clear Keychain
+			// ClearKeychainPro2.DisplayName: Clear Keychain
 			// ClickDamage.DisplayName: Click Damage
-			// CookiePro.DisplayName: Cookie Pro
-			// CorruptClickerPro.DisplayName: Corrupt Clicker Pro
-			// CrimsonClickerPro.DisplayName: Crimson Clicker Pro
-			// CrystalClickerPro.DisplayName: Crystal Clicker Pro
-			// CyclopsClickerPro.DisplayName: Cyclops Clicker Pro
-			// DarkClickerPro.DisplayName: Dark Clicker Pro
-			// DraconicClickerPro.DisplayName: Draconic Clicker Pro
-			// DraconicClickerPro2.DisplayName: Draconic Clicker Pro2
-			// FaultyClickerPro.DisplayName: Faulty Clicker Pro
-			// FMedalPro.DisplayName: F Medal Pro
-			// FrozenClickerPro.DisplayName: Frozen Clicker Pro
-			// HemoClickerPro.DisplayName: Hemo Clicker Pro
+			// CookiePro.DisplayName: Cookie
+			// CorruptClickerPro.DisplayName: Corrupt Clicker
+			// CrimsonClickerPro.DisplayName: Crimson Clicker
+			// CrystalClickerPro.DisplayName: Crystal Clicker
+			// CyclopsClickerPro.DisplayName: Cyclops Clicker
+			// DarkClickerPro.DisplayName: Dark Clicker
+			// DraconicClickerPro.DisplayName: Draconic Clicker
+			// DraconicClickerPro2.DisplayName: Draconic Clicker
+			// FaultyClickerPro.DisplayName: Faulty Clicker
+			// FMedalPro.DisplayName: F Medal
+			// FrozenClickerPro.DisplayName: Frozen Clicker
+			// HemoClickerPro.DisplayName: Hemo Clicker
 			// HighTechClickerPro.DisplayName: High Tech Clicker
-			// HoneyGlazedClickerPro.DisplayName: Honey Glazed Clicker Pro
-			// HotKeychainPro.DisplayName: Hot Keychain Pro
-			// LanternClickerPro.DisplayName: Lantern Clicker Pro
-			// LihzarhdClickerPro.DisplayName: Lihzarhd Clicker Pro
-			// LordsClickerPro.DisplayName: Lords Clicker Pro
-			// MiceClickerPro.DisplayName: Mice Clicker Pro
+			// HoneyGlazedClickerPro.DisplayName: Honey Glazed Clicker
+			// HotKeychainPro.DisplayName: Hot Keychain
+			// LanternClickerPro.DisplayName: Lantern Clicker
+			// LihzarhdClickerPro.DisplayName: Lihzarhd Clicker
+			// LordsClickerPro.DisplayName: Lords Clicker
+			// MiceClickerPro.DisplayName: Mice Clicker
 			// MiceDrillPro.DisplayName: Mice Drill
-			// MyceliumClickerPro.DisplayName: Mycelium Clicker Pro
-			// MythrilClickerPro.DisplayName: Mythril Clicker Pro
-			// NaughtyClickerPro.DisplayName: Naughty Clicker Pro
-			// NaughtyClickerPro2.DisplayName: Naughty Clicker Pro2
-			// NaughtyClickerPro3.DisplayName: Naughty Clicker Pro3
-			// OrichaclumClickerPro.DisplayName: Orichaclum Clicker Pro
-			// PointyClickerPro.DisplayName: Pointy Clicker Pro
-			// PrecursorPro.DisplayName: Precursor Pro
-			// RainbowClickerPro.DisplayName: Rainbow Clicker Pro
-			// RedHotClickerPro.DisplayName: Red Hot Clicker Pro
-			// RGBPro.DisplayName: R G B Pro
+			// MyceliumClickerPro.DisplayName: Mycelium Clicker
+			// MythrilClickerPro.DisplayName: Mythril Clicker
+			// NaughtyClickerPro.DisplayName: Naughty Clicker
+			// NaughtyClickerPro2.DisplayName: Naughty Clicker
+			// NaughtyClickerPro3.DisplayName: Naughty Clicker
+			// OrichaclumClickerPro.DisplayName: Orichaclum Clicker
+			// PointyClickerPro.DisplayName: Pointy Clicker
+			// PrecursorPro.DisplayName: Precursor
+			// RainbowClickerPro.DisplayName: Rainbow Clicker
+			// RedHotClickerPro.DisplayName: Red Hot Clicker
+			// RGBPro.DisplayName: RGB
 			// SandstormClickerPro.DisplayName: Sandstorm Clicker
-			// SeafoamClickerPro.DisplayName: Seafoam Clicker Pro
-			// ShadowyClickerPro.DisplayName: Shadowy Clicker Pro
-			// SinisterClickerPro.DisplayName: Sinister Clicker Pro
-			// SlickClickerPro.DisplayName: Slick Clicker Pro
-			// SMedalPro.DisplayName: S Medal Pro
-			// SMedalPro2.DisplayName: S Medal Pro2
-			// SMedalPro3.DisplayName: S Medal Pro3
-			// SnottyClickerPro.DisplayName: Snotty Clicker Pro
-			// SpaceClickerPro.DisplayName: Space Clicker Pro
-			// SpiralClickerPro.DisplayName: Spiral Clicker Pro
-			// StarryClickerPro.DisplayName: Starry Clicker Pro
-			// StickyKeychainPro.DisplayName: Sticky Keychain Pro
-			// TheClickerPro.DisplayName: The Clicker Pro
-			// TitaniumClickerPro.DisplayName: Titanium Clicker Pro
-			// TorchClickerPro.DisplayName: Torch Clicker Pro
-			// TotalityClickerPro.DisplayName: Totality Clicker Pro
-			// TotalityClickerPro2.DisplayName: Totality Clicker Pro2
-			// UmbralClickerPro.DisplayName: Umbral Clicker Pro
-			// WebClickerPro.DisplayName: Web Clicker Pro
-			// WebClickerPro2.DisplayName: Web Clicker Pro2
+			// SeafoamClickerPro.DisplayName: Seafoam Clicker
+			// ShadowyClickerPro.DisplayName: Shadowy Clicker
+			// SinisterClickerPro.DisplayName: Sinister Clicker
+			// SlickClickerPro.DisplayName: Slick Clicker
+			// SMedalPro.DisplayName: S Medal
+			// SMedalPro2.DisplayName: S Medal
+			// SMedalPro3.DisplayName: S Medal
+			// SnottyClickerPro.DisplayName: Snotty Clicker
+			// SpaceClickerPro.DisplayName: Space Clicker
+			// SpiralClickerPro.DisplayName: Spiral Clicker
+			// StarryClickerPro.DisplayName: Starry Clicker
+			// StickyKeychainPro.DisplayName: Sticky Keychain
+			// TheClickerPro.DisplayName: The Clicker
+			// TitaniumClickerPro.DisplayName: Titanium Clicker
+			// TorchClickerPro.DisplayName: Torch Clicker
+			// TotalityClickerPro.DisplayName: Totality Clicker
+			// TotalityClickerPro2.DisplayName: Totality Clicker
+			// UmbralClickerPro.DisplayName: Umbral Clicker
+			// WebClickerPro.DisplayName: Web Clicker
+			// WebClickerPro2.DisplayName: Web Clicker
+			// DreamClickerPro.DisplayName: Dream Clicker
+			// FamishedClickerPro.DisplayName: Famished Clicker
+			// HeartyClickerPro.DisplayName: Hearty Clicker
+			// PharaohsClickerPro.DisplayName: Pharaoh's Clicker
+			// PharaohsClickerPro2.DisplayName: Pharaoh's Clicker
 		}
 	}
 }

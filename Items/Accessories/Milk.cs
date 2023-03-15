@@ -1,5 +1,6 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -7,6 +8,10 @@ namespace ClickerClass.Items.Accessories
 	[AutoloadEquip(EquipType.Waist)]
 	public class Milk : ClickerItem
 	{
+		public static readonly int DamageIncrease = 15;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();

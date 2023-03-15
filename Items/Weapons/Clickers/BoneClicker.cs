@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
+using ClickerClass.Buffs;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -17,7 +18,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			{
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<BoneClickerPro>(), damage, knockBack, player.whoAmI);
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { Gouge.DamageOverTime });
 		}
 
 		public override void SetDefaults()

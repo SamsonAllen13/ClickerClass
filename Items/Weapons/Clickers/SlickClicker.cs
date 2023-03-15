@@ -9,6 +9,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class SlickClicker : ClickerWeapon
 	{
+		public static readonly int WaterAmount = 6;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -16,14 +18,15 @@ namespace ClickerClass.Items.Weapons.Clickers
 			ClickEffect.Splash = ClickerSystem.RegisterClickEffect(Mod, "Splash", 6, new Color(75, 75, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
-				for (int k = 0; k < 6; k++)
+				for (int k = 0; k < WaterAmount; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
 					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<SlickClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI, hasSpawnEffects);
 					spawnEffects = false;
 				}
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { WaterAmount });
 		}
 
 		public override void SetDefaults()

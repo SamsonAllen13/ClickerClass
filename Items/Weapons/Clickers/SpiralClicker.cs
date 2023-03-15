@@ -1,6 +1,5 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,6 +10,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class SpiralClicker : ClickerWeapon
 	{
+		public static readonly int SpiralAmount = 2;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -19,11 +20,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 			{
 				SoundEngine.PlaySound(SoundID.NPCHit13, position);
 
-				for (int index = 0; index < 2; index++)
+				for (int index = 0; index < SpiralAmount; index++)
 				{
 					Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<SpiralClickerPro>(), (int)(damage * 0.5f), 1f, player.whoAmI, index);
 				}
-			});
+			},
+			descriptionArgs: new object[] { SpiralAmount });
 		}
 
 		public override void SetDefaults()

@@ -9,6 +9,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class TheClicker : ClickerWeapon
 	{
+		public static readonly int AdditionalDamageLifeRatio = 1;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -17,7 +19,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			{
 				//Spawned with damage 1, custom code in ModifyHitNPC
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<TheClickerPro>(), 1, 0f, player.whoAmI);
-			});
+			},
+			descriptionArgs: new object[] { AdditionalDamageLifeRatio });
 		}
 
 		public override void SetDefaults()

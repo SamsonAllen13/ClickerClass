@@ -1,10 +1,15 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class ClickerEmblem : ClickerItem
 	{
+		public static readonly int DamageIncrease = 15;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -21,7 +26,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetDamage<ClickerDamage>() += 0.15f;
+			player.GetDamage<ClickerDamage>() += DamageIncrease / 100f;
 		}
 	}
 }

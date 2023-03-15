@@ -15,6 +15,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class MiceClicker : ClickerWeapon
 	{
+		public static readonly int BoltAmount = 8;
+
 		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Unload()
@@ -29,13 +31,14 @@ namespace ClickerClass.Items.Weapons.Clickers
 			ClickEffect.Collision = ClickerSystem.RegisterClickEffect(Mod, "Collision", 10, new Color(150, 150, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
-				for (int k = 0; k < 8; k++)
+				for (int k = 0; k < BoltAmount; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
 					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f), ModContent.ProjectileType<MiceClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI, (int)DateTime.Now.Ticks, hasSpawnEffects);
 					spawnEffects = false;
 				}
-			});
+			},
+			descriptionArgs: new object[] { BoltAmount });
 
 			if (!Main.dedServ)
 			{

@@ -1,3 +1,4 @@
+using ClickerClass.Buffs;
 using ClickerClass.Items;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Consumables;
@@ -69,7 +70,7 @@ namespace ClickerClass.NPCs
 				{
 					npc.lifeRegen = 0;
 				}
-				npc.lifeRegen -= 60;
+				npc.lifeRegen -= 2 * Gouge.DamageOverTime;
 				damage = 10;
 			}
 			if (seafoam)

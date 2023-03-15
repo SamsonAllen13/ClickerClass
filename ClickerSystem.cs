@@ -150,9 +150,11 @@ namespace ClickerClass
 		/// <param name="colorFunc">The (dynamic) text color representing the effect in the tooltip</param>
 		/// <param name="action">The method that runs when the effect is triggered</param>
 		/// <param name="preHardMode">If this effect primarily belongs to something available pre-hardmode</param>
+		/// <param name="nameArgs">Arguments that need to be bound to the display name</param>
+		/// <param name="descriptionArgs">Arguments that need to be bound to the description</param>
 		/// <returns>The unique identifier</returns>
 		/// <exception cref="InvalidOperationException"/>
-		public static string RegisterClickEffect(Mod mod, string internalName, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false)
+		public static string RegisterClickEffect(Mod mod, string internalName, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false, object[] nameArgs = null, object[] descriptionArgs = null)
 		{
 			if (FinalizedRegisterCompat)
 			{
@@ -165,7 +167,7 @@ namespace ClickerClass
 
 			string uniqueName = UniqueEffectName(mod, internalName);
 
-			ClickEffect effect = new ClickEffect(mod, internalName, amount, colorFunc, action, preHardMode);
+			ClickEffect effect = new ClickEffect(mod, internalName, amount, colorFunc, action, preHardMode, nameArgs, descriptionArgs);
 
 			if (!IsClickEffect(uniqueName))
 			{
@@ -188,11 +190,13 @@ namespace ClickerClass
 		/// <param name="action">The method that runs when the effect is triggered</param>
 		/// <remarks>For dynamic colors, use the Func[Color] overload</remarks>
 		/// <param name="preHardMode">If this effect primarily belongs to something available pre-hardmode</param>
+		/// <param name="nameArgs">Arguments that need to be bound to the display name</param>
+		/// <param name="descriptionArgs">Arguments that need to be bound to the description</param>
 		/// <returns>The unique identifier</returns>
 		/// <exception cref="InvalidOperationException"/>
-		public static string RegisterClickEffect(Mod mod, string internalName, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false)
+		public static string RegisterClickEffect(Mod mod, string internalName, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false, object[] nameArgs = null, object[] descriptionArgs = null)
 		{
-			return RegisterClickEffect(mod, internalName, amount, () => color, action, preHardMode);
+			return RegisterClickEffect(mod, internalName, amount, () => color, action, preHardMode, nameArgs, descriptionArgs);
 		}
 
 		/// <summary>

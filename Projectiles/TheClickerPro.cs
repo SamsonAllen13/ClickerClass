@@ -1,4 +1,4 @@
-using System;
+using ClickerClass.Items.Weapons.Clickers;
 using Terraria;
 using Terraria.Graphics.Shaders;
 
@@ -26,7 +26,7 @@ namespace ClickerClass.Projectiles
 		{
 			//TODO use target.SuperArmor check?
 			//Projectile is spawned with 1 damage, so it will always guarantee dealing 1 damage, and we subtract it
-			int fixedDamage = (int)(target.lifeMax * 0.01f);
+			int fixedDamage = (int)(target.lifeMax * TheClicker.AdditionalDamageLifeRatio / 100f);
 			modifiers.SourceDamage.Flat += fixedDamage - 1;
 			modifiers.DamageVariationScale *= 0f;
 		}

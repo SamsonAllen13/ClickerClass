@@ -9,6 +9,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class SinisterClicker : ClickerWeapon
 	{
+		public static readonly int HealAmount = 5;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -17,7 +19,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			{
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<SinisterClickerPro>(), (int)(damage * 0.50f), knockBack, player.whoAmI);
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { HealAmount });
 		}
 
 		public override void SetDefaults()

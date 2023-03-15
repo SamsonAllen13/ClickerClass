@@ -14,6 +14,7 @@ using Terraria.Utilities;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using ClickerClass.Prefixes.ClickerPrefixes;
+using ClickerClass.Items.Armors;
 
 namespace ClickerClass.Items
 {
@@ -525,7 +526,7 @@ namespace ClickerClass.Items
 
 				int overclockType = ModContent.BuffType<OverclockBuff>();
 				//Overclock armor set bonus
-				if (clickerPlayer.clickAmount % 100 == 0 && clickerPlayer.setOverclock)
+				if (clickerPlayer.clickAmount % OverclockHelmet.ClickAmount == 0 && clickerPlayer.setOverclock)
 				{
 					SoundEngine.PlaySound(SoundID.Item94, position);
 					player.AddBuff(overclockType, 180, false);

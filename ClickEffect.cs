@@ -20,9 +20,12 @@ namespace ClickerClass
 
 		public string UniqueName => ClickerSystem.UniqueEffectName(Mod, InternalName);
 
+		//TODO Concider using cache for these to avoid having to keep args for cloning
 		public LocalizedText DisplayName { get; init; }
+		private object[] DisplayNameArgs { get; init; }
 
 		public LocalizedText Description { get; init; }
+		private object[] DescriptionArgs { get; init; }
 
 		public int Amount { get; private init; }
 
@@ -34,7 +37,7 @@ namespace ClickerClass
 
 		private static void DoNothingAction(Player a, EntitySource_ItemUse_WithAmmo b, Vector2 c, int d, int e, float f) { }
 
-		public ClickEffect(Mod mod, string internalName, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false)
+		public ClickEffect(Mod mod, string internalName, int amount, Func<Color> colorFunc, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false, object[] nameArgs = null, object[] descriptionArgs = null)
 		{
 			Mod = mod ?? throw new Exception("No mod specified");
 			InternalName = internalName ?? throw new Exception("No internal name specified");
@@ -46,26 +49,29 @@ namespace ClickerClass
 			string category = "ClickEffect";
 			string name = InternalName;
 			DisplayName = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}.{name}.Name"), PrettyPrintName);
+			DisplayNameArgs = nameArgs;
+			if (DisplayNameArgs != null)
+			{
+				DisplayName = DisplayName.WithFormatArgs(DisplayNameArgs);
+			}
+
 			Description = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}.{name}.Description"), () => "{$Mods.ClickerClass.Common.Unknown}");
+			DescriptionArgs = descriptionArgs;
+			if (DescriptionArgs != null)
+			{
+				Description = Description.WithFormatArgs(DescriptionArgs);
+			}
 		}
 
 		public object Clone()
 		{
-			return new ClickEffect(Mod, InternalName, Amount, ColorFunc, (Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>)Action.Clone(), PreHardMode);
+			return new ClickEffect(Mod, InternalName, Amount, ColorFunc, (Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>)Action.Clone(), PreHardMode, DisplayNameArgs, DescriptionArgs);
 		}
 
 		public TooltipLine ToTooltip(int amount, float alpha, bool showDesc)
 		{
 			string color = (ColorFunc() * alpha).Hex3();
-			string text;
-			if (amount > 1)
-			{
-				text = LangHelper.GetText("Common.Tooltips.MoreThanOneClick", amount);
-			}
-			else
-			{
-				text = LangHelper.GetText("Common.Tooltips.OneClick");
-			}
+			string text = LangHelper.GetText("Common.Tooltips.Clicks", amount);
 			text += $": [c/{color}:{DisplayName.Value}]";
 			if (showDesc && Description.Value != Description.Key)
 			{

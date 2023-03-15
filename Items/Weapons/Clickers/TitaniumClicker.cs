@@ -9,6 +9,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class TitaniumClicker : ClickerWeapon
 	{
+		public static readonly int SawbladeAmount = 5;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -16,13 +18,14 @@ namespace ClickerClass.Items.Weapons.Clickers
 			ClickEffect.RazorsEdge = ClickerSystem.RegisterClickEffect(Mod, "RazorsEdge", 12, new Color(150, 150, 150), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
-				for (int index = 0; index < 5; index++)
+				for (int index = 0; index < SawbladeAmount; index++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
 					Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<TitaniumClickerPro>(), (int)(damage * 0.5f), 0f, player.whoAmI, index, hasSpawnEffects);
 					spawnEffects = false;
 				}
-			});
+			},
+			descriptionArgs: new object[] { SawbladeAmount });
 		}
 
 		public override void SetDefaults()

@@ -5,16 +5,21 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using System;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class ChocolateChip : ClickerItem
 	{
+		public static readonly int ClickAmount = 15;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ClickAmount);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.ChocolateChip = ClickerSystem.RegisterClickEffect(Mod, "ChocolateChip", 15, new Color(165, 110, 60, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.ChocolateChip = ClickerSystem.RegisterClickEffect(Mod, "ChocolateChip", ClickAmount, new Color(165, 110, 60, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				int chocolate = ModContent.ProjectileType<ChocolateChipPro>();

@@ -1383,7 +1383,7 @@ Mods: {
 
 			Nab: {
 				// Name: Nab
-				// Description: "{$Mods.ClickerClass.Common.Unknown}"
+				// Description: Catches critters near your cursor, dropping them to the ground
 			}
 		}
 

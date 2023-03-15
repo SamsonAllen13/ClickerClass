@@ -60,7 +60,7 @@ namespace ClickerClass.Tiles.Mice
 			extraY = 0;
 		}
 
-		public override LocalizedText ContainerName(int frameX, int frameY)
+		public override LocalizedText DefaultContainerName(int frameX, int frameY)
 		{
 			return this.GetLocalization("MapEntry");
 		}
@@ -226,9 +226,9 @@ namespace ClickerClass.Tiles.Mice
 				}
 				else
 				{
-					player.cursorItemIconText = TileLoader.ContainerName(Type, tile.TileFrameX, tile.TileFrameY);
+					player.cursorItemIconText = TileLoader.DefaultContainerName(Type, tile.TileFrameX, tile.TileFrameY);
 				}
-				if (player.cursorItemIconText == TileLoader.ContainerName(Type, tile.TileFrameX, tile.TileFrameY))
+				if (player.cursorItemIconText == TileLoader.DefaultContainerName(Type, tile.TileFrameX, tile.TileFrameY))
 				{
 					int style = tile.TileFrameX / 54;
 					player.cursorItemIconID = ModContent.ItemType<Items.Placeable.Mice.MiceDresser>();

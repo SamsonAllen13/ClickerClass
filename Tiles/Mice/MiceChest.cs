@@ -52,7 +52,7 @@ namespace ClickerClass.Tiles.Mice
 
 		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 
-		public override LocalizedText ContainerName(int frameX, int frameY)
+		public override LocalizedText DefaultContainerName(int frameX, int frameY)
 		{
 			return this.GetLocalization("MapEntry");
 		}
@@ -167,7 +167,7 @@ namespace ClickerClass.Tiles.Mice
 			}
 			else
 			{
-				string defaultName = TileLoader.ContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName text for the currently selected language
+				string defaultName = TileLoader.DefaultContainerName(tile.TileType, tile.TileFrameX, tile.TileFrameY); // This gets the ContainerName text for the currently selected language
 				player.cursorItemIconText = Main.chest[chest].name.Length > 0 ? Main.chest[chest].name : defaultName;
 				if (player.cursorItemIconText == defaultName)
 				{

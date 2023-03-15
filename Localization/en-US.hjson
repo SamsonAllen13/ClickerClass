@@ -476,45 +476,14 @@ Mods: {
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
-			SFXButtonA: {
-				DisplayName: SFX Button A
-				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
-			}
-
-			SFXButtonB: {
-				DisplayName: SFX Button B
-				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
-			}
-
-			SFXButtonC: {
-				DisplayName: SFX Button C
-				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
-			}
-
-			SFXButtonD: {
-				DisplayName: SFX Button D
-				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
-			}
-
-			SFXButtonE: {
-				DisplayName: SFX Button E
-				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
-			}
-
-			SFXButtonF: {
-				DisplayName: SFX Button F
-				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
-			}
-
-			SFXButtonG: {
-				DisplayName: SFX Button G
-				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
-			}
-
-			SFXButtonH: {
-				DisplayName: SFX Button H
-				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
-			}
+			SFXButtonA.DisplayName: SFX Button A
+			SFXButtonB.DisplayName: SFX Button B
+			SFXButtonC.DisplayName: SFX Button C
+			SFXButtonD.DisplayName: SFX Button D
+			SFXButtonE.DisplayName: SFX Button E
+			SFXButtonF.DisplayName: SFX Button F
+			SFXButtonG.DisplayName: SFX Button G
+			SFXButtonH.DisplayName: SFX Button H
 
 			SFXSoundboard: {
 				DisplayName: SFX Soundboard

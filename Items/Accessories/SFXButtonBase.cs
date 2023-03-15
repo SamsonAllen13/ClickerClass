@@ -9,13 +9,15 @@ namespace ClickerClass.Items.Accessories
 	{
 		public static readonly int StackAmount = 5;
 
-		public virtual bool UsesCommonTooltip => true;
+		public static LocalizedText DefaultTooltipText { get; private set; }
 
-		public override LocalizedText Tooltip => UsesCommonTooltip ? base.Tooltip.WithFormatArgs(StackAmount) : base.Tooltip;
+		public override LocalizedText Tooltip => DefaultTooltipText.WithFormatArgs(StackAmount);
 
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			DefaultTooltipText ??= Language.GetOrRegister(Mod.GetLocalizationKey("Common.Tooltips.SFXButtonTip"));
 		}
 
 		public sealed override void SetDefaults()

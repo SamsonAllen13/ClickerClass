@@ -1,12 +1,13 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class SFXSoundboard : SFXButtonBase
 	{
-		public override bool UsesCommonTooltip => false;
+		public override LocalizedText Tooltip => this.GetLocalization("Tooltip");
 
 		public sealed override void SafeSetDefaults()
 		{

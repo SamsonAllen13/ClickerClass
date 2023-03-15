@@ -49,7 +49,7 @@ Mods: {
 
 			InfluenceBuff: {
 				DisplayName: Influência
-				Description: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				Description: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			OverclockBuff: {
@@ -130,7 +130,7 @@ Mods: {
 				DisplayName: Módulo de Auxiliar de Mira
 				Tooltip:
 					'''
-					Apertar a tecla '{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}' selecionará um alvo em baixo do seu cursor
+					Apertar a tecla '{$Keybinds.ClickerAimAssist.DisplayName}' selecionará um alvo em baixo do seu cursor
 					Quando clicando, o seu dano de clique é causado naquele alvo, independentemente da posição do seu cursor
 					O seu alvo é perdido se ele sair do seu raio ou se você perder uma linha de visão direta dele
 					'''
@@ -140,9 +140,9 @@ Mods: {
 				DisplayName: Módulo de Aimbot
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy@1}
-					Apertar a tecla '{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}' ativará o aimbot, mirando em inimigos próximos automaticamente
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesBaseClickRadiusBy@1}
+					Apertar a tecla '{$Keybinds.ClickerAimAssist.DisplayName}' ativará o aimbot, mirando em inimigos próximos automaticamente
 					Se o alvo morrer ou for perdido, um novo alvo próximo será selecionado se possível
 					'''
 			}
@@ -274,7 +274,7 @@ Mods: {
 
 			AncientClickingGlove: {
 				DisplayName: Luva para Clicar Antiga
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} segundo"
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery} segundo"
 			}
 
 			BottomlessBoxofPaperclips: {
@@ -305,8 +305,8 @@ Mods: {
 				DisplayName: Leite com Chocolate e Biscoitos
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Items.MilkCookies.Tooltip}
-					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip@1}
+					{$Items.MilkCookies.Tooltip}
+					{$Items.ChocolateChip.Tooltip@1}
 					'''
 			}
 
@@ -321,12 +321,12 @@ Mods: {
 
 			ClickerEmblem: {
 				DisplayName: Emblema do Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}"
+				Tooltip: "{$Common.Tooltips.IncreasedClickerDamage}"
 			}
 
 			ClickingGlove: {
 				DisplayName: Luva para Clicar
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 3 segundos"
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery} 3 segundos"
 			}
 
 			Cookie: {
@@ -343,7 +343,7 @@ Mods: {
 				Tooltip:
 					'''
 					Seus cliques produzem uma explosão de luz encantada enquanto o acessório está visível
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageByFlat}
+					{$Common.Tooltips.IncreasesClickDamageByFlat}
 					'''
 			}
 
@@ -352,11 +352,11 @@ Mods: {
 				Tooltip:
 					'''
 					'Você não acha que alguém jogaria isso, acha?'
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy@1}
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy@2}
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesBaseClickRadiusBy@1}
+					{$Common.Tooltips.ReducesAmountOfClicksBy@2}
 					Seus cliques produzem uma explosão encantada de luz mecânica enquanto o acessório está visível
-					{$Mods.ClickerClass.Items.HandCream.Tooltip}
+					{$Items.HandCream.Tooltip}
 					'''
 			}
 
@@ -364,7 +364,7 @@ Mods: {
 				DisplayName: Creme para Mãos
 				Tooltip:
 					'''
-					Apertar a tecla '{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}' ativará clique automático em todos os Clickers
+					Apertar a tecla '{$Keybinds.ClickerAccessory.DisplayName}' ativará clique automático em todos os Clickers
 					Enquanto o clique automático está ativado, a taxa de cliques é diminuída moderadamente
 					'''
 			}
@@ -382,7 +382,7 @@ Mods: {
 				DisplayName: Pacote de Gelo
 				Tooltip:
 					'''
-					Apertar a tecla '{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}' ativará clique automático em todos os Clickers
+					Apertar a tecla '{$Keybinds.ClickerAccessory.DisplayName}' ativará clique automático em todos os Clickers
 					Enquanto o clique automático está ativado, a taxa de cliques é diminuída consideravelmente
 					'''
 			}
@@ -405,22 +405,22 @@ Mods: {
 				DisplayName: Leite com Biscoitos
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Items.Cookie.Tooltip}
-					{$Mods.ClickerClass.Items.Milk.Tooltip}
+					{$Items.Cookie.Tooltip}
+					{$Items.Milk.Tooltip}
 					'''
 			}
 
 			MousePad: {
 				DisplayName: Mouse Pad
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MouseTrap: {
 				DisplayName: Ratoeira
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy@1}
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.ReducesAmountOfClicksBy@1}
 					Cliques tem uma pequena chance de te amaldiçoar por um curto período de tempo
 					'''
 			}
@@ -435,13 +435,13 @@ Mods: {
 				Tooltip:
 					'''
 					Gera algumas moedas conforme você clica nos inimigos
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
+					{$Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
 			RegalClickingGlove: {
 				DisplayName: Luva para Clicar Real
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} meio-segundo"
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery} meio-segundo"
 			}
 
 			AMedal: {
@@ -473,47 +473,47 @@ Mods: {
 
 			Soda: {
 				DisplayName: Refrigerante
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			SFXButtonA: {
 				// DisplayName: SFX Button A
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonB: {
 				// DisplayName: SFX Button B
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonC: {
 				// DisplayName: SFX Button C
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonD: {
 				// DisplayName: SFX Button D
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonE: {
 				// DisplayName: SFX Button E
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonF: {
 				// DisplayName: SFX Button F
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonG: {
 				// DisplayName: SFX Button G
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonH: {
 				// DisplayName: SFX Button H
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXSoundboard: {
@@ -548,8 +548,8 @@ Mods: {
 				DisplayName: Botas de Mouse
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy@1}
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesMovementSpeedBy@1}
 					'''
 			}
 
@@ -557,8 +557,8 @@ Mods: {
 				DisplayName: Máscara de Mouse
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChanceBy} em 6%
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesClickCritChanceBy} em 6%
 					'''
 			}
 
@@ -566,73 +566,73 @@ Mods: {
 				DisplayName: Armadura de Mouse
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
 			MotherboardBoots: {
 				DisplayName: Botas de Placa-Mãe
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			MotherboardHelmet: {
 				DisplayName: Elmo de Placa-Mãe
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MotherboardSuit: {
 				DisplayName: Armadura da Placa-Mãe
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			OverclockBoots: {
 				DisplayName: Botas de Overclock
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesMovementSpeedBy}"
 			}
 
 			OverclockHelmet: {
 				DisplayName: Elmo de Overclock
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			OverclockSuit: {
 				DisplayName: Armadura de Overclock
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			PrecursorBreastplate: {
 				DisplayName: Peitoral do Precursor
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadiusBy@1}
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.ReducesBaseClickRadiusBy@1}
 					'''
 			}
 
 			PrecursorGreaves: {
 				DisplayName: Grevas do Precursor
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesMovementSpeedBy}"
 			}
 
 			PrecursorHelmet: {
 				DisplayName: Elmo do Precursor
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			RGBBreastplate: {
 				DisplayName: Peitoral RGB
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			RGBGreaves: {
 				DisplayName: Grevas RGB
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			RGBHelm: {
 				DisplayName: Elmo RGB
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			ClickerEffectHairDye: {
@@ -647,7 +647,7 @@ Mods: {
 
 			InfluencePotion: {
 				DisplayName: Poção da Influência
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			HeavenlyChip: {
@@ -672,297 +672,294 @@ Mods: {
 
 			ArcaneClicker: {
 				DisplayName: Clicker Arcano
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			AdamantiteClicker: {
 				DisplayName: Clicker de Adamantina
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			ArthursClicker: {
 				DisplayName: Clicker de Artur
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			AstralClicker: {
 				DisplayName: Clicker Astral
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			BalloonClicker: {
 				DisplayName: Clicker Balão
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			BoneClicker: {
 				DisplayName: Clicker de Osso
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			BlizzardClicker: {
 				DisplayName: Clicker da Nevasca
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			BurningSuperDeathClicker: {
 				DisplayName: Clicker da Super Morte Ardente
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CandleClicker: {
 				DisplayName: Clicker Vela
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CaptainsClicker: {
 				DisplayName: Clicker do Capitão
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			ChlorophyteClicker: {
 				DisplayName: Clicker de Clorofita
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CobaltClicker: {
 				DisplayName: Clicker de Cobalto
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			ConfettiClicker: {
 				DisplayName: Clicker de Confete
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CopperClicker: {
 				DisplayName: Clicker de Cobre
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CorruptClicker: {
 				DisplayName: Clicker Corrompido
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CrimsonClicker: {
 				DisplayName: Clicker de Carmim
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CritterClicker: {
 				// DisplayName: Critter Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CrystalClicker: {
 				DisplayName: Clicker de Cristal
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CyclopsClicker: {
 				DisplayName: Clicker Ciclope
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			DarkClicker: {
 				DisplayName: Clicker das Sombras
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			DraconicClicker: {
 				DisplayName: Clicker Dracônico
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			DreamClicker: {
 				// DisplayName: Dream Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			EclipticClicker: {
 				DisplayName: Clicker Elíptico
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			FamishedClicker: {
 				DisplayName: Clicker Faminto
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			FaultyClicker: {
 				DisplayName: Clicker Defeituoso
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			FrozenClicker: {
 				DisplayName: Clicker Congelado
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			GoldClicker: {
 				DisplayName: Clicker de Ouro
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			HeartyClicker: {
 				// DisplayName: Hearty Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			HemoClicker: {
 				DisplayName: Clicker Hemo
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			HighTechClicker: {
 				DisplayName: Clicker de Alta Tecnologia
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			HoneyGlazedClicker: {
 				DisplayName: Clicker Glaceado com Mel
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			ImpishClicker: {
 				DisplayName: Clicker Demoníaco
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			IronClicker: {
 				DisplayName: Clicker de Ferro
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
-			LanternClicker: {
-				DisplayName: Clicker Lanterna
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
-			}
+			LanternClicker.DisplayName: Clicker Lanterna
 
 			LeadClicker: {
 				DisplayName: Clicker de Chumbo
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			LihzahrdClicker: {
 				DisplayName: Clicker Lagharto
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			LordsClicker: {
 				DisplayName: Clicker do Senhor
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			MagnetClicker: {
 				DisplayName: Clicker Magnético
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			MiceClicker: {
 				DisplayName: Clicker de Mouse
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			MyceliumClicker: {
 				DisplayName: Clicker de Micélio
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			MythrilClicker: {
 				DisplayName: Clicker de Mithril
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			NaughtyClicker: {
 				DisplayName: Clicker Malcriado
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			OrichalcumClicker: {
 				DisplayName: Clicker de Oricalco
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			PalladiumClicker: {
 				DisplayName: Clicker de Paládio
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			PharaohsClicker: {
 				// DisplayName: Pharaoh's Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			PlatinumClicker: {
 				DisplayName: Clicker de Platina
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			PointyClicker: {
 				DisplayName: Clicker Pontudo
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			QuintessenceClicker: {
 				// DisplayName: Quintessence Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			RainbowClicker: {
 				DisplayName: Clicker Arco-íris
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			RedHotClicker: {
 				DisplayName: Clicker em Brasa
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SandstormClicker: {
 				DisplayName: Clicker da Tempestade de Areia
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SeafoamClicker: {
 				DisplayName: Clicker da Espuma Marinha
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			ShadowyClicker: {
 				DisplayName: Clicker Sombrio
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			ShroomiteClicker: {
 				DisplayName: Clicker de Cogumelita
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SilverClicker: {
 				DisplayName: Clicker de Prata
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SinisterClicker: {
 				DisplayName: Clicker Sinistro
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SlickClicker: {
 				DisplayName: Clicker Liso
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SnottyClicker: {
 				DisplayName: Clicker Ranhento
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SpaceClicker: {
 				DisplayName: Clicker do Espaço
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SpectreClicker: {
@@ -972,57 +969,57 @@ Mods: {
 
 			SpiralClicker: {
 				DisplayName: Clicker Espiral
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			StarryClicker: {
 				DisplayName: Clicker Estelar
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			TheClicker: {
 				DisplayName: O Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			TinClicker: {
 				DisplayName: Clicker de Estanho
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			TitaniumClicker: {
 				DisplayName: Clicker de Titânio
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			TorchClicker: {
 				DisplayName: Clicker Tocha
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			TungstenClicker: {
 				DisplayName: Clicker de Tungstênio
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			UmbralClicker: {
 				DisplayName: Clicker Umbral
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			WitchClicker: {
 				DisplayName: Clicker da Bruxa
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			WebClicker: {
 				DisplayName: Clicker de Teia
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			WoodenClicker: {
 				DisplayName: Clicker de Madeira
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 		}
 
@@ -1041,7 +1038,7 @@ Mods: {
 		InfoDisplays: {
 			CPSInfoDisplay: {
 				DisplayName: Cliques por segundo
-				DisplayValue: "{$Mods.ClickerClass.Common.Tooltips.Clicks} por segundo"
+				DisplayValue: "{$Common.Tooltips.Clicks} por segundo"
 			}
 		}
 
@@ -1253,7 +1250,7 @@ Mods: {
 
 			Embrittle: {
 				Name: Fragilizar
-				Description: Inflige o efeito negativo {$Mods.ClickerClass.Buffs.Embrittle.DisplayName}: {$Mods.ClickerClass.Buffs.Embrittle.Description}
+				Description: Inflige o efeito negativo {$Buffs.Embrittle.DisplayName}: {$Buffs.Embrittle.Description}
 			}
 
 			PetalStorm: {
@@ -1288,7 +1285,7 @@ Mods: {
 
 			AutoClick: {
 				Name: Clique Automático
-				Description: Concede o efeito {$Mods.ClickerClass.BuffName.AutoClick}, reduzido o tempo de uso, mas oferecendo uso automático
+				Description: Concede o efeito {$BuffName.AutoClick}, reduzido o tempo de uso, mas oferecendo uso automático
 			}
 
 			Siphon: {
@@ -1347,8 +1344,8 @@ Mods: {
 			}
 
 			DoubleClick2: {
-				Name: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Name}"
-				Description: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Description}"
+				Name: "{$ClickEffect.DoubleClick.Name}"
+				Description: "{$ClickEffect.DoubleClick.Description}"
 			}
 
 			StickyKeychain: {
@@ -1383,7 +1380,7 @@ Mods: {
 
 			Evolve: {
 				// Name: Evolve
-				// Description: "{$Mods.ClickerClass.Common.Unknown}"
+				// Description: "{$Common.Unknown}"
 			}
 
 			Nab: {

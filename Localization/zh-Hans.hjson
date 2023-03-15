@@ -49,7 +49,7 @@ Mods: {
 
 			InfluenceBuff: {
 				DisplayName: 影响力
-				Description: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				Description: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			OverclockBuff: {
@@ -130,7 +130,7 @@ Mods: {
 				DisplayName: 瞄准辅助模块
 				Tooltip:
 					'''
-					按下'{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}'键将锁定光标下的敌人
+					按下'{$Keybinds.ClickerAimAssist.DisplayName}'键将锁定光标下的敌人
 					左键单击时,无论光标的位置在哪,都会对该目标造成点击伤害
 					如果锁定的敌人离开了你的圆圈范围,或者他们不在你的直线视野内,你将无法对其造成伤害
 					'''
@@ -140,9 +140,9 @@ Mods: {
 				DisplayName: 自动瞄准模块
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy@1}
-					按下'{$Mods.ClickerClass.Keybinds.ClickerAimAssist.DisplayName}'键切换自动瞄准,自动锁定附近的敌人
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesBaseClickRadiusBy@1}
+					按下'{$Keybinds.ClickerAimAssist.DisplayName}'键切换自动瞄准,自动锁定附近的敌人
 					如果锁定的敌人死亡或消失,将搜寻并锁定附近一个新的敌人
 					'''
 			}
@@ -274,7 +274,7 @@ Mods: {
 
 			AncientClickingGlove: {
 				DisplayName: 上古点击手套
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery}1秒"
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery}1秒"
 			}
 
 			BottomlessBoxofPaperclips: {
@@ -305,8 +305,8 @@ Mods: {
 				DisplayName: 巧克力牛奶与曲奇
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Items.MilkCookies.Tooltip}
-					{$Mods.ClickerClass.Items.ChocolateChip.Tooltip@1}
+					{$Items.MilkCookies.Tooltip}
+					{$Items.ChocolateChip.Tooltip@1}
 					'''
 			}
 
@@ -321,12 +321,12 @@ Mods: {
 
 			ClickerEmblem: {
 				DisplayName: 点击大师徽章
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}"
+				Tooltip: "{$Common.Tooltips.IncreasedClickerDamage}"
 			}
 
 			ClickingGlove: {
 				DisplayName: 点击手套
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery}3秒"
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery}3秒"
 			}
 
 			Cookie: {
@@ -343,7 +343,7 @@ Mods: {
 				Tooltip:
 					'''
 					每次点击都会喷发出闪耀的光芒,调整饰品可见性开关光芒显示
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageByFlat}
+					{$Common.Tooltips.IncreasesClickDamageByFlat}
 					'''
 			}
 
@@ -352,11 +352,11 @@ Mods: {
 				Tooltip:
 					'''
 					'你不会真的认为有人会玩这个吧?'
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy}
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesBaseClickRadiusBy}
+					{$Common.Tooltips.ReducesAmountOfClicksBy}
 					每次点击会产生一些光尘,能够微弱的照明,调整饰品可见性开关光芒显示
-					{$Mods.ClickerClass.Items.HandCream.Tooltip}
+					{$Items.HandCream.Tooltip}
 					'''
 			}
 
@@ -364,7 +364,7 @@ Mods: {
 				DisplayName: 护手霜
 				Tooltip:
 					'''
-					按下'{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}'键切换按住不动持续点击
+					按下'{$Keybinds.ClickerAccessory.DisplayName}'键切换按住不动持续点击
 					启用按住不动持续点击后,手动点击最大频率将轻微降低
 					'''
 			}
@@ -382,7 +382,7 @@ Mods: {
 				DisplayName: 冰袋
 				Tooltip:
 					'''
-					按下'{$Mods.ClickerClass.Keybinds.ClickerAccessory.DisplayName}'键切换按住不动持续点击
+					按下'{$Keybinds.ClickerAccessory.DisplayName}'键切换按住不动持续点击
 					启用按住不动持续点击后,手动点击最大频率将显著降低
 					'''
 			}
@@ -405,22 +405,22 @@ Mods: {
 				DisplayName: 牛奶与曲奇
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Items.Cookie.Tooltip}
-					{$Mods.ClickerClass.Items.Milk.Tooltip}
+					{$Items.Cookie.Tooltip}
+					{$Items.Milk.Tooltip}
 					'''
 			}
 
 			MousePad: {
 				DisplayName: 鼠标垫
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MouseTrap: {
 				DisplayName: 老鼠夹
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksBy@1}
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.ReducesAmountOfClicksBy@1}
 					点击时有很小的概率短暂被诅咒
 					'''
 			}
@@ -435,13 +435,13 @@ Mods: {
 				Tooltip:
 					'''
 					点击敌人时生成一些硬币
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
+					{$Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
 			RegalClickingGlove: {
 				DisplayName: 豪华点击手套
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery}0.5秒"
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery}0.5秒"
 			}
 
 			AMedal: {
@@ -473,47 +473,47 @@ Mods: {
 
 			Soda: {
 				DisplayName: 苏打汽水
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			SFXButtonA: {
 				// DisplayName: SFX Button A
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonB: {
 				// DisplayName: SFX Button B
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonC: {
 				// DisplayName: SFX Button C
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonD: {
 				// DisplayName: SFX Button D
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonE: {
 				// DisplayName: SFX Button E
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonF: {
 				// DisplayName: SFX Button F
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonG: {
 				// DisplayName: SFX Button G
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXButtonH: {
 				// DisplayName: SFX Button H
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+				Tooltip: "{$Common.Tooltips.SFXButtonTip}"
 			}
 
 			SFXSoundboard: {
@@ -548,8 +548,8 @@ Mods: {
 				DisplayName: 鼠标靴子
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy@1}
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesMovementSpeedBy@1}
 					'''
 			}
 
@@ -557,8 +557,8 @@ Mods: {
 				DisplayName: 鼠标面具
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChanceBy}6%
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesClickCritChanceBy}6%
 					'''
 			}
 
@@ -566,73 +566,73 @@ Mods: {
 				DisplayName: 鼠标盔甲
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesBaseClickRadiusBy}
 					'''
 			}
 
 			MotherboardBoots: {
 				DisplayName: 主板靴子
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			MotherboardHelmet: {
 				DisplayName: 主板头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			MotherboardSuit: {
 				DisplayName: 主板盔甲
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			OverclockBoots: {
 				DisplayName: 超频靴子
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesMovementSpeedBy}"
 			}
 
 			OverclockHelmet: {
 				DisplayName: 超频头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			OverclockSuit: {
 				DisplayName: 超频盔甲
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			PrecursorBreastplate: {
 				DisplayName: 先驱者胸甲
 				Tooltip:
 					'''
-					{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}
-					{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadiusBy@1}
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.ReducesBaseClickRadiusBy@1}
 					'''
 			}
 
 			PrecursorGreaves: {
 				DisplayName: 先驱者护胫
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesMovementSpeedBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesMovementSpeedBy}"
 			}
 
 			PrecursorHelmet: {
 				DisplayName: 先驱者头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamageBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
 			}
 
 			RGBBreastplate: {
 				DisplayName: RGB胸甲
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			RGBGreaves: {
 				DisplayName: RGB护胫
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			RGBHelm: {
 				DisplayName: RGB头盔
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			ClickerEffectHairDye: {
@@ -647,7 +647,7 @@ Mods: {
 
 			InfluencePotion: {
 				DisplayName: 影响力药水
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
 			HeavenlyChip: {
@@ -672,297 +672,294 @@ Mods: {
 
 			ArcaneClicker: {
 				DisplayName: 奥术点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			AdamantiteClicker: {
 				DisplayName: 精金点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			ArthursClicker: {
 				DisplayName: 神圣点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			AstralClicker: {
 				DisplayName: 星体点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			BalloonClicker: {
 				DisplayName: 气球点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			BoneClicker: {
 				DisplayName: 骨头点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			BlizzardClicker: {
 				DisplayName: 暴雪点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			BurningSuperDeathClicker: {
 				// DisplayName: Burning Super Death Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CandleClicker: {
 				DisplayName: 蜡烛点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CaptainsClicker: {
 				DisplayName: 船长点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			ChlorophyteClicker: {
 				DisplayName: 叶绿点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CobaltClicker: {
 				DisplayName: 钴点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			ConfettiClicker: {
 				// DisplayName: Confetti Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CopperClicker: {
 				DisplayName: 铜点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CorruptClicker: {
 				DisplayName: 腐化点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CrimsonClicker: {
 				DisplayName: 猩红点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CritterClicker: {
 				// DisplayName: Critter Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CrystalClicker: {
 				DisplayName: 水晶点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			CyclopsClicker: {
 				DisplayName: 鹿角怪点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			DarkClicker: {
 				DisplayName: 魔矿点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			DraconicClicker: {
 				DisplayName: 飞龙点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			DreamClicker: {
 				// DisplayName: Dream Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			EclipticClicker: {
 				DisplayName: 日食点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			FamishedClicker: {
 				// DisplayName: Famished Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			FaultyClicker: {
 				DisplayName: 故障点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			FrozenClicker: {
 				DisplayName: 寒冰点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			GoldClicker: {
 				DisplayName: 金点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			HeartyClicker: {
 				// DisplayName: Hearty Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			HemoClicker: {
 				DisplayName: 血液点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			HighTechClicker: {
 				DisplayName: 高科技点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			HoneyGlazedClicker: {
 				DisplayName: 蜜釉点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			ImpishClicker: {
 				DisplayName: 小恶魔点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			IronClicker: {
 				DisplayName: 铁点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
-			LanternClicker: {
-				DisplayName: 提灯点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
-			}
+			LanternClicker.DisplayName: 提灯点击器
 
 			LeadClicker: {
 				DisplayName: 铅点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			LihzahrdClicker: {
 				DisplayName: 丛林蜥蜴点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			LordsClicker: {
 				DisplayName: 月亮领主点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			MagnetClicker: {
 				DisplayName: 磁铁点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			MiceClicker: {
 				DisplayName: 鼠标点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			MyceliumClicker: {
 				DisplayName: 菌丝点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			MythrilClicker: {
 				DisplayName: 秘银点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			NaughtyClicker: {
 				DisplayName: 顽皮点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			OrichalcumClicker: {
 				DisplayName: 山铜点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			PalladiumClicker: {
 				DisplayName: 钯金点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			PharaohsClicker: {
 				// DisplayName: Pharaoh's Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			PlatinumClicker: {
 				DisplayName: 铂金点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			PointyClicker: {
 				DisplayName: 尖刺点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			QuintessenceClicker: {
 				// DisplayName: Quintessence Clicker
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			RainbowClicker: {
 				DisplayName: 彩虹点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			RedHotClicker: {
 				DisplayName: 狱石点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SandstormClicker: {
 				DisplayName: 沙暴点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SeafoamClicker: {
 				DisplayName: 海泡石点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			ShadowyClicker: {
 				DisplayName: 幽暗点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			ShroomiteClicker: {
 				DisplayName: 蘑菇点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SilverClicker: {
 				DisplayName: 银点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SinisterClicker: {
 				DisplayName: 厄兆点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SlickClicker: {
 				DisplayName: 灵动点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SnottyClicker: {
 				DisplayName: 鼻涕点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SpaceClicker: {
 				DisplayName: 太空点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			SpectreClicker: {
@@ -972,57 +969,57 @@ Mods: {
 
 			SpiralClicker: {
 				DisplayName: 螺旋点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			StarryClicker: {
 				DisplayName: 星空点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			TheClicker: {
 				DisplayName: 大师点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			TinClicker: {
 				DisplayName: 锡点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			TitaniumClicker: {
 				DisplayName: 钛金点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			TorchClicker: {
 				DisplayName: 火把点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			TungstenClicker: {
 				DisplayName: 钨点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			UmbralClicker: {
 				DisplayName: 阴影点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			WitchClicker: {
 				DisplayName: 女巫点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			WebClicker: {
 				DisplayName: 蛛网点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 
 			WoodenClicker: {
 				DisplayName: 木点击器
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+				Tooltip: "{$Common.Tooltips.Clicker}"
 			}
 		}
 
@@ -1041,7 +1038,7 @@ Mods: {
 		InfoDisplays: {
 			CPSInfoDisplay: {
 				DisplayName: 次点击每秒
-				DisplayValue: "{$Mods.ClickerClass.Common.Tooltips.Clicks}每秒"
+				DisplayValue: "{$Common.Tooltips.Clicks}每秒"
 			}
 		}
 
@@ -1253,7 +1250,7 @@ Mods: {
 
 			Embrittle: {
 				Name: 脆化
-				Description: 给予范围目标{$Mods.ClickerClass.Buffs.Embrittle.DisplayName}减益,效果:{$Mods.ClickerClass.Buffs.Embrittle.Description}
+				Description: 给予范围目标{$Buffs.Embrittle.DisplayName}减益,效果:{$Buffs.Embrittle.Description}
 			}
 
 			PetalStorm: {
@@ -1288,7 +1285,7 @@ Mods: {
 
 			AutoClick: {
 				Name: 自动点击
-				Description: 获得{$Mods.ClickerClass.BuffName.AutoClick}增益,限制手动点击最大频率,但能够自动点击
+				Description: 获得{$BuffName.AutoClick}增益,限制手动点击最大频率,但能够自动点击
 			}
 
 			Siphon: {
@@ -1347,8 +1344,8 @@ Mods: {
 			}
 
 			DoubleClick2: {
-				Name: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Name}"
-				Description: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Description}"
+				Name: "{$ClickEffect.DoubleClick.Name}"
+				Description: "{$ClickEffect.DoubleClick.Description}"
 			}
 
 			StickyKeychain: {
@@ -1383,7 +1380,7 @@ Mods: {
 
 			Evolve: {
 				// Name: Evolve
-				// Description: "{$Mods.ClickerClass.Common.Unknown}"
+				// Description: "{$Common.Unknown}"
 			}
 
 			Nab: {

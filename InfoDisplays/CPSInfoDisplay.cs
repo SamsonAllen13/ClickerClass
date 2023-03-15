@@ -29,7 +29,6 @@ namespace ClickerClass.InfoDisplays
 			{
 				displayColor = InactiveInfoTextColor;
 			}
-			//TODO currently doesn't work, crashes. both "{$Mods.ClickerClass.Common.Tooltips.Clicks} per second" and "{0} {^0:click;clicks} per second". no pluralization works however
 			return DisplayValueText.Format(val);
 		}
 	}

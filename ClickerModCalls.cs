@@ -97,7 +97,7 @@ namespace ClickerClass
 					ClickerSystem.RegisterClickerWeapon(modItem, borderTexture);
 					return success;
 				}
-				//Mod mod, string internalName, string displayName, string description, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false, object[] nameArgs = null, object[] descriptionArgs = null
+				//Mod mod, string internalName, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false, object[] nameArgs = null, object[] descriptionArgs = null
 				else if (message == "RegisterClickEffect")
 				{
 					var mod = args[index + 0] as Mod;

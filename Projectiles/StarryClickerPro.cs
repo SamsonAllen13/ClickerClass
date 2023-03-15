@@ -7,6 +7,7 @@ using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent;
 using ReLogic.Content;
+using Terraria.GameContent.Drawing;
 
 namespace ClickerClass.Projectiles
 {
@@ -127,6 +128,13 @@ namespace ClickerClass.Projectiles
 				int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 71, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 255, default(Color), 1.5f);
 				Main.dust[dust].noGravity = true;
 			}
+
+			// Stallar Tune sparkles
+			ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.StellarTune, new ParticleOrchestraSettings
+			{
+				PositionInWorld = Projectile.Center,
+				MovementVector = Main.rand.NextVector2Circular(2f, 2f)
+			}, Projectile.owner);
 		}
 	}
 }

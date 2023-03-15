@@ -1,5 +1,6 @@
 using ClickerClass.Items.Weapons.Clickers;
 using Terraria;
+using Terraria.GameContent.Drawing;
 using Terraria.Graphics.Shaders;
 
 namespace ClickerClass.Projectiles
@@ -51,6 +52,12 @@ namespace ClickerClass.Projectiles
 					}
 				}
 			}
+
+			// Silver Bullet sparkles
+			ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.SilverBulletSparkle, new ParticleOrchestraSettings
+			{
+				PositionInWorld = Projectile.Center
+			}, Projectile.owner);
 		}
 	}
 }

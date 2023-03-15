@@ -650,6 +650,11 @@ Mods: {
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadiusBy}"
 			}
 
+			HeavenlyChip: {
+				// DisplayName: Heavenly Chip
+				// Tooltip: Permanently increases base clicker radius by 5%
+			}
+
 			MiceDrill: {
 				DisplayName: 鼠标钻头
 				Tooltip: ""

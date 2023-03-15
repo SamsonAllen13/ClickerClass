@@ -1,4 +1,6 @@
 using Terraria;
+using Terraria.GameContent.Drawing;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -29,6 +31,15 @@ namespace ClickerClass.Projectiles
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			modifiers.SetCrit();
+		}
+
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+		{
+			// Excalibur sparkles
+			ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.Excalibur, new ParticleOrchestraSettings
+			{
+				PositionInWorld = target.Hitbox.ClosestPointInRect(Projectile.Center)
+			}, Projectile.owner);
 		}
 
 		public override void AI()

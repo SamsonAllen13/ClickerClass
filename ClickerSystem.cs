@@ -24,6 +24,8 @@ namespace ClickerClass
 
 		internal static LocalizedText UnknownText { get; private set; }
 
+		internal static LocalizedText DefaultClickerWeaponTooltipText { get; private set; }
+
 		private static HashSet<int> ClickerItems { get; set; }
 
 		private static Dictionary<int, string> ClickerWeaponBorderTexture { get; set; }
@@ -53,6 +55,7 @@ namespace ClickerClass
 		{
 			FinalizedRegisterCompat = false;
 			UnknownText = Language.GetOrRegister(Mod.GetLocalizationKey("Common.Unknown"));
+			DefaultClickerWeaponTooltipText = Language.GetOrRegister(Mod.GetLocalizationKey("Common.Tooltips.Clicker"));
 			ClickerItems = new HashSet<int>();
 			ClickerWeaponBorderTexture = new Dictionary<int, string>();
 			ClickerWeapons = new HashSet<int>();
@@ -86,6 +89,7 @@ namespace ClickerClass
 
 			//Discard is important, LocalizationText needs one access to get into the lang file automatically
 			_ = UnknownText;
+			_ = DefaultClickerWeaponTooltipText;
 		}
 
 		public override void PostAddRecipes()

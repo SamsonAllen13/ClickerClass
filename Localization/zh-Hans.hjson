@@ -670,357 +670,82 @@ Mods: {
 				Tooltip: ""
 			}
 
-			ArcaneClicker: {
-				DisplayName: 奥术点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			AdamantiteClicker: {
-				DisplayName: 精金点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ArthursClicker: {
-				DisplayName: 神圣点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			AstralClicker: {
-				DisplayName: 星体点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			BalloonClicker: {
-				DisplayName: 气球点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			BoneClicker: {
-				DisplayName: 骨头点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			BlizzardClicker: {
-				DisplayName: 暴雪点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			BurningSuperDeathClicker: {
-				// DisplayName: Burning Super Death Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CandleClicker: {
-				DisplayName: 蜡烛点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CaptainsClicker: {
-				DisplayName: 船长点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ChlorophyteClicker: {
-				DisplayName: 叶绿点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CobaltClicker: {
-				DisplayName: 钴点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ConfettiClicker: {
-				// DisplayName: Confetti Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CopperClicker: {
-				DisplayName: 铜点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CorruptClicker: {
-				DisplayName: 腐化点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CrimsonClicker: {
-				DisplayName: 猩红点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CritterClicker: {
-				// DisplayName: Critter Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CrystalClicker: {
-				DisplayName: 水晶点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CyclopsClicker: {
-				DisplayName: 鹿角怪点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			DarkClicker: {
-				DisplayName: 魔矿点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			DraconicClicker: {
-				DisplayName: 飞龙点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			DreamClicker: {
-				// DisplayName: Dream Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			EclipticClicker: {
-				DisplayName: 日食点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			FamishedClicker: {
-				// DisplayName: Famished Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			FaultyClicker: {
-				DisplayName: 故障点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			FrozenClicker: {
-				DisplayName: 寒冰点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			GoldClicker: {
-				DisplayName: 金点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			HeartyClicker: {
-				// DisplayName: Hearty Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			HemoClicker: {
-				DisplayName: 血液点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			HighTechClicker: {
-				DisplayName: 高科技点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			HoneyGlazedClicker: {
-				DisplayName: 蜜釉点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ImpishClicker: {
-				DisplayName: 小恶魔点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			IronClicker: {
-				DisplayName: 铁点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
+			ArcaneClicker.DisplayName: 奥术点击器
+			AdamantiteClicker.DisplayName: 精金点击器
+			ArthursClicker.DisplayName: 神圣点击器
+			AstralClicker.DisplayName: 星体点击器
+			BalloonClicker.DisplayName: 气球点击器
+			BoneClicker.DisplayName: 骨头点击器
+			BlizzardClicker.DisplayName: 暴雪点击器
+			// BurningSuperDeathClicker.DisplayName: Burning Super Death Clicker
+			CandleClicker.DisplayName: 蜡烛点击器
+			CaptainsClicker.DisplayName: 船长点击器
+			ChlorophyteClicker.DisplayName: 叶绿点击器
+			CobaltClicker.DisplayName: 钴点击器
+			// ConfettiClicker.DisplayName: Confetti Clicker
+			CopperClicker.DisplayName: 铜点击器
+			CorruptClicker.DisplayName: 腐化点击器
+			CrimsonClicker.DisplayName: 猩红点击器
+			// CritterClicker.DisplayName: Critter Clicker
+			CrystalClicker.DisplayName: 水晶点击器
+			CyclopsClicker.DisplayName: 鹿角怪点击器
+			DarkClicker.DisplayName: 魔矿点击器
+			DraconicClicker.DisplayName: 飞龙点击器
+			// DreamClicker.DisplayName: Dream Clicker
+			EclipticClicker.DisplayName: 日食点击器
+			// FamishedClicker.DisplayName: Famished Clicker
+			FaultyClicker.DisplayName: 故障点击器
+			FrozenClicker.DisplayName: 寒冰点击器
+			GoldClicker.DisplayName: 金点击器
+			// HeartyClicker.DisplayName: Hearty Clicker
+			HemoClicker.DisplayName: 血液点击器
+			HighTechClicker.DisplayName: 高科技点击器
+			HoneyGlazedClicker.DisplayName: 蜜釉点击器
+			ImpishClicker.DisplayName: 小恶魔点击器
+			IronClicker.DisplayName: 铁点击器
 			LanternClicker.DisplayName: 提灯点击器
-
-			LeadClicker: {
-				DisplayName: 铅点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			LihzahrdClicker: {
-				DisplayName: 丛林蜥蜴点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			LordsClicker: {
-				DisplayName: 月亮领主点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			MagnetClicker: {
-				DisplayName: 磁铁点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			MiceClicker: {
-				DisplayName: 鼠标点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			MyceliumClicker: {
-				DisplayName: 菌丝点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			MythrilClicker: {
-				DisplayName: 秘银点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			NaughtyClicker: {
-				DisplayName: 顽皮点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			OrichalcumClicker: {
-				DisplayName: 山铜点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			PalladiumClicker: {
-				DisplayName: 钯金点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			PharaohsClicker: {
-				// DisplayName: Pharaoh's Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			PlatinumClicker: {
-				DisplayName: 铂金点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			PointyClicker: {
-				DisplayName: 尖刺点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			QuintessenceClicker: {
-				// DisplayName: Quintessence Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			RainbowClicker: {
-				DisplayName: 彩虹点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			RedHotClicker: {
-				DisplayName: 狱石点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SandstormClicker: {
-				DisplayName: 沙暴点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SeafoamClicker: {
-				DisplayName: 海泡石点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ShadowyClicker: {
-				DisplayName: 幽暗点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ShroomiteClicker: {
-				DisplayName: 蘑菇点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SilverClicker: {
-				DisplayName: 银点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SinisterClicker: {
-				DisplayName: 厄兆点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SlickClicker: {
-				DisplayName: 灵动点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SnottyClicker: {
-				DisplayName: 鼻涕点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SpaceClicker: {
-				DisplayName: 太空点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
+			LeadClicker.DisplayName: 铅点击器
+			LihzahrdClicker.DisplayName: 丛林蜥蜴点击器
+			LordsClicker.DisplayName: 月亮领主点击器
+			MagnetClicker.DisplayName: 磁铁点击器
+			MiceClicker.DisplayName: 鼠标点击器
+			MyceliumClicker.DisplayName: 菌丝点击器
+			MythrilClicker.DisplayName: 秘银点击器
+			NaughtyClicker.DisplayName: 顽皮点击器
+			OrichalcumClicker.DisplayName: 山铜点击器
+			PalladiumClicker.DisplayName: 钯金点击器
+			// PharaohsClicker.DisplayName: Pharaoh's Clicker
+			PlatinumClicker.DisplayName: 铂金点击器
+			PointyClicker.DisplayName: 尖刺点击器
+			// QuintessenceClicker.DisplayName: Quintessence Clicker
+			RainbowClicker.DisplayName: 彩虹点击器
+			RedHotClicker.DisplayName: 狱石点击器
+			SandstormClicker.DisplayName: 沙暴点击器
+			SeafoamClicker.DisplayName: 海泡石点击器
+			ShadowyClicker.DisplayName: 幽暗点击器
+			ShroomiteClicker.DisplayName: 蘑菇点击器
+			SilverClicker.DisplayName: 银点击器
+			SinisterClicker.DisplayName: 厄兆点击器
+			SlickClicker.DisplayName: 灵动点击器
+			SnottyClicker.DisplayName: 鼻涕点击器
+			SpaceClicker.DisplayName: 太空点击器
 
 			SpectreClicker: {
 				DisplayName: 幽灵点击器
 				Tooltip: 点击屏幕内的敌人对其造成伤害
 			}
 
-			SpiralClicker: {
-				DisplayName: 螺旋点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			StarryClicker: {
-				DisplayName: 星空点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TheClicker: {
-				DisplayName: 大师点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TinClicker: {
-				DisplayName: 锡点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TitaniumClicker: {
-				DisplayName: 钛金点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TorchClicker: {
-				DisplayName: 火把点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TungstenClicker: {
-				DisplayName: 钨点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			UmbralClicker: {
-				DisplayName: 阴影点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			WitchClicker: {
-				DisplayName: 女巫点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			WebClicker: {
-				DisplayName: 蛛网点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			WoodenClicker: {
-				DisplayName: 木点击器
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
+			SpiralClicker.DisplayName: 螺旋点击器
+			StarryClicker.DisplayName: 星空点击器
+			TheClicker.DisplayName: 大师点击器
+			TinClicker.DisplayName: 锡点击器
+			TitaniumClicker.DisplayName: 钛金点击器
+			TorchClicker.DisplayName: 火把点击器
+			TungstenClicker.DisplayName: 钨点击器
+			UmbralClicker.DisplayName: 阴影点击器
+			WitchClicker.DisplayName: 女巫点击器
+			WebClicker.DisplayName: 蛛网点击器
+			WoodenClicker.DisplayName: 木点击器
 		}
 
 		SetBonus: {

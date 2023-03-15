@@ -670,357 +670,82 @@ Mods: {
 				Tooltip: ""
 			}
 
-			ArcaneClicker: {
-				DisplayName: Мистический курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			AdamantiteClicker: {
-				DisplayName: Адамантитовый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ArthursClicker: {
-				DisplayName: Курсор Артура
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			AstralClicker: {
-				DisplayName: Астральный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			BalloonClicker: {
-				DisplayName: Курсор-воздушный шар
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			BoneClicker: {
-				DisplayName: Костяной курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			BlizzardClicker: {
-				DisplayName: Курсор снежной бури
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			BurningSuperDeathClicker: {
-				DisplayName: Горящий суперсмертельный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CandleClicker: {
-				DisplayName: Курсор-свеча
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CaptainsClicker: {
-				DisplayName: Курсор капитана
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ChlorophyteClicker: {
-				DisplayName: Хлорофитовый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CobaltClicker: {
-				DisplayName: Кобальтовый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ConfettiClicker: {
-				DisplayName: Курсор-конфетти
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CopperClicker: {
-				DisplayName: Медный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CorruptClicker: {
-				DisplayName: Искажённый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CrimsonClicker: {
-				DisplayName: Багряный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CritterClicker: {
-				// DisplayName: Critter Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CrystalClicker: {
-				DisplayName: Кристальный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CyclopsClicker: {
-				DisplayName: Курсор циклопа
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			DarkClicker: {
-				DisplayName: Тёмный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			DraconicClicker: {
-				DisplayName: Драконий курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			DreamClicker: {
-				// DisplayName: Dream Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			EclipticClicker: {
-				DisplayName: Потускневший курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			FamishedClicker: {
-				DisplayName: Изголодавшийся курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			FaultyClicker: {
-				DisplayName: Неисправный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			FrozenClicker: {
-				DisplayName: Замороженный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			GoldClicker: {
-				DisplayName: Золотой курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			HeartyClicker: {
-				// DisplayName: Hearty Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			HemoClicker: {
-				DisplayName: Кровавый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			HighTechClicker: {
-				DisplayName: Высокотехнологичный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			HoneyGlazedClicker: {
-				DisplayName: Глазированный мёдом курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ImpishClicker: {
-				DisplayName: Озорной курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			IronClicker: {
-				DisplayName: Железный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
+			ArcaneClicker.DisplayName: Мистический курсор
+			AdamantiteClicker.DisplayName: Адамантитовый курсор
+			ArthursClicker.DisplayName: Курсор Артура
+			AstralClicker.DisplayName: Астральный курсор
+			BalloonClicker.DisplayName: Курсор-воздушный шар
+			BoneClicker.DisplayName: Костяной курсор
+			BlizzardClicker.DisplayName: Курсор снежной бури
+			BurningSuperDeathClicker.DisplayName: Горящий суперсмертельный курсор
+			CandleClicker.DisplayName: Курсор-свеча
+			CaptainsClicker.DisplayName: Курсор капитана
+			ChlorophyteClicker.DisplayName: Хлорофитовый курсор
+			CobaltClicker.DisplayName: Кобальтовый курсор
+			ConfettiClicker.DisplayName: Курсор-конфетти
+			CopperClicker.DisplayName: Медный курсор
+			CorruptClicker.DisplayName: Искажённый курсор
+			CrimsonClicker.DisplayName: Багряный курсор
+			// CritterClicker.DisplayName: Critter Clicker
+			CrystalClicker.DisplayName: Кристальный курсор
+			CyclopsClicker.DisplayName: Курсор циклопа
+			DarkClicker.DisplayName: Тёмный курсор
+			DraconicClicker.DisplayName: Драконий курсор
+			// DreamClicker.DisplayName: Dream Clicker
+			EclipticClicker.DisplayName: Потускневший курсор
+			FamishedClicker.DisplayName: Изголодавшийся курсор
+			FaultyClicker.DisplayName: Неисправный курсор
+			FrozenClicker.DisplayName: Замороженный курсор
+			GoldClicker.DisplayName: Золотой курсор
+			// HeartyClicker.DisplayName: Hearty Clicker
+			HemoClicker.DisplayName: Кровавый курсор
+			HighTechClicker.DisplayName: Высокотехнологичный курсор
+			HoneyGlazedClicker.DisplayName: Глазированный мёдом курсор
+			ImpishClicker.DisplayName: Озорной курсор
+			IronClicker.DisplayName: Железный курсор
 			LanternClicker.DisplayName: Курсор-фонарь
-
-			LeadClicker: {
-				DisplayName: Свинцовый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			LihzahrdClicker: {
-				DisplayName: Курсор ящщеров
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			LordsClicker: {
-				DisplayName: Курсор Лорда
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			MagnetClicker: {
-				DisplayName: Магнитный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			MiceClicker: {
-				DisplayName: Курсор фрагмента мышки
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			MyceliumClicker: {
-				DisplayName: Мицелиевый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			MythrilClicker: {
-				DisplayName: Мифриловый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			NaughtyClicker: {
-				DisplayName: Непослушный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			OrichalcumClicker: {
-				DisplayName: Орихалковый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			PalladiumClicker: {
-				DisplayName: Палладиевый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			PharaohsClicker: {
-				// DisplayName: Pharaoh's Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			PlatinumClicker: {
-				DisplayName: Платиновый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			PointyClicker: {
-				DisplayName: Заострённый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			QuintessenceClicker: {
-				// DisplayName: Quintessence Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			RainbowClicker: {
-				DisplayName: Радужный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			RedHotClicker: {
-				DisplayName: Пылающий красный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SandstormClicker: {
-				DisplayName: Курсор песчаной бури
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SeafoamClicker: {
-				DisplayName: Курсор морской пены
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ShadowyClicker: {
-				DisplayName: Мрачный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ShroomiteClicker: {
-				DisplayName: Грибной курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SilverClicker: {
-				DisplayName: Серебряный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SinisterClicker: {
-				DisplayName: Зловещий курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SlickClicker: {
-				DisplayName: Скользкий курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SnottyClicker: {
-				DisplayName: Сопливый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SpaceClicker: {
-				DisplayName: Космический курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
+			LeadClicker.DisplayName: Свинцовый курсор
+			LihzahrdClicker.DisplayName: Курсор ящщеров
+			LordsClicker.DisplayName: Курсор Лорда
+			MagnetClicker.DisplayName: Магнитный курсор
+			MiceClicker.DisplayName: Курсор фрагмента мышки
+			MyceliumClicker.DisplayName: Мицелиевый курсор
+			MythrilClicker.DisplayName: Мифриловый курсор
+			NaughtyClicker.DisplayName: Непослушный курсор
+			OrichalcumClicker.DisplayName: Орихалковый курсор
+			PalladiumClicker.DisplayName: Палладиевый курсор
+			// PharaohsClicker.DisplayName: Pharaoh's Clicker
+			PlatinumClicker.DisplayName: Платиновый курсор
+			PointyClicker.DisplayName: Заострённый курсор
+			// QuintessenceClicker.DisplayName: Quintessence Clicker
+			RainbowClicker.DisplayName: Радужный курсор
+			RedHotClicker.DisplayName: Пылающий красный курсор
+			SandstormClicker.DisplayName: Курсор песчаной бури
+			SeafoamClicker.DisplayName: Курсор морской пены
+			ShadowyClicker.DisplayName: Мрачный курсор
+			ShroomiteClicker.DisplayName: Грибной курсор
+			SilverClicker.DisplayName: Серебряный курсор
+			SinisterClicker.DisplayName: Зловещий курсор
+			SlickClicker.DisplayName: Скользкий курсор
+			SnottyClicker.DisplayName: Сопливый курсор
+			SpaceClicker.DisplayName: Космический курсор
 
 			SpectreClicker: {
 				DisplayName: Спектральный курсор
 				Tooltip: Кликните на врага в пределах экрана, чтобы нанести ему урон
 			}
 
-			SpiralClicker: {
-				DisplayName: Спиральный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			StarryClicker: {
-				DisplayName: Звёздный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TheClicker: {
-				DisplayName: Курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TinClicker: {
-				DisplayName: Оловянный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TitaniumClicker: {
-				DisplayName: Титановый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TorchClicker: {
-				DisplayName: Курсор-факел
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TungstenClicker: {
-				DisplayName: Вольфрамовый курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			UmbralClicker: {
-				DisplayName: Теневой курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			WitchClicker: {
-				DisplayName: Курсор ведьмы
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			WebClicker: {
-				DisplayName: Курсор паутины
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			WoodenClicker: {
-				DisplayName: Деревянный курсор
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
+			SpiralClicker.DisplayName: Спиральный курсор
+			StarryClicker.DisplayName: Звёздный курсор
+			TheClicker.DisplayName: Курсор
+			TinClicker.DisplayName: Оловянный курсор
+			TitaniumClicker.DisplayName: Титановый курсор
+			TorchClicker.DisplayName: Курсор-факел
+			TungstenClicker.DisplayName: Вольфрамовый курсор
+			UmbralClicker.DisplayName: Теневой курсор
+			WitchClicker.DisplayName: Курсор ведьмы
+			WebClicker.DisplayName: Курсор паутины
+			WoodenClicker.DisplayName: Деревянный курсор
 		}
 
 		SetBonus: {

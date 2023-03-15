@@ -1,12 +1,15 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class SpectreClicker : ClickerWeapon
 	{
+		public override LocalizedText Tooltip => this.GetLocalization("Tooltip");
+
 		public override void SetStaticDefaults()
 		{
 			//Special tooltip set before this normally, but we use lang keys so it's handled automatically

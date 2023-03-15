@@ -670,360 +670,82 @@ Mods: {
 				Tooltip: ""
 			}
 
-			ArcaneClicker: {
-				DisplayName: Arcane Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			AdamantiteClicker: {
-				DisplayName: Adamantite Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ArthursClicker: {
-				DisplayName: Arthur's Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			AstralClicker: {
-				DisplayName: Astral Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			BalloonClicker: {
-				DisplayName: Balloon Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			BoneClicker: {
-				DisplayName: Bone Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			BlizzardClicker: {
-				DisplayName: Blizzard Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			BurningSuperDeathClicker: {
-				DisplayName: Burning Super Death Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CandleClicker: {
-				DisplayName: Candle Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CaptainsClicker: {
-				DisplayName: Captain's Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ChlorophyteClicker: {
-				DisplayName: Chlorophyte Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CobaltClicker: {
-				DisplayName: Cobalt Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ConfettiClicker: {
-				DisplayName: Confetti Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CopperClicker: {
-				DisplayName: Copper Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CorruptClicker: {
-				DisplayName: Corrupt Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CrimsonClicker: {
-				DisplayName: Crimson Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CritterClicker: {
-				DisplayName: Critter Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CrystalClicker: {
-				DisplayName: Crystal Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			CyclopsClicker: {
-				DisplayName: Cyclops Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			DarkClicker: {
-				DisplayName: Dark Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			DraconicClicker: {
-				DisplayName: Draconic Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			DreamClicker: {
-				DisplayName: Dream Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			EclipticClicker: {
-				DisplayName: Ecliptic Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			FamishedClicker: {
-				DisplayName: Famished Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			FaultyClicker: {
-				DisplayName: Faulty Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			FrozenClicker: {
-				DisplayName: Frozen Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			GoldClicker: {
-				DisplayName: Gold Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			HeartyClicker: {
-				DisplayName: Hearty Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			HemoClicker: {
-				DisplayName: Hemo Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			HighTechClicker: {
-				DisplayName: High Tech Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			HoneyGlazedClicker: {
-				DisplayName: Honey Glazed Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ImpishClicker: {
-				DisplayName: Impish Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			IronClicker: {
-				DisplayName: Iron Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			LanternClicker: {
-				DisplayName: Lantern Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			LeadClicker: {
-				DisplayName: Lead Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			LihzahrdClicker: {
-				DisplayName: Lihzahrd Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			LordsClicker: {
-				DisplayName: Lord's Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			MagnetClicker: {
-				DisplayName: Magnet Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			MiceClicker: {
-				DisplayName: Mice Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			MyceliumClicker: {
-				DisplayName: Mycelium Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			MythrilClicker: {
-				DisplayName: Mythril Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			NaughtyClicker: {
-				DisplayName: Naughty Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			OrichalcumClicker: {
-				DisplayName: Orichalcum Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			PalladiumClicker: {
-				DisplayName: Palladium Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			PharaohsClicker: {
-				DisplayName: Pharaoh's Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			PlatinumClicker: {
-				DisplayName: Platinum Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			PointyClicker: {
-				DisplayName: Pointy Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			QuintessenceClicker: {
-				DisplayName: Quintessence Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			RainbowClicker: {
-				DisplayName: Rainbow Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			RedHotClicker: {
-				DisplayName: Red Hot Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SandstormClicker: {
-				DisplayName: Sandstorm Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SeafoamClicker: {
-				DisplayName: Seafoam Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ShadowyClicker: {
-				DisplayName: Shadowy Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			ShroomiteClicker: {
-				DisplayName: Shroomite Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SilverClicker: {
-				DisplayName: Silver Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SinisterClicker: {
-				DisplayName: Sinister Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SlickClicker: {
-				DisplayName: Slick Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SnottyClicker: {
-				DisplayName: Snotty Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			SpaceClicker: {
-				DisplayName: Space Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
+			ArcaneClicker.DisplayName: Arcane Clicker
+			AdamantiteClicker.DisplayName: Adamantite Clicker
+			ArthursClicker.DisplayName: Arthur's Clicker
+			AstralClicker.DisplayName: Astral Clicker
+			BalloonClicker.DisplayName: Balloon Clicker
+			BoneClicker.DisplayName: Bone Clicker
+			BlizzardClicker.DisplayName: Blizzard Clicker
+			BurningSuperDeathClicker.DisplayName: Burning Super Death Clicker
+			CandleClicker.DisplayName: Candle Clicker
+			CaptainsClicker.DisplayName: Captain's Clicker
+			ChlorophyteClicker.DisplayName: Chlorophyte Clicker
+			CobaltClicker.DisplayName: Cobalt Clicker
+			ConfettiClicker.DisplayName: Confetti Clicker
+			CopperClicker.DisplayName: Copper Clicker
+			CorruptClicker.DisplayName: Corrupt Clicker
+			CrimsonClicker.DisplayName: Crimson Clicker
+			CritterClicker.DisplayName: Critter Clicker
+			CrystalClicker.DisplayName: Crystal Clicker
+			CyclopsClicker.DisplayName: Cyclops Clicker
+			DarkClicker.DisplayName: Dark Clicker
+			DraconicClicker.DisplayName: Draconic Clicker
+			DreamClicker.DisplayName: Dream Clicker
+			EclipticClicker.DisplayName: Ecliptic Clicker
+			FamishedClicker.DisplayName: Famished Clicker
+			FaultyClicker.DisplayName: Faulty Clicker
+			FrozenClicker.DisplayName: Frozen Clicker
+			GoldClicker.DisplayName: Gold Clicker
+			HeartyClicker.DisplayName: Hearty Clicker
+			HemoClicker.DisplayName: Hemo Clicker
+			HighTechClicker.DisplayName: High Tech Clicker
+			HoneyGlazedClicker.DisplayName: Honey Glazed Clicker
+			ImpishClicker.DisplayName: Impish Clicker
+			IronClicker.DisplayName: Iron Clicker
+			LanternClicker.DisplayName: Lantern Clicker
+			LeadClicker.DisplayName: Lead Clicker
+			LihzahrdClicker.DisplayName: Lihzahrd Clicker
+			LordsClicker.DisplayName: Lord's Clicker
+			MagnetClicker.DisplayName: Magnet Clicker
+			MiceClicker.DisplayName: Mice Clicker
+			MyceliumClicker.DisplayName: Mycelium Clicker
+			MythrilClicker.DisplayName: Mythril Clicker
+			NaughtyClicker.DisplayName: Naughty Clicker
+			OrichalcumClicker.DisplayName: Orichalcum Clicker
+			PalladiumClicker.DisplayName: Palladium Clicker
+			PharaohsClicker.DisplayName: Pharaoh's Clicker
+			PlatinumClicker.DisplayName: Platinum Clicker
+			PointyClicker.DisplayName: Pointy Clicker
+			QuintessenceClicker.DisplayName: Quintessence Clicker
+			RainbowClicker.DisplayName: Rainbow Clicker
+			RedHotClicker.DisplayName: Red Hot Clicker
+			SandstormClicker.DisplayName: Sandstorm Clicker
+			SeafoamClicker.DisplayName: Seafoam Clicker
+			ShadowyClicker.DisplayName: Shadowy Clicker
+			ShroomiteClicker.DisplayName: Shroomite Clicker
+			SilverClicker.DisplayName: Silver Clicker
+			SinisterClicker.DisplayName: Sinister Clicker
+			SlickClicker.DisplayName: Slick Clicker
+			SnottyClicker.DisplayName: Snotty Clicker
+			SpaceClicker.DisplayName: Space Clicker
 
 			SpectreClicker: {
 				DisplayName: Spectre Clicker
 				Tooltip: Click on an enemy within sight to damage them
 			}
 
-			SpiralClicker: {
-				DisplayName: Spiral Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			StarryClicker: {
-				DisplayName: Starry Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TheClicker: {
-				DisplayName: The Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TinClicker: {
-				DisplayName: Tin Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TitaniumClicker: {
-				DisplayName: Titanium Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TorchClicker: {
-				DisplayName: Torch Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			TungstenClicker: {
-				DisplayName: Tungsten Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			UmbralClicker: {
-				DisplayName: Umbral Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			WitchClicker: {
-				DisplayName: Witch Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			WebClicker: {
-				DisplayName: Web Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
-
-			WoodenClicker: {
-				DisplayName: Wooden Clicker
-				Tooltip: "{$Common.Tooltips.Clicker}"
-			}
+			SpiralClicker.DisplayName: Spiral Clicker
+			StarryClicker.DisplayName: Starry Clicker
+			TheClicker.DisplayName: The Clicker
+			TinClicker.DisplayName: Tin Clicker
+			TitaniumClicker.DisplayName: Titanium Clicker
+			TorchClicker.DisplayName: Torch Clicker
+			TungstenClicker.DisplayName: Tungsten Clicker
+			UmbralClicker.DisplayName: Umbral Clicker
+			WitchClicker.DisplayName: Witch Clicker
+			WebClicker.DisplayName: Web Clicker
+			WoodenClicker.DisplayName: Wooden Clicker
 		}
 
 		SetBonus: {

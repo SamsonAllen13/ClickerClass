@@ -652,7 +652,7 @@ Mods: {
 
 			HeavenlyChip: {
 				DisplayName: Heavenly Chip
-				Tooltip: Permanently increases base clicker radius by 5%
+				Tooltip: Permanently increases base clicker radius by {0}%
 			}
 
 			MiceDrill: {

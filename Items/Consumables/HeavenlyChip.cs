@@ -1,10 +1,15 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Consumables
 {
 	public class HeavenlyChip : ClickerItem
 	{
+		public static readonly int RadiusIncrease = 10;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();

@@ -16,6 +16,7 @@ using Terraria.ModLoader.IO;
 using Terraria.Audio;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Core.Netcode.Packets;
+using ClickerClass.Items.Consumables;
 
 namespace ClickerClass
 {
@@ -980,7 +981,7 @@ namespace ClickerClass
 
 			if (consumedHeavenlyChip)
 			{
-				clickerRadius += 0.5f;
+				clickerRadius += 2 * HeavenlyChip.RadiusIncrease / 100f;
 			}
 
 			if (!setMotherboard)

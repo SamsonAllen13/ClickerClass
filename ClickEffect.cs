@@ -20,12 +20,9 @@ namespace ClickerClass
 
 		public string UniqueName => ClickerSystem.UniqueEffectName(Mod, InternalName);
 
-		//TODO Concider using cache for these to avoid having to keep args for cloning
 		public LocalizedText DisplayName { get; init; }
-		private object[] DisplayNameArgs { get; init; }
 
 		public LocalizedText Description { get; init; }
-		private object[] DescriptionArgs { get; init; }
 
 		public int Amount { get; private init; }
 
@@ -48,24 +45,40 @@ namespace ClickerClass
 
 			string category = "ClickEffect";
 			string name = InternalName;
-			DisplayName = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}.{name}.Name"), PrettyPrintName);
-			DisplayNameArgs = nameArgs;
-			if (DisplayNameArgs != null)
+			string uniqueName = ClickerSystem.UniqueEffectName(Mod, name);
+			if (!ClickerSystem.TryGetClickEffectName(uniqueName, out LocalizedText displayName))
 			{
-				DisplayName = DisplayName.WithFormatArgs(DisplayNameArgs);
+				//First initialization and binding
+				DisplayName = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}.{name}.Name"), PrettyPrintName);
+				if (nameArgs != null)
+				{
+					DisplayName = DisplayName.WithFormatArgs(nameArgs);
+				}
+			}
+			else
+			{
+				DisplayName = displayName;
 			}
 
-			Description = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}.{name}.Description"), () => "{$Mods.ClickerClass.Common.Unknown}");
-			DescriptionArgs = descriptionArgs;
-			if (DescriptionArgs != null)
+			if (!ClickerSystem.TryGetClickEffectDescription(uniqueName, out LocalizedText description))
 			{
-				Description = Description.WithFormatArgs(DescriptionArgs);
+				//First initialization and binding
+				Description = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}.{name}.Description"), () => $"${ClickerSystem.UnknownText.Key}");
+				if (descriptionArgs != null)
+				{
+					Description = Description.WithFormatArgs(descriptionArgs);
+				}
+			}
+			else
+			{
+				Description = description;
 			}
 		}
 
 		public object Clone()
 		{
-			return new ClickEffect(Mod, InternalName, Amount, ColorFunc, (Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>)Action.Clone(), PreHardMode, DisplayNameArgs, DescriptionArgs);
+			//name and desc args are not required for cloning as they are cached already
+			return new ClickEffect(Mod, InternalName, Amount, ColorFunc, (Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float>)Action.Clone(), PreHardMode);
 		}
 
 		public TooltipLine ToTooltip(int amount, float alpha, bool showDesc)

@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
+using Terraria.Localization;
 
 namespace ClickerClass
 {
@@ -20,6 +21,8 @@ namespace ClickerClass
 		/// To prevent certain methods being called when they shouldn't
 		/// </summary>
 		internal static bool FinalizedRegisterCompat { get; private set; }
+
+		internal static LocalizedText UnknownText { get; private set; }
 
 		private static HashSet<int> ClickerItems { get; set; }
 
@@ -36,15 +39,28 @@ namespace ClickerClass
 		/// </summary>
 		private static Dictionary<string, ClickEffect> ClickEffectsByName { get; set; }
 
+		/// <summary>
+		/// A dictionary containing <see cref="ClickEffect.DisplayName"/>.
+		/// </summary>
+		internal static Dictionary<string, LocalizedText> DisplayNamesByName { get; private set; }
+
+		/// <summary>
+		/// A dictionary containing <see cref="ClickEffect.Description"/>.
+		/// </summary>
+		internal static Dictionary<string, LocalizedText> DescriptionsByName { get; private set; }
+
 		public override void OnModLoad()
 		{
 			FinalizedRegisterCompat = false;
+			UnknownText = Language.GetOrRegister(Mod.GetLocalizationKey("Common.Unknown"));
 			ClickerItems = new HashSet<int>();
 			ClickerWeaponBorderTexture = new Dictionary<int, string>();
 			ClickerWeapons = new HashSet<int>();
 			ClickerProjectiles = new HashSet<int>();
 			ClickerWeaponProjectiles = new HashSet<int>();
 			ClickEffectsByName = new Dictionary<string, ClickEffect>();
+			DisplayNamesByName = new Dictionary<string, LocalizedText>();
+			DescriptionsByName = new Dictionary<string, LocalizedText>();
 		}
 
 		public override void OnModUnload()
@@ -58,11 +74,18 @@ namespace ClickerClass
 			ClickerWeaponProjectiles = null;
 			ClickEffectsByName?.Clear();
 			ClickEffectsByName = null;
+			DisplayNamesByName?.Clear();
+			DisplayNamesByName = null;
+			DescriptionsByName?.Clear();
+			DescriptionsByName = null;
 		}
 
 		public override void SetStaticDefaults()
 		{
 			ClickEffect.LoadMiscEffects();
+
+			//Discard is important, LocalizationText needs one access to get into the lang file automatically
+			_ = UnknownText;
 		}
 
 		public override void PostAddRecipes()
@@ -142,7 +165,41 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call this in <see cref="Mod.PostSetupContent"/> or <see cref="ModItem.SetStaticDefaults"/> to register this click effect
+		/// Checks if an effect has already defined its display name, and assigns it
+		/// </summary>
+		/// <param name="name">The unique name</param>
+		/// <param name="displayName">The display name's <see cref="LocalizedText"/></param>
+		/// <returns><see langword="true"/> if already defined</returns>
+		public static bool TryGetClickEffectName(string name, out LocalizedText displayName)
+		{
+			displayName = null;
+			if (DisplayNamesByName.TryGetValue(name, out LocalizedText other))
+			{
+				displayName = other;
+				return true;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Checks if an effect has already defined its description, and assigns it
+		/// </summary>
+		/// <param name="name">The unique name</param>
+		/// <param name="description">The description's <see cref="LocalizedText"/></param>
+		/// <returns><see langword="true"/> if already defined</returns>
+		public static bool TryGetClickEffectDescription(string name, out LocalizedText description)
+		{
+			description = null;
+			if (DescriptionsByName.TryGetValue(name, out LocalizedText other))
+			{
+				description = other;
+				return true;
+			}
+			return false;
+		}
+
+		/// <summary>
+		/// Call this in <see cref="Mod.PostSetupContent"/> or <see cref="ModType.SetStaticDefaults"/> to register this click effect
 		/// </summary>
 		/// <param name="mod">The mod this effect belongs to. ONLY USE YOUR OWN MOD INSTANCE FOR THIS!</param>
 		/// <param name="internalName">The internal name of the effect. Turns into the unique name combined with the associated mod</param>
@@ -166,12 +223,13 @@ namespace ClickerClass
 			}
 
 			string uniqueName = UniqueEffectName(mod, internalName);
-
-			ClickEffect effect = new ClickEffect(mod, internalName, amount, colorFunc, action, preHardMode, nameArgs, descriptionArgs);
-
 			if (!IsClickEffect(uniqueName))
 			{
+				ClickEffect effect = new ClickEffect(mod, internalName, amount, colorFunc, action, preHardMode, nameArgs, descriptionArgs);
+
 				ClickEffectsByName.Add(uniqueName, effect);
+				DisplayNamesByName.Add(uniqueName, effect.DisplayName);
+				DescriptionsByName.Add(uniqueName, effect.Description);
 				return uniqueName;
 			}
 			else
@@ -181,7 +239,7 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call this in <see cref="Mod.PostSetupContent"/> or <see cref="ModItem.SetStaticDefaults"/> to register this click effect
+		/// Call this in <see cref="Mod.PostSetupContent"/> or <see cref="ModType.SetStaticDefaults"/> to register this click effect
 		/// </summary>
 		/// <param name="mod">The mod this effect belongs to. ONLY USE YOUR OWN MOD INSTANCE FOR THIS!</param>
 		/// <param name="internalName">The internal name of the effect. Turns into the unique name combined with the associated mod</param>
@@ -229,7 +287,7 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call this in <see cref="ModProjectile.SetStaticDefaults"/> to register this projectile into the "clicker class" category
+		/// Call this in <see cref="ModType.SetStaticDefaults"/> to register this projectile into the "clicker class" category
 		/// </summary>
 		/// <param name="modProj">The <see cref="ModProjectile"/> that is to be registered</param>
 		/// <exception cref="InvalidOperationException"/>
@@ -247,7 +305,7 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call this in <see cref="ModProjectile.SetStaticDefaults"/> to register this projectile into the "clicker weapon" category.
+		/// Call this in <see cref="ModType.SetStaticDefaults"/> to register this projectile into the "clicker weapon" category.
 		/// <br>This is only for projectiles spawned by clickers directly (Item.shoot). Clicker Class only uses one such projectile for all it's clickers. Only use this if you know what you are doing!</br>
 		/// <br>Various effects will only proc "on click" by checking this category instead of "all clicker class projectiles"</br>
 		/// </summary>
@@ -267,7 +325,7 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call this in <see cref="ModItem.SetStaticDefaults"/> to register this item into the "clicker class" category
+		/// Call this in <see cref="ModType.SetStaticDefaults"/> to register this item into the "clicker class" category
 		/// </summary>
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
 		/// <exception cref="InvalidOperationException"/>
@@ -285,7 +343,7 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call this in <see cref="ModItem.SetStaticDefaults"/> to register this weapon into the "clicker class" category as a "clicker".
+		/// Call this in <see cref="ModType.SetStaticDefaults"/> to register this weapon into the "clicker class" category as a "clicker".
 		/// Do not call <see cref="RegisterClickerItem"/> with it as this method does this already by itself
 		/// </summary>
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>

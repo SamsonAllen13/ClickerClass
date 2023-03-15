@@ -943,11 +943,6 @@ Mods: {
 				DisplayName: Heavenly Chip
 				Tooltip: Permanently increases base clicker radius by 5%
 			}
-
-			HeavenlyChipReverter: {
-				DisplayName: Heavenly Chip Reverter
-				Tooltip: ""
-			}
 		}
 
 		SetBonus: {

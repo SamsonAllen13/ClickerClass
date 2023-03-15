@@ -19,7 +19,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 			{
 				List<string> excluded = new List<string>
 				{
-					//ClickEffect.PartyTime,
+					ClickEffect.Yoink,
+					ClickEffect.Nab
 				};
 
 				List<ClickEffect> allowed = new List<ClickEffect>();

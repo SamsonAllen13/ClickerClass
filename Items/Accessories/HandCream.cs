@@ -5,7 +5,7 @@ namespace ClickerClass.Items.Accessories
 {
 	public class HandCream : ClickerItem
 	{
-		public static readonly AutoReuseEffect autoReuseEffect = new(12f, ControlledByKeyBind: true);
+		public static readonly AutoReuseEffect autoReuseEffect = new(10f, ControlledByKeyBind: true);
 
 		public override void SetStaticDefaults()
 		{

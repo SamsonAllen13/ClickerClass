@@ -547,6 +547,21 @@ namespace ClickerClass.NPCs
 				case NPCID.GoblinTinkerer:
 					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MousePad>());
 					break;
+				case NPCID.PartyGirl:
+					int buttonChoice = Main.moonPhase switch
+					{
+						0 => ModContent.ItemType<SFXButtonA>(),
+						1 => ModContent.ItemType<SFXButtonB>(),
+						2 => ModContent.ItemType<SFXButtonC>(),
+						3 => ModContent.ItemType<SFXButtonD>(),
+						4 => ModContent.ItemType<SFXButtonE>(),
+						5 => ModContent.ItemType<SFXButtonF>(),
+						6 => ModContent.ItemType<SFXButtonG>(),
+						7 => ModContent.ItemType<SFXButtonH>(),
+						_ => ModContent.ItemType<SFXButtonA>(),
+					};
+					shop.item[nextSlot++].SetDefaults(buttonChoice);
+					break;
 				case NPCID.Painter:
 					if (clickerPlayer.clickerSelected)
 					{

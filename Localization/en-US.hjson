@@ -95,6 +95,11 @@ Mods: {
 				Clicker: Click on an enemy within range and sight to damage them
 				MoreThanOneClick: "{0} clicks"
 				OneClick: 1 click
+				SFXButtonTip:
+					'''
+					Changes the sound your clicks make while equipped or in your inventory
+					Volume increases with stack size, up to 5
+					'''
 			}
 
 			Unknown: Unknown
@@ -319,7 +324,7 @@ Mods: {
 
 			ClickingGlove: {
 				DisplayName: Clicking Glove
-				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 3 seconds"
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery} 2 seconds"
 			}
 
 			Cookie: {
@@ -467,6 +472,55 @@ Mods: {
 			Soda: {
 				DisplayName: Soda
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks} by 1"
+			}
+
+			SFXButtonA: {
+				DisplayName: SFX Button A
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonB: {
+				DisplayName: SFX Button B
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonC: {
+				DisplayName: SFX Button C
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonD: {
+				DisplayName: SFX Button D
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonE: {
+				DisplayName: SFX Button E
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonF: {
+				DisplayName: SFX Button F
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonG: {
+				DisplayName: SFX Button G
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXButtonH: {
+				DisplayName: SFX Button H
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.SFXButtonTip}"
+			}
+
+			SFXSoundboard: {
+				DisplayName: SFX Soundboard
+				Tooltip:
+					'''
+					'Become the life of the party! ...or death of it'
+					Changes the sound your clicks make while equipped or in your inventory
+					'''
 			}
 
 			StickyKeychain: {
@@ -689,6 +743,11 @@ Mods: {
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
 			}
 
+			CritterClicker: {
+				DisplayName: Critter Clicker
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
 			CrystalClicker: {
 				DisplayName: Crystal Clicker
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
@@ -706,6 +765,11 @@ Mods: {
 
 			DraconicClicker: {
 				DisplayName: Draconic Clicker
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			DreamClicker: {
+				DisplayName: Dream Clicker
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
 			}
 
@@ -731,6 +795,11 @@ Mods: {
 
 			GoldClicker: {
 				DisplayName: Gold Clicker
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			HeartyClicker: {
+				DisplayName: Hearty Clicker
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
 			}
 
@@ -814,6 +883,11 @@ Mods: {
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
 			}
 
+			PharaohsClicker: {
+				DisplayName: Pharaoh's Clicker
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
 			PlatinumClicker: {
 				DisplayName: Platinum Clicker
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
@@ -821,6 +895,11 @@ Mods: {
 
 			PointyClicker: {
 				DisplayName: Pointy Clicker
+				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
+			}
+
+			QuintessenceClicker: {
+				DisplayName: Quintessence Clicker
 				Tooltip: "{$Mods.ClickerClass.Common.Tooltips.Clicker}"
 			}
 
@@ -1274,6 +1353,31 @@ Mods: {
 				Name: Crystalize
 				Description: Covers nearby enemies in crystal slime; Click them to deal AOE damage
 			}
+
+			StarSlice: {
+				Name: Star Slice
+				Description: Shoots out 4 slicing star strikes
+			}
+
+			HappyHeart: {
+				Name: Happy Heart
+				Description: Produces up to 5 lingering hearts that replenish player life
+			}
+
+			PharaohsCommand: {
+				Name: Pharaoh's Command
+				Description: Summons a mask that shoots at your cursor in response to your clicks
+			}
+
+			Evolve: {
+				Name: Evolve
+				Description: "{$Mods.ClickerClass.Common.Unknown}"
+			}
+
+			Nab: {
+				Name: Nab
+				Description: "{$Mods.ClickerClass.Common.Unknown}"
+			}
 		}
 
 		Prefixes: {
@@ -1426,6 +1530,11 @@ Mods: {
 			UmbralClickerPro.DisplayName: Umbral Clicker Pro
 			WebClickerPro.DisplayName: Web Clicker Pro
 			WebClickerPro2.DisplayName: Web Clicker Pro2
+			DreamClickerPro.DisplayName: Dream Clicker Pro
+			FamishedClickerPro.DisplayName: Famished Clicker Pro
+			HeartyClickerPro.DisplayName: Hearty Clicker Pro
+			PharaohsClickerPro.DisplayName: Pharaohs Clicker Pro
+			PharaohsClickerPro2.DisplayName: Pharaohs Clicker Pro2
 		}
 	}
 }

@@ -128,6 +128,7 @@ namespace ClickerClass
 		
 		//Item
 		public bool itemBurningSuperDeath = false;
+		public bool itemDreamClicker = false;
 
 		//Armor
 		public int setAbilityDelayTimer = 0;
@@ -182,6 +183,7 @@ namespace ClickerClass
 		public bool accAimbotModule2Toggle = false; //If enabled, automatically seeks enemies
 		public int accAimbotModule2ToggleTimer = 0; //To not do it every tick
 		public bool accEnlarge = false;
+		public bool accSFXButtonSoundboard = false;
 
 		public int accAimbotModuleTarget = -1;
 		public int accAimbotModuleFailsafe = 0;
@@ -197,6 +199,14 @@ namespace ClickerClass
 		public int accPaperclipsAmount = 0;
 		public int accHotKeychainTimer = 0;
 		public int accHotKeychainAmount = 0;
+		public int accSFXButtonA = 0;
+		public int accSFXButtonB = 0;
+		public int accSFXButtonC = 0;
+		public int accSFXButtonD = 0;
+		public int accSFXButtonE = 0;
+		public int accSFXButtonF = 0;
+		public int accSFXButtonG = 0;
+		public int accSFXButtonH = 0;
 
 		//Stats
 		/// <summary>
@@ -742,6 +752,7 @@ namespace ClickerClass
 			
 			//Item
 			itemBurningSuperDeath = false;
+			itemDreamClicker = false;
 
 			//Armor
 			setMotherboard = false;
@@ -776,11 +787,20 @@ namespace ClickerClass
 			accAimbotModule2 = false;
 			accAimbotModuleTargetInRange = false;
 			accEnlarge = false;
+			accSFXButtonSoundboard = false;
 
 			//Stats
 			clickerBonus = 0;
 			clickerBonusPercent = 1f;
 			clickerRadius = 1f;
+			accSFXButtonA = 0;
+			accSFXButtonB = 0;
+			accSFXButtonC = 0;
+			accSFXButtonD = 0;
+			accSFXButtonE = 0;
+			accSFXButtonF = 0;
+			accSFXButtonG = 0;
+			accSFXButtonH = 0;
 		}
 
 		public override void UpdateAutopause()
@@ -926,7 +946,7 @@ namespace ClickerClass
 						QuickUseItemInSlot(Player.selectedItem);
 						accClickingGloveTimer = 0;
 					}
-					else if (accClickingGlove && accClickingGloveTimer > 180)
+					else if (accClickingGlove && accClickingGloveTimer > 120)
 					{
 						QuickUseItemInSlot(Player.selectedItem);
 						accClickingGloveTimer = 0;
@@ -1058,6 +1078,16 @@ namespace ClickerClass
 			{
 				clickerDoubleTap--;
 			}
+			
+			//SFX Button overflow handle
+			accSFXButtonA = accSFXButtonA >= 5 ? 5 : accSFXButtonA;
+			accSFXButtonB = accSFXButtonB >= 5 ? 5 : accSFXButtonB;
+			accSFXButtonC = accSFXButtonC >= 5 ? 5 : accSFXButtonC;
+			accSFXButtonD = accSFXButtonD >= 5 ? 5 : accSFXButtonD;
+			accSFXButtonE = accSFXButtonE >= 5 ? 5 : accSFXButtonE;
+			accSFXButtonF = accSFXButtonF >= 5 ? 5 : accSFXButtonF;
+			accSFXButtonG = accSFXButtonG >= 5 ? 5 : accSFXButtonG;
+			accSFXButtonH = accSFXButtonH >= 5 ? 5 : accSFXButtonH;
 
 			//Clicker Effects
 			//Hot Wings

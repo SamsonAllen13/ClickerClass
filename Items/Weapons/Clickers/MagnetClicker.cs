@@ -12,6 +12,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 	{
 		public override void SetStaticDefaults()
 		{
+			//Special tooltip set before this normally, but we use lang keys so it's handled automatically
 			base.SetStaticDefaults();
 
 			ClickEffect.Yoink = ClickerSystem.RegisterClickEffect(Mod, "Yoink", 1, new Color(255, 180, 180), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
@@ -31,7 +32,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
-			SetRadius(Item, 2f);
+			SetRadius(Item, 0.85f);
 			SetColor(Item, new Color(255, 180, 180));
 			SetDust(Item, 5);
 			AddEffect(Item, ClickEffect.Yoink);

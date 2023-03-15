@@ -37,6 +37,8 @@ namespace ClickerClass.UI
 		public Lazy<Asset<Texture2D>> outlineTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/CursorOutline"));
 
 		public Lazy<Asset<Texture2D>> burningSuperDeathOutlineTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/CursorOutline2"));
+		
+		public Lazy<Asset<Texture2D>> dreamClickerOutlineTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/CursorOutline3"));
 
 		public override void Update(GameTime gameTime)
 		{
@@ -86,6 +88,10 @@ namespace ClickerClass.UI
 			{
 				borderAsset = burningSuperDeathOutlineTexture.Value;
 			}
+			else if (clickerPlayer.itemDreamClicker)
+			{
+				borderAsset = dreamClickerOutlineTexture.Value;
+			}
 			else
 			{
 				//Default border
@@ -131,6 +137,26 @@ namespace ClickerClass.UI
 				for (int i = 0; i < itemFlamePos.Length; i++)
 				{
 					Color flameColor = new Color(100, 100, 100, 0);
+					Vector2 flameDrawPos = borderPosition + itemFlamePos[i];
+					Main.spriteBatch.Draw(borderTexture, flameDrawPos, borderFrame, flameColor, 0f, Vector2.Zero, _clickerScale + 0.1f, SpriteEffects.FlipHorizontally, 0f);
+				}
+			}
+			else if (clickerPlayer.itemDreamClicker)
+			{
+				itemFlameCount--;
+				if (itemFlameCount <= 0)
+				{
+					itemFlameCount = ItemFlameCountMax;
+					for (int k = 0; k < 4; k++)
+					{
+						itemFlamePos[k].X = Main.rand.Next(-10, 11) * 0.15f;
+						itemFlamePos[k].Y = Main.rand.Next(-10, 1) * 0.35f;
+					}
+				}
+				
+				for (int i = 0; i < itemFlamePos.Length; i++)
+				{
+					Color flameColor = new Color(150, 150, 150, 0) * 0.35f;
 					Vector2 flameDrawPos = borderPosition + itemFlamePos[i];
 					Main.spriteBatch.Draw(borderTexture, flameDrawPos, borderFrame, flameColor, 0f, Vector2.Zero, _clickerScale + 0.1f, SpriteEffects.FlipHorizontally, 0f);
 				}

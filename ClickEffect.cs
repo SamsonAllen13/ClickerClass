@@ -136,8 +136,12 @@ namespace ClickerClass
 		
 		//Clicker
 		public static string Mania { get; internal set; } = string.Empty;
+		public static string Nab { get; internal set; } = string.Empty;
 		public static string PartyTime { get; internal set; } = string.Empty;
 		public static string Devour { get; internal set; } = string.Empty;
+		public static string StarSlice { get; internal set; } = string.Empty;
+		public static string Evolve { get; internal set; } = string.Empty;
+		public static string HappyHeart { get; internal set; } = string.Empty;
 		public static string ArcaneEnchantment { get; internal set; } = string.Empty;
 		public static string Rainbolt { get; internal set; } = string.Empty;
 		public static string Insanity { get; internal set; } = string.Empty;
@@ -185,6 +189,7 @@ namespace ClickerClass
 		public static string Inferno { get; internal set; } = string.Empty;
 		public static string Curse { get; internal set; } = string.Empty;
 		public static string AutoClick { get; internal set; } = string.Empty;
+		public static string PharaohsCommand { get; internal set; } = string.Empty;
 		public static string Siphon { get; internal set; } = string.Empty;
 		public static string Splash { get; internal set; } = string.Empty;
 		public static string StarStorm { get; internal set; } = string.Empty;

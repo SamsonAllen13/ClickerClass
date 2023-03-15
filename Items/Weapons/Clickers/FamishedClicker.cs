@@ -1,4 +1,4 @@
-using ClickerClass.Buffs;
+using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
@@ -14,9 +14,15 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Devour = ClickerSystem.RegisterClickEffect(Mod, "Devour", 15, new Color(200, 125, 125), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Devour = ClickerSystem.RegisterClickEffect(Mod, "Devour", 10, new Color(200, 125, 125), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				//Add effect here when I have the time
+				bool spawnEffects = true;
+				for (int k = 0; k < 3; k++)
+				{
+					float hasSpawnEffects = spawnEffects ? 1f : 0f;
+					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<FamishedClickerPro>(), damage, 0f, player.whoAmI, hasSpawnEffects);
+					spawnEffects = false;
+				}
 			});
 		}
 
@@ -33,7 +39,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.height = 30;
 			Item.knockBack = 1f;
 			Item.value = Item.sellPrice(0, 1, 0, 0);
-			Item.rare = ItemRarityID.Gray;
+			Item.rare = ItemRarityID.LightRed;
 		}
+		
+		//TODO - Drop from WoF
 	}
 }

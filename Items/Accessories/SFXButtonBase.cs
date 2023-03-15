@@ -1,11 +1,18 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
 {
 	public abstract class SFXButtonBase : ClickerItem
 	{
+		public static readonly int StackAmount = 5;
+
+		public virtual bool UsesCommonTooltip => true;
+
+		public override LocalizedText Tooltip => UsesCommonTooltip ? base.Tooltip.WithFormatArgs(StackAmount) : base.Tooltip;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();

@@ -6,6 +6,8 @@ namespace ClickerClass.Items.Accessories
 {
 	public class SFXSoundboard : SFXButtonBase
 	{
+		public override bool UsesCommonTooltip => false;
+
 		public sealed override void SafeSetDefaults()
 		{
 			Item.maxStack = 1;

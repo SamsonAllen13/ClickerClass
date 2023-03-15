@@ -6,6 +6,7 @@ using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.GameContent;
+using ClickerClass.Items.Weapons.Clickers;
 
 namespace ClickerClass.Projectiles
 {
@@ -82,7 +83,7 @@ namespace ClickerClass.Projectiles
 				activeTimer += 4;
 			}
 			
-			if (Projectile.ai[1] >= 5f)
+			if (Projectile.ai[1] >= HeartyClicker.HeartMaxAmount)
 			{
 				Projectile.Kill();
 			}

@@ -9,6 +9,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class HeartyClicker : ClickerWeapon
 	{
+		public static readonly int HeartMaxAmount = 5;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -25,7 +27,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 				}
 				Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-2f, 2f), -6f, ModContent.ProjectileType<HeartyClickerPro>(), 0, 0f, player.whoAmI, 1f);
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { HeartMaxAmount });
 		}
 
 		public override void SetDefaults()

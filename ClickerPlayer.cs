@@ -1079,16 +1079,17 @@ namespace ClickerClass
 			{
 				clickerDoubleTap--;
 			}
-			
+
 			//SFX Button overflow handle
-			accSFXButtonA = accSFXButtonA >= 5 ? 5 : accSFXButtonA;
-			accSFXButtonB = accSFXButtonB >= 5 ? 5 : accSFXButtonB;
-			accSFXButtonC = accSFXButtonC >= 5 ? 5 : accSFXButtonC;
-			accSFXButtonD = accSFXButtonD >= 5 ? 5 : accSFXButtonD;
-			accSFXButtonE = accSFXButtonE >= 5 ? 5 : accSFXButtonE;
-			accSFXButtonF = accSFXButtonF >= 5 ? 5 : accSFXButtonF;
-			accSFXButtonG = accSFXButtonG >= 5 ? 5 : accSFXButtonG;
-			accSFXButtonH = accSFXButtonH >= 5 ? 5 : accSFXButtonH;
+			int sfxMax = SFXButtonBase.StackAmount;
+			accSFXButtonA = Math.Min(sfxMax, accSFXButtonA);
+			accSFXButtonB = Math.Min(sfxMax, accSFXButtonB);
+			accSFXButtonC = Math.Min(sfxMax, accSFXButtonC);
+			accSFXButtonD = Math.Min(sfxMax, accSFXButtonD);
+			accSFXButtonE = Math.Min(sfxMax, accSFXButtonE);
+			accSFXButtonF = Math.Min(sfxMax, accSFXButtonF);
+			accSFXButtonG = Math.Min(sfxMax, accSFXButtonG);
+			accSFXButtonH = Math.Min(sfxMax, accSFXButtonH);
 
 			//Clicker Effects
 			//Hot Wings

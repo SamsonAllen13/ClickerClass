@@ -100,7 +100,7 @@ Mods: {
 				SFXButtonTip:
 					'''
 					Changes the sound your clicks make while equipped or in your inventory
-					Volume increases with stack size, up to 5
+					Volume increases with stack size, up to {0}
 					'''
 			}
 
@@ -1363,12 +1363,12 @@ Mods: {
 
 			StarSlice: {
 				Name: Star Slice
-				Description: Shoots out 4 slicing star strikes
+				Description: Shoots out {0} slicing star strikes
 			}
 
 			HappyHeart: {
 				Name: Happy Heart
-				Description: Produces up to 5 lingering hearts that replenish player life
+				Description: Produces up to {0} lingering hearts that replenish player life
 			}
 
 			PharaohsCommand: {

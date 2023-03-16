@@ -7,12 +7,17 @@ using Terraria;
 using Terraria.UI;
 using ClickerClass.Utilities;
 using Terraria.ModLoader;
+using Terraria.Localization;
+using ClickerClass.Items.Accessories;
 
 namespace ClickerClass.UI
 {
 	internal class HotKeychainGauge : InterfaceResource
 	{
-		public HotKeychainGauge() : base("ClickerClass: Hot Keychain Gauge", InterfaceScaleType.UI) { }
+		public HotKeychainGauge() : base("ClickerClass: Hot Keychain Gauge", InterfaceScaleType.UI)
+		{
+			MouseoverText = Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey("UI.HotKeychainGauge")); 
+		}
 
 		public const int MAX_FADE_TIME = 35;
 		public const int FADE_DELAY = 5;
@@ -20,6 +25,8 @@ namespace ClickerClass.UI
 		private int _delay = 0;
 
 		private Lazy<Asset<Texture2D>> sheetAsset = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/HotKeychainGauge_Sheet"));
+
+		public LocalizedText MouseoverText { get; private set; }
 
 		public override void Update(GameTime gameTime)
 		{
@@ -97,7 +104,7 @@ namespace ClickerClass.UI
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 
 			// Percentage of bar filled
-			float fill = (float)(clickerPlayer.accHotKeychainAmount) / 50;
+			float fill = (float)clickerPlayer.accHotKeychainAmount / HotKeychain.ChargeMax;
 
 			// Change the width of the frame so it only draws part of the bar
 			frame.Width = (int)((frame.Width - 8) * fill + 8);
@@ -120,7 +127,7 @@ namespace ClickerClass.UI
 			if (frame.Contains(Main.mouseX, Main.mouseY))
 			{
 				//player.showItemIcon = false;
-				string text = $"{LangHelper.GetText("UI.HotKeychainGauge")}: " + clickerPlayer.accHotKeychainAmount + " / 50";
+				string text = MouseoverText.Format(clickerPlayer.accHotKeychainAmount, HotKeychain.ChargeMax);
 				Main.instance.MouseTextHackZoom(text, Terraria.ID.ItemRarityID.Orange);
 				Main.mouseText = true;
 			}

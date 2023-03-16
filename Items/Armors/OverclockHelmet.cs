@@ -19,6 +19,8 @@ namespace ClickerClass.Items.Armors
 
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ClickAmountDecreaseFlat);
 
+		public static LocalizedText SetBonusText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -31,6 +33,8 @@ namespace ClickerClass.Items.Armors
 					Color = (PlayerDrawSet drawInfo) => Color.White * 0.8f * 0.75f
 				});
 			}
+
+			SetBonusText = Language.GetOrRegister(Mod.GetLocalizationKey("SetBonus.Overclock")).WithFormatArgs(ClickAmount, SetBonusDamageDecrease);
 		}
 
 		public override void SetDefaults()
@@ -54,7 +58,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = LangHelper.GetText("SetBonus.Overclock", ClickAmount, SetBonusDamageDecrease);
+			player.setBonus = SetBonusText.ToString();
 			player.GetModPlayer<ClickerPlayer>().setOverclock = true;
 		}
 

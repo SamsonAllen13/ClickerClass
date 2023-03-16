@@ -1114,9 +1114,9 @@ Mods: {
 		DeathMessage.HotKeychain: "{0} влюбился в пикантную связку ключей."
 
 		UI: {
-			HotKeychainGauge: Жара
-			MedalGauge: Зарядов
-			PaperclipsGauge: Веществ
+			HotKeychainGauge: Жара: {0} / {1}
+			MedalGauge: Зарядов: {0} / {1}
+			PaperclipsGauge: Веществ: {0} / {1}
 		}
 
 		ClickerConfigClient: {

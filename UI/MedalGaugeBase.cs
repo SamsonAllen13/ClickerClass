@@ -7,6 +7,7 @@ using Terraria;
 using Terraria.UI;
 using ClickerClass.Utilities;
 using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace ClickerClass.UI
 {
@@ -17,10 +18,13 @@ namespace ClickerClass.UI
 		public int FadeTime { get; internal set; }
 
 		private Lazy<Asset<Texture2D>> sheetAsset;
+		
+		public LocalizedText MouseoverText { get; private set; }
 
 		protected MedalGaugeBase(string name, InterfaceScaleType scaleType) : base(name, scaleType)
 		{
 			sheetAsset = new(() => ModContent.Request<Texture2D>("ClickerClass/" + TexturePath));
+			MouseoverText = Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey("UI.MedalGauge")); //Same for all gauges
 		}
 
 		protected abstract int GetValue();
@@ -104,7 +108,8 @@ namespace ClickerClass.UI
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 
 			// Percentage of bar filled
-			float fill = (float)(GetValue()) / 200;
+			//Ugly magic numbers
+			float fill = (float)GetValue() / 200;
 
 			// Change the width of the frame so it only draws part of the bar
 			frame.Width = (int)((frame.Width - 8) * fill + 8);
@@ -127,7 +132,8 @@ namespace ClickerClass.UI
 			if (frame.Contains(Main.mouseX, Main.mouseY))
 			{
 				//player.showItemIcon = false;
-				string text = $"{LangHelper.GetText("UI.MedalGauge")}: " + (int)(GetValue() / 20) + " / 10";
+				//Ugly magic numbers
+				string text = MouseoverText.Format(GetValue() / 20, 10);
 				Main.instance.MouseTextHackZoom(text, TextColor());
 				Main.mouseText = true;
 			}

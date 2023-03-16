@@ -1114,9 +1114,9 @@ Mods: {
 		DeathMessage.HotKeychain: "{0} a succombé à son porte clés."
 
 		UI: {
-			HotKeychainGauge: Chaleur
-			MedalGauge: Charges
-			PaperclipsGauge: Matière
+			HotKeychainGauge: Chaleur: {0} / {1}
+			MedalGauge: Charges: {0} / {1}
+			PaperclipsGauge: Matière: {0} / {1}
 		}
 
 		ClickerConfigClient: {

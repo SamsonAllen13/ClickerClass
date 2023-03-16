@@ -1,4 +1,3 @@
-using ClickerClass.Utilities;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -13,9 +12,13 @@ namespace ClickerClass.Items.Armors
 
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease);
 
+		public static LocalizedText SetBonusText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			SetBonusText = Language.GetOrRegister(Mod.GetLocalizationKey("SetBonus.Motherboard"));
 		}
 
 		public override void SetDefaults()
@@ -39,7 +42,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = LangHelper.GetText("SetBonus.Motherboard");
+			player.setBonus = SetBonusText.ToString();
 			player.GetModPlayer<ClickerPlayer>().setMotherboard = true;
 		}
 

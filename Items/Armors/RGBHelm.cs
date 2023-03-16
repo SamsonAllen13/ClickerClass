@@ -19,6 +19,8 @@ namespace ClickerClass.Items.Armors
 
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ClickAmountDecreaseFlat);
 
+		public static LocalizedText SetBonusText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -31,7 +33,9 @@ namespace ClickerClass.Items.Armors
 					Color = (PlayerDrawSet drawInfo) => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * 0.8f 
 				});
 			}
-			
+
+			SetBonusText = Language.GetOrRegister(Mod.GetLocalizationKey("SetBonus.RGB")).WithFormatArgs(ClickAmount);
+
 			ClickEffect.ChromaticBurst = ClickerSystem.RegisterClickEffect(Mod, "ChromaticBurst", ClickAmount, () => Color.Lerp(Color.White, Main.DiscoColor, 0.5f), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
@@ -75,7 +79,7 @@ namespace ClickerClass.Items.Armors
 		public override void UpdateArmorSet(Player player)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			player.setBonus = LangHelper.GetText("SetBonus.RGB", ClickAmount);
+			player.setBonus = SetBonusText.ToString();
 			clickerPlayer.setRGB = true;
 			clickerPlayer.EnableClickEffect(ClickEffect.ChromaticBurst);
 		}

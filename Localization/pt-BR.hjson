@@ -1114,9 +1114,9 @@ Mods: {
 		DeathMessage.HotKeychain: "{0} caiu no chaveiro picante."
 
 		UI: {
-			HotKeychainGauge: Calor
-			MedalGauge: Cargas
-			PaperclipsGauge: Matéria
+			HotKeychainGauge: Calor: {0} / {1}
+			MedalGauge: Cargas: {0} / {1}
+			PaperclipsGauge: Matéria: {0} / {1}
 		}
 
 		ClickerConfigClient: {

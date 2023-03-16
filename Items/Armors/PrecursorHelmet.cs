@@ -17,6 +17,8 @@ namespace ClickerClass.Items.Armors
 
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
 
+		public static LocalizedText SetBonusText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -29,6 +31,8 @@ namespace ClickerClass.Items.Armors
 					Color = (PlayerDrawSet drawInfo) => Color.White * 0.8f * 0.5f
 				});
 			}
+
+			SetBonusText = Language.GetOrRegister(Mod.GetLocalizationKey("SetBonus.Precursor"));
 		}
 
 		public override void SetDefaults()
@@ -52,7 +56,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = LangHelper.GetText("SetBonus.Precursor");
+			player.setBonus = SetBonusText.ToString();
 			player.GetModPlayer<ClickerPlayer>().setPrecursor = true;
 		}
 

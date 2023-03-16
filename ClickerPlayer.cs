@@ -1508,7 +1508,7 @@ namespace ClickerClass
 						accHotKeychainAmount += accHotKeychainSpice;
 						accHotKeychainTimer = 0;
 
-						if (accHotKeychainAmount > 50)
+						if (accHotKeychainAmount > HotKeychain.ChargeMax)
 						{
 							Player.AddBuff(BuffID.OnFire3, 300);
 							SoundEngine.PlaySound(SoundID.Item74, Player.Center);
@@ -1630,7 +1630,7 @@ namespace ClickerClass
 					}
 					accPaperclipsAmount += matterAmount;
 
-					if (accPaperclipsAmount >= 100)
+					if (accPaperclipsAmount >= BottomlessBoxofPaperclips.ChargeMax)
 					{
 						SoundEngine.PlaySound(SoundID.Item108, Player.Center);
 						for (int k = 0; k < 15; k++)

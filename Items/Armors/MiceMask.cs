@@ -19,6 +19,8 @@ namespace ClickerClass.Items.Armors
 
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease, CritIncrease);
 
+		public static LocalizedText SetBonusText { get; private set; }
+
 		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Unload()
@@ -39,6 +41,8 @@ namespace ClickerClass.Items.Armors
 					Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow")
 				});
 			}
+
+			SetBonusText = Language.GetOrRegister(Mod.GetLocalizationKey("SetBonus.Mice"));
 		}
 
 		public override void SetDefaults()
@@ -63,7 +67,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = LangHelper.GetText("SetBonus.Mice");
+			player.setBonus = SetBonusText.ToString();
 			player.GetModPlayer<ClickerPlayer>().setMice = true;
 		}
 

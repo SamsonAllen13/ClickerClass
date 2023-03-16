@@ -5,6 +5,8 @@ namespace ClickerClass.Items.Accessories
 {
 	public class HotKeychain : ClickerItem
 	{
+		public static readonly int ChargeMax = 50;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();

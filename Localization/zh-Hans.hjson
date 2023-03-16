@@ -1114,9 +1114,9 @@ Mods: {
 		DeathMessage.HotKeychain: "{0} 被炽热的钥匙串烫死了."
 
 		UI: {
-			HotKeychainGauge: 热量
-			MedalGauge: 充能
-			PaperclipsGauge: 回形针
+			HotKeychainGauge: 热量: {0} / {1}
+			MedalGauge: 充能: {0} / {1}
+			PaperclipsGauge: 回形针: {0} / {1}
 		}
 
 		ClickerConfigClient: {

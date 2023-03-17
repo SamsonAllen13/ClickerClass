@@ -42,7 +42,7 @@ namespace ClickerClass.Items.Armors
 				});
 			}
 
-			SetBonusText = Language.GetOrRegister(Mod.GetLocalizationKey("SetBonus.Mice"));
+			SetBonusText = this.GetLocalization("SetBonus");
 		}
 
 		public override void SetDefaults()

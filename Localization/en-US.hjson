@@ -529,6 +529,7 @@ Mods: {
 					{$Common.Tooltips.IncreasesClickDamageBy}
 					{$Common.Tooltips.IncreasesClickCritChanceBy@1}
 					'''
+				SetBonus: Right clicking a position within your clicker radius will teleport you to it
 			}
 
 			MiceSuit: {
@@ -548,6 +549,7 @@ Mods: {
 			MotherboardHelmet: {
 				DisplayName: Motherboard Helmet
 				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				SetBonus: Right click to place a radius extending sensor
 			}
 
 			MotherboardSuit: {
@@ -563,6 +565,11 @@ Mods: {
 			OverclockHelmet: {
 				DisplayName: Overclock Helmet
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				SetBonus:
+					'''
+					Every {0} clicks briefly grants you 'Overclock', making every click trigger its effect
+					While Overclock is active, you deal {1}% less click damage
+					'''
 			}
 
 			OverclockSuit: {
@@ -587,6 +594,7 @@ Mods: {
 			PrecursorHelmet: {
 				DisplayName: Precursor Helmet
 				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
+				SetBonus: While in combat, your cursor constantly leaves behind damaging afterimages
 			}
 
 			RGBBreastplate: {
@@ -602,6 +610,7 @@ Mods: {
 			RGBHelm: {
 				DisplayName: RGB Helm
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
+				SetBonus: Every {0} clicks propels a chromatic burst from your cursor
 			}
 
 			ClickerEffectHairDye: {
@@ -715,18 +724,6 @@ Mods: {
 			WitchClicker.DisplayName: Witch Clicker
 			WebClicker.DisplayName: Web Clicker
 			WoodenClicker.DisplayName: Wooden Clicker
-		}
-
-		SetBonus: {
-			Mice: Right clicking a position within your clicker radius will teleport you to it
-			Motherboard: Right click to place a radius extending sensor
-			Overclock:
-				'''
-				Every {0} clicks briefly grants you 'Overclock', making every click trigger its effect
-				While Overclock is active, you deal {1}% less click damage
-				'''
-			Precursor: While in combat, your cursor constantly leaves behind damaging afterimages
-			RGB: Every {0} clicks propels a chromatic burst from your cursor
 		}
 
 		InfoDisplays: {

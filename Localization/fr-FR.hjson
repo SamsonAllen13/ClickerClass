@@ -529,6 +529,7 @@ Mods: {
 					{$Common.Tooltips.IncreasesClickDamageBy}
 					{$Common.Tooltips.IncreasesClickCritChanceBy} de 6%
 					'''
+				SetBonus: Faire un clic droit dans votre rayon de clic vous y téléporte
 			}
 
 			MiceSuit: {
@@ -548,6 +549,7 @@ Mods: {
 			MotherboardHelmet: {
 				DisplayName: Casque de Carte Mère
 				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				SetBonus: Faire un clic droit place un capteur étendeur de rayon
 			}
 
 			MotherboardSuit: {
@@ -563,6 +565,11 @@ Mods: {
 			OverclockHelmet: {
 				DisplayName: Casque Overclocké
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				SetBonus:
+					'''
+					Tous les {0} clics, vos donne brièvement l'effet 'overclocké', permettant à chaque clic de libérer son effet
+					Lorsque vous êtes overclocké, vos dégâts sont réduits de {1}%
+					'''
 			}
 
 			OverclockSuit: {
@@ -587,6 +594,7 @@ Mods: {
 			PrecursorHelmet: {
 				DisplayName: Casque de Précurseur
 				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
+				SetBonus: Lorsque vous êtes en combat, votre curseur laisse derrière lui des images différées
 			}
 
 			RGBBreastplate: {
@@ -602,6 +610,7 @@ Mods: {
 			RGBHelm: {
 				DisplayName: Casque RVB
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
+				SetBonus: Tous les {0} clics, votre curseur libèrera un éclat chromatique
 			}
 
 			ClickerEffectHairDye: {
@@ -715,18 +724,6 @@ Mods: {
 			WitchClicker.DisplayName: Cliqueur de la Sorcière
 			WebClicker.DisplayName: Cliqueur Toile d'Araignée
 			WoodenClicker.DisplayName: Cliqueur en Bois
-		}
-
-		SetBonus: {
-			Mice: Faire un clic droit dans votre rayon de clic vous y téléporte
-			Motherboard: Faire un clic droit place un capteur étendeur de rayon
-			Overclock:
-				'''
-				Tous les {0} clics, vos donne brièvement l'effet 'overclocké', permettant à chaque clic de libérer son effet
-				Lorsque vous êtes overclocké, vos dégâts sont réduits de {1}%
-				'''
-			Precursor: Lorsque vous êtes en combat, votre curseur laisse derrière lui des images différées
-			RGB: Tous les {0} clics, votre curseur libèrera un éclat chromatique
 		}
 
 		InfoDisplays: {

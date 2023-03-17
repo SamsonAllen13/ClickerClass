@@ -34,7 +34,7 @@ namespace ClickerClass.Items.Armors
 				});
 			}
 
-			SetBonusText = Language.GetOrRegister(Mod.GetLocalizationKey("SetBonus.Overclock")).WithFormatArgs(ClickAmount, SetBonusDamageDecrease);
+			SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(ClickAmount, SetBonusDamageDecrease);
 		}
 
 		public override void SetDefaults()

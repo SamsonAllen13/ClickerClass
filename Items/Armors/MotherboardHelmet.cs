@@ -18,7 +18,7 @@ namespace ClickerClass.Items.Armors
 		{
 			base.SetStaticDefaults();
 
-			SetBonusText = Language.GetOrRegister(Mod.GetLocalizationKey("SetBonus.Motherboard"));
+			SetBonusText = this.GetLocalization("SetBonus");
 		}
 
 		public override void SetDefaults()

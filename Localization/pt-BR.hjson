@@ -529,6 +529,7 @@ Mods: {
 					{$Common.Tooltips.IncreasesClickDamageBy}
 					{$Common.Tooltips.IncreasesClickCritChanceBy} em 6%
 					'''
+				SetBonus: Clicar com o botão direito em uma posição dentro de seu raio de clique teleportará você para lá
 			}
 
 			MiceSuit: {
@@ -548,6 +549,7 @@ Mods: {
 			MotherboardHelmet: {
 				DisplayName: Elmo de Placa-Mãe
 				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				SetBonus: Clique com o botão direito para posicionar um sensor que estende o seu raio
 			}
 
 			MotherboardSuit: {
@@ -563,6 +565,11 @@ Mods: {
 			OverclockHelmet: {
 				DisplayName: Elmo de Overclock
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				SetBonus:
+					'''
+					Concede 'Overclock' a você a cada {0} cliques por um curto período de tempo, fazendo com que cada clique acione seu efeito
+					Enquanto Overclock estiver ativo, você causa {1}% a menos de dano por clique
+					'''
 			}
 
 			OverclockSuit: {
@@ -587,6 +594,7 @@ Mods: {
 			PrecursorHelmet: {
 				DisplayName: Elmo do Precursor
 				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
+				SetBonus: O seu cursor constantemente libera pós-imagens que causam dano durante o combate
 			}
 
 			RGBBreastplate: {
@@ -602,6 +610,7 @@ Mods: {
 			RGBHelm: {
 				DisplayName: Elmo RGB
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				SetBonus: Uma explosão cromática será liberada de seu cursor a cada {0} cliques
 			}
 
 			ClickerEffectHairDye: {
@@ -715,18 +724,6 @@ Mods: {
 			WitchClicker.DisplayName: Clicker da Bruxa
 			WebClicker.DisplayName: Clicker de Teia
 			WoodenClicker.DisplayName: Clicker de Madeira
-		}
-
-		SetBonus: {
-			Mice: Clicar com o botão direito em uma posição dentro de seu raio de clique teleportará você para lá
-			Motherboard: Clique com o botão direito para posicionar um sensor que estende o seu raio
-			Overclock:
-				'''
-				Concede 'Overclock' a você a cada {0} cliques por um curto período de tempo, fazendo com que cada clique acione seu efeito
-				Enquanto Overclock estiver ativo, você causa {1}% a menos de dano por clique
-				'''
-			Precursor: O seu cursor constantemente libera pós-imagens que causam dano durante o combate
-			RGB: Uma explosão cromática será liberada de seu cursor a cada {0} cliques
 		}
 
 		InfoDisplays: {

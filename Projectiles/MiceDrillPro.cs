@@ -4,6 +4,7 @@ using Terraria.ModLoader;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -19,6 +20,11 @@ namespace ClickerClass.Projectiles
 		public override void Unload()
 		{
 			glowmask = null;
+		}
+
+		public override void SetStaticDefaults()
+		{
+			ProjectileID.Sets.HeldProjDoesNotUsePlayerGfxOffY[Type] = true;
 		}
 
 		public override void SetDefaults()

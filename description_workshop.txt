@@ -20,7 +20,7 @@ The [b]Clicker Class[/b] mod adds a set of weapons inspired by idle games like [
 [img]https://i.imgur.com/H8FlWSD.png[/img]
 [list]
   [*] Quickly access info related to the Clicker Class on the official [img]https://i.imgur.com/6aABPKy.png[/img] [b][url=https://terrariamods.wiki.gg/wiki/Clicker_Class]Clicker Class wiki![/url][/b]
-  [*] Leave feedback, ask questions, and chat with other players in our [img]https://i.imgur.com/GB1M4Hv.png[/img] [b][url=https://discord.gg/csumDgv]Discord channel![/url][/b] [i](Note the Clicker Class Discord channel is part of the Thorium Mod Discord server)[/i]
+  [*] Leave feedback, report issues, ask questions, and chat with other players on our [img]https://i.imgur.com/GB1M4Hv.png[/img] [b][url=https://discord.gg/csumDgv]Discord channel![/url][/b] [i](Note the Clicker Class Discord channel is part of the Thorium Mod Discord server)[/i]
   [*] Want to add Clicker content into your own mod? Check out our [img]https://i.imgur.com/Sc9j65M.png [/img] [b][url=https://github.com/SamsonAllen13/ClickerClassExampleMod/wiki]GitHub wiki![/url][/b]
   [*] Want to help localize the mod to another language? Check out the [img]https://i.imgur.com/Sc9j65M.png [/img] [b][url=https://github.com/tModLoader/tModLoader/wiki/Contributing-Localization]tModLoader wiki![/url][/b]
 [/list]

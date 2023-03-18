@@ -145,6 +145,8 @@ Mods: {
 					Appuyer sur la touche '{$Keybinds.ClickerAimAssist.DisplayName}' activera la visée automatique, ciblant automatiquement les ennemis proches
 					Si la cible meurt ou est perdue, une nouvelle sera si-possible sélectionnée
 					'''
+				Disabled: Visée automatique désactivée
+				Enabled: Visée automatique activée
 			}
 
 			MiceBathtub: {
@@ -264,12 +266,12 @@ Mods: {
 
 			ABlissfulDay: {
 				DisplayName: Un jour Délicieux
-				Tooltip: M. B. Nana
+				Tooltip: "'M. B. Nana'"
 			}
 
 			OutsideTheCave: {
 				DisplayName: Hors de la Grotte
-				Tooltip: S. Streak
+				Tooltip: "'S. Streak'"
 			}
 
 			AncientClickingGlove: {
@@ -326,7 +328,7 @@ Mods: {
 
 			ClickingGlove: {
 				DisplayName: Gant de Clic
-				Tooltip: "{$Common.Tooltips.ClickingGloveEvery} 3 secondes"
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery} {0} secondes"
 			}
 
 			Cookie: {
@@ -976,7 +978,7 @@ Mods: {
 
 			AutoClick: {
 				Name: Clic Automatique
-				Description: Donne {$BuffName.AutoClick}, réduisant le temps d'utilisation, mais condérant une utilisation automatique
+				Description: Donne {$Buffs.AutoClick.DisplayName}, réduisant le temps d'utilisation, mais condérant une utilisation automatique
 			}
 
 			Siphon: {
@@ -1101,11 +1103,9 @@ Mods: {
 
 		Tooltip: {
 			ClickerTag: Classe Cliqueur
-			TotalClicks: Clics Totaux
-			MoneyGenerated: Monnaie Générée
+			TotalClicks: Clics Totaux: [c/{0}:{1}]
+			MoneyGenerated: Monnaie Générée: [c/{0}:{1}]
 			ForMoreInfo: Maintenez la touche 'Sélection Automatique' ({0}) pour voir les effets de clic
-			AimbotModuleEnabled: Visée automatique activée
-			AimbotModuleDisabled: Visée automatique désactivée
 		}
 
 		DeathMessage.HotKeychain: "{0} a succombé à son porte clés."

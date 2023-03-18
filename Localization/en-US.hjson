@@ -145,6 +145,8 @@ Mods: {
 					Pressing the '{$Keybinds.ClickerAimAssist.DisplayName}' key will toggle aimbot, targeting nearby enemies automatically
 					If the target dies or is lost, a new nearby target will be selected if possible
 					'''
+				Disabled: Aimbot disabled
+				Enabled: Aimbot enabled
 			}
 
 			MiceBathtub: {
@@ -264,12 +266,12 @@ Mods: {
 
 			ABlissfulDay: {
 				DisplayName: A Blissful Day
-				Tooltip: M. B. Nana
+				Tooltip: "'M. B. Nana'"
 			}
 
 			OutsideTheCave: {
 				DisplayName: Outside The Cave
-				Tooltip: S. Streak
+				Tooltip: "'S. Streak'"
 			}
 
 			AncientClickingGlove: {
@@ -326,7 +328,7 @@ Mods: {
 
 			ClickingGlove: {
 				DisplayName: Clicking Glove
-				Tooltip: "{$Common.Tooltips.ClickingGloveEvery} 2 seconds"
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery} {0} seconds"
 			}
 
 			Cookie: {
@@ -976,7 +978,7 @@ Mods: {
 
 			AutoClick: {
 				Name: Auto Click
-				Description: Grants the {$Buffs.DisplayName.AutoClick} buff, reducing the use time, but granting auto-use
+				Description: Grants the {$Buffs.AutoClick.DisplayName} buff, reducing the use time, but granting auto-use
 			}
 
 			Siphon: {
@@ -1101,11 +1103,9 @@ Mods: {
 
 		Tooltip: {
 			ClickerTag: Clicker Class
-			TotalClicks: Total clicks
-			MoneyGenerated: Money Generated
+			TotalClicks: Total clicks: [c/{0}:{1}]
+			MoneyGenerated: Money Generated: [c/{0}:{1}]
 			ForMoreInfo: Hold 'Auto Select' key ({0}) to show click effects
-			AimbotModuleEnabled: Aimbot enabled
-			AimbotModuleDisabled: Aimbot disabled
 		}
 
 		DeathMessage.HotKeychain: "{0} fell for the spicy keychain."

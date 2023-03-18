@@ -145,6 +145,8 @@ Mods: {
 					按下'{$Keybinds.ClickerAimAssist.DisplayName}'键切换自动瞄准,自动锁定附近的敌人
 					如果锁定的敌人死亡或消失,将搜寻并锁定附近一个新的敌人
 					'''
+				Disabled: 自动瞄准禁用
+				Enabled: 自动瞄准启用
 			}
 
 			MiceBathtub: {
@@ -264,12 +266,12 @@ Mods: {
 
 			ABlissfulDay: {
 				DisplayName: 幸福的一天
-				Tooltip: M. B. Nana
+				Tooltip: "'M. B. Nana'"
 			}
 
 			OutsideTheCave: {
 				DisplayName: 洞外风景
-				Tooltip: S. Streak
+				Tooltip: "'S. Streak'"
 			}
 
 			AncientClickingGlove: {
@@ -326,7 +328,7 @@ Mods: {
 
 			ClickingGlove: {
 				DisplayName: 点击手套
-				Tooltip: "{$Common.Tooltips.ClickingGloveEvery}3秒"
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery}{0}秒"
 			}
 
 			Cookie: {
@@ -976,7 +978,7 @@ Mods: {
 
 			AutoClick: {
 				Name: 自动点击
-				Description: 获得{$BuffName.AutoClick}增益,限制手动点击最大频率,但能够自动点击
+				Description: 获得{$Buffs.AutoClick.DisplayName}增益,限制手动点击最大频率,但能够自动点击
 			}
 
 			Siphon: {
@@ -1101,11 +1103,9 @@ Mods: {
 
 		Tooltip: {
 			ClickerTag: 点击大师
-			TotalClicks: 共计点击次数
-			MoneyGenerated: 总计金币生成
+			TotalClicks: 共计点击次数:[c/{0}:{1}]
+			MoneyGenerated: 总计金币生成:[c/{0}:{1}]
 			ForMoreInfo: 按住'自动选择'键({0})显示点击效果详细信息
-			AimbotModuleEnabled: 自动瞄准启用
-			AimbotModuleDisabled: 自动瞄准禁用
 		}
 
 		DeathMessage.HotKeychain: "{0} 被炽热的钥匙串烫死了."

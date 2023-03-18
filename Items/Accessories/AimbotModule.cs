@@ -16,9 +16,14 @@ namespace ClickerClass.Items.Accessories
 
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease, RadiusIncrease);
 
+		public static LocalizedText EnabledText { get; private set; }
+		public static LocalizedText DisabledText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			EnabledText = this.GetLocalization("Enabled");
+			DisabledText = this.GetLocalization("Disabled");
 		}
 
 		public override void SetDefaults()
@@ -45,7 +50,7 @@ namespace ClickerClass.Items.Accessories
 
 			bool enabled = clickerPlayer.accAimbotModule2Toggle;
 
-			tooltips.Add(new TooltipLine(Mod, "AimbotEnabled", LangHelper.GetText("Tooltip.AimbotModule" + (enabled ? "Enabled" : "Disabled")))
+			tooltips.Add(new TooltipLine(Mod, "AimbotEnabled", (enabled ? EnabledText : DisabledText).ToString())
 			{
 				OverrideColor = enabled ? Color.Lerp(Color.Red, Color.White, 0.6f) : Color.Gray
 			});

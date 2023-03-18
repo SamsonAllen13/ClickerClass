@@ -145,6 +145,8 @@ Mods: {
 					Apertar a tecla '{$Keybinds.ClickerAimAssist.DisplayName}' ativará o aimbot, mirando em inimigos próximos automaticamente
 					Se o alvo morrer ou for perdido, um novo alvo próximo será selecionado se possível
 					'''
+				Disabled: Aimbot desativado
+				Enabled: Aimbot ativado
 			}
 
 			MiceBathtub: {
@@ -264,12 +266,12 @@ Mods: {
 
 			ABlissfulDay: {
 				DisplayName: Um Dia Feliz
-				Tooltip: M. B. Nana
+				Tooltip: "'M. B. Nana'"
 			}
 
 			OutsideTheCave: {
 				DisplayName: Fora da Caverna
-				Tooltip: S. Streak
+				Tooltip: "'S. Streak'"
 			}
 
 			AncientClickingGlove: {
@@ -326,7 +328,7 @@ Mods: {
 
 			ClickingGlove: {
 				DisplayName: Luva para Clicar
-				Tooltip: "{$Common.Tooltips.ClickingGloveEvery} 3 segundos"
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery} {0} segundos"
 			}
 
 			Cookie: {
@@ -976,7 +978,7 @@ Mods: {
 
 			AutoClick: {
 				Name: Clique Automático
-				Description: Concede o efeito {$BuffName.AutoClick}, reduzido o tempo de uso, mas oferecendo uso automático
+				Description: Concede o efeito {$Buffs.AutoClick.DisplayName}, reduzido o tempo de uso, mas oferecendo uso automático
 			}
 
 			Siphon: {
@@ -1101,11 +1103,9 @@ Mods: {
 
 		Tooltip: {
 			ClickerTag: Classe Clicker
-			TotalClicks: Cliques totais
-			MoneyGenerated: Dinheiro gerado
+			TotalClicks: Cliques totais: [c/{0}:{1}]
+			MoneyGenerated: Dinheiro gerado: [c/{0}:{1}]
 			ForMoreInfo: Segure a tecla 'Selecionar Automaticamente' ({0}) para exibir efeitos de clique
-			AimbotModuleEnabled: Aimbot ativado
-			AimbotModuleDisabled: Aimbot desativado
 		}
 
 		DeathMessage.HotKeychain: "{0} caiu no chaveiro picante."

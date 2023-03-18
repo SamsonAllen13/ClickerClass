@@ -145,6 +145,8 @@ Mods: {
 					Нажатие кнопки '{$Keybinds.ClickerAimAssist.DisplayName}' переключает автонаводку, автоматически целясь в ближайших врагов
 					Если цель погибает или упущена, по возможности выбирается новая ближайшая цель
 					'''
+				Disabled: Автонаводка выключена
+				Enabled: Автонаводка включена
 			}
 
 			MiceBathtub: {
@@ -264,12 +266,12 @@ Mods: {
 
 			ABlissfulDay: {
 				DisplayName: Блаженный день
-				Tooltip: M. B. Nana
+				Tooltip: "'M. B. Nana'"
 			}
 
 			OutsideTheCave: {
 				DisplayName: За пределами пещеры
-				Tooltip: S. Streak
+				Tooltip: "'S. Streak'"
 			}
 
 			AncientClickingGlove: {
@@ -326,7 +328,7 @@ Mods: {
 
 			ClickingGlove: {
 				DisplayName: Кликающая перчатка
-				Tooltip: "{$Common.Tooltips.ClickingGloveEvery} 3 секунды"
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery} {0} секунды"
 			}
 
 			Cookie: {
@@ -1101,11 +1103,9 @@ Mods: {
 
 		Tooltip: {
 			ClickerTag: Кликер
-			TotalClicks: Всего кликов
-			MoneyGenerated: Количество созданных монет
+			TotalClicks: Всего кликов: [c/{0}:{1}]
+			MoneyGenerated: Количество созданных монет: [c/{0}:{1}]
 			ForMoreInfo: Зажмите кнопку 'Auto Select' ({0}) для отображения эффектов кликов
-			AimbotModuleEnabled: Автонаводка включена
-			AimbotModuleDisabled: Автонаводка выключена
 		}
 
 		DeathMessage.HotKeychain: "{0} влюбился в пикантную связку ключей."

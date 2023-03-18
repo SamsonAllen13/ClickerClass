@@ -200,7 +200,7 @@ namespace ClickerClass.Items
 					if (index != -1)
 					{
 						string color = (new Color(252, 210, 44) * alpha).Hex3();
-						tooltips.Insert(index + 1, new TooltipLine(Mod, "TotalClicks", $"{LangHelper.GetText("Tooltip.TotalClicks")}: [c/{color}:{clickerPlayer.clickerTotal}]"));
+						tooltips.Insert(index + 1, new TooltipLine(Mod, "TotalClicks", LangHelper.GetLocalization("Tooltip.TotalClicks").Format(color, clickerPlayer.clickerTotal)));
 					}
 				}
 				
@@ -211,9 +211,9 @@ namespace ClickerClass.Items
 					if (index != -1)
 					{
 						int currentValue = clickerPlayer.clickerMoneyGenerated;
-						string displayValue = " " + PopupText.ValueToName(currentValue);
+						string displayValue = currentValue != 0 ? PopupText.ValueToName(currentValue) : "0";
 						string color = (new Color(252, 210, 44) * alpha).Hex3();
-						tooltips.Insert(index + 1, new TooltipLine(Mod, "MoneyGenerated", $"{LangHelper.GetText("Tooltip.MoneyGenerated")}:[c/{color}:" + displayValue + "]"));
+						tooltips.Insert(index + 1, new TooltipLine(Mod, "MoneyGenerated", LangHelper.GetLocalization("Tooltip.MoneyGenerated").Format(color, displayValue)));
 					}
 				}
 

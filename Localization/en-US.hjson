@@ -107,6 +107,11 @@ Mods: {
 			Unknown: Unknown
 		}
 
+		Conditions: {
+			ClickerSelected: Clicker selected
+			ClickerTotalExceeds: Total of {0} clicks or more
+		}
+
 		Tiles: {
 			MiceDresser.MapEntry: Mice Dresser
 			MiceChest.MapEntry: Mice Chest

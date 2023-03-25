@@ -2,16 +2,21 @@ using ClickerClass.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Consumables
 {
 	public class InfluencePotion : ClickerItem
 	{
+		public static readonly int RadiusIncrease = 20;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			SacrificeTotal = 20;
+			Item.ResearchUnlockCount = 20;
 
 			ItemID.Sets.DrinkParticleColors[Type] = new Color[3] {
 				new Color(255, 163, 255),
@@ -30,7 +35,7 @@ namespace ClickerClass.Items.Consumables
 			Item.useTurn = true;
 			Item.value = Item.sellPrice(0, 0, 2, 0);
 			Item.consumable = true;
-			Item.maxStack = 30;
+			Item.maxStack = Item.CommonMaxStack;
 			Item.rare = ItemRarityID.Blue;
 			Item.UseSound = SoundID.Item3;
 			Item.buffType = ModContent.BuffType<InfluenceBuff>();

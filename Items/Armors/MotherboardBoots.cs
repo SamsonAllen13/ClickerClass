@@ -1,5 +1,6 @@
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -7,6 +8,10 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Legs)]
 	public class MotherboardBoots : ClickerItem
 	{
+		public static readonly int DamageIncrease = 6;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -23,7 +28,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage<ClickerDamage>() += 0.06f;
+			player.GetDamage<ClickerDamage>() += DamageIncrease / 100f;
 		}
 
 		public override void AddRecipes()

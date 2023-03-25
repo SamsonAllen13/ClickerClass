@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.Utilities;
 using Terraria.Audio;
+using Terraria.GameContent.Drawing;
 
 namespace ClickerClass.Projectiles
 {
@@ -56,7 +57,7 @@ namespace ClickerClass.Projectiles
 			Projectile.localNPCHitCooldown = 10;
 		}
 
-		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(BuffID.ShadowFlame, 300, false);
 
@@ -65,6 +66,12 @@ namespace ClickerClass.Projectiles
 				Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 27, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 255, default, 1.25f);
 				dust.noGravity = true;
 			}
+
+			// Night's Edge sparkles
+			ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.NightsEdge, new ParticleOrchestraSettings
+			{
+				PositionInWorld = target.Hitbox.ClosestPointInRect(Projectile.Center)
+			}, Projectile.owner);
 		}
 
 		public override void AI()

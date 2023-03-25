@@ -46,7 +46,7 @@ namespace ClickerClass
 
 		public override void OnModLoad()
 		{
-			On.Terraria.Main.DrawInterface_36_Cursor += DetourSecondCursor;
+			On_Main.DrawInterface_36_Cursor += DetourSecondCursor;
 		}
 
 		public override void OnModUnload()
@@ -54,7 +54,7 @@ namespace ClickerClass
 			reflectionFailedOnceDoNotRetry = false;
 		}
 
-		private void DetourSecondCursor(On.Terraria.Main.orig_DrawInterface_36_Cursor orig)
+		private void DetourSecondCursor(On_Main.orig_DrawInterface_36_Cursor orig)
 		{
 			//This is used to detour the second cursor draw which happens on NPC mouseover in DrawInterface_41 after Main.instance._mouseTextCache.valid is true
 			if (!reflectionFailedOnceDoNotRetry && ClickerCursor.detourSecondCursorDraw)

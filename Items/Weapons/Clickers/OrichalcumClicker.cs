@@ -11,15 +11,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class OrichalcumClicker : ClickerWeapon
 	{
+		public static readonly int PetalAmount = 5;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.PetalStorm = ClickerSystem.RegisterClickEffect(Mod, "PetalStorm", null, null, 10, new Color(255, 150, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.PetalStorm = ClickerSystem.RegisterClickEffect(Mod, "PetalStorm", 10, new Color(255, 150, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				SoundEngine.PlaySound(SoundID.Item24, position);
 
-				for (int k = 0; k < 5; k++)
+				for (int k = 0; k < PetalAmount; k++)
 				{
 					float xChoice = Main.rand.Next(-100, 101);
 					float yChoice = Main.rand.Next(-100, 101);
@@ -39,7 +41,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					int orichalcum = ModContent.ProjectileType<OrichaclumClickerPro>();
 					Projectile.NewProjectile(source, startSpot, vector, orichalcum, (int)(damage * 0.5f), 0f, player.whoAmI, Main.rand.Next(Main.projFrames[orichalcum]), 0f);
 				}
-			});
+			},
+			descriptionArgs: new object[] { PetalAmount });
 		}
 
 		public override void SetDefaults()

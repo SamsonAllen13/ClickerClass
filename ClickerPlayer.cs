@@ -16,6 +16,7 @@ using Terraria.ModLoader.IO;
 using Terraria.Audio;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Core.Netcode.Packets;
+using ClickerClass.Items.Consumables;
 
 namespace ClickerClass
 {
@@ -152,12 +153,8 @@ namespace ClickerClass
 		public int setPrecursorTimer = 0;
 
 		//Acc
-		[Obsolete("Use HasClickEffect(\"ClickerClass:ChocolateChip\") and EnableClickEffect(\"ClickerClass:ChocolateChip\") instead", false)]
-		public bool accChocolateChip = false;
 		public bool accEnchantedLED = false;
 		public bool accEnchantedLED2 = false; //different visuals
-		[Obsolete("Use HasClickEffect(\"ClickerClass:StickyKeychain\") and EnableClickEffect(\"ClickerClass:StickyKeychain\") instead", false)]
-		public bool accStickyKeychain = false;
 		public Item accAMedalItem = null;
 		public bool AccAMedal => accAMedalItem != null && !accAMedalItem.IsAir;
 		public Item accFMedalItem = null;
@@ -252,6 +249,11 @@ namespace ClickerClass
 		/// Motherboard draw radius in pixels
 		/// </summary>
 		public float ClickerRadiusMotherboardDraw => ClickerRadiusRealDraw * 0.5f;
+
+		/// <summary>
+		/// If player has consumed a Heavenly Chip and has its bonus clicker radius
+		/// </summary>
+		public bool consumedHeavenlyChip;
 
 		//Helper methods
 		/// <summary>
@@ -376,9 +378,10 @@ namespace ClickerClass
 		internal void AddClickAmount()
 		{
 			clickAmount++;
-			if (accSMedalAmount > 20)
+			int sMedalStep = SMedal.ChargeMeterStep;
+			if (accSMedalAmount >= sMedalStep)
 			{
-				accSMedalAmount -= 20;
+				accSMedalAmount -= sMedalStep;
 			}
 		}
 
@@ -704,7 +707,7 @@ namespace ClickerClass
 					autoRevertSelectedItem = true;
 					Player.selectedItem = index;
 					Player.controlUseItem = true;
-					Player.ItemCheck(Player.whoAmI);
+					Player.ItemCheck();
 				}
 				else
 				{
@@ -832,15 +835,17 @@ namespace ClickerClass
 		{
 			tag.Add("clickerTotal", clickerTotal);
 			tag.Add("clickerMoneyGenerated", clickerMoneyGenerated);
+			tag.Add("consumedHeavenlyChip", consumedHeavenlyChip);
 		}
 
 		public override void LoadData(TagCompound tag)
 		{
 			clickerTotal = tag.GetInt("clickerTotal");
 			clickerMoneyGenerated = tag.GetInt("clickerMoneyGenerated");
+			consumedHeavenlyChip = tag.GetBool("consumedHeavenlyChip");
 		}
 
-		public override void clientClone(ModPlayer clientClone)
+		public override void CopyClientState(ModPlayer clientClone)
 		{
 			var clickerClone = clientClone as ClickerPlayer;
 
@@ -974,6 +979,11 @@ namespace ClickerClass
 				setAbilityDelayTimer--;
 			}
 
+			if (consumedHeavenlyChip)
+			{
+				clickerRadius += 2 * HeavenlyChip.RadiusIncrease / 100f;
+			}
+
 			if (!setMotherboard)
 			{
 				ResetMotherboardPosition();
@@ -1082,16 +1092,17 @@ namespace ClickerClass
 			{
 				clickerDoubleTap--;
 			}
-			
+
 			//SFX Button overflow handle
-			accSFXButtonA = accSFXButtonA >= 5 ? 5 : accSFXButtonA;
-			accSFXButtonB = accSFXButtonB >= 5 ? 5 : accSFXButtonB;
-			accSFXButtonC = accSFXButtonC >= 5 ? 5 : accSFXButtonC;
-			accSFXButtonD = accSFXButtonD >= 5 ? 5 : accSFXButtonD;
-			accSFXButtonE = accSFXButtonE >= 5 ? 5 : accSFXButtonE;
-			accSFXButtonF = accSFXButtonF >= 5 ? 5 : accSFXButtonF;
-			accSFXButtonG = accSFXButtonG >= 5 ? 5 : accSFXButtonG;
-			accSFXButtonH = accSFXButtonH >= 5 ? 5 : accSFXButtonH;
+			int sfxMax = SFXButtonBase.StackAmount;
+			accSFXButtonA = Math.Min(sfxMax, accSFXButtonA);
+			accSFXButtonB = Math.Min(sfxMax, accSFXButtonB);
+			accSFXButtonC = Math.Min(sfxMax, accSFXButtonC);
+			accSFXButtonD = Math.Min(sfxMax, accSFXButtonD);
+			accSFXButtonE = Math.Min(sfxMax, accSFXButtonE);
+			accSFXButtonF = Math.Min(sfxMax, accSFXButtonF);
+			accSFXButtonG = Math.Min(sfxMax, accSFXButtonG);
+			accSFXButtonH = Math.Min(sfxMax, accSFXButtonH);
 
 			//Clicker Effects
 			//Hot Wings
@@ -1241,7 +1252,7 @@ namespace ClickerClass
 			//Portable Particle Accelerator acc
 			if (accPortableParticleAccelerator && Main.myPlayer == Player.whoAmI)
 			{
-				float radius = ClickerRadiusReal * 0.5f; //No need to check motherboard as that isn't ever relevant with half the radius
+				float radius = ClickerRadiusReal * PortableParticleAccelerator.InnerRadiusRatio / 100f; //No need to check motherboard as that isn't ever relevant with < 100% the radius
 				if (Player.DistanceSQ(clickerPosition) < radius * radius)
 				{
 					accPortableParticleAccelerator2 = true;
@@ -1290,7 +1301,7 @@ namespace ClickerClass
 				}
 
 				//A Medal effect
-				if (accAMedalAmount < 200 && clickerSelected && AccAMedal)
+				if (accAMedalAmount < AMedal.ChargeMeterMax && clickerSelected && AccAMedal)
 				{
 					int aMedalType = ModContent.ProjectileType<AMedalPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
@@ -1314,7 +1325,7 @@ namespace ClickerClass
 				}
 
 				//F Medal effect
-				if (accFMedalAmount < 200 && clickerSelected && AccFMedal)
+				if (accFMedalAmount < FMedal.ChargeMeterMax && clickerSelected && AccFMedal)
 				{
 					int fMedalType = ModContent.ProjectileType<FMedalPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
@@ -1353,7 +1364,7 @@ namespace ClickerClass
 							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
 							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
 							{
-								if (medalProj.type == sMedalType1 && accFMedalAmount < 200) //F Medal Equivalent
+								if (medalProj.type == sMedalType1 && accFMedalAmount < FMedal.ChargeMeterMax) //F Medal Equivalent
 								{
 									accFMedalAmount += 3;
 									medalProj.ai[1] = 1f;
@@ -1362,7 +1373,7 @@ namespace ClickerClass
 									dust.noGravity = true;
 									dust.velocity = -offset * 0.05f;
 								}
-								if (medalProj.type == sMedalType2 && accAMedalAmount < 200) //A Medal Equivalent
+								if (medalProj.type == sMedalType2 && accAMedalAmount < AMedal.ChargeMeterMax) //A Medal Equivalent
 								{
 									accAMedalAmount += 3;
 									medalProj.ai[1] = 1f;
@@ -1371,7 +1382,7 @@ namespace ClickerClass
 									dust.noGravity = true;
 									dust.velocity = -offset * 0.05f;
 								}
-								if (medalProj.type == sMedalType3 && accSMedalAmount < 200)
+								if (medalProj.type == sMedalType3 && accSMedalAmount < SMedal.ChargeMeterMax)
 								{
 									accSMedalAmount += 3;
 									medalProj.ai[1] = 1f;
@@ -1410,7 +1421,7 @@ namespace ClickerClass
 						Projectile.NewProjectile(Player.GetSource_Accessory(accSMedalItem), Player.Center, Vector2.Zero, sMedalType3, 0, 0f, Player.whoAmI, 2, 0.5f);
 					}
 
-					if (accSMedalAmount > 20)
+					if (accSMedalAmount >= SMedal.ChargeMeterStep)
 					{
 						clickerBonusPercent -= 0.25f;
 					}
@@ -1454,10 +1465,11 @@ namespace ClickerClass
 			//Milk acc
 			if (accGlassOfMilk)
 			{
-				float bonusDamage = (float)(clickerPerSecond * 0.015f);
-				if (bonusDamage >= 0.15f)
+				float increase = Milk.DamageIncrease / 100f;
+				float bonusDamage = (float)(clickerPerSecond * increase / 10f);
+				if (bonusDamage >= increase)
 				{
-					bonusDamage = 0.15f;
+					bonusDamage = increase;
 				}
 				Player.GetDamage<ClickerDamage>() += bonusDamage;
 			}
@@ -1496,7 +1508,7 @@ namespace ClickerClass
 						accHotKeychainAmount += accHotKeychainSpice;
 						accHotKeychainTimer = 0;
 
-						if (accHotKeychainAmount > 50)
+						if (accHotKeychainAmount > HotKeychain.ChargeMax)
 						{
 							Player.AddBuff(BuffID.OnFire3, 300);
 							SoundEngine.PlaySound(SoundID.Item74, Player.Center);
@@ -1552,34 +1564,37 @@ namespace ClickerClass
 			}
 		}
 
-		public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref NPC.HitModifiers modifiers)
 		{
 			if (ClickerSystem.IsClickerProj(proj))
 			{
 				if (target.GetGlobalNPC<ClickerGlobalNPC>().embrittle)
 				{
-					damage += 8;
+					modifiers.SourceDamage.Flat += Embrittle.ExtraDamage;
 				}
 			}
 
 			if (ClickerSystem.IsClickerWeaponProj(proj))
 			{
-				if (accAMedalAmount >= 20)
+				int aMedalStep = AMedal.ChargeMeterStep;
+				if (accAMedalAmount >= aMedalStep)
 				{
-					crit = true;
-					accAMedalAmount -= 20;
+					modifiers.SetCrit();
+					accAMedalAmount -= aMedalStep;
 				}
-				if (accFMedalAmount >= 20)
+
+				int fMedalStep = FMedal.ChargeMeterStep;
+				if (accFMedalAmount >= fMedalStep)
 				{
-					accFMedalAmount -= 20;
+					accFMedalAmount -= fMedalStep;
 				}
 			}
 		}
 
-		public override void OnHitNPCWithProj(Projectile projectile, NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPCWithProj(Projectile proj, NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			//Proc effects only when an actual "click" happens, and not other clicker projectiles
-			if (ClickerSystem.IsClickerWeaponProj(projectile))
+			if (ClickerSystem.IsClickerWeaponProj(proj))
 			{
 				ClickerGlobalNPC clickerNPC = target.GetGlobalNPC<ClickerGlobalNPC>();
 				if (target.value > 0f)
@@ -1592,7 +1607,7 @@ namespace ClickerClass
 							Main.dust[dust].noGravity = true;
 						}
 
-						var entitySource = projectile.GetSource_OnHit(target, context: "Acc_GoldenTicket");
+						var entitySource = proj.GetSource_OnHit(target, context: "Acc_GoldenTicket");
 						int amount = 1 + Main.rand.Next(6);
 						int coin = Item.NewItem(entitySource, target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
 						if (amount > 0)
@@ -1615,7 +1630,7 @@ namespace ClickerClass
 					}
 					accPaperclipsAmount += matterAmount;
 
-					if (accPaperclipsAmount >= 100)
+					if (accPaperclipsAmount >= BottomlessBoxofPaperclips.ChargeMax)
 					{
 						SoundEngine.PlaySound(SoundID.Item108, Player.Center);
 						for (int k = 0; k < 15; k++)
@@ -1628,7 +1643,7 @@ namespace ClickerClass
 						{
 							for (int k = 0; k < 4; k++)
 							{
-								Projectile.NewProjectile(Player.GetSource_Accessory(accPaperclipsItem), clickerPosition.X, clickerPosition.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), damage, 2f, Player.whoAmI);
+								Projectile.NewProjectile(Player.GetSource_Accessory(accPaperclipsItem), clickerPosition.X, clickerPosition.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), hit.SourceDamage, 2f, Player.whoAmI);
 							}
 						}
 
@@ -1644,7 +1659,7 @@ namespace ClickerClass
 
 					int crystal = ModContent.ProjectileType<ClearKeychainPro2>();
 					bool spawnEffects = true;
-					var entitySource = projectile.GetSource_OnHit(target, context: "Acc_Crystalized");
+					var entitySource = proj.GetSource_OnHit(target, context: "Acc_Crystalized");
 
 					float total = 10f;
 					int i = 0;
@@ -1654,24 +1669,22 @@ namespace ClickerClass
 						Vector2 toDir = Vector2.UnitX * 0f;
 						toDir += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / total)) * new Vector2(10f, 10f);
 						toDir = toDir.RotatedBy(target.velocity.ToRotation());
-						int damageAmount = (int)(damage * 0.25f);
+						int damageAmount = (int)(hit.SourceDamage * 0.25f);
 						damageAmount = damageAmount < 1 ? 1 : damageAmount;
 						Projectile.NewProjectile(entitySource, target.Center + toDir, target.velocity * 0f + toDir.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
 						i++;
 						spawnEffects = false;
 					}
 				}
-
-				outOfCombatTimer = OutOfCombatTimeMax;
 			}
 		}
 
-		public override void OnHitNPC(Item item, NPC target, int damage, float knockback, bool crit)
+		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			outOfCombatTimer = OutOfCombatTimeMax;
 		}
 
-		public override void Hurt(bool pvp, bool quiet, double damage, int hitDirection, bool crit, int cooldownCounter)
+		public override void OnHurt(Player.HurtInfo info)
 		{
 			outOfCombatTimer = OutOfCombatTimeMax;
 		}

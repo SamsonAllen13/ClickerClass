@@ -1,10 +1,15 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class MousePad : ClickerItem
 	{
+		public static readonly int RadiusIncrease = 25;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -21,7 +26,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerRadius += 0.5f;
+			player.GetModPlayer<ClickerPlayer>().clickerRadius += 2 * RadiusIncrease / 100f;
 		}
 	}
 }

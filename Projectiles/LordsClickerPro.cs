@@ -40,10 +40,10 @@ namespace ClickerClass.Projectiles
 			return new Color(255, 255, 255, 0) * (0.08f * Projectile.timeLeft);
 		}
 
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			damage = (int)(damage * 2.5f);
-			crit = true;
+			modifiers.SourceDamage *= 2.5f;
+			modifiers.SetCrit();
 		}
 
 		public override void AI()

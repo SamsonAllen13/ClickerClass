@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.PartyTime = ClickerSystem.RegisterClickEffect(Mod, "PartyTime", null, null, 1, new Color(25, 175, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.PartyTime = ClickerSystem.RegisterClickEffect(Mod, "PartyTime", 1, new Color(25, 175, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				var dustRect = Utils.CenteredRectangle(position, new Vector2(10));
 				for (int i = 0; i < 10; i++)
@@ -49,14 +49,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 	public class ConfettiClickerPigronataTile : GlobalTile
 	{
-		public override bool Drop(int i, int j, int type)
+		public override void Drop(int i, int j, int type)
 		{
-			if (type == TileID.Pigronata && Main.tile[i, j] is Tile tile && tile.TileFrameX == 0 && tile.TileFrameY == 0 && Main.rand.NextBool(50))
+			if (type == TileID.Pigronata && Main.rand.NextBool(50))
 			{
 				Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 32, 32, ModContent.ItemType<ConfettiClicker>());
 			}
-
-			return base.Drop(i, j, type);
 		}
 	}
 }

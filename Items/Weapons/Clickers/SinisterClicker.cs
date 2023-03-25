@@ -9,15 +9,18 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class SinisterClicker : ClickerWeapon
 	{
+		public static readonly int HealAmount = 5;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Siphon = ClickerSystem.RegisterClickEffect(Mod, "Siphon", null, null, 10, new Color(100, 25, 25), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Siphon = ClickerSystem.RegisterClickEffect(Mod, "Siphon", 10, new Color(100, 25, 25), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<SinisterClickerPro>(), (int)(damage * 0.50f), knockBack, player.whoAmI);
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { HealAmount });
 		}
 
 		public override void SetDefaults()

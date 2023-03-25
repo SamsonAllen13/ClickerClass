@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Presents = ClickerSystem.RegisterClickEffect(Mod, "Presents", null, null, 12, new Color(215, 150, 150), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Presents = ClickerSystem.RegisterClickEffect(Mod, "Presents", 12, new Color(215, 150, 150), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				for (int k = 0; k < 4; k++)
@@ -23,6 +23,11 @@ namespace ClickerClass.Items.Weapons.Clickers
 					spawnEffects = false;
 				}
 			});
+		}
+
+		public override void AddRecipes()
+		{
+			CreateRecipe().AddIngredient(ItemID.DirtBlock).Register();
 		}
 
 		public override void SetDefaults()

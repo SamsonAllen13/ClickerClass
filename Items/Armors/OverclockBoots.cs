@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -11,6 +12,10 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Legs)]
 	public class OverclockBoots : ClickerItem
 	{
+		public static readonly int MoveSpeedIncrease = 10;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(MoveSpeedIncrease);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -36,7 +41,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.moveSpeed += 0.10f;
+			player.moveSpeed += MoveSpeedIncrease / 100f;
 		}
 
 		public override void AddRecipes()

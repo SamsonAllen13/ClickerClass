@@ -14,6 +14,8 @@ using Terraria.Utilities;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using ClickerClass.Prefixes.ClickerPrefixes;
+using ClickerClass.Items.Armors;
+using Terraria.GameContent.Drawing;
 
 namespace ClickerClass.Items
 {
@@ -198,7 +200,7 @@ namespace ClickerClass.Items
 					if (index != -1)
 					{
 						string color = (new Color(252, 210, 44) * alpha).Hex3();
-						tooltips.Insert(index + 1, new TooltipLine(Mod, "TransformationText", $"{LangHelper.GetText("Tooltip.TotalClicks")}: [c/{color}:{clickerPlayer.clickerTotal}]"));
+						tooltips.Insert(index + 1, new TooltipLine(Mod, "TotalClicks", LangHelper.GetLocalization("Tooltip.TotalClicks").Format(color, clickerPlayer.clickerTotal)));
 					}
 				}
 				
@@ -209,9 +211,9 @@ namespace ClickerClass.Items
 					if (index != -1)
 					{
 						int currentValue = clickerPlayer.clickerMoneyGenerated;
-						string displayValue = " " + PopupText.ValueToName(currentValue);
+						string displayValue = currentValue != 0 ? PopupText.ValueToName(currentValue) : "0";
 						string color = (new Color(252, 210, 44) * alpha).Hex3();
-						tooltips.Insert(index + 1, new TooltipLine(Mod, "TransformationText", $"{LangHelper.GetText("Tooltip.MoneyGenerated")}:[c/{color}:" + displayValue + "]"));
+						tooltips.Insert(index + 1, new TooltipLine(Mod, "MoneyGenerated", LangHelper.GetLocalization("Tooltip.MoneyGenerated").Format(color, displayValue)));
 					}
 				}
 
@@ -286,7 +288,7 @@ namespace ClickerClass.Items
 				{
 					if (radiusBoostPrefix != 0)
 					{
-						TooltipLine tt = new TooltipLine(Mod, "PrefixClickerRadius", (radiusBoostPrefix > 0 ? "+" : "") + LangHelper.GetText("Prefix.PrefixClickerRadius.Tooltip", (int)((radiusBoostPrefix / 2) * 100)))
+						TooltipLine tt = new TooltipLine(Mod, "PrefixClickerRadius", (radiusBoostPrefix > 0 ? "+" : "") + LangHelper.GetText("Prefixes.Common.RadiusBoost", (int)((radiusBoostPrefix / 2) * 100)))
 						{
 							IsModifier = true,
 							IsModifierBad = radiusBoostPrefix < 0
@@ -295,7 +297,7 @@ namespace ClickerClass.Items
 					}
 					if (clickBoostPrefix != 0)
 					{
-						TooltipLine tt = new TooltipLine(Mod, "PrefixClickBoost", (clickBoostPrefix < 0 ? "" : "+") + LangHelper.GetText("Prefix.PrefixClickBoost.Tooltip", clickBoostPrefix))
+						TooltipLine tt = new TooltipLine(Mod, "PrefixClickBoost", (clickBoostPrefix < 0 ? "" : "+") + LangHelper.GetText("Prefixes.Common.ClickBoost", clickBoostPrefix))
 						{
 							IsModifier = true,
 							IsModifierBad = clickBoostPrefix > 0
@@ -484,6 +486,13 @@ namespace ClickerClass.Items
 						int num = num103;
 						num103 = num + 1;
 					}
+
+					// Resonance Scepter sparkles
+					ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.PrincessWeapon, new ParticleOrchestraSettings
+					{
+						PositionInWorld = position,
+						MovementVector = Main.rand.NextVector2Circular(2f, 2f)
+					}, player.whoAmI);
 				}
 
 				//Portable Particle Accelerator acc
@@ -525,7 +534,7 @@ namespace ClickerClass.Items
 
 				int overclockType = ModContent.BuffType<OverclockBuff>();
 				//Overclock armor set bonus
-				if (clickerPlayer.clickAmount % 100 == 0 && clickerPlayer.setOverclock)
+				if (clickerPlayer.clickAmount % OverclockHelmet.ClickAmount == 0 && clickerPlayer.setOverclock)
 				{
 					SoundEngine.PlaySound(SoundID.Item94, position);
 					player.AddBuff(overclockType, 180, false);

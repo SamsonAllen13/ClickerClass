@@ -22,15 +22,25 @@ namespace ClickerClass.Tiles.Mice
 			Main.tileContainer[Type] = true;
 			Main.tileLavaDeath[Type] = true;
 			TileID.Sets.HasOutlines[Type] = true;
-			TileID.Sets.BasicDresser[Type] = true;
+			TileID.Sets.AvoidedByNPCs[Type] = true;
+			TileID.Sets.InteractibleByNPCs[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
+			TileID.Sets.BasicDresser[Type] = true;
+			TileID.Sets.IsAContainer[Type] = true;
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x2);
-			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
 			TileObjectData.newTile.Origin = new Point16(1, 1);
+			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
 			TileObjectData.newTile.HookCheckIfCanPlace = new PlacementHook(Chest.FindEmptyChest, -1, 0, true);
 			TileObjectData.newTile.HookPostPlaceMyPlayer = new PlacementHook(Chest.AfterPlacement_Hook, -1, 0, false);
-			TileObjectData.newTile.AnchorInvalidTiles = new[] { 127 };
+			TileObjectData.newTile.AnchorInvalidTiles = new int[]
+			{
+				TileID.MagicalIceBlock,
+				TileID.Boulder,
+				TileID.BouncyBoulder,
+				TileID.LifeCrystalBoulder,
+				TileID.RollingCactus
+			};
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.LavaDeath = false;
 			TileObjectData.newTile.AnchorBottom = new AnchorData(AnchorType.SolidTile | AnchorType.SolidWithTop | AnchorType.SolidSide, TileObjectData.newTile.Width, 0);
@@ -38,8 +48,7 @@ namespace ClickerClass.Tiles.Mice
 
 			AdjTiles = new int[] { TileID.Dressers };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-			AddMapEntry(new Color(191, 142, 111), ContainerName, MapChestName);
-			DresserDrop = ModContent.ItemType<Items.Placeable.Mice.MiceDresser>();
+			AddMapEntry(new Color(191, 142, 111), CreateMapEntryName(), MapChestName);
 		}
 
 		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
@@ -49,6 +58,11 @@ namespace ClickerClass.Tiles.Mice
 			width = 3;
 			height = 1;
 			extraY = 0;
+		}
+
+		public override LocalizedText DefaultContainerName(int frameX, int frameY)
+		{
+			return this.GetLocalization("MapEntry");
 		}
 
 		public override ushort GetMapOption(int i, int j) => (ushort)(Main.tile[i, j].TileFrameX / 54);
@@ -75,7 +89,6 @@ namespace ClickerClass.Tiles.Mice
 
 		public override void KillMultiTile(int i, int j, int frameX, int frameY)
 		{
-			Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 48, 32, ModContent.ItemType<Items.Placeable.Mice.MiceDresser>());
 			Chest.DestroyChest(i, j);
 		}
 
@@ -169,6 +182,12 @@ namespace ClickerClass.Tiles.Mice
 		public override void MouseOver(int i, int j)
 		{
 			MouseOverCombined(i, j);
+			Player player = Main.LocalPlayer;
+			if (Main.tile[i, j].TileFrameY > 0)
+			{
+				player.cursorItemIconID = ItemID.FamiliarShirt;
+				player.cursorItemIconText = "";
+			}
 		}
 
 		public override void MouseOverFar(int i, int j)
@@ -207,9 +226,9 @@ namespace ClickerClass.Tiles.Mice
 				}
 				else
 				{
-					player.cursorItemIconText = TileLoader.ContainerName(Type);
+					player.cursorItemIconText = TileLoader.DefaultContainerName(Type, tile.TileFrameX, tile.TileFrameY);
 				}
-				if (player.cursorItemIconText == TileLoader.ContainerName(Type))
+				if (player.cursorItemIconText == TileLoader.DefaultContainerName(Type, tile.TileFrameX, tile.TileFrameY))
 				{
 					int style = tile.TileFrameX / 54;
 					player.cursorItemIconID = ModContent.ItemType<Items.Placeable.Mice.MiceDresser>();
@@ -218,10 +237,6 @@ namespace ClickerClass.Tiles.Mice
 			}
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
-			if (Main.tile[i, j].TileFrameY > 0)
-			{
-				player.cursorItemIconID = ItemID.FamiliarShirt;
-			}
 		}
 	}
 }

@@ -9,21 +9,24 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class HemoClicker : ClickerWeapon
 	{
+		public static readonly int GlobuleAmount = 5;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Linger = ClickerSystem.RegisterClickEffect(Mod, "Linger", null, null, 10, new Color(255, 50, 50), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Linger = ClickerSystem.RegisterClickEffect(Mod, "Linger", 10, new Color(255, 50, 50), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
-				for (int k = 0; k < 5; k++)
+				for (int k = 0; k < GlobuleAmount; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
 					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-3f, -1f), ModContent.ProjectileType<HemoClickerPro>(), damage / 2, 0f, player.whoAmI, hasSpawnEffects);
 					spawnEffects = false;
 				}
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { GlobuleAmount });
 		}
 
 		public override void SetDefaults()

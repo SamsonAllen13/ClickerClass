@@ -7,20 +7,15 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 
-using Microsoft.Xna.Framework;
-using Terraria.DataStructures;
-using Terraria.ID;
-
 namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class CritterClicker : ClickerWeapon
 	{
 		public override void SetStaticDefaults()
 		{
-			//Special tooltip set before this normally, but we use lang keys so it's handled automatically
 			base.SetStaticDefaults();
 
-			ClickEffect.Nab = ClickerSystem.RegisterClickEffect(Mod, "Nab", null, null, 1, new Color(205, 235, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Nab = ClickerSystem.RegisterClickEffect(Mod, "Nab", 1, new Color(205, 235, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				for (int u = 0; u < Main.maxNPCs; u++)
 				{

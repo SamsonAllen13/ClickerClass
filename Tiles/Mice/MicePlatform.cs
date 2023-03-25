@@ -32,7 +32,6 @@ namespace ClickerClass.Tiles.Mice
 			TileObjectData.addTile(Type);
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 			DustType = ModContent.DustType<MiceDust>();
-			ItemDrop = ModContent.ItemType<Items.Placeable.Mice.MicePlatform>();
 			AddMapEntry(new Color(191, 142, 111));
 			TileID.Sets.DisableSmartCursor[Type] = true;
 			AdjTiles = new int[] { TileID.Platforms };

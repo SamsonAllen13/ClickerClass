@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.OgreGold = ClickerSystem.RegisterClickEffect(Mod, "OgreGold", null, null, 1, new Color(180, 215, 150), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.OgreGold = ClickerSystem.RegisterClickEffect(Mod, "OgreGold", 1, new Color(180, 215, 150), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<SnottyClickerPro>(), 0, 0f, player.whoAmI);
 			});

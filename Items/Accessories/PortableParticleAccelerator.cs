@@ -1,11 +1,15 @@
 ﻿using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class PortableParticleAccelerator : ClickerItem
 	{
+		public static readonly int InnerRadiusRatio = 50;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(InnerRadiusRatio);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();

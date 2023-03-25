@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -13,6 +14,13 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Head)]
 	public class MiceMask : ClickerItem
 	{
+		public static readonly int DamageIncrease = 6;
+		public static readonly int CritIncrease = 6;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease, CritIncrease);
+
+		public static LocalizedText SetBonusText { get; private set; }
+
 		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Unload()
@@ -33,6 +41,8 @@ namespace ClickerClass.Items.Armors
 					Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow")
 				});
 			}
+
+			SetBonusText = this.GetLocalization("SetBonus");
 		}
 
 		public override void SetDefaults()
@@ -46,8 +56,8 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetDamage<ClickerDamage>() += 0.06f;
-			player.GetCritChance<ClickerDamage>() += 6;
+			player.GetDamage<ClickerDamage>() += DamageIncrease / 100f;
+			player.GetCritChance<ClickerDamage>() += CritIncrease;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -57,7 +67,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = LangHelper.GetText("SetBonus.Mice");
+			player.setBonus = SetBonusText.ToString();
 			player.GetModPlayer<ClickerPlayer>().setMice = true;
 		}
 

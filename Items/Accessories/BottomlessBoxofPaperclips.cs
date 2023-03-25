@@ -5,6 +5,8 @@ namespace ClickerClass.Items.Accessories
 {
 	public class BottomlessBoxofPaperclips : ClickerItem
 	{
+		public static readonly int ChargeMax = 100;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();

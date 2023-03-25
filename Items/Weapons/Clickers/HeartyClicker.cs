@@ -9,11 +9,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class HeartyClicker : ClickerWeapon
 	{
+		public static readonly int HeartMaxAmount = 5;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.HappyHeart = ClickerSystem.RegisterClickEffect(Mod, "HappyHeart", null, null, 20, new Color(255, 170, 235), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.HappyHeart = ClickerSystem.RegisterClickEffect(Mod, "HappyHeart", 20, new Color(255, 170, 235), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				for (int i = 0; i < Main.maxProjectiles; i++)
 				{
@@ -25,7 +27,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 				}
 				Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-2f, 2f), -6f, ModContent.ProjectileType<HeartyClickerPro>(), 0, 0f, player.whoAmI, 1f);
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { HeartMaxAmount });
 		}
 
 		public override void SetDefaults()

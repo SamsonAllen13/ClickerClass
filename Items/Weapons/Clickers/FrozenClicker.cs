@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Freeze = ClickerSystem.RegisterClickEffect(Mod, "Freeze", null, null, 1, new Color(175, 255, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Freeze = ClickerSystem.RegisterClickEffect(Mod, "Freeze", 1, new Color(175, 255, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<FrozenClickerPro>(), 0, 0f, player.whoAmI);
 			});

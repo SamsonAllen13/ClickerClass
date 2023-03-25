@@ -66,15 +66,13 @@ namespace ClickerClass.Projectiles
 			}
 			return base.CanHitNPC(target);
 		}
-		
-		public override void ModifyHitNPC(NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+
+		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			if (target.type != NPCID.DungeonGuardian && target.defense < 999)
+			if (!target.SuperArmor)
 			{
-				int defenseIgnore = target.defense / 2;
-				if (defenseIgnore <= 0) defenseIgnore = 0;
-				damage += defenseIgnore;
-				damage += (int)(target.defense / 2);
+				//Extra (manual) armor pen because it already does 100% armor pen
+				modifiers.SourceDamage.Flat += target.defense / 2;
 			}
 		}
 

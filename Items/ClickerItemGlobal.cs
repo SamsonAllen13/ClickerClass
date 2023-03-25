@@ -111,7 +111,7 @@ namespace ClickerClass.Items
 
 			if (item.prefix == ModContent.PrefixType<ClickerRadius>())
 			{
-				clickerPlayer.clickerRadius += 0.3f;
+				clickerPlayer.clickerRadius += 2 * ClickerRadius.RadiusIncrease / 100f;
 			}
 		}
 
@@ -125,7 +125,7 @@ namespace ClickerClass.Items
 				&& (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
 				if (index != -1)
 				{
-					tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAccClickerRadius", LangHelper.GetText("Prefix.ClickerRadius.Tooltip"))
+					tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAcc" + nameof(ClickerRadius), ClickerRadius.TooltipText.Format(ClickerRadius.RadiusIncrease))
 					{
 						IsModifier = true
 					});

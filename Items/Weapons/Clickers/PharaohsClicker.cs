@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.PharaohsCommand = ClickerSystem.RegisterClickEffect(Mod, "PharaohsCommand", null, null, 25, new Color(250, 220, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.PharaohsCommand = ClickerSystem.RegisterClickEffect(Mod, "PharaohsCommand", 25, new Color(250, 220, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, position.X, position.Y, 0f, 0f, ModContent.ProjectileType<PharaohsClickerPro>(), 0, 0f, player.whoAmI, 1f);
 			},

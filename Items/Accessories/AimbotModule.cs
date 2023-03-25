@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
@@ -10,9 +11,19 @@ namespace ClickerClass.Items.Accessories
 	[AutoloadEquip(EquipType.Face)]
 	public class AimbotModule : ClickerItem
 	{
+		public static readonly int DamageIncrease = 10;
+		public static readonly int RadiusIncrease = 10;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease, RadiusIncrease);
+
+		public static LocalizedText EnabledText { get; private set; }
+		public static LocalizedText DisabledText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			EnabledText = this.GetLocalization("Enabled");
+			DisabledText = this.GetLocalization("Disabled");
 		}
 
 		public override void SetDefaults()
@@ -27,8 +38,8 @@ namespace ClickerClass.Items.Accessories
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			player.GetDamage<ClickerDamage>() += 0.10f;
-			clickerPlayer.clickerRadius += 0.2f;
+			player.GetDamage<ClickerDamage>() += DamageIncrease / 100f;
+			clickerPlayer.clickerRadius += 2 * RadiusIncrease / 100f;
 			clickerPlayer.accAimbotModule = true;
 			clickerPlayer.accAimbotModule2 = true;
 		}
@@ -39,7 +50,7 @@ namespace ClickerClass.Items.Accessories
 
 			bool enabled = clickerPlayer.accAimbotModule2Toggle;
 
-			tooltips.Add(new TooltipLine(Mod, "AimbotEnabled", LangHelper.GetText("Tooltip.AimbotModule" + (enabled ? "Enabled" : "Disabled")))
+			tooltips.Add(new TooltipLine(Mod, "AimbotEnabled", (enabled ? EnabledText : DisabledText).ToString())
 			{
 				OverrideColor = enabled ? Color.Lerp(Color.Red, Color.White, 0.6f) : Color.Gray
 			});

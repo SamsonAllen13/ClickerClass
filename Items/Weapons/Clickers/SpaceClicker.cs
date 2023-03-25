@@ -1,6 +1,5 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
@@ -11,15 +10,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class SpaceClicker : ClickerWeapon
 	{
+		public static readonly int StarAmount = 3;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.StarStorm = ClickerSystem.RegisterClickEffect(Mod, "StarStorm", null, null, 6, new Color(175, 75, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.StarStorm = ClickerSystem.RegisterClickEffect(Mod, "StarStorm", 6, new Color(175, 75, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				SoundEngine.PlaySound(SoundID.Item42, position);
 
-				for (int k = 0; k < 3; k++)
+				for (int k = 0; k < StarAmount; k++)
 				{
 					Vector2 startSpot = new Vector2(position.X + Main.rand.Next(-100, 101), position.Y - 500 + Main.rand.Next(-25, 26));
 					Vector2 endSpot = new Vector2(position.X + Main.rand.Next(-25, 26), position.Y + Main.rand.Next(-25, 26));
@@ -34,7 +35,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					Projectile.NewProjectile(source, startSpot, vector, ModContent.ProjectileType<SpaceClickerPro>(), (int)(damage * 0.75f), knockBack, player.whoAmI, endSpot.X, endSpot.Y);
 				}
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { StarAmount });
 		}
 
 		public override void SetDefaults()

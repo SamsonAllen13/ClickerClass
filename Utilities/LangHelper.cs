@@ -15,12 +15,30 @@ namespace ClickerClass.Utilities
 		}
 
 		/// <summary>
+		/// prefixes the modname for the key
+		/// </summary>
+		/// <returns>LocalizedText associated with this key</returns>
+		public static LocalizedText GetLocalizationByMod(Mod mod, string key)
+		{
+			return Language.GetText($"Mods.{mod.Name}.{key}");
+		}
+
+		/// <summary>
 		/// Defaults to Mods.ClickerClass. as the prefix for the key
 		/// </summary>
 		/// <returns>Text associated with this key</returns>
 		internal static string GetText(string key, params object[] args)
 		{
 			return GetTextByMod(ClickerClass.mod, key, args);
+		}
+
+		/// <summary>
+		/// Defaults to Mods.ClickerClass. as the prefix for the key
+		/// </summary>
+		/// <returns>LocalizedText associated with this key</returns>
+		internal static LocalizedText GetLocalization(string key)
+		{
+			return GetLocalizationByMod(ClickerClass.mod, key);
 		}
 	}
 }

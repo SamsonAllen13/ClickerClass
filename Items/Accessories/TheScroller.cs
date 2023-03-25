@@ -38,8 +38,6 @@ namespace ClickerClass.Items.Accessories
 			}
 
 			ArmorIDs.Wing.Sets.Stats[Item.wingSlot] = new WingStats(180, 3.5f, 1.15f);
-
-			SacrificeTotal = 1;
 		}
 
 		public override void SetDefaults()

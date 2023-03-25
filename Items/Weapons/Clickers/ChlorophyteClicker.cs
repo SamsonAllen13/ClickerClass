@@ -9,20 +9,23 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class ChlorophyteClicker : ClickerWeapon
 	{
+		public static readonly int CloudAmount = 10;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.ToxicRelease = ClickerSystem.RegisterClickEffect(Mod, "ToxicRelease", null, null, 10, new Color(175, 255, 100), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.ToxicRelease = ClickerSystem.RegisterClickEffect(Mod, "ToxicRelease", 10, new Color(175, 255, 100), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
-				for (int k = 0; k < 10; k++)
+				for (int k = 0; k < CloudAmount; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
 					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<ChlorophyteClickerPro>(), (int)(damage * 0.25f), 0f, player.whoAmI, hasSpawnEffects);
 					spawnEffects = false;
 				}
-			});
+			},
+			descriptionArgs: new object[] { CloudAmount });
 		}
 
 		public override void SetDefaults()

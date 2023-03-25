@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			//Special tooltip set before this normally, but we use lang keys so it's handled automatically
 			base.SetStaticDefaults();
 
-			ClickEffect.Yoink = ClickerSystem.RegisterClickEffect(Mod, "Yoink", null, null, 1, new Color(255, 180, 180), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Yoink = ClickerSystem.RegisterClickEffect(Mod, "Yoink", 1, new Color(255, 180, 180), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				for (int j = 0; j < Main.maxItems; j++)
 				{

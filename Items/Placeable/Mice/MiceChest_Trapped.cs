@@ -9,17 +9,15 @@ namespace ClickerClass.Items.Placeable.Mice
 		public override void SetStaticDefaults()
 		{
 			ItemID.Sets.TrapSigned[Item.type] = true;
-			SacrificeTotal = 1;
 		}
 
-		public override string Texture => (GetType().Namespace + ".MiceChest").Replace('.', '/');
+		public override string Texture => ModContent.GetInstance<MiceChest>().Texture;
 
 		public override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Mice.TrappedMiceChest>());
 			Item.width = 26;
 			Item.height = 22;
-			Item.maxStack = 99;
 			Item.value = Item.sellPrice(0, 0, 1, 0);
 			Item.rare = ItemRarityID.White;
 		}

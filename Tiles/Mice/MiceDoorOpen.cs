@@ -65,8 +65,10 @@ namespace ClickerClass.Tiles.Mice
 			TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceLeft;
 			TileObjectData.addAlternate(1);
 			TileObjectData.addTile(Type);
-			
-			CloseDoorID = ModContent.TileType<Tiles.Mice.MiceDoorClosed>();
+
+			//Tiles usually drop their corresponding item automatically, but ItemDrop is needed here since the MiceDoor item places MiceDoorClosed, not this tile.
+			ItemDrop = ModContent.ItemType<Items.Placeable.Mice.MiceDoor>();
+			TileID.Sets.CloseDoorID[Type] = ModContent.TileType<Tiles.Mice.MiceDoorClosed>();
 			AdjTiles = new int[] { TileID.OpenDoor };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);
 			AddMapEntry(new Color(119, 105, 79), Language.GetText("MapObject.Door"));
@@ -75,11 +77,6 @@ namespace ClickerClass.Tiles.Mice
 		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
 
 		public override bool CreateDust(int i, int j, ref int type) => false;
-
-		public override void KillMultiTile(int i, int j, int frameX, int frameY)
-		{
-			Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 32, 48, ModContent.ItemType<Items.Placeable.Mice.MiceDoor>());
-		}
 
 		public override void MouseOver(int i, int j)
 		{

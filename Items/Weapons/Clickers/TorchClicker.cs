@@ -15,6 +15,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class TorchClicker : ClickerWeapon
 	{
+		public static readonly int FlameAmount = 8;
+
 		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Unload()
@@ -26,13 +28,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Smite = ClickerSystem.RegisterClickEffect(Mod, "Smite", null, null, 10, new Color(255, 245, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Smite = ClickerSystem.RegisterClickEffect(Mod, "Smite", 10, new Color(255, 245, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				SoundEngine.PlaySound(SoundID.Item42, position);
 				
 				//Temporary effect//
 				//Consider idea where up to 10 nearby torches fire their respective flame color towards cursor and each one does something different on hit
-				for (int k = 0; k < 4 + Main.rand.Next(5); k++)
+				for (int k = 0; k < Main.rand.Next(FlameAmount / 2, FlameAmount); k++)
 				{
 					float xChoice = Main.rand.Next(-100, 101);
 					float yChoice = Main.rand.Next(-100, 101);
@@ -53,7 +55,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 					Projectile.NewProjectile(source, startSpot, vector, torch, (int)(damage * 0.25f), 0f, player.whoAmI, 0f, 0f);
 				}
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { FlameAmount });
 
 			if (!Main.dedServ)
 			{
@@ -97,10 +100,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 		//The following 2 go into any class (assuming it's a one-time thing, in the item class for organization, otherwise needs to generalize this into a system)
 		public override void Load()
 		{
-			On.Terraria.Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool;
+			On_Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool;
 		}
 
-		private int Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool(On.Terraria.Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, Terraria.DataStructures.IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
+		private int Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool(On_Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, Terraria.DataStructures.IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
 		{
 			/*
 				* Try dropping when these conditions are true

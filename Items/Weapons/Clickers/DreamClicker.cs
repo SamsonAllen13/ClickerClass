@@ -11,21 +11,24 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class DreamClicker : ClickerWeapon
 	{
+		public static readonly int StarStrikesAmount = 4;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.StarSlice = ClickerSystem.RegisterClickEffect(Mod, "StarSlice", null, null, 8, new Color(255, 235, 180), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.StarSlice = ClickerSystem.RegisterClickEffect(Mod, "StarSlice", 8, new Color(255, 235, 180), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
-				for (int k = 0; k < 4; k++)
+				for (int k = 0; k < StarStrikesAmount; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
 					Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<DreamClickerPro>(), damage, knockBack, Main.myPlayer, hasSpawnEffects, k);
 					spawnEffects = false;
 				}
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { StarStrikesAmount });
 		}
 
 		public override void SetDefaults()

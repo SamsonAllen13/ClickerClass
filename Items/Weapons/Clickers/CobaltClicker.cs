@@ -14,7 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Haste = ClickerSystem.RegisterClickEffect(Mod, "Haste", null, null, 5, new Color(50, 125, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Haste = ClickerSystem.RegisterClickEffect(Mod, "Haste", 5, new Color(50, 125, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				SoundEngine.PlaySound(SoundID.Item24, player.Center);
 				player.AddBuff(ModContent.BuffType<Haste>(), 300, false);

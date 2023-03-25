@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -13,6 +14,11 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Body)]
 	public class MiceSuit : ClickerItem
 	{
+		public static readonly int DamageIncrease = 14;
+		public static readonly int RadiusIncrease = 25;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease, RadiusIncrease);
+
 		public static Lazy<Asset<Texture2D>> glowmask;
 
 		public override void Unload()
@@ -44,8 +50,8 @@ namespace ClickerClass.Items.Armors
 		public override void UpdateEquip(Player player)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			player.GetDamage<ClickerDamage>() += 0.14f;
-			clickerPlayer.clickerRadius += 0.5f;
+			player.GetDamage<ClickerDamage>() += DamageIncrease / 100f;
+			clickerPlayer.clickerRadius += 2 * RadiusIncrease / 100f;
 		}
 
 		public override void PostUpdate()

@@ -6,17 +6,11 @@ namespace ClickerClass.Items.Placeable.Mice
 {
 	public class MiceCandelabra : ModItem
 	{
-		public override void SetStaticDefaults()
-		{
-			SacrificeTotal = 1;
-		}
-
 		public override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.Mice.MiceCandelabra>());
 			Item.width = 20;
 			Item.height = 20;
-			Item.maxStack = 99;
 			Item.value = Item.sellPrice(0, 0, 3, 0);
 			Item.rare = ItemRarityID.White;
 		}

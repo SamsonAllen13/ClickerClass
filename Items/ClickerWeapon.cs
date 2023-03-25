@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items
@@ -11,8 +12,10 @@ namespace ClickerClass.Items
 	/// </summary>
 	public abstract class ClickerWeapon : ClickerItem
 	{
+		public override LocalizedText Tooltip => ClickerSystem.DefaultClickerWeaponTooltipText;
+
 		/// <summary>
-		/// Call this in the inherited class as base.SetStaticDefaults() at the start of SetStaticDefaults. You can change the default tooltip after it
+		/// Call this in the inherited class as base.SetStaticDefaults() at the start of SetStaticDefaults
 		/// </summary>
 		public override void SetStaticDefaults()
 		{
@@ -53,18 +56,6 @@ namespace ClickerClass.Items
 			{
 				clickerItem.radiusBoost = radius;
 			}
-		}
-
-		[Obsolete("Use AddEffect instead", true)]
-		public static void SetAmount(Item item, int amount)
-		{
-			//Nothing
-		}
-
-		[Obsolete("Use AddEffect instead", true)]
-		public static void SetEffect(Item item, string effect)
-		{
-			AddEffect(item, effect);
 		}
 
 		/// <summary>

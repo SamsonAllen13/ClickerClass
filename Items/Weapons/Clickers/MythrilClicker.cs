@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
+using ClickerClass.Buffs;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -13,10 +14,11 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Embrittle = ClickerSystem.RegisterClickEffect(Mod, "Embrittle", null, null, 10, new Color(125, 225, 125), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Embrittle = ClickerSystem.RegisterClickEffect(Mod, "Embrittle", 10, new Color(125, 225, 125), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<MythrilClickerPro>(), 0, knockBack, player.whoAmI);
-			});
+			},
+			descriptionArgs: new object[] { Embrittle.ExtraDamage });
 		}
 
 		public override void SetDefaults()

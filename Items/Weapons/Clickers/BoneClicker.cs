@@ -4,6 +4,7 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
+using ClickerClass.Buffs;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -13,11 +14,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Lacerate = ClickerSystem.RegisterClickEffect(Mod, "Lacerate", null, null, 12, new Color(225, 225, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Lacerate = ClickerSystem.RegisterClickEffect(Mod, "Lacerate", 12, new Color(225, 225, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<BoneClickerPro>(), damage, knockBack, player.whoAmI);
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { Gouge.DamageOverTime });
 		}
 
 		public override void SetDefaults()

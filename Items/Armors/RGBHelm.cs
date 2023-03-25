@@ -7,12 +7,20 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Armors
 {
 	[AutoloadEquip(EquipType.Head)]
 	public class RGBHelm : ClickerItem
 	{
+		public static readonly int ClickAmount = 20;
+		public static readonly int ClickAmountDecreaseFlat = 1;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ClickAmountDecreaseFlat);
+
+		public static LocalizedText SetBonusText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -25,8 +33,10 @@ namespace ClickerClass.Items.Armors
 					Color = (PlayerDrawSet drawInfo) => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * 0.8f 
 				});
 			}
-			
-			ClickEffect.ChromaticBurst = ClickerSystem.RegisterClickEffect(Mod, "ChromaticBurst", null, null, 20, () => Color.Lerp(Color.White, Main.DiscoColor, 0.5f), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+
+			SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(ClickAmount);
+
+			ClickEffect.ChromaticBurst = ClickerSystem.RegisterClickEffect(Mod, "ChromaticBurst", ClickAmount, () => Color.Lerp(Color.White, Main.DiscoColor, 0.5f), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				int chromatic = ModContent.ProjectileType<RGBPro>();
@@ -58,7 +68,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerBonus += 1;
+			player.GetModPlayer<ClickerPlayer>().clickerBonus += ClickAmountDecreaseFlat;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -69,7 +79,7 @@ namespace ClickerClass.Items.Armors
 		public override void UpdateArmorSet(Player player)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			player.setBonus = LangHelper.GetText("SetBonus.RGB");
+			player.setBonus = SetBonusText.ToString();
 			clickerPlayer.setRGB = true;
 			clickerPlayer.EnableClickEffect(ClickEffect.ChromaticBurst);
 		}

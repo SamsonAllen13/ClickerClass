@@ -1,10 +1,15 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class EnchantedLED : ClickerItem
 	{
+		public static readonly int DamageIncrease = 2;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -27,7 +32,7 @@ namespace ClickerClass.Items.Accessories
 				clickerPlayer.accEnchantedLED = true;
 			}
 
-			player.GetDamage<ClickerDamage>().Flat += 2;
+			player.GetDamage<ClickerDamage>().Flat += DamageIncrease;
 		}
 	}
 }

@@ -1,3 +1,4 @@
+using ClickerClass.Items.Armors;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -12,7 +13,7 @@ namespace ClickerClass.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetDamage<ClickerDamage>() -= 0.5f;
+			player.GetDamage<ClickerDamage>() -= OverclockHelmet.SetBonusDamageDecrease / 100f;
 		}
 	}
 }

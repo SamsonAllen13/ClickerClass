@@ -9,21 +9,24 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class CandleClicker : ClickerWeapon
 	{
+		public static readonly int SparkAmount = 8;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Illuminate = ClickerSystem.RegisterClickEffect(Mod, "Illuminate", null, null, 10, new Color(255, 175, 75), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Illuminate = ClickerSystem.RegisterClickEffect(Mod, "Illuminate", 10, new Color(255, 175, 75), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
-				for (int k = 0; k < 8; k++)
+				for (int k = 0; k < SparkAmount; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
 					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), ModContent.ProjectileType<CandleClickerPro>(), 0, 0f, player.whoAmI, hasSpawnEffects);
 					spawnEffects = false;
 				}
 			},
-			preHardMode: true);
+			preHardMode: true,
+			descriptionArgs: new object[] { SparkAmount });
 		}
 
 		public override void SetDefaults()

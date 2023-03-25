@@ -55,12 +55,6 @@ namespace ClickerClass.Tiles.Mice
 			}
 		}
 
-		public override bool Drop(int i, int j)
-		{
-			Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 16, 16, ModContent.ItemType<Items.Placeable.Mice.MiceCandle>());
-			return false;
-		}
-
 		public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
 		{
 			Tile tile = Main.tile[i, j];

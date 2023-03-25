@@ -1,10 +1,15 @@
 ﻿using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class GoldenTicket : ClickerItem
 	{
+		public static readonly int RadiusIncrease = 10;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(RadiusIncrease);
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -23,7 +28,7 @@ namespace ClickerClass.Items.Accessories
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.clickerRadius += 0.2f;
+			clickerPlayer.clickerRadius += 2 * RadiusIncrease / 100f;
 			clickerPlayer.accGoldenTicket = true;
 		}
 	}

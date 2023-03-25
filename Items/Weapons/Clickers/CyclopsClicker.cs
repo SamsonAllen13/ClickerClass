@@ -13,7 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			ClickEffect.Insanity = ClickerSystem.RegisterClickEffect(Mod, "Insanity", null, null, 8, new Color(75, 75, 75), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.Insanity = ClickerSystem.RegisterClickEffect(Mod, "Insanity", 8, new Color(75, 75, 75), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				float dist = 100f;
 				float randomCircle = Main.rand.NextFloat(MathHelper.TwoPi);

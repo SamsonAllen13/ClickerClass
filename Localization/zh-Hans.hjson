@@ -1,744 +1,1246 @@
-Mods.ClickerClass: {
-	BuffName: {
-		AutoClick: 自动点击
-		CookieBuff: 曲奇
-		Crystalized: 晶化
-		Embrittle: 脆化
-		Frozen: 冻结
-		Gouge: 重伤
-		Haste: 急促
-		HoneySlow: 粘蜜
-		InfluenceBuff: 影响力
-		OverclockBuff: 超频
-		Oozed: 鼻涕
-		HotWingsBuff: 灼翼
-		Seafoam: 海泡石
-		Stunned: 眩晕
-		ArcaneEnchantment: 奥术附魔
-	}
-
-	BuffDescription: {
-		AutoClick: 按住鼠标左键可自动点击
-		CookieBuff: 增加你的点击伤害与范围同时加快生命恢复速度
-		Crystalized: 点击将使目标在其周围释放水晶碎片
-		Embrittle: 点击会对目标造成8点额外伤害
-		Frozen: 冻结在原地
-		Gouge: 快速失去生命
-		Haste: 增加移动速度和跳跃高度
-		HoneySlow: 降低移动速度
-		InfluenceBuff: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}20%"
-		OverclockBuff: 每次点击都会触发点击效果
-		Oozed: 显著降低移动速度
-		Seafoam: 当点击器造成伤害时治疗点击器的使用者
-		Stunned: 眩晕在原地
-		HotWingsBuff: 双击左或右方向键可向前冲刺
-		ArcaneEnchantment: 提升你的点击伤害和点击伤害判定范围
-	}
-
-	Common: {
-		Tooltips: {
-			IncreasesClickDamage: 增加点击伤害
-			IncreasedClickerDamage: 增加点击器伤害
-			IncreasesClickCritChance: 增加点击暴击率
-			IncreasesBaseClickRadius: 增加基础点击范围
-			ReducesBaseClickRadius: 减少基础点击范围
-			ReducesAmountOfClicks: 减少触发点击效果所需的点击数
-			ClickingGloveEvery: 进入战斗后,每隔一段时间自动点击一次,时间间隔:
-			Clicker: 点击无方块阻挡且在圆圈范围内的敌人对其造成伤害
-			MoreThanOneClick: "{0}次点击"
-			OneClick: 1次点击
-		}
-
-		Unknown: 未知
-	}
-
-	DamageClassName: {
-		ClickerDamage: 点击伤害
-	}
-
-	Keybind: {
-		ClickerAccessory: Clicker Accessory
-		ClickerAimAssist: Clicker Aim Assist
-	}
-
-	ItemName: {
-		MiceFragment: 鼠标碎片
-		AimAssistModule: 瞄准辅助模块
-		AimbotModule: 自动瞄准模块
-		ABlissfulDay: 幸福的一天
-		OutsideTheCave: 洞外风景
-		AncientClickingGlove: 上古点击手套
-		BottomlessBoxofPaperclips: 无底回形针盒
-		ButtonMasher: 手柄大师
-		ChocolateChip: 巧克力屑
-		BigRedButton: 红色大按钮
-		ChocolateMilkCookies: 巧克力牛奶与曲奇
-		ClearKeychain: 水晶钥匙串
-		ClickerEmblem: 点击大师徽章
-		ClickingGlove: 点击手套
-		Cookie: 曲奇
-		EnchantedLED: 附魔发光二极管
-		GamerCrate: 专业玩家手提箱
-		HandCream: 护手霜
-		HotKeychain: 炽热药水串
-		IcePack: 冰袋
-		MasterKeychain: 万能钥匙串
-		Milk: 一杯牛奶
-		MilkCookies: 牛奶与曲奇
-		MousePad: 鼠标垫
-		MouseTrap: 老鼠夹
-		PortableParticleAccelerator: 便携式粒子加速器
-		GoldenTicket: 金券
-		RegalClickingGlove: 豪华点击手套
-		AMedal: A级勋章
-		FMedal: F级勋章
-		SMedal: S级勋章
-		Soda: 苏打汽水
-		StickyKeychain: 凝胶钥匙串
-		TheScroller: 滚动条
-		TriggerFinger: 扳机指
-		MiceBoots: 鼠标靴子
-		MiceMask: 鼠标面具
-		MiceSuit: 鼠标盔甲
-		MotherboardBoots: 主板靴子
-		MotherboardHelmet: 主板头盔
-		MotherboardSuit: 主板盔甲
-		OverclockBoots: 超频靴子
-		OverclockHelmet: 超频头盔
-		OverclockSuit: 超频盔甲
-		PrecursorBreastplate: 先驱者胸甲
-		PrecursorGreaves: 先驱者护胫
-		PrecursorHelmet: 先驱者头盔
-		RGBBreastplate: RGB胸甲
-		RGBGreaves: RGB护胫
-		RGBHelm: RGB头盔
-		ClickerEffectHairDye: 点击效果染发剂
-		ClickSpeedHairDye: 点击速度染发剂
-		InfluencePotion: 影响力药水
-		MiceDrill: 鼠标钻头
-		MiceHamaxe: 鼠标锤斧
-		MicePickaxe: 鼠标镐
-		ArcaneClicker: 奥术点击器
-		AdamantiteClicker: 精金点击器
-		ArthursClicker: 神圣点击器
-		AstralClicker: 星体点击器
-		BalloonClicker: 气球点击器
-		BoneClicker: 骨头点击器
-		BlizzardClicker: 暴雪点击器
-		CandleClicker: 蜡烛点击器
-		CaptainsClicker: 船长点击器
-		ChlorophyteClicker: 叶绿点击器
-		CobaltClicker: 钴点击器
-		CopperClicker: 铜点击器
-		CorruptClicker: 腐化点击器
-		CrimsonClicker: 猩红点击器
-		CrystalClicker: 水晶点击器
-		CyclopsClicker: 鹿角怪点击器
-		DarkClicker: 魔矿点击器
-		DraconicClicker: 飞龙点击器
-		EclipticClicker: 日食点击器
-		FaultyClicker: 故障点击器
-		FrozenClicker: 寒冰点击器
-		GoldClicker: 金点击器
-		HemoClicker: 血液点击器
-		HighTechClicker: 高科技点击器
-		HoneyGlazedClicker: 蜜釉点击器
-		ImpishClicker: 小恶魔点击器
-		IronClicker: 铁点击器
-		LanternClicker: 提灯点击器
-		LeadClicker: 铅点击器
-		LihzahrdClicker: 丛林蜥蜴点击器
-		LordsClicker: 月亮领主点击器
-		MagnetClicker: 磁铁点击器
-		MiceClicker: 鼠标点击器
-		MyceliumClicker: 菌丝点击器
-		MythrilClicker: 秘银点击器
-		NaughtyClicker: 顽皮点击器
-		OrichalcumClicker: 山铜点击器
-		PalladiumClicker: 钯金点击器
-		PlatinumClicker: 铂金点击器
-		PointyClicker: 尖刺点击器
-		RainbowClicker: 彩虹点击器
-		RedHotClicker: 狱石点击器
-		SandstormClicker: 沙暴点击器
-		SeafoamClicker: 海泡石点击器
-		ShadowyClicker: 幽暗点击器
-		ShroomiteClicker: 蘑菇点击器
-		SilverClicker: 银点击器
-		SinisterClicker: 厄兆点击器
-		SlickClicker: 灵动点击器
-		SnottyClicker: 鼻涕点击器
-		SpaceClicker: 太空点击器
-		SpectreClicker: 幽灵点击器
-		SpiralClicker: 螺旋点击器
-		StarryClicker: 星空点击器
-		TheClicker: 大师点击器
-		TinClicker: 锡点击器
-		TitaniumClicker: 钛金点击器
-		TorchClicker: 火把点击器
-		TungstenClicker: 钨点击器
-		UmbralClicker: 阴影点击器
-		WitchClicker: 女巫点击器
-		WebClicker: 蛛网点击器
-		WoodenClicker: 木点击器
-	}
-
-	ItemTooltip: {
-		MiceFragment: "'飘忽不定的火花在这个碎片上不停的律动'"
-		AimbotModule:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}10%
-			按下'{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}'键切换自动瞄准,自动锁定附近的敌人
-			如果锁定的敌人死亡或消失,将搜寻并锁定附近一个新的敌人
-			'''
-		AimAssistModule:
-			'''
-			按下'{$Mods.ClickerClass.Hotkeys.ClickerAimAssist}'键将锁定光标下的敌人
-			左键单击时,无论光标的位置在哪,都会对该目标造成点击伤害
-			如果锁定的敌人离开了你的圆圈范围,或者他们不在你的直线视野内,你将无法对其造成伤害
-			'''
-		AMedal:
-			'''
-			装备后,赋能圈将围绕着你旋转
-			将光标保持在赋能圈内将对A级勋章进行充能,获得最多10次必定暴击的点击
-			'''
-		AncientClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery}1秒"
-		ChocolateChip: 每15次点击释放出大量能造成伤害的巧克力
-		ButtonMasher: 手持点击器时,显示每秒的点击次数
-		BigRedButton: 每25次点击引起大型炽热爆炸
-		BottomlessBoxofPaperclips:
-			'''
-			当你点击敌人时能够获得回形针
-			当回形针条满后,最后一次点击的敌人身上将会喷发出多枚回形针
-			'''
-		ABlissfulDay: 'M. B. Nana'
-		OutsideTheCave: 'S. Streak'
-		ChocolateMilkCookies:
-			'''
-			{$Mods.ClickerClass.ItemTooltip.MilkCookies}
-			{$Mods.ClickerClass.ItemTooltip.ChocolateChip}
-			'''
-		ClearKeychain: 
-			'''
-			每15次点击向光标处投射水晶史莱姆
-			点击被水晶史莱姆缠上的敌人将使其释放水晶碎片
-			'''
-		ClickerEmblem: "{$Mods.ClickerClass.Common.Tooltips.IncreasedClickerDamage}15%"
-		ClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery}3秒"
-		Cookie:
-			'''
-			装备后,曲奇会定期在您的点击范围内生成
-			点击曲奇能够增加你的点击伤害与范围同时加快生命恢复速度
-			'''
-		EnchantedLED:
-			'''
-			每次点击都会喷发出闪耀的光芒,调整饰品可见性开关光芒显示
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}2点
-			'''
-		FMedal:
-			'''
-			装备后,赋能圈将围绕着你旋转
-			将光标保持在赋能圈内将对F级勋章进行充能,增加最多100%点击范围
-			'''
-		GamerCrate:
-			'''
-			'你不会真的认为有人会玩这个吧?'
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}50%
-			{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}20%
-			每次点击会产生一些光尘,能够微弱的照明,调整饰品可见性开关光芒显示
-			{$Mods.ClickerClass.ItemTooltip.HandCream}
-			'''
-		HandCream:
-			'''
-			按下'{$Mods.ClickerClass.Keybind.ClickerAccessory}'键切换按住不动持续点击
-			启用按住不动持续点击后,手动点击最大频率将轻微降低
-			'''
-		HotKeychain:
-			'''
-			进入战斗后,点击敌人后将导致其着火
-			如果点击太慢,自身会被烫伤
-			'''
-		IcePack:
-			'''
-			按下'{$Mods.ClickerClass.Keybind.ClickerAccessory}'键切换按住不动持续点击
-			启用按住不动持续点击后,手动点击最大频率将显著降低
-			'''
-		MasterKeychain:
-			'''
-			'该死,哪把钥匙才是正确的...'
-			你的点击器上涂满了又黏又烫又闪闪发光的东西
-			'''
-		Milk: 根据每秒点击量增加最多15%点击伤害
-		MilkCookies:
-			'''
-			{$Mods.ClickerClass.ItemTooltip.Cookie}
-			{$Mods.ClickerClass.ItemTooltip.Milk}
-			'''
-		MousePad: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}25%"
-		MouseTrap:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}15%
-			{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}10%
-			点击时有很小的概率短暂被诅咒
-			'''
-		PortableParticleAccelerator: 点击范围圆圈内靠近自身50%半径内的区域能够额外造成8点伤害
-		GoldenTicket:
-			'''
-			点击敌人时生成一些硬币
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}10%
-			'''
-		RegalClickingGlove: "{$Mods.ClickerClass.Common.Tooltips.ClickingGloveEvery}0.5秒"
-		SMedal:
-			'''
-			装备后,多个赋能圈将围绕着你旋转
-			将光标保持在各个赋能圈内将对各级勋章进行充能,分别获得最多10次的必暴点击、点击范围提升、点击效果
-			'''
-		Soda: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}1次"
-		StickyKeychain: 每10次点击,将能造成伤害的凝胶粘在屏幕上
-		TheScroller:
-			'''
-			{$CommonItemTooltip.FlightAndSlowfall}
-			按住下键加速下落
-			'''
-		TriggerFinger: 
-			'''
-			脱战后的第一次点击将触发点击效果
-			'''
-		MiceBoots:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%
-			增加20%移动速度
-			'''
-		MiceMask:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}6%
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickCritChance}6%
-			'''
-		MiceSuit:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}14%
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}25%
-			'''
-		MotherboardBoots: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}6%"
-		MotherboardHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}20%"
-		MotherboardSuit: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}6%"
-		RGBGreaves: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}25%"
-		RGBHelm: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}1次"
-		RGBBreastplate: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}25%"
-		OverclockBoots: 增加10%移动速度
-		OverclockHelmet: "{$Mods.ClickerClass.Common.Tooltips.ReducesAmountOfClicks}1次"
-		OverclockSuit: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}15%"
-		PrecursorBreastplate:
-			'''
-			{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}15%
-			{$Mods.ClickerClass.Common.Tooltips.ReducesBaseClickRadius}50%
-			'''
-		PrecursorGreaves: 增加15%移动速度
-		PrecursorHelmet: "{$Mods.ClickerClass.Common.Tooltips.IncreasesClickDamage}10%"
-		InfluencePotion: "{$Mods.ClickerClass.Common.Tooltips.IncreasesBaseClickRadius}20%"
-		SpectreClicker: 点击屏幕内的敌人对其造成伤害
-	}
-
-	SetBonus: {
-		Mice: 右键单击在视野中点击器范围内的某个位置将使您传送到该位置
-		Motherboard: 右键单击在视野中点击器范围内的某个位置放置范围延伸元件
-		Overclock:
-			'''
-			每100次点击,使你获得短暂的'超频',每次点击都会触发点击效果
-			当超频激活时,你的点击伤害减少50%
-			'''
-		Precursor: 进入战斗后,光标会不断留下能够点击一次的残像
-		RGB: 每20次点击,光标处就会产生色彩爆发
-	}
-
-	InfoDisplayName: {
-		CPSInfoDisplay: 次点击每秒
-	}
-
-	ClickEffect: {
-		TrueStrike: {
-			Name: 克敌先机
-			Description: 造成一次双倍伤害的暴击
-		}
-			
-		OgreGold: {
-			Name: 食人魔的黄金
-			Description: 将鼻涕涂满光标下的敌人,大大减慢其移动速度
-		}
-			
-		SeaSpray: {
-			Name: 海浪
-			Description: 减速附近的敌人并吸取他们的生命
-		}
-			
-		WyvernsRoar: {
-			Name: 飞龙咆哮
-			Description: 召唤飞龙喷射火焰进行范围攻击
-		}
-			
-		Presents: {
-			Name: 礼物
-			Description: 产生一堆空投礼物,点击礼物可以释放出地雷
-		}
-			
-		Insanity: {
-			Name: 癫狂
-			Description: 召唤一只暗影爪进行范围攻击
-		}
-			
-		Rainbolt: {
-			Name: 彩虹飞弹
-			Description: 释放出多个自动追踪彩虹碎片
-		}
-			
-		ArcaneEnchantment: {
-			Name: 奥术附魔
-			Description: 提升你的点击伤害和点击伤害判定范围
-		}
-			
-		HolyNova: {
-			Name: 神圣新星
-			Description: 爆发出新星伤害范围内所有敌人,此伤害必定暴击
-		}
-
-		Spiral: {
-			Name: 涡旋
-			Description: 创造一个涡旋星系,吸引敌人并在几秒后消失爆炸
-		}
-			
-		Yoink: {
-			Name: 吸引
-			Description: 吸取光标下的物品和硬币
-		}
-			
-		ChromaticBurst: {
-			Name: 色彩爆发
-			Description: 在光标旁产生色彩能量,然后一齐投向光标处
-		}
-			
-		BloodSucker: {
-			Name: 血珠
-			Description: 创造2个从点击范围圈最外层向心旋转的血珠
-		}
-			
-		BalloonDefense: {
-			Name: 气球防御
-			Description: 召唤一个拖着友好史莱姆的气球,点击气球解救史莱姆
-		}
-			
-		Incinerate: {
-			Name: 焚尽
-			Description: 在附近不同的方块上生成8个火花灼烧敌人
-		}
-
-		Lacerate: {
-			Name: 撕裂
-			Description: 给予目标重伤减益,效果:每秒造成30伤害
-		}
-			
-		Starfall: {
-			Name: 坠星
-			Description: 从天空坠下1颗星星伤害沿途的敌人
-		}
-			
-		Fritz: {
-			Name: 电路故障
-			Description: 在点击范围内随机释放电击
-		}
-
-		Flurry: {
-			Name: 冰雹
-			Description: 创造一个下冰雹的暴雪云
-		}
-
-		HotWings: {
-			Name: 灼翼
-			Description: 获得一次性冲刺;通过双击方向键使用
-		}
-			
-		Illuminate: {
-			Name: 照明
-			Description: 在附近不同的方块上生成8个火花用于照明
-		}
-
-		Bombard: {
-			Name: 轰炸
-			Description: 召唤4颗炮弹从天而降
-		}
-
-		ToxicRelease: {
-			Name: 喷毒
-			Description: 在光标周围产生10朵毒云
-		}
-
-		Haste: {
-			Name: 急促
-			Description: 增加移动速度和跳跃高度
-		}
-
-		CursedEruption: {
-			Name: 诅咒喷发
-			Description: 喷发咒火造成范围伤害并给予目标{$BuffName.Oiled}与{$BuffName.CursedInferno}减益
-		}
-
-		Infest: {
-			Name: 感染
-			Description: 发射8条自动追踪灵液射弹
-		}
-
-		Dazzle: {
-			Name: 迷惑
-			Description: 给予目标{$BuffName.Confused}减益,效果:{$BuffDescription.Confused}
-		}
-
-		DarkBurst: {
-			Name: 黑暗爆发
-			Description: 造成大范围伤害
-		}
-
-		Totality: {
-			Name: 食分
-			Description: 创造一个微型日食,反复发射自动追踪飞弹
-		}
-
-		Freeze: {
-			Name: 冻结
-			Description: 冻结光标下的敌人,使其停留在原地
-		}
-
-		Linger: {
-			Name: 溅血
-			Description: 喷出5个受重力影响的血球
-		}
-
-		Discharge: {
-			Name: 放电
-			Description: 在光标周围迸发出4条追踪电流
-		}
-
-		StickyHoney: {
-			Name: 粘蜜
-			Description: 将粘蜜涂满光标下的敌人,减慢其移动速度
-		}
-
-		SolarFlare: {
-			Name: 太阳耀斑
-			Description: 生成一个爆发的小太阳,对敌人造成伤害并给予目标涂油和着火了！减益
-		}
-			
-		Smite: {
-			Name: 惩戒
-			Description: 在光标周围召唤8个火把之焰射向光标处
-		}
-
-		Conqueror: {
-			Name: 征服者
-			Description: 制造出幻影爆炸伤害范围内所有敌人,此伤害翻倍且必定暴击
-		}
-
-		Collision: {
-			Name: 碰撞
-			Description: 向外射出8个无序的光球,跟随光标移动
-		}
-
-		Spores: {
-			Name: 孢子
-			Description: 喷出一连串飘散的孢子
-		}
-
-		Embrittle: {
-			Name: 脆化
-			Description: 给予范围目标{$Mods.ClickerClass.BuffName.Embrittle}减益,效果:{$Mods.ClickerClass.BuffDescription.Embrittle}
-		}
-
-		PetalStorm: {
-			Name: 花瓣风暴
-			Description: 在光标周围召唤5片花瓣射向光标处
-		}
-
-		Regenerate: {
-			Name: 再生
-			Description: 给予玩家{$BuffName.RapidHealing}增益,效果:{$BuffDescription.RapidHealing}
-		}
-
-		StingingThorn: {
-			Name: 荆棘射弹
-			Description: 发射荆棘射弹,射向最近的敌人
-		}
-
-		Inferno: {
-			Name: 狱火
-			Description: 制造爆炸,造成伤害并给予范围目标{$BuffName.Oiled}与{$BuffName.OnFire}减益
-		}
-
-		DustDevil: {
-			Name: 尘卷风
-			Description: 创造一团猛烈的尘卷风,追击敌人
-		}
-
-		Curse: {
-			Name: 诅咒
-			Description: 向最近的敌人发射暗影火焰骷髅
-		}
-
-		AutoClick: {
-			Name: 自动点击
-			Description: 获得{$Mods.ClickerClass.BuffName.AutoClick}增益,限制手动点击最大频率,但能够自动点击
-		}
-
-		Siphon: {
-			Name: 虹吸
-			Description: 造成少量伤害并恢复玩家5点生命值
-		}
-
-		Splash: {
-			Name: 洒水
-			Description: 喷出6个水射弹
-		}
-
-		StarStorm: {
-			Name: 星星风暴
-			Description: 从天空坠下3颗星星爆炸伤害敌人
-		}
-
-		PhaseReach: {
-			Name: 无量
-			Description: 无限点击范围
-		}
-
-		TheClick: {
-			Name: 大师点击
-			Description: 对敌人额外造成其生命上限1%的伤害
-		}
-
-		RazorsEdge: {
-			Name: 刀锋
-			Description: 发射5个向外发散的轨道锯片
-		}
-
-		ShadowLash: {
-			Name: 暗影鞭笞
-			Description: 发出5个暗影射弹,自动追踪附近的敌人
-		}
-
-		WildMagic: {
-			Name: 狂野魔法
-			Description: 随机产生任何可能的点击效果
-		}
-
-		WebSplash: {
-			Name: 蛛网喷射
-			Description: 向最近的敌人发射一团粘性蜘蛛网
-		}
-
-		ChocolateChip: {
-			Name: 巧克力屑
-			Description: 释放出大量能造成伤害的巧克力
-		}
-
-		DoubleClick: {
-			Name: 双击
-			Description: 一次攻击造成两次伤害
-		}
-
-		DoubleClick2: {
-			Name: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Name}"
-			Description: "{$Mods.ClickerClass.ClickEffect.DoubleClick.Description}"
-		}
-
-		StickyKeychain: {
-			Name: 凝胶钥匙串
-			Description: 将能造成伤害的凝胶粘在屏幕上
-		}
-
-		BigRedButton: {
-			Name: 大爆炸
-			Description: 发生大爆炸
-		}
-			
-		ClearKeychain: {
-			Name: 晶化
-			Description: 用水晶史莱姆砸向敌人;点击被水晶史莱姆缠上的敌人爆发AOE伤害
-		}
-	}
-
-	Prefix: {
-		ClickerRadius: {
-			$parentVal: 延伸的
-			Tooltip: +15% 基础点击范围
-		}
-
-		Elite: 精英的
-		Pro: 加强的
-		Amateur: 业余的
-		Novice: 入门的
-		Laggy: 迟缓的
-		Disconnected: 掉线的
-
-		PrefixClickerRadius: {
-			Tooltip: "{0}% 基础点击范围"
-		}
-
-		PrefixClickBoost: {
-			Tooltip: "{0} 触发点击效果所需的点击数"
-		}
-	}
-
-	Tooltip: {
-		ClickerTag: 点击大师
-		TotalClicks: 共计点击次数
-		MoneyGenerated: 总计金币生成
-		ForMoreInfo: 按住'自动选择'键({0})显示点击效果详细信息
-		AimbotModuleEnabled: 自动瞄准启用
-		AimbotModuleDisabled: 自动瞄准禁用
-	}
-
-	DeathMessage: {
-		HotKeychain: "{0} 被炽热的钥匙串烫死了."
-	}
-
-	UI: {
-		HotKeychainGauge: 热量
-		MedalGauge: 充能
-		PaperclipsGauge: 回形针
-	}
-
-	ClickerConfigClient: {
-		Label: 配置
-
-		Header: {
-			GeneralOptions: 通用选项
-		}
-
-		ShowClassTags: {
-			Label: 显示物品标识
-			Tooltip: 在本模组物品描述上显示点击大师标识
-		}
-
-		ShowEffectSuggestion: {
-			Label: 显示'按住自动选择'文本
-			Tooltip:
-				'''
-				开关在武器上显示'按住自动选择键显示点击效果详细信息'这一提示文本
-				-无论是否开启,自动选择键依旧能使用-
-				'''
-		}
-
-		ShowCustomCursors: {
-			Label: 显示自定义光标
-			Tooltip: 开关点击器的'自定义光标'
-		}
-
-		ShowClickIndicator: {
-			Label: 显示点击指示器
-			Tooltip: 开关使用点击器时的点击指示
-		}
 
-		ShowOthersClickIndicator: {
-			Label: 显示他人点击指示器
-			Tooltip: 开关其他人使用点击器时的点击指示
+Mods: {
+	ClickerClass: {
+		Buffs: {
+			AutoClick: {
+				DisplayName: 自动点击
+				Description: 按住鼠标左键可自动点击
+			}
+
+			CookieBuff: {
+				DisplayName: 曲奇
+				Description: 增加你的点击伤害与范围同时加快生命恢复速度
+			}
+
+			Crystalized: {
+				DisplayName: 晶化
+				Description: 点击将使目标在其周围释放水晶碎片
+			}
+
+			CrystalizedFatigue: {
+				// DisplayName: Crystalized Fatigue
+				// Description: Cannot be Crystalized again
+			}
+
+			Embrittle: {
+				DisplayName: 脆化
+				Description: 点击会对目标造成{0}点额外伤害
+			}
+
+			Frozen: {
+				DisplayName: 冻结
+				Description: 冻结在原地
+			}
+
+			Gouge: {
+				DisplayName: 重伤
+				Description: 快速失去生命
+			}
+
+			Haste: {
+				DisplayName: 急促
+				Description: 增加移动速度和跳跃高度
+			}
+
+			HoneySlow: {
+				DisplayName: 粘蜜
+				Description: 降低移动速度
+			}
+
+			InfluenceBuff: {
+				DisplayName: 影响力
+				Description: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
+			}
+
+			OverclockBuff: {
+				DisplayName: 超频
+				Description: 每次点击都会触发点击效果
+			}
+
+			Oozed: {
+				DisplayName: 鼻涕
+				Description: 显著降低移动速度
+			}
+
+			HotWingsBuff: {
+				DisplayName: 灼翼
+				Description: 双击左或右方向键可向前冲刺
+			}
+
+			Seafoam: {
+				DisplayName: 海泡石
+				Description: 当点击器造成伤害时治疗点击器的使用者
+			}
+
+			Stunned: {
+				DisplayName: 眩晕
+				Description: 眩晕在原地
+			}
+
+			ArcaneEnchantment: {
+				DisplayName: 奥术附魔
+				Description: 提升你的点击伤害和点击伤害判定范围
+			}
+		}
+
+		Common: {
+			Tooltips: {
+				IncreasesMovementSpeedBy: 增加{0}%移动速度
+				IncreasesClickDamageBy: 增加点击伤害{0}%
+				IncreasesClickDamageByFlat: 增加点击伤害{0}点
+				IncreasedClickerDamage: "{0}%增加点击器伤害"
+				IncreasesClickCritChanceBy: 增加点击暴击率{0}%
+				IncreasesBaseClickRadiusBy: 增加基础点击范围{0}%
+				ReducesBaseClickRadiusBy: 减少基础点击范围{0}%
+				ReducesAmountOfClicksBy: 减少触发点击效果所需的点击数{0}%
+				ReducesAmountOfClicksByFlat: 减少触发点击效果所需的点击数{0}次
+				ClickingGloveEvery: 进入战斗后,每隔一段时间自动点击一次,时间间隔:
+				Clicker: 点击无方块阻挡且在圆圈范围内的敌人对其造成伤害
+				Clicks: "{0} {^0:次点击}"
+				/* SFXButtonTip:
+					'''
+					Changes the sound your clicks make while equipped or in your inventory
+					Volume increases with stack size, up to {0}
+					''' */
+			}
+
+			Unknown: 未知
+		}
+
+		Conditions: {
+			// ClickerSelected: Clicker selected
+			// ClickerTotalExceeds: Total of {0} clicks or more
+		}
+
+		Tiles: {
+			// MiceDresser.MapEntry: Mice Dresser
+			// MiceChest.MapEntry: Mice Chest
+			// TrappedMiceChest.MapEntry: Trapped Mice Chest
+		}
+
+		DamageClasses.ClickerDamage.DisplayName: 点击伤害
+
+		Keybinds: {
+			// ClickerAccessory.DisplayName: Clicker Accessory
+			// ClickerAimAssist.DisplayName: Clicker Aim Assist
+		}
+
+		Items: {
+			MiceFragment: {
+				DisplayName: 鼠标碎片
+				Tooltip: "'飘忽不定的火花在这个碎片上不停的律动'"
+			}
+
+			AimAssistModule: {
+				DisplayName: 瞄准辅助模块
+				Tooltip:
+					'''
+					按下'{$Keybinds.ClickerAimAssist.DisplayName}'键将锁定光标下的敌人
+					左键单击时,无论光标的位置在哪,都会对该目标造成点击伤害
+					如果锁定的敌人离开了你的圆圈范围,或者他们不在你的直线视野内,你将无法对其造成伤害
+					'''
+			}
+
+			AimbotModule: {
+				DisplayName: 自动瞄准模块
+				Tooltip:
+					'''
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesBaseClickRadiusBy@1}
+					按下'{$Keybinds.ClickerAimAssist.DisplayName}'键切换自动瞄准,自动锁定附近的敌人
+					如果锁定的敌人死亡或消失,将搜寻并锁定附近一个新的敌人
+					'''
+				Disabled: 自动瞄准禁用
+				Enabled: 自动瞄准启用
+			}
+
+			MiceBathtub: {
+				// DisplayName: Mice Bathtub
+				Tooltip: ""
+			}
+
+			MiceBed: {
+				// DisplayName: Mice Bed
+				Tooltip: ""
+			}
+
+			MiceBookcase: {
+				// DisplayName: Mice Bookcase
+				Tooltip: ""
+			}
+
+			MiceBrick: {
+				// DisplayName: Mice Brick
+				Tooltip: ""
+			}
+
+			MiceBrickWall: {
+				// DisplayName: Mice Brick Wall
+				Tooltip: ""
+			}
+
+			MiceCandelabra: {
+				// DisplayName: Mice Candelabra
+				Tooltip: ""
+			}
+
+			MiceCandle: {
+				// DisplayName: Mice Candle
+				Tooltip: ""
+			}
+
+			MiceChair: {
+				// DisplayName: Mice Chair
+				Tooltip: ""
+			}
+
+			MiceChandelier: {
+				// DisplayName: Mice Chandelier
+				Tooltip: ""
+			}
+
+			MiceChest: {
+				// DisplayName: Mice Chest
+				Tooltip: ""
+			}
+
+			MiceChest_Trapped: {
+				// DisplayName: Trapped Mice Chest
+				Tooltip: ""
+			}
+
+			MiceClock: {
+				// DisplayName: Mice Clock
+				Tooltip: ""
+			}
+
+			MiceDoor: {
+				// DisplayName: Mice Door
+				Tooltip: ""
+			}
+
+			MiceDresser: {
+				// DisplayName: Mice Dresser
+				Tooltip: ""
+			}
+
+			MiceLamp: {
+				// DisplayName: Mice Lamp
+				Tooltip: ""
+			}
+
+			MiceLantern: {
+				// DisplayName: Mice Lantern
+				Tooltip: ""
+			}
+
+			MicePiano: {
+				// DisplayName: Mice Piano
+				Tooltip: ""
+			}
+
+			MicePlatform: {
+				// DisplayName: Mice Platform
+				Tooltip: ""
+			}
+
+			MiceSink: {
+				// DisplayName: Mice Sink
+				Tooltip: ""
+			}
+
+			MiceSofa: {
+				// DisplayName: Mice Sofa
+				Tooltip: ""
+			}
+
+			MiceTable: {
+				// DisplayName: Mice Table
+				Tooltip: ""
+			}
+
+			MiceToilet: {
+				// DisplayName: Mice Toilet
+				Tooltip: ""
+			}
+
+			MiceWorkbench: {
+				// DisplayName: Mice Work Bench
+				Tooltip: ""
+			}
+
+			ABlissfulDay: {
+				DisplayName: 幸福的一天
+				Tooltip: "'M. B. Nana'"
+			}
+
+			OutsideTheCave: {
+				DisplayName: 洞外风景
+				Tooltip: "'S. Streak'"
+			}
+
+			AncientClickingGlove: {
+				DisplayName: 上古点击手套
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery}1秒"
+			}
+
+			BottomlessBoxofPaperclips: {
+				DisplayName: 无底回形针盒
+				Tooltip:
+					'''
+					当你点击敌人时能够获得回形针
+					当回形针条满后,最后一次点击的敌人身上将会喷发出多枚回形针
+					'''
+			}
+
+			ButtonMasher: {
+				DisplayName: 手柄大师
+				Tooltip: 手持点击器时,显示每秒的点击次数
+			}
+
+			ChocolateChip: {
+				DisplayName: 巧克力屑
+				Tooltip: 每{0}次点击释放出大量能造成伤害的巧克力
+			}
+
+			BigRedButton: {
+				DisplayName: 红色大按钮
+				Tooltip: 每{0}次点击引起大型炽热爆炸
+			}
+
+			ChocolateMilkCookies: {
+				DisplayName: 巧克力牛奶与曲奇
+				Tooltip:
+					'''
+					{$Items.MilkCookies.Tooltip}
+					{$Items.ChocolateChip.Tooltip@1}
+					'''
+			}
+
+			ClearKeychain: {
+				DisplayName: 水晶钥匙串
+				Tooltip:
+					'''
+					每15次点击向光标处投射水晶史莱姆
+					点击被水晶史莱姆缠上的敌人将使其释放水晶碎片
+					'''
+			}
+
+			ClickerEmblem: {
+				DisplayName: 点击大师徽章
+				Tooltip: "{$Common.Tooltips.IncreasedClickerDamage}"
+			}
+
+			ClickingGlove: {
+				DisplayName: 点击手套
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery}{0}秒"
+			}
+
+			Cookie: {
+				DisplayName: 曲奇
+				Tooltip:
+					'''
+					装备后,曲奇会定期在您的点击范围内生成
+					点击曲奇能够增加你的点击伤害与范围同时加快生命恢复速度
+					'''
+			}
+
+			EnchantedLED: {
+				DisplayName: 附魔发光二极管
+				Tooltip:
+					'''
+					每次点击都会喷发出闪耀的光芒,调整饰品可见性开关光芒显示
+					{$Common.Tooltips.IncreasesClickDamageByFlat}
+					'''
+			}
+
+			GamerCrate: {
+				DisplayName: 专业玩家手提箱
+				Tooltip:
+					'''
+					'你不会真的认为有人会玩这个吧?'
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesBaseClickRadiusBy}
+					{$Common.Tooltips.ReducesAmountOfClicksBy}
+					每次点击会产生一些光尘,能够微弱的照明,调整饰品可见性开关光芒显示
+					{$Items.HandCream.Tooltip}
+					'''
+			}
+
+			HandCream: {
+				DisplayName: 护手霜
+				Tooltip:
+					'''
+					按下'{$Keybinds.ClickerAccessory.DisplayName}'键切换按住不动持续点击
+					启用按住不动持续点击后,手动点击最大频率将轻微降低
+					'''
+			}
+
+			HotKeychain: {
+				DisplayName: 炽热药水串
+				Tooltip:
+					'''
+					进入战斗后,点击敌人后将导致其着火
+					如果点击太慢,自身会被烫伤
+					'''
+			}
+
+			IcePack: {
+				DisplayName: 冰袋
+				Tooltip:
+					'''
+					按下'{$Keybinds.ClickerAccessory.DisplayName}'键切换按住不动持续点击
+					启用按住不动持续点击后,手动点击最大频率将显著降低
+					'''
+			}
+
+			MasterKeychain: {
+				DisplayName: 万能钥匙串
+				Tooltip:
+					'''
+					'该死,哪把钥匙才是正确的...'
+					你的点击器上涂满了又黏又烫又闪闪发光的东西
+					'''
+			}
+
+			Milk: {
+				DisplayName: 一杯牛奶
+				Tooltip: 根据每秒点击量增加最多{0}%点击伤害
+			}
+
+			MilkCookies: {
+				DisplayName: 牛奶与曲奇
+				Tooltip:
+					'''
+					{$Items.Cookie.Tooltip}
+					{$Items.Milk.Tooltip}
+					'''
+			}
+
+			MousePad: {
+				DisplayName: 鼠标垫
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
+			}
+
+			MouseTrap: {
+				DisplayName: 老鼠夹
+				Tooltip:
+					'''
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.ReducesAmountOfClicksBy@1}
+					点击时有很小的概率短暂被诅咒
+					'''
+			}
+
+			PortableParticleAccelerator: {
+				DisplayName: 便携式粒子加速器
+				Tooltip: 点击范围圆圈内靠近自身{0}%半径内的区域能够额外造成8点伤害
+			}
+
+			GoldenTicket: {
+				DisplayName: 金券
+				Tooltip:
+					'''
+					点击敌人时生成一些硬币
+					{$Common.Tooltips.IncreasesBaseClickRadiusBy}
+					'''
+			}
+
+			RegalClickingGlove: {
+				DisplayName: 豪华点击手套
+				Tooltip: "{$Common.Tooltips.ClickingGloveEvery}0.5秒"
+			}
+
+			AMedal: {
+				DisplayName: A级勋章
+				Tooltip:
+					'''
+					装备后,赋能圈将围绕着你旋转
+					将光标保持在赋能圈内将对A级勋章进行充能,获得最多{0}次必定暴击的点击
+					'''
+			}
+
+			FMedal: {
+				DisplayName: F级勋章
+				Tooltip:
+					'''
+					装备后,赋能圈将围绕着你旋转
+					将光标保持在赋能圈内将对F级勋章进行充能,增加最多{0}%点击范围
+					'''
+			}
+
+			SMedal: {
+				DisplayName: S级勋章
+				Tooltip:
+					'''
+					装备后,多个赋能圈将围绕着你旋转
+					将光标保持在各个赋能圈内将对各级勋章进行充能,分别获得最多10次的必暴点击、点击范围提升、点击效果
+					'''
+			}
+
+			Soda: {
+				DisplayName: 苏打汽水
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+			}
+
+			// SFXButtonA.DisplayName: SFX Button A
+			// SFXButtonB.DisplayName: SFX Button B
+			// SFXButtonC.DisplayName: SFX Button C
+			// SFXButtonD.DisplayName: SFX Button D
+			// SFXButtonE.DisplayName: SFX Button E
+			// SFXButtonF.DisplayName: SFX Button F
+			// SFXButtonG.DisplayName: SFX Button G
+			// SFXButtonH.DisplayName: SFX Button H
+
+			SFXSoundboard: {
+				// DisplayName: SFX Soundboard
+				/* Tooltip:
+					'''
+					'Become the life of the party! ...or death of it'
+					Changes the sound your clicks make while equipped or in your inventory
+					''' */
+			}
+
+			StickyKeychain: {
+				DisplayName: 凝胶钥匙串
+				Tooltip: 每{0}次点击,将能造成伤害的凝胶粘在屏幕上
+			}
+
+			TheScroller: {
+				DisplayName: 滚动条
+				Tooltip:
+					'''
+					{$CommonItemTooltip.FlightAndSlowfall}
+					按住下键加速下落
+					'''
+			}
+
+			TriggerFinger: {
+				DisplayName: 扳机指
+				Tooltip: 脱战后的第一次点击将触发点击效果
+			}
+
+			MiceBoots: {
+				DisplayName: 鼠标靴子
+				Tooltip:
+					'''
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesMovementSpeedBy@1}
+					'''
+			}
+
+			MiceMask: {
+				DisplayName: 鼠标面具
+				Tooltip:
+					'''
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesClickCritChanceBy}6%
+					'''
+				SetBonus: 右键单击在视野中点击器范围内的某个位置将使您传送到该位置
+			}
+
+			MiceSuit: {
+				DisplayName: 鼠标盔甲
+				Tooltip:
+					'''
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.IncreasesBaseClickRadiusBy}
+					'''
+			}
+
+			MotherboardBoots: {
+				DisplayName: 主板靴子
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
+			}
+
+			MotherboardHelmet: {
+				DisplayName: 主板头盔
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
+				SetBonus: 右键单击在视野中点击器范围内的某个位置放置范围延伸元件
+			}
+
+			MotherboardSuit: {
+				DisplayName: 主板盔甲
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
+			}
+
+			OverclockBoots: {
+				DisplayName: 超频靴子
+				Tooltip: "{$Common.Tooltips.IncreasesMovementSpeedBy}"
+			}
+
+			OverclockHelmet: {
+				DisplayName: 超频头盔
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				SetBonus:
+					'''
+					每{0}次点击,使你获得短暂的'超频',每次点击都会触发点击效果
+					当超频激活时,你的点击伤害减少{1}%
+					'''
+			}
+
+			OverclockSuit: {
+				DisplayName: 超频盔甲
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
+			}
+
+			PrecursorBreastplate: {
+				DisplayName: 先驱者胸甲
+				Tooltip:
+					'''
+					{$Common.Tooltips.IncreasesClickDamageBy}
+					{$Common.Tooltips.ReducesBaseClickRadiusBy@1}
+					'''
+			}
+
+			PrecursorGreaves: {
+				DisplayName: 先驱者护胫
+				Tooltip: "{$Common.Tooltips.IncreasesMovementSpeedBy}"
+			}
+
+			PrecursorHelmet: {
+				DisplayName: 先驱者头盔
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
+				SetBonus: 进入战斗后,光标会不断留下能够点击一次的残像
+			}
+
+			RGBBreastplate: {
+				DisplayName: RGB胸甲
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
+			}
+
+			RGBGreaves: {
+				DisplayName: RGB护胫
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
+			}
+
+			RGBHelm: {
+				DisplayName: RGB头盔
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				SetBonus: 每{0}次点击,光标处就会产生色彩爆发
+			}
+
+			ClickerEffectHairDye: {
+				DisplayName: 点击效果染发剂
+				Tooltip: ""
+			}
+
+			ClickSpeedHairDye: {
+				DisplayName: 点击速度染发剂
+				Tooltip: ""
+			}
+
+			InfluencePotion: {
+				DisplayName: 影响力药水
+				Tooltip: "{$Common.Tooltips.IncreasesBaseClickRadiusBy}"
+			}
+
+			HeavenlyChip: {
+				// DisplayName: Heavenly Chip
+				// Tooltip: Permanently increases base clicker radius by {0}%
+			}
+
+			MiceDrill: {
+				DisplayName: 鼠标钻头
+				Tooltip: ""
+			}
+
+			MiceHamaxe: {
+				DisplayName: 鼠标锤斧
+				Tooltip: ""
+			}
+
+			MicePickaxe: {
+				DisplayName: 鼠标镐
+				Tooltip: ""
+			}
+
+			ArcaneClicker.DisplayName: 奥术点击器
+			AdamantiteClicker.DisplayName: 精金点击器
+			ArthursClicker.DisplayName: 神圣点击器
+			AstralClicker.DisplayName: 星体点击器
+			BalloonClicker.DisplayName: 气球点击器
+			BoneClicker.DisplayName: 骨头点击器
+			BlizzardClicker.DisplayName: 暴雪点击器
+			// BurningSuperDeathClicker.DisplayName: Burning Super Death Clicker
+			CandleClicker.DisplayName: 蜡烛点击器
+			CaptainsClicker.DisplayName: 船长点击器
+			ChlorophyteClicker.DisplayName: 叶绿点击器
+			CobaltClicker.DisplayName: 钴点击器
+			// ConfettiClicker.DisplayName: Confetti Clicker
+			CopperClicker.DisplayName: 铜点击器
+			CorruptClicker.DisplayName: 腐化点击器
+			CrimsonClicker.DisplayName: 猩红点击器
+			// CritterClicker.DisplayName: Critter Clicker
+			CrystalClicker.DisplayName: 水晶点击器
+			CyclopsClicker.DisplayName: 鹿角怪点击器
+			DarkClicker.DisplayName: 魔矿点击器
+			DraconicClicker.DisplayName: 飞龙点击器
+			// DreamClicker.DisplayName: Dream Clicker
+			EclipticClicker.DisplayName: 日食点击器
+			// FamishedClicker.DisplayName: Famished Clicker
+			FaultyClicker.DisplayName: 故障点击器
+			FrozenClicker.DisplayName: 寒冰点击器
+			GoldClicker.DisplayName: 金点击器
+			// HeartyClicker.DisplayName: Hearty Clicker
+			HemoClicker.DisplayName: 血液点击器
+			HighTechClicker.DisplayName: 高科技点击器
+			HoneyGlazedClicker.DisplayName: 蜜釉点击器
+			ImpishClicker.DisplayName: 小恶魔点击器
+			IronClicker.DisplayName: 铁点击器
+			LanternClicker.DisplayName: 提灯点击器
+			LeadClicker.DisplayName: 铅点击器
+			LihzahrdClicker.DisplayName: 丛林蜥蜴点击器
+			LordsClicker.DisplayName: 月亮领主点击器
+			MagnetClicker.DisplayName: 磁铁点击器
+			MiceClicker.DisplayName: 鼠标点击器
+			MyceliumClicker.DisplayName: 菌丝点击器
+			MythrilClicker.DisplayName: 秘银点击器
+			NaughtyClicker.DisplayName: 顽皮点击器
+			OrichalcumClicker.DisplayName: 山铜点击器
+			PalladiumClicker.DisplayName: 钯金点击器
+			// PharaohsClicker.DisplayName: Pharaoh's Clicker
+			PlatinumClicker.DisplayName: 铂金点击器
+			PointyClicker.DisplayName: 尖刺点击器
+			// QuintessenceClicker.DisplayName: Quintessence Clicker
+			RainbowClicker.DisplayName: 彩虹点击器
+			RedHotClicker.DisplayName: 狱石点击器
+			SandstormClicker.DisplayName: 沙暴点击器
+			SeafoamClicker.DisplayName: 海泡石点击器
+			ShadowyClicker.DisplayName: 幽暗点击器
+			ShroomiteClicker.DisplayName: 蘑菇点击器
+			SilverClicker.DisplayName: 银点击器
+			SinisterClicker.DisplayName: 厄兆点击器
+			SlickClicker.DisplayName: 灵动点击器
+			SnottyClicker.DisplayName: 鼻涕点击器
+			SpaceClicker.DisplayName: 太空点击器
+
+			SpectreClicker: {
+				DisplayName: 幽灵点击器
+				Tooltip: 点击屏幕内的敌人对其造成伤害
+			}
+
+			SpiralClicker.DisplayName: 螺旋点击器
+			StarryClicker.DisplayName: 星空点击器
+			TheClicker.DisplayName: 大师点击器
+			TinClicker.DisplayName: 锡点击器
+			TitaniumClicker.DisplayName: 钛金点击器
+			TorchClicker.DisplayName: 火把点击器
+			TungstenClicker.DisplayName: 钨点击器
+			UmbralClicker.DisplayName: 阴影点击器
+			WitchClicker.DisplayName: 女巫点击器
+			WebClicker.DisplayName: 蛛网点击器
+			WoodenClicker.DisplayName: 木点击器
+		}
+
+		InfoDisplays: {
+			CPSInfoDisplay: {
+				DisplayName: 次点击每秒
+				DisplayValue: "{$Common.Tooltips.Clicks}每秒"
+			}
+		}
+
+		ClickEffect: {
+			TrueStrike: {
+				Name: 克敌先机
+				Description: 造成一次双倍伤害的暴击
+			}
+
+			OgreGold: {
+				Name: 食人魔的黄金
+				Description: 将鼻涕涂满光标下的敌人,大大减慢其移动速度
+			}
+
+			SeaSpray: {
+				Name: 海浪
+				Description: 减速附近的敌人并吸取他们的生命
+			}
+
+			WyvernsRoar: {
+				Name: 飞龙咆哮
+				Description: 召唤飞龙喷射火焰进行范围攻击
+			}
+
+			Presents: {
+				Name: 礼物
+				Description: 产生一堆空投礼物,点击礼物可以释放出地雷
+			}
+
+			PartyTime: {
+				// Name: Party Time!
+				// Description: Throws out some confetti!
+			}
+
+			Devour: {
+				// Name: Devour
+				// Description: N/A
+			}
+
+			Insanity: {
+				Name: 癫狂
+				Description: 召唤一只暗影爪进行范围攻击
+			}
+
+			Rainbolt: {
+				Name: 彩虹飞弹
+				Description: 释放出多个自动追踪彩虹碎片
+			}
+
+			ArcaneEnchantment: {
+				Name: 奥术附魔
+				Description: 提升你的点击伤害和点击伤害判定范围
+			}
+
+			Mania: {
+				// Name: Mania
+				// Description: Randomly acts as any possible lesser click effect
+			}
+
+			HolyNova: {
+				Name: 神圣新星
+				Description: 爆发出新星伤害范围内所有敌人,此伤害必定暴击
+			}
+
+			Spiral: {
+				Name: 涡旋
+				Description: 创造一个涡旋星系,吸引敌人并在几秒后消失爆炸
+			}
+
+			Yoink: {
+				Name: 吸引
+				Description: 吸取光标下的物品和硬币
+			}
+
+			ChromaticBurst: {
+				Name: 色彩爆发
+				Description: 在光标旁产生色彩能量,然后一齐投向光标处
+			}
+
+			BloodSucker: {
+				Name: 血珠
+				Description: 创造{0}个从点击范围圈最外层向心旋转的血珠
+			}
+
+			BalloonDefense: {
+				Name: 气球防御
+				Description: 召唤一个拖着友好史莱姆的气球,点击气球解救史莱姆
+			}
+
+			Incinerate: {
+				Name: 焚尽
+				Description: 在附近不同的方块上生成{0}个火花灼烧敌人
+			}
+
+			Lacerate: {
+				Name: 撕裂
+				Description: 给予目标重伤减益,效果:每秒造成{0}伤害
+			}
+
+			Starfall: {
+				Name: 坠星
+				Description: 从天空坠下1颗星星伤害沿途的敌人
+			}
+
+			Fritz: {
+				Name: 电路故障
+				Description: 在点击范围内随机释放电击
+			}
+
+			Flurry: {
+				Name: 冰雹
+				Description: 创造一个下冰雹的暴雪云
+			}
+
+			HotWings: {
+				Name: 灼翼
+				Description: 获得一次性冲刺;通过双击方向键使用
+			}
+
+			Illuminate: {
+				Name: 照明
+				Description: 在附近不同的方块上生成{0}个火花用于照明
+			}
+
+			Bombard: {
+				Name: 轰炸
+				Description: 召唤{0}颗炮弹从天而降
+			}
+
+			ToxicRelease: {
+				Name: 喷毒
+				Description: 在光标周围产生{0}朵毒云
+			}
+
+			Haste: {
+				Name: 急促
+				Description: 增加移动速度和跳跃高度
+			}
+
+			CursedEruption: {
+				Name: 诅咒喷发
+				Description: 喷发咒火造成范围伤害并给予目标{$BuffName.Oiled}与{$BuffName.CursedInferno}减益
+			}
+
+			Infest: {
+				Name: 感染
+				Description: 发射{0}条自动追踪灵液射弹
+			}
+
+			Dazzle: {
+				Name: 迷惑
+				Description: 给予目标{$BuffName.Confused}减益,效果:{$BuffDescription.Confused}
+			}
+
+			DarkBurst: {
+				Name: 黑暗爆发
+				Description: 造成大范围伤害
+			}
+
+			Totality: {
+				Name: 食分
+				Description: 创造一个微型日食,反复发射自动追踪飞弹
+			}
+
+			Freeze: {
+				Name: 冻结
+				Description: 冻结光标下的敌人,使其停留在原地
+			}
+
+			Linger: {
+				Name: 溅血
+				Description: 喷出{0}个受重力影响的血球
+			}
+
+			Discharge: {
+				Name: 放电
+				Description: 在光标周围迸发出{0}条追踪电流
+			}
+
+			StickyHoney: {
+				Name: 粘蜜
+				Description: 将粘蜜涂满光标下的敌人,减慢其移动速度
+			}
+
+			SolarFlare: {
+				Name: 太阳耀斑
+				Description: 生成一个爆发的小太阳,对敌人造成伤害并给予目标涂油和着火了！减益
+			}
+
+			Smite: {
+				Name: 惩戒
+				Description: 在光标周围召唤{0}个火把之焰射向光标处
+			}
+
+			Conqueror: {
+				Name: 征服者
+				Description: 制造出幻影爆炸伤害范围内所有敌人,此伤害翻倍且必定暴击
+			}
+
+			Collision: {
+				Name: 碰撞
+				Description: 向外射出{0}个无序的光球,跟随光标移动
+			}
+
+			Spores: {
+				Name: 孢子
+				Description: 喷出一连串飘散的孢子
+			}
+
+			Embrittle: {
+				Name: 脆化
+				Description: 给予范围目标{$Buffs.Embrittle.DisplayName}减益,效果:{$Buffs.Embrittle.Description}
+			}
+
+			PetalStorm: {
+				Name: 花瓣风暴
+				Description: 在光标周围召唤{0}片花瓣射向光标处
+			}
+
+			Regenerate: {
+				Name: 再生
+				Description: 给予玩家{$BuffName.RapidHealing}增益,效果:{$BuffDescription.RapidHealing}
+			}
+
+			StingingThorn: {
+				Name: 荆棘射弹
+				Description: 发射荆棘射弹,射向最近的敌人
+			}
+
+			Inferno: {
+				Name: 狱火
+				Description: 制造爆炸,造成伤害并给予范围目标{$BuffName.Oiled}与{$BuffName.OnFire}减益
+			}
+
+			DustDevil: {
+				Name: 尘卷风
+				Description: 创造一团猛烈的尘卷风,追击敌人
+			}
+
+			Curse: {
+				Name: 诅咒
+				Description: 向最近的敌人发射暗影火焰骷髅
+			}
+
+			AutoClick: {
+				Name: 自动点击
+				Description: 获得{$Buffs.AutoClick.DisplayName}增益,限制手动点击最大频率,但能够自动点击
+			}
+
+			Siphon: {
+				Name: 虹吸
+				Description: 造成少量伤害并恢复玩家{0}点生命值
+			}
+
+			Splash: {
+				Name: 洒水
+				Description: 喷出{0}个水射弹
+			}
+
+			StarStorm: {
+				Name: 星星风暴
+				Description: 从天空坠下{0}颗星星爆炸伤害敌人
+			}
+
+			PhaseReach: {
+				Name: 无量
+				Description: 无限点击范围
+			}
+
+			TheClick: {
+				Name: 大师点击
+				Description: 对敌人额外造成其生命上限{0}%的伤害
+			}
+
+			RazorsEdge: {
+				Name: 刀锋
+				Description: 发射{0}个向外发散的轨道锯片
+			}
+
+			ShadowLash: {
+				Name: 暗影鞭笞
+				Description: 发出{0}个暗影射弹,自动追踪附近的敌人
+			}
+
+			WildMagic: {
+				Name: 狂野魔法
+				Description: 随机产生任何可能的点击效果
+			}
+
+			WebSplash: {
+				Name: 蛛网喷射
+				Description: 向最近的敌人发射一团粘性蜘蛛网
+			}
+
+			ChocolateChip: {
+				Name: 巧克力屑
+				Description: 释放出大量能造成伤害的巧克力
+			}
+
+			DoubleClick: {
+				Name: 双击
+				Description: 一次攻击造成两次伤害
+			}
+
+			DoubleClick2: {
+				Name: "{$ClickEffect.DoubleClick.Name}"
+				Description: "{$ClickEffect.DoubleClick.Description}"
+			}
+
+			StickyKeychain: {
+				Name: 凝胶钥匙串
+				Description: 将能造成伤害的凝胶粘在屏幕上
+			}
+
+			BigRedButton: {
+				Name: 大爆炸
+				Description: 发生大爆炸
+			}
+
+			ClearKeychain: {
+				Name: 晶化
+				Description: 用水晶史莱姆砸向敌人;点击被水晶史莱姆缠上的敌人爆发AOE伤害
+			}
+
+			StarSlice: {
+				// Name: Star Slice
+				// Description: Shoots out {0} slicing star strikes
+			}
+
+			HappyHeart: {
+				// Name: Happy Heart
+				// Description: Produces up to {0} lingering hearts that replenish player life
+			}
+
+			PharaohsCommand: {
+				// Name: Pharaoh's Command
+				// Description: Summons a mask that shoots at your cursor in response to your clicks
+			}
+
+			Evolve: {
+				// Name: Evolve
+				// Description: "{$Common.Unknown}"
+			}
+
+			Nab: {
+				// Name: Nab
+				// Description: Catches critters near your cursor, dropping them to the ground
+			}
+		}
+
+		Prefixes: {
+			ClickerRadius: {
+				DisplayName: 延伸的
+				Tooltip: +{0}% 基础点击范围
+			}
+
+			Elite.DisplayName: 精英的
+			Pro.DisplayName: 加强的
+			Amateur.DisplayName: 业余的
+			Novice.DisplayName: 入门的
+			Laggy.DisplayName: 迟缓的
+			Disconnected.DisplayName: 掉线的
+
+			Common: {
+				RadiusBoost: "{0}% 基础点击范围"
+				ClickBoost: "{0} 触发点击效果所需的点击数"
+			}
+		}
+
+		Tooltip: {
+			ClickerTag: 点击大师
+			TotalClicks: 共计点击次数:[c/{0}:{1}]
+			MoneyGenerated: 总计金币生成:[c/{0}:{1}]
+			ForMoreInfo: 按住'自动选择'键({0})显示点击效果详细信息
+		}
+
+		DeathMessage.HotKeychain: "{0} 被炽热的钥匙串烫死了."
+
+		UI: {
+			HotKeychainGauge: 热量: {0} / {1}
+			MedalGauge: 充能: {0} / {1}
+			PaperclipsGauge: 回形针: {0} / {1}
+		}
+
+		ClickerConfigClient: {
+			Label: 配置
+			Header.GeneralOptions: 通用选项
+
+			ShowClassTags: {
+				Label: 显示物品标识
+				Tooltip: 在本模组物品描述上显示点击大师标识
+			}
+
+			ShowEffectSuggestion: {
+				Label: 显示'按住自动选择'文本
+				Tooltip:
+					'''
+					开关在武器上显示'按住自动选择键显示点击效果详细信息'这一提示文本
+					-无论是否开启,自动选择键依旧能使用-
+					'''
+			}
+
+			ShowCustomCursors: {
+				Label: 显示自定义光标
+				Tooltip: 开关点击器的'自定义光标'
+			}
+
+			ShowClickIndicator: {
+				Label: 显示点击指示器
+				Tooltip: 开关使用点击器时的点击指示
+			}
+
+			ShowOthersClickIndicator: {
+				Label: 显示他人点击指示器
+				Tooltip: 开关其他人使用点击器时的点击指示
+			}
+		}
+
+		GameTips: {
+			// ClickerClassTip0: Clicker Class: Clicker weapons can only be used within its area of effect and with proper line of sight.
+			// ClickerClassTip1: Clicker Class: Your total number of clicks with Clickers are tracked. Check it out with a Gamer Crate!
+			// ClickerClassTip2: Clicker Class: Certain items will only be sold if you've used Clicker weapons enough times.
+			// ClickerClassTip3: Clicker Class: Remember to rest your hands if they start to hurt!
+			// ClickerClassTip4: Clicker Class: Find a nice Ice Pack to cool your hands if clicking is cramping them up!
+		}
+
+		# regex: DisplayName\: (.*?) Pro([0-9]*)? -> DisplayName: $1
+		Projectiles: {
+			// AdamantiteClickerPro.DisplayName: Adamantite Clicker
+			// AMedalPro.DisplayName: A Medal
+			// ArthursClickerPro.DisplayName: Arthurs Clicker
+			// AstralClickerPro.DisplayName: Astral Clicker
+			// BalloonClickerPro.DisplayName: Balloon Clicker
+			// BigRedButtonPro.DisplayName: Big Red Button
+			// BigRedButtonPro2.DisplayName: Big Red Button
+			// BigRedButtonPro3.DisplayName: Big Red Button
+			// BlizzardClickerPro.DisplayName: Blizzard Clicker
+			// BlizzardClickerPro2.DisplayName: Blizzard Clicker
+			// BoneClickerPro.DisplayName: Bone Clicker
+			// BottomlessBoxofPaperclipsPro.DisplayName: Bottomless Box of Paperclips
+			// CandleClickerPro.DisplayName: Candle Clicker
+			// CaptainsClickerPro.DisplayName: Captains Clicker
+			// ChlorophyteClickerPro.DisplayName: Chlorophyte Clicker
+			// ChocolateChipPro.DisplayName: Chocolate Chip
+			// ClearKeychainPro.DisplayName: Clear Keychain
+			// ClearKeychainPro2.DisplayName: Clear Keychain
+			// ClickDamage.DisplayName: Click Damage
+			// CookiePro.DisplayName: Cookie
+			// CorruptClickerPro.DisplayName: Corrupt Clicker
+			// CrimsonClickerPro.DisplayName: Crimson Clicker
+			// CrystalClickerPro.DisplayName: Crystal Clicker
+			// CyclopsClickerPro.DisplayName: Cyclops Clicker
+			// DarkClickerPro.DisplayName: Dark Clicker
+			// DraconicClickerPro.DisplayName: Draconic Clicker
+			// DraconicClickerPro2.DisplayName: Draconic Clicker
+			// FaultyClickerPro.DisplayName: Faulty Clicker
+			// FMedalPro.DisplayName: F Medal
+			// FrozenClickerPro.DisplayName: Frozen Clicker
+			// HemoClickerPro.DisplayName: Hemo Clicker
+			// HighTechClickerPro.DisplayName: High Tech Clicker
+			// HoneyGlazedClickerPro.DisplayName: Honey Glazed Clicker
+			// HotKeychainPro.DisplayName: Hot Keychain
+			// LanternClickerPro.DisplayName: Lantern Clicker
+			// LihzarhdClickerPro.DisplayName: Lihzarhd Clicker
+			// LordsClickerPro.DisplayName: Lords Clicker
+			// MiceClickerPro.DisplayName: Mice Clicker
+			// MiceDrillPro.DisplayName: Mice Drill
+			// MyceliumClickerPro.DisplayName: Mycelium Clicker
+			// MythrilClickerPro.DisplayName: Mythril Clicker
+			// NaughtyClickerPro.DisplayName: Naughty Clicker
+			// NaughtyClickerPro2.DisplayName: Naughty Clicker
+			// NaughtyClickerPro3.DisplayName: Naughty Clicker
+			// OrichaclumClickerPro.DisplayName: Orichaclum Clicker
+			// PointyClickerPro.DisplayName: Pointy Clicker
+			// PrecursorPro.DisplayName: Precursor
+			// RainbowClickerPro.DisplayName: Rainbow Clicker
+			// RedHotClickerPro.DisplayName: Red Hot Clicker
+			// RGBPro.DisplayName: RGB
+			// SandstormClickerPro.DisplayName: Sandstorm Clicker
+			// SeafoamClickerPro.DisplayName: Seafoam Clicker
+			// ShadowyClickerPro.DisplayName: Shadowy Clicker
+			// SinisterClickerPro.DisplayName: Sinister Clicker
+			// SlickClickerPro.DisplayName: Slick Clicker
+			// SMedalPro.DisplayName: S Medal
+			// SMedalPro2.DisplayName: S Medal
+			// SMedalPro3.DisplayName: S Medal
+			// SnottyClickerPro.DisplayName: Snotty Clicker
+			// SpaceClickerPro.DisplayName: Space Clicker
+			// SpiralClickerPro.DisplayName: Spiral Clicker
+			// StarryClickerPro.DisplayName: Starry Clicker
+			// StickyKeychainPro.DisplayName: Sticky Keychain
+			// TheClickerPro.DisplayName: The Clicker
+			// TitaniumClickerPro.DisplayName: Titanium Clicker
+			// TorchClickerPro.DisplayName: Torch Clicker
+			// TotalityClickerPro.DisplayName: Totality Clicker
+			// TotalityClickerPro2.DisplayName: Totality Clicker
+			// UmbralClickerPro.DisplayName: Umbral Clicker
+			// WebClickerPro.DisplayName: Web Clicker
+			// WebClickerPro2.DisplayName: Web Clicker
+			// DreamClickerPro.DisplayName: Dream Clicker
+			// FamishedClickerPro.DisplayName: Famished Clicker
+			// HeartyClickerPro.DisplayName: Hearty Clicker
+			// PharaohsClickerPro.DisplayName: Pharaoh's Clicker
+			// PharaohsClickerPro2.DisplayName: Pharaoh's Clicker
 		}
 	}
 }

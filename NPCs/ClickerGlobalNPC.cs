@@ -1,3 +1,4 @@
+using ClickerClass.Buffs;
 using ClickerClass.Items;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Consumables;
@@ -69,7 +70,7 @@ namespace ClickerClass.NPCs
 				{
 					npc.lifeRegen = 0;
 				}
-				npc.lifeRegen -= 60;
+				npc.lifeRegen -= 2 * Gouge.DamageOverTime;
 				damage = 10;
 			}
 			if (seafoam)
@@ -127,7 +128,7 @@ namespace ClickerClass.NPCs
 				#region Glowing Mushroom biome
 				case NPCID.SporeSkeleton:
 					{
-						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MyceliumClicker>(), 100));
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<MyceliumClicker>(), 40));
 					}
 					break;
 				#endregion
@@ -516,82 +517,49 @@ namespace ClickerClass.NPCs
 		}
 		*/
 
-		public override void SetupShop(int type, Chest shop, ref int nextSlot)
+		public override void SetupTravelShop(int[] shop, ref int nextSlot)
 		{
-			Player player = Main.LocalPlayer;
-			if (!player.TryGetModPlayer(out ClickerPlayer clickerPlayer))
-			{
-				//Avoid incompatibility with TRAI calling SetupShop during mod load when no players exist
-				return;
-			}
+			shop[nextSlot++] = ModContent.ItemType<ButtonMasher>();
+			shop[nextSlot++] = ModContent.ItemType<Soda>();
+		}
 
-			switch (type)
+		public override void ModifyShop(NPCShop shop)
+		{
+			switch (shop.NpcType)
 			{
 				case NPCID.Merchant:
-					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Cookie>());
+					shop.Add(ModContent.ItemType<Cookie>());
 					break;
 				case NPCID.Demolitionist:
-					if (Main.hardMode)
-					{
-						shop.item[nextSlot++].SetDefaults(ModContent.ItemType<BigRedButton>());
-					}
-					break;
-				case NPCID.TravellingMerchant:
-					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ButtonMasher>());
-					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<Soda>());
+					shop.Add(ModContent.ItemType<BigRedButton>(), Condition.Hardmode);
 					break;
 				case NPCID.Mechanic:
-					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<HandCream>());
-					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MagnetClicker>());
+					shop.Add(ModContent.ItemType<HandCream>());
+					shop.Add(ModContent.ItemType<MagnetClicker>());
 					break;
 				case NPCID.GoblinTinkerer:
-					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<MousePad>());
+					shop.Add(ModContent.ItemType<MousePad>());
 					break;
 				case NPCID.PartyGirl:
-					int buttonChoice = Main.moonPhase switch
-					{
-						0 => ModContent.ItemType<SFXButtonA>(),
-						1 => ModContent.ItemType<SFXButtonB>(),
-						2 => ModContent.ItemType<SFXButtonC>(),
-						3 => ModContent.ItemType<SFXButtonD>(),
-						4 => ModContent.ItemType<SFXButtonE>(),
-						5 => ModContent.ItemType<SFXButtonF>(),
-						6 => ModContent.ItemType<SFXButtonG>(),
-						7 => ModContent.ItemType<SFXButtonH>(),
-						_ => ModContent.ItemType<SFXButtonA>(),
-					};
-					shop.item[nextSlot++].SetDefaults(buttonChoice);
+					shop.Add(ModContent.ItemType<SFXButtonA>(), Condition.MoonPhaseFull);
+					shop.Add(ModContent.ItemType<SFXButtonB>(), Condition.MoonPhaseWaningGibbous);
+					shop.Add(ModContent.ItemType<SFXButtonC>(), Condition.MoonPhaseThirdQuarter);
+					shop.Add(ModContent.ItemType<SFXButtonD>(), Condition.MoonPhaseWaningCrescent);
+					shop.Add(ModContent.ItemType<SFXButtonE>(), Condition.MoonPhaseNew);
+					shop.Add(ModContent.ItemType<SFXButtonF>(), Condition.MoonPhaseWaxingCrescent);
+					shop.Add(ModContent.ItemType<SFXButtonG>(), Condition.MoonPhaseFirstQuarter);
+					shop.Add(ModContent.ItemType<SFXButtonH>(), Condition.MoonPhaseWaxingGibbous);
 					break;
 				case NPCID.Painter:
-					if (clickerPlayer.clickerSelected)
-					{
-						if (clickerPlayer.clickerTotal >= 1000)
-						{
-							shop.item[nextSlot++].SetDefaults(ModContent.ItemType<OutsideTheCave>());
-						}
-
-						if (clickerPlayer.clickerTotal >= 2500)
-						{
-							shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ABlissfulDay>());
-						}
-					}
+					shop.Add(ModContent.ItemType<OutsideTheCave>(), ClickerConditions.ClickerSelected, ClickerConditions.ClickerTotalExceeds(1000));
+					shop.Add(ModContent.ItemType<ABlissfulDay>(), ClickerConditions.ClickerSelected, ClickerConditions.ClickerTotalExceeds(2500));
 					break;
 				case NPCID.Stylist:
-					if (clickerPlayer.clickerSelected)
-					{
-						if (clickerPlayer.clickerTotal >= 2500)
-						{
-							shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ClickerEffectHairDye>());
-						}
-
-						if (clickerPlayer.clickerTotal >= 5000)
-						{
-							shop.item[nextSlot++].SetDefaults(ModContent.ItemType<ClickSpeedHairDye>());
-						}
-					}
+					shop.Add(ModContent.ItemType<ClickerEffectHairDye>(), ClickerConditions.ClickerSelected, ClickerConditions.ClickerTotalExceeds(2500));
+					shop.Add(ModContent.ItemType<ClickSpeedHairDye>(), ClickerConditions.ClickerSelected, ClickerConditions.ClickerTotalExceeds(5000));
 					break;
 				case NPCID.SkeletonMerchant:
-					shop.item[nextSlot++].SetDefaults(ModContent.ItemType<CandleClicker>());
+					shop.Add(ModContent.ItemType<CandleClicker>());
 					break;
 			}
 		}

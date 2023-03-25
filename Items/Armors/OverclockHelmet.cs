@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
@@ -12,6 +13,14 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Head)]
 	public class OverclockHelmet : ClickerItem
 	{
+		public static readonly int ClickAmount = 100;
+		public static readonly int SetBonusDamageDecrease = 50;
+		public static readonly int ClickAmountDecreaseFlat = 1;
+
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ClickAmountDecreaseFlat);
+
+		public static LocalizedText SetBonusText { get; private set; }
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -24,6 +33,8 @@ namespace ClickerClass.Items.Armors
 					Color = (PlayerDrawSet drawInfo) => Color.White * 0.8f * 0.75f
 				});
 			}
+
+			SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(ClickAmount, SetBonusDamageDecrease);
 		}
 
 		public override void SetDefaults()
@@ -37,7 +48,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerBonus += 1;
+			player.GetModPlayer<ClickerPlayer>().clickerBonus += ClickAmountDecreaseFlat;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)
@@ -47,7 +58,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateArmorSet(Player player)
 		{
-			player.setBonus = LangHelper.GetText("SetBonus.Overclock");
+			player.setBonus = SetBonusText.ToString();
 			player.GetModPlayer<ClickerPlayer>().setOverclock = true;
 		}
 

@@ -17,7 +17,6 @@ namespace ClickerClass.Tiles.Mice
 			Main.tileBlockLight[Type] = true;
 			HitSound = SoundID.Tink;
 			DustType = ModContent.DustType<MiceDust>();
-			ItemDrop = ModContent.ItemType<Items.Placeable.Mice.MiceBrick>();
 			AddMapEntry(new Color(172, 189, 246));
 		}
 

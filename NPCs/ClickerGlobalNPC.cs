@@ -533,10 +533,6 @@ namespace ClickerClass.NPCs
 				case NPCID.Demolitionist:
 					shop.Add(ModContent.ItemType<BigRedButton>(), Condition.Hardmode);
 					break;
-				case NPCID.TravellingMerchant:
-					shop.Add(ModContent.ItemType<ButtonMasher>());
-					shop.Add(ModContent.ItemType<Soda>());
-					break;
 				case NPCID.Mechanic:
 					shop.Add(ModContent.ItemType<HandCream>());
 					shop.Add(ModContent.ItemType<MagnetClicker>());

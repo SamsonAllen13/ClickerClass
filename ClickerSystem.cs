@@ -86,10 +86,6 @@ namespace ClickerClass
 		public override void SetStaticDefaults()
 		{
 			ClickEffect.LoadMiscEffects();
-
-			//Discard is important, LocalizationText needs one access to get into the lang file automatically
-			_ = UnknownText;
-			_ = DefaultClickerWeaponTooltipText;
 		}
 
 		public override void PostAddRecipes()

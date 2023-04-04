@@ -1,22 +1,24 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 
 namespace ClickerClass.Projectiles
 {
 	public class CookiePro : ClickerProjectile
 	{
 		public Vector2 location = Vector2.Zero;
-		
+
 		public int Frame
 		{
 			get => (int)Projectile.ai[0];
 			set => Projectile.ai[0] = value;
 		}
 
+		//Should not be synced, as location isn't synced either
 		public bool LockedLocation
 		{
-			get => Projectile.ai[1] == 1f;
-			set => Projectile.ai[1] = value ? 1f : 0f;
+			get => Projectile.localAI[1] == 1f;
+			set => Projectile.localAI[1] = value ? 1f : 0f;
 		}
 
 		public override void SetStaticDefaults()
@@ -36,6 +38,19 @@ namespace ClickerClass.Projectiles
 			Projectile.timeLeft = 300;
 			Projectile.ignoreWater = true;
 			Projectile.tileCollide = false;
+		}
+
+		public override void OnSpawn(IEntitySource source)
+		{
+			if (source is not EntitySource_ItemUse itemUse || itemUse.Entity is not Player player)
+			{
+				return;
+			}
+
+			if (player.GetModPlayer<ClickerPlayer>().accCookie2 && Main.rand.NextFloat() <= 0.1f)
+			{
+				Frame = 1;
+			}
 		}
 
 		public override Color? GetAlpha(Color lightColor)

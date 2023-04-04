@@ -1194,18 +1194,10 @@ namespace ClickerClass
 						radius = 350;
 					}
 
-					//Circles give me a damn headache...
-					double r = radius * Math.Sqrt(Main.rand.NextFloat(0f, 1f));
-					double theta = Main.rand.NextFloat(0f, 1f) * MathHelper.TwoPi;
-					double xOffset = Player.Center.X + r * Math.Cos(theta);
-					double yOffset = Player.Center.Y + r * Math.Sin(theta);
+					//Sqrt for bias outwards
+					Vector2 pos = Vector2.UnitY.RotatedByRandom(MathHelper.TwoPi) * radius * (float)Math.Sqrt(Main.rand.NextFloat(0.1f, 1f));
 
-					int frame = 0;
-					if (accCookie2 && Main.rand.NextFloat() <= 0.1f)
-					{
-						frame = 1;
-					}
-					Projectile.NewProjectile(Player.GetSource_Accessory(accCookieItem), (float)xOffset, (float)yOffset, 0f, 0f, ModContent.ProjectileType<CookiePro>(), 0, 0f, Player.whoAmI, frame);
+					Projectile.NewProjectile(Player.GetSource_Accessory(accCookieItem), pos + Player.Center, Vector2.Zero, ModContent.ProjectileType<CookiePro>(), 0, 0f, Player.whoAmI);
 
 					accCookieTimer = 0;
 				}
@@ -1213,22 +1205,23 @@ namespace ClickerClass
 				//Cookie Click
 				if (Player.whoAmI == Main.myPlayer)
 				{
-					for (int i = 0; i < 1000; i++)
+					int cookieType = ModContent.ProjectileType<CookiePro>();
+					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
-						Projectile cookieProjectile = Main.projectile[i];
+						Projectile proj = Main.projectile[i];
 
-						if (cookieProjectile.active && cookieProjectile.type == ModContent.ProjectileType<CookiePro>() && cookieProjectile.owner == Player.whoAmI)
+						if (proj.active && proj.owner == Player.whoAmI && proj.type == cookieType && proj.ModProjectile is CookiePro cookie)
 						{
-							if (Main.mouseLeft && Main.mouseLeftRelease && cookieProjectile.DistanceSQ(Main.MouseWorld) < 30 * 30)
+							if (Main.mouseLeft && Main.mouseLeftRelease && proj.DistanceSQ(Main.MouseWorld) < 30 * 30)
 							{
-								if (cookieProjectile.ai[0] == 1f)
+								if (cookie.Frame == 1)
 								{
 									SoundEngine.PlaySound(SoundID.Item4, Player.Center);
 									Player.AddBuff(ModContent.BuffType<CookieBuff>(), 600);
 									Player.HealLife(10);
 									for (int k = 0; k < 10; k++)
 									{
-										Dust dust = Dust.NewDustDirect(cookieProjectile.Center, 20, 20, 87, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
+										Dust dust = Dust.NewDustDirect(proj.Center, 20, 20, 87, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1.15f);
 										dust.noGravity = true;
 									}
 								}
@@ -1238,11 +1231,11 @@ namespace ClickerClass
 									Player.AddBuff(ModContent.BuffType<CookieBuff>(), 300);
 									for (int k = 0; k < 10; k++)
 									{
-										Dust dust = Dust.NewDustDirect(cookieProjectile.Center, 20, 20, 0, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 75, default, 1.5f);
+										Dust dust = Dust.NewDustDirect(proj.Center, 20, 20, 0, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 75, default, 1.5f);
 										dust.noGravity = true;
 									}
 								}
-								cookieProjectile.Kill();
+								proj.Kill();
 							}
 						}
 					}
@@ -1267,34 +1260,31 @@ namespace ClickerClass
 			//Effects related to having cursor within the radius
 			if (Player.whoAmI == Main.myPlayer)
 			{
-				//Balloon Defense effect
-				if (clickerInRange)
+				if (clickerInRange && clickerSelected)
 				{
 					int balloonType = ModContent.ProjectileType<BalloonClickerPro>();
-					for (int i = 0; i < Main.maxProjectiles; i++)
-					{
-						Projectile balloonProj = Main.projectile[i];
-
-						if (balloonProj.active && clickerSelected && balloonProj.owner == Player.whoAmI && balloonProj.type == balloonType && balloonProj.ai[0] == 0f && balloonProj.ModProjectile is BalloonClickerPro balloon && !balloon.hasChanged)
-						{
-							if (Main.mouseLeft && Main.mouseLeftRelease && balloonProj.DistanceSQ(new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y + 40)) < 30 * 30)
-							{
-								balloonProj.ai[0] = 1f; //Handled in the AI
-							}
-						}
-					}
-
 					int parachuteType = ModContent.ProjectileType<NaughtyClickerPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
-						Projectile parachuteProj = Main.projectile[i];
+						//Balloon Defense effect
+						Projectile proj = Main.projectile[i];
 
-						if (parachuteProj.active && clickerSelected && parachuteProj.owner == Player.whoAmI && parachuteProj.type == parachuteType &&
-						parachuteProj.ai[1] == 0f && parachuteProj.frame == 1 && parachuteProj.ModProjectile is NaughtyClickerPro parachute && !parachute.hasChanged)
+						if (proj.active && proj.owner == Player.whoAmI && proj.type == balloonType &&
+							proj.ModProjectile is BalloonClickerPro balloon && !balloon.HasChanged && !balloon.Trigger)
 						{
-							if (Main.mouseLeft && Main.mouseLeftRelease && parachuteProj.DistanceSQ(new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y)) < 30 * 30)
+							if (Main.mouseLeft && Main.mouseLeftRelease && proj.DistanceSQ(new Vector2(Main.MouseWorld.X, Main.MouseWorld.Y + 40)) < 30 * 30)
 							{
-								parachuteProj.ai[1] = 1f; //Handled in the AI
+								balloon.Trigger = true; //Handled in the AI
+							}
+						}
+
+						//Present effect
+						if (proj.active && proj.owner == Player.whoAmI && proj.type == parachuteType && proj.frame == 1 &&
+						proj.ModProjectile is NaughtyClickerPro parachute && !parachute.HasChanged && !parachute.Trigger)
+						{
+							if (Main.mouseLeft && Main.mouseLeftRelease && proj.DistanceSQ(Main.MouseWorld) < 30 * 30)
+							{
+								parachute.Trigger = true; //Handled in the AI
 							}
 						}
 					}
@@ -1306,15 +1296,15 @@ namespace ClickerClass
 					int aMedalType = ModContent.ProjectileType<AMedalPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
-						Projectile medalProj = Main.projectile[i];
+						Projectile proj = Main.projectile[i];
 
-						if (medalProj.active && medalProj.owner == Player.whoAmI && medalProj.type == aMedalType)
+						if (proj.active && proj.owner == Player.whoAmI && proj.type == aMedalType && proj.ModProjectile is MedalProBase medal)
 						{
-							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
-							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
+							float len = (proj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
+							if (proj.DistanceSQ(Main.MouseWorld) < len)
 							{
 								accAMedalAmount += 2;
-								medalProj.ai[1] = 1f;
+								medal.MouseoverAlpha = 1f;
 								Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 								Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 86, Scale: 1.25f);
 								dust.noGravity = true;
@@ -1330,15 +1320,15 @@ namespace ClickerClass
 					int fMedalType = ModContent.ProjectileType<FMedalPro>();
 					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
-						Projectile medalProj = Main.projectile[i];
+						Projectile proj = Main.projectile[i];
 
-						if (medalProj.active && medalProj.owner == Player.whoAmI && medalProj.type == fMedalType)
+						if (proj.active && proj.owner == Player.whoAmI && proj.type == fMedalType && proj.ModProjectile is MedalProBase medal)
 						{
-							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
-							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
+							float len = (proj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
+							if (proj.DistanceSQ(Main.MouseWorld) < len)
 							{
 								accFMedalAmount += 2;
-								medalProj.ai[1] = 1f;
+								medal.MouseoverAlpha = 1f;
 								Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 								Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 173, Scale: 1.25f);
 								dust.noGravity = true;
@@ -1357,35 +1347,35 @@ namespace ClickerClass
 
 					for (int i = 0; i < Main.maxProjectiles; i++)
 					{
-						Projectile medalProj = Main.projectile[i];
+						Projectile proj = Main.projectile[i];
 
-						if (medalProj.active && medalProj.owner == Player.whoAmI && (medalProj.type == sMedalType1 || medalProj.type == sMedalType2 || medalProj.type == sMedalType3))
+						if (proj.active && proj.owner == Player.whoAmI && (proj.type == sMedalType1 || proj.type == sMedalType2 || proj.type == sMedalType3) && proj.ModProjectile is SMedalProBase sMedal)
 						{
-							float len = (medalProj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
-							if (medalProj.DistanceSQ(Main.MouseWorld) < len)
+							float len = (proj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
+							if (proj.DistanceSQ(Main.MouseWorld) < len)
 							{
-								if (medalProj.type == sMedalType1 && accFMedalAmount < FMedal.ChargeMeterMax) //F Medal Equivalent
+								if (proj.type == sMedalType1 && accFMedalAmount < FMedal.ChargeMeterMax) //F Medal Equivalent
 								{
 									accFMedalAmount += 3;
-									medalProj.ai[1] = 1f;
+									sMedal.MouseoverAlpha = 1f;
 									Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 									Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 88, Scale: 1.25f);
 									dust.noGravity = true;
 									dust.velocity = -offset * 0.05f;
 								}
-								if (medalProj.type == sMedalType2 && accAMedalAmount < AMedal.ChargeMeterMax) //A Medal Equivalent
+								if (proj.type == sMedalType2 && accAMedalAmount < AMedal.ChargeMeterMax) //A Medal Equivalent
 								{
 									accAMedalAmount += 3;
-									medalProj.ai[1] = 1f;
+									sMedal.MouseoverAlpha = 1f;
 									Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 									Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 87, Scale: 1.25f);
 									dust.noGravity = true;
 									dust.velocity = -offset * 0.05f;
 								}
-								if (medalProj.type == sMedalType3 && accSMedalAmount < SMedal.ChargeMeterMax)
+								if (proj.type == sMedalType3 && accSMedalAmount < SMedal.ChargeMeterMax)
 								{
 									accSMedalAmount += 3;
-									medalProj.ai[1] = 1f;
+									sMedal.MouseoverAlpha = 1f;
 									Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 									Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 89, Scale: 1.25f);
 									dust.noGravity = true;

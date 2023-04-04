@@ -4,8 +4,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.GameContent;
 using ClickerClass.Items.Weapons.Clickers;
 
 namespace ClickerClass.Projectiles
@@ -14,13 +12,19 @@ namespace ClickerClass.Projectiles
 	{
 		public int activeTimer = 0;
 		public bool tileCollide = false;
-		
-		public bool HasSpawnEffects
+
+		public bool Spawned
 		{
 			get => Projectile.ai[0] == 1f;
 			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
-		
+
+		public int HeartCount
+		{
+			get => (int)Projectile.ai[1];
+			set => Projectile.ai[1] = value;
+		}
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
@@ -40,7 +44,7 @@ namespace ClickerClass.Projectiles
 		
 		public override void AI()
 		{
-			if (HasSpawnEffects)
+			if (!Spawned)
 			{
 				SoundEngine.PlaySound(SoundID.Item87, Projectile.Center);
 				for (int k = 0; k < 15; k++)
@@ -48,7 +52,7 @@ namespace ClickerClass.Projectiles
 					Dust dust = Dust.NewDustDirect(Projectile.Center, 8, 8, 90, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 0, default, 1f);
 					dust.noGravity = true;
 				}
-				HasSpawnEffects = false;
+				Spawned = true;
 			}
 			
 			Projectile.rotation = Projectile.velocity.X * -0.1f;
@@ -83,7 +87,7 @@ namespace ClickerClass.Projectiles
 				activeTimer += 4;
 			}
 			
-			if (Projectile.ai[1] >= HeartyClicker.HeartMaxAmount)
+			if (HeartCount >= HeartyClicker.HeartMaxAmount)
 			{
 				Projectile.Kill();
 			}

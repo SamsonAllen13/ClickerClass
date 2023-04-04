@@ -5,7 +5,6 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using ReLogic.Content;
-using System.IO;
 using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
@@ -23,17 +22,18 @@ namespace ClickerClass.Projectiles
 		{
 			effect = null;
 		}
-		
-		public bool hasChanged = false;
 
-		public override void SendExtraAI(BinaryWriter writer)
+		public bool Trigger
 		{
-			writer.Write((bool)hasChanged);
+			get => Projectile.ai[0] == 1f;
+			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
 
-		public override void ReceiveExtraAI(BinaryReader reader)
+		//ai1 is used by aistyle 26
+		public bool HasChanged
 		{
-			hasChanged = reader.ReadBoolean();
+			get => Projectile.ai[2] == 1f;
+			set => Projectile.ai[2] = value ? 1f : 0f;
 		}
 
 		public override void SetStaticDefaults()
@@ -56,7 +56,6 @@ namespace ClickerClass.Projectiles
 			Projectile.alpha = 0;
 			Projectile.tileCollide = false;
 
-			DrawOriginOffsetY = -2;
 			DrawOffsetX = Projectile.width / 2 - 44 / 2;
 
 			Projectile.usesLocalNPCImmunity = true;
@@ -67,7 +66,7 @@ namespace ClickerClass.Projectiles
 
 		public override bool PreDraw(ref Color lightColor)
 		{
-			if (!hasChanged)
+			if (!HasChanged)
 			{
 				Texture2D effectTexture = effect.Value.Value;
 				Rectangle frame = effectTexture.Frame();
@@ -82,15 +81,15 @@ namespace ClickerClass.Projectiles
 		{
 			Player player = Main.player[Projectile.owner];
 
-			if (Main.myPlayer == Projectile.owner && !hasChanged && Projectile.ai[0] == 1f)
+			if (Main.myPlayer == Projectile.owner && !HasChanged && Trigger)
 			{
-				hasChanged = true;
-				Projectile.ai[0] = 0f;
+				HasChanged = true;
+				Trigger = false;
 				Projectile.timeLeft = 300;
 				Projectile.netUpdate = true;
 			}
 			
-			if (hasChanged)
+			if (HasChanged)
 			{
 				if (Projectile.aiStyle != 26)
 				{
@@ -137,7 +136,7 @@ namespace ClickerClass.Projectiles
 
 		public override bool MinionContactDamage()
 		{
-			return hasChanged;
+			return HasChanged;
 		}
 
 		public override bool OnTileCollide(Vector2 oldVelocity)

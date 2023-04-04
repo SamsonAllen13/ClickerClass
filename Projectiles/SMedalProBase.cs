@@ -13,7 +13,7 @@ namespace ClickerClass.Projectiles
 			set => Projectile.ai[0] = value;
 		}
 
-		public float Alpha
+		public float MouseoverAlpha
 		{
 			get => Projectile.ai[1];
 			set => Projectile.ai[1] = value;
@@ -43,7 +43,7 @@ namespace ClickerClass.Projectiles
 		
 		public override Color? GetAlpha(Color lightColor)
 		{
-			return new Color(255, 255, 255, 150) * Alpha * Projectile.Opacity;
+			return new Color(255, 255, 255, 150) * MouseoverAlpha * Projectile.Opacity;
 		}
 
 		public Vector2 rotVec = new Vector2(0, 120);
@@ -68,14 +68,14 @@ namespace ClickerClass.Projectiles
 			Projectile.Center = player.Center + rotVec.RotatedBy(Rot + (Mode * (6.28f / TotalCount)));
 			Projectile.gfxOffY = player.gfxOffY;
 
-			if (Alpha > 0.1f)
+			if (MouseoverAlpha > 0.1f)
 			{
-				Alpha -= 0.01f;
+				MouseoverAlpha -= 0.01f;
 			}
 
-			if (Alpha < 0.1f)
+			if (MouseoverAlpha < 0.1f)
 			{
-				Alpha = 0.1f;
+				MouseoverAlpha = 0.1f;
 			}
 		}
 	}

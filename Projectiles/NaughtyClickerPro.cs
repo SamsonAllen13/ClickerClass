@@ -1,10 +1,7 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ReLogic.Content;
-using System.IO;
 using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
@@ -17,16 +14,16 @@ namespace ClickerClass.Projectiles
 			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
 
-		public bool hasChanged = false;
-
-		public override void SendExtraAI(BinaryWriter writer)
+		public bool Trigger
 		{
-			writer.Write((bool)hasChanged);
+			get => Projectile.ai[1] == 1f;
+			set => Projectile.ai[1] = value ? 1f : 0f;
 		}
 
-		public override void ReceiveExtraAI(BinaryReader reader)
+		public bool HasChanged
 		{
-			hasChanged = reader.ReadBoolean();
+			get => Projectile.ai[2] == 1f;
+			set => Projectile.ai[2] = value ? 1f : 0f;
 		}
 		
 		public override void SetStaticDefaults()
@@ -80,15 +77,14 @@ namespace ClickerClass.Projectiles
 				}
 			}
 			
-			if (Main.myPlayer == Projectile.owner && !hasChanged && Projectile.ai[1] == 1f)
+			if (Main.myPlayer == Projectile.owner && !HasChanged && Trigger)
 			{
-				hasChanged = true;
+				HasChanged = true;
 				Projectile.netUpdate = true;
 			}
 			
-			if (hasChanged)
+			if (HasChanged)
 			{
-				Projectile.Kill();
 				SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
 				for (int k = 0; k < 10; k++)
 				{
@@ -108,6 +104,8 @@ namespace ClickerClass.Projectiles
 						Projectile.NewProjectile(Projectile.GetSource_FromThis(), new Vector2(Projectile.Center.X + Main.rand.Next(-15, 16), Projectile.Center.Y), new Vector2(Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f)), ModContent.ProjectileType<NaughtyClickerPro2>(), Projectile.damage, Projectile.knockBack, Projectile.owner);
 					}
 				}
+
+				Projectile.Kill();
 			}
 			
 			if (Projectile.timeLeft < 20)

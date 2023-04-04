@@ -17,15 +17,17 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.HappyHeart = ClickerSystem.RegisterClickEffect(Mod, "HappyHeart", 20, new Color(255, 170, 235), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
+				int heartType = ModContent.ProjectileType<HeartyClickerPro>();
 				for (int i = 0; i < Main.maxProjectiles; i++)
 				{
 					Projectile projectile = Main.projectile[i];
-					if (projectile.active && projectile.owner == player.whoAmI && projectile.type == ModContent.ProjectileType<HeartyClickerPro>())
+					if (projectile.active && projectile.owner == player.whoAmI && projectile.type == heartType &&
+					projectile.ModProjectile is HeartyClickerPro heart)
 					{
-						projectile.ai[1] += 1f;
+						heart.HeartCount++;
 					}
 				}
-				Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-2f, 2f), -6f, ModContent.ProjectileType<HeartyClickerPro>(), 0, 0f, player.whoAmI, 1f);
+				Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-2f, 2f), -6f, heartType, 0, 0f, player.whoAmI);
 			},
 			preHardMode: true,
 			descriptionArgs: new object[] { HeartMaxAmount });

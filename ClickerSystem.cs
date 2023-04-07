@@ -481,13 +481,9 @@ namespace ClickerClass
 		/// <returns><see langword="true"/> if a "clicker"</returns>
 		public static bool IsClickerWeapon(Item item, out ClickerItemCore clickerItem)
 		{
-			bool ret = IsClickerWeapon(item);
 			clickerItem = null;
-			if (ret)
-			{
-				clickerItem = item.GetGlobalItem<ClickerItemCore>();
-			}
-			return ret;
+			_ = IsClickerWeapon(item) && item.TryGetGlobalItem(out clickerItem);
+			return clickerItem != null;
 		}
 	}
 }

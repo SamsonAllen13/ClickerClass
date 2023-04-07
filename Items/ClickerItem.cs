@@ -23,7 +23,7 @@ namespace ClickerClass.Items
 		/// <param name="item">The clicker class item</param>
 		public static void SetAccessoryType(Item item, ClickerAccessoryType accessoryType)
 		{
-			if (ClickerSystem.IsClickerItem(item, out ClickerItemCore clickerItem))
+			if (item.TryGetGlobalItem(out ClickerItemCore clickerItem))
 			{
 				clickerItem.accessoryType = accessoryType;
 			}
@@ -35,7 +35,7 @@ namespace ClickerClass.Items
 		/// <param name="item">The clicker class item</param>
 		public static void SetDisplayTotalClicks(Item item)
 		{
-			if (ClickerSystem.IsClickerItem(item, out ClickerItemCore clickerItem))
+			if (item.TryGetGlobalItem(out ClickerItemCore clickerItem))
 			{
 				clickerItem.isClickerDisplayTotal = true;
 			}
@@ -47,7 +47,7 @@ namespace ClickerClass.Items
 		/// <param name="item">The clicker class item</param>
 		public static void SetDisplayMoneyGenerated(Item item)
 		{
-			if (ClickerSystem.IsClickerItem(item, out ClickerItemCore clickerItem))
+			if (item.TryGetGlobalItem(out ClickerItemCore clickerItem))
 			{
 				clickerItem.isClickerDisplayMoneyGenerated = true;
 			}

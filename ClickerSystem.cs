@@ -454,23 +454,6 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call this to check if an item belongs to the "clicker class" category
-		/// </summary>
-		/// <param name="item">The <see cref="Item"/> to be checked</param>
-		/// <param name="clickerItem">The <see cref="ClickerItemCore"/> of this item for convenience, only assigned if method returns true</param>
-		/// <returns><see langword="true"/> if a "clicker class" item</returns>
-		public static bool IsClickerItem(Item item, out ClickerItemCore clickerItem)
-		{
-			bool ret = IsClickerItem(item);
-			clickerItem = null;
-			if (ret)
-			{
-				clickerItem = item.GetGlobalItem<ClickerItemCore>();
-			}
-			return ret;
-		}
-
-		/// <summary>
 		/// Call this to check if an item type is a "clicker"
 		/// </summary>
 		/// <param name="type">The item type to be checked</param>

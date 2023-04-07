@@ -20,11 +20,16 @@ using Terraria.GameContent.Drawing;
 namespace ClickerClass.Items
 {
 	/// <summary>
-	/// The class responsible for any clicker item related logic
+	/// The class responsible for any clicker item related logic, only applies to items registered via <see cref="ClickerSystem.RegisterClickerItem(ModItem)"/>
 	/// </summary>
 	public class ClickerItemCore : GlobalItem
 	{
 		public override bool InstancePerEntity => true;
+
+		public override bool AppliesToEntity(Item entity, bool lateInstantiation)
+		{
+			return ClickerSystem.IsClickerItem(entity.type);
+		}
 
 		/// <summary>
 		/// A clickers color used for the radius
@@ -168,150 +173,147 @@ namespace ClickerClass.Items
 
 		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
 		{
-			if (ClickerSystem.IsClickerItem(item))
+			Player player = Main.LocalPlayer;
+			if (!player.TryGetModPlayer(out ClickerPlayer clickerPlayer))
 			{
-				Player player = Main.LocalPlayer;
-				if (!player.TryGetModPlayer(out ClickerPlayer clickerPlayer))
+				//Avoid incompatibility with TRAI calling ModifyTooltips during mod load when no players exist
+				return;
+			}
+
+			int index;
+
+			float alpha = Main.mouseTextColor / 255f;
+
+			if (ClickerConfigClient.Instance.ShowClassTags)
+			{
+				index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
+				if (index != -1)
 				{
-					//Avoid incompatibility with TRAI calling ModifyTooltips during mod load when no players exist
-					return;
-				}
-
-				int index;
-
-				float alpha = Main.mouseTextColor / 255f;
-
-				if (ClickerConfigClient.Instance.ShowClassTags)
-				{
-					index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("ItemName"));
-					if (index != -1)
+					tooltips.Insert(index + 1, new TooltipLine(Mod, "ClickerTag", $"-{LangHelper.GetText("Tooltip.ClickerTag")}-")
 					{
-						tooltips.Insert(index + 1, new TooltipLine(Mod, "ClickerTag", $"-{LangHelper.GetText("Tooltip.ClickerTag")}-")
-						{
-							OverrideColor = Main.DiscoColor
-						});
-					}
+						OverrideColor = Main.DiscoColor
+					});
 				}
+			}
 
-				if (isClickerDisplayTotal)
+			if (isClickerDisplayTotal)
+			{
+				index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
+
+				if (index != -1)
 				{
-					index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
-
-					if (index != -1)
-					{
-						string color = (new Color(252, 210, 44) * alpha).Hex3();
-						tooltips.Insert(index + 1, new TooltipLine(Mod, "TotalClicks", LangHelper.GetLocalization("Tooltip.TotalClicks").Format(color, clickerPlayer.clickerTotal)));
-					}
+					string color = (new Color(252, 210, 44) * alpha).Hex3();
+					tooltips.Insert(index + 1, new TooltipLine(Mod, "TotalClicks", LangHelper.GetLocalization("Tooltip.TotalClicks").Format(color, clickerPlayer.clickerTotal)));
 				}
+			}
 				
-				if (isClickerDisplayMoneyGenerated)
-				{
-					index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
+			if (isClickerDisplayMoneyGenerated)
+			{
+				index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
 
-					if (index != -1)
-					{
-						int currentValue = clickerPlayer.clickerMoneyGenerated;
-						string displayValue = currentValue != 0 ? PopupText.ValueToName(currentValue) : "0";
-						string color = (new Color(252, 210, 44) * alpha).Hex3();
-						tooltips.Insert(index + 1, new TooltipLine(Mod, "MoneyGenerated", LangHelper.GetLocalization("Tooltip.MoneyGenerated").Format(color, displayValue)));
-					}
+				if (index != -1)
+				{
+					int currentValue = clickerPlayer.clickerMoneyGenerated;
+					string displayValue = currentValue != 0 ? PopupText.ValueToName(currentValue) : "0";
+					string color = (new Color(252, 210, 44) * alpha).Hex3();
+					tooltips.Insert(index + 1, new TooltipLine(Mod, "MoneyGenerated", LangHelper.GetLocalization("Tooltip.MoneyGenerated").Format(color, displayValue)));
 				}
+			}
 
-				if (ClickerSystem.IsClickerWeapon(item))
+			if (ClickerSystem.IsClickerWeapon(item))
+			{
+				//Show the clicker's effects
+				//Then show ones missing through the players enabled effects (respecting overlap, ignoring the currently held clickers effect if its not the same type)
+				List<string> effects = new List<string>(itemClickEffects);
+				foreach (var name in ClickerSystem.GetAllEffectNames())
 				{
-					//Show the clicker's effects
-					//Then show ones missing through the players enabled effects (respecting overlap, ignoring the currently held clickers effect if its not the same type)
-					List<string> effects = new List<string>(itemClickEffects);
-					foreach (var name in ClickerSystem.GetAllEffectNames())
+					if (clickerPlayer.HasClickEffect(name, out ClickEffect effect) && !effects.Contains(name))
 					{
-						if (clickerPlayer.HasClickEffect(name, out ClickEffect effect) && !effects.Contains(name))
+						if (!(player.HeldItem.type != item.type && player.HeldItem.type != ItemID.None && player.HeldItem.GetGlobalItem<ClickerItemCore>().itemClickEffects.Contains(name)))
 						{
-							if (!(player.HeldItem.type != item.type && player.HeldItem.type != ItemID.None && player.HeldItem.GetGlobalItem<ClickerItemCore>().itemClickEffects.Contains(name)))
-							{
-								effects.Add(name);
-							}
+							effects.Add(name);
 						}
 					}
+				}
 
-					if (effects.Count > 0)
+				if (effects.Count > 0)
+				{
+					index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Knockback"));
+
+					if (index != -1)
 					{
-						index = tooltips.FindIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.Equals("Knockback"));
+						var keys = PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard].KeyStatus[TriggerNames.SmartSelect];
+						string key = keys.Count == 0 ? null : keys[0];
 
-						if (index != -1)
+						//If has a key, but not pressing it, show the ForMoreInfo text
+						//Otherwise, list all effects
+
+						//No tml hooks between controlTorch getting set, and then reset again in SmartSelectLookup, so we have to use the raw data from PlayerInput
+						bool showDesc = key == null || PlayerInput.Triggers.Current.SmartSelect;
+
+						foreach (var name in effects)
 						{
-							var keys = PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard].KeyStatus[TriggerNames.SmartSelect];
-							string key = keys.Count == 0 ? null : keys[0];
-
-							//If has a key, but not pressing it, show the ForMoreInfo text
-							//Otherwise, list all effects
-
-							//No tml hooks between controlTorch getting set, and then reset again in SmartSelectLookup, so we have to use the raw data from PlayerInput
-							bool showDesc = key == null || PlayerInput.Triggers.Current.SmartSelect;
-
-							foreach (var name in effects)
+							if (ClickerSystem.IsClickEffect(name, out ClickEffect effect))
 							{
-								if (ClickerSystem.IsClickEffect(name, out ClickEffect effect))
-								{
-									tooltips.Insert(++index, effect.ToTooltip(clickerPlayer.GetClickAmountTotal(this, name), alpha, showDesc));
-								}
+								tooltips.Insert(++index, effect.ToTooltip(clickerPlayer.GetClickAmountTotal(this, name), alpha, showDesc));
 							}
+						}
 
-							if (!showDesc && ClickerConfigClient.Instance.ShowEffectSuggestion)
+						if (!showDesc && ClickerConfigClient.Instance.ShowEffectSuggestion)
+						{
+							//Add ForMoreInfo as the last line
+							index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
+							var ttl = new TooltipLine(Mod, "ForMoreInfo", LangHelper.GetText("Tooltip.ForMoreInfo", key))
 							{
-								//Add ForMoreInfo as the last line
-								index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
-								var ttl = new TooltipLine(Mod, "ForMoreInfo", LangHelper.GetText("Tooltip.ForMoreInfo", key))
-								{
-									OverrideColor = Color.Gray
-								};
+								OverrideColor = Color.Gray
+							};
 
-								if (index != -1)
-								{
-									tooltips.Insert(++index, ttl);
-								}
-								else
-								{
-									tooltips.Add(ttl);
-								}
+							if (index != -1)
+							{
+								tooltips.Insert(++index, ttl);
+							}
+							else
+							{
+								tooltips.Add(ttl);
 							}
 						}
 					}
 				}
+			}
 				
-				if (item.prefix < PrefixID.Count || !ClickerPrefix.ClickerPrefixes.Contains(item.prefix))
-				{
-					return;
-				}
+			if (item.prefix < PrefixID.Count || !ClickerPrefix.ClickerPrefixes.Contains(item.prefix))
+			{
+				return;
+			}
 
-				int ttindex = tooltips.FindLastIndex(t => (t.Mod == "Terraria" || t.Mod == Mod.Name) && (t.IsModifier || t.Name.StartsWith("Tooltip") || t.Name.Equals("Material")));
-				if (ttindex != -1)
+			int ttindex = tooltips.FindLastIndex(t => (t.Mod == "Terraria" || t.Mod == Mod.Name) && (t.IsModifier || t.Name.StartsWith("Tooltip") || t.Name.Equals("Material")));
+			if (ttindex != -1)
+			{
+				if (radiusBoostPrefix != 0)
 				{
-					if (radiusBoostPrefix != 0)
+					TooltipLine tt = new TooltipLine(Mod, "PrefixClickerRadius", (radiusBoostPrefix > 0 ? "+" : "") + LangHelper.GetText("Prefixes.Common.RadiusBoost", (int)((radiusBoostPrefix / 2) * 100)))
 					{
-						TooltipLine tt = new TooltipLine(Mod, "PrefixClickerRadius", (radiusBoostPrefix > 0 ? "+" : "") + LangHelper.GetText("Prefixes.Common.RadiusBoost", (int)((radiusBoostPrefix / 2) * 100)))
-						{
-							IsModifier = true,
-							IsModifierBad = radiusBoostPrefix < 0
-						};
-						tooltips.Insert(++ttindex, tt);
-					}
-					if (clickBoostPrefix != 0)
+						IsModifier = true,
+						IsModifierBad = radiusBoostPrefix < 0
+					};
+					tooltips.Insert(++ttindex, tt);
+				}
+				if (clickBoostPrefix != 0)
+				{
+					TooltipLine tt = new TooltipLine(Mod, "PrefixClickBoost", (clickBoostPrefix < 0 ? "" : "+") + LangHelper.GetText("Prefixes.Common.ClickBoost", clickBoostPrefix))
 					{
-						TooltipLine tt = new TooltipLine(Mod, "PrefixClickBoost", (clickBoostPrefix < 0 ? "" : "+") + LangHelper.GetText("Prefixes.Common.ClickBoost", clickBoostPrefix))
-						{
-							IsModifier = true,
-							IsModifierBad = clickBoostPrefix > 0
-						};
-						tooltips.Insert(++ttindex, tt);
-					}
+						IsModifier = true,
+						IsModifierBad = clickBoostPrefix > 0
+					};
+					tooltips.Insert(++ttindex, tt);
 				}
 			}
 		}
 
 		public override bool CanAccessoryBeEquippedWith(Item equippedItem, Item incomingItem, Player player)
 		{
-			if (ClickerSystem.IsClickerItem(equippedItem, out ClickerItemCore equippedClickerItem) &&
-				ClickerSystem.IsClickerItem(incomingItem, out ClickerItemCore incomingClickerItem))
+			if (equippedItem.TryGetGlobalItem(out ClickerItemCore equippedClickerItem) &&
+				incomingItem.TryGetGlobalItem(out ClickerItemCore incomingClickerItem))
 			{
 				if (equippedClickerItem.accessoryType != ClickerAccessoryType.None &&
 					incomingClickerItem.accessoryType != ClickerAccessoryType.None)

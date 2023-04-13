@@ -113,7 +113,7 @@ Mods: {
 		}
 
 		Tiles: {
-			MiceDresser.MapEntry: "{$Items.MiceChest.MiceDresser}"
+			MiceDresser.MapEntry: "{$Items.MiceDresser.DispayName}"
 			MiceChest.MapEntry: "{$Items.MiceChest.DispayName}"
 			TrappedMiceChest.MapEntry: "{$Items.MiceChest_Trapped.DispayName}"
 		}

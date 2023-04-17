@@ -42,7 +42,7 @@ namespace ClickerClass.Projectiles
 
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			modifiers.SourceDamage *= 2.5f;
+			modifiers.SourceDamage += 1.5f;
 			modifiers.SetCrit();
 		}
 

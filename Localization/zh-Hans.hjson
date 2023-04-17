@@ -113,9 +113,9 @@ Mods: {
 		}
 
 		Tiles: {
-			// MiceDresser.MapEntry: Mice Dresser
-			// MiceChest.MapEntry: Mice Chest
-			// TrappedMiceChest.MapEntry: Trapped Mice Chest
+			MiceDresser.MapEntry: "{$Items.MiceDresser.DisplayName}"
+			MiceChest.MapEntry: "{$Items.MiceChest.DisplayName}"
+			TrappedMiceChest.MapEntry: "{$Items.MiceChest_Trapped.DisplayName}"
 		}
 
 		DamageClasses.ClickerDamage.DisplayName: 点击伤害
@@ -1165,82 +1165,82 @@ Mods: {
 
 		# regex: DisplayName\: (.*?) Pro([0-9]*)? -> DisplayName: $1
 		Projectiles: {
-			// AdamantiteClickerPro.DisplayName: Adamantite Clicker
-			// AMedalPro.DisplayName: A Medal
-			// ArthursClickerPro.DisplayName: Arthurs Clicker
-			// AstralClickerPro.DisplayName: Astral Clicker
-			// BalloonClickerPro.DisplayName: Balloon Clicker
-			// BigRedButtonPro.DisplayName: Big Red Button
-			// BigRedButtonPro2.DisplayName: Big Red Button
-			// BigRedButtonPro3.DisplayName: Big Red Button
-			// BlizzardClickerPro.DisplayName: Blizzard Clicker
-			// BlizzardClickerPro2.DisplayName: Blizzard Clicker
-			// BoneClickerPro.DisplayName: Bone Clicker
-			// BottomlessBoxofPaperclipsPro.DisplayName: Bottomless Box of Paperclips
-			// CandleClickerPro.DisplayName: Candle Clicker
-			// CaptainsClickerPro.DisplayName: Captains Clicker
-			// ChlorophyteClickerPro.DisplayName: Chlorophyte Clicker
-			// ChocolateChipPro.DisplayName: Chocolate Chip
-			// ClearKeychainPro.DisplayName: Clear Keychain
-			// ClearKeychainPro2.DisplayName: Clear Keychain
+			AdamantiteClickerPro.DisplayName: "{$Items.AdamantiteClicker.DisplayName}"
+			AMedalPro.DisplayName: "{$Items.AMedal.DisplayName}"
+			ArthursClickerPro.DisplayName: "{$Items.ArthursClicker.DisplayName}"
+			AstralClickerPro.DisplayName: "{$Items.AstralClicker.DisplayName}"
+			BalloonClickerPro.DisplayName: "{$Items.BalloonClicker.DisplayName}"
+			BigRedButtonPro.DisplayName: "{$Items.BigRedButton.DisplayName}"
+			BigRedButtonPro2.DisplayName: "{$Items.BigRedButton.DisplayName}"
+			BigRedButtonPro3.DisplayName: "{$Items.BigRedButton.DisplayName}"
+			BlizzardClickerPro.DisplayName: "{$Items.BlizzardClicker.DisplayName}"
+			BlizzardClickerPro2.DisplayName: "{$Items.BlizzardClicker.DisplayName}"
+			BoneClickerPro.DisplayName: "{$Items.BoneClicker.DisplayName}"
+			BottomlessBoxofPaperclipsPro.DisplayName: "{$Items.BottomlessBoxofPaperclips.DisplayName}"
+			CandleClickerPro.DisplayName: "{$Items.CandleClicker.DisplayName}"
+			CaptainsClickerPro.DisplayName: "{$Items.CaptainsClicker.DisplayName}"
+			ChlorophyteClickerPro.DisplayName: "{$Items.ChlorophyteClicker.DisplayName}"
+			ChocolateChipPro.DisplayName: "{$Items.ChocolateChip.DisplayName}"
+			ClearKeychainPro.DisplayName: "{$Items.ClearKeychain.DisplayName}"
+			ClearKeychainPro2.DisplayName: "{$Items.ClearKeychain.DisplayName}"
 			// ClickDamage.DisplayName: Click Damage
-			// CookiePro.DisplayName: Cookie
-			// CorruptClickerPro.DisplayName: Corrupt Clicker
-			// CrimsonClickerPro.DisplayName: Crimson Clicker
-			// CrystalClickerPro.DisplayName: Crystal Clicker
-			// CyclopsClickerPro.DisplayName: Cyclops Clicker
-			// DarkClickerPro.DisplayName: Dark Clicker
-			// DraconicClickerPro.DisplayName: Draconic Clicker
-			// DraconicClickerPro2.DisplayName: Draconic Clicker
-			// FaultyClickerPro.DisplayName: Faulty Clicker
-			// FMedalPro.DisplayName: F Medal
-			// FrozenClickerPro.DisplayName: Frozen Clicker
-			// HemoClickerPro.DisplayName: Hemo Clicker
-			// HighTechClickerPro.DisplayName: High Tech Clicker
-			// HoneyGlazedClickerPro.DisplayName: Honey Glazed Clicker
-			// HotKeychainPro.DisplayName: Hot Keychain
-			// LanternClickerPro.DisplayName: Lantern Clicker
-			// LihzarhdClickerPro.DisplayName: Lihzarhd Clicker
-			// LordsClickerPro.DisplayName: Lords Clicker
-			// MiceClickerPro.DisplayName: Mice Clicker
-			// MiceDrillPro.DisplayName: Mice Drill
-			// MyceliumClickerPro.DisplayName: Mycelium Clicker
-			// MythrilClickerPro.DisplayName: Mythril Clicker
-			// NaughtyClickerPro.DisplayName: Naughty Clicker
-			// NaughtyClickerPro2.DisplayName: Naughty Clicker
-			// NaughtyClickerPro3.DisplayName: Naughty Clicker
-			// OrichaclumClickerPro.DisplayName: Orichaclum Clicker
-			// PointyClickerPro.DisplayName: Pointy Clicker
-			// PrecursorPro.DisplayName: Precursor
-			// RainbowClickerPro.DisplayName: Rainbow Clicker
-			// RedHotClickerPro.DisplayName: Red Hot Clicker
+			CookiePro.DisplayName: "{$Items.Cookie.DisplayName}"
+			CorruptClickerPro.DisplayName: "{$Items.CorruptClicker.DisplayName}"
+			CrimsonClickerPro.DisplayName: "{$Items.CrimsonClicker.DisplayName}"
+			CrystalClickerPro.DisplayName: "{$Items.CrystalClicker.DisplayName}"
+			CyclopsClickerPro.DisplayName: "{$Items.CyclopsClicker.DisplayName}"
+			DarkClickerPro.DisplayName: "{$Items.DarkClicker.DisplayName}"
+			DraconicClickerPro.DisplayName: "{$Items.DraconicClicker.DisplayName}"
+			DraconicClickerPro2.DisplayName: "{$Items.DraconicClicker.DisplayName}"
+			FaultyClickerPro.DisplayName: "{$Items.FaultyClicker.DisplayName}"
+			FMedalPro.DisplayName: "{$Items.FMedal.DisplayName}"
+			FrozenClickerPro.DisplayName: "{$Items.FrozenClicker.DisplayName}"
+			HemoClickerPro.DisplayName: "{$Items.HemoClicker.DisplayName}"
+			HighTechClickerPro.DisplayName: "{$Items.HighTechClicker.DisplayName}"
+			HoneyGlazedClickerPro.DisplayName: "{$Items.HoneyGlazedClicker.DisplayName}"
+			HotKeychainPro.DisplayName: "{$Items.HotKeychain.DisplayName}"
+			LanternClickerPro.DisplayName: "{$Items.LanternClicker.DisplayName}"
+			LihzarhdClickerPro.DisplayName: "{$Items.LihzarhdClicker.DisplayName}"
+			LordsClickerPro.DisplayName: "{$Items.LordsClicker.DisplayName}"
+			MiceClickerPro.DisplayName: "{$Items.MiceClicker.DisplayName}"
+			MiceDrillPro.DisplayName: "{$Items.MiceDrill.DisplayName}"
+			MyceliumClickerPro.DisplayName: "{$Items.MyceliumClicker.DisplayName}"
+			MythrilClickerPro.DisplayName: "{$Items.MythrilClicker.DisplayName}"
+			NaughtyClickerPro.DisplayName: "{$Items.NaughtyClicker.DisplayName}"
+			NaughtyClickerPro2.DisplayName: "{$Items.NaughtyClicker.DisplayName}"
+			NaughtyClickerPro3.DisplayName: "{$Items.NaughtyClicker.DisplayName}"
+			OrichaclumClickerPro.DisplayName: "{$Items.OrichaclumClicker.DisplayName}"
+			PointyClickerPro.DisplayName: "{$Items.PointyClicker.DisplayName}"
+			PrecursorPro.DisplayName: "{$Items.Precursor.DisplayName}"
+			RainbowClickerPro.DisplayName: "{$Items.RainbowClicker.DisplayName}"
+			RedHotClickerPro.DisplayName: "{$Items.RedHotClicker.DisplayName}"
 			// RGBPro.DisplayName: RGB
-			// SandstormClickerPro.DisplayName: Sandstorm Clicker
-			// SeafoamClickerPro.DisplayName: Seafoam Clicker
-			// ShadowyClickerPro.DisplayName: Shadowy Clicker
-			// SinisterClickerPro.DisplayName: Sinister Clicker
-			// SlickClickerPro.DisplayName: Slick Clicker
-			// SMedalPro.DisplayName: S Medal
-			// SMedalPro2.DisplayName: S Medal
-			// SMedalPro3.DisplayName: S Medal
-			// SnottyClickerPro.DisplayName: Snotty Clicker
-			// SpaceClickerPro.DisplayName: Space Clicker
-			// SpiralClickerPro.DisplayName: Spiral Clicker
-			// StarryClickerPro.DisplayName: Starry Clicker
-			// StickyKeychainPro.DisplayName: Sticky Keychain
-			// TheClickerPro.DisplayName: The Clicker
-			// TitaniumClickerPro.DisplayName: Titanium Clicker
-			// TorchClickerPro.DisplayName: Torch Clicker
-			// TotalityClickerPro.DisplayName: Totality Clicker
-			// TotalityClickerPro2.DisplayName: Totality Clicker
-			// UmbralClickerPro.DisplayName: Umbral Clicker
-			// WebClickerPro.DisplayName: Web Clicker
-			// WebClickerPro2.DisplayName: Web Clicker
-			// DreamClickerPro.DisplayName: Dream Clicker
-			// FamishedClickerPro.DisplayName: Famished Clicker
-			// HeartyClickerPro.DisplayName: Hearty Clicker
-			// PharaohsClickerPro.DisplayName: Pharaoh's Clicker
-			// PharaohsClickerPro2.DisplayName: Pharaoh's Clicker
+			SandstormClickerPro.DisplayName: "{$Items.SandstormClicker.DisplayName}"
+			SeafoamClickerPro.DisplayName: "{$Items.SeafoamClicker.DisplayName}"
+			ShadowyClickerPro.DisplayName: "{$Items.ShadowyClicker.DisplayName}"
+			SinisterClickerPro.DisplayName: "{$Items.SinisterClicker.DisplayName}"
+			SlickClickerPro.DisplayName: "{$Items.SlickClicker.DisplayName}"
+			SMedalPro.DisplayName: "{$Items.SMedal.DisplayName}"
+			SMedalPro2.DisplayName: "{$Items.SMedal.DisplayName}"
+			SMedalPro3.DisplayName: "{$Items.SMedal.DisplayName}"
+			SnottyClickerPro.DisplayName: "{$Items.SnottyClicker.DisplayName}"
+			SpaceClickerPro.DisplayName: "{$Items.SpaceClicker.DisplayName}"
+			SpiralClickerPro.DisplayName: "{$Items.SpiralClicker.DisplayName}"
+			StarryClickerPro.DisplayName: "{$Items.StarryClicker.DisplayName}"
+			StickyKeychainPro.DisplayName: "{$Items.StickyKeychain.DisplayName}"
+			TheClickerPro.DisplayName: "{$Items.TheClicker.DisplayName}"
+			TitaniumClickerPro.DisplayName: "{$Items.TitaniumClicker.DisplayName}"
+			TorchClickerPro.DisplayName: "{$Items.TorchClicker.DisplayName}"
+			TotalityClickerPro.DisplayName: "{$Items.TotalityClicker.DisplayName}"
+			TotalityClickerPro2.DisplayName: "{$Items.TotalityClicker.DisplayName}"
+			UmbralClickerPro.DisplayName: "{$Items.UmbralClicker.DisplayName}"
+			WebClickerPro.DisplayName: "{$Items.WebClicker.DisplayName}"
+			WebClickerPro2.DisplayName: "{$Items.WebClicker.DisplayName}"
+			DreamClickerPro.DisplayName: "{$Items.DreamClicker.DisplayName}"
+			FamishedClickerPro.DisplayName: "{$Items.FamishedClicker.DisplayName}"
+			HeartyClickerPro.DisplayName: "{$Items.HeartyClicker.DisplayName}"
+			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
+			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 		}
 	}
 }

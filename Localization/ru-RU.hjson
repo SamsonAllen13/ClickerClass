@@ -113,9 +113,9 @@ Mods: {
 		}
 
 		Tiles: {
-			MiceDresser.MapEntry: "{$Items.MiceDresser.DispayName}"
-			MiceChest.MapEntry: "{$Items.MiceChest.DispayName}"
-			TrappedMiceChest.MapEntry: "{$Items.MiceChest_Trapped.DispayName}"
+			MiceDresser.MapEntry: "{$Items.MiceDresser.DisplayName}"
+			MiceChest.MapEntry: "{$Items.MiceChest.DisplayName}"
+			TrappedMiceChest.MapEntry: "{$Items.MiceChest_Trapped.DisplayName}"
 		}
 
 		DamageClasses.ClickerDamage.DisplayName: ед. урона клика

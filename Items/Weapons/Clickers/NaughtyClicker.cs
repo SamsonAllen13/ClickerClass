@@ -25,11 +25,6 @@ namespace ClickerClass.Items.Weapons.Clickers
 			});
 		}
 
-		public override void AddRecipes()
-		{
-			CreateRecipe().AddIngredient(ItemID.DirtBlock).Register();
-		}
-
 		public override void SetDefaults()
 		{
 			base.SetDefaults();

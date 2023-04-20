@@ -326,16 +326,6 @@ namespace ClickerClass.Items
 			return base.CanAccessoryBeEquippedWith(equippedItem, incomingItem, player);
 		}
 
-		public override bool PreReforge(Item item)
-		{
-			if (ClickerSystem.IsClickerWeapon(item))
-			{
-				radiusBoostPrefix = 0f;
-				clickBoostPrefix = 0;
-			}
-
-			return base.PreReforge(item);
-		}
 
 		public override int ChoosePrefix(Item item, UnifiedRandom rand)
 		{

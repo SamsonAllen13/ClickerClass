@@ -48,7 +48,7 @@ namespace ClickerClass.Tiles.Mice
 
 			AdjTiles = new int[] { TileID.Dressers };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
-			AddMapEntry(new Color(191, 142, 111), CreateMapEntryName(), MapChestName);
+			AddMapEntry(new Color(191, 142, 111), ModContent.GetInstance<Items.Placeable.Mice.MiceDresser>().DisplayName, MapChestName);
 		}
 
 		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;

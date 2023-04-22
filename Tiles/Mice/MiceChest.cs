@@ -7,6 +7,7 @@ using Terraria.Enums;
 using Terraria.GameContent.ObjectInteractions;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.Map;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
@@ -54,7 +55,8 @@ namespace ClickerClass.Tiles.Mice
 
 		public override LocalizedText DefaultContainerName(int frameX, int frameY)
 		{
-			return this.GetLocalization("MapEntry");
+			int option = /*frameX / 36*/0; //Only use the first style for the default name
+			return Lang._mapLegendCache[MapHelper.TileToLookup(Type, option)];
 		}
 
 		public string MapChestName(string name, int i, int j)

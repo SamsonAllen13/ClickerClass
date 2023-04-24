@@ -63,7 +63,7 @@ namespace ClickerClass.Tiles.Mice
 
 		public override LocalizedText DefaultContainerName(int frameX, int frameY)
 		{
-			int option = /*frameX / 36*/0; //Only use the first style for the default name
+			int option = frameX / 54;
 			return Lang._mapLegendCache[MapHelper.TileToLookup(Type, option)];
 		}
 

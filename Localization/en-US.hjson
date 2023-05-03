@@ -1076,7 +1076,7 @@ Mods: {
 
 			Nab: {
 				Name: Nab
-				Description: Catches critters near your cursor, dropping them to the ground
+				Description: Catches critters near your cursor
 			}
 		}
 

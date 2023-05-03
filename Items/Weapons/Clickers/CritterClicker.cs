@@ -20,10 +20,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 				for (int u = 0; u < Main.maxNPCs; u++)
 				{
 					NPC target = Main.npc[u];
-					if (target.DistanceSQ(position) < 100 * 100)
+					if (target.active && target.catchItem > 0 && target.DistanceSQ(position) < 100 * 100)
 					{
-						//TODO - Figure this shit out | Is it a 1.4.4 method only or something?
-						//NPC.CatchNPC(target.whoAmI, player.whoAmI);
+						NPC.CheckCatchNPC(target, target.Hitbox, player.HeldItem, player);
 					}
 				}
 			});

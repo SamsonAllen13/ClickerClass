@@ -61,8 +61,14 @@ namespace ClickerClass.DrawLayers
 			}
 
 			Color color = drawPlayer.GetImmuneAlphaPure(data.Color(drawInfo), drawInfo.shadow);
-
 			Texture2D texture = data.Texture.Value;
+
+			if (drawInfo.isSitting && (!DrawLayerHelper.ShouldOverrideLegs_CheckShoes(ref drawInfo) || drawPlayer.wearsRobe))
+			{
+				DrawLayerHelper.DrawSittingLegsMethod(ref drawInfo, texture, color, drawInfo.cLegs);
+				return;
+			}
+
 			Vector2 drawPos = drawInfo.Position - Main.screenPosition + new Vector2(drawPlayer.width / 2 - drawPlayer.legFrame.Width / 2, drawPlayer.height - drawPlayer.legFrame.Height + 4f) + drawPlayer.legPosition;
 			Vector2 legsOffset = drawInfo.legsOffset;
 			DrawData drawData = new DrawData(texture, drawPos.Floor() + legsOffset, drawPlayer.legFrame, color, drawPlayer.legRotation, legsOffset, 1f, drawInfo.playerEffect, 0)

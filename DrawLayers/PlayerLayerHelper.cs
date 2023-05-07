@@ -1,0 +1,35 @@
+﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using System;
+using System.Reflection;
+using Terraria.ID;
+using Terraria.DataStructures;
+using Terraria.ModLoader;
+
+namespace ClickerClass.DrawLayers
+{
+	public class DrawLayerHelper : ModSystem
+	{
+		public delegate void DrawSittingLegsDelegate(ref PlayerDrawSet drawinfo, Texture2D textureToDraw, Color matchingColor, int shaderIndex = 0, bool glowmask = false);
+
+		public static DrawSittingLegsDelegate DrawSittingLegsMethod { private set; get; } //Method is too big to bother copying, so use reflection instead. Monitor tml developments
+
+		public override void Load()
+		{
+			var playerDrawLayersType = typeof(PlayerDrawLayers);
+			var drawSittingLegsMethodInfo = playerDrawLayersType.GetMethod("DrawSittingLegs", BindingFlags.Static | BindingFlags.NonPublic);
+			DrawSittingLegsMethod = (DrawSittingLegsDelegate)Delegate.CreateDelegate(typeof(DrawSittingLegsDelegate), drawSittingLegsMethodInfo);
+		}
+
+		public override void Unload()
+		{
+			DrawSittingLegsMethod = null;
+		}
+
+		//Copied from vanilla
+		public static bool ShouldOverrideLegs_CheckShoes(ref PlayerDrawSet drawInfo)
+		{
+			return drawInfo.drawPlayer.shoe > 0 && ArmorIDs.Shoe.Sets.OverridesLegs[drawInfo.drawPlayer.shoe];
+		}
+	}
+}

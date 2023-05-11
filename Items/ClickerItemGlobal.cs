@@ -114,23 +114,5 @@ namespace ClickerClass.Items
 				clickerPlayer.clickerRadius += 2 * ClickerRadius.RadiusIncrease / 100f;
 			}
 		}
-
-		//Tooltip stuff
-		public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
-		{
-			// Clicker radius accessory prefix tooltip
-			if (item.accessory && !item.social && item.prefix == ModContent.PrefixType<ClickerRadius>())
-			{
-				int index = tooltips.FindLastIndex(tt => (tt.Mod.Equals("Terraria") || tt.Mod.Equals(Mod.Name))
-				&& (tt.Name.Equals("Material") || tt.Name.StartsWith("Tooltip") || tt.Name.Equals("Defense") || tt.Name.Equals("Equipable")));
-				if (index != -1)
-				{
-					tooltips.Insert(index + 1, new TooltipLine(Mod, "PrefixAcc" + nameof(ClickerRadius), ClickerRadius.TooltipText.Format(ClickerRadius.RadiusIncrease))
-					{
-						IsModifier = true
-					});
-				}
-			}
-		}
 	}
 }

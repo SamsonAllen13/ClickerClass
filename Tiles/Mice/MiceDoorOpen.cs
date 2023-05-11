@@ -67,7 +67,7 @@ namespace ClickerClass.Tiles.Mice
 			TileObjectData.addTile(Type);
 
 			//Tiles usually drop their corresponding item automatically, but ItemDrop is needed here since the MiceDoor item places MiceDoorClosed, not this tile.
-			ItemDrop = ModContent.ItemType<Items.Placeable.Mice.MiceDoor>();
+			RegisterItemDrop(ModContent.ItemType<Items.Placeable.Mice.MiceDoor>(), 0);
 			TileID.Sets.CloseDoorID[Type] = ModContent.TileType<Tiles.Mice.MiceDoorClosed>();
 			AdjTiles = new int[] { TileID.OpenDoor };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsDoor);

@@ -1,6 +1,5 @@
 ﻿using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -9,6 +8,8 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			ItemID.Sets.WorksInVoidBag[Item.type] = true;
 		}
 
 		public override void SetDefaults()
@@ -19,14 +20,8 @@ namespace ClickerClass.Items.Accessories
 			Item.value = Item.sellPrice(0, 1, 0, 0);
 			Item.rare = ItemRarityID.Green;
 		}
-		
-		//Sharing to party members handled in ClickerPlayer.PostUpdateEquips
-		public override void UpdateInventory(Player player) 
-		{
-			player.GetModPlayer<ClickerPlayer>().accButtonMasher = true;
-		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
+		public override void UpdateInfoAccessory(Player player)
 		{
 			player.GetModPlayer<ClickerPlayer>().accButtonMasher = true;
 		}

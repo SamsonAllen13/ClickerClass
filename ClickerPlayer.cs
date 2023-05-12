@@ -789,7 +789,6 @@ namespace ClickerClass
 			accPaperclipsItem = null;
 			accHotKeychain = false;
 			accHotKeychain2 = false;
-			accButtonMasher = false;
 			accAimbotModule = false;
 			accAimbotModule2 = false;
 			accAimbotModuleTargetInRange = false;
@@ -808,6 +807,11 @@ namespace ClickerClass
 			accSFXButtonF = 0;
 			accSFXButtonG = 0;
 			accSFXButtonH = 0;
+		}
+
+		public override void ResetInfoAccessories()
+		{
+			accButtonMasher = false;
 		}
 
 		public override void UpdateAutopause()
@@ -865,6 +869,15 @@ namespace ClickerClass
 		public override void SyncPlayer(int toWho, int fromWho, bool newPlayer)
 		{
 			new SyncClickerPlayerPacket(this).Send(toWho, fromWho);
+		}
+
+		public override void RefreshInfoAccessoriesFromTeamPlayers(Player otherPlayer)
+		{
+			ClickerPlayer clickerOther = otherPlayer.GetModPlayer<ClickerPlayer>();
+			if (clickerOther.accButtonMasher)
+			{
+				accButtonMasher = true;
+			}
 		}
 
 		public override void ProcessTriggers(TriggersSet triggersSet)
@@ -1520,30 +1533,6 @@ namespace ClickerClass
 				if (OutOfCombat)
 				{
 					accHotKeychainAmount = 0;
-				}
-			}
-
-			// Get variables from other players
-			if (Main.netMode == NetmodeID.MultiplayerClient && Player.whoAmI == Main.myPlayer)
-			{
-				for (int num = 0; num < Main.maxPlayers; num++)
-				{
-					Player other = Main.player[num];
-					if (num == Player.whoAmI || !other.active || other.dead || other.team != Player.team || other.team == 0)
-					{
-						continue;
-					}
-					// Other player that is on the same team
-
-					int distSQ = 800 * 800;
-					if (Player.DistanceSQ(other.Center) < distSQ)
-					{
-						ClickerPlayer clickerPlayer = other.GetModPlayer<ClickerPlayer>();
-						if (clickerPlayer.accButtonMasher)
-						{
-							accButtonMasher = true;
-						}
-					}
 				}
 			}
 

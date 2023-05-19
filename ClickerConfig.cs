@@ -1,16 +1,4 @@
-﻿using System;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.Audio;
-using Terraria.ModLoader;
-using Terraria.DataStructures;
-using ReLogic.Content;
-using Microsoft.Xna.Framework.Graphics;
-using ClickerClass.Utilities;
-using ClickerClass.DrawLayers;
-using Terraria.GameContent.Drawing;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using Terraria.ModLoader.Config;
 
 namespace ClickerClass

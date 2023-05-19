@@ -764,11 +764,6 @@ Mods: {
 				Description: Dispara alguns confetes!
 			}
 
-			Devour: {
-				Name: Devorar
-				Description: N/D
-			}
-
 			Insanity: {
 				Name: Insanidade
 				Description: Invoca uma garra das sombras que atinge a área

@@ -764,11 +764,6 @@ Mods: {
 				Description: Lance des confettis!
 			}
 
-			Devour: {
-				Name: Dévorer
-				// Description: N/A
-			}
-
 			Insanity: {
 				Name: Folie
 				Description: Invoque une griffe ombreuse qui frappe la zone

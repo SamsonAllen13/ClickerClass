@@ -764,11 +764,6 @@ Mods: {
 				Description: Разбрасывает конфетти!
 			}
 
-			Devour: {
-				Name: Пожирание
-				Description: Н/Д
-			}
-
 			Insanity: {
 				Name: Безумие
 				Description: Призывает теневой коготь, атакующий область вокруг себя

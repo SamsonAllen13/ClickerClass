@@ -764,11 +764,6 @@ Mods: {
 				Description: Throws out some confetti!
 			}
 
-			Devour: {
-				Name: Devour
-				Description: N/A
-			}
-
 			Insanity: {
 				Name: Insanity
 				Description: Summons a shadowy claw that strikes the area

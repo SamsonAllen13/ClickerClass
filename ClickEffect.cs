@@ -157,7 +157,6 @@ namespace ClickerClass
 		public static string Mania { get; internal set; } = string.Empty;
 		public static string Nab { get; internal set; } = string.Empty;
 		public static string PartyTime { get; internal set; } = string.Empty;
-		public static string Devour { get; internal set; } = string.Empty;
 		public static string StarSlice { get; internal set; } = string.Empty;
 		public static string Evolve { get; internal set; } = string.Empty;
 		public static string HappyHeart { get; internal set; } = string.Empty;

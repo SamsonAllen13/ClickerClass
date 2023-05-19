@@ -764,11 +764,6 @@ Mods: {
 				// Description: Throws out some confetti!
 			}
 
-			Devour: {
-				// Name: Devour
-				// Description: N/A
-			}
-
 			Insanity: {
 				Name: 癫狂
 				Description: 召唤一只暗影爪进行范围攻击

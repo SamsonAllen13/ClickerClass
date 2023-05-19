@@ -15,7 +15,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.WyvernsRoar = ClickerSystem.RegisterClickEffect(Mod, "WyvernsRoar", 10, new Color(175, 55, 135), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				int offSet = player.direction * 300;
+				int offSet = player.direction * 350;
 				float direction = player.direction * 3f;
 				
 				Projectile.NewProjectile(source, new Vector2(position.X - offSet, position.Y - 225), new Vector2(direction, 0f), ModContent.ProjectileType<DraconicClickerPro>(), damage * 2, knockBack, player.whoAmI);

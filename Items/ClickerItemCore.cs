@@ -103,20 +103,27 @@ namespace ClickerClass.Items
 				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 				var activeAutoReuseEffect = clickerPlayer.ActiveAutoReuseEffect;
 
-				if (player.CanAutoReuseItem(item))
+				if (!ClickerConfigClient.Instance.ToggleAutoreuseLimiter)
 				{
-					if (activeAutoReuseEffect != default)
-					{
-						return Math.Max(1, activeAutoReuseEffect.SpeedFactor / 2);
-					}
-					else
-					{
-						return 10f; //non-clicker induced autoswing (just a fallback, shouldn't ever happen with CanAutoReuseItem returning false)
-					}
+					return 2f; //useTime set to 2 minimum even with the toggle
 				}
 				else
 				{
-					return 1f; //No change when not autoswinging
+					if (player.CanAutoReuseItem(item))
+					{
+						if (activeAutoReuseEffect != default)
+						{
+							return Math.Max(1, activeAutoReuseEffect.SpeedFactor / 2);
+						}
+						else
+						{
+							return 10f; //non-clicker induced autoswing (just a fallback, shouldn't ever happen with CanAutoReuseItem returning false)
+						}
+					}
+					else
+					{
+						return 1f; //No change when not autoswinging
+					}
 				}
 			}
 
@@ -127,8 +134,15 @@ namespace ClickerClass.Items
 		{
 			if (ClickerSystem.IsClickerWeapon(item))
 			{
-				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-				return clickerPlayer.ActiveAutoReuseEffect != default;
+				if (!ClickerConfigClient.Instance.ToggleAutoreuseLimiter)
+				{
+					return base.CanAutoReuseItem(item, player);
+				}
+				else
+				{
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+					return clickerPlayer.ActiveAutoReuseEffect != default;
+				}
 			}
 
 			return base.CanAutoReuseItem(item, player);

@@ -24,6 +24,8 @@ namespace ClickerClass.Projectiles
 			Projectile.penetrate = -1;
 			Projectile.timeLeft = 180;
 			Projectile.friendly = true;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 15;
 		}
 		
 		public override Color? GetAlpha(Color lightColor)
@@ -33,8 +35,7 @@ namespace ClickerClass.Projectiles
 		
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			target.AddBuff(BuffID.Oiled, 300, false);
-			target.AddBuff(BuffID.OnFire, 300, false);
+			target.AddBuff(BuffID.OnFire3, 300, false);
 		}
 		
 		public override void AI()

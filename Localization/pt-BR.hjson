@@ -1116,7 +1116,11 @@ Mods: {
 
 		ClickerConfigClient: {
 			Label: Configuração
-			Header.GeneralOptions: Opções gerais
+
+			Header: {
+				// DisplayOptions: Display Options
+				// GameplayOptions: Gameplay Options
+			}
 
 			ShowClassTags: {
 				Label: Exibir marcas de classe
@@ -1145,6 +1149,11 @@ Mods: {
 			ShowOthersClickIndicator: {
 				Label: Exibir indicadores de clique dos outros
 				Tooltip: Alternar a exibição de indicadores de clique onde outros usaram um clicker
+			}
+
+			ToggleAutoreuseLimiter: {
+				// Label: Autoreuse Limiter
+				// Tooltip: Toggle whether the mod attempts to resitrict auto-reuse effects or not
 			}
 		}
 

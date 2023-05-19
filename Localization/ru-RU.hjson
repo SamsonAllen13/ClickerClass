@@ -1116,7 +1116,11 @@ Mods: {
 
 		ClickerConfigClient: {
 			Label: Настройки
-			Header.GeneralOptions: Общие настройки
+
+			Header: {
+				// DisplayOptions: Display Options
+				// GameplayOptions: Gameplay Options
+			}
 
 			ShowClassTags: {
 				Label: Отображение метки класса
@@ -1146,6 +1150,11 @@ Mods: {
 			ShowOthersClickIndicator: {
 				Label: Визуальный индикатор кликов других игроков
 				Tooltip: Показывает визуальный индикатор кликов в тех местах, где другие игроки использовали курсор
+			}
+
+			ToggleAutoreuseLimiter: {
+				// Label: Autoreuse Limiter
+				// Tooltip: Toggle whether the mod attempts to resitrict auto-reuse effects or not
 			}
 		}
 

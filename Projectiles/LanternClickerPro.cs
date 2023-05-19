@@ -37,8 +37,7 @@ namespace ClickerClass.Projectiles
 		
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			target.AddBuff(BuffID.Oiled, 60, false);
-			target.AddBuff(BuffID.OnFire, 60, false);
+			target.AddBuff(BuffID.OnFire3, 60, false);
 		}
 
 		public override void AI()

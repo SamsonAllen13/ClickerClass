@@ -1116,7 +1116,11 @@ Mods: {
 
 		ClickerConfigClient: {
 			Label: 配置
-			Header.GeneralOptions: 通用选项
+
+			Header: {
+				// DisplayOptions: Display Options
+				// GameplayOptions: Gameplay Options
+			}
 
 			ShowClassTags: {
 				Label: 显示物品标识
@@ -1145,6 +1149,11 @@ Mods: {
 			ShowOthersClickIndicator: {
 				Label: 显示他人点击指示器
 				Tooltip: 开关其他人使用点击器时的点击指示
+			}
+
+			ToggleAutoreuseLimiter: {
+				// Label: Autoreuse Limiter
+				// Tooltip: Toggle whether the mod attempts to resitrict auto-reuse effects or not
 			}
 		}
 

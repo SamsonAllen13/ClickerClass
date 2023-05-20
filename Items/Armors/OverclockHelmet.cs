@@ -14,7 +14,7 @@ namespace ClickerClass.Items.Armors
 	public class OverclockHelmet : ClickerItem
 	{
 		public static readonly int ClickAmount = 100;
-		public static readonly int SetBonusDamageDecrease = 50;
+		public static readonly int SetBonusDamageDecrease = 60;
 		public static readonly int ClickAmountDecreaseFlat = 1;
 
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ClickAmountDecreaseFlat);

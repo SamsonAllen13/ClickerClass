@@ -24,8 +24,8 @@ namespace ClickerClass.Projectiles
 			Projectile.penetrate = -1;
 			Projectile.timeLeft = 180;
 			Projectile.friendly = true;
-			Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = 15;
+			Projectile.usesIDStaticNPCImmunity = true;
+			Projectile.idStaticNPCHitCooldown = 15;
 		}
 		
 		public override Color? GetAlpha(Color lightColor)

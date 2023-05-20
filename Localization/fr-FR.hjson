@@ -80,6 +80,11 @@ Mods: {
 				DisplayName: Enchantement Arcanique
 				Description: Vos dégâts de clic et la hitbox de vos clics sont boostés
 			}
+
+			TranscendBuff: {
+				// DisplayName: Transcended
+				// Description: Negates the next damage you take, recovering 10% of your life instead
+			}
 		}
 
 		Common: {
@@ -1064,9 +1069,9 @@ Mods: {
 				// Description: Summons a mask that shoots at your cursor in response to your clicks
 			}
 
-			Evolve: {
-				// Name: Evolve
-				// Description: "{$Common.Unknown}"
+			Transcend: {
+				// Name: Transcend
+				// Description: Negates the next damage you take, recovering 10% of your life instead
 			}
 
 			Nab: {
@@ -1148,7 +1153,7 @@ Mods: {
 
 			ToggleAutoreuseLimiter: {
 				// Label: Autoreuse Limiter
-				// Tooltip: Toggle whether the mod attempts to resitrict auto-reuse effects or not
+				// Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
 			}
 		}
 

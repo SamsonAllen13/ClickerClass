@@ -14,6 +14,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.Audio;
+using Terraria.GameContent.Drawing;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Core.Netcode.Packets;
 using ClickerClass.Items.Consumables;
@@ -111,6 +112,8 @@ namespace ClickerClass
 		/// Used to track effect names that are currently active. Resets every tick
 		/// </summary>
 		private Dictionary<string, bool> ClickEffectActive = new Dictionary<string, bool>();
+
+		public bool effectTranscend = false;
 
 		public bool effectHotWings = false;
 		public const int EffectHotWingsTimerMax = 70; //Full duration. Damage part excludes the fade time
@@ -756,6 +759,7 @@ namespace ClickerClass
 			//Click Effects
 			ResetAllClickEffects();
 			effectHotWings = false;
+			effectTranscend = false;
 			
 			//Item
 			itemBurningSuperDeath = false;
@@ -1666,6 +1670,29 @@ namespace ClickerClass
 		public override void OnHurt(Player.HurtInfo info)
 		{
 			outOfCombatTimer = OutOfCombatTimeMax;
+		}
+		
+		public override bool ConsumableDodge(Player.HurtInfo info)
+		{
+			if (effectTranscend)
+			{
+				for (int k = 0; k < 10; k++)
+				{
+					ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.PrincessWeapon, new ParticleOrchestraSettings
+					{
+						PositionInWorld = Player.Center,
+						MovementVector = Main.rand.NextVector2Circular(6f, 6f)
+					}, Player.whoAmI);
+				}
+				Player.ClearBuff(ModContent.BuffType<TranscendBuff>());
+				SoundEngine.PlaySound(SoundID.Item176, Player.Center);
+				Player.HealLife((int)(Player.statLifeMax2 * 0.1f));
+				Player.immune = true;
+				Player.immuneTime = 90;
+				return true;
+			}
+
+			return base.ConsumableDodge(info);
 		}
 
 		public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)

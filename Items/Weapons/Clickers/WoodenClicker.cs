@@ -10,6 +10,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			// TODO 1.4.4 - Require the defeat of ML
+			ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<QuintessenceClicker>();
 		}
 
 		public override void SetDefaults()

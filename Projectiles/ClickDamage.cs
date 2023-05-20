@@ -53,10 +53,13 @@ namespace ClickerClass.Projectiles
 				dustType = clickerItem.clickerDustColor;
 			}
 
-			for (int k = 0; k < 5; k++)
+			if (dustType != -1)
 			{
-				Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
-				dust.noGravity = true;
+				for (int k = 0; k < 5; k++)
+				{
+					Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
+					dust.noGravity = true;
+				}
 			}
 
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();

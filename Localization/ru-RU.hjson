@@ -82,8 +82,8 @@ Mods: {
 			}
 
 			TranscendBuff: {
-				// DisplayName: Transcended
-				// Description: Negates the next damage you take, recovering 10% of your life instead
+				DisplayName: Превозмогший
+				Description: Нивелирует урон от следующего полученного удара и вместо этого восстанавливает 10% вашего здоровья
 			}
 		}
 
@@ -1070,8 +1070,8 @@ Mods: {
 			}
 
 			Transcend: {
-				// Name: Transcend
-				// Description: Negates the next damage you take, recovering 10% of your life instead
+				Name: Превозмогание
+				Description: Нивелирует урон от следующего полученного удара и вместо этого восстанавливает 10% вашего здоровья
 			}
 
 			Nab: {
@@ -1118,8 +1118,8 @@ Mods: {
 			Label: Настройки
 
 			Header: {
-				// DisplayOptions: Display Options
-				// GameplayOptions: Gameplay Options
+				DisplayOptions: Настройки отображения
+				GameplayOptions: Настройки игрового процесса
 			}
 
 			ShowClassTags: {
@@ -1153,8 +1153,8 @@ Mods: {
 			}
 
 			ToggleAutoreuseLimiter: {
-				// Label: Autoreuse Limiter
-				// Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
+				Label: Ограничитель автоиспользования
+				Tooltip: Переключение настройки, определяющей, будет ли мод ограничивать эффекты автоиспользования или нет
 			}
 		}
 

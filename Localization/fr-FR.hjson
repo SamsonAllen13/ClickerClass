@@ -1204,7 +1204,7 @@ Mods: {
 
 		Configs: {
 			ClickerConfigClient: {
-				// DisplayName: Configuration
+				DisplayName: Configuration
 
 				Headers: {
 					// DisplayOptions: Display Options

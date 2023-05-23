@@ -1114,49 +1114,6 @@ Mods: {
 			PaperclipsGauge: Matter: {0} / {1}
 		}
 
-		ClickerConfigClient: {
-			Label: Configuration
-
-			Header: {
-				DisplayOptions: Display Options
-				GameplayOptions: Gameplay Options
-			}
-
-			ShowClassTags: {
-				Label: Display Class Tags
-				Tooltip: Toggle the display of class tags for items made for custom classes on the tooltip
-			}
-
-			ShowEffectSuggestion: {
-				Label: Display 'hold auto select' text
-				Tooltip:
-					'''
-					Toggle the display of the 'Hold auto select for clicker effects' suggestion text for clicker weapons
-					-The key will continue to work regardless of this toggle-
-					'''
-			}
-
-			ShowCustomCursors: {
-				Label: Display Custom Cursors
-				Tooltip: Toggle the display of 'Custom Cursors' for clicker weapons
-			}
-
-			ShowClickIndicator: {
-				Label: Display Click Indicator
-				Tooltip: Toggle the display of click indicators where you used a clicker
-			}
-
-			ShowOthersClickIndicator: {
-				Label: Display Others Click Indicator
-				Tooltip: Toggle the display of click indicators where others used a clicker
-			}
-
-			ToggleAutoreuseLimiter: {
-				Label: Autoreuse Limiter
-				Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
-			}
-		}
-
 		GameTips: {
 			ClickerClassTip0: Clicker Class: Clicker weapons can only be used within its area of effect and with proper line of sight.
 			ClickerClassTip1: Clicker Class: Your total number of clicks with Clickers are tracked. Check it out with a Gamer Crate!
@@ -1243,6 +1200,51 @@ Mods: {
 			HeartyClickerPro.DisplayName: "{$Items.HeartyClicker.DisplayName}"
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
+		}
+
+		Configs: {
+			ClickerConfigClient: {
+				DisplayName: Configuration
+
+				Headers: {
+					DisplayOptions: Display Options
+					GameplayOptions: Gameplay Options
+				}
+
+				ShowClassTags: {
+					Label: Display Class Tags
+					Tooltip: Toggle the display of class tags for items made for custom classes on the tooltip
+				}
+
+				ShowEffectSuggestion: {
+					Label: Display 'hold auto select' text
+					Tooltip:
+						'''
+						Toggle the display of the 'Hold auto select for clicker effects' suggestion text for clicker weapons
+						-The key will continue to work regardless of this toggle-
+						'''
+				}
+
+				ShowCustomCursors: {
+					Label: Display Custom Cursors
+					Tooltip: Toggle the display of 'Custom Cursors' for clicker weapons
+				}
+
+				ShowClickIndicator: {
+					Label: Display Click Indicator
+					Tooltip: Toggle the display of click indicators where you used a clicker
+				}
+
+				ShowOthersClickIndicator: {
+					Label: Display Others Click Indicator
+					Tooltip: Toggle the display of click indicators where others used a clicker
+				}
+
+				ToggleAutoreuseLimiter: {
+					Label: Autoreuse Limiter
+					Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
+				}
+			}
 		}
 	}
 }

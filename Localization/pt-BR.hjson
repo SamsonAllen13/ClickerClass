@@ -1114,49 +1114,6 @@ Mods: {
 			PaperclipsGauge: Matéria: {0} / {1}
 		}
 
-		ClickerConfigClient: {
-			Label: Configuração
-
-			Header: {
-				// DisplayOptions: Display Options
-				// GameplayOptions: Gameplay Options
-			}
-
-			ShowClassTags: {
-				Label: Exibir marcas de classe
-				Tooltip: Alterna a exibição de marcas de classe para itens feitos para classes personalizadas na dica de ferramenta
-			}
-
-			ShowEffectSuggestion: {
-				Label: Exibir texto 'segure selecionar automaticamente'
-				Tooltip:
-					'''
-					Alterne a exibição do texto de sugestão 'Segure a seleção automática para efeitos do clicker' para armas clicker
-					-A tecla continuará a funcionar independentemente dessa opção-
-					'''
-			}
-
-			ShowCustomCursors: {
-				Label: Exibir cursores personalizados
-				Tooltip: Alternar a exibição de 'cursores personalizados' para armas clicker
-			}
-
-			ShowClickIndicator: {
-				Label: Exibir indicador de clique
-				Tooltip: Alternar a exibição de indicadores de clique onde você usou um clicker
-			}
-
-			ShowOthersClickIndicator: {
-				Label: Exibir indicadores de clique dos outros
-				Tooltip: Alternar a exibição de indicadores de clique onde outros usaram um clicker
-			}
-
-			ToggleAutoreuseLimiter: {
-				// Label: Autoreuse Limiter
-				// Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
-			}
-		}
-
 		GameTips: {
 			// ClickerClassTip0: Clicker Class: Clicker weapons can only be used within its area of effect and with proper line of sight.
 			// ClickerClassTip1: Clicker Class: Your total number of clicks with Clickers are tracked. Check it out with a Gamer Crate!
@@ -1243,6 +1200,51 @@ Mods: {
 			HeartyClickerPro.DisplayName: "{$Items.HeartyClicker.DisplayName}"
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
+		}
+
+		Configs: {
+			ClickerConfigClient: {
+				DisplayName: Configuração
+
+				Headers: {
+					// DisplayOptions: Display Options
+					// GameplayOptions: Gameplay Options
+				}
+
+				ShowClassTags: {
+					Label: Exibir marcas de classe
+					Tooltip: Alterna a exibição de marcas de classe para itens feitos para classes personalizadas na dica de ferramenta
+				}
+
+				ShowEffectSuggestion: {
+					Label: Exibir texto 'segure selecionar automaticamente'
+					Tooltip:
+						'''
+						Alterne a exibição do texto de sugestão 'Segure a seleção automática para efeitos do clicker' para armas clicker
+						-A tecla continuará a funcionar independentemente dessa opção-
+						'''
+				}
+
+				ShowCustomCursors: {
+					Label: Exibir cursores personalizados
+					Tooltip: Alternar a exibição de 'cursores personalizados' para armas clicker
+				}
+
+				ShowClickIndicator: {
+					Label: Exibir indicador de clique
+					Tooltip: Alternar a exibição de indicadores de clique onde você usou um clicker
+				}
+
+				ShowOthersClickIndicator: {
+					Label: Exibir indicadores de clique dos outros
+					Tooltip: Alternar a exibição de indicadores de clique onde outros usaram um clicker
+				}
+
+				ToggleAutoreuseLimiter: {
+					// Label: Autoreuse Limiter
+					// Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
+				}
+			}
 		}
 	}
 }

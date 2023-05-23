@@ -1114,49 +1114,6 @@ Mods: {
 			PaperclipsGauge: 回形针: {0} / {1}
 		}
 
-		ClickerConfigClient: {
-			Label: 配置
-
-			Header: {
-				// DisplayOptions: Display Options
-				// GameplayOptions: Gameplay Options
-			}
-
-			ShowClassTags: {
-				Label: 显示物品标识
-				Tooltip: 在本模组物品描述上显示点击大师标识
-			}
-
-			ShowEffectSuggestion: {
-				Label: 显示'按住自动选择'文本
-				Tooltip:
-					'''
-					开关在武器上显示'按住自动选择键显示点击效果详细信息'这一提示文本
-					-无论是否开启,自动选择键依旧能使用-
-					'''
-			}
-
-			ShowCustomCursors: {
-				Label: 显示自定义光标
-				Tooltip: 开关点击器的'自定义光标'
-			}
-
-			ShowClickIndicator: {
-				Label: 显示点击指示器
-				Tooltip: 开关使用点击器时的点击指示
-			}
-
-			ShowOthersClickIndicator: {
-				Label: 显示他人点击指示器
-				Tooltip: 开关其他人使用点击器时的点击指示
-			}
-
-			ToggleAutoreuseLimiter: {
-				// Label: Autoreuse Limiter
-				// Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
-			}
-		}
-
 		GameTips: {
 			// ClickerClassTip0: Clicker Class: Clicker weapons can only be used within its area of effect and with proper line of sight.
 			// ClickerClassTip1: Clicker Class: Your total number of clicks with Clickers are tracked. Check it out with a Gamer Crate!
@@ -1243,6 +1200,51 @@ Mods: {
 			HeartyClickerPro.DisplayName: "{$Items.HeartyClicker.DisplayName}"
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
+		}
+
+		Configs: {
+			ClickerConfigClient: {
+				DisplayName: 配置
+
+				Headers: {
+					// DisplayOptions: Display Options
+					// GameplayOptions: Gameplay Options
+				}
+
+				ShowClassTags: {
+					Label: 显示物品标识
+					Tooltip: 在本模组物品描述上显示点击大师标识
+				}
+
+				ShowEffectSuggestion: {
+					Label: 显示'按住自动选择'文本
+					Tooltip:
+						'''
+						开关在武器上显示'按住自动选择键显示点击效果详细信息'这一提示文本
+						-无论是否开启,自动选择键依旧能使用-
+						'''
+				}
+
+				ShowCustomCursors: {
+					Label: 显示自定义光标
+					Tooltip: 开关点击器的'自定义光标'
+				}
+
+				ShowClickIndicator: {
+					Label: 显示点击指示器
+					Tooltip: 开关使用点击器时的点击指示
+				}
+
+				ShowOthersClickIndicator: {
+					Label: 显示他人点击指示器
+					Tooltip: 开关其他人使用点击器时的点击指示
+				}
+
+				ToggleAutoreuseLimiter: {
+					// Label: Autoreuse Limiter
+					// Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
+				}
+			}
 		}
 	}
 }

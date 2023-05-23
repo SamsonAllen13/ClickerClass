@@ -1114,49 +1114,6 @@ Mods: {
 			PaperclipsGauge: Matière: {0} / {1}
 		}
 
-		ClickerConfigClient: {
-			Label: Configuration
-
-			Header: {
-				// DisplayOptions: Display Options
-				// GameplayOptions: Gameplay Options
-			}
-
-			ShowClassTags: {
-				Label: Montrer les Tags de Classe
-				Tooltip: Montre les tags de classe des objets de classes personnalisées
-			}
-
-			ShowEffectSuggestion: {
-				Label: Affichage du texte 'Maintenez Sélection Automatique'
-				Tooltip:
-					'''
-					Active l'affichage de la suggestion 'Maintenez la touche Sélection Automatique' pour les armes de cliqueur
-					-La touche fonctionnera indépendamment de ce paramètre-
-					'''
-			}
-
-			ShowCustomCursors: {
-				Label: Affichage les couleurs personnalisées
-				Tooltip: Active l'affichage de 'Couleurs Personnalisées' pour les armes de cliqueur
-			}
-
-			ShowClickIndicator: {
-				Label: Affichage des indicateurs de clic
-				Tooltip: Active l'affichage des indicateurs de clic là où un cliqueur est utilisé
-			}
-
-			ShowOthersClickIndicator: {
-				Label: Affichage des indicateurs de clic d'autres joueurs
-				Tooltip: Active l'affichage des indicateurs de clic là où un cliqueur est utilisé par un autre joueur
-			}
-
-			ToggleAutoreuseLimiter: {
-				// Label: Autoreuse Limiter
-				// Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
-			}
-		}
-
 		GameTips: {
 			ClickerClassTip0: Clicker Class: Les armes de Cliqueur ne peuvent être utilisées que dans leurs zones d'effets, avec une ligne de vue valide.
 			ClickerClassTip1: Clicker Class: Votre nombre total de clics avec des Cliqueurs est enregistré. Vérifiez-le avec une Caisse de Gamer!
@@ -1243,6 +1200,51 @@ Mods: {
 			HeartyClickerPro.DisplayName: "{$Items.HeartyClicker.DisplayName}"
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
+		}
+
+		Configs: {
+			ClickerConfigClient: {
+				// DisplayName: Configuration
+
+				Headers: {
+					// DisplayOptions: Display Options
+					// GameplayOptions: Gameplay Options
+				}
+
+				ShowClassTags: {
+					Label: Montrer les Tags de Classe
+					Tooltip: Montre les tags de classe des objets de classes personnalisées
+				}
+
+				ShowEffectSuggestion: {
+					Label: Affichage du texte 'Maintenez Sélection Automatique'
+					Tooltip:
+						'''
+						Active l'affichage de la suggestion 'Maintenez la touche Sélection Automatique' pour les armes de cliqueur
+						-La touche fonctionnera indépendamment de ce paramètre-
+						'''
+				}
+
+				ShowCustomCursors: {
+					Label: Affichage les couleurs personnalisées
+					Tooltip: Active l'affichage de 'Couleurs Personnalisées' pour les armes de cliqueur
+				}
+
+				ShowClickIndicator: {
+					Label: Affichage des indicateurs de clic
+					Tooltip: Active l'affichage des indicateurs de clic là où un cliqueur est utilisé
+				}
+
+				ShowOthersClickIndicator: {
+					Label: Affichage des indicateurs de clic d'autres joueurs
+					Tooltip: Active l'affichage des indicateurs de clic là où un cliqueur est utilisé par un autre joueur
+				}
+
+				ToggleAutoreuseLimiter: {
+					// Label: Autoreuse Limiter
+					// Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
+				}
+			}
 		}
 	}
 }

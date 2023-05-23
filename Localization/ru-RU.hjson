@@ -1114,50 +1114,6 @@ Mods: {
 			PaperclipsGauge: Материя: {0} / {1}
 		}
 
-		ClickerConfigClient: {
-			Label: Настройки
-
-			Header: {
-				DisplayOptions: Настройки отображения
-				GameplayOptions: Настройки игрового процесса
-			}
-
-			ShowClassTags: {
-				Label: Отображение метки класса
-				Tooltip: Переключает отображение метки класса в описании курсоров
-			}
-
-			ShowEffectSuggestion: {
-				Label: Показывать текст 'удерживайте клавишу Auto Select'
-				Tooltip:
-					'''
-					Переключает отображение текста в описании курсоров:
-					Удерживайте клавишу 'Auto Select' для отображения эффектов кликов
-					-Ключ продолжит работать независимо от настройки-
-					'''
-			}
-
-			ShowCustomCursors: {
-				Label: Показывать пользовательские курсоры
-				Tooltip: Показывает 'пользовательские курсоры' вместо стандартного игрового
-			}
-
-			ShowClickIndicator: {
-				Label: Визуальный индикатор кликов
-				Tooltip: Показывает визуальный индикатор кликов, когда вы использовали курсор
-			}
-
-			ShowOthersClickIndicator: {
-				Label: Визуальный индикатор кликов других игроков
-				Tooltip: Показывает визуальный индикатор кликов в тех местах, где другие игроки использовали курсор
-			}
-
-			ToggleAutoreuseLimiter: {
-				Label: Ограничитель автоиспользования
-				Tooltip: Переключение настройки, определяющей, будет ли мод ограничивать эффекты автоиспользования или нет
-			}
-		}
-
 		GameTips: {
 			ClickerClassTip0: Clicker Class: Курсоры можно использовать только в пределах зоны их действия и при правильной линии видимости.
 			ClickerClassTip1: Clicker Class: Ваше общее количество кликов, сделанных курсорами, отслеживается. Проверьте это с игровым ящиком!
@@ -1244,6 +1200,52 @@ Mods: {
 			HeartyClickerPro.DisplayName: "{$Items.HeartyClicker.DisplayName}"
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
+		}
+
+		Configs: {
+			ClickerConfigClient: {
+				DisplayName: Настройки
+
+				Headers: {
+					DisplayOptions: Настройки отображения
+					GameplayOptions: Настройки игрового процесса
+				}
+
+				ShowClassTags: {
+					Label: Отображение метки класса
+					Tooltip: Переключает отображение метки класса в описании курсоров
+				}
+
+				ShowEffectSuggestion: {
+					Label: Показывать текст 'удерживайте клавишу Auto Select'
+					Tooltip:
+						'''
+						Переключает отображение текста в описании курсоров:
+						Удерживайте клавишу 'Auto Select' для отображения эффектов кликов
+						-Ключ продолжит работать независимо от настройки-
+						'''
+				}
+
+				ShowCustomCursors: {
+					Label: Показывать пользовательские курсоры
+					Tooltip: Показывает 'пользовательские курсоры' вместо стандартного игрового
+				}
+
+				ShowClickIndicator: {
+					Label: Визуальный индикатор кликов
+					Tooltip: Показывает визуальный индикатор кликов, когда вы использовали курсор
+				}
+
+				ShowOthersClickIndicator: {
+					Label: Визуальный индикатор кликов других игроков
+					Tooltip: Показывает визуальный индикатор кликов в тех местах, где другие игроки использовали курсор
+				}
+
+				ToggleAutoreuseLimiter: {
+					Label: Ограничитель автоиспользования
+					Tooltip: Переключение настройки, определяющей, будет ли мод ограничивать эффекты автоиспользования или нет
+				}
+			}
 		}
 	}
 }

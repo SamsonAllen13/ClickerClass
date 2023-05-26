@@ -33,11 +33,7 @@ namespace ClickerClass.Tiles.Mice
 			Main.tileLavaDeath[Type] = true;
 			TileID.Sets.DisableSmartCursor[Type] = true;
 
-			TileObjectData.newTile.CopyFrom(TileObjectData.Style1x2Top);
-			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
-			TileObjectData.newTile.Height = 2;
-			TileObjectData.newTile.StyleWrapLimit = 111;
-			TileObjectData.newTile.DrawYOffset = DrawOffsetY;
+			TileObjectData.newTile.CopyFrom(TileObjectData.GetTileData(TileID.HangingLanterns, 0));
 			TileObjectData.addTile(Type);
 
 			AdjTiles = new int[] { TileID.Torches };
@@ -58,6 +54,19 @@ namespace ClickerClass.Tiles.Mice
 			}
 		}
 
+		//Needed for AnchorType.PlatformNonHammered, adjust the numbers after % aaccordingly
+		public override void SetDrawPositions(int i, int j, ref int width, ref int offsetY, ref int height, ref short tileFrameX, ref short tileFrameY)
+		{
+			Tile tile = Main.tile[i, j];
+			TileObjectData data = TileObjectData.GetTileData(tile);
+			int topLeftX = i - tile.TileFrameX / 18 % data.Width;
+			int topLeftY = j - tile.TileFrameY / 18 % data.Height;
+			if (WorldGen.IsBelowANonHammeredPlatform(topLeftX, topLeftY))
+			{
+				offsetY -= 8;
+			}
+		}
+
 		public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
 		{
 			Tile tile = Main.tile[i, j];
@@ -68,8 +77,14 @@ namespace ClickerClass.Tiles.Mice
 				{
 					zero = Vector2.Zero;
 				}
+
+				short frameX = tile.TileFrameX;
+				short frameY = tile.TileFrameY;
+				int width = 16;
+				int offsetY = 0;
 				int height = 16;
-				spriteBatch.Draw(glowmaskAsset.Value.Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y + DrawOffsetY) + zero, new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, height), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+				TileLoader.SetDrawPositions(i, j, ref width, ref offsetY, ref height, ref frameX, ref frameY);
+				spriteBatch.Draw(glowmaskAsset.Value.Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y + offsetY) + zero, new Rectangle(frameX, frameY, width, height), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
 			}
 		}
 

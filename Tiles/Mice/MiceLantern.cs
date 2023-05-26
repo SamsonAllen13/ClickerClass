@@ -13,7 +13,6 @@ namespace ClickerClass.Tiles.Mice
 {
 	public class MiceLantern : ModTile
 	{
-		public const int DrawOffsetY = -2;
 		public static Lazy<Asset<Texture2D>> glowmaskAsset;
 
 		public override void Load()

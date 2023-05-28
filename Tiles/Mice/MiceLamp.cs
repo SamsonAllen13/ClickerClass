@@ -37,6 +37,7 @@ namespace ClickerClass.Tiles.Mice
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style1xX);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16 };
+			TileObjectData.newTile.StyleLineSkip = 2;
 			TileObjectData.newTile.Origin = new Point16(0, 2);
 			TileObjectData.newTile.Height = 3;
 			TileObjectData.newTile.DrawYOffset = DrawOffsetY;

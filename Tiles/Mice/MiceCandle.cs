@@ -35,6 +35,7 @@ namespace ClickerClass.Tiles.Mice
 			TileObjectData.newTile.CoordinateHeights = new int[] { 20 };
 			TileObjectData.newTile.DrawYOffset = DrawOffsetY;
 			TileObjectData.newTile.Origin = new Point16(0, 0);
+			TileObjectData.newTile.StyleLineSkip = 2;
 			TileObjectData.addTile(Type);
 
 			AdjTiles = new int[] { TileID.Torches };

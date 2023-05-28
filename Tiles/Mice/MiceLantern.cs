@@ -33,6 +33,7 @@ namespace ClickerClass.Tiles.Mice
 			TileID.Sets.DisableSmartCursor[Type] = true;
 
 			TileObjectData.newTile.CopyFrom(TileObjectData.GetTileData(TileID.HangingLanterns, 0));
+			TileObjectData.newTile.StyleLineSkip = 2;
 			TileObjectData.addTile(Type);
 
 			AdjTiles = new int[] { TileID.Torches };

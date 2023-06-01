@@ -1106,8 +1106,6 @@ Mods: {
 			ForMoreInfo: 按住'自动选择'键({0})显示点击效果详细信息
 		}
 
-		DeathMessage.HotKeychain: "{0} 被炽热的钥匙串烫死了."
-
 		UI: {
 			HotKeychainGauge: 热量: {0} / {1}
 			MedalGauge: 充能: {0} / {1}

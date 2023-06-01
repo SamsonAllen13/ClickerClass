@@ -1106,8 +1106,6 @@ Mods: {
 			ForMoreInfo: Hold 'Auto Select' key ({0}) to show click effects
 		}
 
-		DeathMessage.HotKeychain: "{0} fell for the spicy keychain."
-
 		UI: {
 			HotKeychainGauge: Heat: {0} / {1}
 			MedalGauge: Charges: {0} / {1}

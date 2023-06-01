@@ -1106,8 +1106,6 @@ Mods: {
 			ForMoreInfo: Segure a tecla 'Selecionar Automaticamente' ({0}) para exibir efeitos de clique
 		}
 
-		DeathMessage.HotKeychain: "{0} caiu no chaveiro picante."
-
 		UI: {
 			HotKeychainGauge: Calor: {0} / {1}
 			MedalGauge: Cargas: {0} / {1}

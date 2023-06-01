@@ -1106,8 +1106,6 @@ Mods: {
 			ForMoreInfo: Maintenez la touche 'Sélection Automatique' ({0}) pour voir les effets de clic
 		}
 
-		DeathMessage.HotKeychain: "{0} a succombé à son porte clés."
-
 		UI: {
 			HotKeychainGauge: Chaleur: {0} / {1}
 			MedalGauge: Charges: {0} / {1}

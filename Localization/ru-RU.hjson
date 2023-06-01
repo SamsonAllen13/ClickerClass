@@ -1106,8 +1106,6 @@ Mods: {
 			ForMoreInfo: Удерживайте клавишу 'Auto Select' ({0}) для отображения эффектов кликов
 		}
 
-		DeathMessage.HotKeychain: "{0} влюбляется в пикантную связку ключей."
-
 		UI: {
 			HotKeychainGauge: Жара: {0} / {1}
 			MedalGauge: Заряды: {0} / {1}

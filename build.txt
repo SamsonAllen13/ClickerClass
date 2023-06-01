@@ -2,5 +2,4 @@ author = DivermanSam, Barometz, and direwolf420
 version = 1.4
 displayName = The Clicker Class
 homepage = https://forums.terraria.org/index.php?threads/the-clicker-class.101811/
-includePDB = true
 buildIgnore = *.csproj, *.sln, *.user, *.md, obj\*, bin\*, .vs\*, .git\*, .gitignore, .gitattributes

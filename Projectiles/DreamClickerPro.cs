@@ -181,6 +181,11 @@ namespace ClickerClass.Projectiles
 
 		private void SpawnDust()
 		{
+			if (Main.netMode == NetmodeID.Server)
+			{
+				return;
+			}
+
 			// Sparkle dust
 			if (Main.rand.NextBool(4))
 			{

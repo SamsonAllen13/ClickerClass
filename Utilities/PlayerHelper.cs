@@ -1,5 +1,7 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ClickerClass.Core.EntitySources;
+using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.GameContent;
 using Terraria.ID;
 
@@ -96,6 +98,12 @@ namespace ClickerClass.Utilities
 			{
 				NetMessage.SendData(MessageID.SpiritHeal, -1, -1, null, player.whoAmI, healAmount);
 			}
+		}
+
+		//Helper method
+		public static IEntitySource GetSource_Accessory_OnHit(this Player player, Item item, Entity victim, string context = null)
+		{
+			return new EntitySource_ItemUse_OnHit(player, item, victim, context);
 		}
 	}
 }

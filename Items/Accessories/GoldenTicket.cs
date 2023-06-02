@@ -29,7 +29,7 @@ namespace ClickerClass.Items.Accessories
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			clickerPlayer.clickerRadius += 2 * RadiusIncrease / 100f;
-			clickerPlayer.accGoldenTicket = true;
+			clickerPlayer.accGoldenTicketItem = Item;
 		}
 	}
 }

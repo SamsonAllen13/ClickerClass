@@ -174,7 +174,8 @@ namespace ClickerClass
 		public bool accPortableParticleAccelerator = false; //"is wearing"
 		public bool accPortableParticleAccelerator2 = false; //"is active", client only
 		public bool IsPortableParticleAcceleratorActive => accPortableParticleAccelerator && accPortableParticleAccelerator2;
-		public bool accGoldenTicket = false;
+		public Item accGoldenTicketItem = null;
+		public bool AccGoldenTicket => accGoldenTicketItem != null && !accGoldenTicketItem.IsAir;
 		public bool accTriggerFinger = false;
 		public bool accMouseTrap = false;
 		public Item accPaperclipsItem = null;
@@ -787,7 +788,7 @@ namespace ClickerClass
 			accRegalClickingGlove = false;
 			accPortableParticleAccelerator = false;
 			accPortableParticleAccelerator2 = false;
-			accGoldenTicket = false;
+			accGoldenTicketItem = null;
 			accTriggerFinger = false;
 			accMouseTrap = false;
 			accPaperclipsItem = null;
@@ -1582,7 +1583,7 @@ namespace ClickerClass
 				ClickerGlobalNPC clickerNPC = target.GetGlobalNPC<ClickerGlobalNPC>();
 				if (target.value > 0f)
 				{
-					if (accGoldenTicket)
+					if (AccGoldenTicket)
 					{
 						for (int k = 0; k < 15; k++)
 						{
@@ -1590,7 +1591,7 @@ namespace ClickerClass
 							Main.dust[dust].noGravity = true;
 						}
 
-						var entitySource = proj.GetSource_OnHit(target, context: "Acc_GoldenTicket");
+						var entitySource = Player.GetSource_Accessory_OnHit(accGoldenTicketItem, target);
 						int amount = 1 + Main.rand.Next(6);
 						int coin = Item.NewItem(entitySource, target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
 						if (amount > 0)
@@ -1626,7 +1627,7 @@ namespace ClickerClass
 						{
 							for (int k = 0; k < 4; k++)
 							{
-								Projectile.NewProjectile(Player.GetSource_Accessory(accPaperclipsItem), clickerPosition.X, clickerPosition.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), hit.SourceDamage, 2f, Player.whoAmI);
+								Projectile.NewProjectile(Player.GetSource_Accessory_OnHit(accPaperclipsItem, target), clickerPosition.X, clickerPosition.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-6f, -2f), ModContent.ProjectileType<BottomlessBoxofPaperclipsPro>(), hit.SourceDamage, 2f, Player.whoAmI);
 							}
 						}
 

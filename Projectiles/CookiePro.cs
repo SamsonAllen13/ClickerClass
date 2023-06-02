@@ -42,7 +42,7 @@ namespace ClickerClass.Projectiles
 
 		public override void OnSpawn(IEntitySource source)
 		{
-			if (source is not EntitySource_ItemUse itemUse || itemUse.Entity is not Player player)
+			if (source is not EntitySource_Parent parentSource || parentSource.Entity is not Player player)
 			{
 				return;
 			}

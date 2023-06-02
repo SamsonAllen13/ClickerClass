@@ -467,7 +467,7 @@ namespace ClickerClass
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 					//accEnchantedLED, accEnchantedLED2, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
-					//accGoldenTicket, accPortableParticleAccelerator
+					//accPortableParticleAccelerator
 					//accMouseTrap, accHotKeychain, accTriggerFinger, accButtonMasher, accAimbotModule, accAimbotModule2
 					if (accName == "EnchantedLED")
 					{
@@ -500,10 +500,6 @@ namespace ClickerClass
 					else if (accName == "RegalClickingGlove")
 					{
 						return clickerPlayer.accRegalClickingGlove;
-					}
-					else if (accName == "GoldenTicket")
-					{
-						return clickerPlayer.accGoldenTicket;
 					}
 					else if (accName == "PortableParticleAccelerator")
 					{
@@ -552,7 +548,7 @@ namespace ClickerClass
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 					//accCookieItem
-					//accAMedalItem, accFMedalItem, accSMedalItem, accPaperclipsItem
+					//accAMedalItem, accFMedalItem, accSMedalItem, accGoldenTicketItem, accPaperclipsItem
 					if (accName == "Cookie")
 					{
 						return clickerPlayer.accCookieItem;
@@ -568,6 +564,10 @@ namespace ClickerClass
 					else if (accName == "SMedal")
 					{
 						return clickerPlayer.accSMedalItem;
+					}
+					else if (accName == "GoldenTicket")
+					{
+						return clickerPlayer.accGoldenTicketItem;
 					}
 					else if (accName == "BottomlessBoxOfPaperclips")
 					{
@@ -679,7 +679,7 @@ namespace ClickerClass
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 					//accEnchantedLED, accEnchantedLED2, accGlassOfMilk, accCookie, accCookie2, accClickingGlove, accAncientClickingGlove, accRegalClickingGlove
-					//accGoldenTicket, accPortableParticleAccelerator
+					//accPortableParticleAccelerator
 					//accMouseTrap, accHotKeychain, accTriggerFinger, accButtonMasher, accAimbotModule, accAimbotModule2
 					if (accName == "EnchantedLED")
 					{
@@ -719,11 +719,6 @@ namespace ClickerClass
 					else if (accName == "RegalClickingGlove")
 					{
 						clickerPlayer.accRegalClickingGlove = true;
-						return success;
-					}
-					else if (accName == "GoldenTicket")
-					{
-						clickerPlayer.accGoldenTicket = true;
 						return success;
 					}
 					else if (accName == "PortableParticleAccelerator")
@@ -785,7 +780,7 @@ namespace ClickerClass
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
 					//accCookieItem
-					//accAMedalItem, accFMedalItem, accSMedalItem, accPaperclipsItem
+					//accAMedalItem, accFMedalItem, accSMedalItem, accGoldenTicketItem, accPaperclipsItem
 					if (accName == "Cookie")
 					{
 						clickerPlayer.accCookieItem = item;
@@ -804,6 +799,11 @@ namespace ClickerClass
 					else if (accName == "SMedal")
 					{
 						clickerPlayer.accSMedalItem = item;
+						return success;
+					}
+					else if (accName == "GoldenTicket")
+					{
+						clickerPlayer.accGoldenTicketItem = item;
 						return success;
 					}
 					else if (accName == "BottomlessBoxOfPaperclips")

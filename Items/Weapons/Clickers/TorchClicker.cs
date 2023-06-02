@@ -113,9 +113,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				*/
 			//If this causes a recursion somehow, im screaming
 			Player player = Main.LocalPlayer;
-			if (source is EntitySource_TorchGod torchGodSource &&
-				torchGodSource.Context == "TorchGod_FavorLoot" &&
-				torchGodSource.TargetedEntity == player &&
+			if (source.Context == "TorchGod" &&
 				Type == ItemID.TorchGodsFavor && Stack == 1)
 			{
 				int itemToDrop = ModContent.ItemType<TorchClicker>();

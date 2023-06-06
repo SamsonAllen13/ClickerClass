@@ -34,7 +34,7 @@ namespace ClickerClass.Items.Accessories
 		
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddRecipeGroup("ClickerClass:GoldBar", 8).AddIngredient(ItemID.SoulofNight, 8).AddTile(TileID.Anvils).Register();
+			CreateRecipe(1).AddRecipeGroup(ClickerRecipes.AnyGoldBarGroup, 8).AddIngredient(ItemID.SoulofNight, 8).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

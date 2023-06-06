@@ -33,7 +33,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddRecipeGroup("ClickerClass:SilverBar", 25).AddIngredient(ItemID.Wire, 75).AddTile(TileID.Anvils).Register();
+			CreateRecipe(1).AddRecipeGroup(ClickerRecipes.AnySilverBarGroup, 25).AddIngredient(ItemID.Wire, 75).AddTile(TileID.Anvils).Register();
 		}
 	}
 }

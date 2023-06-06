@@ -8,6 +8,17 @@ namespace ClickerClass
 {
 	internal class ClickerRecipes : ModSystem
 	{
+		public static int AnySilverBarGroup { get; private set; }
+		public static int AnyGoldBarGroup { get; private set; }
+
+		public static LocalizedText RecipeGroupAnyText { get; private set; }
+
+		public override void OnModLoad()
+		{
+			string category = $"RecipeGroups.";
+			RecipeGroupAnyText ??= Language.GetOrRegister(Mod.GetLocalizationKey($"{category}Any"));
+		}
+
 		public override void AddRecipes()
 		{
 			Recipe recipe = Recipe.Create(ItemID.AvengerEmblem);
@@ -21,18 +32,20 @@ namespace ClickerClass
 
 		public override void AddRecipeGroups()
 		{
-			RecipeGroup group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.SilverBar), new int[]
+			string any = Language.GetTextValue("LegacyMisc.37");
+			RecipeGroup group = new RecipeGroup(() => RecipeGroupAnyText.Format(any, Lang.GetItemNameValue(ItemID.SilverBar)), new int[]
 			{
 				ItemID.SilverBar,
 				ItemID.TungstenBar,
 			});
-			RecipeGroup.RegisterGroup("ClickerClass:SilverBar", group);
-			group = new RecipeGroup(() => Language.GetTextValue("LegacyMisc.37") + " " + Lang.GetItemNameValue(ItemID.GoldBar), new int[]
+			AnySilverBarGroup = RecipeGroup.RegisterGroup(nameof(ItemID.SilverBar), group);
+
+			group = new RecipeGroup(() => RecipeGroupAnyText.Format(any, Lang.GetItemNameValue(ItemID.GoldBar)), new int[]
 			{
 				ItemID.GoldBar,
 				ItemID.PlatinumBar,
 			});
-			RecipeGroup.RegisterGroup("ClickerClass:GoldBar", group);
+			AnyGoldBarGroup = RecipeGroup.RegisterGroup(nameof(ItemID.GoldBar), group);
 		}
 	}
 }

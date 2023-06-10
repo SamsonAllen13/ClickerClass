@@ -8,8 +8,6 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-
-			ItemID.Sets.WorksInVoidBag[Item.type] = true;
 		}
 
 		public override void SetDefaults()

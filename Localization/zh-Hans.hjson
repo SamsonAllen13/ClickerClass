@@ -1244,7 +1244,7 @@ Mods: {
 				}
 			}
 		}
-		
+
 		RecipeGroups.Any: "{0} {1}"
 	}
 }

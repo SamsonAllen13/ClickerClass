@@ -1,19 +1,26 @@
-﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+﻿using ClickerClass.Sounds;
+using Terraria.Audio;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class SFXButtonA : SFXButtonBase
 	{
-		public override void UpdateInventory(Player player) 
+		public static void PlaySound(int stack)
 		{
-			player.GetModPlayer<ClickerPlayer>().accSFXButtonA += Item.stack;
+			//Trumpet doot
+			SoundStyle style = ClickerSounds.Trumpet
+				.WithVolumeScale(.5f * stack) with
+			{
+				PitchVariance = .5f,
+			};
+			SoundEngine.PlaySound(style);
 		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
+		public override void SetStaticDefaults()
 		{
-			player.GetModPlayer<ClickerPlayer>().accSFXButtonA += Item.stack;
+			base.SetStaticDefaults();
+
+			ClickerSystem.RegisterSFXButton(this, PlaySound);
 		}
 	}
 }

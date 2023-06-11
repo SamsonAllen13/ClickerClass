@@ -204,14 +204,9 @@ namespace ClickerClass
 		public int accPaperclipsAmount = 0;
 		public int accHotKeychainTimer = 0;
 		public int accHotKeychainAmount = 0;
-		public int accSFXButtonA = 0;
-		public int accSFXButtonB = 0;
-		public int accSFXButtonC = 0;
-		public int accSFXButtonD = 0;
-		public int accSFXButtonE = 0;
-		public int accSFXButtonF = 0;
-		public int accSFXButtonG = 0;
-		public int accSFXButtonH = 0;
+
+		//Store item type mapped to stack
+		private Dictionary<int, int> sfxButtons;
 
 		//Stats
 		/// <summary>
@@ -744,6 +739,52 @@ namespace ClickerClass
 			return GetClickAmountTotal(item.GetGlobalItem<ClickerItemCore>(), name);
 		}
 
+		/// <summary>
+		/// Counts the stack of the given <paramref name="item"/> up by its stack<br/>
+		/// Returns true if reached <see cref="SFXButtonBase.StackAmount"/>
+		/// </summary>
+		public bool AddSFXButtonStack(Item item)
+		{
+			return AddSFXButtonStack(item.type, item.stack);
+		}
+
+		/// <summary>
+		/// Counts the stack of the given item type up by <paramref name="stack"/><br/>
+		/// Returns true if reached <see cref="SFXButtonBase.StackAmount"/>
+		/// </summary>
+		public bool AddSFXButtonStack(int type, int stack)
+		{
+			if (!ClickerSystem.IsSFXButton(type))
+			{
+				return false;
+			}
+
+			if (!sfxButtons.ContainsKey(type))
+			{
+				sfxButtons[type] = 0;
+			}
+
+			sfxButtons[type] = Math.Min(SFXButtonBase.StackAmount, sfxButtons[type] + stack);
+			return sfxButtons[type] == SFXButtonBase.StackAmount;
+		}
+
+		/// <summary>
+		/// Assigns <paramref name="stack"/> of the given type, if returning true<br/>
+		/// </summary>
+		public bool GetSFXButtonStack(int type, out int stack)
+		{
+			return sfxButtons.TryGetValue(type, out stack);
+		}
+
+		/// <summary>
+		/// Returns all currently active "sfx button" stacks.<br/>
+		/// Use with <see cref="ClickerSystem.IsSFXButton"/> to get the sound
+		/// </summary>
+		public IReadOnlyDictionary<int, int> GetAllSFXButtonStacks()
+		{
+			return sfxButtons;
+		}
+
 		public override void ResetEffects()
 		{
 			//-Clicker-
@@ -800,18 +841,12 @@ namespace ClickerClass
 			accEnlarge = false;
 			accSFXButtonSoundboard = false;
 
+			sfxButtons.Clear();
+
 			//Stats
 			clickerBonus = 0;
 			clickerBonusPercent = 1f;
 			clickerRadius = 1f;
-			accSFXButtonA = 0;
-			accSFXButtonB = 0;
-			accSFXButtonC = 0;
-			accSFXButtonD = 0;
-			accSFXButtonE = 0;
-			accSFXButtonF = 0;
-			accSFXButtonG = 0;
-			accSFXButtonH = 0;
 		}
 
 		public override void ResetInfoAccessories()
@@ -838,6 +873,8 @@ namespace ClickerClass
 			}
 
 			clickTimers = new List<Ref<float>>();
+
+			sfxButtons = new Dictionary<int, int>();
 		}
 
 		public override void SaveData(TagCompound tag)
@@ -1110,17 +1147,6 @@ namespace ClickerClass
 			{
 				clickerDoubleTap--;
 			}
-
-			//SFX Button overflow handle
-			int sfxMax = SFXButtonBase.StackAmount;
-			accSFXButtonA = Math.Min(sfxMax, accSFXButtonA);
-			accSFXButtonB = Math.Min(sfxMax, accSFXButtonB);
-			accSFXButtonC = Math.Min(sfxMax, accSFXButtonC);
-			accSFXButtonD = Math.Min(sfxMax, accSFXButtonD);
-			accSFXButtonE = Math.Min(sfxMax, accSFXButtonE);
-			accSFXButtonF = Math.Min(sfxMax, accSFXButtonF);
-			accSFXButtonG = Math.Min(sfxMax, accSFXButtonG);
-			accSFXButtonH = Math.Min(sfxMax, accSFXButtonH);
 
 			//Clicker Effects
 			//Hot Wings

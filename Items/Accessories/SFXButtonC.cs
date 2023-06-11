@@ -1,19 +1,28 @@
 ﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class SFXButtonC : SFXButtonBase
 	{
-		public override void UpdateInventory(Player player) 
+		public static void PlaySound(int stack)
 		{
-			player.GetModPlayer<ClickerPlayer>().accSFXButtonC += Item.stack;
+			//Ogre OUAGH
+			SoundStyle style = new SoundStyle(Main.rand.NextBool()
+				? "Terraria/Sounds/Custom/dd2_ogre_attack_2"
+				: "Terraria/Sounds/Custom/dd2_ogre_hurt_1")
+				.WithVolumeScale(.4f * stack) with
+			{
+				PitchVariance = .5f,
+			};
+			SoundEngine.PlaySound(style);
 		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
+		public override void SetStaticDefaults()
 		{
-			player.GetModPlayer<ClickerPlayer>().accSFXButtonC += Item.stack;
+			base.SetStaticDefaults();
+
+			ClickerSystem.RegisterSFXButton(this, PlaySound);
 		}
 	}
 }

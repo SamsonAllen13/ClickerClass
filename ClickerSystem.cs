@@ -1,4 +1,5 @@
 ﻿using ClickerClass.Items;
+using ClickerClass.Items.Accessories;
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -17,6 +18,13 @@ namespace ClickerClass
 	/// </summary>
 	public class ClickerSystem : ModSystem
 	{
+		//Clientside only hence why player instance to play the sound at is not necessary
+		/// <summary>
+		/// The method used to play a sound
+		/// </summary>
+		/// <param name="stack">Usually used to control the volume by multiplying with 0.5f, ranges from 1 to <see cref="SFXButtonBase.StackAmount"/></param>
+		public delegate void SFXButtonSoundDelegate(int stack);
+
 		/// <summary>
 		/// To prevent certain methods being called when they shouldn't
 		/// </summary>
@@ -31,6 +39,8 @@ namespace ClickerClass
 		private static Dictionary<int, string> ClickerWeaponBorderTexture { get; set; }
 
 		private static HashSet<int> ClickerWeapons { get; set; }
+
+		private static Dictionary<int, SFXButtonSoundDelegate> SFXButtons { get; set; }
 
 		private static HashSet<int> ClickerWeaponProjectiles { get; set; }
 
@@ -59,6 +69,7 @@ namespace ClickerClass
 			ClickerItems = new HashSet<int>();
 			ClickerWeaponBorderTexture = new Dictionary<int, string>();
 			ClickerWeapons = new HashSet<int>();
+			SFXButtons = new Dictionary<int, SFXButtonSoundDelegate>();
 			ClickerProjectiles = new HashSet<int>();
 			ClickerWeaponProjectiles = new HashSet<int>();
 			ClickEffectsByName = new Dictionary<string, ClickEffect>();
@@ -73,6 +84,7 @@ namespace ClickerClass
 			ClickerWeaponBorderTexture?.Clear();
 			ClickerWeaponBorderTexture = null;
 			ClickerWeapons = null;
+			SFXButtons = null;
 			ClickerProjectiles = null;
 			ClickerWeaponProjectiles = null;
 			ClickEffectsByName?.Clear();
@@ -276,6 +288,17 @@ namespace ClickerClass
 		}
 
 		/// <summary>
+		/// Call in <see cref="ModItem.SetDefaults"/> to set important default fields for a "sfx button". Set fields:
+		/// maxStack.
+		/// Only change them afterwards if you know what you are doing!
+		/// </summary>
+		/// <param name="item">The <see cref="Item"/> to set the defaults for</param>
+		public static void SetSFXButtonDefaults(Item item)
+		{
+			item.maxStack = SFXButtonBase.StackAmount;
+		}
+
+		/// <summary>
 		/// Call in <see cref="ModProjectile.SetDefaults"/> to set important default fields for a clicker projectile. Set fields:
 		/// DamageType.
 		/// Only change them afterwards if you know what you are doing!
@@ -343,7 +366,7 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call this in <see cref="ModType.SetStaticDefaults"/> to register this weapon into the "clicker class" category as a "clicker".
+		/// Call this in <see cref="ModType.SetStaticDefaults"/> to register this weapon into the "clicker class" category as a "clicker".<br/>
 		/// Do not call <see cref="RegisterClickerItem"/> with it as this method does this already by itself
 		/// </summary>
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
@@ -374,6 +397,28 @@ namespace ClickerClass
 						ClickerClass.mod.Logger.Info($"Border texture for {modItem.Name} not found: {borderTexture}");
 					}
 				}
+			}
+		}
+
+		/// <summary>
+		/// Call this in <see cref="ModType.SetStaticDefaults"/> to register this item into the "sfx button" category.<br/>
+		/// It will automatically contribute to the active "sfx buttons" when in the inventory<br/>
+		/// Do not call <see cref="RegisterClickerItem"/> with it as this method does this already by itself
+		/// </summary>
+		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
+		/// <param name="playSoundAction">The <see cref="SFXButtonSoundDelegate"/> that will play the sound</param>
+		/// <exception cref="InvalidOperationException"/>
+		public static void RegisterSFXButton(ModItem modItem, SFXButtonSoundDelegate playSoundAction)
+		{
+			if (FinalizedRegisterCompat)
+			{
+				throw new InvalidOperationException("Tried to register an sfx button at the wrong time, do so in ModItem.SetStaticDefaults");
+			}
+			RegisterClickerItem(modItem);
+			int type = modItem.Item.type;
+			if (!SFXButtons.ContainsKey(type))
+			{
+				SFXButtons.Add(type, playSoundAction);
 			}
 		}
 
@@ -451,6 +496,37 @@ namespace ClickerClass
 		public static bool IsClickerItem(Item item)
 		{
 			return IsClickerItem(item.type);
+		}
+
+		/// <summary>
+		/// Call this to check if an item is an "sfx button"
+		/// </summary>
+		/// <param name="item">The item to be checked</param>
+		/// <returns><see langword="true"/> if an "sfx button"</returns>
+		public static bool IsSFXButton(Item item)
+		{
+			return SFXButtons.ContainsKey(item.type);
+		}
+
+		/// <summary>
+		/// Call this to check if an item type is an "sfx button"
+		/// </summary>
+		/// <param name="type">The item type to be checked</param>
+		/// <returns><see langword="true"/> if an "sfx button"</returns>
+		public static bool IsSFXButton(int type)
+		{
+			return SFXButtons.ContainsKey(type);
+		}
+
+		/// <summary>
+		/// Call this to check if an item type is an "sfx button"
+		/// </summary>
+		/// <param name="type">The item type to be checked</param>
+		/// <param name="playSoundAction">The <see cref="SFXButtonSoundDelegate"/> of this item for convenience, only assigned if method returns true</param>
+		/// <returns><see langword="true"/> if an "sfx button"</returns>
+		public static bool IsSFXButton(int type, out SFXButtonSoundDelegate playSoundAction)
+		{
+			return SFXButtons.TryGetValue(type, out playSoundAction);
 		}
 
 		/// <summary>

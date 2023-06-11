@@ -1,19 +1,28 @@
 ﻿using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
+using Terraria.Audio;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class SFXButtonG : SFXButtonBase
 	{
-		public override void UpdateInventory(Player player) 
+		public static void PlaySound(int stack)
 		{
-			player.GetModPlayer<ClickerPlayer>().accSFXButtonG += Item.stack;
+			//Duck quack + rare man-quack
+			SoundStyle style = new SoundStyle(Main.rand.NextBool(200)
+				? "Terraria/Sounds/Zombie_12"
+				: "Terraria/Sounds/Zombie_11")
+				.WithVolumeScale(.5f * stack) with
+			{
+				PitchVariance = .5f,
+			};
+			SoundEngine.PlaySound(style);
 		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
+		public override void SetStaticDefaults()
 		{
-			player.GetModPlayer<ClickerPlayer>().accSFXButtonG += Item.stack;
+			base.SetStaticDefaults();
+
+			ClickerSystem.RegisterSFXButton(this, PlaySound);
 		}
 	}
 }

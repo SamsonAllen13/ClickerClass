@@ -1,19 +1,27 @@
 ﻿using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
 {
 	public class SFXButtonH : SFXButtonBase
 	{
-		public override void UpdateInventory(Player player) 
+		public static void PlaySound(int stack)
 		{
-			player.GetModPlayer<ClickerPlayer>().accSFXButtonH += Item.stack;
+			//Research crusher + rare research complete jingle
+			SoundStyle style = (Main.rand.NextBool(200) ? SoundID.Research : SoundID.ResearchComplete)
+				.WithVolumeScale(.5f * stack) with
+			{
+				PitchVariance = .5f,
+			};
+			SoundEngine.PlaySound(style);
 		}
 
-		public override void UpdateAccessory(Player player, bool hideVisual)
+		public override void SetStaticDefaults()
 		{
-			player.GetModPlayer<ClickerPlayer>().accSFXButtonH += Item.stack;
+			base.SetStaticDefaults();
+
+			ClickerSystem.RegisterSFXButton(this, PlaySound);
 		}
 	}
 }

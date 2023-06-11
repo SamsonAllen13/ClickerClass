@@ -97,6 +97,18 @@ namespace ClickerClass
 					ClickerSystem.RegisterClickerWeapon(modItem, borderTexture);
 					return success;
 				}
+				else if (message == "RegisterSFXButton")
+				{
+					var modItem = args[index + 0] as ModItem;
+					var playSoundAction = args[index + 1] as ClickerSystem.SFXButtonSoundDelegate;
+					if (modItem == null)
+					{
+						throw new Exception($"Call Error: The modItem argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerSystem.RegisterSFXButton(modItem, playSoundAction);
+					return success;
+				}
 				//Mod mod, string internalName, int amount, Color color, Action<Player, EntitySource_ItemUse_WithAmmo, Vector2, int, int, float> action, bool preHardMode = false, object[] nameArgs = null, object[] descriptionArgs = null
 				else if (message == "RegisterClickEffect")
 				{
@@ -213,6 +225,44 @@ namespace ClickerClass
 					else if (type != null)
 					{
 						return ClickerSystem.IsClickerWeapon(type.Value);
+					}
+					else
+					{
+						throw new Exception($"Call Error: The item/type argument for the attempted message, \"{message}\" has returned null.");
+					}
+				}
+				else if (message == "IsSFXButton")
+				{
+					var item = args[index + 0] as Item;
+					var type = args[index + 0] as int?; //Try another type variation because of overload
+
+					if (item != null)
+					{
+						return ClickerSystem.IsSFXButton(item);
+					}
+					else if (type != null)
+					{
+						return ClickerSystem.IsSFXButton(type.Value);
+					}
+					else
+					{
+						throw new Exception($"Call Error: The item/type argument for the attempted message, \"{message}\" has returned null.");
+					}
+				}
+				else if (message == "GetSFXButton")
+				{
+					var item = args[index + 0] as Item;
+					var type = args[index + 0] as int?; //Try another type variation because of overload
+
+					ClickerSystem.SFXButtonSoundDelegate playSound;
+					if (item != null)
+					{
+						ClickerSystem.IsSFXButton(item.type, out playSound);
+						return ClickerSystem.IsSFXButton(item.type, out playSound) ? playSound : null;
+					}
+					else if (type != null)
+					{
+						return ClickerSystem.IsSFXButton(type.Value, out playSound) ? playSound : null;
 					}
 					else
 					{
@@ -859,6 +909,48 @@ namespace ClickerClass
 
 					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 					return clickerPlayer.HasClickEffect(effectName);
+				}
+				else if (message == "GetAllSFXButtonStacks")
+				{
+					var player = args[index + 0] as Player;
+
+					if (player == null)
+					{
+						throw new Exception($"Call Error: The player argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+					return clickerPlayer.GetAllSFXButtonStacks();
+				}
+				else if (message == "AddSFXButtonStack")
+				{
+					var player = args[index + 0] as Player;
+					var item = args[index + 1] as Item;
+					var type = args[index + 1] as int?; //Try another type variation because of overload
+
+					if (player == null)
+					{
+						throw new Exception($"Call Error: The player argument for the attempted message, \"{message}\" has returned null.");
+					}
+					ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+
+					if (item != null)
+					{
+						return clickerPlayer.AddSFXButtonStack(item);
+					}
+					else if (type != null)
+					{
+						var stack = args[index + 2] as int?;
+						if (stack == null)
+						{
+							throw new Exception($"Call Error: The stack argument for the attempted message, \"{message}\" has returned null.");
+						}
+						return clickerPlayer.AddSFXButtonStack(type.Value, stack.Value);
+					}
+					else
+					{
+						throw new Exception($"Call Error: The item/type argument for the attempted message, \"{message}\" has returned null.");
+					}
 				}
 				else if (message == "SetAutoReuseEffect")
 				{

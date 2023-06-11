@@ -5,7 +5,6 @@ using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System;
-using System.Reflection;
 using Terraria;
 using Terraria.GameInput;
 using Terraria.ID;
@@ -82,6 +81,14 @@ namespace ClickerClass.Items
 			myClone.radiusBoost = radiusBoost;
 			myClone.radiusBoostPrefix = radiusBoostPrefix;
 			return myClone;
+		}
+
+		public override void UpdateInventory(Item item, Player player)
+		{
+			if (ClickerSystem.IsSFXButton(item.type, out var playSoundAction))
+			{
+				player.GetModPlayer<ClickerPlayer>().AddSFXButtonStack(item);
+			}
 		}
 
 		public override float UseTimeMultiplier(Item item, Player player)
@@ -452,11 +459,12 @@ namespace ClickerClass.Items
 			{
 				var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
-				handleClickSFX(player, clickerPlayer);
+				HandleClickSFX(clickerPlayer);
 				
 				//Base
 				//This shouldn't be here, but some mods (DormantDawnMOD) override projectile position, so we set it again like in ModifyShootStats
 				position = clickerPlayer.clickerPosition;
+
 				clickerPlayer.AddClick();
 
 				bool preventsClickEffects = player.CanAutoReuseItem(item) && clickerPlayer.ActiveAutoReuseEffect.PreventsClickEffects;
@@ -591,132 +599,27 @@ namespace ClickerClass.Items
 			return base.Shoot(item, player, source, position, velocity, type, damage, knockback);
 		}
 
-		private void handleClickSFX(Player player, ClickerPlayer clickerPlayer)
+		private static void HandleClickSFX(ClickerPlayer clickerPlayer)
 		{
-			bool sfxDefault = true;
-			List<int> sfxOptionStates = new()
-				{
-					clickerPlayer.accSFXButtonA,
-					clickerPlayer.accSFXButtonB,
-					clickerPlayer.accSFXButtonC,
-					clickerPlayer.accSFXButtonD,
-					clickerPlayer.accSFXButtonE,
-					clickerPlayer.accSFXButtonF,
-					clickerPlayer.accSFXButtonG,
-					clickerPlayer.accSFXButtonH,
-					clickerPlayer.accSFXButtonSoundboard ? 1 : 0,
-				};
-
-			foreach (var sfx in sfxOptionStates)
+			var list = new List<(ClickerSystem.SFXButtonSoundDelegate playSound, int stack)>();
+			foreach (var pair in clickerPlayer.GetAllSFXButtonStacks())
 			{
-				if (sfx > 0)
+				if (ClickerSystem.IsSFXButton(pair.Key, out var playSoundAction))
 				{
-					sfxDefault = false;
+					list.Add((playSoundAction, pair.Value));
 				}
 			}
 
+			bool sfxDefault = list.Count == 0;
 			if (sfxDefault)
 			{
 				// Default click
-				SoundEngine.PlaySound(SoundID.MenuTick, player.position);
+				SoundEngine.PlaySound(SoundID.MenuTick);
+				return;
 			}
-			else
-			{
-				SoundStyle style;
-				int sfxOption = Main.rand.Next(0, sfxOptionStates.Count);
-				while (sfxOptionStates[sfxOption] == 0)
-				{
-					// Reroll until valid option
-					sfxOption = Main.rand.Next(0, sfxOptionStates.Count);
-				}
 
-				switch (sfxOption)
-				{
-					case 0:
-						// SFX Button A - Trumpet doot
-						style = new SoundStyle("ClickerClass/Sounds/Custom/Trumpet") with
-						{
-							Volume = .4f * sfxOptionStates[sfxOption],
-							PitchVariance = .5f,
-						};
-						SoundEngine.PlaySound(style);
-						break;
-					case 1:
-						// SFX Button B - Insect chirp
-						SoundEngine.PlaySound(SoundID.NPCHit29
-							.WithVolumeScale(.5f * sfxOptionStates[sfxOption]) with
-						{
-							PitchVariance = .5f
-						}, player.position);
-						break;
-					case 2:
-						// SFX Button C - Ogre OUAGH
-						style = new SoundStyle(Main.rand.NextBool()
-							? "Terraria/Sounds/Custom/dd2_ogre_attack_2"
-							: "Terraria/Sounds/Custom/dd2_ogre_hurt_1") with
-						{
-							Volume = .4f * sfxOptionStates[sfxOption],
-							PitchVariance = .5f,
-						};
-						SoundEngine.PlaySound(style);
-						break;
-					case 3:
-						// SFX Button D - Fartè
-						SoundEngine.PlaySound(SoundID.Item16
-							.WithVolumeScale(.5f * sfxOptionStates[sfxOption]) with
-						{
-							PitchVariance = .5f
-						}, player.position);
-						break;
-					case 4:
-						// SFX Button E - Bell
-						SoundEngine.PlaySound(SoundID.Item35
-							.WithVolumeScale(.5f * sfxOptionStates[sfxOption]) with
-						{
-							PitchVariance = .5f
-						}, player.position);
-						break;
-					case 5:
-						// SFX Button F - Windy Balloon pop
-						SoundEngine.PlaySound(SoundID.NPCDeath63
-							.WithVolumeScale(.5f * sfxOptionStates[sfxOption]) with
-						{
-							PitchVariance = .5f
-						}, player.position);
-						break;
-					case 6:
-						// SFX Button G - Duck quack + rare man-quack
-						style = new SoundStyle(Main.rand.NextBool(200)
-							? "Terraria/Sounds/Zombie_12"
-							: "Terraria/Sounds/Zombie_11") with
-						{
-							Volume = .5f * sfxOptionStates[sfxOption],
-							PitchVariance = .5f,
-						};
-						SoundEngine.PlaySound(style);
-						break;
-					case 7:
-						// SFX Button H - Research crusher + rare research complete jingle
-						style = new SoundStyle(Main.rand.NextBool(200)
-							? "Terraria/Sounds/Research_0"
-							: "Terraria/Sounds/Research_2") with
-						{
-							Volume = .5f * sfxOptionStates[sfxOption],
-							PitchVariance = .5f,
-						};
-						SoundEngine.PlaySound(style);
-						break;
-					case 8:
-						// SFX Soundboard - Random sound
-						style = new SoundStyle("Terraria/Sounds/Item_" + Main.rand.Next(1, 101)) with { PitchVariance = .5f, };
-						SoundEngine.PlaySound(style);
-						break;
-					default:
-						// Default click
-						SoundEngine.PlaySound(SoundID.MenuTick, player.position);
-						break;
-				}
-			}
+			var sfxOption = Main.rand.Next(list);
+			sfxOption.playSound.Invoke(sfxOption.stack);
 		}
 	}
 }

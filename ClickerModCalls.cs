@@ -41,6 +41,17 @@ namespace ClickerClass
 					ClickerSystem.SetClickerWeaponDefaults(item);
 					return success;
 				}
+				else if (message == "SetSFXButtonDefaults")
+				{
+					var item = args[index + 0] as Item;
+					if (item == null)
+					{
+						throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
+					}
+
+					ClickerSystem.SetSFXButtonDefaults(item);
+					return success;
+				}
 				else if (message == "SetClickerProjectileDefaults")
 				{
 					var projectile = args[index + 0] as Projectile;
@@ -100,7 +111,7 @@ namespace ClickerClass
 				else if (message == "RegisterSFXButton")
 				{
 					var modItem = args[index + 0] as ModItem;
-					var playSoundAction = args[index + 1] as ClickerSystem.SFXButtonSoundDelegate;
+					var playSoundAction = args[index + 1] as Action<int>;
 					if (modItem == null)
 					{
 						throw new Exception($"Call Error: The modItem argument for the attempted message, \"{message}\" has returned null.");
@@ -254,7 +265,7 @@ namespace ClickerClass
 					var item = args[index + 0] as Item;
 					var type = args[index + 0] as int?; //Try another type variation because of overload
 
-					ClickerSystem.SFXButtonSoundDelegate playSound;
+					Action<int> playSound;
 					if (item != null)
 					{
 						ClickerSystem.IsSFXButton(item.type, out playSound);

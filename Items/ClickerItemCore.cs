@@ -601,7 +601,7 @@ namespace ClickerClass.Items
 
 		private static void HandleClickSFX(ClickerPlayer clickerPlayer)
 		{
-			var list = new List<(ClickerSystem.SFXButtonSoundDelegate playSound, int stack)>();
+			var list = new List<(Action<int> playSound, int stack)>();
 			foreach (var pair in clickerPlayer.GetAllSFXButtonStacks())
 			{
 				if (ClickerSystem.IsSFXButton(pair.Key, out var playSoundAction))

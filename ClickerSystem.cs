@@ -19,11 +19,6 @@ namespace ClickerClass
 	public class ClickerSystem : ModSystem
 	{
 		//Clientside only hence why player instance to play the sound at is not necessary
-		/// <summary>
-		/// The method used to play a sound
-		/// </summary>
-		/// <param name="stack">Usually used to control the volume by multiplying with 0.5f, ranges from 1 to <see cref="SFXButtonBase.StackAmount"/></param>
-		public delegate void SFXButtonSoundDelegate(int stack);
 
 		/// <summary>
 		/// To prevent certain methods being called when they shouldn't
@@ -40,7 +35,7 @@ namespace ClickerClass
 
 		private static HashSet<int> ClickerWeapons { get; set; }
 
-		private static Dictionary<int, SFXButtonSoundDelegate> SFXButtons { get; set; }
+		private static Dictionary<int, Action<int>> SFXButtons { get; set; }
 
 		private static HashSet<int> ClickerWeaponProjectiles { get; set; }
 
@@ -69,7 +64,7 @@ namespace ClickerClass
 			ClickerItems = new HashSet<int>();
 			ClickerWeaponBorderTexture = new Dictionary<int, string>();
 			ClickerWeapons = new HashSet<int>();
-			SFXButtons = new Dictionary<int, SFXButtonSoundDelegate>();
+			SFXButtons = new Dictionary<int, Action<int>>();
 			ClickerProjectiles = new HashSet<int>();
 			ClickerWeaponProjectiles = new HashSet<int>();
 			ClickEffectsByName = new Dictionary<string, ClickEffect>();
@@ -406,9 +401,9 @@ namespace ClickerClass
 		/// Do not call <see cref="RegisterClickerItem"/> with it as this method does this already by itself
 		/// </summary>
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
-		/// <param name="playSoundAction">The <see cref="SFXButtonSoundDelegate"/> that will play the sound</param>
+		/// <param name="playSoundAction">The method that runs that will play the sound</param>
 		/// <exception cref="InvalidOperationException"/>
-		public static void RegisterSFXButton(ModItem modItem, SFXButtonSoundDelegate playSoundAction)
+		public static void RegisterSFXButton(ModItem modItem, Action<int> playSoundAction)
 		{
 			if (FinalizedRegisterCompat)
 			{
@@ -522,9 +517,9 @@ namespace ClickerClass
 		/// Call this to check if an item type is an "sfx button"
 		/// </summary>
 		/// <param name="type">The item type to be checked</param>
-		/// <param name="playSoundAction">The <see cref="SFXButtonSoundDelegate"/> of this item for convenience, only assigned if method returns true</param>
+		/// <param name="playSoundAction">The <see cref="Action<int>"/> of this item for convenience, only assigned if method returns true</param>
 		/// <returns><see langword="true"/> if an "sfx button"</returns>
-		public static bool IsSFXButton(int type, out SFXButtonSoundDelegate playSoundAction)
+		public static bool IsSFXButton(int type, out Action<int> playSoundAction)
 		{
 			return SFXButtons.TryGetValue(type, out playSoundAction);
 		}

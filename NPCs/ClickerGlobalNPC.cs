@@ -2,6 +2,7 @@ using ClickerClass.Buffs;
 using ClickerClass.Items;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Consumables;
+using ClickerClass.Items.Misc;
 using ClickerClass.Items.Placeable;
 using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Utilities;

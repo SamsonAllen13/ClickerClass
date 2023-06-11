@@ -1,14 +1,15 @@
-﻿using ClickerClass.Sounds;
+﻿using Terraria;
 using Terraria.Audio;
+using Terraria.ID;
 
-namespace ClickerClass.Items.Accessories
+namespace ClickerClass.Items.Misc
 {
-	public class SFXButtonA : SFXButtonBase
+	public class SFXButtonH : SFXButtonBase
 	{
 		public static void PlaySound(int stack)
 		{
-			//Trumpet doot
-			SoundStyle style = ClickerSounds.Trumpet
+			//Research crusher + rare research complete jingle
+			SoundStyle style = (Main.rand.NextBool(200) ? SoundID.Research : SoundID.ResearchComplete)
 				.WithVolumeScale(.5f * stack) with
 			{
 				PitchVariance = .5f,

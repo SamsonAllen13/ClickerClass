@@ -1,14 +1,14 @@
 ﻿using Terraria.Audio;
 using Terraria.ID;
 
-namespace ClickerClass.Items.Accessories
+namespace ClickerClass.Items.Misc
 {
-	public class SFXButtonE : SFXButtonBase
+	public class SFXButtonB : SFXButtonBase
 	{
 		public static void PlaySound(int stack)
 		{
-			//Bell
-			SoundEngine.PlaySound(SoundID.Item35
+			//Insect chirp
+			SoundEngine.PlaySound(SoundID.NPCHit29
 				.WithVolumeScale(.5f * stack) with
 			{
 				PitchVariance = .5f

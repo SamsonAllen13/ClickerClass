@@ -103,7 +103,7 @@ Mods: {
 				Clicks: "{0} {^0:clique;cliques}"
 				/* SFXButtonTip:
 					'''
-					Changes the sound your clicks make while equipped or in your inventory
+					Changes the sound your clicks make while in your inventory
 					Volume increases with stack size, up to {0}
 					''' */
 			}
@@ -495,7 +495,7 @@ Mods: {
 				/* Tooltip:
 					'''
 					'Become the life of the party! ...or death of it'
-					Changes the sound your clicks make while equipped or in your inventory
+					Changes the sound your clicks make while in your inventory
 					''' */
 			}
 

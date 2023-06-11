@@ -1,5 +1,4 @@
 ﻿using ClickerClass.Items;
-using ClickerClass.Items.Accessories;
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
@@ -10,6 +9,7 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.DataStructures;
 using Terraria.Localization;
+using ClickerClass.Items.Misc;
 
 namespace ClickerClass
 {

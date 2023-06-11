@@ -18,6 +18,7 @@ using Terraria.GameContent.Drawing;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Core.Netcode.Packets;
 using ClickerClass.Items.Consumables;
+using ClickerClass.Items.Misc;
 
 namespace ClickerClass
 {

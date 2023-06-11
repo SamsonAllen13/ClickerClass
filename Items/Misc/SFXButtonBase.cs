@@ -3,7 +3,7 @@ using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
-namespace ClickerClass.Items.Accessories
+namespace ClickerClass.Items.Misc
 {
 	public abstract class SFXButtonBase : ClickerItem
 	{

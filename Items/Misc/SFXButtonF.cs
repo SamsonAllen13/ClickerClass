@@ -1,14 +1,14 @@
 ﻿using Terraria.Audio;
 using Terraria.ID;
 
-namespace ClickerClass.Items.Accessories
+namespace ClickerClass.Items.Misc
 {
-	public class SFXButtonD : SFXButtonBase
+	public class SFXButtonF : SFXButtonBase
 	{
 		public static void PlaySound(int stack)
 		{
-			//Fartè
-			SoundEngine.PlaySound(SoundID.Item16
+			//Windy Balloon pop
+			SoundEngine.PlaySound(SoundID.NPCDeath63
 				.WithVolumeScale(.5f * stack) with
 			{
 				PitchVariance = .5f

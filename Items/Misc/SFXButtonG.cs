@@ -1,17 +1,17 @@
 ﻿using Terraria;
 using Terraria.Audio;
 
-namespace ClickerClass.Items.Accessories
+namespace ClickerClass.Items.Misc
 {
-	public class SFXButtonC : SFXButtonBase
+	public class SFXButtonG : SFXButtonBase
 	{
 		public static void PlaySound(int stack)
 		{
-			//Ogre OUAGH
-			SoundStyle style = new SoundStyle(Main.rand.NextBool()
-				? "Terraria/Sounds/Custom/dd2_ogre_attack_2"
-				: "Terraria/Sounds/Custom/dd2_ogre_hurt_1")
-				.WithVolumeScale(.4f * stack) with
+			//Duck quack + rare man-quack
+			SoundStyle style = new SoundStyle(Main.rand.NextBool(200)
+				? "Terraria/Sounds/Zombie_12"
+				: "Terraria/Sounds/Zombie_11")
+				.WithVolumeScale(.5f * stack) with
 			{
 				PitchVariance = .5f,
 			};

@@ -268,7 +268,6 @@ namespace ClickerClass
 					Action<int> playSound;
 					if (item != null)
 					{
-						ClickerSystem.IsSFXButton(item.type, out playSound);
 						return ClickerSystem.IsSFXButton(item.type, out playSound) ? playSound : null;
 					}
 					else if (type != null)

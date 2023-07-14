@@ -7,8 +7,8 @@ namespace ClickerClass.Items.Misc
 	{
 		public static void PlaySound(int stack)
 		{
-			//Windy Balloon pop
-			SoundEngine.PlaySound(SoundID.NPCDeath63
+			//Fartè
+			SoundEngine.PlaySound(SoundID.Item16
 				.WithVolumeScale(.5f * stack) with
 			{
 				PitchVariance = .5f

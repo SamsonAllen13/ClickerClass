@@ -29,7 +29,7 @@ namespace ClickerClass.Tiles.Mice
 			TileObjectData.newAlternate.Direction = TileObjectDirection.PlaceRight; //allows me to place example chairs facing the same way as the player
 			TileObjectData.addAlternate(1); //facing right will use the second texture style
 			TileObjectData.addTile(Type);
-			
+
 			AdjTiles = new int[] { TileID.Sinks };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 			AddMapEntry(new Color(191, 142, 111), Language.GetText("MapObject.Sink"));

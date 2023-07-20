@@ -15,7 +15,8 @@ namespace ClickerClass.InfoDisplays
 			DisplayValueText = this.GetLocalization("DisplayValue");
 		}
 
-		public override bool Active() {
+		public override bool Active()
+		{
 			Player player = Main.LocalPlayer;
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			return clickerPlayer.clickerSelected && clickerPlayer.accButtonMasher;

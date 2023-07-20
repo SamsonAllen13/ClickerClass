@@ -1,15 +1,13 @@
-using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
 	public class NaughtyClickerPro3 : ClickerProjectile
 	{
 		public int colorLoss = 0;
-		
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -35,17 +33,17 @@ namespace ClickerClass.Projectiles
 		{
 			return new Color(255, 255 - colorLoss, 255 - colorLoss, 150) * Projectile.Opacity;
 		}
-		
+
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(BuffID.OnFire3, 300, false);
 		}
-		
+
 		public override void AI()
 		{
 			Projectile.alpha += 8;
 			colorLoss += 8;
-			
+
 			Projectile.frameCounter++;
 			if (Projectile.frameCounter > 4)
 			{

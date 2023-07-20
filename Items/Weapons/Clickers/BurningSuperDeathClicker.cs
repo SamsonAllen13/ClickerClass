@@ -1,11 +1,8 @@
-using ClickerClass.Buffs;
 using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Audio;
-using Terraria.DataStructures;
 using System.Collections.Generic;
+using Terraria;
+using Terraria.DataStructures;
+using Terraria.ID;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -55,7 +52,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = Item.sellPrice(0, 1, 0, 0);
 			Item.rare = ItemRarityID.LightRed;
 		}
-		
+
 		public override void HoldItem(Player player)
 		{
 			player.GetModPlayer<ClickerPlayer>().itemBurningSuperDeath = true;

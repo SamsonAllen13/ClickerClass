@@ -22,7 +22,7 @@ namespace ClickerClass.Utilities
 		/// <returns>True if chaseable, max life > 5, not friendly, and can take damage.</returns>
 		public static bool IsHostile(this NPC npc, object attacker = null, bool ignoreDontTakeDamage = false)
 		{
-			if (/*npc.active && */!npc.friendly && npc.lifeMax > 5 && npc.chaseable && (!npc.dontTakeDamage || ignoreDontTakeDamage) )
+			if (/*npc.active && */!npc.friendly && npc.lifeMax > 5 && npc.chaseable && (!npc.dontTakeDamage || ignoreDontTakeDamage))
 				return !npc.immortal;
 
 			return false;

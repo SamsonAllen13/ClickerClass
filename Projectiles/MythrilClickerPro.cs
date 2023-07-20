@@ -1,10 +1,10 @@
 using ClickerClass.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
 {

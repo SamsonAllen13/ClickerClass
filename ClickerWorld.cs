@@ -85,7 +85,7 @@ namespace ClickerClass
 					chestLists[style].Add(chest);
 				}
 			}
-			
+
 			if (chestLists.ContainsKey(ChestStyle.Gold))
 			{
 				ReplaceRareItemsInChests(chestLists[ChestStyle.Gold], new int[] { ModContent.ItemType<EnchantedLED>(), ModContent.ItemType<EnchantedLED>() });
@@ -95,17 +95,17 @@ namespace ClickerClass
 			{
 				ReplaceRareItemsInChests(chestLists[ChestStyle.DeadMans], new int[] { ModContent.ItemType<FaultyClicker>() });
 			}
-			
+
 			if (chestLists.ContainsKey(ChestStyle.Skyware))
 			{
 				ReplaceRareItemsInChests(chestLists[ChestStyle.Skyware], new int[] { ModContent.ItemType<StarryClicker>() });
 			}
-			
+
 			if (chestLists.ContainsKey(ChestStyle.Ice))
 			{
 				ReplaceRareItemsInChests(chestLists[ChestStyle.Ice], new int[] { ModContent.ItemType<IcePack>() });
 			}
-			
+
 			if (chestLists.ContainsKey(ChestStyle.Mushroom))
 			{
 				ReplaceRareItemsInChests(chestLists[ChestStyle.Mushroom], new int[] { ModContent.ItemType<MyceliumClicker>() });

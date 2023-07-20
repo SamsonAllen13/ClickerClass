@@ -1,8 +1,8 @@
+using ClickerClass.Dusts;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ClickerClass.Dusts;
 
 namespace ClickerClass.Tiles.Mice
 {

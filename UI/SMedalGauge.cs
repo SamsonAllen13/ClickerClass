@@ -1,6 +1,6 @@
-﻿using Terraria;
+﻿using ClickerClass.Utilities;
+using Terraria;
 using Terraria.UI;
-using ClickerClass.Utilities;
 
 namespace ClickerClass.UI
 {

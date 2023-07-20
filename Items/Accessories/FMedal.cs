@@ -31,7 +31,7 @@ namespace ClickerClass.Items.Accessories
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			clickerPlayer.accFMedalItem = Item;
 		}
-		
+
 		public override void AddRecipes()
 		{
 			CreateRecipe(1).AddRecipeGroup(ClickerRecipes.AnyGoldBarGroup, 8).AddIngredient(ItemID.SoulofNight, 8).AddTile(TileID.Anvils).Register();

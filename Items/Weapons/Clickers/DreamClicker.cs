@@ -1,11 +1,9 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Audio;
-using Terraria.DataStructures;
-using System.Collections.Generic;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -46,12 +44,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = Item.sellPrice(0, 0, 40, 0);
 			Item.rare = ItemRarityID.Green;
 		}
-		
+
 		public override void HoldItem(Player player)
 		{
 			player.GetModPlayer<ClickerPlayer>().itemDreamClicker = true;
 		}
-		
+
 		//TODO - Make it rarely fall out of the sky like fallen stars but only during a shooting star night
 	}
 }

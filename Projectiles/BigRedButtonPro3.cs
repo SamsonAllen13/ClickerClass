@@ -1,22 +1,20 @@
-using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
 	public class BigRedButtonPro3 : ClickerProjectile
 	{
 		public bool pulseShift = false;
-		
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 			Main.projFrames[Projectile.type] = 4;
 		}
-		
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
@@ -30,12 +28,12 @@ namespace ClickerClass.Projectiles
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 60;
 		}
-		
+
 		public override Color? GetAlpha(Color lightColor)
 		{
 			return new Color(255, 255, 255, 50) * Projectile.ai[1];
 		}
-		
+
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(BuffID.OnFire3, 300, false);
@@ -47,12 +45,12 @@ namespace ClickerClass.Projectiles
 			if (Projectile.ai[0] < 90)
 			{
 				Projectile.velocity.Y /= 1.0065f;
-				
+
 				if (Projectile.ai[0] % 15 == 0)
 				{
 					Projectile.velocity.Y += 1.05f;
 				}
-				
+
 				for (int num363 = 0; num363 < 3; num363++)
 				{
 					float num364 = Projectile.velocity.X / 3f * (float)num363;
@@ -91,7 +89,7 @@ namespace ClickerClass.Projectiles
 				}
 			}
 		}
-		
+
 		public override void PostAI()
 		{
 			Projectile.frameCounter++;

@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
 {
@@ -10,7 +10,7 @@ namespace ClickerClass.Projectiles
 	{
 		public bool hoverDown = true;
 		public int hoverAmount = 0;
-		
+
 		public bool Spawned
 		{
 			get => Projectile.ai[1] == 1f;
@@ -28,7 +28,7 @@ namespace ClickerClass.Projectiles
 			base.SetStaticDefaults();
 			Main.projFrames[Projectile.type] = 6;
 		}
-		
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
@@ -63,7 +63,7 @@ namespace ClickerClass.Projectiles
 				}
 				Timer = 0;
 			}
-			
+
 			// Hover up & down
 			if (hoverDown)
 			{
@@ -91,13 +91,13 @@ namespace ClickerClass.Projectiles
 					hoverAmount = 0;
 				}
 			}
-			
+
 			if (Projectile.timeLeft < 30)
 			{
 				Projectile.alpha += 8;
 			}
 		}
-		
+
 		public override void PostAI()
 		{
 			Projectile.frameCounter++;

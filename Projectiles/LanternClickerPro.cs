@@ -1,7 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.Audio;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -18,7 +18,7 @@ namespace ClickerClass.Projectiles
 			get => Projectile.ai[1] == 1f;
 			set => Projectile.ai[1] = value ? 1f : 0f;
 		}
-		
+
 		public virtual int ExplosionHitboxSize => 80;
 
 		public override void SetDefaults()
@@ -34,7 +34,7 @@ namespace ClickerClass.Projectiles
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 60;
 		}
-		
+
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(BuffID.OnFire3, 60, false);
@@ -74,7 +74,7 @@ namespace ClickerClass.Projectiles
 				Projectile.netUpdate = true;
 				Projectile.friendly = true;
 				CanSpawnLight = true;
-				
+
 				if (Projectile.owner == Main.myPlayer)
 				{
 					Projectile.velocity.X = 0f;

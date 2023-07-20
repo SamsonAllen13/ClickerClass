@@ -1,15 +1,15 @@
-using System;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.Audio;
-using Terraria.ModLoader;
-using Terraria.DataStructures;
-using ReLogic.Content;
-using Microsoft.Xna.Framework.Graphics;
-using ClickerClass.Utilities;
 using ClickerClass.DrawLayers;
+using ClickerClass.Utilities;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
 using Terraria.GameContent.Drawing;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -21,7 +21,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			glowmask = null;
 		}
-		
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -41,13 +41,13 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 					Vector2 spawnVelocity = Main.rand.NextVector2Circular(1f, 1f) + Main.rand.NextVector2CircularEdge(3f, 3f);
 					int projType = ProjectileID.FairyQueenMagicItemShot; //This projectile decreases damage by 20% each hit, fixed homing speed of 30
-					float targetIndex = spawnEffects ? - 2f : -1f; //Normally -1f, we intercept it
+					float targetIndex = spawnEffects ? -2f : -1f; //Normally -1f, we intercept it
 					float randomColor = player.miscCounterNormalized % 1f;
 					Projectile.NewProjectile(source, position, spawnVelocity, projType, (int)(damage * 0.5f), knockBack, player.whoAmI, targetIndex, randomColor);
 					spawnEffects = false;
 				}
 			});
-			
+
 			if (!Main.dedServ)
 			{
 				glowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
@@ -75,7 +75,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = Item.sellPrice(0, 10, 0, 0);
 			Item.rare = ItemRarityID.Yellow;
 		}
-		
+
 		public override void PostDrawInWorld(SpriteBatch spriteBatch, Color lightColor, Color alphaColor, float rotation, float scale, int whoAmI)
 		{
 			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value.Value, new Color(255, 255, 255, 50) * 0.75f, rotation, scale);

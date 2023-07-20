@@ -1,14 +1,14 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ClickerClass.Items.Accessories;
+using ClickerClass.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
-using ReLogic.Content;
 using Terraria;
-using Terraria.UI;
-using ClickerClass.Utilities;
-using Terraria.ModLoader;
 using Terraria.Localization;
-using ClickerClass.Items.Accessories;
+using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace ClickerClass.UI
 {
@@ -65,7 +65,7 @@ namespace ClickerClass.UI
 
 			// Transparency Multiplier
 			float alphaMult = Math.Min((float)FadeTime / MAX_FADE_TIME, 1);
-			
+
 			Asset<Texture2D> borderAsset;
 			borderAsset = sheetAsset.Value;
 

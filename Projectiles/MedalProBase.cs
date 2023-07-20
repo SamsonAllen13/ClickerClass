@@ -40,7 +40,7 @@ namespace ClickerClass.Projectiles
 			Projectile.penetrate = -1;
 			Projectile.timeLeft = 10;
 		}
-		
+
 		public override Color? GetAlpha(Color lightColor)
 		{
 			return new Color(255, 255, 255, 150) * MouseoverAlpha * Projectile.Opacity;

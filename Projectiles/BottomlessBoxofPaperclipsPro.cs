@@ -2,9 +2,9 @@ using ClickerClass.Buffs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent;
 
 namespace ClickerClass.Projectiles
 {
@@ -21,7 +21,7 @@ namespace ClickerClass.Projectiles
 			get => (int)Projectile.ai[1];
 			set => Projectile.ai[1] = value;
 		}
-		
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -43,12 +43,12 @@ namespace ClickerClass.Projectiles
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 30;
 		}
-		
+
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(ModContent.BuffType<Gouge>(), 60, false);
 		}
-		
+
 		public override bool PreDraw(ref Color lightColor)
 		{
 			Texture2D texture2D = TextureAssets.Projectile[Projectile.type].Value;

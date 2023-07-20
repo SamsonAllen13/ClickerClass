@@ -17,7 +17,7 @@ namespace ClickerClass.Tiles.Mice
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style4x2);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
 			TileObjectData.addTile(Type);
-			
+
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 			AddMapEntry(new Color(144, 148, 144), Lang.GetItemName(ItemID.Bathtub));
 		}

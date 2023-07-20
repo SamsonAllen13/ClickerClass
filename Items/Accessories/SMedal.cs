@@ -28,7 +28,7 @@ namespace ClickerClass.Items.Accessories
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			clickerPlayer.accSMedalItem = Item;
 		}
-		
+
 		public override void AddRecipes()
 		{
 			CreateRecipe(1).AddIngredient(ModContent.ItemType<AMedal>(), 1).AddIngredient(ModContent.ItemType<FMedal>(), 1).AddIngredient(ItemID.SoulofFright, 6).AddIngredient(ItemID.SoulofSight, 6).AddIngredient(ItemID.SoulofMight, 6).AddTile(TileID.TinkerersWorkbench).Register();

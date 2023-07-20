@@ -14,7 +14,7 @@ namespace ClickerClass.Tiles.Mice
 	public class MiceChair : ModTile
 	{
 		public const int NextStyleHeight = 38;
-		
+
 		public override void SetStaticDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;

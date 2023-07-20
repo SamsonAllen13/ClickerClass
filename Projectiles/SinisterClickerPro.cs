@@ -1,9 +1,9 @@
+using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.Audio;
-using ClickerClass.Items.Weapons.Clickers;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {

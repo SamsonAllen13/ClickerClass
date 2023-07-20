@@ -23,7 +23,7 @@ namespace ClickerClass.Tiles.Mice
 			TileObjectData.newTile.StyleWrapLimit = 111;
 			TileObjectData.newTile.CoordinateHeights = new int[] { 18 };
 			TileObjectData.addTile(Type);
-			
+
 			AdjTiles = new int[] { TileID.WorkBenches };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 			AddMapEntry(new Color(191, 142, 111), Lang.GetItemName(ItemID.WorkBench));

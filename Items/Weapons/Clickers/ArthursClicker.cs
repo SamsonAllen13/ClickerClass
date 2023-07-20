@@ -1,11 +1,10 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {

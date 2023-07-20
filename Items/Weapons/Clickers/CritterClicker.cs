@@ -1,11 +1,7 @@
-using ClickerClass.Utilities;
-using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.DataStructures;
+using Terraria.ID;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -43,12 +39,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = Item.sellPrice(0, 20, 0, 0);
 			Item.rare = ItemRarityID.Orange;
 		}
-		
+
 		public override void HoldItem(Player player)
 		{
 			player.dontHurtCritters = true;
 		}
-		
+
 		//TODO - Sold by zoologist after 50% bestiary 
 	}
 }

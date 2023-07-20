@@ -1,5 +1,4 @@
 using Microsoft.Xna.Framework;
-using System;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -106,23 +105,27 @@ namespace ClickerClass.Tiles.Mice
 			player.SetTalkNPC(-1);
 			Main.npcChatCornerItem = 0;
 			Main.npcChatText = "";
-			if (Main.editChest) {
+			if (Main.editChest)
+			{
 				SoundEngine.PlaySound(SoundID.MenuTick);
 				Main.editChest = false;
 				Main.npcChatText = string.Empty;
 			}
-			if (player.editedChestName) {
+			if (player.editedChestName)
+			{
 				NetMessage.SendData(MessageID.SyncPlayerChest, -1, -1, NetworkText.FromLiteral(Main.chest[player.chest].name), player.chest, 1f);
 				player.editedChestName = false;
 			}
 			if (Main.netMode == NetmodeID.MultiplayerClient)
 			{
-				if (left == player.chestX && top == player.chestY && player.chest != -1) {
+				if (left == player.chestX && top == player.chestY && player.chest != -1)
+				{
 					player.chest = -1;
 					Recipe.FindRecipes();
 					SoundEngine.PlaySound(SoundID.MenuClose);
 				}
-				else {
+				else
+				{
 					NetMessage.SendData(MessageID.RequestChestOpen, -1, -1, null, left, top);
 					Main.stackSplit = 600;
 				}
@@ -130,13 +133,16 @@ namespace ClickerClass.Tiles.Mice
 			else
 			{
 				int chest = Chest.FindChest(left, top);
-				if (chest != -1) {
+				if (chest != -1)
+				{
 					Main.stackSplit = 600;
-					if (chest == player.chest) {
+					if (chest == player.chest)
+					{
 						player.chest = -1;
 						SoundEngine.PlaySound(SoundID.MenuClose);
 					}
-					else {
+					else
+					{
 						SoundEngine.PlaySound(player.chest < 0 ? SoundID.MenuOpen : SoundID.MenuTick);
 						player.OpenChest(left, top, chest);
 					}

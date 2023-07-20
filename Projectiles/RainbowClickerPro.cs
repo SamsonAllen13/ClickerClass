@@ -1,13 +1,11 @@
-using ClickerClass.Buffs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.Graphics.Shaders;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -19,7 +17,7 @@ namespace ClickerClass.Projectiles
 			get => Projectile.ai[0] == 1f;
 			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
-		
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -61,9 +59,9 @@ namespace ClickerClass.Projectiles
 			}
 			return true;
 		}
-		
+
 		//TODO - Figure out how to replicate Empress of Light 'Rainbow Attacks' draw effects
-		
+
 		public override void AI()
 		{
 			if (HasSpawnEffects)

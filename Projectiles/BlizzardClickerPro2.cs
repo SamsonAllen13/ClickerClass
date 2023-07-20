@@ -2,10 +2,10 @@ using ClickerClass.Buffs;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -59,7 +59,7 @@ namespace ClickerClass.Projectiles
 		{
 			target.AddBuff(ModContent.BuffType<Frozen>(), 30, false);
 		}
-		
+
 		public override void AI()
 		{
 			if (AlphaTimer < 1f)

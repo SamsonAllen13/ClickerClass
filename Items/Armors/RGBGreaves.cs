@@ -43,7 +43,7 @@ namespace ClickerClass.Items.Armors
 		{
 			player.GetModPlayer<ClickerPlayer>().clickerRadius += 2 * RadiusIncrease / 100f;
 		}
-		
+
 		public override void AddRecipes()
 		{
 			CreateRecipe(1).AddIngredient(ItemID.RainbowBrick, 35).AddIngredient(ItemID.CrystalShard, 20).AddTile(TileID.Anvils).Register();

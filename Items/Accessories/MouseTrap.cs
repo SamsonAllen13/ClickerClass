@@ -32,11 +32,11 @@ namespace ClickerClass.Items.Accessories
 			clickerPlayer.clickerBonusPercent -= ClickAmountDecrease / 100f;
 			clickerPlayer.accMouseTrap = true;
 		}
-		
+
 		public override void AddRecipes()
 		{
 			CreateRecipe(1).AddCondition(Condition.InGraveyard).AddRecipeGroup(RecipeGroupID.IronBar, 8).AddRecipeGroup(RecipeGroupID.Wood, 6).AddIngredient(ItemID.ShadowScale, 6).AddTile(TileID.Anvils).Register();
-			
+
 			CreateRecipe(1).AddCondition(Condition.InGraveyard).AddRecipeGroup(RecipeGroupID.IronBar, 8).AddRecipeGroup(RecipeGroupID.Wood, 6).AddIngredient(ItemID.TissueSample, 6).AddTile(TileID.Anvils).Register();
 		}
 	}

@@ -1,11 +1,8 @@
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ReLogic.Content;
-using System.IO;
-using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
 {

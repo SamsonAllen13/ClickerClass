@@ -1,15 +1,7 @@
-using ClickerClass.Core;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Linq;
 using Terraria;
 using Terraria.Audio;
-using Terraria.DataStructures;
-using Terraria.GameContent;
 using Terraria.ID;
-using Terraria.ModLoader;
-using ClickerClass.Utilities;
 
 namespace ClickerClass.Projectiles
 {
@@ -20,7 +12,7 @@ namespace ClickerClass.Projectiles
 			get => Projectile.ai[0] == 1f;
 			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
-		
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -39,7 +31,7 @@ namespace ClickerClass.Projectiles
 			Projectile.timeLeft = 180;
 			Projectile.extraUpdates = 5;
 		}
-		
+
 		public override void AI()
 		{
 			if (HasSpawnEffects)
@@ -61,7 +53,7 @@ namespace ClickerClass.Projectiles
 				}
 				HasSpawnEffects = false;
 			}
-			
+
 			int index = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, 57, 0f, 0f, 255, default(Color), 1.25f);
 			Dust dust = Main.dust[index];
 			dust.position.X = Projectile.Center.X;
@@ -69,7 +61,7 @@ namespace ClickerClass.Projectiles
 			dust.velocity *= 0f;
 			dust.noGravity = true;
 		}
-		
+
 		public override void Kill(int timeLeft)
 		{
 			for (int k = 0; k < 5; k++)

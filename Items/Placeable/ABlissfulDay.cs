@@ -1,7 +1,7 @@
+using ClickerClass.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ClickerClass.Tiles;
 
 namespace ClickerClass.Items.Placeable
 {

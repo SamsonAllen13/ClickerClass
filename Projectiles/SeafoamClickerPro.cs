@@ -2,8 +2,8 @@ using ClickerClass.Buffs;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
 using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
@@ -48,13 +48,13 @@ namespace ClickerClass.Projectiles
 					if (target.CanBeChasedBy() && target.DistanceSQ(Projectile.Center) < 200 * 200)
 					{
 						target.AddBuff(ModContent.BuffType<Seafoam>(), 300, false);
-						
+
 						Player player = Main.player[Projectile.owner];
 						if (player.statLife < player.statLifeMax)
 						{
 							player.HealLife(1);
 						}
-						
+
 						for (int i = 0; i < 15; i++)
 						{
 							int index = Dust.NewDust(target.position, target.width, target.height, 99, 0f, 0f, 100, default(Color), 1.5f);

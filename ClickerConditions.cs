@@ -7,7 +7,7 @@ namespace ClickerClass
 	{
 		public static readonly string CommonKey = "Conditions.";
 		public static readonly Condition ClickerSelected = new Condition(Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey($"{CommonKey}ClickerSelected")), () => Main.LocalPlayer.GetModPlayer<ClickerPlayer>().clickerSelected);
-		
+
 		//Alternatively hardcode each amount
 		/// <summary>
 		/// Returns a new condition specifically with the amount listed.

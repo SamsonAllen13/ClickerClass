@@ -2,13 +2,13 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.Localization;
-using System.Text.RegularExpressions;
+using Terraria.ModLoader;
 
 namespace ClickerClass
 {
@@ -149,10 +149,10 @@ namespace ClickerClass
 		public static string ChocolateChip { get; internal set; } = string.Empty;
 		public static string BigRedButton { get; internal set; } = string.Empty;
 		public static string ClearKeychain { get; internal set; } = string.Empty;
-		
+
 		//Armor
 		public static string ChromaticBurst { get; internal set; } = string.Empty;
-		
+
 		//Clicker
 		public static string Mania { get; internal set; } = string.Empty;
 		public static string Nab { get; internal set; } = string.Empty;

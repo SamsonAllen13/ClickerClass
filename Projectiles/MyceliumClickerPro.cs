@@ -1,9 +1,9 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ID;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -28,7 +28,7 @@ namespace ClickerClass.Projectiles
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 8;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 		}
-		
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
@@ -40,7 +40,7 @@ namespace ClickerClass.Projectiles
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 30;
 		}
-		
+
 		public override bool PreDraw(ref Color lightColor)
 		{
 			Texture2D texture2D = TextureAssets.Projectile[Projectile.type].Value;
@@ -82,7 +82,7 @@ namespace ClickerClass.Projectiles
 				Timer = -15;
 			}
 		}
-		
+
 		public override void Kill(int timeLeft)
 		{
 			for (int k = 0; k < 8; k++)
@@ -91,7 +91,7 @@ namespace ClickerClass.Projectiles
 				Main.dust[dust].noGravity = true;
 			}
 		}
-		
+
 		public override void PostAI()
 		{
 			Projectile.frameCounter++;

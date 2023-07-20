@@ -1,7 +1,6 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ClickerClass.Items;
 
 namespace ClickerClass.Items.Placeable.Mice
 {

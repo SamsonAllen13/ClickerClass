@@ -1,7 +1,5 @@
-using ClickerClass.Items.Placeable;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -11,7 +9,7 @@ namespace ClickerClass.Tiles
 {
 	public class PaintingMedium : ModTile
 	{
-		public override void SetStaticDefaults() 
+		public override void SetStaticDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;
 			Main.tileLavaDeath[Type] = true;

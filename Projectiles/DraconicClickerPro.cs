@@ -1,12 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using Terraria;
-using Terraria.ID;
-using Terraria.Utilities;
-using Terraria.GameContent;
-using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -29,20 +27,20 @@ namespace ClickerClass.Projectiles
 			get => (int)Projectile.localAI[0];
 			set => Projectile.localAI[0] = value;
 		}
-		
+
 		public bool Spawned
 		{
 			get => Projectile.localAI[1] == 1f;
 			set => Projectile.localAI[1] = value ? 1f : 0f;
 		}
-		
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 20;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 		}
-		
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
@@ -56,7 +54,7 @@ namespace ClickerClass.Projectiles
 			Projectile.extraUpdates = 2;
 			Projectile.tileCollide = false;
 		}
-		
+
 		public override bool PreDraw(ref Color lightColor)
 		{
 			Texture2D texture2D = TextureAssets.Projectile[Projectile.type].Value;
@@ -74,7 +72,7 @@ namespace ClickerClass.Projectiles
 		{
 			Projectile.spriteDirection = Projectile.velocity.X > 0f ? 1 : -1;
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
-			
+
 			if (!Spawned)
 			{
 				Spawned = true;
@@ -90,7 +88,7 @@ namespace ClickerClass.Projectiles
 					dust.noGravity = true;
 				}
 			}
-			
+
 			if (FlightStage == 0f)
 			{
 				Projectile.alpha -= 10;
@@ -113,9 +111,9 @@ namespace ClickerClass.Projectiles
 				Projectile.alpha += 10;
 				FlightTimer += 0.05f;
 			}
-			
+
 			Projectile.velocity.Y = FlightTimer;
-			
+
 			AttackTimer++;
 			if (AttackTimer > 5 && Projectile.timeLeft > 20)
 			{

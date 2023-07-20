@@ -1,13 +1,13 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.GameContent;
-using ReLogic.Content;
 using Terraria.GameContent.Drawing;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -24,13 +24,13 @@ namespace ClickerClass.Projectiles
 		{
 			effect = null;
 		}
-		
+
 		public int DestinationX
 		{
 			get => (int)Projectile.ai[0];
 			set => Projectile.ai[0] = value;
 		}
-		
+
 		public int DestinationY
 		{
 			get => (int)Projectile.ai[1];
@@ -56,7 +56,7 @@ namespace ClickerClass.Projectiles
 			Projectile.timeLeft = 300;
 			Projectile.tileCollide = false;
 		}
-		
+
 		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
 		{
 			width = Projectile.width / 2;
@@ -78,14 +78,14 @@ namespace ClickerClass.Projectiles
 				Vector2 drawPos = Projectile.oldPos[k] - Main.screenPosition + new Vector2(frame.Width / 2, frame.Height * 0.2f) + new Vector2(0f, Projectile.gfxOffY);
 				Main.EntitySpriteDraw(texture, drawPos, null, new Color(255, 255, 255, 100) * ((8 - k) * 0.025f), 0f, new Vector2(frame.Width / 2, frame.Height * 0.8f), Projectile.scale, SpriteEffects.None, 0);
 			}
-			
+
 			texture = TextureAssets.Projectile[Projectile.type].Value;
 			frame = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 			Vector2 drawOrigin = new Vector2(texture.Width * 0.5f, Projectile.height * 0.5f);
 			Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, null, new Color(255, 255, 255, 0) * (Projectile.Opacity * 0.5f), -Projectile.rotation, frame.Size() / 2, Projectile.scale, SpriteEffects.None, 0);
 			return true;
 		}
-		
+
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			modifiers.SetCrit();
@@ -105,9 +105,9 @@ namespace ClickerClass.Projectiles
 					dust.noGravity = true;
 				}
 			}
-			
+
 			Projectile.rotation += 0.1f;
-			
+
 			Vector2 vec = new Vector2(DestinationX, DestinationY);
 			if (Projectile.DistanceSQ(vec) <= 10 * 10)
 			{

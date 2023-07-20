@@ -1,10 +1,10 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.Graphics.Shaders;
-using Terraria.ID;
 using Terraria.Audio;
 using Terraria.GameContent;
+using Terraria.Graphics.Shaders;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -12,7 +12,7 @@ namespace ClickerClass.Projectiles
 	{
 		public Vector2 Location => new Vector2(Projectile.ai[0], Projectile.ai[1]);
 		public bool colorChoice = false;
-		
+
 		public int Timer
 		{
 			get => (int)Projectile.localAI[0];

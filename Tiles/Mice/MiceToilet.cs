@@ -14,7 +14,7 @@ namespace ClickerClass.Tiles.Mice
 	public class MiceToilet : ModTile
 	{
 		public const int NextStyleHeight = 40;
-		
+
 		public override void SetStaticDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;
@@ -113,7 +113,8 @@ namespace ClickerClass.Tiles.Mice
 			}
 		}
 
-		public override void HitWire(int i, int j) {
+		public override void HitWire(int i, int j)
+		{
 			// Spawn the toilet effect here when triggered by a signal
 			Tile tile = Main.tile[i, j];
 
@@ -123,7 +124,8 @@ namespace ClickerClass.Tiles.Mice
 			Wiring.SkipWire(spawnX, spawnY);
 			Wiring.SkipWire(spawnX, spawnY + 1);
 
-			if (Wiring.CheckMech(spawnX, spawnY, 60)) {
+			if (Wiring.CheckMech(spawnX, spawnY, 60))
+			{
 				Projectile.NewProjectile(Wiring.GetProjectileSource(spawnX, spawnY), spawnX * 16 + 8, spawnY * 16 + 12, 0f, 0f, ProjectileID.ToiletEffect, 0, 0f, Main.myPlayer);
 			}
 		}

@@ -42,14 +42,14 @@ namespace ClickerClass.Projectiles
 		public override void AI()
 		{
 			int dustType = getTorchType(Main.player[Projectile.owner]);
-			
+
 			int index = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, dustType, 0f, 0f, 0, dustType == 66 ? Main.DiscoColor : default(Color), 1.5f);
 			Dust dust = Main.dust[index];
 			dust.position.X = Projectile.Center.X;
 			dust.position.Y = Projectile.Center.Y;
 			dust.velocity *= 0f;
 			dust.noGravity = true;
-			
+
 			if (!Spawned)
 			{
 				Spawned = true;

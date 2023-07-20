@@ -21,7 +21,7 @@ namespace ClickerClass.Tiles.Mice
 			TileObjectData.newTile.StyleHorizontal = true;
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16 };
 			TileObjectData.addTile(Type);
-			
+
 			AdjTiles = new int[] { TileID.Tables };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 			AddMapEntry(new Color(191, 142, 111), Lang.GetItemName(ItemID.Piano));

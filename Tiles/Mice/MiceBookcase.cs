@@ -19,7 +19,7 @@ namespace ClickerClass.Tiles.Mice
 			TileObjectData.newTile.CopyFrom(TileObjectData.Style3x4);
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16, 16 };
 			TileObjectData.addTile(Type);
-			
+
 			AdjTiles = new int[] { TileID.Bookcases };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsTable);
 			AddMapEntry(new Color(191, 142, 111), Lang.GetItemName(ItemID.Bookcase));

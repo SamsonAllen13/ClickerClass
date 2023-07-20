@@ -30,7 +30,7 @@ namespace ClickerClass.Items.Misc
 			Item.value = Item.sellPrice(0, 5, 0, 0);
 			Item.rare = ItemRarityID.Orange;
 		}
-		
+
 		public override void AddRecipes()
 		{
 			CreateRecipe(1).AddIngredient(ModContent.ItemType<SFXButtonA>(), 1).AddIngredient(ModContent.ItemType<SFXButtonB>(), 1)

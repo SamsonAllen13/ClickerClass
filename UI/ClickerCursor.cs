@@ -19,7 +19,7 @@ namespace ClickerClass.UI
 		private static bool _lastMouseInterface = false;
 		private static bool _lastMouseText = false;
 		internal static bool detourSecondCursorDraw = false;
-		
+
 		public const int ItemFlameCountMax = 5;
 		public int itemFlameCount = ItemFlameCountMax;
 		public Vector2[] itemFlamePos = new Vector2[7];
@@ -37,7 +37,7 @@ namespace ClickerClass.UI
 		public Lazy<Asset<Texture2D>> outlineTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/CursorOutline"));
 
 		public Lazy<Asset<Texture2D>> burningSuperDeathOutlineTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/CursorOutline2"));
-		
+
 		public Lazy<Asset<Texture2D>> dreamClickerOutlineTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/CursorOutline3"));
 
 		public override void Update(GameTime gameTime)
@@ -120,7 +120,7 @@ namespace ClickerClass.UI
 
 			Color color = Color.White;
 			color.A = (byte)(_clickerAlpha * 255);
-			
+
 			if (clickerPlayer.itemBurningSuperDeath)
 			{
 				itemFlameCount--;
@@ -133,7 +133,7 @@ namespace ClickerClass.UI
 						itemFlamePos[k].Y = Main.rand.Next(-10, 1) * 0.35f;
 					}
 				}
-				
+
 				for (int i = 0; i < itemFlamePos.Length; i++)
 				{
 					Color flameColor = new Color(100, 100, 100, 0);
@@ -153,7 +153,7 @@ namespace ClickerClass.UI
 						itemFlamePos[k].Y = Main.rand.Next(-10, 1) * 0.35f;
 					}
 				}
-				
+
 				for (int i = 0; i < itemFlamePos.Length; i++)
 				{
 					Color flameColor = new Color(150, 150, 150, 0) * 0.35f;

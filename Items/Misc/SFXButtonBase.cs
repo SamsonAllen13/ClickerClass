@@ -27,10 +27,10 @@ namespace ClickerClass.Items.Misc
 			Item.height = 20;
 			Item.value = Item.buyPrice(0, 1, 0, 0);
 			Item.rare = ItemRarityID.Green;
-			
+
 			SafeSetDefaults();
 		}
-		
+
 		public virtual void SafeSetDefaults()
 		{
 

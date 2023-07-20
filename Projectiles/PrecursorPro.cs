@@ -19,7 +19,7 @@ namespace ClickerClass.Projectiles
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 60;
 		}
-		
+
 		public override Color? GetAlpha(Color lightColor)
 		{
 			return new Color(255, 255, 255, 50) * Projectile.ai[1];

@@ -13,7 +13,8 @@ namespace ClickerClass.DropRules
 		//expertmode% = normalmode% * (1 + (1 - normalmode%) * rerollChance)
 		//Mimics CommonDropWithRerolls but with custom % instead of #rerolls
 		public CommonDropWithReroll(int itemId, int chanceDenominator = 1, int amountDroppedMinimum = 1, int amountDroppedMaximum = 1, int chanceNumerator = 1, float rerollChance = 0.5f)
-			: base(itemId, chanceDenominator, amountDroppedMinimum, amountDroppedMaximum, chanceNumerator) {
+			: base(itemId, chanceDenominator, amountDroppedMinimum, amountDroppedMaximum, chanceNumerator)
+		{
 			this.rerollChance = rerollChance;
 		}
 
@@ -44,7 +45,8 @@ namespace ClickerClass.DropRules
 			}
 		}
 
-		public override void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo) {
+		public override void ReportDroprates(List<DropRateInfo> drops, DropRateInfoChainFeed ratesInfo)
+		{
 			float chance = chanceNumerator / (float)chanceDenominator;
 			float inverseChance = 1f - chance;
 

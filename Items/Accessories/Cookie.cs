@@ -1,7 +1,7 @@
-﻿using Terraria;
+﻿using ClickerClass.Items.Consumables;
+using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ClickerClass.Items.Consumables;
 
 namespace ClickerClass.Items.Accessories
 {

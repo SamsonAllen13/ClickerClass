@@ -1,13 +1,13 @@
-﻿using Microsoft.Xna.Framework;
+﻿using ClickerClass.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
-using ReLogic.Content;
 using Terraria;
-using Terraria.UI;
-using ClickerClass.Utilities;
-using Terraria.ModLoader;
 using Terraria.Localization;
+using Terraria.ModLoader;
+using Terraria.UI;
 
 namespace ClickerClass.UI
 {
@@ -18,7 +18,7 @@ namespace ClickerClass.UI
 		public int FadeTime { get; internal set; }
 
 		private Lazy<Asset<Texture2D>> sheetAsset;
-		
+
 		public LocalizedText MouseoverText { get; private set; }
 
 		protected MedalGaugeBase(string name, InterfaceScaleType scaleType) : base(name, scaleType)
@@ -58,7 +58,7 @@ namespace ClickerClass.UI
 		{
 			Player player = Main.LocalPlayer;
 			ClickerPlayer clickerPlayer = player.GetClickerPlayer();
-			
+
 			// Don't draw if the options, the achievements or the key config menus are visible, if the player is a ghost or if the bar should be fully transparent
 			if (player.dead || player.ghost || FadeTime == 0)
 			{
@@ -83,7 +83,7 @@ namespace ClickerClass.UI
 			Texture2D texture = borderAsset.Value;
 			Rectangle frame = texture.Frame(1, 5);
 			Vector2 origin = frame.Size() / 2;
-			
+
 			//The S Medal changes the colors of the gauges to match the orbiting circles
 			int sMedalOffset = clickerPlayer.AccSMedal ? 2 : 0;
 

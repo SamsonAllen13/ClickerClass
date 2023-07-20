@@ -1,15 +1,15 @@
-using System;
+using ClickerClass.DrawLayers;
 using ClickerClass.Dusts;
 using ClickerClass.Projectiles;
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
-using ReLogic.Content;
-using Microsoft.Xna.Framework.Graphics;
-using ClickerClass.Utilities;
-using ClickerClass.DrawLayers;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {

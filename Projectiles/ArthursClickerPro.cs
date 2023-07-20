@@ -1,6 +1,5 @@
 using Terraria;
 using Terraria.GameContent.Drawing;
-using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {

@@ -1,15 +1,15 @@
-using System;
-using ClickerClass.Projectiles;
-using Microsoft.Xna.Framework;
-using Terraria;
-using Terraria.ID;
-using Terraria.Audio;
-using Terraria.ModLoader;
-using Terraria.DataStructures;
-using ReLogic.Content;
-using Microsoft.Xna.Framework.Graphics;
-using ClickerClass.Utilities;
 using ClickerClass.DrawLayers;
+using ClickerClass.Projectiles;
+using ClickerClass.Utilities;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
+using Terraria;
+using Terraria.Audio;
+using Terraria.DataStructures;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -23,7 +23,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			glowmask = null;
 		}
-		
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -31,7 +31,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			ClickEffect.Smite = ClickerSystem.RegisterClickEffect(Mod, "Smite", 10, new Color(255, 245, 225), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				SoundEngine.PlaySound(SoundID.Item42, position);
-				
+
 				//Temporary effect//
 				//Consider idea where up to 10 nearby torches fire their respective flame color towards cursor and each one does something different on hit
 				for (int k = 0; k < Main.rand.Next(FlameAmount / 2, FlameAmount); k++)
@@ -85,7 +85,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = Item.sellPrice(0, 0, 70, 0);
 			Item.rare = ItemRarityID.Orange;
 		}
-		
+
 		public override void PostUpdate()
 		{
 			Lighting.AddLight(Item.Center, 0.2f, 0.15f, 0.15f);
@@ -95,7 +95,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			Item.BasicInWorldGlowmask(spriteBatch, glowmask.Value.Value, new Color(255, 255, 255, 50) * 0.75f, rotation, scale);
 		}
-		
+
 		//TODO maybe look into reworking this into OnSpawn with GlobalItem
 		//The following 2 go into any class (assuming it's a one-time thing, in the item class for organization, otherwise needs to generalize this into a system)
 		public override void Load()

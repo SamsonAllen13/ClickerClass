@@ -13,7 +13,7 @@ namespace ClickerClass.Tiles.Mice
 	public class MiceBed : ModTile
 	{
 		public const int NextStyleHeight = 38;
-		
+
 		public override void SetStaticDefaults()
 		{
 			Main.tileFrameImportant[Type] = true;
@@ -44,7 +44,8 @@ namespace ClickerClass.Tiles.Mice
 			height = 2; //Default to the Height defined for TileObjectData.newTile
 		}
 
-		public override void ModifySleepingTargetInfo(int i, int j, ref TileRestingInfo info) {
+		public override void ModifySleepingTargetInfo(int i, int j, ref TileRestingInfo info)
+		{
 			info.VisualOffset.X += -4f;
 		}
 
@@ -89,17 +90,21 @@ namespace ClickerClass.Tiles.Mice
 			return true;
 		}
 
-		public override void MouseOver(int i, int j) {
+		public override void MouseOver(int i, int j)
+		{
 			Player player = Main.LocalPlayer;
 
-			if (!Player.IsHoveringOverABottomSideOfABed(i, j)) {
-				if (player.IsWithinSnappngRangeToTile(i, j, PlayerSleepingHelper.BedSleepingMaxDistance)) { // Match condition in RightClick. Interaction should only show if clicking it does something
+			if (!Player.IsHoveringOverABottomSideOfABed(i, j))
+			{
+				if (player.IsWithinSnappngRangeToTile(i, j, PlayerSleepingHelper.BedSleepingMaxDistance))
+				{ // Match condition in RightClick. Interaction should only show if clicking it does something
 					player.noThrow = 2;
 					player.cursorItemIconEnabled = true;
 					player.cursorItemIconID = ItemID.SleepingIcon;
 				}
 			}
-			else {
+			else
+			{
 				player.noThrow = 2;
 				player.cursorItemIconEnabled = true;
 				player.cursorItemIconID = ModContent.ItemType<Items.Placeable.Mice.MiceBed>();

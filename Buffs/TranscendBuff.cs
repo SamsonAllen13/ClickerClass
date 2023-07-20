@@ -1,6 +1,6 @@
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.GameContent.Drawing;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Buffs
 {
@@ -14,7 +14,7 @@ namespace ClickerClass.Buffs
 		public override void Update(Player player, ref int buffIndex)
 		{
 			player.GetModPlayer<ClickerPlayer>().effectTranscend = true;
-			
+
 			if (Main.rand.NextBool(18))
 			{
 				ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.PrincessWeapon, new ParticleOrchestraSettings

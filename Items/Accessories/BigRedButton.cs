@@ -1,11 +1,11 @@
 ﻿using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.Audio;
 using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Accessories
 {
@@ -26,11 +26,11 @@ namespace ClickerClass.Items.Accessories
 				for (int k = 0; k < 6; k++)
 				{
 					Vector2 spread = new Vector2(-0.5f, -3f);
-					if (k == 1){spread = new Vector2(-0.25f, -2.5f);}
-					if (k == 2){spread = new Vector2(-0.25f, -3.5f);}
-					if (k == 3){spread = new Vector2(0.25f, -3.5f);}
-					if (k == 4){spread = new Vector2(0.25f, -2.5f);}
-					if (k == 5){spread = new Vector2(0.5f, -3f);}
+					if (k == 1) { spread = new Vector2(-0.25f, -2.5f); }
+					if (k == 2) { spread = new Vector2(-0.25f, -3.5f); }
+					if (k == 3) { spread = new Vector2(0.25f, -3.5f); }
+					if (k == 4) { spread = new Vector2(0.25f, -2.5f); }
+					if (k == 5) { spread = new Vector2(0.5f, -3f); }
 					Projectile.NewProjectile(source, position, spread, ModContent.ProjectileType<BigRedButtonPro2>(), damage, 0f, player.whoAmI);
 				}
 				for (int k = 0; k < 20; k++)

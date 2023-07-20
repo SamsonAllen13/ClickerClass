@@ -386,7 +386,7 @@ namespace ClickerClass.NPCs
 						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<TheClicker>(), 5));
 					}
 					break;
-				#endregion
+					#endregion
 			}
 		}
 

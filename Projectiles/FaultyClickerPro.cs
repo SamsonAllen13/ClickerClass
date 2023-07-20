@@ -1,9 +1,7 @@
-using ClickerClass.Buffs;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.Audio;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -14,7 +12,7 @@ namespace ClickerClass.Projectiles
 			get => Projectile.ai[0] == 1f;
 			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
-		
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
@@ -37,7 +35,7 @@ namespace ClickerClass.Projectiles
 				SoundEngine.PlaySound(SoundID.Item94, Projectile.Center);
 			}
 		}
-		
+
 		public override void Kill(int timeLeft)
 		{
 			float num102 = 25f;

@@ -1,13 +1,13 @@
+using ClickerClass.Core;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Terraria.ModLoader;
 using ReLogic.Content;
+using System;
 using Terraria;
-using Terraria.ID;
 using Terraria.Audio;
 using Terraria.Graphics.Shaders;
-using ClickerClass.Core;
-using System;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -69,18 +69,18 @@ namespace ClickerClass.Projectiles
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 20;
 		}
-		
+
 		public override Color? GetAlpha(Color lightColor)
 		{
 			return Color.White * Projectile.Opacity;
 		}
-		
+
 		public override bool PreDraw(ref Color lightColor)
 		{
 			Texture2D texture = effect.Value.Value;
 			Rectangle frame = texture.Frame(1, Main.projFrames[Projectile.type], frameY: Projectile.frame);
 			Main.EntitySpriteDraw(texture, Projectile.Center - Main.screenPosition, frame, new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * (0.8f * Projectile.Opacity), Projectile.rotation, new Vector2(14, 14), Projectile.scale, SpriteEffects.None, 0);
-		
+
 			if (!State_Waiting)
 			{
 				SpriteEffects effects = Projectile.spriteDirection > 0 ? SpriteEffects.None : SpriteEffects.FlipHorizontally;
@@ -94,7 +94,7 @@ namespace ClickerClass.Projectiles
 			}
 			return true;
 		}
-		
+
 		public override void PostDraw(Color lightColor)
 		{
 			Texture2D texture = effect2.Value.Value;
@@ -116,7 +116,7 @@ namespace ClickerClass.Projectiles
 					dust.noLight = true;
 				}
 			}
-			
+
 			if (State_Waiting)
 			{
 				Projectile.velocity *= 0.9f;
@@ -129,7 +129,7 @@ namespace ClickerClass.Projectiles
 			{
 				Projectile.extraUpdates = 1;
 				SoundEngine.PlaySound(SoundID.Item86, Projectile.Center);
-				
+
 				for (int l = 0; l < 7; l++)
 				{
 					int dustType = 86 + l;
@@ -163,7 +163,7 @@ namespace ClickerClass.Projectiles
 					Projectile.velocity = vector;
 					Projectile.netUpdate = true;
 				}
-				
+
 				StateTimer++;
 				Projectile.frame = 1;
 			}
@@ -171,7 +171,7 @@ namespace ClickerClass.Projectiles
 			{
 				Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
 			}
-			
+
 			if (Projectile.timeLeft < 20)
 			{
 				Projectile.alpha += 8;

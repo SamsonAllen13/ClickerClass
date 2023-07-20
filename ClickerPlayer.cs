@@ -1,5 +1,9 @@
 using ClickerClass.Buffs;
+using ClickerClass.Core.Netcode.Packets;
 using ClickerClass.Items;
+using ClickerClass.Items.Accessories;
+using ClickerClass.Items.Consumables;
+using ClickerClass.Items.Misc;
 using ClickerClass.NPCs;
 using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
@@ -8,17 +12,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
-using Terraria.GameInput;
+using Terraria.Audio;
 using Terraria.DataStructures;
+using Terraria.GameContent.Drawing;
+using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
-using Terraria.Audio;
-using Terraria.GameContent.Drawing;
-using ClickerClass.Items.Accessories;
-using ClickerClass.Core.Netcode.Packets;
-using ClickerClass.Items.Consumables;
-using ClickerClass.Items.Misc;
 
 namespace ClickerClass
 {
@@ -130,7 +130,7 @@ namespace ClickerClass
 		public const int OutOfCombatTimeMax = 300;
 		public bool OutOfCombat => outOfCombatTimer <= 0;
 		public int outOfCombatTimer = 0;
-		
+
 		//Item
 		public bool itemBurningSuperDeath = false;
 		public bool itemDreamClicker = false;
@@ -153,7 +153,7 @@ namespace ClickerClass
 		public bool setPrecursor = false;
 		public bool setOverclock = false;
 		public bool setRGB = false;
-		
+
 		public int setPrecursorTimer = 0;
 
 		//Acc
@@ -711,7 +711,7 @@ namespace ClickerClass
 				}
 				else
 				{
-					SoundEngine.PlaySound(SoundID.Drip with { Variants = stackalloc int[] { 0, 1, 2} }, Player.Center);
+					SoundEngine.PlaySound(SoundID.Drip with { Variants = stackalloc int[] { 0, 1, 2 } }, Player.Center);
 				}
 			}
 		}
@@ -803,7 +803,7 @@ namespace ClickerClass
 			ResetAllClickEffects();
 			effectHotWings = false;
 			effectTranscend = false;
-			
+
 			//Item
 			itemBurningSuperDeath = false;
 			itemDreamClicker = false;
@@ -1699,7 +1699,7 @@ namespace ClickerClass
 		{
 			outOfCombatTimer = OutOfCombatTimeMax;
 		}
-		
+
 		public override bool ConsumableDodge(Player.HurtInfo info)
 		{
 			if (effectTranscend)

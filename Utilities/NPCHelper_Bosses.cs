@@ -14,30 +14,37 @@ namespace ClickerClass.Utilities
 		{
 			switch (npc.type)
 			{
+				//Technically none of them have npc.boss, so each one can be a limb
 				case NPCID.EaterofWorldsHead:
 				case NPCID.EaterofWorldsBody:
-				case NPCID.EaterofWorldsTail: //Technically none of them have npc.boss, so each one can be a limb
+				case NPCID.EaterofWorldsTail:
 
+				//Golem
 				case NPCID.GolemHead:
 				case NPCID.GolemHeadFree:
 				case NPCID.GolemFistLeft:
-				case NPCID.GolemFistRight: //Golem
+				case NPCID.GolemFistRight:
 
+				//MartianSaucerCore
 				case NPCID.MartianSaucerCannon:
 				case NPCID.MartianSaucerTurret:
-				case NPCID.MartianSaucer: //MartianSaucerCore
+				case NPCID.MartianSaucer:
 
+				//MoonLordCore
 				case NPCID.MoonLordHand:
-				case NPCID.MoonLordHead: //MoonLordCore
+				case NPCID.MoonLordHead:
 
+				//SkeletronPrime
 				case NPCID.PrimeCannon:
 				case NPCID.PrimeLaser:
 				case NPCID.PrimeSaw:
-				case NPCID.PrimeVice: //SkeletronPrime
+				case NPCID.PrimeVice:
 
-				case NPCID.PirateShipCannon: //PirateShip
+				//PirateShip
+				case NPCID.PirateShipCannon:
 
-				case NPCID.SkeletronHand: //Skeletron
+				//Skeletron
+				case NPCID.SkeletronHand:
 					return true;
 			}
 
@@ -54,11 +61,13 @@ namespace ClickerClass.Utilities
 			int type = npc.type;
 			switch (type)
 			{
+				//Technically none of them have npc.boss
 				case NPCID.EaterofWorldsHead:
 				case NPCID.EaterofWorldsBody:
-				case NPCID.EaterofWorldsTail: //Technically none of them have npc.boss
+				case NPCID.EaterofWorldsTail:
 
-				case NPCID.DungeonGuardian: //Does not have npc.boss
+				//Does not have npc.boss
+				case NPCID.DungeonGuardian:
 					return true;
 			}
 
@@ -79,8 +88,10 @@ namespace ClickerClass.Utilities
 		{
 			switch (npc.type)
 			{
-				case NPCID.WyvernHead: //Just because
+				//Just because
+				case NPCID.WyvernHead:
 
+				//Biome bosses
 				case NPCID.SandElemental:
 				case NPCID.IceGolem:
 				case NPCID.Paladin:
@@ -88,14 +99,15 @@ namespace ClickerClass.Utilities
 				case NPCID.BigMimicCrimson:
 				case NPCID.BigMimicHallow:
 				case NPCID.Mothron:
-				case NPCID.MartianSaucerCore: //Biome bosses
-				//Saucer is not a boss in 1.4 anymore, just for info
+				case NPCID.MartianSaucerCore: //Saucer is not a boss in 1.4 anymore, just for info
 
+				//Questionable
 				case NPCID.GoblinSummoner:
 				case NPCID.PirateCaptain:
 				case NPCID.HeadlessHorseman:
-				case NPCID.Nailhead: //Questionable
+				case NPCID.Nailhead:
 
+				//Event bosses
 				case NPCID.PirateShip:
 				case NPCID.IceQueen:
 				case NPCID.SantaNK1:
@@ -106,7 +118,7 @@ namespace ClickerClass.Utilities
 				case NPCID.DD2DarkMageT1:
 				case NPCID.DD2DarkMageT3:
 				case NPCID.DD2OgreT2:
-				case NPCID.DD2OgreT3: //Event bosses
+				case NPCID.DD2OgreT3:
 					return true;
 			}
 

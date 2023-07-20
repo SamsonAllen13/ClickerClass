@@ -1,12 +1,12 @@
-﻿using System.Reflection;
-using System.Collections.Generic;
-using ClickerClass.UI;
+﻿using ClickerClass.UI;
 using Microsoft.Xna.Framework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using Terraria;
 using Terraria.ModLoader;
 using Terraria.UI;
-using System.Linq;
-using System;
 
 namespace ClickerClass
 {

@@ -1,8 +1,8 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
 {
@@ -25,7 +25,7 @@ namespace ClickerClass.Projectiles
 			get => Projectile.ai[2] == 1f;
 			set => Projectile.ai[2] = value ? 1f : 0f;
 		}
-		
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
@@ -49,7 +49,7 @@ namespace ClickerClass.Projectiles
 		public override void AI()
 		{
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
-			
+
 			if (HasSpawnEffects)
 			{
 				HasSpawnEffects = false;
@@ -65,7 +65,7 @@ namespace ClickerClass.Projectiles
 					dust.noGravity = true;
 				}
 			}
-			
+
 			Projectile.velocity.X *= 0.99f;
 			Projectile.velocity.Y += 0.05f;
 			if (Projectile.velocity.Y > 0f)
@@ -76,13 +76,13 @@ namespace ClickerClass.Projectiles
 					Projectile.velocity.Y = 4f;
 				}
 			}
-			
+
 			if (Main.myPlayer == Projectile.owner && !HasChanged && Trigger)
 			{
 				HasChanged = true;
 				Projectile.netUpdate = true;
 			}
-			
+
 			if (HasChanged)
 			{
 				SoundEngine.PlaySound(SoundID.Item14, Projectile.Center);
@@ -96,7 +96,7 @@ namespace ClickerClass.Projectiles
 					Dust dust = Dust.NewDustDirect(Projectile.position, Projectile.width, Projectile.height, 174, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f), 0, default, 1.25f);
 					dust.noGravity = true;
 				}
-				
+
 				if (Main.myPlayer == Projectile.owner)
 				{
 					for (int k = 0; k < 4; k++)
@@ -107,13 +107,13 @@ namespace ClickerClass.Projectiles
 
 				Projectile.Kill();
 			}
-			
+
 			if (Projectile.timeLeft < 20)
 			{
 				Projectile.alpha += 8;
 			}
 		}
-		
+
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			Projectile.tileCollide = false;

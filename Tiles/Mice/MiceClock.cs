@@ -26,7 +26,7 @@ namespace ClickerClass.Tiles.Mice
 			TileObjectData.newTile.DrawYOffset = 2;
 			TileObjectData.newTile.CoordinateHeights = new int[] { 16, 16, 16, 16, 16 };
 			TileObjectData.addTile(Type);
-			
+
 			AdjTiles = new int[] { TileID.GrandfatherClocks };
 			AddMapEntry(new Color(191, 142, 111), Lang.GetItemName(ItemID.GrandfatherClock));
 		}

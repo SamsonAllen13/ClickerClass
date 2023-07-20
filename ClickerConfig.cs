@@ -14,7 +14,7 @@ namespace ClickerClass
 
 		[DefaultValue(true)]
 		public bool ShowClassTags;
-		
+
 		[DefaultValue(true)]
 		public bool ShowEffectSuggestion;
 
@@ -26,9 +26,9 @@ namespace ClickerClass
 
 		[DefaultValue(true)]
 		public bool ShowOthersClickIndicator;
-		
+
 		[Header("GameplayOptions")]
-		
+
 		[BackgroundColor(255, 175, 100)]
 		[DefaultValue(true)]
 		public bool ToggleAutoreuseLimiter;

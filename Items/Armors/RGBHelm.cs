@@ -1,13 +1,12 @@
 using ClickerClass.DrawLayers;
 using ClickerClass.Projectiles;
-using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.Localization;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Armors
 {
@@ -30,7 +29,7 @@ namespace ClickerClass.Items.Armors
 				HeadLayer.RegisterData(Item.headSlot, new DrawLayerData()
 				{
 					Texture = ModContent.Request<Texture2D>(Texture + "_Head_Glow"),
-					Color = (PlayerDrawSet drawInfo) => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * 0.8f 
+					Color = (PlayerDrawSet drawInfo) => new Color(Main.DiscoR, Main.DiscoG, Main.DiscoB, 75) * 0.8f
 				});
 			}
 
@@ -40,7 +39,7 @@ namespace ClickerClass.Items.Armors
 			{
 				bool spawnEffects = true;
 				int chromatic = ModContent.ProjectileType<RGBPro>();
-				
+
 				float total = 7f;
 				int i = 0;
 				while (i < total)
@@ -88,7 +87,7 @@ namespace ClickerClass.Items.Armors
 		{
 			Lighting.AddLight(player.Center, Main.DiscoColor.ToVector3() * 0.75f);
 		}
-		
+
 		public override void AddRecipes()
 		{
 			CreateRecipe(1).AddIngredient(ItemID.RainbowBrick, 25).AddIngredient(ItemID.CrystalShard, 15).AddTile(TileID.Anvils).Register();

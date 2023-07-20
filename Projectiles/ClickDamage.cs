@@ -1,9 +1,9 @@
+using ClickerClass.Dusts;
 using ClickerClass.Items;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.ModLoader;
 using Terraria.ID;
-using ClickerClass.Dusts;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {

@@ -1,13 +1,13 @@
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
-using Terraria.Audio;
-using Terraria.GameContent;
-using ReLogic.Content;
 using ClickerClass.Buffs;
 using ClickerClass.NPCs;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using Terraria;
+using Terraria.Audio;
+using Terraria.GameContent;
+using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -82,7 +82,7 @@ namespace ClickerClass.Projectiles
 					Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 103, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 100, default, 1.75f);
 					dust.noGravity = true;
 				}
-				
+
 				for (int u = 0; u < Main.maxNPCs; u++)
 				{
 					NPC target = Main.npc[u];

@@ -1,7 +1,6 @@
 using ClickerClass.Items.Weapons.Clickers;
 using Terraria;
 using Terraria.GameContent.Drawing;
-using Terraria.Graphics.Shaders;
 
 namespace ClickerClass.Projectiles
 {
@@ -22,7 +21,7 @@ namespace ClickerClass.Projectiles
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 10;
 		}
-		
+
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
 			//Projectile is spawned with 1 damage, so it will always guarantee dealing 1 damage, and we subtract it

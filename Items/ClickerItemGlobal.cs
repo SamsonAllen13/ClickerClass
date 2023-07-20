@@ -1,12 +1,10 @@
 ﻿using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Prefixes;
-using ClickerClass.Utilities;
-using System.Collections.Generic;
 using Terraria;
+using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.GameContent.ItemDropRules;
 
 namespace ClickerClass.Items
 {
@@ -98,7 +96,7 @@ namespace ClickerClass.Items
 						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<TheClicker>(), 5));
 					}
 					break;
-				#endregion
+					#endregion
 			}
 		}
 

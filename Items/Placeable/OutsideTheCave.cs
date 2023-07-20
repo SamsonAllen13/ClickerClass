@@ -1,13 +1,13 @@
+using ClickerClass.Tiles;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ClickerClass.Tiles;
 
 namespace ClickerClass.Items.Placeable
 {
 	public class OutsideTheCave : ModItem
 	{
-		public override void SetDefaults() 
+		public override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(ModContent.TileType<PaintingLarge>(), 0); //tile, style
 			Item.width = 30;

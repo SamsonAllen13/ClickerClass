@@ -1,9 +1,9 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.DataStructures;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -16,7 +16,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			ClickEffect.Fritz = ClickerSystem.RegisterClickEffect(Mod, "Fritz", 3, new Color(100, 100, 100), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-				
+
 				int radius = (int)(95 * clickerPlayer.clickerRadius);
 				if (radius > 350)
 				{

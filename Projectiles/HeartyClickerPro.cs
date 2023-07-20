@@ -1,10 +1,9 @@
+using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.Audio;
 using Terraria.ID;
-using ClickerClass.Items.Weapons.Clickers;
 
 namespace ClickerClass.Projectiles
 {
@@ -36,12 +35,12 @@ namespace ClickerClass.Projectiles
 			Projectile.timeLeft = 1800;
 			Projectile.ignoreWater = true;
 		}
-		
+
 		public override Color? GetAlpha(Color lightColor)
 		{
 			return new Color(activeTimer, activeTimer, activeTimer, 50) * 1f;
 		}
-		
+
 		public override void AI()
 		{
 			if (!Spawned)
@@ -54,14 +53,14 @@ namespace ClickerClass.Projectiles
 				}
 				Spawned = true;
 			}
-			
+
 			Projectile.rotation = Projectile.velocity.X * -0.1f;
 			Projectile.velocity.Y += 0.25f;
 			if (tileCollide)
 			{
 				Projectile.velocity.X = 0f;
 			}
-			
+
 			//Takes about 1 second to become active
 			if (activeTimer >= 255)
 			{
@@ -86,15 +85,15 @@ namespace ClickerClass.Projectiles
 			{
 				activeTimer += 4;
 			}
-			
+
 			if (HeartCount >= HeartyClicker.HeartMaxAmount)
 			{
 				Projectile.Kill();
 			}
-			
+
 			Projectile.alpha += Projectile.timeLeft < 20 ? 10 : 0;
 		}
-		
+
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			tileCollide = true;

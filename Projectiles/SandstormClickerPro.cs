@@ -1,13 +1,13 @@
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.ID;
 using Terraria.Audio;
+using Terraria.ID;
 using Terraria.ModLoader;
-using ReLogic.Content;
 
 namespace ClickerClass.Projectiles
 {
@@ -44,7 +44,7 @@ namespace ClickerClass.Projectiles
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 15;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 		}
-		
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();
@@ -163,12 +163,12 @@ namespace ClickerClass.Projectiles
 			{
 				homing = false;
 			}
-			
+
 			if (Projectile.timeLeft < 30)
 			{
 				fadeOut = true;
 			}
-			
+
 			if (fadeOut)
 			{
 				alpha -= 0.05f;

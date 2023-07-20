@@ -1,11 +1,11 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using ReLogic.Content;
-using Terraria.Audio;
 
 namespace ClickerClass.Projectiles
 {
@@ -73,7 +73,7 @@ namespace ClickerClass.Projectiles
 				Vector2 drawOrigin = new Vector2(effectTexture.Width * 0.5f, Projectile.height * 0.5f - DrawOriginOffsetY + BalloonOffset);
 				Main.EntitySpriteDraw(effectTexture, new Vector2(Projectile.Center.X /*+ DrawOffsetX*/ - 1, Projectile.Center.Y /*- BalloonOffset*/) - Main.screenPosition, frame, lightColor, Projectile.rotation, drawOrigin, Projectile.scale, SpriteEffects.None, 0);
 			}
-			
+
 			return true;
 		}
 
@@ -88,7 +88,7 @@ namespace ClickerClass.Projectiles
 				Projectile.timeLeft = 300;
 				Projectile.netUpdate = true;
 			}
-			
+
 			if (HasChanged)
 			{
 				if (Projectile.aiStyle != 26)
@@ -122,7 +122,7 @@ namespace ClickerClass.Projectiles
 					Projectile.rotation = Projectile.velocity.X * 0.04f;
 				}
 			}
-			
+
 			if (Projectile.timeLeft < 30)
 			{
 				Projectile.alpha += 8;
@@ -143,7 +143,7 @@ namespace ClickerClass.Projectiles
 		{
 			return false;
 		}
-		
+
 		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
 		{
 			//Always fall through. For conditional fallthrough, would require writing own AI (currently just clones vanilla)

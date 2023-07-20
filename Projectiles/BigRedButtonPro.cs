@@ -1,8 +1,6 @@
-using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -33,7 +31,7 @@ namespace ClickerClass.Projectiles
 		{
 			return new Color(255, 255, 255, 50) * (0.08f * Projectile.timeLeft);
 		}
-		
+
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
 			target.AddBuff(BuffID.OnFire3, 300, false);

@@ -1,11 +1,11 @@
-using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using ReLogic.Content;
+using System;
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
-using Terraria.Audio;
-using ReLogic.Content;
 
 namespace ClickerClass.Projectiles
 {
@@ -26,7 +26,7 @@ namespace ClickerClass.Projectiles
 		public bool shift = false;
 		public float pulse = 0f;
 		public float rotation = 0f;
-		
+
 		public bool Spawned
 		{
 			get => Projectile.ai[0] == 1f;

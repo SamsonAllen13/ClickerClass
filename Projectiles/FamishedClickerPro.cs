@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.Audio;
-using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -15,13 +14,13 @@ namespace ClickerClass.Projectiles
 	{
 		private readonly HashSet<int> hitTargets = new HashSet<int>();
 		private readonly HashSet<int> foundTargets = new HashSet<int>();
-		
+
 		public bool HasSpawnEffects
 		{
 			get => Projectile.ai[0] == 1f;
 			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
-		
+
 		public override void SetStaticDefaults()
 		{
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 30;
@@ -44,7 +43,7 @@ namespace ClickerClass.Projectiles
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 30;
 		}
-		
+
 		public override bool PreDraw(ref Color lightColor)
 		{
 			Texture2D texture2D = ModContent.Request<Texture2D>(Texture + "_Effect").Value;
@@ -95,7 +94,7 @@ namespace ClickerClass.Projectiles
 					dust.noGravity = true;
 				}
 			}
-			
+
 			Player player = Main.player[Projectile.owner];
 			Projectile.alpha += Projectile.timeLeft < 40 ? 6 : 0;
 			Projectile.rotation = Projectile.velocity.ToRotation() + MathHelper.PiOver2;
@@ -143,7 +142,7 @@ namespace ClickerClass.Projectiles
 				{
 					x = player.Center.X;
 					y = player.Center.Y;
-					
+
 					float mag = 1f;
 					Vector2 center = Projectile.Center;
 					float toX = x - center.X;
@@ -158,7 +157,7 @@ namespace ClickerClass.Projectiles
 				}
 			}
 		}
-		
+
 		public override bool OnTileCollide(Vector2 oldVelocity)
 		{
 			return false;

@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using Terraria;
-using Terraria.Utilities;
 using Terraria.Audio;
 using Terraria.ID;
+using Terraria.Utilities;
 
 namespace ClickerClass.Projectiles
 {

@@ -1,15 +1,15 @@
 ﻿using ClickerClass.Items;
+using ClickerClass.Items.Misc;
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
-using Terraria.ID;
-using Terraria.ModLoader;
 using Terraria.DataStructures;
+using Terraria.ID;
 using Terraria.Localization;
-using ClickerClass.Items.Misc;
+using Terraria.ModLoader;
 
 namespace ClickerClass
 {

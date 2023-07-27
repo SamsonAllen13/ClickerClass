@@ -559,6 +559,9 @@ namespace ClickerClass.NPCs
 					shop.Add(ModContent.ItemType<ClickerEffectHairDye>(), ClickerConditions.ClickerSelected, ClickerConditions.ClickerTotalExceeds(2500));
 					shop.Add(ModContent.ItemType<ClickSpeedHairDye>(), ClickerConditions.ClickerSelected, ClickerConditions.ClickerTotalExceeds(5000));
 					break;
+				case NPCID.BestiaryGirl:
+					shop.Add(ModContent.ItemType<CritterClicker>(), ClickerConditions.BestiaryFilledPercent(50));
+					break;
 				case NPCID.SkeletonMerchant:
 					shop.Add(ModContent.ItemType<CandleClicker>());
 					break;

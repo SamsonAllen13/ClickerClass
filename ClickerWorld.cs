@@ -88,7 +88,19 @@ namespace ClickerClass
 
 			if (chestLists.ContainsKey(ChestStyle.Gold))
 			{
+				//Make it more likely to appear by adding twice
 				ReplaceRareItemsInChests(chestLists[ChestStyle.Gold], new int[] { ModContent.ItemType<EnchantedLED>(), ModContent.ItemType<EnchantedLED>() });
+
+				var pyramidChests = new List<Chest>();
+				foreach (var chest in chestLists[ChestStyle.Gold])
+				{
+					if (Main.tile[chest.x, chest.y].WallType == WallID.SandstoneBrick)
+					{
+						pyramidChests.Add(chest);
+					}
+				}
+
+				AddRareItemToChests(pyramidChests, ModContent.ItemType<PharaohsClicker>(), 1f);
 			}
 
 			if (chestLists.ContainsKey(ChestStyle.DeadMans))
@@ -122,7 +134,106 @@ namespace ClickerClass
 			}
 		}
 
-		private void ReplaceRareItemsInChests(IList<Chest> chestList, IList<int> itemsToPlaceInChests, int rareSlots = 1, Func<int, IList<Chest>> generateChestFunc = null)
+		public static void AddRareItemToChests(IList<Chest> chestList, int newItem, float chance, int min = 1, int max = 1)
+		{
+			for (int i = 0; i < chestList.Count; i++)
+			{
+				if (WorldGen.genRand.NextFloat() > chance)
+				{
+					continue;
+				}
+
+				Chest chest = chestList[i];
+				//if (CountFreeSlotsInChest(chest) == 0)
+				//{
+				//	//No space left, don't attempt shifting OR adding
+				//	continue;
+				//}
+
+				(int start, int end) = GetFirstConsecutiveItemChainIndexes(chest);
+				if (start == 0 && end == chest.item.Length - 1)
+				{
+					//No space left, don't attempt shifting OR adding
+					continue;
+				}
+				
+				if (!(end == -1 || start > 0 || end == chest.item.Length - 1))
+				{
+					//Don't shift if empty, first slot is not occupied, or chain ends on the last slot
+					ShiftSlotRangeBy1Up(chest, start, end);
+				}
+				//Else no point in shifting, just insert directly
+
+				//Insert in the now guaranteed empty slot
+				Item item = chest.item[0];
+				int stack = item.stack;
+				int maxExclusive = max + 1;
+				if (min > 0 && maxExclusive > min)
+				{
+					stack = max > min ? WorldGen.genRand.Next(min, maxExclusive) : min;
+				}
+				item.SetDefaults(newItem);
+				item.stack = stack;
+			}
+		}
+
+		public static int CountFreeSlotsInChest(Chest chest)
+		{
+			int count = 0;
+			for (int k = 0; k < chest.item.Length; k++)
+			{
+				Item item = chest.item[k];
+				if (item == null || !item.IsAir)
+				{
+					continue;
+				}
+
+				count++;
+			}
+
+			return count;
+		}
+
+		public static (int start, int end) GetFirstConsecutiveItemChainIndexes(Chest chest)
+		{
+			int start = -1;
+			int end = -1;
+			for (int k = 0; k < chest.item.Length; k++)
+			{
+				Item item = chest.item[k];
+				if (item == null || item.IsAir)
+				{
+					if (end != -1)
+					{
+						//Found new empty slot: sequence has ended
+						break;
+					}
+
+					continue;
+				}
+
+				if (start == -1)
+				{
+					start = k;
+				}
+
+				end = k;
+			}
+
+			return (start, end);
+		}
+
+		public static void ShiftSlotRangeBy1Up(Chest chest, int start, int end)
+		{
+			//Start from the end (on the empty slot after), shift the slot one up, repeat
+			for (int k = end + 1; k > start; k--)
+			{
+				ref Item itemToShiftTo = ref chest.item[k];
+				Utils.Swap(ref chest.item[k], ref chest.item[k - 1]);
+			}
+		}
+
+		public static void ReplaceRareItemsInChests(IList<Chest> chestList, IList<int> itemsToPlaceInChests, int rareSlots = 1, Func<int, IList<Chest>> generateChestFunc = null)
 		{
 			Dictionary<int, List<Chest>> chestsWithItem = new Dictionary<int, List<Chest>>(); // A dictionary where the key is an item id, and the value is a list of chests the item is in
 			List<Chest> availableChests = new List<Chest>(); // A list of chests we can place our items into

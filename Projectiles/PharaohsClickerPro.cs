@@ -100,7 +100,7 @@ namespace ClickerClass.Projectiles
 			MousePlayer mousePlayer = Main.player[Projectile.owner].GetModPlayer<MousePlayer>();
 			if (mousePlayer.TryGetMousePosition(out Vector2 mouseWorld))
 			{
-				Projectile.spriteDirection = mouseWorld.X > Projectile.position.X ? 1 : -1;
+				Projectile.spriteDirection = mouseWorld.X > Projectile.Center.X ? 1 : -1;
 
 				if (clickerPlayer.clickerTotal > clickCountCheck && Main.myPlayer == Projectile.owner)
 				{
@@ -112,8 +112,7 @@ namespace ClickerClass.Projectiles
 						mag = speed / mag;
 						vector *= mag;
 					}
-					//Deals 1 damage
-					Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center + BobPosOffset, vector, ModContent.ProjectileType<PharaohsClickerPro2>(), 1, 1f, Projectile.owner, 1f);
+					Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center + BobPosOffset, vector, ModContent.ProjectileType<PharaohsClickerPro2>(), 2, 1f, Projectile.owner, 1f);
 				}
 			}
 			clickCountCheck = clickerPlayer.clickerTotal;

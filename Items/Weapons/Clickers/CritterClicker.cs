@@ -44,7 +44,5 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			player.dontHurtCritters = true;
 		}
-
-		//TODO - Sold by zoologist after 50% bestiary 
 	}
 }

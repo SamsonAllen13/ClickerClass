@@ -35,7 +35,5 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = Item.sellPrice(0, 1, 0, 0);
 			Item.rare = ItemRarityID.Green;
 		}
-
-		//TODO - Figure out how to make it spawn in pyramid chests
 	}
 }

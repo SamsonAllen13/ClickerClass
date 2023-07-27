@@ -16,5 +16,11 @@ namespace ClickerClass
 		{
 			return new Condition(Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey($"{CommonKey}ClickerTotalExceeds")).WithFormatArgs(amount), () => Main.LocalPlayer.GetModPlayer<ClickerPlayer>().clickerTotal >= amount);
 		}
+
+		//This is a copy of the code tml uses
+		public static Condition BestiaryFilledPercent(int percent)
+		{
+			return new(Language.GetText("Conditions.BestiaryPercentage").WithFormatArgs(percent), () => Main.GetBestiaryProgressReport().CompletionPercent >= percent / 100f);
+		}
 	}
 }

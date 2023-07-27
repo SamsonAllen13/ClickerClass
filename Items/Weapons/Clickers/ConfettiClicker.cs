@@ -2,7 +2,6 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
-using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -43,17 +42,6 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.knockBack = 2f;
 			Item.value = Item.sellPrice(0, 0, 20, 0);
 			Item.rare = ItemRarityID.Blue;
-		}
-	}
-
-	public class ConfettiClickerPigronataTile : GlobalTile
-	{
-		public override void Drop(int i, int j, int type)
-		{
-			if (type == TileID.Pigronata && Main.rand.NextBool(50))
-			{
-				Item.NewItem(WorldGen.GetItemSource_FromTileBreak(i, j), i * 16, j * 16, 32, 32, ModContent.ItemType<ConfettiClicker>());
-			}
 		}
 	}
 }

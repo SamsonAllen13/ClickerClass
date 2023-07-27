@@ -97,7 +97,7 @@ Mods: {
 				IncreasesBaseClickRadiusBy: Увеличивает базовый радиус кликов на {0}%
 				ReducesBaseClickRadiusBy: Уменьшает базовый радиус кликов на {0}%
 				ReducesAmountOfClicksBy: Снижает требуемое количество кликов для эффекта курсора на {0}%
-				ReducesAmountOfClicksByFlat: Снижает требуемое количество кликов для эффекта курсора на {0}
+				ReducesAmountOfClicksByFlat: Снижает требуемое количество кликов для эффекта курсора на {0} {^0:единицу;единицы;единиц}
 				ClickingGloveEvery: Пока вы в бою, автоматически активирует курсор
 				Clicker: Кликните на врага в пределах радиуса курсора и его видимости, чтобы нанести ему урон
 				Clicks: "{0} {^0:клик;клика;кликов}"
@@ -478,7 +478,7 @@ Mods: {
 
 			Soda: {
 				DisplayName: Сода
-				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat} единицу"
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
 			SFXButtonA.DisplayName: Кнопка звуковых эффектов A
@@ -569,7 +569,7 @@ Mods: {
 
 			OverclockHelmet: {
 				DisplayName: Шлем разгона
-				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat} единицу"
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 				SetBonus:
 					'''
 					Каждые {0} кликов на короткий промежуток времени дарует бафф «{$Buffs.OverclockBuff.DisplayName}», заставляя каждый клик активировать свой эффект
@@ -614,7 +614,7 @@ Mods: {
 
 			RGBHelm: {
 				DisplayName: РГБ шлем
-				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat} единицу"
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 				SetBonus: Каждые {0} кликов вызывает цветовой всплеск из вашего курсора
 			}
 

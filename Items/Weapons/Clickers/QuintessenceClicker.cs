@@ -45,7 +45,5 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.value = Item.sellPrice(0, 10, 0, 0);
 			Item.rare = ItemRarityID.Purple;
 		}
-
-		//TODO - Shimmer a wooden clicker post-ML to craft
 	}
 }

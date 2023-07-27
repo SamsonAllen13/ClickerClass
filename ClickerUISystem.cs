@@ -14,7 +14,7 @@ namespace ClickerClass
 	public class ClickerUISystem : ModSystem
 	{
 		private GameTime _lastUpdateUIGameTime;
-		private bool reflectionFailedOnceDoNotRetry = false;
+		private static bool reflectionFailedOnceDoNotRetry = false;
 
 		public override void UpdateUI(GameTime gameTime)
 		{
@@ -54,7 +54,7 @@ namespace ClickerClass
 			reflectionFailedOnceDoNotRetry = false;
 		}
 
-		private void DetourSecondCursor(On_Main.orig_DrawInterface_36_Cursor orig)
+		private static void DetourSecondCursor(On_Main.orig_DrawInterface_36_Cursor orig)
 		{
 			//This is used to detour the second cursor draw which happens on NPC mouseover in DrawInterface_41 after Main.instance._mouseTextCache.valid is true
 			if (!reflectionFailedOnceDoNotRetry && ClickerCursor.detourSecondCursorDraw)

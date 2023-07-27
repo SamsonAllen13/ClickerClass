@@ -7,10 +7,28 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class WoodenClicker : ClickerWeapon
 	{
+		public override void Load()
+		{
+			On_Item.CanShimmer += On_Item_CanShimmer;
+		}
+
+		private static bool On_Item_CanShimmer(On_Item.orig_CanShimmer orig, Item self)
+		{
+			bool ret = orig(self);
+
+			//Workaround for lack of conditions on item shimmer
+			if (self.type == ModContent.ItemType<WoodenClicker>() && !NPC.downedMoonlord)
+			{
+				return false;
+			}
+
+			return ret;
+		}
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
-			// TODO 1.4.4 - Require the defeat of ML
+
 			ItemID.Sets.ShimmerTransformToItem[Type] = ModContent.ItemType<QuintessenceClicker>();
 		}
 

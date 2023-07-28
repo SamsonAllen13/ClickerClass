@@ -90,7 +90,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 					if (player.active && !player.dead)
 					{
-						var rect = Utils.CenteredRectangle(player.Center, new Vector2(1920, 1080) * 1.5f);
+						var rect = Utils.CenteredRectangle(player.Center, new Vector2(1920, 1080) * 2f);
 						if (rect.Contains(X, Y) && Main.rand.NextBool(8))
 						{
 							int itemToDrop = ModContent.ItemType<DreamClicker>();

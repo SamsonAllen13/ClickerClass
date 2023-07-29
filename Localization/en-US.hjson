@@ -1082,7 +1082,7 @@ Mods: {
 
 		Prefixes: {
 			ClickerRadius: {
-				DisplayName: Clicker Radius
+				DisplayName: Reaching
 				Tooltip: +{0}% base clicker radius
 			}
 

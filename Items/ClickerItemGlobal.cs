@@ -1,6 +1,9 @@
 ﻿using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Prefixes;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using Terraria;
 using Terraria.GameContent.ItemDropRules;
 using Terraria.ID;
@@ -35,12 +38,34 @@ namespace ClickerClass.Items
 				#region Lock Boxes
 				case ItemID.LockBox:
 					{
-						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SlickClicker>(), 7));
+						foreach (var entry in itemLoot.Get(false))
+						{
+							if (entry is OneFromOptionsNotScaledWithLuckDropRule lockboxRule && Array.IndexOf(lockboxRule.dropIds, ItemID.Valor) > -1)
+							{
+								var set = new HashSet<int>(lockboxRule.dropIds)
+								{
+									ModContent.ItemType<SlickClicker>()
+								};
+								lockboxRule.dropIds = set.ToArray();
+								break;
+							}
+						}
 					}
 					break;
 				case ItemID.ObsidianLockbox:
 					{
-						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<UmbralClicker>(), 6));
+						foreach (var entry in itemLoot.Get(false))
+						{
+							if (entry is OneFromOptionsNotScaledWithLuckDropRule obsidianLockboxRule && Array.IndexOf(obsidianLockboxRule.dropIds, ItemID.DarkLance) > -1)
+							{
+								var set = new HashSet<int>(obsidianLockboxRule.dropIds)
+								{
+									ModContent.ItemType<UmbralClicker>()
+								};
+								obsidianLockboxRule.dropIds = set.ToArray();
+								break;
+							}
+						}
 					}
 					break;
 				#endregion

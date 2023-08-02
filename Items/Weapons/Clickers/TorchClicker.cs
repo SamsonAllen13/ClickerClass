@@ -100,10 +100,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 		//The following 2 go into any class (assuming it's a one-time thing, in the item class for organization, otherwise needs to generalize this into a system)
 		public override void Load()
 		{
-			On_Item.NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool += Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool;
+			On_Item.NewItem_Inner += On_Item_NewItem_Inner;
 		}
 
-		private static int Item_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool(On_Item.orig_NewItem_IEntitySource_int_int_int_int_int_int_bool_int_bool_bool orig, Terraria.DataStructures.IEntitySource source, int X, int Y, int Width, int Height, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
+		private static int On_Item_NewItem_Inner(On_Item.orig_NewItem_Inner orig, IEntitySource source, int X, int Y, int Width, int Height, Item itemToClone, int Type, int Stack, bool noBroadcast, int pfix, bool noGrabDelay, bool reverseLookup)
 		{
 			/*
 				* Try dropping when these conditions are true
@@ -124,7 +124,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				}
 			}
 
-			int ret = orig(source, X, Y, Width, Height, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup);
+			int ret = orig(source, X, Y, Width, Height, itemToClone, Type, Stack, noBroadcast, pfix, noGrabDelay, reverseLookup);
 			return ret;
 		}
 	}

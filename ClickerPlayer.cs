@@ -1704,23 +1704,41 @@ namespace ClickerClass
 		{
 			if (effectTranscend)
 			{
-				for (int k = 0; k < 10; k++)
-				{
-					ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.PrincessWeapon, new ParticleOrchestraSettings
-					{
-						PositionInWorld = Player.Center,
-						MovementVector = Main.rand.NextVector2Circular(6f, 6f)
-					}, Player.whoAmI);
-				}
-				Player.ClearBuff(ModContent.BuffType<TranscendBuff>());
-				SoundEngine.PlaySound(SoundID.Item176, Player.Center);
+				TranscendenceDodge(true);
+
 				Player.HealLife((int)(Player.statLifeMax2 * 0.1f));
-				Player.immune = true;
-				Player.immuneTime = 90;
 				return true;
 			}
 
 			return base.ConsumableDodge(info);
+		}
+
+		public void TranscendenceDodge(bool broadcast = false)
+		{
+			SoundEngine.PlaySound(SoundID.Item176, Player.Center);
+
+			for (int k = 0; k < 10; k++)
+			{
+				ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.PrincessWeapon, new ParticleOrchestraSettings
+				{
+					PositionInWorld = Player.Center,
+					MovementVector = Main.rand.NextVector2Circular(6f, 6f)
+				}, Player.whoAmI);
+			}
+
+			Player.ClearBuff(ModContent.BuffType<TranscendBuff>());
+
+			Player.SetImmune(90, 30);
+
+			if (Main.netMode != NetmodeID.SinglePlayer &&
+				broadcast && (Player.whoAmI == Main.myPlayer || Main.netMode == NetmodeID.Server))
+			{
+				//If client=player needs to send, or server
+
+				//Client sends to server, server sends to all clients but this one
+
+				new TranscendenceDodgePacket(Player).Send(from: Player.whoAmI);
+			}
 		}
 
 		public override void Kill(double damage, int hitDirection, bool pvp, PlayerDeathReason damageSource)

@@ -68,9 +68,12 @@ namespace ClickerClass.Projectiles
 				for (int k = 0; k < Main.maxPlayers; k++)
 				{
 					Player target = Main.player[k];
-					if (target.active && target.statLife < target.statLifeMax2 && target.DistanceSQ(Projectile.Center) < (20 * 20))
+					if (target.active && !target.dead && target.statLife < target.statLifeMax2 && target.DistanceSQ(Projectile.Center) < (20 * 20))
 					{
-						target.HealLife(10);
+						if (Main.myPlayer == target.whoAmI)
+						{
+							target.HealLife(10);
+						}
 						SoundEngine.PlaySound(SoundID.Item85, Projectile.position);
 						for (int i = 0; i < 8; i++)
 						{
@@ -78,6 +81,7 @@ namespace ClickerClass.Projectiles
 							dust.noGravity = true;
 						}
 						Projectile.Kill();
+						return;
 					}
 				}
 			}

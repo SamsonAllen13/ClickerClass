@@ -50,9 +50,12 @@ namespace ClickerClass.Projectiles
 						target.AddBuff(ModContent.BuffType<Seafoam>(), 300, false);
 
 						Player player = Main.player[Projectile.owner];
-						if (player.statLife < player.statLifeMax)
+						if (Main.myPlayer == player.whoAmI)
 						{
-							player.HealLife(1);
+							if (player.statLife < player.statLifeMax)
+							{
+								player.HealLife(1);
+							}
 						}
 
 						for (int i = 0; i < 15; i++)

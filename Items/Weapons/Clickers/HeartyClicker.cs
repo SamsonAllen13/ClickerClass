@@ -1,4 +1,5 @@
 using ClickerClass.Projectiles;
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
@@ -25,6 +26,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 					projectile.ModProjectile is HeartyClickerPro heart)
 					{
 						heart.HeartCount++;
+						projectile.NetSync();
 					}
 				}
 				Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-2f, 2f), -6f, heartType, 0, 0f, player.whoAmI);

@@ -146,8 +146,48 @@ namespace ClickerClass.Projectiles
 
 		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
 		{
-			//Always fall through. For conditional fallthrough, would require writing own AI (currently just clones vanilla)
 			fallThrough = true;
+
+			if (!HasChanged)
+			{
+				return true;
+			}
+
+			float dist = 1200f;
+			NPC target = null;
+
+			for (int i = 0; i < Main.maxNPCs; i++)
+			{
+				NPC npc = Main.npc[i];
+				if (npc.CanBeChasedBy() && Projectile.DistanceSQ(npc.Center) < dist * dist && Collision.CanHit(Projectile.Center, 1, 1, npc.Center, 1, 1))
+				{
+					float foundX = npc.Center.X;
+					float foundY = npc.Center.Y;
+					float abs = Math.Abs(Projectile.Center.X - foundX) + Math.Abs(Projectile.Center.Y - foundY);
+					if (abs < dist)
+					{
+						dist = abs;
+						target = npc;
+					}
+				}
+			}
+
+			if (target == null)
+			{
+				fallThrough = false;
+				return true;
+			}
+
+			Vector2 toTarget = target.Bottom - Projectile.Bottom;
+			if (toTarget.Y > 0 && Math.Abs(toTarget.X) < 300)
+			{
+				fallThrough = true;
+			}
+			else
+			{
+				fallThrough = false;
+			}
+
 			return true;
 		}
 

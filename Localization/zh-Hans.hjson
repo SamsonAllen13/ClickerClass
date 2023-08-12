@@ -17,8 +17,8 @@ Mods: {
 			}
 
 			CrystalizedFatigue: {
-				// DisplayName: Crystalized Fatigue
-				// Description: Cannot be Crystalized again
+				// DisplayName: 晶化疲劳
+				// Description: 无法再次晶化
 			}
 
 			Embrittle: {
@@ -82,8 +82,8 @@ Mods: {
 			}
 
 			TranscendBuff: {
-				// DisplayName: Transcended
-				// Description: Negates the next damage you take, recovering 10% of your life instead
+				// DisplayName: 超越
+				// Description: 无效下一次受到的伤害并恢复10%的生命值
 			}
 		}
 
@@ -103,8 +103,8 @@ Mods: {
 				Clicks: "{0} {^0:次点击}"
 				/* SFXButtonTip:
 					'''
-					Changes the sound your clicks make while in your inventory
-					Volume increases with stack size, up to {0}
+					在背包中时更改点击器的声音
+					音量随着堆叠数增加而增加,最大音量为{0}
 					''' */
 			}
 
@@ -119,8 +119,8 @@ Mods: {
 		DamageClasses.ClickerDamage.DisplayName: 点击伤害
 
 		Keybinds: {
-			// ClickerAccessory.DisplayName: Clicker Accessory
-			// ClickerAimAssist.DisplayName: Clicker Aim Assist
+			// ClickerAccessory.DisplayName: 切换饰品功能
+			// ClickerAimAssist.DisplayName: 切换瞄准辅助
 		}
 
 		Items: {
@@ -153,117 +153,117 @@ Mods: {
 			}
 
 			MiceBathtub: {
-				// DisplayName: Mice Bathtub
+				// DisplayName: 鼠标浴缸
 				Tooltip: ""
 			}
 
 			MiceBed: {
-				// DisplayName: Mice Bed
+				// DisplayName: 鼠标床
 				Tooltip: ""
 			}
 
 			MiceBookcase: {
-				// DisplayName: Mice Bookcase
+				// DisplayName: 鼠标书架
 				Tooltip: ""
 			}
 
 			MiceBrick: {
-				// DisplayName: Mice Brick
+				// DisplayName: 鼠标砖
 				Tooltip: ""
 			}
 
 			MiceBrickWall: {
-				// DisplayName: Mice Brick Wall
+				// DisplayName: 鼠标砖墙
 				Tooltip: ""
 			}
 
 			MiceCandelabra: {
-				// DisplayName: Mice Candelabra
+				// DisplayName: 鼠标烛台
 				Tooltip: ""
 			}
 
 			MiceCandle: {
-				// DisplayName: Mice Candle
+				// DisplayName: 鼠标蜡烛
 				Tooltip: ""
 			}
 
 			MiceChair: {
-				// DisplayName: Mice Chair
+				// DisplayName: 鼠标椅
 				Tooltip: ""
 			}
 
 			MiceChandelier: {
-				// DisplayName: Mice Chandelier
+				// DisplayName: 鼠标吊灯
 				Tooltip: ""
 			}
 
 			MiceChest: {
-				// DisplayName: Mice Chest
+				// DisplayName: 鼠标箱
 				Tooltip: ""
 			}
 
 			MiceChest_Trapped: {
-				// DisplayName: Trapped Mice Chest
+				// DisplayName: 陷阱鼠标箱
 				Tooltip: ""
 			}
 
 			MiceClock: {
-				// DisplayName: Mice Clock
+				// DisplayName: 鼠标时钟
 				Tooltip: ""
 			}
 
 			MiceDoor: {
-				// DisplayName: Mice Door
+				// DisplayName: 鼠标门
 				Tooltip: ""
 			}
 
 			MiceDresser: {
-				// DisplayName: Mice Dresser
+				// DisplayName: 鼠标梳妆台
 				Tooltip: ""
 			}
 
 			MiceLamp: {
-				// DisplayName: Mice Lamp
+				// DisplayName: 鼠标灯
 				Tooltip: ""
 			}
 
 			MiceLantern: {
-				// DisplayName: Mice Lantern
+				// DisplayName: 鼠标灯笼
 				Tooltip: ""
 			}
 
 			MicePiano: {
-				// DisplayName: Mice Piano
+				// DisplayName: 鼠标钢琴
 				Tooltip: ""
 			}
 
 			MicePlatform: {
-				// DisplayName: Mice Platform
+				// DisplayName: 鼠标平台
 				Tooltip: ""
 			}
 
 			MiceSink: {
-				// DisplayName: Mice Sink
+				// DisplayName: 鼠标水槽
 				Tooltip: ""
 			}
 
 			MiceSofa: {
-				// DisplayName: Mice Sofa
+				// DisplayName: 鼠标沙发
 				Tooltip: ""
 			}
 
 			MiceTable: {
-				// DisplayName: Mice Table
+				// DisplayName: 鼠标桌
 				Tooltip: ""
 			}
 
 			MiceToilet: {
-				// DisplayName: Mice Toilet
+				// DisplayName: 鼠标马桶
 				Tooltip: ""
 			}
 
 			MiceWorkbench: {
-				// DisplayName: Mice Work Bench
+				// DisplayName: 鼠标工作台
 				Tooltip: ""
 			}
 
@@ -481,21 +481,21 @@ Mods: {
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
-			// SFXButtonA.DisplayName: SFX Button A
-			// SFXButtonB.DisplayName: SFX Button B
-			// SFXButtonC.DisplayName: SFX Button C
-			// SFXButtonD.DisplayName: SFX Button D
-			// SFXButtonE.DisplayName: SFX Button E
-			// SFXButtonF.DisplayName: SFX Button F
-			// SFXButtonG.DisplayName: SFX Button G
-			// SFXButtonH.DisplayName: SFX Button H
+			// SFXButtonA.DisplayName: 音效按钮A
+			// SFXButtonB.DisplayName: 音效按钮B
+			// SFXButtonC.DisplayName: 音效按钮C
+			// SFXButtonD.DisplayName: 音效按钮D
+			// SFXButtonE.DisplayName: 音效按钮E
+			// SFXButtonF.DisplayName: 音效按钮F
+			// SFXButtonG.DisplayName: 音效按钮G
+			// SFXButtonH.DisplayName: 音效按钮H
 
 			SFXSoundboard: {
-				// DisplayName: SFX Soundboard
+				// DisplayName: 音效声板
 				/* Tooltip:
 					'''
-					'Become the life of the party! ...or death of it'
-					Changes the sound your clicks make while in your inventory
+					'成为派对的主角! ...或者就此死去'
+					在背包中时更改点击器的声音
 					''' */
 			}
 
@@ -634,8 +634,8 @@ Mods: {
 			}
 
 			HeavenlyChip: {
-				// DisplayName: Heavenly Chip
-				// Tooltip: Permanently increases base clicker radius by {0}%
+				// DisplayName: 天堂芯片
+				// Tooltip: 永久增加{0}%基础点击范围
 			}
 
 			MiceDrill: {
@@ -660,27 +660,27 @@ Mods: {
 			BalloonClicker.DisplayName: 气球点击器
 			BoneClicker.DisplayName: 骨头点击器
 			BlizzardClicker.DisplayName: 暴雪点击器
-			// BurningSuperDeathClicker.DisplayName: Burning Super Death Clicker
+			BurningSuperDeathClicker.DisplayName: 爆燃超级死亡点击器
 			CandleClicker.DisplayName: 蜡烛点击器
 			CaptainsClicker.DisplayName: 船长点击器
 			ChlorophyteClicker.DisplayName: 叶绿点击器
 			CobaltClicker.DisplayName: 钴点击器
-			// ConfettiClicker.DisplayName: Confetti Clicker
+			ConfettiClicker.DisplayName: 彩纸点击器
 			CopperClicker.DisplayName: 铜点击器
 			CorruptClicker.DisplayName: 腐化点击器
 			CrimsonClicker.DisplayName: 猩红点击器
-			// CritterClicker.DisplayName: Critter Clicker
+			CritterClicker.DisplayName: 动物点击器
 			CrystalClicker.DisplayName: 水晶点击器
 			CyclopsClicker.DisplayName: 鹿角怪点击器
 			DarkClicker.DisplayName: 魔矿点击器
 			DraconicClicker.DisplayName: 飞龙点击器
-			// DreamClicker.DisplayName: Dream Clicker
+			DreamClicker.DisplayName: 梦幻点击器
 			EclipticClicker.DisplayName: 日食点击器
-			// FamishedClicker.DisplayName: Famished Clicker
+			FamishedClicker.DisplayName: 饥渴点击器
 			FaultyClicker.DisplayName: 故障点击器
 			FrozenClicker.DisplayName: 寒冰点击器
 			GoldClicker.DisplayName: 金点击器
-			// HeartyClicker.DisplayName: Hearty Clicker
+			HeartyClicker.DisplayName: 甜心点击器
 			HemoClicker.DisplayName: 血液点击器
 			HighTechClicker.DisplayName: 高科技点击器
 			HoneyGlazedClicker.DisplayName: 蜜釉点击器
@@ -697,10 +697,10 @@ Mods: {
 			NaughtyClicker.DisplayName: 顽皮点击器
 			OrichalcumClicker.DisplayName: 山铜点击器
 			PalladiumClicker.DisplayName: 钯金点击器
-			// PharaohsClicker.DisplayName: Pharaoh's Clicker
+			PharaohsClicker.DisplayName: 法老点击器
 			PlatinumClicker.DisplayName: 铂金点击器
 			PointyClicker.DisplayName: 尖刺点击器
-			// QuintessenceClicker.DisplayName: Quintessence Clicker
+			QuintessenceClicker.DisplayName: 精粹点击器
 			RainbowClicker.DisplayName: 彩虹点击器
 			RedHotClicker.DisplayName: 狱石点击器
 			SandstormClicker.DisplayName: 沙暴点击器
@@ -765,8 +765,8 @@ Mods: {
 			}
 
 			PartyTime: {
-				// Name: Party Time!
-				// Description: Throws out some confetti!
+				// Name: 派对时间!
+				// Description: 扔出五彩纸屑!
 			}
 
 			Insanity: {
@@ -785,8 +785,8 @@ Mods: {
 			}
 
 			Mania: {
-				// Name: Mania
-				// Description: Randomly acts as any possible lesser click effect
+				// Name: 狂热
+				// Description: 随机产生一些较弱的点击效果
 			}
 
 			HolyNova: {
@@ -1055,28 +1055,28 @@ Mods: {
 			}
 
 			StarSlice: {
-				// Name: Star Slice
-				// Description: Shoots out {0} slicing star strikes
+				// Name: 星刃
+				// Description: 射出{0}片星刃
 			}
 
 			HappyHeart: {
-				// Name: Happy Heart
-				// Description: Produces up to {0} lingering hearts that replenish player life
+				// Name: 快乐之心
+				// Description: 产生一颗能够恢复生命值的爱心,最多存在{0}颗
 			}
 
 			PharaohsCommand: {
-				// Name: Pharaoh's Command
-				// Description: Summons a mask that shoots at your cursor in response to your clicks
+				// Name: 法老旨意
+				// Description: 召唤一副面具,它会向你点击的方向射击
 			}
 
 			Transcend: {
-				// Name: Transcend
-				// Description: Negates the next damage you take, recovering 10% of your life instead
+				// Name: 超越
+				// Description: 无效下一次受到的伤害并恢复10%的生命值
 			}
 
 			Nab: {
-				// Name: Nab
-				// Description: Catches critters near your cursor
+				// Name: 抓捕
+				// Description: 点击捕捉鼠标附近的动物
 			}
 		}
 
@@ -1113,11 +1113,11 @@ Mods: {
 		}
 
 		GameTips: {
-			// ClickerClassTip0: Clicker Class: Clicker weapons can only be used within its area of effect and with proper line of sight.
-			// ClickerClassTip1: Clicker Class: Your total number of clicks with Clickers are tracked. Check it out with a Gamer Crate!
-			// ClickerClassTip2: Clicker Class: Certain items will only be sold if you've used Clicker weapons enough times.
-			// ClickerClassTip3: Clicker Class: Remember to rest your hands if they start to hurt!
-			// ClickerClassTip4: Clicker Class: Find a nice Ice Pack to cool your hands if clicking is cramping them up!
+			// ClickerClassTip0: 点击大师: 点击器武器只能对在其作用范围内的敌人使用,并且不能有方块阻挡.
+			// ClickerClassTip1: 点击大师: 你使用点击器的每一次点击都被统计了.使用专业玩家手提箱查看!
+			// ClickerClassTip2: 点击大师: 某些物品只有在你使用点击器武器达到一定次数后才会出售.
+			// ClickerClassTip3: 点击大师: 如果你的手开始疼痛,请注意休息!
+			// ClickerClassTip4: 点击大师: 如果点击使你的手抽筋了,赶紧找一个冰袋给手敷敷!
 		}
 
 		# regex: DisplayName\: (.*?) Pro([0-9]*)? -> DisplayName: $1
@@ -1205,8 +1205,8 @@ Mods: {
 				DisplayName: 配置
 
 				Headers: {
-					// DisplayOptions: Display Options
-					// GameplayOptions: Gameplay Options
+					// DisplayOptions: 显示设置
+					// GameplayOptions: 玩法设置
 				}
 
 				ShowClassTags: {
@@ -1239,8 +1239,8 @@ Mods: {
 				}
 
 				ToggleAutoreuseLimiter: {
-					// Label: Autoreuse Limiter
-					// Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
+					// Label: 自动点击限制
+					// Tooltip: 开关此模组物品的自动点击
 				}
 			}
 		}

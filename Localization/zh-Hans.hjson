@@ -1140,7 +1140,7 @@ Mods: {
 			ChocolateChipPro.DisplayName: "{$Items.ChocolateChip.DisplayName}"
 			ClearKeychainPro.DisplayName: "{$Items.ClearKeychain.DisplayName}"
 			ClearKeychainPro2.DisplayName: "{$Items.ClearKeychain.DisplayName}"
-			ClickDamage.DisplayName: Click Damage
+			ClickDamage.DisplayName: 点击伤害
 			CookiePro.DisplayName: "{$Items.Cookie.DisplayName}"
 			CorruptClickerPro.DisplayName: "{$Items.CorruptClicker.DisplayName}"
 			CrimsonClickerPro.DisplayName: "{$Items.CrimsonClicker.DisplayName}"

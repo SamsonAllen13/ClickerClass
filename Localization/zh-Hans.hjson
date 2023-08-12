@@ -1171,7 +1171,7 @@ Mods: {
 			PrecursorPro.DisplayName: "{$Items.Precursor.DisplayName}"
 			RainbowClickerPro.DisplayName: "{$Items.RainbowClicker.DisplayName}"
 			RedHotClickerPro.DisplayName: "{$Items.RedHotClicker.DisplayName}"
-			RGBPro.DisplayName: RGB
+			RGBPro.DisplayName: RGB套装
 			SandstormClickerPro.DisplayName: "{$Items.SandstormClicker.DisplayName}"
 			SeafoamClickerPro.DisplayName: "{$Items.SeafoamClicker.DisplayName}"
 			ShadowyClickerPro.DisplayName: "{$Items.ShadowyClicker.DisplayName}"

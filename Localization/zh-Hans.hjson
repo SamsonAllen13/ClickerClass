@@ -112,8 +112,8 @@ Mods: {
 		}
 
 		Conditions: {
-			ClickerSelected: Clicker selected
-			ClickerTotalExceeds: Total of {0} clicks or more
+			ClickerSelected: 需要手持点击器
+			ClickerTotalExceeds: 需要点击次数达到{0}或更多
 		}
 
 		DamageClasses.ClickerDamage.DisplayName: 点击伤害

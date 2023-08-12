@@ -101,11 +101,11 @@ Mods: {
 				ClickingGloveEvery: 进入战斗后,每隔一段时间自动点击一次,时间间隔:
 				Clicker: 点击无方块阻挡且在圆圈范围内的敌人对其造成伤害
 				Clicks: "{0} {^0:次点击}"
-				/* SFXButtonTip:
+				SFXButtonTip:
 					'''
 					在背包中时更改点击器的声音
 					音量随着堆叠数增加而增加,最大音量为{0}
-					''' */
+					'''
 			}
 
 			Unknown: 未知
@@ -492,11 +492,11 @@ Mods: {
 
 			SFXSoundboard: {
 				DisplayName: 音效声板
-				/* Tooltip:
+				Tooltip:
 					'''
 					'成为派对的主角! ...或者就此死去'
 					在背包中时更改点击器的声音
-					''' */
+					'''
 			}
 
 			StickyKeychain: {

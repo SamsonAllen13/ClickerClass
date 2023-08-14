@@ -17,8 +17,8 @@ Mods: {
 			}
 
 			CrystalizedFatigue: {
-				// DisplayName: Crystalized Fatigue
-				// Description: Cannot be Crystalized again
+				DisplayName: Fatigue Crystalisée
+				Description: Ne peut pas être crystallisé à nouveau
 			}
 
 			Embrittle: {
@@ -82,8 +82,8 @@ Mods: {
 			}
 
 			TranscendBuff: {
-				// DisplayName: Transcended
-				// Description: Negates the next damage you take, recovering 10% of your life instead
+				DisplayName: Transcendé
+				Description: Évite le prochain dégât subi, et récupère 10% de votre vie à la place
 			}
 		}
 
@@ -101,26 +101,26 @@ Mods: {
 				ClickingGloveEvery: Pendant un combat, clique automatiquement avec votre cliqueur toutes les
 				Clicker: Cliquez sur un enemi à portée et dans votre champ de vision pour lui faire des dégâts
 				Clicks: "{0} {^0:clic;clics}"
-				/* SFXButtonTip:
+				SFXButtonTip:
 					'''
-					Changes the sound your clicks make while in your inventory
-					Volume increases with stack size, up to {0}
-					''' */
+					Change le son de vos clics tant qu'il est dans l'inventaire
+					Le volume augmente avec le nombre d'objets, jusqu'à {0}
+					'''
 			}
 
 			Unknown: Inconnu
 		}
 
 		Conditions: {
-			// ClickerSelected: Clicker selected
-			// ClickerTotalExceeds: Total of {0} clicks or more
+			ClickerSelected: Cliqueur Sélectionné
+			ClickerTotalExceeds: Total de {0} clics ou plus
 		}
 
 		DamageClasses.ClickerDamage.DisplayName: dégâts de clic
 
 		Keybinds: {
-			// ClickerAccessory.DisplayName: Clicker Accessory
-			// ClickerAimAssist.DisplayName: Clicker Aim Assist
+			ClickerAccessory.DisplayName: Accessoire de Cliqueur
+			ClickerAimAssist.DisplayName: Aide à la visée de Cliqueur
 		}
 
 		Items: {
@@ -153,117 +153,117 @@ Mods: {
 			}
 
 			MiceBathtub: {
-				// DisplayName: Mice Bathtub
+				DisplayName: Baignoire Souris
 				Tooltip: ""
 			}
 
 			MiceBed: {
-				// DisplayName: Mice Bed
+				DisplayName: Lit Souris
 				Tooltip: ""
 			}
 
 			MiceBookcase: {
-				// DisplayName: Mice Bookcase
+				DisplayName: Bibliothèque Souris
 				Tooltip: ""
 			}
 
 			MiceBrick: {
-				// DisplayName: Mice Brick
+				DisplayName: Brique Souris
 				Tooltip: ""
 			}
 
 			MiceBrickWall: {
-				// DisplayName: Mice Brick Wall
+				DisplayName: Mur de Briques Souris
 				Tooltip: ""
 			}
 
 			MiceCandelabra: {
-				// DisplayName: Mice Candelabra
+				DisplayName: Candélabre Souris
 				Tooltip: ""
 			}
 
 			MiceCandle: {
-				// DisplayName: Mice Candle
+				DisplayName: Bougie Souris
 				Tooltip: ""
 			}
 
 			MiceChair: {
-				// DisplayName: Mice Chair
+				DisplayName: Chaise Souris
 				Tooltip: ""
 			}
 
 			MiceChandelier: {
-				// DisplayName: Mice Chandelier
+				DisplayName: Chandelier Souris
 				Tooltip: ""
 			}
 
 			MiceChest: {
-				// DisplayName: Mice Chest
+				DisplayName: Coffre Souris
 				Tooltip: ""
 			}
 
 			MiceChest_Trapped: {
-				// DisplayName: Trapped Mice Chest
+				DisplayName: Coffre Souris Piégé
 				Tooltip: ""
 			}
 
 			MiceClock: {
-				// DisplayName: Mice Clock
+				DisplayName: Horloge Souris
 				Tooltip: ""
 			}
 
 			MiceDoor: {
-				// DisplayName: Mice Door
+				DisplayName: Porte Souris
 				Tooltip: ""
 			}
 
 			MiceDresser: {
-				// DisplayName: Mice Dresser
+				DisplayName: Armoire Souris
 				Tooltip: ""
 			}
 
 			MiceLamp: {
-				// DisplayName: Mice Lamp
+				DisplayName: Lampe Souris
 				Tooltip: ""
 			}
 
 			MiceLantern: {
-				// DisplayName: Mice Lantern
+				DisplayName: Lanterne Souris
 				Tooltip: ""
 			}
 
 			MicePiano: {
-				// DisplayName: Mice Piano
+				DisplayName: Piano Souris
 				Tooltip: ""
 			}
 
 			MicePlatform: {
-				// DisplayName: Mice Platform
+				DisplayName: Plateforme Souris
 				Tooltip: ""
 			}
 
 			MiceSink: {
-				// DisplayName: Mice Sink
+				DisplayName: Évier Souris
 				Tooltip: ""
 			}
 
 			MiceSofa: {
-				// DisplayName: Mice Sofa
+				DisplayName: Canapé Souris
 				Tooltip: ""
 			}
 
 			MiceTable: {
-				// DisplayName: Mice Table
+				DisplayName: Table Souris
 				Tooltip: ""
 			}
 
 			MiceToilet: {
-				// DisplayName: Mice Toilet
+				DisplayName: Toilette Souris
 				Tooltip: ""
 			}
 
 			MiceWorkbench: {
-				// DisplayName: Mice Work Bench
+				DisplayName: Établi Souris
 				Tooltip: ""
 			}
 
@@ -283,7 +283,7 @@ Mods: {
 			}
 
 			BottomlessBoxofPaperclips: {
-				DisplayName: Boîte de Trombones sans Fond
+				DisplayName: Boîte à Trombones sans Fond
 				Tooltip:
 					'''
 					Collecte la matière des ennemis lorsque vous cliquez dessus
@@ -481,22 +481,22 @@ Mods: {
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
-			// SFXButtonA.DisplayName: SFX Button A
-			// SFXButtonB.DisplayName: SFX Button B
-			// SFXButtonC.DisplayName: SFX Button C
-			// SFXButtonD.DisplayName: SFX Button D
-			// SFXButtonE.DisplayName: SFX Button E
-			// SFXButtonF.DisplayName: SFX Button F
-			// SFXButtonG.DisplayName: SFX Button G
-			// SFXButtonH.DisplayName: SFX Button H
+			SFXButtonA.DisplayName: Bouton à Effets Spéciaux A
+			SFXButtonB.DisplayName: Bouton à Effets Spéciaux B
+			SFXButtonC.DisplayName: Bouton à Effets Spéciaux C
+			SFXButtonD.DisplayName: Bouton à Effets Spéciaux D
+			SFXButtonE.DisplayName: Bouton à Effets Spéciaux E
+			SFXButtonF.DisplayName: Bouton à Effets Spéciaux F
+			SFXButtonG.DisplayName: Bouton à Effets Spéciaux G
+			SFXButtonH.DisplayName: Bouton à Effets Spéciaux H
 
 			SFXSoundboard: {
-				// DisplayName: SFX Soundboard
-				/* Tooltip:
+				DisplayName: Table d'Harmonie à Effets Spéciaux
+				Tooltip:
 					'''
-					'Become the life of the party! ...or death of it'
-					Changes the sound your clicks make while in your inventory
-					''' */
+					'Devenez le coeur de la fête ... et sa fin'
+					Change le son de vos clics tant que cet objet est dans votre inventaire
+					'''
 			}
 
 			StickyKeychain: {
@@ -634,8 +634,8 @@ Mods: {
 			}
 
 			HeavenlyChip: {
-				// DisplayName: Heavenly Chip
-				// Tooltip: Permanently increases base clicker radius by {0}%
+				DisplayName: Jeton Paradisiaque
+				Tooltip: Augmente le façon permanent le rayon de base des clics de {0}%
 			}
 
 			MiceDrill: {
@@ -669,18 +669,18 @@ Mods: {
 			CopperClicker.DisplayName: Cliqueur en Cuivrescroll
 			CorruptClicker.DisplayName: Cliqueur Corrompu
 			CrimsonClicker.DisplayName: Cliqueur Cramoisi
-			// CritterClicker.DisplayName: Critter Clicker
+			CritterClicker.DisplayName: Cliqueur Critique
 			CrystalClicker.DisplayName: Cliqueur de Cristal
 			CyclopsClicker.DisplayName: Cliqueur Cyclopéen
 			DarkClicker.DisplayName: Cliqueur Sombre
 			DraconicClicker.DisplayName: Cliqueur Draconique
-			// DreamClicker.DisplayName: Dream Clicker
+			DreamClicker.DisplayName: Cliqueur des Rêves
 			EclipticClicker.DisplayName: Cliqueur Écliptique
 			FamishedClicker.DisplayName: Cliqueur Affamé
 			FaultyClicker.DisplayName: Cliqueur Défectueux
 			FrozenClicker.DisplayName: Cliqueur Gelé
 			GoldClicker.DisplayName: Cliqueur d'Or
-			// HeartyClicker.DisplayName: Hearty Clicker
+			HeartyClicker.DisplayName: Cliqueur Sain
 			HemoClicker.DisplayName: Cliqueur Sanguin
 			HighTechClicker.DisplayName: Cliqueur Haute-Technologie
 			HoneyGlazedClicker.DisplayName: Cliqueur Glacé au Miel
@@ -697,10 +697,10 @@ Mods: {
 			NaughtyClicker.DisplayName: Vilain Cliqueur
 			OrichalcumClicker.DisplayName: Cliqueur en Orichalque
 			PalladiumClicker.DisplayName: Cliqueur en Palladium
-			// PharaohsClicker.DisplayName: Pharaoh's Clicker
+			PharaohsClicker.DisplayName: Cliqueur du Pharaon
 			PlatinumClicker.DisplayName: Cliqueur en Platine
 			PointyClicker.DisplayName: Cliqueur Pointu
-			// QuintessenceClicker.DisplayName: Quintessence Clicker
+			QuintessenceClicker.DisplayName: Cliqueur de la Quintessence
 			RainbowClicker.DisplayName: Cliqueur Arc-en-Ciel
 			RedHotClicker.DisplayName: Cliqueur Rouge et Chaud
 			SandstormClicker.DisplayName: Cliqueur de la Tempête de Sable
@@ -1055,28 +1055,28 @@ Mods: {
 			}
 
 			StarSlice: {
-				// Name: Star Slice
-				// Description: Shoots out {0} slicing star strikes
+				Name: Tranche d'Étoile
+				Description: Tire {0} frappes d'étoiles tranchantes
 			}
 
 			HappyHeart: {
-				// Name: Happy Heart
-				// Description: Produces up to {0} lingering hearts that replenish player life
+				Name: Coeur Joyeux
+				Description: Produit jusqu'à {0} coeurs qui restaurent la vie du joueur
 			}
 
 			PharaohsCommand: {
-				// Name: Pharaoh's Command
-				// Description: Summons a mask that shoots at your cursor in response to your clicks
+				Name: Commande du Pharaon
+				Description: Invoque un masque qui tire vers votre curseur en réponse à vos clics
 			}
 
 			Transcend: {
-				// Name: Transcend
-				// Description: Negates the next damage you take, recovering 10% of your life instead
+				Name: Transcender
+				Description: Annule les prochains dégâts subis, récupérant 10% de votre vie à la place
 			}
 
 			Nab: {
-				// Name: Nab
-				// Description: Catches critters near your cursor
+				Name: Attraper
+				Description: Attrape les créatures près de votre curseur
 			}
 		}
 
@@ -1140,7 +1140,7 @@ Mods: {
 			ChocolateChipPro.DisplayName: "{$Items.ChocolateChip.DisplayName}"
 			ClearKeychainPro.DisplayName: "{$Items.ClearKeychain.DisplayName}"
 			ClearKeychainPro2.DisplayName: "{$Items.ClearKeychain.DisplayName}"
-			// ClickDamage.DisplayName: Click Damage
+			ClickDamage.DisplayName: Dégâts de clic
 			CookiePro.DisplayName: "{$Items.Cookie.DisplayName}"
 			CorruptClickerPro.DisplayName: "{$Items.CorruptClicker.DisplayName}"
 			CrimsonClickerPro.DisplayName: "{$Items.CrimsonClicker.DisplayName}"
@@ -1171,7 +1171,7 @@ Mods: {
 			PrecursorPro.DisplayName: "{$Items.Precursor.DisplayName}"
 			RainbowClickerPro.DisplayName: "{$Items.RainbowClicker.DisplayName}"
 			RedHotClickerPro.DisplayName: "{$Items.RedHotClicker.DisplayName}"
-			// RGBPro.DisplayName: RGB
+			RGBPro.DisplayName: RVB
 			SandstormClickerPro.DisplayName: "{$Items.SandstormClicker.DisplayName}"
 			SeafoamClickerPro.DisplayName: "{$Items.SeafoamClicker.DisplayName}"
 			ShadowyClickerPro.DisplayName: "{$Items.ShadowyClicker.DisplayName}"
@@ -1205,8 +1205,8 @@ Mods: {
 				DisplayName: Configuration
 
 				Headers: {
-					// DisplayOptions: Display Options
-					// GameplayOptions: Gameplay Options
+					DisplayOptions: Options d'Affichage
+					GameplayOptions: Options de Gameplay
 				}
 
 				ShowClassTags: {
@@ -1239,8 +1239,8 @@ Mods: {
 				}
 
 				ToggleAutoreuseLimiter: {
-					// Label: Autoreuse Limiter
-					// Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
+					Label: Limiteur d'utilisation automatique
+					Tooltip: Permet au mod de tenter de restreindre les utilisations automatiques ou non
 				}
 			}
 		}

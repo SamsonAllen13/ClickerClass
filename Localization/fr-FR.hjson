@@ -481,17 +481,17 @@ Mods: {
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
-			SFXButtonA.DisplayName: Bouton à Effets Spéciaux A
-			SFXButtonB.DisplayName: Bouton à Effets Spéciaux B
-			SFXButtonC.DisplayName: Bouton à Effets Spéciaux C
-			SFXButtonD.DisplayName: Bouton à Effets Spéciaux D
-			SFXButtonE.DisplayName: Bouton à Effets Spéciaux E
-			SFXButtonF.DisplayName: Bouton à Effets Spéciaux F
-			SFXButtonG.DisplayName: Bouton à Effets Spéciaux G
-			SFXButtonH.DisplayName: Bouton à Effets Spéciaux H
+			SFXButtonA.DisplayName: Bouton à Effets Sonores A
+			SFXButtonB.DisplayName: Bouton à Effets Sonores B
+			SFXButtonC.DisplayName: Bouton à Effets Sonores C
+			SFXButtonD.DisplayName: Bouton à Effets Sonores D
+			SFXButtonE.DisplayName: Bouton à Effets Sonores E
+			SFXButtonF.DisplayName: Bouton à Effets Sonores F
+			SFXButtonG.DisplayName: Bouton à Effets Sonores G
+			SFXButtonH.DisplayName: Bouton à Effets Sonores H
 
 			SFXSoundboard: {
-				DisplayName: Table d'Harmonie à Effets Spéciaux
+				DisplayName: Table d'Harmonie à Effets Sonores
 				Tooltip:
 					'''
 					'Devenez le coeur de la fête ... et sa fin'
@@ -669,7 +669,7 @@ Mods: {
 			CopperClicker.DisplayName: Cliqueur en Cuivrescroll
 			CorruptClicker.DisplayName: Cliqueur Corrompu
 			CrimsonClicker.DisplayName: Cliqueur Cramoisi
-			CritterClicker.DisplayName: Cliqueur Critique
+			CritterClicker.DisplayName: Cliqueur Bestiole
 			CrystalClicker.DisplayName: Cliqueur de Cristal
 			CyclopsClicker.DisplayName: Cliqueur Cyclopéen
 			DarkClicker.DisplayName: Cliqueur Sombre

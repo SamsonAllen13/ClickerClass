@@ -1,5 +1,6 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.ID;
 
 namespace ClickerClass.Projectiles
 {
@@ -43,7 +44,7 @@ namespace ClickerClass.Projectiles
 		{
 			int dustType = getTorchType(Main.player[Projectile.owner]);
 
-			int index = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, dustType, 0f, 0f, 0, dustType == 66 ? Main.DiscoColor : default(Color), 1.5f);
+			int index = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, dustType, 0f, 0f, 0, dustType == DustID.RainbowTorch ? Main.DiscoColor : default(Color), 1.5f);
 			Dust dust = Main.dust[index];
 			dust.position.X = Projectile.Center.X;
 			dust.position.Y = Projectile.Center.Y;
@@ -73,29 +74,31 @@ namespace ClickerClass.Projectiles
 
 		private int getTorchType(Player player)
 		{
-			int returnType = 6; // Torch
+			int returnType = DustID.Torch;
 
+			if (player.ZoneShimmer) returnType = DustID.ShimmerTorch;
 			if (player.ZoneHallow)
 			{
-				if (player.ZoneRockLayerHeight) returnType = 297; // Hallowed Torch
-				else returnType = 66; // Rainbow Torch
+				if (player.ZoneRockLayerHeight) returnType = DustID.HallowedTorch;
+				else returnType = DustID.RainbowTorch;
 			}
 			else if (player.ZoneCorrupt)
 			{
-				if (player.ZoneRockLayerHeight) returnType = 75; // Cursed Torch
-				else returnType = 295; // Corrupt Torch
+				if (player.ZoneRockLayerHeight) returnType = DustID.CursedTorch;
+				else returnType = DustID.CorruptTorch;
 			}
 			else if (player.ZoneCrimson)
 			{
-				if (player.ZoneRockLayerHeight) returnType = 169; // Ichor Torch
-				else returnType = 296; // Crimson Torch
+				if (player.ZoneRockLayerHeight) returnType = DustID.IchorTorch;
+				else returnType = DustID.CrimsonTorch;
 			}
-			else if (player.ZoneDungeon) returnType = 234; // Bone Torch
-			else if (player.ZoneUnderworldHeight) returnType = 65; // Demon Torch
-			else if (player.ZoneJungle || player.ZoneLihzhardTemple) returnType = 298; // Jungle Torch
-			else if (player.ZoneUndergroundDesert || player.ZoneDesert) returnType = 293; // Desert Torch
-			else if (player.ZoneSnow) returnType = 135; // Ice Torch
-			else if (player.ZoneBeach) returnType = 294; // Coral Torch
+			else if (player.ZoneDungeon) returnType = DustID.BoneTorch;
+			else if (player.ZoneUnderworldHeight) returnType = DustID.DemonTorch;
+			else if (player.ZoneGlowshroom) returnType = DustID.MushroomTorch;
+			else if (player.ZoneJungle || player.ZoneLihzhardTemple) returnType = DustID.JungleTorch;
+			else if (player.ZoneUndergroundDesert || player.ZoneDesert) returnType = DustID.DesertTorch;
+			else if (player.ZoneSnow) returnType = DustID.IceTorch;
+			else if (player.ZoneBeach) returnType = DustID.CoralTorch;
 
 			return returnType;
 		}

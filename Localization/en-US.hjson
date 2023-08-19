@@ -83,7 +83,7 @@ Mods: {
 
 			TranscendBuff: {
 				DisplayName: Transcended
-				Description: Negates the next damage you take, recovering 10% of your life instead
+				Description: Negates the next damage you take, recovering {0}% of your life instead
 			}
 		}
 
@@ -1071,7 +1071,7 @@ Mods: {
 
 			Transcend: {
 				Name: Transcend
-				Description: Negates the next damage you take, recovering 10% of your life instead
+				Description: "{$Buffs.TranscendBuff.Description}"
 			}
 
 			Nab: {

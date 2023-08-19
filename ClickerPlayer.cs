@@ -1706,7 +1706,7 @@ namespace ClickerClass
 			{
 				TranscendenceDodge(true);
 
-				Player.HealLife((int)(Player.statLifeMax2 * 0.1f));
+				Player.HealLife((int)(Player.statLifeMax2 * TranscendBuff.LifeHealedPercent / 100f));
 				return true;
 			}
 

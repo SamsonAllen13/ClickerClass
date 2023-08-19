@@ -83,7 +83,7 @@ Mods: {
 
 			TranscendBuff: {
 				DisplayName: Transcendé
-				Description: Évite le prochain dégât subi, et récupère 10% de votre vie à la place
+				Description: Évite le prochain dégât subi, et récupère {0}% de votre vie à la place
 			}
 		}
 
@@ -1071,7 +1071,7 @@ Mods: {
 
 			Transcend: {
 				Name: Transcender
-				Description: Annule les prochains dégâts subis, récupérant 10% de votre vie à la place
+				Description: "{$Buffs.Transcended.Description}"
 			}
 
 			Nab: {

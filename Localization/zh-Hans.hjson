@@ -83,7 +83,7 @@ Mods: {
 
 			TranscendBuff: {
 				DisplayName: 超越
-				Description: 无效下一次受到的伤害并恢复10%的生命值
+				Description: 无效下一次受到的伤害并恢复{0}%的生命值
 			}
 		}
 
@@ -1071,7 +1071,7 @@ Mods: {
 
 			Transcend: {
 				Name: 超越
-				Description: 无效下一次受到的伤害并恢复10%的生命值
+				Description: "{$Buffs.TranscendBuff.Description}"
 			}
 
 			Nab: {

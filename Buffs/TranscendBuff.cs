@@ -1,11 +1,16 @@
 using Terraria;
 using Terraria.GameContent.Drawing;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Buffs
 {
 	public class TranscendBuff : ModBuff
 	{
+		public static readonly int LifeHealedPercent = 10;
+
+		public override LocalizedText Description => base.Description.WithFormatArgs(LifeHealedPercent);
+
 		public override void SetStaticDefaults()
 		{
 			Main.buffNoSave[Type] = false;

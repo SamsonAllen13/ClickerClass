@@ -27,7 +27,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 						MovementVector = Main.rand.NextVector2Circular(3f, 3f)
 					}, player.whoAmI);
 				}
-			});
+			}, descriptionArgs: new object[] { TranscendBuff.LifeHealedPercent });
 		}
 
 		public override void SetDefaults()

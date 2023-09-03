@@ -85,6 +85,11 @@ Mods: {
 				DisplayName: Transcended
 				Description: Negates the next damage you take, recovering {0}% of your life instead
 			}
+
+			DesktopComputerBuff: {
+				DisplayName: Desktop Computer
+				Description: Click effect requirement reduced by {0}%
+			}
 		}
 
 		Common: {
@@ -150,6 +155,26 @@ Mods: {
 					'''
 				Disabled: Aimbot disabled
 				Enabled: Aimbot enabled
+			}
+
+			DesktopComputer: {
+				DisplayName: Desktop Computer
+				Tooltip: Reduces the amount of clicks required for a click effect by 10%
+			}
+
+			DungeonKey: {
+				DisplayName: Dungeon Key
+				Tooltip: Unlocks a Dungeon Chest in the dungeon
+			}
+
+			DungeonChest: {
+				DisplayName: Dungeon Chest
+				Tooltip: ""
+			}
+
+			DungeonChest_Trapped: {
+				DisplayName: Trapped Dungeon Chest
+				Tooltip: ""
 			}
 
 			MiceBathtub: {
@@ -729,6 +754,8 @@ Mods: {
 			WitchClicker.DisplayName: Witch Clicker
 			WebClicker.DisplayName: Web Clicker
 			WoodenClicker.DisplayName: Wooden Clicker
+			AshenClicker.DisplayName: Ashen Clicker
+			MouseClicker.DisplayName: Mouse Clicker
 		}
 
 		InfoDisplays: {
@@ -749,9 +776,14 @@ Mods: {
 				Description: Covers enemies under cursor in snot, greatly slowing them
 			}
 
+			Bold: {
+				Name: Bold
+				Description: Base damage increases with higher elevation in the world
+			}
+
 			SeaSpray: {
 				Name: Sea Spray
-				Description: Slows nearby enemies and steals life from them
+				Description: Slows nearby enemies and allows you to steal life from them
 			}
 
 			WyvernsRoar: {
@@ -1078,6 +1110,11 @@ Mods: {
 				Name: Nab
 				Description: Catches critters near your cursor
 			}
+
+			MouseTrap: {
+				Name: Mouse Trap
+				Description: Throws out {0} mouse traps that snap and cling onto enemies
+			}
 		}
 
 		Prefixes: {
@@ -1198,6 +1235,7 @@ Mods: {
 			HeartyClickerPro.DisplayName: "{$Items.HeartyClicker.DisplayName}"
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
+			MouseClickerPro.DisplayName: Mouse Clicker Pro
 		}
 
 		Configs: {
@@ -1245,6 +1283,7 @@ Mods: {
 			}
 		}
 
+		Tiles.DungeonChest.MapEntry_Locked: Locked Dungeon Chest
 		RecipeGroups.Any: "{0} {1}"
 	}
 }

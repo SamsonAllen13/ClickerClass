@@ -49,7 +49,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 		public override void AddRecipes()
 		{
-			CreateRecipe(1).AddRecipeGroup(RecipeGroupID.Wood, 10).AddTile(TileID.WorkBenches).Register();
+			CreateRecipe(1).AddIngredient(ItemID.Wood, 10).AddTile(TileID.WorkBenches).Register();
 		}
 	}
 }

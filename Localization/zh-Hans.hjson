@@ -85,6 +85,11 @@ Mods: {
 				DisplayName: 超越
 				Description: 无效下一次受到的伤害并恢复{0}%的生命值
 			}
+
+			DesktopComputerBuff: {
+				// DisplayName: Desktop Computer
+				// Description: Click effect requirement reduced by {0}%
+			}
 		}
 
 		Common: {
@@ -150,6 +155,26 @@ Mods: {
 					'''
 				Disabled: 自动瞄准禁用
 				Enabled: 自动瞄准启用
+			}
+
+			DesktopComputer: {
+				// DisplayName: Desktop Computer
+				// Tooltip: Reduces the amount of clicks required for a click effect by 10%
+			}
+
+			DungeonKey: {
+				// DisplayName: Dungeon Key
+				// Tooltip: Unlocks a Dungeon Chest in the dungeon
+			}
+
+			DungeonChest: {
+				// DisplayName: Dungeon Chest
+				// Tooltip: ""
+			}
+
+			DungeonChest_Trapped: {
+				// DisplayName: Trapped Dungeon Chest
+				// Tooltip: ""
 			}
 
 			MiceBathtub: {
@@ -729,6 +754,8 @@ Mods: {
 			WitchClicker.DisplayName: 女巫点击器
 			WebClicker.DisplayName: 蛛网点击器
 			WoodenClicker.DisplayName: 木点击器
+			// AshenClicker.DisplayName: Ashen Clicker
+			// MouseClicker.DisplayName: Mouse Clicker
 		}
 
 		InfoDisplays: {
@@ -747,6 +774,11 @@ Mods: {
 			OgreGold: {
 				Name: 食人魔的黄金
 				Description: 将鼻涕涂满光标下的敌人,大大减慢其移动速度
+			}
+
+			Bold: {
+				// Name: Bold
+				// Description: Base damage increases with higher elevation in the world
 			}
 
 			SeaSpray: {
@@ -1078,6 +1110,11 @@ Mods: {
 				Name: 抓捕
 				Description: 点击捕捉鼠标附近的动物
 			}
+
+			MouseTrap: {
+				// Name: Mouse Trap
+				// Description: Throws out {0} mouse traps that snap and cling onto enemies
+			}
 		}
 
 		Prefixes: {
@@ -1198,6 +1235,7 @@ Mods: {
 			HeartyClickerPro.DisplayName: "{$Items.HeartyClicker.DisplayName}"
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
+			// MouseClickerPro.DisplayName: Mouse Clicker Pro
 		}
 
 		Configs: {
@@ -1245,6 +1283,7 @@ Mods: {
 			}
 		}
 
+		// Tiles.DungeonChest.MapEntry_Locked: Locked Dungeon Chest
 		RecipeGroups.Any: "{0} {1}"
 	}
 }

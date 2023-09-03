@@ -21,6 +21,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 					ClickEffect.Conqueror,
 					ClickEffect.AutoClick,
 					ClickEffect.PhaseReach,
+					ClickEffect.Bold,
 					ClickEffect.Yoink,
 					ClickEffect.Nab
 				};

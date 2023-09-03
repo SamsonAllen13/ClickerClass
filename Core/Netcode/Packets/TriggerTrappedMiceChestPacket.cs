@@ -5,15 +5,15 @@ using Terraria.ID;
 
 namespace ClickerClass.Core.Netcode.Packets
 {
-	public class TriggerTrappedMiceChestPacket : MPPacket
+	public class TriggerTrappedChestPacket : MPPacket
 	{
 		protected readonly short left;
 		protected readonly short top;
 
 		//For reflection
-		public TriggerTrappedMiceChestPacket() { }
+		public TriggerTrappedChestPacket() { }
 
-		public TriggerTrappedMiceChestPacket(int left, int top)
+		public TriggerTrappedChestPacket(int left, int top)
 		{
 			this.left = (short)left;
 			this.top = (short)top;
@@ -36,7 +36,7 @@ namespace ClickerClass.Core.Netcode.Packets
 
 			if (Main.netMode == NetmodeID.Server)
 			{
-				new TriggerTrappedMiceChestPacket(left, top).Send(-1, sender);
+				new TriggerTrappedChestPacket(left, top).Send(-1, sender);
 			}
 		}
 	}

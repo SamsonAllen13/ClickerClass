@@ -1,9 +1,34 @@
 ﻿using Terraria;
+using Terraria.ID;
+using ClickerClass.NPCs;
 
 namespace ClickerClass.Utilities
 {
 	internal static partial class NPCHelper
 	{
+		/// <summary>
+		/// 
+		/// </summary>
+		public static ClickerGlobalNPC GetClickerGlobalNPC(this NPC npc)
+		{
+			return npc.GetGlobalNPC<ClickerGlobalNPC>();
+		}
+		
+		/// <summary>
+		/// Returns true if the NPC is flagged to be immune to all buffs
+		/// </summary>
+		/// <param name="npc"></param>
+		/// <returns></returns>
+		public static bool ImmuneToAllBuffs(this NPC npc)
+		{
+			if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npc.type, out var data))
+			{
+				return false;
+			}
+
+			return data.ImmuneToAllBuffsThatAreNotWhips;
+		}
+		
 		/// <summary>
 		/// Check if this NPC is tied to the healthpool of another NPC. Sets the parent if it exists.
 		/// </summary>

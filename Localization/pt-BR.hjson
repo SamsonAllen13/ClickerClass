@@ -85,6 +85,11 @@ Mods: {
 				// DisplayName: Transcended
 				// Description: Negates the next damage you take, recovering {0}% of your life instead
 			}
+
+			DesktopComputerBuff: {
+				// DisplayName: Desktop Computer
+				// Description: Click effect requirement reduced by {0}%
+			}
 		}
 
 		Common: {
@@ -150,6 +155,26 @@ Mods: {
 					'''
 				Disabled: Aimbot desativado
 				Enabled: Aimbot ativado
+			}
+
+			DesktopComputer: {
+				// DisplayName: Desktop Computer
+				// Tooltip: Reduces the amount of clicks required for a click effect by 10%
+			}
+
+			DungeonKey: {
+				// DisplayName: Dungeon Key
+				// Tooltip: Unlocks a Dungeon Chest in the dungeon
+			}
+
+			DungeonChest: {
+				// DisplayName: Dungeon Chest
+				// Tooltip: ""
+			}
+
+			DungeonChest_Trapped: {
+				// DisplayName: Trapped Dungeon Chest
+				// Tooltip: ""
 			}
 
 			MiceBathtub: {
@@ -729,6 +754,8 @@ Mods: {
 			WitchClicker.DisplayName: Clicker da Bruxa
 			WebClicker.DisplayName: Clicker de Teia
 			WoodenClicker.DisplayName: Clicker de Madeira
+			// AshenClicker.DisplayName: Ashen Clicker
+			// MouseClicker.DisplayName: Mouse Clicker
 		}
 
 		InfoDisplays: {
@@ -747,6 +774,11 @@ Mods: {
 			OgreGold: {
 				Name: Ouro do Ogro
 				Description: Cobre os inimigos em baixo do cursor em ranho, desacelerando-os consideravelmente
+			}
+
+			Bold: {
+				// Name: Bold
+				// Description: Base damage increases with higher elevation in the world
 			}
 
 			SeaSpray: {
@@ -1078,6 +1110,11 @@ Mods: {
 				// Name: Nab
 				// Description: Catches critters near your cursor
 			}
+
+			MouseTrap: {
+				// Name: Mouse Trap
+				// Description: Throws out {0} mouse traps that snap and cling onto enemies
+			}
 		}
 
 		Prefixes: {
@@ -1198,6 +1235,7 @@ Mods: {
 			HeartyClickerPro.DisplayName: "{$Items.HeartyClicker.DisplayName}"
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
+			// MouseClickerPro.DisplayName: Mouse Clicker Pro
 		}
 
 		Configs: {
@@ -1245,6 +1283,7 @@ Mods: {
 			}
 		}
 
+		// Tiles.DungeonChest.MapEntry_Locked: Locked Dungeon Chest
 		RecipeGroups.Any: "{0} {1}"
 	}
 }

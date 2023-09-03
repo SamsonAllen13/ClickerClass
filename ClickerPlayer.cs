@@ -134,6 +134,8 @@ namespace ClickerClass
 		//Item
 		public bool itemBurningSuperDeath = false;
 		public bool itemDreamClicker = false;
+		public int itemSeafoamClickerTimer = 0;
+		public int itemSeafoamClickerHPS = 0;
 
 		//Armor
 		public int setAbilityDelayTimer = 0;
@@ -1029,6 +1031,17 @@ namespace ClickerClass
 			}
 
 			ResetAutoClickToggle();
+			
+			//Handle Seafoam health timer
+			if (itemSeafoamClickerHPS > 0)
+			{
+				itemSeafoamClickerTimer++;
+				if (itemSeafoamClickerTimer >= 60)
+				{
+					itemSeafoamClickerHPS = 0;
+					itemSeafoamClickerTimer = 0;
+				}
+			}
 
 			if (setAbilityDelayTimer > 0)
 			{
@@ -1119,11 +1132,11 @@ namespace ClickerClass
 				if (setPrecursor && !OutOfCombat && clickerInRange)
 				{
 					setPrecursorTimer++;
-					if (setPrecursorTimer > 10)
+					if (setPrecursorTimer > 5)
 					{
 						if (Main.myPlayer == Player.whoAmI)
 						{
-							int damage = Math.Max(1, (int)(heldItem.damage * 0.2f));
+							int damage = Math.Max(1, (int)(heldItem.damage * 0.25f));
 							Projectile.NewProjectile(Player.GetSource_FromThis(context: "Set_Precursor"), clickerPosition.X + 8, clickerPosition.Y + 11, 0f, 0f, ModContent.ProjectileType<PrecursorPro>(), damage, 0f, Player.whoAmI);
 						}
 						setPrecursorTimer = 0;
@@ -1685,6 +1698,36 @@ namespace ClickerClass
 						Projectile.NewProjectile(entitySource, target.Center + toDir, target.velocity * 0f + toDir.SafeNormalize(Vector2.UnitY) * 10f, crystal, damageAmount, 1f, Main.myPlayer, target.whoAmI, hasSpawnEffects);
 						i++;
 						spawnEffects = false;
+					}
+				}
+				
+				if (clickerNPC.seafoam)
+				{
+					if (itemSeafoamClickerHPS < 15)
+					{
+						if (Player.statLife < Player.statLifeMax2)
+						{
+							Player.HealLife(1);
+							itemSeafoamClickerHPS++;
+							
+							for (int i = 0; i < 5; i++)
+							{
+								int index = Dust.NewDust(Player.position, Player.width, Player.height, 99, 0f, 0f, 150, default(Color), 1.15f);
+								Dust dust = Main.dust[index];
+								dust.noGravity = true;
+								dust.velocity *= 0.75f;
+								int x = Main.rand.Next(-50, 51);
+								int y = Main.rand.Next(-50, 51);
+								dust.position.X += x;
+								dust.position.Y += y;
+								dust.velocity.X = -x * 0.075f;
+								dust.velocity.Y = -y * 0.075f;
+							}
+						}
+					}
+					else
+					{
+						Player.HealLife(0);
 					}
 				}
 			}

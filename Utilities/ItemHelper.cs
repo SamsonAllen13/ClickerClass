@@ -6,6 +6,13 @@ namespace ClickerClass.Utilities
 {
 	internal static class ItemHelper
 	{
+		
+		public static void SetDefaults(this Item item, int type, int stack, bool noMatCheck = false)
+		{
+			item.SetDefaults(type, noMatCheck);
+			item.stack = stack;
+		}
+		
 		/// <summary>
 		/// Draws a basic single-frame glowmask for an item dropped in the world. Use in <see cref="Terraria.ModLoader.ModItem.PostDrawInWorld"/>
 		/// </summary>

@@ -9,9 +9,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 
-namespace ClickerClass.Tiles.Mice
+namespace ClickerClass.Tiles
 {
-	public class TrappedMiceChest : ModTile
+	public class TrappedDungeonChest : ModTile
 	{
 		public override void SetStaticDefaults()
 		{
@@ -44,7 +44,7 @@ namespace ClickerClass.Tiles.Mice
 
 			AdjTiles = new int[] { TileID.FakeContainers };
 			AddToArray(ref TileID.Sets.RoomNeeds.CountsAsChair);
-			AddMapEntry(new Color(172, 189, 246), ModContent.GetInstance<Items.Placeable.Mice.MiceChest_Trapped>().DisplayName);
+			AddMapEntry(new Color(172, 189, 246), ModContent.GetInstance<Items.Placeable.DungeonChest_Trapped>().DisplayName);
 		}
 
 		public override bool HasSmartInteract(int i, int j, SmartInteractScanSettings settings) => true;
@@ -116,7 +116,7 @@ namespace ClickerClass.Tiles.Mice
 		public override void MouseOver(int i, int j)
 		{
 			Player player = Main.LocalPlayer;
-			player.cursorItemIconID = ModContent.ItemType<Items.Placeable.Mice.MiceChest_Trapped>();
+			player.cursorItemIconID = ModContent.ItemType<Items.Placeable.DungeonChest_Trapped>();
 			player.noThrow = 2;
 			player.cursorItemIconEnabled = true;
 		}

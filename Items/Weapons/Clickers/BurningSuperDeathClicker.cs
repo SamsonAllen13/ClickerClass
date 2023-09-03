@@ -16,6 +16,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			{
 				List<string> excluded = new List<string>
 				{
+					ClickEffect.Bold,
 					ClickEffect.Yoink,
 					ClickEffect.Nab
 				};

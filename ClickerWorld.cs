@@ -8,6 +8,7 @@ using Terraria.ID;
 using Terraria.IO;
 using Terraria.ModLoader;
 using Terraria.WorldBuilding;
+using ClickerClass.Utilities;
 
 namespace ClickerClass
 {
@@ -15,13 +16,222 @@ namespace ClickerClass
 	{
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref double totalWeight)
 		{
-			int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Micro Biomes"));
+			//Biome Chest
+			int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Dungeon"));
+			int indexToInsert = genIndex + 1;
+			if (genIndex != -1)
+			{
+				tasks.Insert(indexToInsert, new PassLegacy($"Clicker Class: Biome Chests", GenerateBiomeChests));
+			}
+			
+			genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Micro Biomes"));
+			indexToInsert = genIndex + 1;
 			if (genIndex != -1)
 			{
 				// Extra Chest Loot
-				tasks.Insert(++genIndex, new PassLegacy("Clicker Class: Extra Loot", GenerateExtraLoot));
+				tasks.Insert(indexToInsert, new PassLegacy("Clicker Class: Extra Loot", GenerateExtraLoot));
 			}
 		}
+		
+		#region Chest Generation
+		private static void GenerateBiomeChests(GenerationProgress progress, GameConfiguration configuration)
+		{
+			// Get dungeon size
+			int MinX = GenVars.dMinX + 25;
+			int MaxX = GenVars.dMaxX - 25;
+			int MaxY = GenVars.dMaxY - 25;
+			int[] ChestTypes = new int[] { ModContent.TileType<Tiles.DungeonChest>() };
+			int[] ItemTypes = new int[] { ModContent.ItemType<MouseClicker>() };
+
+			//progress.Message = $"{ClickerClass.mod.DisplayName}: " + BiomeChestsText.ToString();
+
+			int rounds = 1;
+
+			for (int i = 0; i < ChestTypes.Length * rounds; i++)
+			{
+				Chest chest = null;
+				int attempts = 0;
+				while (chest == null && attempts < 1000)
+				{
+					attempts++;
+					int x = WorldGen.genRand.Next(MinX, MaxX);
+					int y = WorldGen.genRand.Next((int)Main.worldSurface, MaxY);
+					if (Main.wallDungeon[Main.tile[x, y].WallType] && !Main.tile[x, y].HasTile)
+					{
+						chest = AddChestWithDefaultLoot(x, y, (ushort)ChestTypes[i % ChestTypes.Length], 1, 2);
+					}
+				}
+				if (chest != null)
+				{
+					chest.item[0].SetDefaults(ItemTypes[i % ChestTypes.Length]);
+					chest.item[0].Prefix(-1);
+				}
+			}
+		}
+		
+		public static Chest AddChestWithDefaultLoot(int i, int j, ushort type = TileID.Containers, uint emptySlots = 1, int Style = 0, bool notNearOtherChests = false)
+		{
+			//TODO 1.4 revisit for new chests (i.e. dead mans, see clicker class)
+			Chest chest = null;
+			while (j < Main.maxTilesY - 210)
+			{
+				if (!WorldGen.SolidTile(i, j))
+				{
+					j++;
+					continue;
+				}
+				int chestIndex = WorldGen.PlaceChest(i - 1, j - 1, type, notNearOtherChests, Style);
+				if (chestIndex < 0)
+				{
+					break;
+				}
+
+				chest = Main.chest[chestIndex];
+				uint itemIndex = emptySlots;
+				while (itemIndex == emptySlots)
+				{
+					Mod mod = ClickerClass.mod;
+					bool AquaticChest = type == ModContent.TileType<Tiles.DungeonChest>();
+					bool DesertChest = type == ModContent.TileType<Tiles.DungeonChest>();
+					bool UnderworldChest = type == ModContent.TileType<Tiles.DungeonChest>();
+					bool ScarletChest = type == ModContent.TileType<Tiles.DungeonChest>();
+					bool VanillaChest = type == TileID.Containers;
+
+					if (VanillaChest && j < Main.rockLayer) // default vanilla surface - cavern loot. Nothing changed here.
+					{
+						if (WorldGen.genRand.NextBool(3))
+						{
+							chest.item[itemIndex++].SetDefaults(ItemID.Bomb, WorldGen.genRand.Next(10, 20));
+						}
+
+						if (WorldGen.genRand.NextBool(5))
+						{
+							chest.item[itemIndex++].SetDefaults(ItemID.AngelStatue);
+						}
+
+						if (WorldGen.genRand.NextBool(3))
+						{
+							chest.item[itemIndex++].SetDefaults(ItemID.Rope, WorldGen.genRand.Next(50, 101));
+						}
+
+						if (WorldGen.genRand.NextBool())
+						{
+							chest.item[itemIndex++].SetDefaults(WorldGen.genRand.NextBool() ? GenVars.ironBar : GenVars.silverBar, WorldGen.genRand.Next(5, 15));
+						}
+
+						if (WorldGen.genRand.NextBool())
+						{
+							chest.item[itemIndex++].SetDefaults(WorldGen.genRand.NextBool() ? ItemID.WoodenArrow : ItemID.Shuriken, WorldGen.genRand.Next(25, 50));
+						}
+
+						if (WorldGen.genRand.NextBool())
+						{
+							chest.item[itemIndex++].SetDefaults(ItemID.LesserHealingPotion, WorldGen.genRand.Next(3, 6));
+						}
+
+						if (!WorldGen.genRand.NextBool(3))
+						{
+							int[] items = new int[] {
+								ItemID.RegenerationPotion, ItemID.ShinePotion, ItemID.NightOwlPotion,
+								ItemID.SwiftnessPotion, ItemID.ArcheryPotion, ItemID.GillsPotion,
+								ItemID.HunterPotion, ItemID.MiningPotion, ItemID.TrapsightPotion
+							};
+							chest.item[itemIndex++].SetDefaults(WorldGen.genRand.Next(items), WorldGen.genRand.Next(1, 3));
+						}
+						if (!WorldGen.genRand.NextBool(3))
+						{
+							chest.item[itemIndex++].SetDefaults(ItemID.RecallPotion, WorldGen.genRand.Next(1, 3));
+						}
+
+						if (WorldGen.genRand.NextBool())
+						{
+							chest.item[itemIndex++].SetDefaults(ItemID.Torch, WorldGen.genRand.Next(10, 21));
+						}
+
+						if (WorldGen.genRand.NextBool())
+						{
+							chest.item[itemIndex++].SetDefaults(ItemID.SilverCoin, WorldGen.genRand.Next(50, 90));
+						}
+
+						continue;
+					}
+					// default cavern - underworld top loot + our loot					
+					int cItem;
+					bool HellChest = j > Main.maxTilesY - 205;
+					if ((VanillaChest && !HellChest || ScarletChest) && WorldGen.genRand.NextBool(5))
+					{
+						cItem = ItemID.SuspiciousLookingEye;
+						chest.item[itemIndex++].SetDefaults(cItem);
+					}
+					if (WorldGen.genRand.NextBool(3))
+					{
+						chest.item[itemIndex++].SetDefaults(ItemID.Dynamite);
+					}
+
+					if (!ScarletChest && !HellChest && WorldGen.genRand.NextBool(4))
+					{
+						chest.item[itemIndex++].SetDefaults(ItemID.JestersArrow, WorldGen.genRand.Next(25, 51));
+					}
+
+					if (WorldGen.genRand.NextBool())
+					{
+						cItem = WorldGen.genRand.NextBool() ? GenVars.goldBar : GenVars.silverBar;
+						int addAmount = 0;
+						
+						chest.item[itemIndex++].SetDefaults(cItem, WorldGen.genRand.Next(3 + addAmount, 11 + addAmount * 2));
+					}
+					if (WorldGen.genRand.NextBool())
+					{
+						cItem = ItemID.FlamingArrow;
+						int addAmount = 0;
+						
+						chest.item[itemIndex++].SetDefaults(cItem, WorldGen.genRand.Next(25 + addAmount, 51 + addAmount * 2));
+					}
+					if (!HellChest && WorldGen.genRand.NextBool())
+					{
+						chest.item[itemIndex++].SetDefaults(ItemID.HealingPotion, WorldGen.genRand.Next(3, 6));
+					}
+					if (!WorldGen.genRand.NextBool(HellChest ? 4 : 3))
+					{
+						int[] items = new int[] {
+							ItemID.SpelunkerPotion, ItemID.FeatherfallPotion, ItemID.NightOwlPotion,
+							ItemID.WaterWalkingPotion, ItemID.ArcheryPotion, ItemID.GravitationPotion
+						};
+						
+						chest.item[itemIndex++].SetDefaults(WorldGen.genRand.Next(items), WorldGen.genRand.Next(1, 3));
+					}
+					if (WorldGen.genRand.NextBool(3) ^ HellChest)
+					{
+						int[] items = new int[] {
+							ItemID.ThornsPotion, ItemID.WaterWalkingPotion, ItemID.InvisibilityPotion,
+							ItemID.HunterPotion, ItemID.TeleportationPotion, ItemID.TrapsightPotion, ItemID.TrapsightPotion // yes, dangersense potions have double the chance as other potions in vanilla for some reason
+						};
+						
+						chest.item[itemIndex++].SetDefaults(WorldGen.genRand.Next(items), WorldGen.genRand.Next(1, 3));
+					}
+					if (WorldGen.genRand.NextBool(HellChest ? 3 : 2))
+					{
+						cItem = ItemID.RecallPotion;
+						int addAmount = 0;
+						
+						chest.item[itemIndex++].SetDefaults(cItem, WorldGen.genRand.Next(1, 3) * addAmount);
+					}
+					if (WorldGen.genRand.NextBool())
+					{
+						cItem = WorldGen.genRand.NextBool() ? ItemID.Torch : ItemID.Glowstick;
+
+						chest.item[itemIndex++].SetDefaults(cItem, WorldGen.genRand.Next(15, 30));
+					}
+					if (WorldGen.genRand.NextBool())
+					{
+						int addAmount = ScarletChest ? 3 : HellChest ? 2 : 1;
+						chest.item[itemIndex++].SetDefaults(ItemID.GoldCoin, WorldGen.genRand.Next(1, 3) * addAmount);
+					}
+				}
+			}
+			return chest;
+		}
+		#endregion
 
 		private void GenerateExtraLoot(GenerationProgress progress, GameConfiguration configuration)
 		{

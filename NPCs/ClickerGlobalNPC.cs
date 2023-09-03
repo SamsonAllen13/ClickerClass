@@ -28,6 +28,7 @@ namespace ClickerClass.NPCs
 		public bool oozed = false;
 		public bool seafoam = false;
 		public bool stunned = false;
+		public int mouseTrapped = 0;
 
 		public bool buffImmunitiesSet = false;
 
@@ -65,6 +66,15 @@ namespace ClickerClass.NPCs
 
 		public override void UpdateLifeRegen(NPC npc, ref int damage)
 		{
+			if (mouseTrapped > 0)
+			{
+				if (npc.lifeRegen > 0) { npc.lifeRegen = 0; }
+				npc.lifeRegen -= 20 * mouseTrapped;
+				if (damage < 10)
+				{
+					damage = 10;
+				}
+			}
 			if (gouge)
 			{
 				if (npc.lifeRegen > 0)
@@ -534,6 +544,9 @@ namespace ClickerClass.NPCs
 				case NPCID.Demolitionist:
 					shop.Add(ModContent.ItemType<BigRedButton>(), Condition.Hardmode);
 					break;
+				case NPCID.Cyborg:
+					shop.Add(ModContent.ItemType<DesktopComputer>());
+					break;
 				case NPCID.Mechanic:
 					shop.Add(ModContent.ItemType<HandCream>());
 					shop.Add(ModContent.ItemType<MagnetClicker>());
@@ -684,6 +697,17 @@ namespace ClickerClass.NPCs
 		public override void PostAI(NPC npc)
 		{
 			SetBossBuffImmunities(npc);
+		}
+		
+		public void ApplyMouseTrappedStack(NPC npc, Player player, int stack, bool broadcast = false)
+		{
+			//Applies twice on the client invoking it, no big deal
+			mouseTrapped = stack;
+
+			if (broadcast && (Main.netMode == NetmodeID.Server || Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer))
+			{
+				//ThoriumNetHandler.NPCApplyMouseTrappedStackSend(npc, player, stack);
+			}
 		}
 	}
 }

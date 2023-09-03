@@ -124,5 +124,34 @@ namespace ClickerClass.Core.Netcode
 			}
 			catch { }
 		}
+		
+		//TODO - 1.4.4
+		//Might be redundant but needed I imagine, I can't really read the above code :Complete_Failure:
+		/*
+		public static void NPCApplyMouseTrapStackSend(NPC npc, Player player, int stack, int toWho = -1, int fromWho = -1)
+		{
+			ModPacket packet = GetPacket();
+			packet.Write((byte)MPMessageType.NPCApplyMouseTrapStack);
+			NPCAIToPacket(packet, npc);
+			packet.Write((byte)player.whoAmI);
+			packet.Write7BitEncodedInt(stack);
+			packet.Send(fromWho, toWho);
+		}
+
+		private static void NPCApplyMouseTrapStackAction(BinaryReader reader, int fromWho)
+		{
+			bool success = NPCAIFromPacket(reader, out NPC npc);
+			byte playerWhoAmI = reader.ReadByte();
+			int stack = reader.Read7BitEncodedInt();
+
+			if (success && Main.player[playerWhoAmI] is Player player && player.active)
+			{
+				//If the server receives this packet, this means a client requested it, so we have to broadcast it
+				bool broadcast = Main.netMode == NetmodeID.Server;
+
+				npc.GetThoriumGlobalNPC().ApplyMouseTrapStack(npc, player, stack, broadcast);
+			}
+		}
+		*/
 	}
 }

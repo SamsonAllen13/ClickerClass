@@ -12,7 +12,7 @@ namespace ClickerClass.Items.Armors
 	public class PrecursorBreastplate : ClickerItem
 	{
 		public static readonly int DamageIncrease = 15;
-		public static readonly int RadiusDecrease = 50;
+		public static readonly int RadiusDecrease = 25;
 
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease, RadiusDecrease);
 

@@ -49,15 +49,6 @@ namespace ClickerClass.Projectiles
 					{
 						target.AddBuff(ModContent.BuffType<Seafoam>(), 300, false);
 
-						Player player = Main.player[Projectile.owner];
-						if (Main.myPlayer == player.whoAmI)
-						{
-							if (player.statLife < player.statLifeMax)
-							{
-								player.HealLife(1);
-							}
-						}
-
 						for (int i = 0; i < 15; i++)
 						{
 							int index = Dust.NewDust(target.position, target.width, target.height, 99, 0f, 0f, 100, default(Color), 1.5f);

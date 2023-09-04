@@ -701,6 +701,7 @@ namespace ClickerClass.NPCs
 		
 		public void ApplyMouseTrappedStack(NPC npc, Player player, int stack, bool broadcast = false)
 		{
+			//TODO 1.4.4 This is not correct logic, packet is also not correct (doesn't reference NPC)
 			//Applies twice on the client invoking it, no big deal
 			mouseTrapped = stack;
 

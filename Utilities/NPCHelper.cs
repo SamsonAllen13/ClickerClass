@@ -21,7 +21,7 @@ namespace ClickerClass.Utilities
 		/// <returns></returns>
 		public static bool ImmuneToAllBuffs(this NPC npc)
 		{
-			if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npc.type, out var data))
+			if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npc.type, out var data) || data == null)
 			{
 				return false;
 			}

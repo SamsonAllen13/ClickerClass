@@ -64,11 +64,11 @@ namespace ClickerClass.Projectiles
 			Projectile.friendly = false;
 			
 			var globalNPC = target.GetClickerGlobalNPC();
-			int stack = globalNPC.mouseTrapped;
+			ref int stack = ref globalNPC.mouseTrapped;
 			if (target.active && !target.ImmuneToAllBuffs() && stack < 5)
 			{
 				stack++;
-				//globalNPC.ApplyMouseTrapStack(target, Main.player[Projectile.owner], stack, true);
+				//globalNPC.ApplyMouseTrappedStack(target, Main.player[Projectile.owner], stack, true);
 			}
 		}
 

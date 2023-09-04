@@ -2,12 +2,14 @@ using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.Localization;
-using ClickerClass.Items.Misc;
+using ClickerClass.Buffs;
 
 namespace ClickerClass.Items.Placeable
 {
 	public class DesktopComputer : ModItem
 	{
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DesktopComputerBuff.ClickAmountDecrease);
+
 		public override void SetDefaults()
 		{
 			Item.DefaultToPlaceableTile(ModContent.TileType<Tiles.DesktopComputerTile>());

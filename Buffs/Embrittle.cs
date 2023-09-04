@@ -1,4 +1,4 @@
-using ClickerClass.NPCs;
+using ClickerClass.Utilities;
 using Terraria;
 using Terraria.ID;
 using Terraria.Localization;
@@ -20,7 +20,7 @@ namespace ClickerClass.Buffs
 
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			npc.GetGlobalNPC<ClickerGlobalNPC>().embrittle = true;
+			npc.GetClickerGlobalNPC().embrittle = true;
 		}
 	}
 }

@@ -1,5 +1,5 @@
 using ClickerClass.Buffs;
-using ClickerClass.NPCs;
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
@@ -86,7 +86,7 @@ namespace ClickerClass.Projectiles
 				for (int u = 0; u < Main.maxNPCs; u++)
 				{
 					NPC target = Main.npc[u];
-					if (target.CanBeChasedBy() && !target.GetGlobalNPC<ClickerGlobalNPC>().crystalSlimeFatigue && target.DistanceSQ(Projectile.Center) < 200 * 200)
+					if (target.CanBeChasedBy() && !target.GetClickerGlobalNPC().crystalSlimeFatigue && target.DistanceSQ(Projectile.Center) < 200 * 200)
 					{
 						target.AddBuff(ModContent.BuffType<Crystalized>(), 300, false);
 						for (int i = 0; i < 15; i++)

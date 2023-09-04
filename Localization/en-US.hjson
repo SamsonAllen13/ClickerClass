@@ -159,7 +159,7 @@ Mods: {
 
 			DesktopComputer: {
 				DisplayName: Desktop Computer
-				Tooltip: Reduces the amount of clicks required for a click effect by 10%
+				Tooltip: Reduces the amount of clicks required for a click effect by {0}%
 			}
 
 			DungeonKey: {
@@ -1235,7 +1235,7 @@ Mods: {
 			HeartyClickerPro.DisplayName: "{$Items.HeartyClicker.DisplayName}"
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
-			MouseClickerPro.DisplayName: Mouse Clicker Pro
+			MouseClickerPro.DisplayName: "{$Items.MouseClicker.DisplayName}"
 		}
 
 		Configs: {

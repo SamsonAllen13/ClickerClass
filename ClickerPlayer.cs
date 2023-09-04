@@ -4,7 +4,6 @@ using ClickerClass.Items;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Consumables;
 using ClickerClass.Items.Misc;
-using ClickerClass.NPCs;
 using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
@@ -1592,7 +1591,7 @@ namespace ClickerClass
 		{
 			if (ClickerSystem.IsClickerProj(proj))
 			{
-				if (target.GetGlobalNPC<ClickerGlobalNPC>().embrittle)
+				if (target.GetClickerGlobalNPC().embrittle)
 				{
 					modifiers.SourceDamage.Flat += Embrittle.ExtraDamage;
 				}
@@ -1620,7 +1619,7 @@ namespace ClickerClass
 			//Proc effects only when an actual "click" happens, and not other clicker projectiles
 			if (ClickerSystem.IsClickerWeaponProj(proj))
 			{
-				ClickerGlobalNPC clickerNPC = target.GetGlobalNPC<ClickerGlobalNPC>();
+				var clickerNPC = target.GetClickerGlobalNPC();
 				if (target.value > 0f)
 				{
 					if (AccGoldenTicket)

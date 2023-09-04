@@ -1,4 +1,4 @@
-using ClickerClass.NPCs;
+using ClickerClass.Utilities;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -16,8 +16,7 @@ namespace ClickerClass.Buffs
 
 		public override void Update(NPC npc, ref int buffIndex)
 		{
-			ClickerGlobalNPC clickerGlobalNPC = npc.GetGlobalNPC<ClickerGlobalNPC>();
-			clickerGlobalNPC.crystalSlimeFatigue = true;
+			npc.GetClickerGlobalNPC().crystalSlimeFatigue = true;
 		}
 	}
 }

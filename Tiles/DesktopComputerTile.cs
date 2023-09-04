@@ -60,24 +60,15 @@ namespace ClickerClass.Tiles
 		
 		public override void ModifyLight(int i, int j, ref float r, ref float g, ref float b)
 		{
-			r = 0.1f;
-			g = 0.2f;
-			b = 0.3f;
-		}
-
-		public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
-		{
 			Tile tile = Main.tile[i, j];
-			Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
-			if (Main.drawToScreen)
+			if (tile.TileFrameX < 36)
 			{
-				zero = Vector2.Zero;
+				r = 0.1f;
+				g = 0.2f;
+				b = 0.3f;
 			}
-			int height = 16;
-			spriteBatch.Draw(glowmaskAsset.Value.Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y + DrawOffsetY) + zero, new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, height), Color.White * 0.5f, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
-		
 		}
-
+		
 		public override bool RightClick(int i, int j)
 		{
 			Player player = Main.LocalPlayer;
@@ -94,6 +85,58 @@ namespace ClickerClass.Tiles
 			player.cursorItemIconText = "";
 
 			player.cursorItemIconEnabled = true;
+		}
+
+		public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
+		{
+			Tile tile = Main.tile[i, j];
+			if (tile.TileFrameX < 36)
+			{
+				Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);
+				if (Main.drawToScreen)
+				{
+					zero = Vector2.Zero;
+				}
+				int height = tile.TileFrameY == 36 ? 18 : 16;
+				spriteBatch.Draw(glowmaskAsset.Value.Value, new Vector2(i * 16 - (int)Main.screenPosition.X, j * 16 - (int)Main.screenPosition.Y + DrawOffsetY) + zero, new Rectangle(tile.TileFrameX, tile.TileFrameY, 16, height), Color.White, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0);
+			}
+		}
+
+		public override void HitWire(int i, int j)
+		{
+			Tile tile = Main.tile[i, j];
+			int width = 2;
+			int height = 2;
+			int x = i - tile.TileFrameX / 18 % width;
+			int y = j - tile.TileFrameY / 18 % height;
+
+			for (int l = x; l < x + width; l++)
+			{
+				for (int m = y; m < y + height; m++)
+				{
+					Tile checkTile = Framing.GetTileSafely(l, m);
+					if (checkTile.HasTile && checkTile.TileType == Type)
+					{
+						if (checkTile.TileFrameX != 72)
+						{
+							checkTile.TileFrameX += 36;
+						}
+						if (checkTile.TileFrameX >= 72)
+						{
+							checkTile.TileFrameX -= 72;
+						}
+					}
+
+					if (Wiring.running)
+					{
+						Wiring.SkipWire(l, m);
+					}
+				}
+			}
+
+			int w2 = width / 2;
+			int h2 = height / 2;
+			NetMessage.SendTileSquare(-1, x + w2 - 1, y + h2, 1 + w2 + h2);
 		}
 	}
 }

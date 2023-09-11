@@ -13,6 +13,7 @@ namespace ClickerClass.Items.Armors
 	public class OverclockHelmet : ClickerItem
 	{
 		public static readonly int ClickAmount = 100;
+		public static readonly int SetBonusEffectDecrease = 50;
 		public static readonly int SetBonusDamageDecrease = 25;
 		public static readonly int DamageIncrease = 5;
 
@@ -33,7 +34,7 @@ namespace ClickerClass.Items.Armors
 				});
 			}
 
-			SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(ClickAmount, SetBonusDamageDecrease);
+			SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(ClickAmount, SetBonusEffectDecrease, SetBonusDamageDecrease);
 		}
 
 		public override void SetDefaults()

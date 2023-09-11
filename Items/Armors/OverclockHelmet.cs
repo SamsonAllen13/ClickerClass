@@ -13,10 +13,10 @@ namespace ClickerClass.Items.Armors
 	public class OverclockHelmet : ClickerItem
 	{
 		public static readonly int ClickAmount = 100;
-		public static readonly int SetBonusDamageDecrease = 60;
-		public static readonly int ClickAmountDecreaseFlat = 1;
+		public static readonly int SetBonusDamageDecrease = 25;
+		public static readonly int DamageIncrease = 5;
 
-		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ClickAmountDecreaseFlat);
+		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
 
 		public static LocalizedText SetBonusText { get; private set; }
 
@@ -47,7 +47,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerBonus += ClickAmountDecreaseFlat;
+			player.GetDamage<ClickerDamage>() += DamageIncrease / 100f;
 		}
 
 		public override bool IsArmorSet(Item head, Item body, Item legs)

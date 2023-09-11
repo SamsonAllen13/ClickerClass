@@ -53,7 +53,7 @@ Mods: {
 
 			OverclockBuff: {
 				DisplayName: Overclock
-				Description: Every click will trigger a click effect
+				Description: Reduces the amount of clicks required for a click effect by 50%
 			}
 
 			Oozed: {
@@ -594,10 +594,10 @@ Mods: {
 
 			OverclockHelmet: {
 				DisplayName: Overclock Helmet
-				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
 				SetBonus:
 					'''
-					Every {0} clicks briefly grants you 'Overclock', making every click trigger its effect
+					Every {0} clicks briefly grants you 'Overclock', reducing the amount of clicks required for a click effect by 50%
 					While Overclock is active, you deal {1}% less click damage
 					'''
 			}

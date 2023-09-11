@@ -10,7 +10,7 @@ namespace ClickerClass.Items.Armors
 	[AutoloadEquip(EquipType.Body)]
 	public class OverclockSuit : ClickerItem
 	{
-		public static readonly int DamageIncrease = 15;
+		public static readonly int DamageIncrease = 10;
 
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(DamageIncrease);
 

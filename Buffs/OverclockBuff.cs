@@ -13,6 +13,8 @@ namespace ClickerClass.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+			clickerPlayer.clickerBonusPercent -= 0.5f;
 			player.GetDamage<ClickerDamage>() -= OverclockHelmet.SetBonusDamageDecrease / 100f;
 		}
 	}

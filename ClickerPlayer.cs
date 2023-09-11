@@ -1470,7 +1470,7 @@ namespace ClickerClass
 
 					if (accSMedalAmount >= SMedal.ChargeMeterStep)
 					{
-						clickerBonusPercent -= 0.25f;
+						clickerBonusPercent -= 0.2f;
 					}
 				}
 				else

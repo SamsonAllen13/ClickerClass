@@ -7,9 +7,7 @@ namespace ClickerClass.Buffs
 {
 	public class OverclockBuff : ModBuff
 	{
-		public static readonly int ClickAmountDecrease = 50;
-
-		public override LocalizedText Description => base.Description.WithFormatArgs(ClickAmountDecrease);
+		public override LocalizedText Description => base.Description.WithFormatArgs(OverclockHelmet.SetBonusEffectDecrease);
 		
 		public override void SetStaticDefaults()
 		{
@@ -19,7 +17,7 @@ namespace ClickerClass.Buffs
 		public override void Update(Player player, ref int buffIndex)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.clickerBonusPercent -= 0.5f;
+			clickerPlayer.clickerBonusPercent -= OverclockHelmet.SetBonusEffectDecrease / 100f;
 			player.GetDamage<ClickerDamage>() -= OverclockHelmet.SetBonusDamageDecrease / 100f;
 		}
 	}

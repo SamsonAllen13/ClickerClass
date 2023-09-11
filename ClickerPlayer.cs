@@ -1047,6 +1047,7 @@ namespace ClickerClass
 				setAbilityDelayTimer--;
 			}
 
+			//Shimmer Clicker item handle
 			if (consumedHeavenlyChip)
 			{
 				clickerRadius += 2 * HeavenlyChip.RadiusIncrease / 100f;

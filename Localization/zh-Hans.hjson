@@ -53,7 +53,7 @@ Mods: {
 
 			OverclockBuff: {
 				DisplayName: 超频
-				Description: 每次点击都会触发点击效果
+				Description: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 
 			Oozed: {
@@ -88,7 +88,7 @@ Mods: {
 
 			DesktopComputerBuff: {
 				// DisplayName: Desktop Computer
-				// Description: Click effect requirement reduced by {0}%
+				Description: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 		}
 
@@ -159,7 +159,7 @@ Mods: {
 
 			DesktopComputer: {
 				// DisplayName: Desktop Computer
-				// Tooltip: Reduces the amount of clicks required for a click effect by {0}%
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 
 			DungeonKey: {
@@ -594,12 +594,12 @@ Mods: {
 
 			OverclockHelmet: {
 				DisplayName: 超频头盔
-				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
-				SetBonus:
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
+				/* SetBonus:
 					'''
-					每{0}次点击,使你获得短暂的'超频',每次点击都会触发点击效果
-					当超频激活时,你的点击伤害减少{1}%
-					'''
+					Every {0} clicks briefly grants you 'Overclock', reducing the amount of clicks required for a click effect by {1}%
+					While Overclock is active, you deal {2}% less click damage
+					''' */
 			}
 
 			OverclockSuit: {

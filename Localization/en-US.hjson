@@ -53,7 +53,7 @@ Mods: {
 
 			OverclockBuff: {
 				DisplayName: Overclock
-				Description: Reduces the amount of clicks required for a click effect by {0}%
+				Description: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 
 			Oozed: {
@@ -88,7 +88,7 @@ Mods: {
 
 			DesktopComputerBuff: {
 				DisplayName: Desktop Computer
-				Description: Click effect requirement reduced by {0}%
+				Description: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 		}
 
@@ -159,7 +159,7 @@ Mods: {
 
 			DesktopComputer: {
 				DisplayName: Desktop Computer
-				Tooltip: Reduces the amount of clicks required for a click effect by {0}%
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 
 			DungeonKey: {

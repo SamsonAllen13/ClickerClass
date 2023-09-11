@@ -53,7 +53,7 @@ Mods: {
 
 			OverclockBuff: {
 				DisplayName: Разгон
-				Description: Каждый клик будет активировать эффект курсора
+				Description: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 
 			Oozed: {
@@ -88,7 +88,7 @@ Mods: {
 
 			DesktopComputerBuff: {
 				// DisplayName: Desktop Computer
-				// Description: Click effect requirement reduced by {0}%
+				Description: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 		}
 
@@ -159,7 +159,7 @@ Mods: {
 
 			DesktopComputer: {
 				// DisplayName: Desktop Computer
-				// Tooltip: Reduces the amount of clicks required for a click effect by {0}%
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 
 			DungeonKey: {
@@ -594,12 +594,12 @@ Mods: {
 
 			OverclockHelmet: {
 				DisplayName: Шлем разгона
-				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
-				SetBonus:
+				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
+				/* SetBonus:
 					'''
-					Каждые {0} кликов на короткий промежуток времени дарует бафф «{$Buffs.OverclockBuff.DisplayName}», заставляя каждый клик активировать свой эффект
-					Пока активен «{$Buffs.OverclockBuff.DisplayName}», вы наносите на {1}% меньше урона кликом
-					'''
+					Every {0} clicks briefly grants you 'Overclock', reducing the amount of clicks required for a click effect by {1}%
+					While Overclock is active, you deal {2}% less click damage
+					''' */
 			}
 
 			OverclockSuit: {

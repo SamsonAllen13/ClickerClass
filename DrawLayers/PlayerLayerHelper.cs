@@ -17,7 +17,7 @@ namespace ClickerClass.DrawLayers
 		public override void Load()
 		{
 			var playerDrawLayersType = typeof(PlayerDrawLayers);
-			var drawSittingLegsMethodInfo = playerDrawLayersType.GetMethod("DrawSittingLegs", BindingFlags.Static | BindingFlags.NonPublic);
+			var drawSittingLegsMethodInfo = playerDrawLayersType.GetMethod("DrawSittingLegs", BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
 			DrawSittingLegsMethod = (DrawSittingLegsDelegate)Delegate.CreateDelegate(typeof(DrawSittingLegsDelegate), drawSittingLegsMethodInfo);
 		}
 

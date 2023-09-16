@@ -14,7 +14,9 @@ namespace ClickerClass
 	public class ClickerUISystem : ModSystem
 	{
 		private GameTime _lastUpdateUIGameTime;
-		private static bool reflectionFailedOnceDoNotRetry = false;
+		private static FieldInfo mouseTextCacheField;
+		private static FieldInfo isValidField;
+		private static bool reflectionFailed = false;
 
 		public override void UpdateUI(GameTime gameTime)
 		{
@@ -36,7 +38,8 @@ namespace ClickerClass
 						if (layers[i].Name.Equals("Vanilla: Cursor"))
 						{
 							//This only removes the default cursor, see DetourSecondCursor for the second one
-							layers.RemoveAt(i);
+							layers[i].Active = false;
+							//layers.RemoveAt(i); //Do not remove layers, mods with no defensive code cause this to break/delete all UI
 							break;
 						}
 					}
@@ -47,47 +50,48 @@ namespace ClickerClass
 		public override void OnModLoad()
 		{
 			On_Main.DrawInterface_36_Cursor += DetourSecondCursor;
+
+			try
+			{
+				/*if (instance._mouseTextCache.isValid) {
+						instance.MouseTextInner(instance._mouseTextCache);
+						DrawInterface_36_Cursor(); //Detour only this one
+						instance._mouseTextCache.isValid = false;
+						instance._mouseTextCache.noOverride = false;
+					}
+				 */
+
+				Type mainType = typeof(Main);
+				mouseTextCacheField = mainType.GetField("_mouseTextCache", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+
+				var nestedTypes = mainType.GetNestedTypes(BindingFlags.Static | BindingFlags.NonPublic | BindingFlags.Public);
+				var mouseTextCacheType = nestedTypes.FirstOrDefault(t => t.Name == "MouseTextCache");
+				isValidField = mouseTextCacheType.GetField("isValid", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+			}
+			catch
+			{
+				reflectionFailed = true;
+			}
 		}
 
 		public override void OnModUnload()
 		{
-			reflectionFailedOnceDoNotRetry = false;
+			mouseTextCacheField = isValidField = null;
+			reflectionFailed = false;
 		}
 
 		private static void DetourSecondCursor(On_Main.orig_DrawInterface_36_Cursor orig)
 		{
 			//This is used to detour the second cursor draw which happens on NPC mouseover in DrawInterface_41 after Main.instance._mouseTextCache.valid is true
-			if (!reflectionFailedOnceDoNotRetry && ClickerCursor.detourSecondCursorDraw)
+			if (!reflectionFailed && ClickerCursor.detourSecondCursorDraw)
 			{
 				ClickerCursor.detourSecondCursorDraw = false;
 
-				try
+				var mouseTextCache = mouseTextCacheField.GetValue(Main.instance);
+				object isValid = isValidField.GetValue(mouseTextCache);
+				if (isValid is bool valid && valid)
 				{
-					/*if (instance._mouseTextCache.isValid) {
-							instance.MouseTextInner(instance._mouseTextCache);
-							DrawInterface_36_Cursor(); //Detour only this one
-							instance._mouseTextCache.isValid = false;
-							instance._mouseTextCache.noOverride = false;
-						}
-					 */
-
-					Type mainType = typeof(Main);
-					FieldInfo mouseTextCacheField = mainType.GetField("_mouseTextCache", BindingFlags.NonPublic | BindingFlags.Instance);
-					var mouseTextCache = mouseTextCacheField.GetValue(Main.instance);
-
-					var nestedTypes = mainType.GetNestedTypes(BindingFlags.Static | BindingFlags.NonPublic);
-					var mouseTextCacheType = nestedTypes.FirstOrDefault(t => t.Name == "MouseTextCache");
-					FieldInfo isValidField = mouseTextCacheType.GetField("isValid", BindingFlags.Public | BindingFlags.Instance);
-					object isValid = isValidField.GetValue(mouseTextCache);
-
-					if (isValid is bool valid && valid)
-					{
-						return;
-					}
-				}
-				catch
-				{
-					reflectionFailedOnceDoNotRetry = true;
+					return;
 				}
 			}
 

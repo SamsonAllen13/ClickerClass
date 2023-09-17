@@ -36,7 +36,7 @@ namespace ClickerClass.Projectiles
 			}
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			float num102 = 25f;
 			int num103 = 0;

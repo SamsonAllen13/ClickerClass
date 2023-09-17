@@ -30,7 +30,7 @@ namespace ClickerClass.Projectiles
 			modifiers.DamageVariationScale *= 0f;
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			// Silver Bullet sparkles
 			ParticleOrchestrator.RequestParticleSpawn(clientOnly: false, ParticleOrchestraType.SilverBulletSparkle, new ParticleOrchestraSettings

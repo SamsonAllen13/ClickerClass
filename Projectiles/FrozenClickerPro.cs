@@ -20,7 +20,7 @@ namespace ClickerClass.Projectiles
 			Projectile.timeLeft = 6;
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			for (int u = 0; u < Main.maxNPCs; u++)
 			{

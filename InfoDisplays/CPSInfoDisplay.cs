@@ -22,7 +22,7 @@ namespace ClickerClass.InfoDisplays
 			return clickerPlayer.clickerSelected && clickerPlayer.accButtonMasher;
 		}
 
-		public override string DisplayValue(ref Color displayColor)
+		public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
 		{
 			Player player = Main.LocalPlayer;
 			var val = Math.Floor(player.GetModPlayer<ClickerPlayer>().clickerPerSecond);

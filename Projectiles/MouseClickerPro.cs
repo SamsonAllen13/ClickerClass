@@ -64,7 +64,7 @@ namespace ClickerClass.Projectiles
 			Projectile.friendly = false;
 			
 			var globalNPC = target.GetClickerGlobalNPC();
-			ref int stack = ref globalNPC.mouseTrapped;
+			int stack = globalNPC.mouseTrapped;
 			if (target.active && !target.ImmuneToAllBuffs() && stack < 5)
 			{
 				stack++;
@@ -131,7 +131,7 @@ namespace ClickerClass.Projectiles
 			return false;
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			
 		}

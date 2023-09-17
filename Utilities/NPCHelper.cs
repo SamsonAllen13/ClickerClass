@@ -13,20 +13,15 @@ namespace ClickerClass.Utilities
 		{
 			return npc.GetGlobalNPC<ClickerGlobalNPC>();
 		}
-		
+
 		/// <summary>
-		/// Returns true if the NPC is flagged to be immune to all buffs
+		/// Returns true if the NPC is flagged to be immune to all buffs (except tag buffs)
 		/// </summary>
 		/// <param name="npc"></param>
 		/// <returns></returns>
 		public static bool ImmuneToAllBuffs(this NPC npc)
 		{
-			if (!NPCID.Sets.DebuffImmunitySets.TryGetValue(npc.type, out var data) || data == null)
-			{
-				return false;
-			}
-
-			return data.ImmuneToAllBuffsThatAreNotWhips;
+			return NPCID.Sets.ImmuneToRegularBuffs[npc.type];
 		}
 		
 		/// <summary>

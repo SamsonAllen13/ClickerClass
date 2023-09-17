@@ -191,7 +191,7 @@ namespace ClickerClass.Projectiles
 			return true;
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			for (int u = 0; u < 10; u++)
 			{

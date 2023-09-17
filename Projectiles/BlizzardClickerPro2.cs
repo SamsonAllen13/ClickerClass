@@ -72,7 +72,7 @@ namespace ClickerClass.Projectiles
 			}
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			SoundEngine.PlaySound(SoundID.Item30 with { Volume = 0.7f }, Projectile.Center);
 			for (int u = 0; u < 15; u++)

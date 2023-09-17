@@ -62,7 +62,7 @@ namespace ClickerClass.Projectiles
 			}
 		}
 
-		public override void Kill(int timeLeft)
+		public override void OnKill(int timeLeft)
 		{
 			SoundEngine.PlaySound(SoundID.NPCHit11, Projectile.Center);
 			float leftFacing = Projectile.velocity.X > 0f ? 1f : 0f;

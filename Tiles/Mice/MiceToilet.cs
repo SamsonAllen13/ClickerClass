@@ -70,6 +70,8 @@ namespace ClickerClass.Tiles.Mice
 			{
 				info.AnchorTilePosition.Y++; //Here, since the chair is only 2 tiles high, we can just check if the tile is the top-most one, then move it 1 down
 			}
+
+			info.ExtraInfo.IsAToilet = true;
 		}
 
 		public override bool RightClick(int i, int j)

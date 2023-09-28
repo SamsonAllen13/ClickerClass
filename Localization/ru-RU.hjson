@@ -87,7 +87,7 @@ Mods: {
 			}
 
 			DesktopComputerBuff: {
-				// DisplayName: Desktop Computer
+				DisplayName: Настольный компьютер
 				Description: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 		}
@@ -108,7 +108,7 @@ Mods: {
 				Clicks: "{0} {^0:клик;клика;кликов}"
 				SFXButtonTip:
 					'''
-					Меняет звук ваших кликов, когда предмет находится в инвентаре или экипирован
+					Меняет звук ваших кликов, когда предмет находится в инвентаре
 					Громкость увеличивается с ростом размера стака, вплоть до {0}
 					'''
 			}
@@ -158,23 +158,23 @@ Mods: {
 			}
 
 			DesktopComputer: {
-				// DisplayName: Desktop Computer
+				DisplayName: Настольный компьютер
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 
 			DungeonKey: {
-				// DisplayName: Dungeon Key
-				// Tooltip: Unlocks a Dungeon Chest in the dungeon
+				DisplayName: Ключ Темницы
+				Tooltip: Отпирает сундук Темницы в Темнице
 			}
 
 			DungeonChest: {
-				// DisplayName: Dungeon Chest
-				// Tooltip: ""
+				DisplayName: Сундук Темницы
+				Tooltip: ""
 			}
 
 			DungeonChest_Trapped: {
-				// DisplayName: Trapped Dungeon Chest
-				// Tooltip: ""
+				DisplayName: Сундук-ловушка Темницы
+				Tooltip: ""
 			}
 
 			MiceBathtub: {
@@ -520,7 +520,7 @@ Mods: {
 				Tooltip:
 					'''
 					'Стань душой вечеринки! ...или причиной её конца'
-					Меняет звук ваших кликов, когда предмет находится в инвентаре или экипирован
+					Меняет звук ваших кликов, когда предмет находится в инвентаре
 					'''
 			}
 
@@ -595,11 +595,11 @@ Mods: {
 			OverclockHelmet: {
 				DisplayName: Шлем разгона
 				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
-				/* SetBonus:
+				SetBonus:
 					'''
-					Every {0} clicks briefly grants you 'Overclock', reducing the amount of clicks required for a click effect by {1}%
-					While Overclock is active, you deal {2}% less click damage
-					''' */
+					Каждые {0} кликов на короткий промежуток времени даёт бафф «{$Buffs.OverclockBuff.DisplayName}», снижая требуемое количество кликов для эффекта курсора на {1}%
+					Пока активен «{$Buffs.OverclockBuff.DisplayName}», вы наносите на {2}% меньше урона кликом
+					'''
 			}
 
 			OverclockSuit: {
@@ -754,8 +754,8 @@ Mods: {
 			WitchClicker.DisplayName: Курсор ведьмы
 			WebClicker.DisplayName: Курсор паутины
 			WoodenClicker.DisplayName: Деревянный курсор
-			// AshenClicker.DisplayName: Ashen Clicker
-			// MouseClicker.DisplayName: Mouse Clicker
+			AshenClicker.DisplayName: Пепельный курсор
+			MouseClicker.DisplayName: Мышиный курсор
 		}
 
 		InfoDisplays: {
@@ -777,13 +777,13 @@ Mods: {
 			}
 
 			Bold: {
-				// Name: Bold
-				// Description: Base damage increases with higher elevation in the world
+				Name: Смелость
+				Description: Базовый урон увеличивается с увеличением высоты в мире
 			}
 
 			SeaSpray: {
 				Name: Морские брызги
-				Description: Замедляет ближайших врагов и ворует у них здоровье
+				Description: Замедляет ближайших врагов и позволяет воровать у них здоровье
 			}
 
 			WyvernsRoar: {
@@ -878,7 +878,7 @@ Mods: {
 
 			HotWings: {
 				Name: Горячие крылья
-				Description: Дарует одноразовый рывок; Используется двойным нажатием в сторону направления
+				Description: Даёт одноразовый рывок; Используется двойным нажатием в сторону направления
 			}
 
 			Illuminate: {
@@ -1112,8 +1112,8 @@ Mods: {
 			}
 
 			MouseTrap: {
-				// Name: Mouse Trap
-				// Description: Throws out {0} mouse traps that snap and cling onto enemies
+				Name: Мышелов
+				Description: Бросает {0} мышеловки, которые захлопываются и цепляются за врагов
 			}
 		}
 
@@ -1284,7 +1284,7 @@ Mods: {
 			}
 		}
 
-		// Tiles.DungeonChest.MapEntry_Locked: Locked Dungeon Chest
+		Tiles.DungeonChest.MapEntry_Locked: Запертый сундук Темницы
 		RecipeGroups.Any: "{0} {1}"
 	}
 }

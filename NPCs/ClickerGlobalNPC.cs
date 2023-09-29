@@ -74,6 +74,9 @@ namespace ClickerClass.NPCs
 				{
 					damage = 10;
 				}
+				mouseTrapped = 0;
+				//Normally one would reset this in ResetEffects but due to how this field is set and update order, it's required to reset here.
+				//This means it's not useable for any visuals in PostAI or similar
 			}
 			if (gouge)
 			{

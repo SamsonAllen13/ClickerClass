@@ -9,7 +9,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class MouseClicker : ClickerWeapon
 	{
-		public static readonly int CheeseAmount = 3;
+		public static readonly int MouseTrapCount = 3;
 
 		public override void SetStaticDefaults()
 		{
@@ -17,14 +17,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.MouseTrap = ClickerSystem.RegisterClickEffect(Mod, "MouseTrap", 10, new Color(80, 80, 80), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				bool spawnEffects = true;
-				for (int k = 0; k < CheeseAmount; k++)
+				for (int k = 0; k < MouseTrapCount; k++)
 				{
 					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-1f, 1f), Main.rand.NextFloat(-5f, -2f), ModContent.ProjectileType<MouseClickerPro>(), damage / 2, 0f, player.whoAmI);
 				}
 			},
-			preHardMode: true,
-			descriptionArgs: new object[] { CheeseAmount });
+			descriptionArgs: new object[] { MouseTrapCount });
 		}
 
 		public override void SetDefaults()

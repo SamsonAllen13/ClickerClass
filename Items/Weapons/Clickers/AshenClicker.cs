@@ -1,8 +1,6 @@
-using ClickerClass.Buffs;
-using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -14,6 +12,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 			
+			//This does actually nothing and is only used as a "tooltip" for the weapon
 			ClickEffect.Bold = ClickerSystem.RegisterClickEffect(Mod, "Bold", 1, new Color(255, 150, 150), null, preHardMode: true);
 		}
 
@@ -38,7 +37,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			int y = (int)(player.position.Y / 16);
 			float fac = y / (Main.maxTilesY * 0.166f) + 0.55f;
-			int increase = 6 - (int)fac;
+			int increase = Math.Max(0, 6 - (int)fac);
 			
 			damage.Flat = increase;
 		}

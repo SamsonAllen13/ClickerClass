@@ -2,9 +2,10 @@ using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
-using Terraria.Audio;
+using System.Linq;
 using Terraria.ID;
 using Terraria.ModLoader;
+using System.Collections.Generic;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
@@ -18,11 +19,36 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Trap = ClickerSystem.RegisterClickEffect(Mod, "Trap", 10, new Color(120, 120, 120), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
+				int trapType = ModContent.ProjectileType<MouseClickerPro>();
+
+				//Despawn oldest not-attached traps above threshold
+				List<Projectile> list = new();
+				for (int i = 0; i < Main.maxProjectiles; i++)
+				{
+					Projectile proj = Main.projectile[i];
+
+					if (proj.active && proj.type == trapType && proj.ModProjectile is MouseClickerPro mouseClicker &&
+						mouseClicker.StuckState == 0)
+					{
+						list.Add(proj);
+					}
+				}
+
+				list.Sort((p1, p2) => p2.timeLeft - p1.timeLeft);
+				int limit = 15 - MouseTrapCount;
+				if (list.Count >= limit)
+				{
+					for (int i = limit; i < list.Count; i++)
+					{
+						list[i].Kill();
+					}
+				}
+
 				bool spawnEffects = true;
 				for (int k = 0; k < MouseTrapCount; k++)
 				{
 					float hasSpawnEffects = spawnEffects ? 1f : 0f;
-					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-5f, -2f), ModContent.ProjectileType<MouseClickerPro>(), damage / 2, 0f, player.whoAmI, ai1: hasSpawnEffects);
+					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-5f, -2f), trapType, damage / 2, 0f, player.whoAmI, ai1: hasSpawnEffects);
 					spawnEffects = false;
 				}
 			},

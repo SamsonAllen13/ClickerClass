@@ -1111,8 +1111,8 @@ Mods: {
 				Description: Catches critters near your cursor
 			}
 
-			MouseTrap: {
-				Name: Mouse Trap
+			Trap: {
+				Name: Trap
 				Description: Throws out {0} mouse traps that snap and cling onto enemies
 			}
 		}
@@ -1285,5 +1285,6 @@ Mods: {
 
 		Tiles.DungeonChest.MapEntry_Locked: Locked Dungeon Chest
 		RecipeGroups.Any: "{0} {1}"
+		DropConditions.DungeonKeyCondition.Description: Drops in {$Bestiary_Biomes.TheDungeon} in Hardmode
 	}
 }

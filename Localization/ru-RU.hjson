@@ -1286,5 +1286,6 @@ Mods: {
 
 		Tiles.DungeonChest.MapEntry_Locked: Запертый сундук Темницы
 		RecipeGroups.Any: "{0} {1}"
+		// DropConditions.DungeonKeyCondition.Description: Drops in {$Bestiary_Biomes.TheDungeon} in Hardmode
 	}
 }

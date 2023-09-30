@@ -6,7 +6,7 @@ The [b]Clicker Class[/b] mod adds a set of weapons inspired by idle games like [
 [list]
   [*] Built for the [b]1.4 version of tModLoader[/b]!
   [*] New content![list]
-    [*] [b]60+[/b] new Clicker weapons
+    [*] [b]70+[/b] new Clicker weapons
     [*] [b]30+[/b] new Clicker accessories
     [*] [b]5[/b] new Clicker armor sets
     [*] [b]1[/b] new Clicker buff potion

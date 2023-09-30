@@ -18,12 +18,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 
 			ClickEffect.Trap = ClickerSystem.RegisterClickEffect(Mod, "Trap", 10, new Color(120, 120, 120), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
-				//"Can't properly offload this into projectiles"
-				SoundEngine.PlaySound(SoundID.Item152, position);
-				
+				bool spawnEffects = true;
 				for (int k = 0; k < MouseTrapCount; k++)
 				{
-					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-5f, -2f), ModContent.ProjectileType<MouseClickerPro>(), damage / 2, 0f, player.whoAmI);
+					float hasSpawnEffects = spawnEffects ? 1f : 0f;
+					Projectile.NewProjectile(source, position.X, position.Y, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-5f, -2f), ModContent.ProjectileType<MouseClickerPro>(), damage / 2, 0f, player.whoAmI, ai1: hasSpawnEffects);
+					spawnEffects = false;
 				}
 			},
 			descriptionArgs: new object[] { MouseTrapCount });
@@ -33,7 +33,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetDefaults();
 			SetRadius(Item, 5.5f);
-			SetColor(Item, new Color(80, 80, 80));
+			SetColor(Item, new Color(120, 120, 120));
 			SetDust(Item, 5);
 			AddEffect(Item, ClickEffect.Trap);
 

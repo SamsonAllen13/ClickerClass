@@ -8,15 +8,7 @@ namespace ClickerClass.Projectiles
 {
 	public class MouseClickerPro : ClickerProjectile
 	{
-		//TODO 1.4.4 - Sprite isnt finished
-		
-		public float hitState = 0f;
-
-		public float Timer
-		{
-			get => hitState;
-			set => hitState = value;
-		}
+		private int oldStuckState = 0;
 
 		public int StuckState
 		{
@@ -24,19 +16,19 @@ namespace ClickerClass.Projectiles
 			set => Projectile.ai[0] = value;
 		}
 
+		public bool HasSpawnEffects
+		{
+			get => Projectile.ai[1] == 1f;
+			set => Projectile.ai[1] = value ? 1f : 0f;
+		}
+
 		public int TargetIndex
 		{
-			get => (int)Projectile.ai[1];
-			set => Projectile.ai[1] = value;
+			get => (int)Projectile.ai[2];
+			set => Projectile.ai[2] = value;
 		}
 
-		//This referencing ai[1] again works because it is repurposed when StuckState changes
-		public float AmpCount
-		{
-			get => Projectile.ai[1];
-			set => Projectile.ai[1] = value;
-		}
-
+		public const int aliveTime = 20 * 60;
 		public const int stuckTime = 10 * 60;
 
 		public override void SetStaticDefaults()
@@ -50,7 +42,7 @@ namespace ClickerClass.Projectiles
 			Projectile.height = 20;
 			Projectile.penetrate = 3;
 			Projectile.friendly = true;
-			Projectile.timeLeft = 1200;
+			Projectile.timeLeft = aliveTime;
 			Projectile.usesLocalNPCImmunity = true;
 			Projectile.localNPCHitCooldown = 10;
 			
@@ -59,25 +51,46 @@ namespace ClickerClass.Projectiles
 
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
 		{
-			var globalNPC = target.GetClickerGlobalNPC();
-			if (target.active && !target.ImmuneToAllBuffs() && globalNPC.mouseTrapped < 5)
+			if (!target.active || target.ImmuneToAllBuffs())
 			{
-				SoundEngine.PlaySound(SoundID.Item153, target.Center);
-				
-				StuckState = 1;
-				TargetIndex = target.whoAmI;
-				Projectile.velocity = (target.Center - Projectile.Center) * 0.75f;
-				Projectile.netUpdate = true;
-				Projectile.friendly = false;
+				return;
 			}
+
+			int otherCount = 0;
+			for (int i = 0; i < Main.maxProjectiles; i++)
+			{
+				Projectile proj = Main.projectile[i];
+
+				if (proj.active && proj.type == Projectile.type && proj.ModProjectile is MouseClickerPro mouseClicker &&
+					mouseClicker.StuckState == 1 && mouseClicker.TargetIndex == target.whoAmI)
+				{
+					otherCount++;
+				}
+			}
+
+			//Prevent sticking more than 5
+			if (otherCount >= 5)
+			{
+				return;
+			}
+
+			StuckState = 1;
+			TargetIndex = target.whoAmI;
+			Projectile.velocity = (target.Center - Projectile.Center) * 0.75f;
+			Projectile.netUpdate = true;
+			Projectile.friendly = false;
 		}
 
 		public override void AI()
 		{
-			//TODO - Move sound to on-projectile-spawn
-			
 			bool killProj = false;
 			Projectile.spriteDirection = Projectile.velocity.X > 0f ? 1 : -1;
+
+			if (HasSpawnEffects)
+			{
+				SoundEngine.PlaySound(SoundID.Item152, Projectile.Center);
+				HasSpawnEffects = false;
+			}
 
 			if (StuckState == 0) //Projectile -IS NOT- sticking to an enemy
 			{
@@ -86,6 +99,11 @@ namespace ClickerClass.Projectiles
 			}
 			else if (StuckState == 1) //Projectile -IS- sticking to an enemy
 			{
+				if (oldStuckState != 1)
+				{
+					SoundEngine.PlaySound(SoundID.Item153, Projectile.Center);
+				}
+
 				Projectile.extraUpdates = 0;
 				Projectile.frame = 1;
 				Projectile.ignoreWater = true;
@@ -108,10 +126,7 @@ namespace ClickerClass.Projectiles
 					Projectile.gfxOffY = npc.gfxOffY;
 
 					var globalNPC = npc.GetClickerGlobalNPC();
-					if (globalNPC.mouseTrapped < 5)
-					{
-						globalNPC.mouseTrapped++;
-					}
+					globalNPC.mouseTrapped++;
 				}
 				else
 				{
@@ -131,6 +146,8 @@ namespace ClickerClass.Projectiles
 			{
 				Projectile.Kill();
 			}
+
+			oldStuckState = StuckState;
 		}
 		
 		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
@@ -147,7 +164,11 @@ namespace ClickerClass.Projectiles
 
 		public override void OnKill(int timeLeft)
 		{
-			//TODO visuals when disappearing
+			for (int k = 0; k < 5; k++)
+			{
+				Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, DustID.Stone, Main.rand.NextFloat(-2f, 2f), Main.rand.NextFloat(-2f, 2f), 75, default, 1f);
+				dust.noGravity = true;
+			}
 		}
 	}
 }

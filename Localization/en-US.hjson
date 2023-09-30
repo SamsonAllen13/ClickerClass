@@ -1285,5 +1285,6 @@ Mods: {
 
 		Tiles.DungeonChest.MapEntry_Locked: Locked Dungeon Chest
 		RecipeGroups.Any: "{0} {1}"
+		DropConditions.DungeonKeyCondition.Description: Drops in {$Bestiary_Biomes.TheDungeon} in Hardmode
 	}
 }

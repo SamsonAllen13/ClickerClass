@@ -1,4 +1,5 @@
 using ClickerClass.Buffs;
+using ClickerClass.DropRules.DropConditions;
 using ClickerClass.Items;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Consumables;
@@ -105,6 +106,11 @@ namespace ClickerClass.NPCs
 				npc.position = npc.oldPosition;
 				npc.frameCounter = 0;
 			}
+		}
+
+		public override void ModifyGlobalLoot(GlobalLoot globalLoot)
+		{
+			globalLoot.Add(ItemDropRule.ByCondition(new DungeonKeyCondition(), ModContent.ItemType<DungeonKey>(), 2500));
 		}
 
 		public override void ModifyNPCLoot(NPC npc, NPCLoot npcLoot)
@@ -698,18 +704,6 @@ namespace ClickerClass.NPCs
 		public override void PostAI(NPC npc)
 		{
 			SetBossBuffImmunities(npc);
-		}
-		
-		public void ApplyMouseTrappedStack(NPC npc, Player player, int stack, bool broadcast = false)
-		{
-			//TODO 1.4.4 This is not correct logic, packet is also not correct (doesn't reference NPC)
-			//Applies twice on the client invoking it, no big deal
-			mouseTrapped = stack;
-
-			if (broadcast && (Main.netMode == NetmodeID.Server || Main.netMode == NetmodeID.MultiplayerClient && player.whoAmI == Main.myPlayer))
-			{
-				//ThoriumNetHandler.NPCApplyMouseTrappedStackSend(npc, player, stack);
-			}
 		}
 	}
 }

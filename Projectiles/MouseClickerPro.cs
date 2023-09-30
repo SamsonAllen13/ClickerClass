@@ -1,5 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.Audio;
+using Terraria.ID;
 using ClickerClass.Utilities;
 
 namespace ClickerClass.Projectiles
@@ -35,7 +37,7 @@ namespace ClickerClass.Projectiles
 			set => Projectile.ai[1] = value;
 		}
 
-		public const int stuckTime = 5 * 60;
+		public const int stuckTime = 10 * 60;
 
 		public override void SetStaticDefaults()
 		{
@@ -48,7 +50,11 @@ namespace ClickerClass.Projectiles
 			Projectile.height = 20;
 			Projectile.penetrate = 3;
 			Projectile.friendly = true;
-			Projectile.timeLeft = 900;
+			Projectile.timeLeft = 1200;
+			Projectile.usesLocalNPCImmunity = true;
+			Projectile.localNPCHitCooldown = 10;
+			
+			DrawOriginOffsetY = 4;
 		}
 
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
@@ -56,6 +62,8 @@ namespace ClickerClass.Projectiles
 			var globalNPC = target.GetClickerGlobalNPC();
 			if (target.active && !target.ImmuneToAllBuffs() && globalNPC.mouseTrapped < 5)
 			{
+				SoundEngine.PlaySound(SoundID.Item153, target.Center);
+				
 				StuckState = 1;
 				TargetIndex = target.whoAmI;
 				Projectile.velocity = (target.Center - Projectile.Center) * 0.75f;
@@ -66,20 +74,20 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
+			//TODO - Move sound to on-projectile-spawn
+			
 			bool killProj = false;
+			Projectile.spriteDirection = Projectile.velocity.X > 0f ? 1 : -1;
 
 			if (StuckState == 0) //Projectile -IS NOT- sticking to an enemy
 			{
-				Projectile.rotation += Projectile.velocity.X * 0.05f;
-				
-				Projectile.velocity.X *= 0.99f;
+				Projectile.velocity.X *= 0.975f;
 				Projectile.velocity.Y += 0.155f;
 			}
 			else if (StuckState == 1) //Projectile -IS- sticking to an enemy
 			{
 				Projectile.extraUpdates = 0;
 				Projectile.frame = 1;
-				Projectile.rotation = 0f;
 				Projectile.ignoreWater = true;
 				Projectile.tileCollide = false;
 				Projectile.localAI[0] += 1f;
@@ -100,7 +108,10 @@ namespace ClickerClass.Projectiles
 					Projectile.gfxOffY = npc.gfxOffY;
 
 					var globalNPC = npc.GetClickerGlobalNPC();
-					globalNPC.mouseTrapped++;
+					if (globalNPC.mouseTrapped < 5)
+					{
+						globalNPC.mouseTrapped++;
+					}
 				}
 				else
 				{
@@ -120,6 +131,13 @@ namespace ClickerClass.Projectiles
 			{
 				Projectile.Kill();
 			}
+		}
+		
+		public override bool TileCollideStyle(ref int width, ref int height, ref bool fallThrough, ref Vector2 hitboxCenterFrac)
+		{
+			fallThrough = false;
+
+			return base.TileCollideStyle(ref width, ref height, ref fallThrough, ref hitboxCenterFrac);
 		}
 		
 		public override bool OnTileCollide(Vector2 oldVelocity)

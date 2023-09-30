@@ -69,11 +69,9 @@ namespace ClickerClass.NPCs
 			if (mouseTrapped > 0)
 			{
 				if (npc.lifeRegen > 0) { npc.lifeRegen = 0; }
-				npc.lifeRegen -= 20 * mouseTrapped;
-				if (damage < 10)
-				{
-					damage = 10;
-				}
+				npc.lifeRegen -= 30 * mouseTrapped;
+				damage = 15 * mouseTrapped;
+				
 				mouseTrapped = 0;
 				//Normally one would reset this in ResetEffects but due to how this field is set and update order, it's required to reset here.
 				//This means it's not useable for any visuals in PostAI or similar

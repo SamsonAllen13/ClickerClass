@@ -1111,8 +1111,8 @@ Mods: {
 				Description: Attrape les créatures près de votre curseur
 			}
 
-			MouseTrap: {
-				// Name: Mouse Trap
+			Trap: {
+				// Name: Trap
 				// Description: Throws out {0} mouse traps that snap and cling onto enemies
 			}
 		}

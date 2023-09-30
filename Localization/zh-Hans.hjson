@@ -1111,8 +1111,8 @@ Mods: {
 				Description: 点击捕捉鼠标附近的动物
 			}
 
-			MouseTrap: {
-				// Name: Mouse Trap
+			Trap: {
+				// Name: Trap
 				// Description: Throws out {0} mouse traps that snap and cling onto enemies
 			}
 		}

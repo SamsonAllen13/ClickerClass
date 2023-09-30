@@ -27,7 +27,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				{
 					Projectile proj = Main.projectile[i];
 
-					if (proj.active && proj.type == trapType && proj.ModProjectile is MouseClickerPro mouseClicker &&
+					if (proj.active && proj.type == trapType && proj.owner == player.whoAmI && proj.ModProjectile is MouseClickerPro mouseClicker &&
 						mouseClicker.StuckState == 0)
 					{
 						list.Add(proj);

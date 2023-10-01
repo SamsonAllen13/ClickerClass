@@ -60,7 +60,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetDefaults();
 			SetRadius(Item, 5.5f);
 			SetColor(Item, new Color(120, 120, 120));
-			SetDust(Item, 5);
+			SetDust(Item, 54);
 			AddEffect(Item, ClickEffect.Trap);
 
 			Item.damage = 54;

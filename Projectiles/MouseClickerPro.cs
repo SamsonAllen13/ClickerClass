@@ -38,15 +38,41 @@ namespace ClickerClass.Projectiles
 
 		public override void SetDefaults()
 		{
-			Projectile.width = 20;
-			Projectile.height = 20;
-			Projectile.penetrate = 3;
+			Projectile.width = 28;
+			Projectile.height = 18;
+			Projectile.penetrate = -1;
 			Projectile.friendly = true;
 			Projectile.timeLeft = aliveTime;
 			Projectile.usesLocalNPCImmunity = true;
-			Projectile.localNPCHitCooldown = 10;
+			Projectile.localNPCHitCooldown = 60;
+		}
+		
+		public override bool? CanHitNPC(NPC target)
+		{
+			if (!target.active || target.ImmuneToAllBuffs())
+			{
+				return false;
+			}
+
+			int otherCount = 0;
+			for (int i = 0; i < Main.maxProjectiles; i++)
+			{
+				Projectile proj = Main.projectile[i];
+
+				if (proj.active && proj.type == Projectile.type && proj.ModProjectile is MouseClickerPro mouseClicker &&
+					mouseClicker.StuckState == 1 && mouseClicker.TargetIndex == target.whoAmI)
+				{
+					otherCount++;
+				}
+			}
+
+			//Prevent sticking more than 5
+			if (otherCount >= 5)
+			{
+				return false;
+			}
 			
-			DrawOriginOffsetY = 4;
+			return base.CanHitNPC(target);
 		}
 
 		public override void ModifyHitNPC(NPC target, ref NPC.HitModifiers modifiers)
@@ -96,9 +122,12 @@ namespace ClickerClass.Projectiles
 			{
 				Projectile.velocity.X *= 0.975f;
 				Projectile.velocity.Y += 0.155f;
+				DrawOriginOffsetY = 4;
 			}
 			else if (StuckState == 1) //Projectile -IS- sticking to an enemy
 			{
+				DrawOriginOffsetY = 0;
+				
 				if (oldStuckState != 1)
 				{
 					SoundEngine.PlaySound(SoundID.Item153, Projectile.Center);

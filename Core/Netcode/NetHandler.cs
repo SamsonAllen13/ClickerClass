@@ -40,7 +40,7 @@ namespace ClickerClass.Core.Netcode
 		private static void RegisterPackets()
 		{
 			Type mpPacketType = typeof(MPPacket);
-			IEnumerable<Type> mpPacketTypes = AssemblyManager.GetLoadableTypes(ClickerClass.mod.Code).Where(t => !t.IsAbstract && t.IsSubclassOf(mpPacketType));
+			IEnumerable<Type> mpPacketTypes = AssemblyManager.GetLoadableTypes(Mod.Code).Where(t => !t.IsAbstract && t.IsSubclassOf(mpPacketType));
 
 			foreach (var type in mpPacketTypes)
 			{

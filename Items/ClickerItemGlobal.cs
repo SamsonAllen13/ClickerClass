@@ -13,6 +13,23 @@ namespace ClickerClass.Items
 {
 	public partial class ClickerItemGlobal : GlobalItem
 	{
+		//Specific to lock boxes, this is used to verify that we are on a suitable vanilla rule for rare items
+		static bool CheckIfAtleastOneWithin(IItemDropRule[] rules, params int[] items)
+		{
+			foreach (var subEntry in rules)
+			{
+				if (subEntry is CommonDropNotScalingWithLuck rule && items.Contains(rule.itemId))
+				{
+					return true;
+				}
+				else if (subEntry is ItemDropWithConditionRule conditionRule && items.Contains(conditionRule.itemId))
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+
 		// Add items to vanilla loot bags
 		public override void ModifyItemLoot(Item item, ItemLoot itemLoot)
 		{
@@ -40,14 +57,17 @@ namespace ClickerClass.Items
 					{
 						foreach (var entry in itemLoot.Get(false))
 						{
-							if (entry is OneFromOptionsNotScaledWithLuckDropRule lockboxRule && Array.IndexOf(lockboxRule.dropIds, ItemID.Valor) > -1)
+							if (entry is OneFromRulesRule lockboxRule)
 							{
-								var set = new HashSet<int>(lockboxRule.dropIds)
+								if (CheckIfAtleastOneWithin(lockboxRule.options, ItemID.Valor, ItemID.Muramasa, ItemID.AquaScepter, ItemID.CobaltShield, ItemID.BlueMoon, ItemID.MagicMissile, ItemID.Handgun))
 								{
-									ModContent.ItemType<SlickClicker>()
-								};
-								lockboxRule.dropIds = set.ToArray();
-								break;
+									var set = new HashSet<IItemDropRule>(lockboxRule.options)
+									{
+										ItemDropRule.NotScalingWithLuck(ModContent.ItemType<SlickClicker>())
+									};
+									lockboxRule.options = set.ToArray();
+									break;
+								}
 							}
 						}
 					}
@@ -56,14 +76,17 @@ namespace ClickerClass.Items
 					{
 						foreach (var entry in itemLoot.Get(false))
 						{
-							if (entry is OneFromOptionsNotScaledWithLuckDropRule obsidianLockboxRule && Array.IndexOf(obsidianLockboxRule.dropIds, ItemID.DarkLance) > -1)
+							if (entry is OneFromRulesRule obsidianLockboxRule)
 							{
-								var set = new HashSet<int>(obsidianLockboxRule.dropIds)
+								if (CheckIfAtleastOneWithin(obsidianLockboxRule.options, ItemID.DarkLance, ItemID.UnholyTrident, ItemID.Sunfury, ItemID.Flamelash, ItemID.HellwingBow))
 								{
-									ModContent.ItemType<UmbralClicker>()
-								};
-								obsidianLockboxRule.dropIds = set.ToArray();
-								break;
+									var set = new HashSet<IItemDropRule>(obsidianLockboxRule.options)
+									{
+										ItemDropRule.NotScalingWithLuck(ModContent.ItemType<UmbralClicker>())
+									};
+									obsidianLockboxRule.options = set.ToArray();
+									break;
+								}
 							}
 						}
 					}

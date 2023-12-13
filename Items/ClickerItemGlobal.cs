@@ -55,39 +55,61 @@ namespace ClickerClass.Items
 				#region Lock Boxes
 				case ItemID.LockBox:
 					{
+						bool addedToVanilla = false;
+						var ourRules = new IItemDropRule[]
+						{
+							ItemDropRule.NotScalingWithLuck(ModContent.ItemType<SlickClicker>())
+						};
+
 						foreach (var entry in itemLoot.Get(false))
 						{
 							if (entry is OneFromRulesRule lockboxRule)
 							{
 								if (CheckIfAtleastOneWithin(lockboxRule.options, ItemID.Valor, ItemID.Muramasa, ItemID.AquaScepter, ItemID.CobaltShield, ItemID.BlueMoon, ItemID.MagicMissile, ItemID.Handgun))
 								{
-									var set = new HashSet<IItemDropRule>(lockboxRule.options)
-									{
-										ItemDropRule.NotScalingWithLuck(ModContent.ItemType<SlickClicker>())
-									};
+									addedToVanilla = true;
+									var set = new HashSet<IItemDropRule>(lockboxRule.options);
+									set.UnionWith(ourRules);
 									lockboxRule.options = set.ToArray();
 									break;
 								}
 							}
 						}
+
+						if (!addedToVanilla)
+						{
+							//Fallback, halved chance to mirror intended drop rates. Change this if the amount of items in ourRules is increased!
+							itemLoot.Add(new OneFromRulesRule(8, ourRules));
+						}
 					}
 					break;
 				case ItemID.ObsidianLockbox:
 					{
+						bool addedToVanilla = false;
+						var ourRules = new IItemDropRule[]
+						{
+							ItemDropRule.NotScalingWithLuck(ModContent.ItemType<UmbralClicker>())
+						};
+
 						foreach (var entry in itemLoot.Get(false))
 						{
 							if (entry is OneFromRulesRule obsidianLockboxRule)
 							{
 								if (CheckIfAtleastOneWithin(obsidianLockboxRule.options, ItemID.DarkLance, ItemID.UnholyTrident, ItemID.Sunfury, ItemID.Flamelash, ItemID.HellwingBow))
 								{
-									var set = new HashSet<IItemDropRule>(obsidianLockboxRule.options)
-									{
-										ItemDropRule.NotScalingWithLuck(ModContent.ItemType<UmbralClicker>())
-									};
+									addedToVanilla = true;
+									var set = new HashSet<IItemDropRule>(obsidianLockboxRule.options);
+									set.UnionWith(ourRules);
 									obsidianLockboxRule.options = set.ToArray();
 									break;
 								}
 							}
+						}
+
+						if (!addedToVanilla)
+						{
+							//Fallback, halved chance to mirror intended drop rates. Change this if the amount of items in ourRules is increased!
+							itemLoot.Add(new OneFromRulesRule(6, ourRules));
 						}
 					}
 					break;

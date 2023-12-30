@@ -297,9 +297,24 @@ Mods: {
 				Tooltip: "'M. B. Nana'"
 			}
 
+			ConfectioneryMice: {
+				// DisplayName: Confectionery Mice
+				// Tooltip: "'L. Cake & S. Bobble'"
+			}
+
+			Galaxies: {
+				// DisplayName: Galaxies
+				// Tooltip: "'S. B. Bee'"
+			}
+
 			OutsideTheCave: {
 				DisplayName: 洞外风景
 				Tooltip: "'S. Streak'"
+			}
+
+			Papa: {
+				// DisplayName: Papa
+				// Tooltip: "'B. Bulsher'"
 			}
 
 			AncientClickingGlove: {

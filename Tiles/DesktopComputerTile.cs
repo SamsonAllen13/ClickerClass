@@ -7,10 +7,9 @@ using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
 using ClickerClass.Buffs;
-
 using ReLogic.Content;
 using System;
-using Terraria.DataStructures;
+using Terraria.GameContent.Drawing;
 
 namespace ClickerClass.Tiles
 {
@@ -90,6 +89,11 @@ namespace ClickerClass.Tiles
 		public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
 		{
 			Tile tile = Main.tile[i, j];
+			if (!TileDrawing.IsVisible(tile))
+			{
+				return;
+			}
+
 			if (tile.TileFrameX < 36)
 			{
 				Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);

@@ -113,6 +113,8 @@ namespace ClickerClass
 					"AddItemCategory",
 					name,
 					category,
+					recipeBrowser.Version >= new Version(0, 10, 5) ?
+					this.Assets.Request<Texture2D>(texture) :
 					this.Assets.Request<Texture2D>(texture, AssetRequestMode.ImmediateLoad).Value, // 24x24 icon
 					predicate
 				});

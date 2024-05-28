@@ -539,6 +539,44 @@ namespace ClickerClass.NPCs
 		{
 			shop[nextSlot++] = ModContent.ItemType<ButtonMasher>();
 			shop[nextSlot++] = ModContent.ItemType<Soda>();
+
+			//Player-based conditions are checked by looking at every online player at the time of shop creation
+			bool mlPainting = false;
+			bool cookiePainting = false;
+
+			for (int i = 0; i < Main.maxPlayers; i++)
+			{
+				Player player = Main.player[i];
+				if (!player.active)
+				{
+					continue;
+				}
+
+				if (!mlPainting && player.GetModPlayer<ClickerPlayer>().paintingCondition_MoonLordDefeatedWithClicker)
+				{
+					mlPainting = true;
+				}
+
+				if (!cookiePainting && player.GetModPlayer<ClickerPlayer>().paintingCondition_Clicked100Cookies)
+				{
+					cookiePainting = true;
+				}
+			}
+
+			if (mlPainting)
+			{
+				shop[nextSlot++] = ModContent.ItemType<Galaxies>();
+			}
+
+			if (cookiePainting)
+			{
+				shop[nextSlot++] = ModContent.ItemType<ConfectioneryMice>();
+			}
+
+			if (NPC.AnyNPCs(NPCID.TaxCollector))
+			{
+				shop[nextSlot++] = ModContent.ItemType<Papa>();
+			}
 		}
 
 		public override void ModifyShop(NPCShop shop)

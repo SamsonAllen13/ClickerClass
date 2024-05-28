@@ -53,7 +53,9 @@ namespace ClickerClass
 
 			try
 			{
-				/*if (instance._mouseTextCache.isValid) {
+				/*
+					DrawGamepadInstructions();
+					if (instance._mouseTextCache.isValid) {
 						instance.MouseTextInner(instance._mouseTextCache);
 						DrawInterface_36_Cursor(); //Detour only this one
 						instance._mouseTextCache.isValid = false;

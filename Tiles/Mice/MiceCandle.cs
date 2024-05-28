@@ -4,6 +4,7 @@ using ReLogic.Content;
 using System;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.GameContent.Drawing;
 using Terraria.ID;
 using Terraria.ModLoader;
 using Terraria.ObjectData;
@@ -59,6 +60,11 @@ namespace ClickerClass.Tiles.Mice
 		public override void PostDraw(int i, int j, SpriteBatch spriteBatch)
 		{
 			Tile tile = Main.tile[i, j];
+			if (!TileDrawing.IsVisible(tile))
+			{
+				return;
+			}
+
 			if (tile.TileFrameX < 18)
 			{
 				Vector2 zero = new Vector2(Main.offScreenRange, Main.offScreenRange);

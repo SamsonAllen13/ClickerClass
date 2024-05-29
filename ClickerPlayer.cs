@@ -738,7 +738,11 @@ namespace ClickerClass
 		/// </summary>
 		public int GetClickAmountTotal(Item item, string name)
 		{
-			return GetClickAmountTotal(item.GetGlobalItem<ClickerItemCore>(), name);
+			if (item.TryGetGlobalItem(out ClickerItemCore clickerItem))
+			{
+				return GetClickAmountTotal(clickerItem, name);
+			}
+			return 1;
 		}
 
 		/// <summary>

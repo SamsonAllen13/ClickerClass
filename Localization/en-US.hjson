@@ -526,7 +526,7 @@ Mods: {
 
 			StickyKeychain: {
 				DisplayName: Sticky Keychain
-				Tooltip: Every {0} clicks sticks damaging slime on to your screen
+				Tooltip: Every {0} clicks sticks damaging slime onto your screen
 			}
 
 			TheScroller: {
@@ -1073,7 +1073,7 @@ Mods: {
 
 			StickyKeychain: {
 				Name: Sticky Keychain
-				Description: Sticks damaging slime on to your screen
+				Description: Sticks damaging slime onto your screen
 			}
 
 			BigRedButton: {

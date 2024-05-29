@@ -250,7 +250,7 @@ namespace ClickerClass.Items
 				{
 					if (clickerPlayer.HasClickEffect(name, out ClickEffect effect) && !effects.Contains(name))
 					{
-						if (!(player.HeldItem.type != item.type && player.HeldItem.type != ItemID.None && player.HeldItem.GetGlobalItem<ClickerItemCore>().itemClickEffects.Contains(name)))
+						if (!(player.HeldItem.type != item.type && player.HeldItem.type != ItemID.None && player.HeldItem.TryGetGlobalItem<ClickerItemCore>(out var clickerItem) && clickerItem.itemClickEffects.Contains(name)))
 						{
 							effects.Add(name);
 						}

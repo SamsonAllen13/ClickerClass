@@ -7,7 +7,8 @@ using Terraria.ObjectData;
 
 namespace ClickerClass.Tiles
 {
-	public class PaintingMedium : ModTile
+	[LegacyName("PaintingMedium")]
+	public class Painting3x3 : ModTile
 	{
 		public override void SetStaticDefaults()
 		{

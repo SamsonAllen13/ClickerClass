@@ -9,7 +9,7 @@ namespace ClickerClass.Items.Placeable
 	{
 		public override void SetDefaults()
 		{
-			Item.DefaultToPlaceableTile(ModContent.TileType<PaintingMedium>(), 0); //tile, style
+			Item.DefaultToPlaceableTile(ModContent.TileType<Painting3x3>(), 0); //tile, style
 			Item.width = 30;
 			Item.height = 30;
 			Item.maxStack = Item.CommonMaxStack;

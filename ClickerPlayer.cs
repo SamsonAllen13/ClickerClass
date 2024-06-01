@@ -256,6 +256,12 @@ namespace ClickerClass
 		/// </summary>
 		public bool consumedHeavenlyChip;
 
+		//Need to be synced
+		public bool paintingCondition_MoonLordDefeatedWithClicker;
+		public bool paintingCondition_Clicked100Cookies; //Instead of server having to keep track of every clicked cookie, only set it once
+
+		public int paintingCondition_ClickedCookiesCount;
+
 		//Helper methods
 		/// <summary>
 		/// Enables the use of a click effect for this player
@@ -870,6 +876,10 @@ namespace ClickerClass
 			clickerTotal = 0;
 			clickerMoneyGenerated = 0;
 
+			paintingCondition_MoonLordDefeatedWithClicker = false;
+			paintingCondition_Clicked100Cookies = false;
+			paintingCondition_ClickedCookiesCount = 0;
+
 			AutoReuseEffects = new List<AutoReuseEffect>();
 
 			ClickEffectActive = new Dictionary<string, bool>();
@@ -888,6 +898,9 @@ namespace ClickerClass
 			tag.Add("clickerTotal", clickerTotal);
 			tag.Add("clickerMoneyGenerated", clickerMoneyGenerated);
 			tag.Add("consumedHeavenlyChip", consumedHeavenlyChip);
+			tag.Add("paintingCondition_MoonLordDefeatedWithClicker", paintingCondition_MoonLordDefeatedWithClicker);
+			tag.Add("paintingCondition_Clicked100Cookies", paintingCondition_Clicked100Cookies);
+			tag.Add("paintingCondition_ClickedCookiesCount", paintingCondition_ClickedCookiesCount);
 		}
 
 		public override void LoadData(TagCompound tag)
@@ -895,6 +908,9 @@ namespace ClickerClass
 			clickerTotal = tag.GetInt("clickerTotal");
 			clickerMoneyGenerated = tag.GetInt("clickerMoneyGenerated");
 			consumedHeavenlyChip = tag.GetBool("consumedHeavenlyChip");
+			paintingCondition_MoonLordDefeatedWithClicker = tag.GetBool("paintingCondition_MoonLordDefeatedWithClicker");
+			paintingCondition_Clicked100Cookies = tag.GetBool("paintingCondition_Clicked100Cookies");
+			paintingCondition_ClickedCookiesCount = tag.GetInt("paintingCondition_ClickedCookiesCount");
 		}
 
 		public override void CopyClientState(ModPlayer clientClone)
@@ -1297,6 +1313,17 @@ namespace ClickerClass
 										dust.noGravity = true;
 									}
 								}
+
+								paintingCondition_ClickedCookiesCount++;
+								if (paintingCondition_ClickedCookiesCount == 100)
+								{
+									paintingCondition_Clicked100Cookies = true;
+									if (Main.netMode == NetmodeID.MultiplayerClient)
+									{
+										new Clicked100CookiesPacket(Player).Send();
+									}
+								}
+
 								proj.Kill();
 							}
 						}

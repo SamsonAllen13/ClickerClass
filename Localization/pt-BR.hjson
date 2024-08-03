@@ -17,8 +17,8 @@ Mods: {
 			}
 
 			CrystalizedFatigue: {
-				// DisplayName: Crystalized Fatigue
-				// Description: Cannot be Crystalized again
+				DisplayName: Fatiga de cristalização
+				Description: Você não pode ser cristalizado novamente
 			}
 
 			Embrittle: {
@@ -82,12 +82,12 @@ Mods: {
 			}
 
 			TranscendBuff: {
-				// DisplayName: Transcended
-				// Description: Negates the next damage you take, recovering {0}% of your life instead
+				DisplayName: Transcendido
+				Description: Anula o próximo dano recebido, recuperando {0}% da sua vida
 			}
 
 			DesktopComputerBuff: {
-				// DisplayName: Desktop Computer
+				DisplayName: Computador de mesa
 				Description: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 		}
@@ -106,26 +106,26 @@ Mods: {
 				ClickingGloveEvery: Durante o combate, clica automaticamente o seu clicker atual a cada
 				Clicker: Clique em um inimigo dentro do seu alcance e visão para causar danos nele
 				Clicks: "{0} {^0:clique;cliques}"
-				/* SFXButtonTip:
+				SFXButtonTip:
 					'''
-					Changes the sound your clicks make while in your inventory
-					Volume increases with stack size, up to {0}
-					''' */
+					Altera o som emitido por seus cliques enquanto estiver no seu inventário
+					O volume aumenta de acordo com o tamanho da pilha, até um máximo de {0}
+					'''
 			}
 
 			Unknown: Desconhecido
 		}
 
 		Conditions: {
-			// ClickerSelected: Clicker selected
-			// ClickerTotalExceeds: Total of {0} clicks or more
+			ClickerSelected: Clicker selecionado
+			ClickerTotalExceeds: {0} ou mais cliques no total
 		}
 
 		DamageClasses.ClickerDamage.DisplayName: dano por clique
 
 		Keybinds: {
-			// ClickerAccessory.DisplayName: Clicker Accessory
-			// ClickerAimAssist.DisplayName: Clicker Aim Assist
+			ClickerAccessory.DisplayName: Acessório Clicker
+			ClickerAimAssist.DisplayName: Auxílio de Mira para Clickers
 		}
 
 		Items: {
@@ -158,23 +158,23 @@ Mods: {
 			}
 
 			DesktopComputer: {
-				// DisplayName: Desktop Computer
+				DisplayName: Computador de Mesa
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
 
 			DungeonKey: {
-				// DisplayName: Dungeon Key
-				// Tooltip: Unlocks a Dungeon Chest in the dungeon
+				DisplayName: Chave do Calabouço
+				Tooltip: Desbloqueia um baú do calabouço no calabouço
 			}
 
 			DungeonChest: {
-				// DisplayName: Dungeon Chest
-				// Tooltip: ""
+				DisplayName: Baú do Calabouço
+				Tooltip: ""
 			}
 
 			DungeonChest_Trapped: {
-				// DisplayName: Trapped Dungeon Chest
-				// Tooltip: ""
+				DisplayName: Baú Armadilha do Calabouço
+				Tooltip: ""
 			}
 
 			MiceBathtub: {
@@ -298,13 +298,13 @@ Mods: {
 			}
 
 			ConfectioneryMice: {
-				// DisplayName: Confectionery Mice
-				// Tooltip: "'L. Cake & S. Bobble'"
+				DisplayName: Ponteirinhos de Confeitaria
+				Tooltip: "'L. Cake & S. Bobble'"
 			}
 
 			Galaxies: {
-				// DisplayName: Galaxies
-				// Tooltip: "'S. B. Bee'"
+				DisplayName: Galáxias
+				Tooltip: "'S. B. Bee'"
 			}
 
 			OutsideTheCave: {
@@ -313,8 +313,8 @@ Mods: {
 			}
 
 			Papa: {
-				// DisplayName: Papa
-				// Tooltip: "'B. Bulsher'"
+				DisplayName: Papa
+				Tooltip: "'B. Bulsher'"
 			}
 
 			AncientClickingGlove: {
@@ -503,7 +503,7 @@ Mods: {
 				Tooltip:
 					'''
 					Enquanto equipada, um círculo fortalecedor girará em sua volta
-					Manter o seu cursor dentro do círculo acumulará até {0}% de aumento no raio do clicker
+					Manter o seu cursor dentro do círculo acumulará até {0}% de aumento no raio de clique
 					'''
 			}
 
@@ -521,22 +521,22 @@ Mods: {
 				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 			}
 
-			// SFXButtonA.DisplayName: SFX Button A
-			// SFXButtonB.DisplayName: SFX Button B
-			// SFXButtonC.DisplayName: SFX Button C
-			// SFXButtonD.DisplayName: SFX Button D
-			// SFXButtonE.DisplayName: SFX Button E
-			// SFXButtonF.DisplayName: SFX Button F
-			// SFXButtonG.DisplayName: SFX Button G
-			// SFXButtonH.DisplayName: SFX Button H
+			SFXButtonA.DisplayName: Botão de Efeito Sonoro A
+			SFXButtonB.DisplayName: Botão de Efeito Sonoro B
+			SFXButtonC.DisplayName: Botão de Efeito Sonoro C
+			SFXButtonD.DisplayName: Botão de Efeito Sonoro D
+			SFXButtonE.DisplayName: Botão de Efeito Sonoro E
+			SFXButtonF.DisplayName: Botão de Efeito Sonoro F
+			SFXButtonG.DisplayName: Botão de Efeito Sonoro G
+			SFXButtonH.DisplayName: Botão de Efeito Sonoro H
 
 			SFXSoundboard: {
-				// DisplayName: SFX Soundboard
-				/* Tooltip:
+				DisplayName: Painel de Efeitos Sonoros
+				Tooltip:
 					'''
-					'Become the life of the party! ...or death of it'
-					Changes the sound your clicks make while in your inventory
-					''' */
+					'Deixe a festa mais vívida! ...ou torne-se a morte dela'
+					Altera o som emitido por seus cliques enquanto estiver no seu inventário
+					'''
 			}
 
 			StickyKeychain: {
@@ -610,11 +610,11 @@ Mods: {
 			OverclockHelmet: {
 				DisplayName: Elmo de Overclock
 				Tooltip: "{$Common.Tooltips.IncreasesClickDamageBy}"
-				/* SetBonus:
+				SetBonus:
 					'''
-					Every {0} clicks briefly grants you 'Overclock', reducing the amount of clicks required for a click effect by {1}%
-					While Overclock is active, you deal {2}% less click damage
-					''' */
+					Você recebe "Overclock" a cada {0} cliques, reduzindo a quantidade de cliques necessários para um efeito de clique em {1}%
+					Enquanto estiver sob os efeitos de "Overclock", você causará {2}% a menos de dano
+					'''
 			}
 
 			OverclockSuit: {
@@ -674,8 +674,8 @@ Mods: {
 			}
 
 			HeavenlyChip: {
-				// DisplayName: Heavenly Chip
-				// Tooltip: Permanently increases base clicker radius by {0}%
+				DisplayName: Gota Celestial
+				Tooltip: Aumenta permanentemente o seu raio de clique básico em {0}%
 			}
 
 			MiceDrill: {
@@ -709,18 +709,18 @@ Mods: {
 			CopperClicker.DisplayName: Clicker de Cobre
 			CorruptClicker.DisplayName: Clicker Corrompido
 			CrimsonClicker.DisplayName: Clicker de Carmim
-			// CritterClicker.DisplayName: Critter Clicker
+			CritterClicker.DisplayName: Clicker Animalesco
 			CrystalClicker.DisplayName: Clicker de Cristal
 			CyclopsClicker.DisplayName: Clicker Ciclope
 			DarkClicker.DisplayName: Clicker das Sombras
 			DraconicClicker.DisplayName: Clicker Dracônico
-			// DreamClicker.DisplayName: Dream Clicker
+			DreamClicker.DisplayName: Clicker Onírico
 			EclipticClicker.DisplayName: Clicker Elíptico
 			FamishedClicker.DisplayName: Clicker Faminto
 			FaultyClicker.DisplayName: Clicker Defeituoso
 			FrozenClicker.DisplayName: Clicker Congelado
 			GoldClicker.DisplayName: Clicker de Ouro
-			// HeartyClicker.DisplayName: Hearty Clicker
+			HeartyClicker.DisplayName: Clicker Vigoroso
 			HemoClicker.DisplayName: Clicker Hemo
 			HighTechClicker.DisplayName: Clicker de Alta Tecnologia
 			HoneyGlazedClicker.DisplayName: Clicker Glaceado com Mel
@@ -737,10 +737,10 @@ Mods: {
 			NaughtyClicker.DisplayName: Clicker Malcriado
 			OrichalcumClicker.DisplayName: Clicker de Oricalco
 			PalladiumClicker.DisplayName: Clicker de Paládio
-			// PharaohsClicker.DisplayName: Pharaoh's Clicker
+			PharaohsClicker.DisplayName: Clicker do Faraó
 			PlatinumClicker.DisplayName: Clicker de Platina
 			PointyClicker.DisplayName: Clicker Pontudo
-			// QuintessenceClicker.DisplayName: Quintessence Clicker
+			QuintessenceClicker.DisplayName: Clicker da Quintessência
 			RainbowClicker.DisplayName: Clicker Arco-íris
 			RedHotClicker.DisplayName: Clicker em Brasa
 			SandstormClicker.DisplayName: Clicker da Tempestade de Areia
@@ -769,8 +769,8 @@ Mods: {
 			WitchClicker.DisplayName: Clicker da Bruxa
 			WebClicker.DisplayName: Clicker de Teia
 			WoodenClicker.DisplayName: Clicker de Madeira
-			// AshenClicker.DisplayName: Ashen Clicker
-			// MouseClicker.DisplayName: Mouse Clicker
+			AshenClicker.DisplayName: Clicker Carbonizado
+			MouseClicker.DisplayName: Clicker de Mouse
 		}
 
 		InfoDisplays: {
@@ -792,8 +792,8 @@ Mods: {
 			}
 
 			Bold: {
-				// Name: Bold
-				// Description: Base damage increases with higher elevation in the world
+				Name: Destemido
+				Description: O dano base aumenta de acordo com elevações mais altas no mundo
 			}
 
 			SeaSpray: {
@@ -838,7 +838,7 @@ Mods: {
 
 			HolyNova: {
 				Name: Nova Divina
-				Description: Causa dano a todos os inimigos dentro do raio do clicker com um acerto crítico garantido
+				Description: Causa dano a todos os inimigos dentro do raio de clique com um acerto crítico garantido
 			}
 
 			Spiral: {
@@ -858,7 +858,7 @@ Mods: {
 
 			BloodSucker: {
 				Name: Sugador de Sangue
-				Description: Cria {0} glóbulos de sangue que espiralam para dentro do raio do cursor
+				Description: Cria {0} glóbulos de sangue que espiralam para dentro do raio de clique
 			}
 
 			BalloonDefense: {
@@ -883,7 +883,7 @@ Mods: {
 
 			Fritz: {
 				Name: Pifar
-				Description: Libera um choque aleatório dentro de seu raio do clicker
+				Description: Libera um choque aleatório dentro de seu raio de clique
 			}
 
 			Flurry: {
@@ -1102,33 +1102,33 @@ Mods: {
 			}
 
 			StarSlice: {
-				// Name: Star Slice
-				// Description: Shoots out {0} slicing star strikes
+				Name: Corte Estelar
+				Description: Atira {0} golpes cortantes estelares
 			}
 
 			HappyHeart: {
-				// Name: Happy Heart
-				// Description: Produces up to {0} lingering hearts that replenish player life
+				Name: Coração Feliz
+				Description: Produz até {0} corações duradouros que recuperam a vida do jogador
 			}
 
 			PharaohsCommand: {
-				// Name: Pharaoh's Command
-				// Description: Summons a mask that shoots at your cursor in response to your clicks
+				Name: Comando do Faraó
+				Description: Invoca uma máscara que atira na direção do seu cursor em resposta aos seus cliques
 			}
 
 			Transcend: {
-				// Name: Transcend
-				// Description: "{$Buffs.TranscendBuff.Description}"
+				Name: Transcender
+				Description: "{$Buffs.TranscendBuff.Description}"
 			}
 
 			Nab: {
-				// Name: Nab
-				// Description: Catches critters near your cursor
+				Name: Pegar
+				Description: Captura animais perto do seu cursor
 			}
 
 			Trap: {
-				// Name: Trap
-				// Description: Throws out {0} mouse traps that snap and cling onto enemies
+				Name: Ratoeira
+				Description: Arremessa {0} ratoeiras que prendem-se nos inimigos
 			}
 		}
 
@@ -1165,11 +1165,11 @@ Mods: {
 		}
 
 		GameTips: {
-			// ClickerClassTip0: Clicker Class: Clicker weapons can only be used within its area of effect and with proper line of sight.
-			// ClickerClassTip1: Clicker Class: Your total number of clicks with Clickers are tracked. Check it out with a Gamer Crate!
-			// ClickerClassTip2: Clicker Class: Certain items will only be sold if you've used Clicker weapons enough times.
-			// ClickerClassTip3: Clicker Class: Remember to rest your hands if they start to hurt!
-			// ClickerClassTip4: Clicker Class: Find a nice Ice Pack to cool your hands if clicking is cramping them up!
+			ClickerClassTip0: Clicker Class: Armas clicker só podem ser utilizadas dentro de sua área de efeito e com linha de visão adequada.
+			ClickerClassTip1: Clicker Class: O seu número total de cliques com Clickers é registrado. Confira com uma Caixa Gamer!
+			ClickerClassTip2: Clicker Class: Certos itens só serão vendidos se você tiver utilizado armas clicker o suficiente. 
+			ClickerClassTip3: Clicker Class: Lembre-se de descansar as mãos se elas começarem a doer!
+			ClickerClassTip4: Clicker Class: Encontre um bom Pacote de Gelo para esfriar suas mãos se clicar estiver causando cãibras!
 		}
 
 		# regex: DisplayName\: (.*?) Pro([0-9]*)? -> DisplayName: $1
@@ -1192,7 +1192,7 @@ Mods: {
 			ChocolateChipPro.DisplayName: "{$Items.ChocolateChip.DisplayName}"
 			ClearKeychainPro.DisplayName: "{$Items.ClearKeychain.DisplayName}"
 			ClearKeychainPro2.DisplayName: "{$Items.ClearKeychain.DisplayName}"
-			// ClickDamage.DisplayName: Click Damage
+			ClickDamage.DisplayName: Dano por Clique
 			CookiePro.DisplayName: "{$Items.Cookie.DisplayName}"
 			CorruptClickerPro.DisplayName: "{$Items.CorruptClicker.DisplayName}"
 			CrimsonClickerPro.DisplayName: "{$Items.CrimsonClicker.DisplayName}"
@@ -1223,7 +1223,7 @@ Mods: {
 			PrecursorPro.DisplayName: "{$Items.Precursor.DisplayName}"
 			RainbowClickerPro.DisplayName: "{$Items.RainbowClicker.DisplayName}"
 			RedHotClickerPro.DisplayName: "{$Items.RedHotClicker.DisplayName}"
-			// RGBPro.DisplayName: RGB
+			RGBPro.DisplayName: RGB
 			SandstormClickerPro.DisplayName: "{$Items.SandstormClicker.DisplayName}"
 			SeafoamClickerPro.DisplayName: "{$Items.SeafoamClicker.DisplayName}"
 			ShadowyClickerPro.DisplayName: "{$Items.ShadowyClicker.DisplayName}"
@@ -1258,8 +1258,8 @@ Mods: {
 				DisplayName: Configuração
 
 				Headers: {
-					// DisplayOptions: Display Options
-					// GameplayOptions: Gameplay Options
+					DisplayOptions: Configurações de Exibição
+					GameplayOptions: Configurações de Gameplay
 				}
 
 				ShowClassTags: {
@@ -1292,14 +1292,14 @@ Mods: {
 				}
 
 				ToggleAutoreuseLimiter: {
-					// Label: Autoreuse Limiter
-					// Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
+					Label: Limitador de reuso automático
+					Tooltip: Alternar a restrição de efeitos de auto-reuso efetuadas pelo mod
 				}
 			}
 		}
 
-		// Tiles.DungeonChest.MapEntry_Locked: Locked Dungeon Chest
+		Tiles.DungeonChest.MapEntry_Locked: Baú do Calabouço Bloqueado
 		RecipeGroups.Any: "{0} {1}"
-		// DropConditions.DungeonKeyCondition.Description: Drops in {$Bestiary_Biomes.TheDungeon} in Hardmode
+		DropConditions.DungeonKeyCondition.Description: Surge em {$Bestiary_Biomes.TheDungeon} no Modo Difícil
 	}
 }

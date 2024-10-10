@@ -1155,7 +1155,7 @@ Mods: {
 			ClickerTag: 点击大师
 			TotalClicks: 共计点击次数:[c/{0}:{1}]
 			MoneyGenerated: 总计金币生成:[c/{0}:{1}]
-			ForMoreInfo: 按住'自动选择'键({0})显示点击效果详细信息
+			ForMoreInfo: 按住'{0}'键({1})显示点击效果详细信息
 		}
 
 		UI: {

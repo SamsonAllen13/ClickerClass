@@ -13,6 +13,7 @@ using Terraria.DataStructures;
 using Terraria.GameContent.Drawing;
 using Terraria.GameInput;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.Utilities;
 
@@ -263,14 +264,22 @@ namespace ClickerClass.Items
 
 					if (index != -1)
 					{
-						var keys = PlayerInput.CurrentProfile.InputModes[InputMode.Keyboard].KeyStatus[TriggerNames.SmartSelect];
-						string key = keys.Count == 0 ? null : keys[0];
-
 						//If has a key, but not pressing it, show the ForMoreInfo text
 						//Otherwise, list all effects
+						string keybind = PlayerInput.GenerateInputTag_ForCurrentGamemode(tagForGameplay: false, TriggerNames.SmartSelect);
+						string keyname = Language.GetTextValue("LegacyMenu.160");
+						bool showDesc;
 
-						//No tml hooks between controlTorch getting set, and then reset again in SmartSelectLookup, so we have to use the raw data from PlayerInput
-						bool showDesc = key == null || PlayerInput.Triggers.Current.SmartSelect;
+						if (keybind == string.Empty)
+						{
+							showDesc = true;
+							keybind = Language.GetTextValue("LegacyMenu.195"); //<unbound>
+						}
+						else
+						{
+							//No tml hooks between controlTorch getting set, and then reset again in SmartSelectLookup, so we have to use the raw data from PlayerInput
+							showDesc = PlayerInput.Triggers.Current.SmartSelect;
+						}
 
 						foreach (var name in effects)
 						{
@@ -284,7 +293,7 @@ namespace ClickerClass.Items
 						{
 							//Add ForMoreInfo as the last line
 							index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));
-							var ttl = new TooltipLine(Mod, "ForMoreInfo", LangHelper.GetText("Tooltip.ForMoreInfo", key))
+							var ttl = new TooltipLine(Mod, "ForMoreInfo", LangHelper.GetText("Tooltip.ForMoreInfo", keyname, keybind))
 							{
 								OverrideColor = Color.Gray
 							};

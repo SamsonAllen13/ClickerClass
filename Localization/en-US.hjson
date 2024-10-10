@@ -1155,7 +1155,7 @@ Mods: {
 			ClickerTag: Clicker Class
 			TotalClicks: Total clicks: [c/{0}:{1}]
 			MoneyGenerated: Money Generated: [c/{0}:{1}]
-			ForMoreInfo: Hold 'Auto Select' key ({0}) to show click effects
+			ForMoreInfo: Hold '{0}' key ({1}) to show click effects
 		}
 
 		UI: {

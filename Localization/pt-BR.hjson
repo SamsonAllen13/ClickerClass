@@ -1155,7 +1155,7 @@ Mods: {
 			ClickerTag: Classe Clicker
 			TotalClicks: Cliques totais: [c/{0}:{1}]
 			MoneyGenerated: Dinheiro gerado: [c/{0}:{1}]
-			ForMoreInfo: Segure a tecla 'Selecionar Automaticamente' ({0}) para exibir efeitos de clique
+			ForMoreInfo: Segure a tecla '{0}' ({1}) para exibir efeitos de clique
 		}
 
 		UI: {

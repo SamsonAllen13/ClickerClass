@@ -59,6 +59,7 @@ namespace ClickerClass
 		{
 			DoWikithisSupport();
 			DoColoredDamageTypesSupport();
+			DoThoriumModSupport();
 
 			//Only clicker weapons
 			RecipeBrowser_AddToCategory("Clickers", "Weapons", "UI/RecipeBrowser_Clickers", (Item item) =>
@@ -95,6 +96,33 @@ namespace ClickerClass
 				var critColor = (88, 92, 222);
 				coloreddamagetypes.Call("AddDamageType", ModContent.GetInstance<ClickerDamage>(), tooltipColor, damageColor, critColor);
 			}
+		}
+
+		private static void DoThoriumModSupport()
+		{
+			if (!ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod))
+			{
+				return;
+			}
+
+			if (thoriumMod.Version >= new Version(1, 7, 1, 7))
+			{
+				var damageClass = ModContent.GetInstance<ClickerDamage>();
+				string customPrefix = "Focus";
+				thoriumMod.Call("TerrariumArmorAddClassFocus",
+					ModContent.GetInstance<ClickerDamage>(),
+					(Action<Player>)TerrariumArmorAddClassFocus_Effect,
+					damageClass.GetLocalization($"{customPrefix}.Name"),
+					damageClass.GetLocalization($"{customPrefix}.Description").WithFormatArgs(TerrariumArmorAddClassFocus_ClickAmountDecrease)
+					);
+			}
+		}
+
+		private static readonly int TerrariumArmorAddClassFocus_ClickAmountDecrease = 2;
+
+		private static void TerrariumArmorAddClassFocus_Effect(Player player)
+		{
+			player.GetModPlayer<ClickerPlayer>().clickerBonus += TerrariumArmorAddClassFocus_ClickAmountDecrease;
 		}
 
 		/// <summary>

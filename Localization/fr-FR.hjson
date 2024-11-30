@@ -121,7 +121,16 @@ Mods: {
 			ClickerTotalExceeds: Total de {0} clics ou plus
 		}
 
-		DamageClasses.ClickerDamage.DisplayName: dégâts de clic
+		DamageClasses: {
+			ClickerDamage: {
+				DisplayName: dégâts de clic
+
+				Focus: {
+					// Name: Clicker Focus
+					Description: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				}
+			}
+		}
 
 		Keybinds: {
 			ClickerAccessory.DisplayName: Accessoire de Cliqueur

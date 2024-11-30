@@ -121,7 +121,16 @@ Mods: {
 			ClickerTotalExceeds: 需要点击次数达到{0}或更多
 		}
 
-		DamageClasses.ClickerDamage.DisplayName: 点击伤害
+		DamageClasses: {
+			ClickerDamage: {
+				DisplayName: 点击伤害
+
+				Focus: {
+					// Name: Clicker Focus
+					Description: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				}
+			}
+		}
 
 		Keybinds: {
 			ClickerAccessory.DisplayName: 切换饰品功能

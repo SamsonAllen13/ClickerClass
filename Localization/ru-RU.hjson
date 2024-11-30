@@ -121,7 +121,16 @@ Mods: {
 			ClickerTotalExceeds: Сделано {0} кликов или более
 		}
 
-		DamageClasses.ClickerDamage.DisplayName: ед. урона клика
+		DamageClasses: {
+			ClickerDamage: {
+				DisplayName: ед. урона клика
+
+				Focus: {
+					// Name: Clicker Focus
+					Description: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				}
+			}
+		}
 
 		Keybinds: {
 			ClickerAccessory.DisplayName: Аксессуар нажимателя

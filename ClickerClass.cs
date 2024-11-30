@@ -1,4 +1,5 @@
 using ClickerClass.Core.Netcode;
+using ClickerClass.Items.Weapons.Clickers;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
@@ -60,18 +61,7 @@ namespace ClickerClass
 			DoWikithisSupport();
 			DoColoredDamageTypesSupport();
 			DoThoriumModSupport();
-
-			//Only clicker weapons
-			RecipeBrowser_AddToCategory("Clickers", "Weapons", "UI/RecipeBrowser_Clickers", (Item item) =>
-			{
-				return ClickerSystem.IsClickerWeapon(item);
-			});
-
-			//Every other clicker item
-			RecipeBrowser_AddToCategory("Clicker Items", "Other", "UI/RecipeBrowser_ClickerItems", (Item item) =>
-			{
-				return ClickerSystem.IsClickerItem(item) && !ClickerSystem.IsClickerWeapon(item);
-			});
+			DoRecipeBrowserSupport();
 		}
 
 		public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -98,12 +88,21 @@ namespace ClickerClass
 			}
 		}
 
+		private static readonly int TerrariumArmorAddClassFocus_ClickAmountDecrease = 2;
+
+		private static void TerrariumArmorAddClassFocus_Effect(Player player)
+		{
+			player.GetModPlayer<ClickerPlayer>().clickerBonus += TerrariumArmorAddClassFocus_ClickAmountDecrease;
+		}
+
 		private static void DoThoriumModSupport()
 		{
 			if (!ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod))
 			{
 				return;
 			}
+
+			thoriumMod.Call("AddMartianItemID", ModContent.ItemType<HighTechClicker>());
 
 			if (thoriumMod.Version >= new Version(1, 7, 1, 7))
 			{
@@ -118,11 +117,24 @@ namespace ClickerClass
 			}
 		}
 
-		private static readonly int TerrariumArmorAddClassFocus_ClickAmountDecrease = 2;
-
-		private static void TerrariumArmorAddClassFocus_Effect(Player player)
+		private static void DoRecipeBrowserSupport()
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerBonus += TerrariumArmorAddClassFocus_ClickAmountDecrease;
+			if (!ModLoader.TryGetMod("RecipeBrowser", out Mod recipeBrowser))
+			{
+				return;
+			}
+
+			//Only clicker weapons
+			RecipeBrowser_AddToCategory(recipeBrowser, "Clickers", "Weapons", "UI/RecipeBrowser_Clickers", (Item item) =>
+			{
+				return ClickerSystem.IsClickerWeapon(item);
+			});
+
+			//Every other clicker item
+			RecipeBrowser_AddToCategory(recipeBrowser, "Clicker Items", "Other", "UI/RecipeBrowser_ClickerItems", (Item item) =>
+			{
+				return ClickerSystem.IsClickerItem(item) && !ClickerSystem.IsClickerWeapon(item);
+			});
 		}
 
 		/// <summary>
@@ -132,9 +144,9 @@ namespace ClickerClass
 		/// <param name="category">The parent category</param>
 		/// <param name="texture">The 24x24 path to texture within the mod</param>
 		/// <param name="predicate">The condition at which an item is listed in this subcategory</param>
-		private void RecipeBrowser_AddToCategory(string name, string category, string texture, Predicate<Item> predicate)
+		private static void RecipeBrowser_AddToCategory(Mod recipeBrowser, string name, string category, string texture, Predicate<Item> predicate)
 		{
-			if (!Main.dedServ && ModLoader.TryGetMod("RecipeBrowser", out Mod recipeBrowser))
+			if (!Main.dedServ)
 			{
 				recipeBrowser.Call(new object[5]
 				{
@@ -142,8 +154,8 @@ namespace ClickerClass
 					name,
 					category,
 					recipeBrowser.Version >= new Version(0, 10, 5) ?
-					this.Assets.Request<Texture2D>(texture) :
-					this.Assets.Request<Texture2D>(texture, AssetRequestMode.ImmediateLoad).Value, // 24x24 icon
+					mod.Assets.Request<Texture2D>(texture) :
+					mod.Assets.Request<Texture2D>(texture, AssetRequestMode.ImmediateLoad).Value, // 24x24 icon
 					predicate
 				});
 			}

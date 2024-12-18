@@ -663,7 +663,7 @@ Mods: {
 
 			RGBHelm: {
 				DisplayName: Casque RVB
-				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 				SetBonus: Tous les {0} clics, votre curseur libèrera un éclat chromatique
 			}
 

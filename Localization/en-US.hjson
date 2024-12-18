@@ -663,7 +663,7 @@ Mods: {
 
 			RGBHelm: {
 				DisplayName: RGB Helm
-				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 				SetBonus: Every {0} clicks propels a chromatic burst from your cursor
 			}
 

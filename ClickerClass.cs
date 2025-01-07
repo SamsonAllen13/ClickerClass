@@ -1,5 +1,6 @@
 using ClickerClass.Core.Netcode;
 using ClickerClass.Items.Weapons.Clickers;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
@@ -104,13 +105,14 @@ namespace ClickerClass
 
 			thoriumMod.Call("AddMartianItemID", ModContent.ItemType<HighTechClicker>());
 
-			if (thoriumMod.Version >= new Version(1, 7, 1, 7))
+			if (thoriumMod.Version >= new Version(1, 7, 2, 0))
 			{
 				var damageClass = ModContent.GetInstance<ClickerDamage>();
 				string customPrefix = "Focus";
 				thoriumMod.Call("TerrariumArmorAddClassFocus",
 					ModContent.GetInstance<ClickerDamage>(),
 					(Action<Player>)TerrariumArmorAddClassFocus_Effect,
+					new Color(130, 143, 242),
 					damageClass.GetLocalization($"{customPrefix}.Name"),
 					damageClass.GetLocalization($"{customPrefix}.Description").WithFormatArgs(TerrariumArmorAddClassFocus_ClickAmountDecrease)
 					);

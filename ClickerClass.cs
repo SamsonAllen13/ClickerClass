@@ -163,4 +163,39 @@ namespace ClickerClass
 			}
 		}
 	}
+
+	public static class MoRSupportHelper
+	{
+		public const short Arcane = 1;
+		public const short Fire = 2;
+		public const short Water = 3;
+		public const short Ice = 4;
+		public const short Earth = 5;
+		public const short Wind = 6;
+		public const short Thunder = 7;
+		public const short Holy = 8;
+		public const short Shadow = 9;
+		public const short Nature = 10;
+		public const short Poison = 11;
+		public const short Blood = 12;
+		public const short Psychic = 13;
+		public const short Celestial = 14;
+		public const short Explosive = 15;
+
+		public static void RegisterElement(this Item item, int elementID, bool projsInheritItemElements = false)
+		{
+			if (!Main.dedServ && ModLoader.TryGetMod("Redemption", out Mod redemptionMod))
+			{
+				redemptionMod.Call("addElementItem", elementID, item.type, projsInheritItemElements);
+			}
+		}
+
+		public static void RegisterElement(this Projectile projectile, int elementID)
+		{
+			if (!Main.dedServ && ModLoader.TryGetMod("Redemption", out Mod redemptionMod))
+			{
+				redemptionMod.Call("addElementProj", elementID, projectile.type);
+			}
+		}
+	}
 }

@@ -184,7 +184,7 @@ namespace ClickerClass
 
 		public static void RegisterElement(this Item item, int elementID, bool projsInheritItemElements = false)
 		{
-			if (!Main.dedServ && ModLoader.TryGetMod("Redemption", out Mod redemptionMod))
+			if (ModLoader.TryGetMod("Redemption", out Mod redemptionMod))
 			{
 				redemptionMod.Call("addElementItem", elementID, item.type, projsInheritItemElements);
 			}
@@ -192,7 +192,7 @@ namespace ClickerClass
 
 		public static void RegisterElement(this Projectile projectile, int elementID)
 		{
-			if (!Main.dedServ && ModLoader.TryGetMod("Redemption", out Mod redemptionMod))
+			if (ModLoader.TryGetMod("Redemption", out Mod redemptionMod))
 			{
 				redemptionMod.Call("addElementProj", elementID, projectile.type);
 			}

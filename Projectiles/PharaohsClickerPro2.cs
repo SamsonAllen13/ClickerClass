@@ -16,6 +16,9 @@ namespace ClickerClass.Projectiles
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Arcane);
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Earth);
 		}
 
 		public override void SetDefaults()

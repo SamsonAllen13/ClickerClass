@@ -41,6 +41,8 @@ namespace ClickerClass.Projectiles
 			base.SetStaticDefaults();
 			Main.projFrames[Projectile.type] = 6;
 			Main.projPet[Projectile.type] = true;
+
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Wind);
 		}
 
 		public override void SetDefaults()

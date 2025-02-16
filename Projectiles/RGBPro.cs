@@ -53,6 +53,9 @@ namespace ClickerClass.Projectiles
 			Main.projFrames[Projectile.type] = 2;
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 5;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
+
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Arcane);
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Celestial);
 		}
 
 		public override void SetDefaults()

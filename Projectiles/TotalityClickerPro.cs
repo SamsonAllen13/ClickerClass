@@ -43,9 +43,9 @@ namespace ClickerClass.Projectiles
 		{
 			base.SetStaticDefaults();
 
-			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Fire);
-			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Shadow);
-			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Celestial);
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Fire, projsInheritProjElements: true);
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Shadow, projsInheritProjElements: true);
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Celestial, projsInheritProjElements: true);
 		}
 
 		public override void SetDefaults()

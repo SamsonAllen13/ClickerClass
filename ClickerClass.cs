@@ -190,11 +190,11 @@ namespace ClickerClass
 			}
 		}
 
-		public static void RegisterElement(this Projectile projectile, int elementID)
+		public static void RegisterElement(this Projectile projectile, int elementID, bool projsInheritProjElements = false)
 		{
 			if (ModLoader.TryGetMod("Redemption", out Mod redemptionMod))
 			{
-				redemptionMod.Call("addElementProj", elementID, projectile.type);
+				redemptionMod.Call("addElementProj", elementID, projectile.type, projsInheritProjElements);
 			}
 		}
 	}

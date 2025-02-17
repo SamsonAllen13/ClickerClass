@@ -28,8 +28,8 @@ namespace ClickerClass.Projectiles
 			base.SetStaticDefaults();
 			Main.projFrames[Projectile.type] = 6;
 
-			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Ice);
-			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Wind);
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Ice, projsInheritProjElements: true);
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Wind, projsInheritProjElements: true);
 		}
 
 		public override void SetDefaults()

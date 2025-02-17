@@ -40,7 +40,7 @@ namespace ClickerClass.Projectiles
 			ProjectileID.Sets.TrailCacheLength[Projectile.type] = 20;
 			ProjectileID.Sets.TrailingMode[Projectile.type] = 0;
 
-			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Fire);
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Fire, projsInheritProjElements: true);
 		}
 
 		public override void SetDefaults()

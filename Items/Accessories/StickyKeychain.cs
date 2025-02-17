@@ -17,6 +17,7 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Water); // For tooltip
 
 			ClickEffect.StickyKeychain = ClickerSystem.RegisterClickEffect(Mod, "StickyKeychain", ClickAmount, new Color(145, 180, 230, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

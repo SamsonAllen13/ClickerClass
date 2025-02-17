@@ -14,6 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Fire, projsInheritItemElements: true);
 
 			ClickEffect.Incinerate = ClickerSystem.RegisterClickEffect(Mod, "Incinerate", 15, new Color(255, 155, 65), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

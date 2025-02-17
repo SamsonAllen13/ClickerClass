@@ -18,6 +18,8 @@ namespace ClickerClass.Projectiles
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Holy);
 		}
 
 		public override void SetDefaults()

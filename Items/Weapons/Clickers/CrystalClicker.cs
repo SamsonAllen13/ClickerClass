@@ -12,6 +12,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Holy, projsInheritItemElements: true);
 
 			ClickEffect.Dazzle = ClickerSystem.RegisterClickEffect(Mod, "Dazzle", 8, new Color(200, 50, 255), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

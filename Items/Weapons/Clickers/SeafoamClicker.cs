@@ -12,6 +12,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Water, projsInheritItemElements: true);
 
 			ClickEffect.SeaSpray = ClickerSystem.RegisterClickEffect(Mod, "SeaSpray", 15, new Color(160, 230, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

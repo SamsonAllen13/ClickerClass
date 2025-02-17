@@ -12,6 +12,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Wind, projsInheritItemElements: true);
 
 			ClickEffect.BalloonDefense = ClickerSystem.RegisterClickEffect(Mod, "BalloonDefense", 20, new Color(200, 125, 125), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

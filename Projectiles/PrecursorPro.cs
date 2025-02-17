@@ -5,6 +5,13 @@ namespace ClickerClass.Projectiles
 {
 	public class PrecursorPro : ClickerProjectile
 	{
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Fire);
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Earth);
+		}
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();

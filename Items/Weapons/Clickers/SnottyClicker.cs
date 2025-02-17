@@ -12,6 +12,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Poison, projsInheritItemElements: true);
 
 			ClickEffect.OgreGold = ClickerSystem.RegisterClickEffect(Mod, "OgreGold", 1, new Color(180, 215, 150), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

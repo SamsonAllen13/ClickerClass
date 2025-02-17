@@ -27,6 +27,9 @@ namespace ClickerClass.Items.Tools
 			{
 				glowmask = new(() => ModContent.Request<Texture2D>(Texture + "_Glow"));
 			}
+
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Arcane, projsInheritItemElements: true);
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Celestial, projsInheritItemElements: true);
 		}
 
 		public override void SetDefaults()

@@ -12,6 +12,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Earth, projsInheritItemElements: true);
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Wind, projsInheritItemElements: true);
 
 			ClickEffect.DustDevil = ClickerSystem.RegisterClickEffect(Mod, "DustDevil", 10, new Color(220, 185, 120), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

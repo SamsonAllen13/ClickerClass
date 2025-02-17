@@ -51,6 +51,8 @@ namespace ClickerClass.Projectiles
 			base.SetStaticDefaults();
 
 			ProjectileID.Sets.CanDistortWater[Projectile.type] = false;
+
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Thunder);
 		}
 
 		public override void SetDefaults()

@@ -31,6 +31,8 @@ namespace ClickerClass.Projectiles
 		{
 			base.SetStaticDefaults();
 			Main.projFrames[Projectile.type] = 3;
+
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Water);
 		}
 
 		public override void SetDefaults()

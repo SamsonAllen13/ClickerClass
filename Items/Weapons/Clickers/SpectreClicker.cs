@@ -14,6 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			//Special tooltip set before this normally, but we use lang keys so it's handled automatically
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Arcane, projsInheritItemElements: true);
 
 			ClickEffect.PhaseReach = ClickerSystem.RegisterClickEffect(Mod, "PhaseReach", 1, new Color(100, 255, 255), null);
 		}

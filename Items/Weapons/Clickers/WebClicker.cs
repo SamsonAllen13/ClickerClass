@@ -12,6 +12,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Nature, projsInheritItemElements: true);
 
 			ClickEffect.WebSplash = ClickerSystem.RegisterClickEffect(Mod, "WebSplash", 10, new Color(190, 190, 175), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

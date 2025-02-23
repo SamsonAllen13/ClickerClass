@@ -13,6 +13,7 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Holy); // For tooltip
 
 			ClickEffect.ClearKeychain = ClickerSystem.RegisterClickEffect(Mod, "ClearKeychain", 15, new Color(225, 200, 255, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

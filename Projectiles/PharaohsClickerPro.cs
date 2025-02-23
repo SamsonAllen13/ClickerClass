@@ -38,6 +38,9 @@ namespace ClickerClass.Projectiles
 		{
 			base.SetStaticDefaults();
 			Main.projPet[Projectile.type] = true;
+
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Arcane, projsInheritProjElements: true);
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Earth, projsInheritProjElements: true);
 		}
 
 		public override void SetDefaults()

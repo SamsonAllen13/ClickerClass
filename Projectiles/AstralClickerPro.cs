@@ -25,6 +25,14 @@ namespace ClickerClass.Projectiles
 			set => Projectile.ai[1] = value ? 1f : 0f;
 		}
 
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Celestial);
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Explosive);
+		}
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();

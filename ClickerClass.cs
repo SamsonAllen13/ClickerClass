@@ -1,4 +1,6 @@
 using ClickerClass.Core.Netcode;
+using ClickerClass.Items.Accessories;
+using ClickerClass.Items.Placeable;
 using ClickerClass.Items.Weapons.Clickers;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -7,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ClickerClass
@@ -63,6 +66,7 @@ namespace ClickerClass
 			DoColoredDamageTypesSupport();
 			DoThoriumModSupport();
 			DoRecipeBrowserSupport();
+			DoNewBeginningsSupport();
 		}
 
 		public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -160,6 +164,26 @@ namespace ClickerClass
 					mod.Assets.Request<Texture2D>(texture, AssetRequestMode.ImmediateLoad).Value, // 24x24 icon
 					predicate
 				});
+			}
+		}
+
+		private static void DoNewBeginningsSupport()
+		{
+			if (!Main.dedServ && ModLoader.TryGetMod("NewBeginnings", out Mod newBeginnings))
+			{
+				var icon = "UI/NewBeginnings_HackerIcon";
+				newBeginnings.Call(
+					"AddOrigin",
+					mod.Assets.Request<Texture2D>(icon),
+					"Hacker",
+					"Mods.ClickerClass.NewBeginningsSupport.Hacker",
+					new (int, int)[] { (ModContent.ItemType<DesktopComputer>(), 1) },
+					ItemID.HiTekSunglasses, ItemID.None, ItemID.None,
+					new int[] { ModContent.ItemType<Soda>() },
+					100, 20,
+					-1, ModContent.ItemType<FaultyClicker>(), -1, -1,
+					11, 1
+				);
 			}
 		}
 	}

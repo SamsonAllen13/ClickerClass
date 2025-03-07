@@ -126,7 +126,7 @@ Mods: {
 				DisplayName: ед. урона клика
 
 				Focus: {
-					Name: Фокус на курсоре
+					Name: Специализация кликов
 					Description: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 				}
 			}

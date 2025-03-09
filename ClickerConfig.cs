@@ -32,5 +32,13 @@ namespace ClickerClass
 		[BackgroundColor(255, 175, 100)]
 		[DefaultValue(true)]
 		public bool ToggleAutoreuseLimiter;
+		
+		[BackgroundColor(255, 175, 100)]
+		[Range(1, 10), Increment(1), DefaultValue(1)]
+		public int ToggleAutoreuseLimiterValue { get; set; }
+		
+		[BackgroundColor(255, 175, 100)]
+		[DefaultValue(true)]
+		public bool ToggleAutoreuseLimiterAccessibility;
 	}
 }

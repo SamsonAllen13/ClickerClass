@@ -780,6 +780,11 @@ Mods: {
 			WoodenClicker.DisplayName: Деревянный курсор
 			AshenClicker.DisplayName: Пепельный курсор
 			MouseClicker.DisplayName: Мышиный курсор
+
+			AutoreuseWig: {
+				// DisplayName: Autoreuse Wig
+				// Tooltip: ""
+			}
 		}
 
 		InfoDisplays: {
@@ -1304,6 +1309,16 @@ Mods: {
 				ToggleAutoreuseLimiter: {
 					Label: Ограничитель автоиспользования
 					Tooltip: Переключение настройки, определяющей, будет ли мод ограничивать эффекты автоиспользования или нет
+				}
+
+				ToggleAutoreuseLimiterValue: {
+					// Label: Toggle Autoreuse Limiter Value
+					// Tooltip: Change the rate at which your clicker weapons click while Autoreuse is enabled
+				}
+
+				ToggleAutoreuseLimiterAccessibility: {
+					// Label: Toggle Autoreuse Limiter Accessibility
+					// Tooltip: Toggle whether the reason you're using Autoreuse is for accessibility reasons or not
 				}
 			}
 		}

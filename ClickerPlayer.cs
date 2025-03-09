@@ -1611,6 +1611,12 @@ namespace ClickerClass
 					accHotKeychainAmount = 0;
 				}
 			}
+			
+			//if (!Player.dead && !Player.invis && Player.head == -1 &&
+			//!ClickerConfigClient.Instance.ToggleAutoreuseLimiter && !ClickerConfigClient.Instance.ToggleAutoreuseLimiterAccessibility)
+			//{
+				Player.head = EquipLoader.GetEquipSlot(Mod, nameof(AutoreuseWig), EquipType.Head);
+			//}
 
 			// Out of Combat timer
 			if (outOfCombatTimer > 0)
@@ -1819,6 +1825,25 @@ namespace ClickerClass
 		{
 			// Don't count as in combat after death, in case respawn timer is less than OutOfCombatTimeMax
 			outOfCombatTimer = 0;
+		}
+		
+		public override void PostUpdateMiscEffects()
+		{
+			SetAutoreuseWig();
+		}
+		
+		public override void FrameEffects()
+		{
+			SetAutoreuseWig();
+		}
+		
+		private void SetAutoreuseWig()
+		{
+			if (!Player.dead && !Player.invis && Player.head == -1 &&
+			!ClickerConfigClient.Instance.ToggleAutoreuseLimiter && !ClickerConfigClient.Instance.ToggleAutoreuseLimiterAccessibility)
+			{
+				Player.head = EquipLoader.GetEquipSlot(Mod, nameof(AutoreuseWig), EquipType.Head);
+			}
 		}
 
 		public override void HideDrawLayers(PlayerDrawSet drawInfo)

@@ -780,6 +780,11 @@ Mods: {
 			WoodenClicker.DisplayName: 木点击器
 			// AshenClicker.DisplayName: Ashen Clicker
 			// MouseClicker.DisplayName: Mouse Clicker
+
+			AutoreuseWig: {
+				// DisplayName: Autoreuse Wig
+				// Tooltip: ""
+			}
 		}
 
 		InfoDisplays: {
@@ -1303,6 +1308,16 @@ Mods: {
 				ToggleAutoreuseLimiter: {
 					Label: 自动点击限制
 					Tooltip: 开关此模组物品的自动点击
+				}
+
+				ToggleAutoreuseLimiterValue: {
+					// Label: Toggle Autoreuse Limiter Value
+					// Tooltip: Change the rate at which your clicker weapons click while Autoreuse is enabled
+				}
+
+				ToggleAutoreuseLimiterAccessibility: {
+					// Label: Toggle Autoreuse Limiter Accessibility
+					// Tooltip: Toggle whether the reason you're using Autoreuse is for accessibility reasons or not
 				}
 			}
 		}

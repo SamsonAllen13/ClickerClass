@@ -113,7 +113,9 @@ namespace ClickerClass.Items
 
 				if (!ClickerConfigClient.Instance.ToggleAutoreuseLimiter)
 				{
-					return 2f; //useTime set to 2 minimum even with the toggle
+					//TODO - Consider making 'ToggleAutoreuseLimiterValue' based on CPS rather than useTime values
+					//useTime set to 2 minimum even with the toggle (ClickerConfigClient)
+					return 1f + (1f * ClickerConfigClient.Instance.ToggleAutoreuseLimiterValue);
 				}
 				else
 				{

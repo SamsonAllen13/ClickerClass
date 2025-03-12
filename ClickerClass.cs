@@ -17,6 +17,8 @@ namespace ClickerClass
 		public static ModKeybind AimAssistKey;
 		internal static ClickerClass mod;
 
+		internal static int AutoreuseWig_Head_Slot = -1;
+
 		/// <summary>
 		/// Populated by the buffs themselves, includes all buffs that bosses should be immune to (so no more manual npc.buffImmune)
 		/// </summary>
@@ -49,7 +51,7 @@ namespace ClickerClass
 
 		private void LoadClient()
 		{
-
+			AutoreuseWig_Head_Slot = EquipLoader.AddEquipTexture(this, "ClickerClass/DrawLayers/AutoreuseWig_Head", EquipType.Head, name: "AutoreuseWig_Head");
 		}
 
 		public override object Call(params object[] args)

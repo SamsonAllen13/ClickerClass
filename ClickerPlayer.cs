@@ -1611,12 +1611,6 @@ namespace ClickerClass
 					accHotKeychainAmount = 0;
 				}
 			}
-			
-			//if (!Player.dead && !Player.invis && Player.head == -1 &&
-			//!ClickerConfigClient.Instance.ToggleAutoreuseLimiter && !ClickerConfigClient.Instance.ToggleAutoreuseLimiterAccessibility)
-			//{
-				Player.head = EquipLoader.GetEquipSlot(Mod, nameof(AutoreuseWig), EquipType.Head);
-			//}
 
 			// Out of Combat timer
 			if (outOfCombatTimer > 0)
@@ -1839,10 +1833,10 @@ namespace ClickerClass
 		
 		private void SetAutoreuseWig()
 		{
-			if (!Player.dead && !Player.invis && Player.head == -1 &&
+			if (!Player.dead && !Player.invis && Player.head == -1 && ClickerClass.AutoreuseWig_Head_Slot != -1 &&
 			!ClickerConfigClient.Instance.ToggleAutoreuseLimiter && !ClickerConfigClient.Instance.ToggleAutoreuseLimiterAccessibility)
 			{
-				Player.head = EquipLoader.GetEquipSlot(Mod, nameof(AutoreuseWig), EquipType.Head);
+				Player.head = ClickerClass.AutoreuseWig_Head_Slot;
 			}
 		}
 

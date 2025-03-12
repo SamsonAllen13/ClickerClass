@@ -780,11 +780,6 @@ Mods: {
 			WoodenClicker.DisplayName: Деревянный курсор
 			AshenClicker.DisplayName: Пепельный курсор
 			MouseClicker.DisplayName: Мышиный курсор
-
-			AutoreuseWig: {
-				// DisplayName: Autoreuse Wig
-				// Tooltip: ""
-			}
 		}
 
 		InfoDisplays: {
@@ -1313,7 +1308,11 @@ Mods: {
 
 				ToggleAutoreuseLimiterValue: {
 					// Label: Toggle Autoreuse Limiter Value
-					// Tooltip: Change the rate at which your clicker weapons click while Autoreuse is enabled
+					/* Tooltip:
+						'''
+						Change the rate (in clicks per second) at which your clicker weapons click while Autoreuse is enabled
+						Due to rounding, for values between 15 and 20, the cps will be 20, and for values above that, it will be 30
+						''' */
 				}
 
 				ToggleAutoreuseLimiterAccessibility: {

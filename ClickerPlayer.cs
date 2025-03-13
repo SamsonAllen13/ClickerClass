@@ -137,7 +137,7 @@ namespace ClickerClass
 		public int itemSeafoamClickerHPS = 0;
 
 		/// <summary>
-		/// Used to prevent spawning more dream clickers once one is picked up
+		/// Used to reduce spawn rate of dream clickers once one is picked up
 		/// </summary>
 		public bool pickedUpDreamClicker = false;
 

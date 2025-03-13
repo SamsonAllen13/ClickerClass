@@ -126,7 +126,7 @@ Mods: {
 				DisplayName: dano por clique
 
 				Focus: {
-					// Name: Clicker Focus
+					Name: Foco Clicker
 					Description: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 				}
 			}
@@ -1306,17 +1306,17 @@ Mods: {
 				}
 
 				ToggleAutoreuseLimiterValue: {
-					// Label: Toggle Autoreuse Limiter Value
-					/* Tooltip:
+					Label: Alternar o valor do limitador de disparo automático
+					Tooltip:
 						'''
-						Change the rate (in clicks per second) at which your clicker weapons click while Autoreuse is enabled
-						Due to rounding, for values between 15 and 20, the cps will be 20, and for values above that, it will be 30
-						''' */
+						Altera a taxa (em cliques por segundo) de cliques de suas armas clicker enquanto o Disparo automático está ativado
+						Devido ao arredondamento, para valores entre 15 e 20, os CPS serão 20, e para valores acima disso, serão 30
+						'''
 				}
 
 				ToggleAutoreuseLimiterAccessibility: {
-					// Label: Toggle Autoreuse Limiter Accessibility
-					// Tooltip: Toggle whether the reason you're using Autoreuse is for accessibility reasons or not
+					Label: Alternar acessibilidade no limitador de disparo automático
+					Tooltip: Alterne se você utiliza a opção de Disparo automático por motivos de acessibilidade
 				}
 			}
 		}

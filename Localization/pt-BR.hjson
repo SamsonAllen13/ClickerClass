@@ -118,7 +118,7 @@ Mods: {
 
 		Conditions: {
 			ClickerSelected: Clicker selecionado
-			ClickerTotalExceeds: {0} ou mais cliques no total
+			ClickerTotalExceeds: "{0} ou mais cliques no total"
 		}
 
 		DamageClasses: {
@@ -1176,7 +1176,7 @@ Mods: {
 		GameTips: {
 			ClickerClassTip0: Clicker Class: Armas clicker só podem ser utilizadas dentro de sua área de efeito e com linha de visão adequada.
 			ClickerClassTip1: Clicker Class: O seu número total de cliques com Clickers é registrado. Confira com uma Caixa Gamer!
-			ClickerClassTip2: Clicker Class: Certos itens só serão vendidos se você tiver utilizado armas clicker o suficiente. 
+			ClickerClassTip2: Clicker Class: Certos itens só serão vendidos se você tiver utilizado armas clicker o suficiente.
 			ClickerClassTip3: Clicker Class: Lembre-se de descansar as mãos se elas começarem a doer!
 			ClickerClassTip4: Clicker Class: Encontre um bom Pacote de Gelo para esfriar suas mãos se clicar estiver causando cãibras!
 		}

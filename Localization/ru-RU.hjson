@@ -1307,17 +1307,17 @@ Mods: {
 				}
 
 				ToggleAutoreuseLimiterValue: {
-					// Label: Toggle Autoreuse Limiter Value
-					/* Tooltip:
+					Label: Установить значение огнаничителя автоиспользования
+					Tooltip:
 						'''
-						Change the rate (in clicks per second) at which your clicker weapons click while Autoreuse is enabled
-						Due to rounding, for values between 15 and 20, the cps will be 20, and for values above that, it will be 30
-						''' */
+						Определяет скорость (в кликах в секунду) автоиспользования ваших курсоров
+						Из-за округления, значения в 15 или 20 КВС будут отображаться как 20 КВС, а значения выше — как 30 КВС
+						'''
 				}
 
 				ToggleAutoreuseLimiterAccessibility: {
-					// Label: Toggle Autoreuse Limiter Accessibility
-					// Tooltip: Toggle whether the reason you're using Autoreuse is for accessibility reasons or not
+					Label: Доступность автоиспользования
+					Tooltip: Включает режим доступности для функции автоиспользования (для удобства игроков с ограниченными возможностями)
 				}
 			}
 		}

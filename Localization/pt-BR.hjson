@@ -1304,6 +1304,20 @@ Mods: {
 					// Label: Autoreuse Limiter
 					// Tooltip: Toggle whether the mod attempts to restrict auto-reuse effects or not
 				}
+
+				ToggleAutoreuseLimiterValue: {
+					// Label: Toggle Autoreuse Limiter Value
+					/* Tooltip:
+						'''
+						Change the rate (in clicks per second) at which your clicker weapons click while Autoreuse is enabled
+						Due to rounding, for values between 15 and 20, the cps will be 20, and for values above that, it will be 30
+						''' */
+				}
+
+				ToggleAutoreuseLimiterAccessibility: {
+					// Label: Toggle Autoreuse Limiter Accessibility
+					// Tooltip: Toggle whether the reason you're using Autoreuse is for accessibility reasons or not
+				}
 			}
 		}
 

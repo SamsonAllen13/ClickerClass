@@ -136,6 +136,11 @@ namespace ClickerClass
 		public int itemSeafoamClickerTimer = 0;
 		public int itemSeafoamClickerHPS = 0;
 
+		/// <summary>
+		/// Used to prevent spawning more dream clickers once one is picked up
+		/// </summary>
+		public bool pickedUpDreamClicker = false;
+
 		//Armor
 		public int setAbilityDelayTimer = 0;
 		public float setMotherboardRatio = 0f;
@@ -901,6 +906,7 @@ namespace ClickerClass
 			tag.Add("paintingCondition_MoonLordDefeatedWithClicker", paintingCondition_MoonLordDefeatedWithClicker);
 			tag.Add("paintingCondition_Clicked100Cookies", paintingCondition_Clicked100Cookies);
 			tag.Add("paintingCondition_ClickedCookiesCount", paintingCondition_ClickedCookiesCount);
+			tag.Add("pickedUpDreamClicker", pickedUpDreamClicker);
 		}
 
 		public override void LoadData(TagCompound tag)
@@ -911,6 +917,7 @@ namespace ClickerClass
 			paintingCondition_MoonLordDefeatedWithClicker = tag.GetBool("paintingCondition_MoonLordDefeatedWithClicker");
 			paintingCondition_Clicked100Cookies = tag.GetBool("paintingCondition_Clicked100Cookies");
 			paintingCondition_ClickedCookiesCount = tag.GetInt("paintingCondition_ClickedCookiesCount");
+			pickedUpDreamClicker = tag.GetBool("pickedUpDreamClicker");
 		}
 
 		public override void CopyClientState(ModPlayer clientClone)

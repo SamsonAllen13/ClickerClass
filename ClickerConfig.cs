@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
+using System.Runtime.Serialization;
 using Terraria.ModLoader.Config;
 
 namespace ClickerClass
@@ -32,5 +34,27 @@ namespace ClickerClass
 		[BackgroundColor(255, 175, 100)]
 		[DefaultValue(true)]
 		public bool ToggleAutoreuseLimiter;
+
+		public const int ToggleAutoreuseLimiterValue_Min = 1;
+		public const int ToggleAutoreuseLimiterValue_Max = 30;
+		[BackgroundColor(255, 175, 100)]
+		[Range(ToggleAutoreuseLimiterValue_Min, ToggleAutoreuseLimiterValue_Max), Increment(1), DefaultValue(15)]
+		[Slider]
+		public int ToggleAutoreuseLimiterValue;
+		
+		[BackgroundColor(255, 175, 100)]
+		[DefaultValue(false)]
+		public bool ToggleAutoreuseLimiterAccessibility;
+
+		[OnDeserialized]
+		internal void OnDeserializedMethod(StreamingContext context)
+		{
+			Clamp(ref ToggleAutoreuseLimiterValue, ToggleAutoreuseLimiterValue_Min, ToggleAutoreuseLimiterValue_Max);
+		}
+
+		public static void Clamp(ref int value, int min, int max)
+		{
+			value = value < min ? min : (value > max ? max : value);
+		}
 	}
 }

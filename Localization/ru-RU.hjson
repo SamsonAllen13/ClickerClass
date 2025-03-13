@@ -121,7 +121,16 @@ Mods: {
 			ClickerTotalExceeds: Сделано {0} кликов или более
 		}
 
-		DamageClasses.ClickerDamage.DisplayName: ед. урона клика
+		DamageClasses: {
+			ClickerDamage: {
+				DisplayName: ед. урона клика
+
+				Focus: {
+					// Name: Clicker Focus
+					Description: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				}
+			}
+		}
 
 		Keybinds: {
 			ClickerAccessory.DisplayName: Аксессуар нажимателя
@@ -1155,7 +1164,7 @@ Mods: {
 			ClickerTag: Кликер
 			TotalClicks: Всего кликов: [c/{0}:{1}]
 			MoneyGenerated: Сгенерировано монет: [c/{0}:{1}]
-			ForMoreInfo: Удерживайте клавишу 'Auto Select' ({0}) для отображения эффектов кликов
+			ForMoreInfo: Удерживайте клавишу '{0}' ({1}) для отображения эффектов кликов
 		}
 
 		UI: {
@@ -1295,6 +1304,20 @@ Mods: {
 				ToggleAutoreuseLimiter: {
 					Label: Ограничитель автоиспользования
 					Tooltip: Переключение настройки, определяющей, будет ли мод ограничивать эффекты автоиспользования или нет
+				}
+
+				ToggleAutoreuseLimiterValue: {
+					// Label: Toggle Autoreuse Limiter Value
+					/* Tooltip:
+						'''
+						Change the rate (in clicks per second) at which your clicker weapons click while Autoreuse is enabled
+						Due to rounding, for values between 15 and 20, the cps will be 20, and for values above that, it will be 30
+						''' */
+				}
+
+				ToggleAutoreuseLimiterAccessibility: {
+					// Label: Toggle Autoreuse Limiter Accessibility
+					// Tooltip: Toggle whether the reason you're using Autoreuse is for accessibility reasons or not
 				}
 			}
 		}

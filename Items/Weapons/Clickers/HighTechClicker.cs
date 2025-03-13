@@ -16,11 +16,6 @@ namespace ClickerClass.Items.Weapons.Clickers
 		{
 			base.SetStaticDefaults();
 
-			if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod))
-			{
-				thoriumMod.Call("AddMartianItemID", Item.type);
-			}
-
 			ClickEffect.Discharge = ClickerSystem.RegisterClickEffect(Mod, "Discharge", 10, new Color(75, 255, 200), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;

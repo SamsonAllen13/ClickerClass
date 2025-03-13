@@ -19,6 +19,7 @@ namespace ClickerClass.Tiles.Mice
 			Main.tileSolid[Type] = false;
 			Main.tileNoAttach[Type] = true;
 			Main.tileLavaDeath[Type] = true;
+			TileID.Sets.DrawTileInSolidLayer[Type] = true;
 			TileID.Sets.NotReallySolid[Type] = true;
 			TileID.Sets.DrawsWalls[Type] = true;
 			TileID.Sets.HasOutlines[Type] = true;

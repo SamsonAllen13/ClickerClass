@@ -43,6 +43,13 @@ namespace ClickerClass.Items
 					}
 					break;
 				case ItemID.FrozenCrateHard: goto case ItemID.FrozenCrate;
+				case ItemID.OasisCrate:
+					{
+						//Technically not desert loot, but pyramid, mainly a fallback
+						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<PharaohsClicker>(), 8));
+					}
+					break;
+				case ItemID.OasisCrateHard: goto case ItemID.OasisCrate;
 				case ItemID.FloatingIslandFishingCrate:
 					{
 						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<StarryClicker>(), 3));

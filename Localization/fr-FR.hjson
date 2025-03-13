@@ -121,7 +121,16 @@ Mods: {
 			ClickerTotalExceeds: Total de {0} clics ou plus
 		}
 
-		DamageClasses.ClickerDamage.DisplayName: dégâts de clic
+		DamageClasses: {
+			ClickerDamage: {
+				DisplayName: dégâts de clic
+
+				Focus: {
+					// Name: Clicker Focus
+					Description: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
+				}
+			}
+		}
 
 		Keybinds: {
 			ClickerAccessory.DisplayName: Accessoire de Cliqueur
@@ -654,7 +663,7 @@ Mods: {
 
 			RGBHelm: {
 				DisplayName: Casque RVB
-				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
+				Tooltip: "{$Common.Tooltips.ReducesAmountOfClicksByFlat}"
 				SetBonus: Tous les {0} clics, votre curseur libèrera un éclat chromatique
 			}
 
@@ -1155,7 +1164,7 @@ Mods: {
 			ClickerTag: Classe Cliqueur
 			TotalClicks: Clics Totaux: [c/{0}:{1}]
 			MoneyGenerated: Monnaie Générée: [c/{0}:{1}]
-			ForMoreInfo: Maintenez la touche 'Sélection Automatique' ({0}) pour voir les effets de clic
+			ForMoreInfo: Maintenez la touche '{0}' ({1}) pour voir les effets de clic
 		}
 
 		UI: {
@@ -1294,6 +1303,20 @@ Mods: {
 				ToggleAutoreuseLimiter: {
 					Label: Limiteur d'utilisation automatique
 					Tooltip: Permet au mod de tenter de restreindre les utilisations automatiques ou non
+				}
+
+				ToggleAutoreuseLimiterValue: {
+					// Label: Toggle Autoreuse Limiter Value
+					/* Tooltip:
+						'''
+						Change the rate (in clicks per second) at which your clicker weapons click while Autoreuse is enabled
+						Due to rounding, for values between 15 and 20, the cps will be 20, and for values above that, it will be 30
+						''' */
+				}
+
+				ToggleAutoreuseLimiterAccessibility: {
+					// Label: Toggle Autoreuse Limiter Accessibility
+					// Tooltip: Toggle whether the reason you're using Autoreuse is for accessibility reasons or not
 				}
 			}
 		}

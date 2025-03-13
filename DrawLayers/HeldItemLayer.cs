@@ -147,7 +147,11 @@ namespace ClickerClass.DrawLayers
 					return;
 				}
 
-				Vector2 vector5 = new Vector2(weaponGlow.Width / 2, weaponGlow.Height / 2);
+				Vector2 vector5 = new Vector2(0, weaponGlow.Height / 2);
+				if (BuildInfo.tMLVersion < new System.Version(2024, 03, 1, 17))
+				{
+					vector5 = new Vector2(weaponGlow.Width / 2, weaponGlow.Height / 2);
+				}
 				Vector2 vector6 = Main.DrawPlayerItemPos(drawPlayer.gravDir, heldItem.type);
 				int num12 = (int)vector6.X;
 				vector5.Y = vector6.Y;

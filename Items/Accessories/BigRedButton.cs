@@ -18,6 +18,8 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Fire); // For tooltip
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Explosive); // For tooltip
 
 			ClickEffect.BigRedButton = ClickerSystem.RegisterClickEffect(Mod, "BigRedButton", ClickAmount, new Color(230, 100, 20, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

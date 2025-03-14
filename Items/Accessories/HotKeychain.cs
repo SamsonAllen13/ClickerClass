@@ -10,6 +10,7 @@ namespace ClickerClass.Items.Accessories
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Fire); // For tooltip
 		}
 
 		public override void SetDefaults()

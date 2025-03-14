@@ -13,11 +13,6 @@ namespace ClickerClass.Projectiles
 			set => Projectile.ai[0] = value ? 1f : 0f;
 		}
 
-		public override void SetStaticDefaults()
-		{
-			base.SetStaticDefaults();
-		}
-
 		public override void SetDefaults()
 		{
 			base.SetDefaults();

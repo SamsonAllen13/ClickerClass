@@ -14,6 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Blood, projsInheritItemElements: true);
 
 			ClickEffect.Linger = ClickerSystem.RegisterClickEffect(Mod, "Linger", 10, new Color(255, 50, 50), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

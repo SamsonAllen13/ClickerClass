@@ -1324,5 +1324,13 @@ Mods: {
 		Tiles.DungeonChest.MapEntry_Locked: Baú do Calabouço Bloqueado
 		RecipeGroups.Any: "{0} {1}"
 		DropConditions.DungeonKeyCondition.Description: Surge em {$Bestiary_Biomes.TheDungeon} no Modo Difícil
+		
+		NewBeginningsSupport: {
+			Hacker: {
+				// DisplayName: Hacker
+				// Flavor: With fingers all fired up and ready, their CPS is off the charts!
+				// Description: Starts with high-tech sunglasses, a faulty clicker, a soda, and a desktop computer.
+			}
+		}
 	}
 }

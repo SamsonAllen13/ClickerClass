@@ -13,6 +13,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Holy, projsInheritItemElements: true);
 
 			ClickEffect.HolyNova = ClickerSystem.RegisterClickEffect(Mod, "HolyNova", 12, new Color(255, 225, 0), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

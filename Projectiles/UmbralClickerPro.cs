@@ -42,6 +42,13 @@ namespace ClickerClass.Projectiles
 			set => Projectile.localAI[0] = value;
 		}
 
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Shadow);
+		}
+
 		public override void SetDefaults()
 		{
 			base.SetDefaults();

@@ -14,6 +14,9 @@ namespace ClickerClass.Projectiles
 		{
 			base.SetStaticDefaults();
 			Main.projFrames[Projectile.type] = 4;
+
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Fire, projsInheritProjElements: true);
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Explosive, projsInheritProjElements: true);
 		}
 
 		public override void SetDefaults()

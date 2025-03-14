@@ -113,7 +113,8 @@ namespace ClickerClass.Items
 
 				if (!ClickerConfigClient.Instance.ToggleAutoreuseLimiter)
 				{
-					return 2f; //useTime set to 2 minimum even with the toggle
+					//useTime set to 2 -> 30 per click maximum possible
+					return 30f / ClickerConfigClient.Instance.ToggleAutoreuseLimiterValue;
 				}
 				else
 				{

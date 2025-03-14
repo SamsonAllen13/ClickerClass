@@ -136,6 +136,11 @@ namespace ClickerClass
 		public int itemSeafoamClickerTimer = 0;
 		public int itemSeafoamClickerHPS = 0;
 
+		/// <summary>
+		/// Used to reduce spawn rate of dream clickers once one is picked up
+		/// </summary>
+		public bool pickedUpDreamClicker = false;
+
 		//Armor
 		public int setAbilityDelayTimer = 0;
 		public float setMotherboardRatio = 0f;
@@ -901,6 +906,7 @@ namespace ClickerClass
 			tag.Add("paintingCondition_MoonLordDefeatedWithClicker", paintingCondition_MoonLordDefeatedWithClicker);
 			tag.Add("paintingCondition_Clicked100Cookies", paintingCondition_Clicked100Cookies);
 			tag.Add("paintingCondition_ClickedCookiesCount", paintingCondition_ClickedCookiesCount);
+			tag.Add("pickedUpDreamClicker", pickedUpDreamClicker);
 		}
 
 		public override void LoadData(TagCompound tag)
@@ -911,6 +917,7 @@ namespace ClickerClass
 			paintingCondition_MoonLordDefeatedWithClicker = tag.GetBool("paintingCondition_MoonLordDefeatedWithClicker");
 			paintingCondition_Clicked100Cookies = tag.GetBool("paintingCondition_Clicked100Cookies");
 			paintingCondition_ClickedCookiesCount = tag.GetInt("paintingCondition_ClickedCookiesCount");
+			pickedUpDreamClicker = tag.GetBool("pickedUpDreamClicker");
 		}
 
 		public override void CopyClientState(ModPlayer clientClone)
@@ -1819,6 +1826,25 @@ namespace ClickerClass
 		{
 			// Don't count as in combat after death, in case respawn timer is less than OutOfCombatTimeMax
 			outOfCombatTimer = 0;
+		}
+		
+		public override void PostUpdateMiscEffects()
+		{
+			SetAutoreuseWig();
+		}
+		
+		public override void FrameEffects()
+		{
+			SetAutoreuseWig();
+		}
+		
+		private void SetAutoreuseWig()
+		{
+			if (!Player.dead && !Player.invis && Player.head == -1 && ClickerClass.AutoreuseWig_Head_Slot != -1 &&
+			!ClickerConfigClient.Instance.ToggleAutoreuseLimiter && !ClickerConfigClient.Instance.ToggleAutoreuseLimiterAccessibility)
+			{
+				Player.head = ClickerClass.AutoreuseWig_Head_Slot;
+			}
 		}
 
 		public override void HideDrawLayers(PlayerDrawSet drawInfo)

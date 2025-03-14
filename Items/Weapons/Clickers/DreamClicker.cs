@@ -1,5 +1,7 @@
+using ClickerClass.Core.Netcode.Packets;
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using System.IO;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -10,6 +12,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 	public class DreamClicker : ClickerWeapon
 	{
 		public static readonly int StarStrikesAmount = 4;
+
+		protected override bool CloneNewInstances => true;
+
+		public bool DroppedNaturally { get; set; }
 
 		public override void SetStaticDefaults()
 		{
@@ -45,9 +51,49 @@ namespace ClickerClass.Items.Weapons.Clickers
 			Item.rare = ItemRarityID.Green;
 		}
 
+		public override ModItem Clone(Item newEntity)
+		{
+			var clone = base.Clone(newEntity);
+			(clone as DreamClicker).DroppedNaturally = DroppedNaturally;
+
+			return clone;
+		}
+
+		public override void NetReceive(BinaryReader reader)
+		{
+			DroppedNaturally = reader.ReadBoolean();
+		}
+
+		public override void NetSend(BinaryWriter writer)
+		{
+			writer.Write((bool)DroppedNaturally);
+		}
+
 		public override void HoldItem(Player player)
 		{
 			player.GetModPlayer<ClickerPlayer>().itemDreamClicker = true;
+		}
+
+		public override bool OnPickup(Player player)
+		{
+			if (!DroppedNaturally || !player.ItemSpace(Item).CanTakeItem)
+			{
+				return base.OnPickup(player);
+			}
+
+			var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+			if (!clickerPlayer.pickedUpDreamClicker)
+			{
+				clickerPlayer.pickedUpDreamClicker = true;
+
+				//OnPickup is clientside, while the item drop is serverside
+				if (Main.netMode == NetmodeID.MultiplayerClient)
+				{
+					new PickedUpDreamClickerPacket(player).Send();
+				}
+			}
+
+			return base.OnPickup(player);
 		}
 
 		public override void PostUpdate()
@@ -91,13 +137,21 @@ namespace ClickerClass.Items.Weapons.Clickers
 					if (player.active && !player.dead)
 					{
 						var rect = Utils.CenteredRectangle(player.Center, new Vector2(1920, 1080) * 2f);
-						if (rect.Contains(X, Y) && Main.rand.NextBool(8))
+
+						if (rect.Contains(X, Y) && Main.rand.NextBool(player.GetModPlayer<ClickerPlayer>().pickedUpDreamClicker ? 25 : 8))
 						{
 							int itemToDrop = ModContent.ItemType<DreamClicker>();
-							int number = Item.NewItem(source, X, Y, Width, Height, itemToDrop);
-							if (Main.netMode == NetmodeID.MultiplayerClient)
+							int number = Item.NewItem(source, X, Y, Width, Height, itemToDrop, noBroadcast: true);
+
+							//Drop with noBroadcast to customize it, then manual sync
+							if (Main.item[number].ModItem is DreamClicker dreamClicker)
 							{
-								NetMessage.SendData(MessageID.SyncItem, -1, -1, null, number, 1f);
+								dreamClicker.DroppedNaturally = true;
+							}
+
+							if (Main.netMode == NetmodeID.Server)
+							{
+								NetMessage.SendData(MessageID.SyncItem, -1, -1, null, number);
 							}
 							break;
 						}

@@ -165,4 +165,71 @@ namespace ClickerClass
 			}
 		}
 	}
+
+	/// <summary>
+	/// Handles mod call support for Mod of Redemption.
+	/// See <a href="https://modofredemption.wiki.gg/wiki/Mod_Calls">MoR wiki</a> for further information.
+	/// </summary>
+	public static class MoRSupportHelper
+	{
+		public const short Arcane = 1;
+		public const short Fire = 2;
+		public const short Water = 3;
+		public const short Ice = 4;
+		public const short Earth = 5;
+		public const short Wind = 6;
+		public const short Thunder = 7;
+		public const short Holy = 8;
+		public const short Shadow = 9;
+		public const short Nature = 10;
+		public const short Poison = 11;
+		public const short Blood = 12;
+		public const short Psychic = 13;
+		public const short Celestial = 14;
+		public const short Explosive = 15;
+
+		/// <summary>
+		/// Registers an item under a given <a href="https://modofredemption.wiki.gg/wiki/Elemental_damage">MoR element</a>, applying damage multipliers based on the element and enemy type, and other unique effects based on the element.
+		/// </summary>
+		/// <param name="item">The Item to apply the element to.</param>
+		/// <param name="elementID">The ID of the element to apply to the item. Use <see cref="MoRSupportHelper">MoRSupportHelper</see> consts (ex. <see cref="MoRSupportHelper.Fire">MoRSupportHelper.Fire</see>).</param>
+		/// <param name="projsInheritItemElements">Whether the element should also be applied to any projectiles spawned by the item. Defaults to false.</param>
+		public static void RegisterElement(this Item item, int elementID, bool projsInheritItemElements = false)
+		{
+			if (ModLoader.TryGetMod("Redemption", out Mod redemptionMod))
+			{
+				redemptionMod.Call("addElementItem", elementID, item.type, projsInheritItemElements);
+			}
+		}
+
+		/// <summary>
+		/// Registers a projectile under a given <a href="https://modofredemption.wiki.gg/wiki/Elemental_damage">MoR element</a>, applying damage multipliers based on the element and enemy type, and other unique effects based on the element.
+		/// </summary>
+		/// <param name="projectile">The Projectile to apply the element to.</param>
+		/// <param name="elementID">The ID of the element to apply to the item. Use <see cref="MoRSupportHelper">MoRSupportHelper</see> consts (ex. <see cref="MoRSupportHelper.Fire">MoRSupportHelper.Fire</see>).</param>
+		/// <param name="projsInheritProjElements">Whether the element should also be applied to any projectiles spawned by the projectile. Defaults to false.</param>
+		public static void RegisterElement(this Projectile projectile, int elementID, bool projsInheritProjElements = false)
+		{
+			if (ModLoader.TryGetMod("Redemption", out Mod redemptionMod))
+			{
+				redemptionMod.Call("addElementProj", elementID, projectile.type, projsInheritProjElements);
+			}
+		}
+
+		/// <summary>
+		/// Checks if a given attack will trigger MoR's <a href="https://modofredemption.wiki.gg/wiki/Elemental_damage#Decapitation">decapitation</a> mechanic, instantly killing certain enemies and dropping their heads if applicable.
+		/// To be called on an onHitNPC() function.
+		/// </summary>
+		/// <param name="target">The NPC to try the decapitation on. This is normally the target parameter from an onHitNPC() function.</param>
+		/// <param name="damageDone">The damage dealt by the attack to try the decapitation on. This is normally the damageDone parameter from an onHitNPC() function.</param>
+		/// <param name="isCrit">Whether the attack to try the decapitation on was a critical hit. This is normally the hit.Crit parameter from an onHitNPC() function.</param>
+		/// <param name="chance">The chance the attack successfully decapitates or not. Defaults to 200 (1/200 chance).</param>
+		public static void tryDecapitation(NPC target, int damageDone, bool isCrit, int chance = 200)
+		{
+			if (ModLoader.TryGetMod("Redemption", out Mod redemptionMod))
+			{
+				redemptionMod.Call("decapitation", target, damageDone, isCrit, chance);
+			}
+		}
+	}
 }

@@ -32,6 +32,9 @@ namespace ClickerClass.Items.Tools
 					Color = (PlayerDrawSet drawInfo) => new Color(255, 255, 255, 50) * 0.7f
 				});
 			}
+
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Arcane);
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Celestial);
 		}
 
 		public override void SetDefaults()

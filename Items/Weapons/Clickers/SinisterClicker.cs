@@ -14,6 +14,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Blood, projsInheritItemElements: true);
 
 			ClickEffect.Siphon = ClickerSystem.RegisterClickEffect(Mod, "Siphon", 10, new Color(100, 25, 25), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{

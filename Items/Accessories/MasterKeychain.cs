@@ -6,6 +6,14 @@ namespace ClickerClass.Items.Accessories
 {
 	public class MasterKeychain : ClickerItem
 	{
+		public override void SetStaticDefaults()
+		{
+			base.SetStaticDefaults();
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Fire); // For tooltip
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Water); // For tooltip
+			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Holy); // For tooltip
+		}
+
 		public override void SetDefaults()
 		{
 			Item.width = 20;

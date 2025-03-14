@@ -1,5 +1,5 @@
 author = DivermanSam, Barometz, and direwolf420
-version = 1.4.1.1
+version = 1.4.1.2
 displayName = The Clicker Class
 homepage = https://forums.terraria.org/index.php?threads/the-clicker-class.101811/
 buildIgnore = *.csproj, *.sln, *.user, *.md, obj\*, bin\*, .vs\*, .git\*, .gitignore, .gitattributes

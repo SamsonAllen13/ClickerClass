@@ -1324,13 +1324,13 @@ Mods: {
 
 		Tiles.DungeonChest.MapEntry_Locked: Запертый сундук Темницы
 		RecipeGroups.Any: "{0} {1}"
-		// DropConditions.DungeonKeyCondition.Description: Выпадает в {$Bestiary_Biomes.TheDungeon} в сложном режиме
+		DropConditions.DungeonKeyCondition.Description: Выпадает в {$Bestiary_Biomes.TheDungeon} в хардмоде
 
 		NewBeginningsSupport: {
 			Hacker: {
-				// DisplayName: Hacker
-				// Flavor: With fingers all fired up and ready, their CPS is off the charts!
-				// Description: Starts with high-tech sunglasses, a faulty clicker, a soda, and a desktop computer.
+				DisplayName: Хакер
+				Flavor: Пальцы на готове, клики на максимуме!
+				Description: Начинает с высокотехнологичными очками, неисправным курсором, газировкой и настольным компьютером.
 			}
 		}
 	}

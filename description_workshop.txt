@@ -34,7 +34,7 @@ The [b]Clicker Class[/b] mod adds a set of weapons inspired by idle games like [
   [*] The contributors who helped with language localizations:[list]
     [*] 🇫🇷 French: [b]Verveine[/b]
     [*] 🇨🇳 Simplified Chinese: [b]Celestepic[/b]
-    [*] 🇷🇺 Russian: [b]RazzSG[/b]
+    [*] 🇷🇺 Russian: [b]RazzSG, Alino4kaHvoshch[/b]
     [*] 🇧🇷 Brazilian Portuguese: [b]Pixelnando[/b]
   [/list]
 [/list]

@@ -1324,7 +1324,7 @@ Mods: {
 		Tiles.DungeonChest.MapEntry_Locked: Baú do Calabouço Bloqueado
 		RecipeGroups.Any: "{0} {1}"
 		DropConditions.DungeonKeyCondition.Description: Surge em {$Bestiary_Biomes.TheDungeon} no Modo Difícil
-		
+
 		NewBeginningsSupport: {
 			Hacker: {
 				DisplayName: Hacker

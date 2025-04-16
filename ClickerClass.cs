@@ -8,12 +8,61 @@ using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass
 {
+	[ReinitializeDuringResizeArrays]
+	public static class CustomItemSets
+	{
+		public static bool[] MartianWeapon = ItemID.Sets.Factory.CreateNamedSet("ThoriumMod/MartianWeapon")
+			.RegisterBoolSet(false,
+			ModContent.ItemType<HighTechClicker>());
+	}
+
+	public class CustomSets : ModSystem
+	{
+		private static readonly int TerrariumArmorAddClassFocus_ClickAmountDecrease = 2;
+
+		private static void TerrariumArmorAddClassFocus_Effect(Player player)
+		{
+			player.GetModPlayer<ClickerPlayer>().clickerBonus += TerrariumArmorAddClassFocus_ClickAmountDecrease;
+		}
+
+		public override void ResizeArrays()
+		{
+			if (ModLoader.TryGetMod("ThoriumMod", out var otherMod))
+			{
+				ItemID.Sets.Factory.CreateNamedSet("ThoriumMod/MartianWeapon")
+					.RegisterBoolSet(false,
+					ModContent.ItemType<HighTechClicker>());
+
+				Type DCIDType = otherMod.Code.GetType("ThoriumMod.ModSupport.DamageClassID");
+				Type setsType = DCIDType.GetNestedType("Sets");
+				var setFactoryObj = setsType.GetField("Factory", BindingFlags.Static | BindingFlags.Public);
+				SetFactory factory = (SetFactory)setFactoryObj.GetValue(null);
+
+				var set = factory.CreateNamedSet("ThoriumMod/ClassFocus").RegisterCustomSet<(Action<Player>, Color, LocalizedText, LocalizedText)>(
+					(null, Color.Transparent, null, null)
+					);
+
+				var damageClass = ModContent.GetInstance<ClickerDamage>();
+				string customPrefix = "Focus";
+				set[damageClass.Type] =
+					(
+					TerrariumArmorAddClassFocus_Effect,
+					new Color(130, 143, 242),
+					damageClass.GetLocalization($"{customPrefix}.Name"),
+					damageClass.GetLocalization($"{customPrefix}.Description").WithFormatArgs(TerrariumArmorAddClassFocus_ClickAmountDecrease)
+					);
+			}
+		}
+	}
+
 	public class ClickerClass : Mod
 	{
 		public static ModKeybind AutoClickKey;
@@ -111,8 +160,6 @@ namespace ClickerClass
 			{
 				return;
 			}
-
-			thoriumMod.Call("AddMartianItemID", ModContent.ItemType<HighTechClicker>());
 
 			if (thoriumMod.Version >= new Version(1, 7, 2, 0))
 			{

@@ -75,7 +75,7 @@ namespace ClickerClass.Projectiles
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			MoRSupportHelper.tryDecapitation(target, damageDone, hit.Crit);
+			MoRSupportHelper.TryDecapitation(target, damageDone, hit.Crit);
 		}
 
 		public override void AI()

@@ -102,6 +102,9 @@ namespace ClickerClass
 			player.GetModPlayer<ClickerPlayer>().clickerBonus += TerrariumArmorAddClassFocus_ClickAmountDecrease;
 		}
 
+		/// <summary>
+		/// see https://thoriummod.wiki.gg/wiki/Mod_Calls
+		/// </summary>
 		private static void DoThoriumModSupport()
 		{
 			if (!ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod))
@@ -116,7 +119,7 @@ namespace ClickerClass
 				var damageClass = ModContent.GetInstance<ClickerDamage>();
 				string customPrefix = "Focus";
 				thoriumMod.Call("TerrariumArmorAddClassFocus",
-					ModContent.GetInstance<ClickerDamage>(),
+					damageClass,
 					(Action<Player>)TerrariumArmorAddClassFocus_Effect,
 					new Color(130, 143, 242),
 					damageClass.GetLocalization($"{customPrefix}.Name"),
@@ -169,9 +172,12 @@ namespace ClickerClass
 			}
 		}
 
+		/// <summary>
+		/// see https://github.com/GabeHasWon/NewBeginnings/wiki/Adding-Custom-Origins
+		/// </summary>
 		private static void DoNewBeginningsSupport()
 		{
-			if (!Main.dedServ && ModLoader.TryGetMod("NewBeginnings", out Mod newBeginnings))
+			if (ModLoader.TryGetMod("NewBeginnings", out Mod newBeginnings))
 			{
 				var icon = "UI/NewBeginnings_HackerIcon";
 				newBeginnings.Call(
@@ -248,7 +254,7 @@ namespace ClickerClass
 		/// <param name="damageDone">The damage dealt by the attack to try the decapitation on. This is normally the damageDone parameter from an onHitNPC() function.</param>
 		/// <param name="isCrit">Whether the attack to try the decapitation on was a critical hit. This is normally the hit.Crit parameter from an onHitNPC() function.</param>
 		/// <param name="chance">The chance the attack successfully decapitates or not. Defaults to 200 (1/200 chance).</param>
-		public static void tryDecapitation(NPC target, int damageDone, bool isCrit, int chance = 200)
+		public static void TryDecapitation(NPC target, int damageDone, bool isCrit, int chance = 200)
 		{
 			if (ModLoader.TryGetMod("Redemption", out Mod redemptionMod))
 			{

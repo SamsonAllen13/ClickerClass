@@ -25,7 +25,7 @@ namespace ClickerClass.InfoDisplays
 		public override string DisplayValue(ref Color displayColor, ref Color displayShadowColor)
 		{
 			Player player = Main.LocalPlayer;
-			var val = Math.Floor(player.GetModPlayer<ClickerPlayer>().clickerPerSecond);
+			var val = player.GetModPlayer<ClickerPlayer>().clickerPerSecondDisplay;
 			if (val == 0)
 			{
 				displayColor = InactiveInfoTextColor;

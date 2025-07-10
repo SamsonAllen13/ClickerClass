@@ -79,6 +79,14 @@ namespace ClickerClass
 		/// cps, use Math.Floor if you need as integer
 		/// </summary>
 		public float clickerPerSecond = 0;
+		/// <summary>
+		/// cps for display. Only updated when <see cref="clickerPerSecondCalculateDisplay"/> is true
+		/// </summary>
+		public int clickerPerSecondDisplay = 0;
+		/// <summary>
+		/// Defer calculating <see cref="clickerPerSecondDisplay"/> until data available
+		/// </summary>
+		public bool clickerPerSecondCalculateDisplay = false;
 		private const int ClickTimerCount = 60;
 		/// <summary>
 		/// Keeps track of clicks done in the last <see cref="ClickTimerCount"/> ticks, tracked as separate timers
@@ -380,6 +388,7 @@ namespace ClickerClass
 		/// </summary>
 		internal void AddClick()
 		{
+			clickerPerSecondCalculateDisplay = true;
 			clickTimers.Add(new Ref<float>(1f));
 			clickerTotal++;
 		}
@@ -421,6 +430,11 @@ namespace ClickerClass
 			}
 
 			clickerPerSecond = Math.Clamp(clickerPerSecond, 0, 60);
+			if (clickerPerSecondCalculateDisplay)
+			{
+				clickerPerSecondCalculateDisplay = false;
+				clickerPerSecondDisplay = (int)Math.Floor(clickerPerSecond == 0f ? 1 : clickerPerSecond);
+			}
 		}
 
 		private void HandleRadiusAlphas()

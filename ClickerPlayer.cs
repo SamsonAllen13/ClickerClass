@@ -433,7 +433,7 @@ namespace ClickerClass
 			if (clickerPerSecondCalculateDisplay)
 			{
 				clickerPerSecondCalculateDisplay = false;
-				clickerPerSecondDisplay = (int)Math.Floor(clickerPerSecond == 0f ? 1 : clickerPerSecond);
+				clickerPerSecondDisplay = (int)Math.Floor(clickerPerSecond);
 			}
 		}
 

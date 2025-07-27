@@ -129,9 +129,29 @@ namespace ClickerClass.Items
 						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<StickyKeychain>(), 4));
 					}
 					break;
+				case ItemID.EyeOfCthulhuBossBag:
+					{
+						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<WatchfulClicker>(), 4));
+					}
+					break;
+				case ItemID.EaterOfWorldsBossBag:
+					{
+						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<BurrowingClicker>(), 4));
+					}
+					break;
+				case ItemID.BrainOfCthulhuBossBag:
+					{
+						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<MindfulClicker>(), 4));
+					}
+					break;
 				case ItemID.DeerclopsBossBag:
 					{
 						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<CyclopsClicker>(), 4));
+					}
+					break;
+				case ItemID.QueenBeeBossBag:
+					{
+						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<StingingClicker>(), 4));
 					}
 					break;
 				case ItemID.WallOfFleshBossBag:
@@ -152,6 +172,11 @@ namespace ClickerClass.Items
 					break;
 				case ItemID.SkeletronPrimeBossBag: goto case ItemID.TwinsBossBag;
 				case ItemID.DestroyerBossBag: goto case ItemID.TwinsBossBag;
+				case ItemID.PlanteraBossBag:
+					{
+						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<FloralClicker>(), 4));
+					}
+					break;
 				case ItemID.BossBagBetsy:
 					{
 						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<DraconicClicker>(), 4));
@@ -159,7 +184,7 @@ namespace ClickerClass.Items
 					break;
 				case ItemID.FishronBossBag:
 					{
-						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SeafoamClicker>(), 5));
+						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<SeafoamClicker>(), 4));
 					}
 					break;
 				case ItemID.FairyQueenBossBag:

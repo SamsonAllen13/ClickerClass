@@ -18,9 +18,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 			{
 				List<string> excluded = new List<string>
 				{
+					//PHM
 					ClickEffect.Bold,
 					ClickEffect.Yoink,
-					ClickEffect.Nab
+					ClickEffect.Nab,
+					ClickEffect.Peekaboo,
+					ClickEffect.Burrow
 				};
 
 				List<ClickEffect> allowed = new List<ClickEffect>();

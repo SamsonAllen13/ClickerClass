@@ -90,6 +90,14 @@ namespace ClickerClass.Items
 			{
 				player.GetModPlayer<ClickerPlayer>().AddSFXButtonStack(item);
 			}
+			
+			//TODO - Clicker Catalogue - Make this net sync and be stored across world loading
+			var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+			
+			if (ClickerClass.mod.totalClickers.Contains(item.type) && !clickerPlayer.foundClickers.Contains(item.type))
+			{
+				clickerPlayer.foundClickers.Add(item.type);
+			}
 		}
 
 		public override float UseTimeMultiplier(Item item, Player player)
@@ -271,7 +279,7 @@ namespace ClickerClass.Items
 						string keyname = Language.GetTextValue("LegacyMenu.160");
 						bool showDesc;
 
-						if (keybind == string.Empty)
+						if (keybind == string.Empty || ClickerConfigClient.Instance.ShowEffectToggle)
 						{
 							showDesc = true;
 							keybind = Language.GetTextValue("LegacyMenu.195"); //<unbound>
@@ -290,7 +298,7 @@ namespace ClickerClass.Items
 							}
 						}
 
-						if (!showDesc && ClickerConfigClient.Instance.ShowEffectSuggestion)
+						if (!ClickerConfigClient.Instance.ShowEffectToggle)
 						{
 							//Add ForMoreInfo as the last line
 							index = tooltips.FindLastIndex(tt => tt.Mod.Equals("Terraria") && tt.Name.StartsWith("Tooltip"));

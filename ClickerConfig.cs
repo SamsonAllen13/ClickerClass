@@ -17,8 +17,8 @@ namespace ClickerClass
 		[DefaultValue(true)]
 		public bool ShowClassTags;
 
-		[DefaultValue(true)]
-		public bool ShowEffectSuggestion;
+		[DefaultValue(false)]
+		public bool ShowEffectToggle;
 
 		[DefaultValue(true)]
 		public bool ShowCustomCursors;

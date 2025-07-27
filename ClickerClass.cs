@@ -21,7 +21,13 @@ namespace ClickerClass
 		internal static ClickerClass mod;
 
 		internal static int AutoreuseWig_Head_Slot = -1;
-
+		
+		//TODO - Clicker Catalogue
+		/// <summary>
+		/// Keeps track of total number of clickers for the purposes of the 'Clicker Catalogue'
+		/// </summary>
+		public List<int> totalClickers = new List<int>();
+		
 		/// <summary>
 		/// Populated by the buffs themselves, includes all buffs that bosses should be immune to (so no more manual npc.buffImmune)
 		/// </summary>

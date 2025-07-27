@@ -61,7 +61,13 @@ namespace ClickerClass
 		public const float clickerRadiusRangeAlphaMax = 0.8f;
 		public const float clickerRadiusRangeAlphaStep = clickerRadiusRangeAlphaMax / 20f;
 		public float clickerRadiusRangeAlpha = clickerRadiusRangeAlphaMin;
-
+		
+		//TODO - Clicker Catalogue
+		public int chosenSecondClicker = -1;
+		/// <summary>
+		/// Keeps track of clickers the player has picked up for the purposes of the 'Clicker Catalogue'
+		/// </summary>
+		public List<int> foundClickers = new List<int>();
 		/// <summary>
 		/// Set via hotkey, reset if no autoclick-giving effects are applied (i.e. Hand Cream)
 		/// <br/>Synced whenever changed
@@ -139,6 +145,7 @@ namespace ClickerClass
 		public int outOfCombatTimer = 0;
 
 		//Item
+		public bool itemWatchfulClicker = false;
 		public bool itemBurningSuperDeath = false;
 		public bool itemDreamClicker = false;
 		public int itemSeafoamClickerTimer = 0;
@@ -678,11 +685,27 @@ namespace ClickerClass
 			float radiusSQ = ClickerRadiusReal * ClickerRadiusReal;
 
 			bool? collision = null; //Since it uses the same collision check twice, but it shouldn't just be calculated twice too
+			
+			bool ignoreTileLOS = false;
+			
+			Item heldItem = Player.HeldItem;
+			if (ClickerSystem.IsClickerWeapon(heldItem, out ClickerItemCore clickerItem))
+			{
+				if (HasClickEffect(ClickEffect.Burrow))
+				{
+					ignoreTileLOS = true;
+				}
+			}
 
 			if (Vector2.DistanceSquared(position, Player.Center) < radiusSQ)
 			{
 				collision = Collision.CanHit(new Vector2(Player.Center.X, Player.Center.Y - 12), 1, 1, position, 1, 1);
 				if (collision == true)
+				{
+					inRange = true;
+				}
+				
+				if (ignoreTileLOS)
 				{
 					inRange = true;
 				}
@@ -1072,6 +1095,16 @@ namespace ClickerClass
 
 			ResetAutoClickToggle();
 			
+			//TODO - Clicker Catalogue
+			
+			//Player.GetModPlayer<ClickerPlayer>().EnableClickEffect(ClickEffect.Yoink);
+			/*
+			for (int k = 0; k < foundClickers.Count; k++)
+			{
+				Main.NewText("Clickers: " + foundClickers[k]);
+			}
+			*/
+			
 			//Handle Seafoam health timer
 			if (itemSeafoamClickerHPS > 0)
 			{
@@ -1129,6 +1162,16 @@ namespace ClickerClass
 				{
 					clickerRadiusSwitchAlpha = clickerRadiusSwitchAlphaMin;
 					clickerDrawRadius = false;
+				}
+				
+				if (HasClickEffect(ClickEffect.Peekaboo))
+				{
+					itemWatchfulClicker = true;
+					Lighting.AddLight(Main.MouseWorld, 0.3f, 0.3f, 0.3f);
+				}
+				else
+				{
+					itemWatchfulClicker = false;
 				}
 
 				if (clickerItem.radiusBoost > 0f)
@@ -1190,6 +1233,7 @@ namespace ClickerClass
 			}
 			else
 			{
+				itemWatchfulClicker = false;
 				clickerRadiusColorDraw = Color.Lerp(Color.Transparent, clickerRadiusColorDraw, clickerRadiusSwitchAlpha);
 			}
 
@@ -1637,6 +1681,14 @@ namespace ClickerClass
 			if (outOfCombatTimer > 0)
 			{
 				outOfCombatTimer--;
+			}
+		}
+		
+		public override void ModifyZoom(ref float zoom)
+		{
+			if (itemWatchfulClicker)
+			{
+				zoom = 0.2f;
 			}
 		}
 

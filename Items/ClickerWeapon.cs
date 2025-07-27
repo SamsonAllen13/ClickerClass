@@ -1,3 +1,4 @@
+using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using Terraria;
@@ -87,6 +88,12 @@ namespace ClickerClass.Items
 							list.Add(name);
 						}
 					}
+				}
+				
+				//TODO - Clicker Catalogue - Need to somehow add Wooden Clicker too since it doesnt have a click effect
+				if (!ClickerClass.mod.totalClickers.Contains(item.type))
+				{
+					ClickerClass.mod.totalClickers.Add(item.type);
 				}
 			}
 		}

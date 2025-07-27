@@ -20,12 +20,13 @@ namespace ClickerClass.NPCs
 	{
 		public override bool InstancePerEntity => true;
 
-		public bool gouge = false;
-		public bool frozen = false;
-		public bool honeySlow = false;
-		public bool embrittle = false;
+		public bool charmed = false;
 		public bool crystalSlime = false;
 		public bool crystalSlimeFatigue = false;
+		public bool embrittle = false;
+		public bool frozen = false;
+		public bool gouge = false;
+		public bool honeySlow = false;
 		public bool oozed = false;
 		public bool seafoam = false;
 		public bool stunned = false;
@@ -54,12 +55,13 @@ namespace ClickerClass.NPCs
 
 		public override void ResetEffects(NPC npc)
 		{
-			gouge = false;
-			frozen = false;
-			honeySlow = false;
-			embrittle = false;
+			charmed = false;
 			crystalSlime = false;
 			crystalSlimeFatigue = false;
+			embrittle = false;
+			frozen = false;
+			gouge = false;
+			honeySlow = false;
 			oozed = false;
 			seafoam = false;
 			stunned = false;
@@ -105,6 +107,14 @@ namespace ClickerClass.NPCs
 			{
 				npc.position = npc.oldPosition;
 				npc.frameCounter = 0;
+			}
+		}
+		
+		public override void ModifyHitPlayer(NPC npc, Player target, ref Player.HurtModifiers modifiers)
+		{
+			if (charmed)
+			{
+				modifiers.SourceDamage *= 1f - (MindfulClicker.CharmReduction / 100f);
 			}
 		}
 
@@ -355,9 +365,33 @@ namespace ClickerClass.NPCs
 						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<StickyKeychain>(), 4));
 					}
 					break;
+				case NPCID.EyeofCthulhu:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<WatchfulClicker>(), 4));
+					}
+					break;
+				case NPCID.EaterofWorldsHead:
+					{
+						LeadingConditionRule eowNotExpertRule = new LeadingConditionRule(new Conditions.LegacyHack_IsBossAndNotExpert());
+						eowNotExpertRule.OnSuccess(new CommonDrop(ModContent.ItemType<BurrowingClicker>(), 4));
+						npcLoot.Add(eowNotExpertRule);
+					}
+					break;
+				case NPCID.EaterofWorldsBody: goto case NPCID.EaterofWorldsHead;
+				case NPCID.EaterofWorldsTail: goto case NPCID.EaterofWorldsHead;
+				case NPCID.BrainofCthulhu:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<MindfulClicker>(), 4));
+					}
+					break;
 				case NPCID.Deerclops:
 					{
 						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<CyclopsClicker>(), 4));
+					}
+					break;
+				case NPCID.QueenBee:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<StingingClicker>(), 4));
 					}
 					break;
 				case NPCID.WallofFlesh:
@@ -387,9 +421,14 @@ namespace ClickerClass.NPCs
 					}
 					break;
 				case NPCID.SkeletronPrime: goto case NPCID.TheDestroyer;
+				case NPCID.Plantera:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<FloralClicker>(), 4));
+					}
+					break;
 				case NPCID.DukeFishron:
 					{
-						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SeafoamClicker>(), 5));
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<SeafoamClicker>(), 4));
 					}
 					break;
 				case NPCID.HallowBoss:
@@ -736,6 +775,11 @@ namespace ClickerClass.NPCs
 				drawColor.R = (byte)(drawColor.R * 1f);
 				drawColor.G = (byte)(drawColor.G * 1f);
 				drawColor.B = (byte)(drawColor.B * 1f);
+			}
+			
+			if (charmed)
+			{
+				drawColor = NPC.buffColor(drawColor, 1f, 0.4f, 0.8f, 1f);
 			}
 		}
 

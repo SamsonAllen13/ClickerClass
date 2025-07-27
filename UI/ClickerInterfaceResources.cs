@@ -20,7 +20,8 @@ namespace ClickerClass.UI
 				new PaperclipsGauge(),
 				new AMedalGauge(),
 				new FMedalGauge(),
-				new SMedalGauge()
+				new SMedalGauge(),
+				new ClickerCatalogueUI()
 			};
 		}
 

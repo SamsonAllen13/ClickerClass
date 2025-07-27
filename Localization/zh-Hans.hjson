@@ -90,6 +90,11 @@ Mods: {
 				// DisplayName: Desktop Computer
 				Description: "{$Common.Tooltips.ReducesAmountOfClicksBy}"
 			}
+
+			Charmed: {
+				// DisplayName: Charmed
+				// Description: Dealing reduced contact damage to players
+			}
 		}
 
 		Common: {
@@ -780,6 +785,16 @@ Mods: {
 			WoodenClicker.DisplayName: 木点击器
 			// AshenClicker.DisplayName: Ashen Clicker
 			// MouseClicker.DisplayName: Mouse Clicker
+			// WatchfulClicker.DisplayName: Watchful Clicker
+			// BurrowingClicker.DisplayName: Burrowing Clicker
+			// MindfulClicker.DisplayName: Mindful Clicker
+			// StingingClicker.DisplayName: Stinging Clicker
+			// FloralClicker.DisplayName: Floral Clicker
+
+			ClickerCatalogue: {
+				// Tooltip: ""
+				// DisplayName: Clicker Catalogue
+			}
 		}
 
 		InfoDisplays: {
@@ -1139,6 +1154,31 @@ Mods: {
 				// Name: Trap
 				// Description: Throws out {0} mouse traps that snap and cling onto enemies
 			}
+
+			Peekaboo: {
+				// Name: Peekaboo
+				// Description: Extends your view radius and slightly lights up your cursor
+			}
+
+			Burrow: {
+				// Name: Burrow
+				// Description: Allows you to click through walls within your clicker radius
+			}
+
+			Charm: {
+				// Name: Charm
+				// Description: Charms enemies under your cursor, reducing their contact damage by {0}%
+			}
+
+			Swarm: {
+				// Name: Swarm
+				// Description: Summons a bee to hunt down enemies
+			}
+
+			Entangle: {
+				// Name: Entangle
+				// Description: Summons up to {0} grasping vines to attack nearby enemies
+			}
 		}
 
 		Prefixes: {
@@ -1171,6 +1211,7 @@ Mods: {
 			HotKeychainGauge: 热量: {0} / {1}
 			MedalGauge: 充能: {0} / {1}
 			PaperclipsGauge: 回形针: {0} / {1}
+			// ClickerCatalogueUI: Mods.ClickerClass.UI.ClickerCatalogueUI
 		}
 
 		GameTips: {
@@ -1260,6 +1301,10 @@ Mods: {
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			MouseClickerPro.DisplayName: "{$Items.MouseClicker.DisplayName}"
+			// MindfulClickerPro.DisplayName: Mindful Clicker Pro
+			// StingingClickerPro.DisplayName: Stinging Clicker Pro
+			// StingingClickerPro2.DisplayName: Stinging Clicker Pro2
+			// FloralClickerPro.DisplayName: Floral Clicker Pro
 		}
 
 		Configs: {
@@ -1276,13 +1321,9 @@ Mods: {
 					Tooltip: 在本模组物品描述上显示点击大师标识
 				}
 
-				ShowEffectSuggestion: {
-					Label: 显示'按住自动选择'文本
-					Tooltip:
-						'''
-						开关在武器上显示'按住自动选择键显示点击效果详细信息'这一提示文本
-						-无论是否开启,自动选择键依旧能使用-
-						'''
+				ShowEffectToggle: {
+					// Label: Display Clicker Effect Tooltip
+					// Tooltip: Toggle the display of the 'Hold auto select for clicker effects' suggestion text for clicker weapons
 				}
 
 				ShowCustomCursors: {

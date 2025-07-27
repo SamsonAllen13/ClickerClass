@@ -18,14 +18,18 @@ namespace ClickerClass.Items.Weapons.Clickers
 			{
 				List<string> excluded = new List<string>
 				{
+					//HM
 					ClickEffect.WildMagic,
 					ClickEffect.Mania,
 					ClickEffect.Conqueror,
 					ClickEffect.AutoClick,
 					ClickEffect.PhaseReach,
+					//PHM
 					ClickEffect.Bold,
 					ClickEffect.Yoink,
-					ClickEffect.Nab
+					ClickEffect.Nab,
+					ClickEffect.Peekaboo,
+					ClickEffect.Burrow
 				};
 
 				List<ClickEffect> allowed = new List<ClickEffect>();

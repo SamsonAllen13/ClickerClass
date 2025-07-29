@@ -148,6 +148,7 @@ namespace ClickerClass
 		public bool itemWatchfulClicker = false;
 		public bool itemBurningSuperDeath = false;
 		public bool itemDreamClicker = false;
+		public int itemCosmicClickerStage = 0;
 		public int itemSeafoamClickerTimer = 0;
 		public int itemSeafoamClickerHPS = 0;
 
@@ -1104,6 +1105,10 @@ namespace ClickerClass
 				Main.NewText("Clickers: " + foundClickers[k]);
 			}
 			*/
+			
+			//TODO - Clicker Catalogue - Add way to sort clickers by name, damage, click effect cost, and rarity
+			//Item item = ContentSamples.ItemsByType[itemType];
+			//ClickerClass.mod.totalClickers.OrderBy(p => p.damage).ToList();
 			
 			//Handle Seafoam health timer
 			if (itemSeafoamClickerHPS > 0)

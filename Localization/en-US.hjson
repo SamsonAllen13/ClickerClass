@@ -795,6 +795,8 @@ Mods: {
 				Tooltip: ""
 				DisplayName: Clicker Catalogue
 			}
+
+			CosmicClicker.DisplayName: Cosmic Clicker
 		}
 
 		InfoDisplays: {
@@ -1178,6 +1180,11 @@ Mods: {
 			Entangle: {
 				Name: Entangle
 				Description: Summons up to {0} grasping vines to attack nearby enemies
+			}
+
+			CosmicFlux: {
+				Name: Cosmic Flux
+				Description: Cycles between different cosmic attacks every time it triggers
 			}
 		}
 

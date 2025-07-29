@@ -164,6 +164,7 @@ namespace ClickerClass
 		public static string Charm { get; internal set; } = string.Empty;
 		public static string Collision { get; internal set; } = string.Empty;
 		public static string Conqueror { get; internal set; } = string.Empty;
+		public static string CosmicFlux { get; internal set; } = string.Empty;
 		public static string Curse { get; internal set; } = string.Empty;
 		public static string CursedEruption { get; internal set; } = string.Empty;
 		public static string DarkBurst { get; internal set; } = string.Empty;

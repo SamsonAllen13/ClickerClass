@@ -31,6 +31,8 @@ namespace ClickerClass.UI
 		private Lazy<Asset<Texture2D>> sheetAsset = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/Catalogue_Background"));
 		private Lazy<Asset<Texture2D>> sheetAsset2 = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/Catalogue_Slots"));
 		private Lazy<Asset<Texture2D>> sheetAsset3 = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/Catalogue_Progress"));
+		private Lazy<Asset<Texture2D>> sheetAsset4 = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/Catalogue_PageButton"));
+		private Lazy<Asset<Texture2D>> sheetAsset5 = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/Catalogue_SortButton"));
 
 		public LocalizedText MouseoverText { get; private set; }
 
@@ -78,7 +80,13 @@ namespace ClickerClass.UI
 			Asset<Texture2D> progressAsset;
 			progressAsset = sheetAsset3.Value;
 			
-			if (!backgroundAsset.IsLoaded || !slotAsset.IsLoaded || !progressAsset.IsLoaded)
+			Asset<Texture2D> pageAsset;
+			pageAsset = sheetAsset4.Value;
+			
+			Asset<Texture2D> sortAsset;
+			sortAsset = sheetAsset5.Value;
+			
+			if (!backgroundAsset.IsLoaded || !slotAsset.IsLoaded || !progressAsset.IsLoaded || !pageAsset.IsLoaded || !sortAsset.IsLoaded)
 			{
 				return true;
 			}
@@ -111,7 +119,7 @@ namespace ClickerClass.UI
 				
 				//Draw slot background
 				texture = slotAsset.Value;
-				frame = texture.Frame(1, 5);
+				frame = texture.Frame(1, 6);
 				origin = frame.Size() / 2;
 				color = Color.White * alphaMult;
 				
@@ -137,7 +145,7 @@ namespace ClickerClass.UI
 				
 				//Draw slot border
 				texture = slotAsset.Value;
-				frame = texture.Frame(1, 5);
+				frame = texture.Frame(1, 6);
 				origin = frame.Size() / 2;
 				color = Color.White * alphaMult;
 
@@ -252,6 +260,28 @@ namespace ClickerClass.UI
 				}
 			}
 			
+			//TODO - Clicker Catalogue - Only draw if other mods are enabled | Enabled for testing purposes
+			
+			//Draw Page Buttons
+			texture = pageAsset.Value;
+			frame = texture.Frame(1, 3);
+			origin = frame.Size() / 2;
+			color = Color.White * alphaMult;
+
+			//Add offset to page buttons
+			//TODO - Clicker Catalogue - Remove magic numbers
+			position.X += 12;
+			position.Y += -40;
+		
+			frame.Y = frame.Height * 0;
+			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+			
+			position.X += 30;
+			
+			frame.Y = frame.Height * 1;
+			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+			
+			//TODO - Clicker Catalogue - Allow other mods to have their own progress bar
 			//Draw Progress Bar
 			texture = progressAsset.Value;
 			frame = texture.Frame(1, 3);
@@ -260,8 +290,7 @@ namespace ClickerClass.UI
 
 			//Add offset to Progress Bar
 			//TODO - Clicker Catalogue - Remove magic numbers
-			position.X += 209;
-			position.Y += -40;
+			position.X += 212;
 		
 			frame.Y = frame.Height * 0;
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
@@ -289,14 +318,21 @@ namespace ClickerClass.UI
 				string s = "Clickers Collected: " + endResult + "%";
 				UICommon.TooltipMouseText(s);
 			}
+			
+			//TODO - Clicker Catalogue - When sorting by rarity, use slot background 5 (white) and color based on rarity color
+			//Draw Sorting Button
+			texture = sortAsset.Value;
+			frame = texture.Frame(1, 2);
+			origin = frame.Size() / 2;
+			color = Color.White * alphaMult;
 
-			/*
-			if (Main.ingameOptionsWindow || Main.InGameUI.IsVisible || Main.mouseText)
-			{
-				return true;
-			}
-			*/
-
+			//Add offset to sort button
+			//TODO - Clicker Catalogue - Remove magic numbers
+			position.X += 214;
+		
+			frame.Y = frame.Height * 0;
+			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+			
 			return true;
 		}
 

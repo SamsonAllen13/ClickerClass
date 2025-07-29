@@ -27,6 +27,7 @@ namespace ClickerClass
 		/// Keeps track of total number of clickers for the purposes of the 'Clicker Catalogue'
 		/// </summary>
 		public List<int> totalClickers = new List<int>();
+		//public List<Item> totalClickers = new List<Item>();
 		
 		/// <summary>
 		/// Populated by the buffs themselves, includes all buffs that bosses should be immune to (so no more manual npc.buffImmune)

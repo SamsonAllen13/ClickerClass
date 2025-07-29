@@ -436,6 +436,11 @@ namespace ClickerClass.NPCs
 						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<RainbowClicker>(), 4));
 					}
 					break;
+				case NPCID.CultistBoss:
+					{
+						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<CosmicClicker>(), 2));
+					}
+					break;
 				case NPCID.MoonLordCore:
 					{
 						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<LordsClicker>()));

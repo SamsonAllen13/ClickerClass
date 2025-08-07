@@ -1,5 +1,6 @@
 using ClickerClass.Core.Netcode;
 using ClickerClass.Items.Accessories;
+using ClickerClass.Items.Consumables;
 using ClickerClass.Items.Placeable;
 using ClickerClass.Items.Weapons.Clickers;
 using Microsoft.Xna.Framework;
@@ -76,6 +77,8 @@ namespace ClickerClass
 			DoThoriumModSupport();
 			DoRecipeBrowserSupport();
 			DoNewBeginningsSupport();
+
+			DoMunchiesSupport();
 		}
 
 		public override void HandlePacket(BinaryReader reader, int whoAmI)
@@ -199,6 +202,14 @@ namespace ClickerClass
 					-1, ModContent.ItemType<FaultyClicker>(), -1, -1,
 					11, 1
 				);
+			}
+		}
+
+		private static void DoMunchiesSupport()
+		{
+			if (!Main.dedServ && ModLoader.TryGetMod("Munchies", out Mod munchies))
+			{
+				munchies.Call("AddSingleConsumable", mod, new Version(1, 3).ToString(), ModContent.GetInstance<HeavenlyChip>(), "player", () => Main.LocalPlayer.GetModPlayer<ClickerPlayer>().consumedHeavenlyChip);
 			}
 		}
 	}

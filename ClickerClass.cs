@@ -319,4 +319,34 @@ namespace ClickerClass
 			return false;
 		}
 	}
+
+	public static class SpiritReforgedSupportHelper
+	{
+		public static bool InSavanna(Player player)
+		{
+			if (ModLoader.TryGetMod("SpiritReforged", out Mod spiritReforgedMod))
+			{
+				if (spiritReforgedMod.TryFind<ModBiome>("SavannaBiome", out ModBiome savannaBiome))
+				{
+					return player.InModBiome(savannaBiome);
+				}
+			}
+			return false;
+		}
+	}
+
+	public static class DepthsModSupportHelper
+	{
+		public static bool InDepths(Player player)
+		{
+			if (ModLoader.TryGetMod("TheDepths", out Mod depthsMod))
+			{
+				if (depthsMod.TryFind<ModBiome>("DepthsBiome", out ModBiome depthsBiome))
+				{
+					return player.InModBiome(depthsBiome);
+				}
+			}
+			return false;
+		}
+	}
 }

@@ -55,6 +55,8 @@ namespace ClickerClass.Projectiles
 			dust.position.Y = Projectile.Center.Y;
 			dust.velocity *= 0f;
 			dust.noGravity = true;
+			if (dust.noLight) Lighting.AddLight(
+				dust.position, dustColor.R * 0.0075f, dustColor.G * 0.0075f, dustColor.B * 0.0075f);
 
 			if (!Spawned)
 			{
@@ -72,6 +74,8 @@ namespace ClickerClass.Projectiles
 					dust2.noGravity = true;
 					dust2.position = Projectile.Center + vector2;
 					dust2.velocity = vector2.SafeNormalize(Vector2.UnitY) * 2f;
+					if (dust2.noLight) Lighting.AddLight(
+						dust2.position, dustColor.R * 0.005f, dustColor.G * 0.005f, dustColor.B * 0.005f);
 					i++;
 				}
 			}
@@ -125,9 +129,24 @@ namespace ClickerClass.Projectiles
 				dustScale = 1f;
 				return;
 			}
+			if (SpiritReforgedSupportHelper.InSavanna(player))
+			{
+				// Savanna Torches use default Torch dust, this just prevents it from using Desert Torch dust
+				return;
+			}
 			if (MoRSupportHelper.InWasteland(player))
 			{
 				dustType = ModLoader.GetMod("Redemption").TryFind<ModDust>("WastelandTorchDust", out ModDust wastelandDust) ? wastelandDust.Type : DustID.Torch;
+				dustColor = new Color(255, 204, 204);
+				dustScale = 1.15f;
+				return;
+			}
+			if (DepthsModSupportHelper.InDepths(player))
+			{
+				dustType = ModLoader.GetMod("TheDepths").TryFind<ModDust>("GeodeTorchDust", out ModDust geoTorchDust) ? geoTorchDust.Type : DustID.Torch;
+				dustColor = new Color(206, 19, 255);
+				dustScale = 1f;
+				return;
 			}
 
 			// Vanilla biomes
@@ -180,6 +199,7 @@ namespace ClickerClass.Projectiles
 			else if (player.ZoneDungeon)
 			{
 				dustType = DustID.BoneTorch;
+				dustScale = 1.15f;
 				return;
 			}
 			else if (player.ZoneUnderworldHeight)

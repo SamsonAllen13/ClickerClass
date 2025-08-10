@@ -279,5 +279,44 @@ namespace ClickerClass
 				redemptionMod.Call("decapitation", target, damageDone, isCrit, chance);
 			}
 		}
+
+		public static bool InWasteland(Player player)
+		{
+			if (ModLoader.TryGetMod("Redemption", out Mod redemptionMod))
+			{
+				if (redemptionMod.TryFind<ModBiome>("WastelandPurityBiome", out ModBiome wastelandBiome))
+				{
+					return player.InModBiome(wastelandBiome);
+				}
+			}
+			return false;
+		}
+	}
+
+	public static class ThoriumModSupportHelper
+	{
+		public static bool InAquaticDepths(Player player)
+		{
+			if (ModLoader.TryGetMod("ThoriumMod", out Mod thoriumMod))
+			{
+				if (thoriumMod.TryFind<ModBiome>("DepthsBiome", out ModBiome depthsBiome))
+				{
+					return player.InModBiome(depthsBiome);
+				}
+			}
+			return false;
+		}
+	}
+
+	public static class CalamityModSupportHelper
+	{
+		public static bool InBiome(Player player, String biomeName)
+		{
+			if (ModLoader.TryGetMod("CalamityMod", out Mod calamityMod))
+			{
+				return (bool)calamityMod.Call("GetInZone", player, biomeName);
+			}
+			return false;
+		}
 	}
 }

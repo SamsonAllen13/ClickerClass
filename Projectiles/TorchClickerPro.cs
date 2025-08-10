@@ -1,6 +1,7 @@
 using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ID;
+using Terraria.ModLoader;
 
 namespace ClickerClass.Projectiles
 {
@@ -46,9 +47,9 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
-			int dustType = getTorchType(Main.player[Projectile.owner]);
+			getTorchInfo(Main.player[Projectile.owner], out int dustType, out Color dustColor, out float dustScale);
 
-			int index = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, dustType, 0f, 0f, 0, dustType == DustID.RainbowTorch ? Main.DiscoColor : default(Color), 1.5f);
+			int index = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, dustType, 0f, 0f, 0, dustColor, dustScale);
 			Dust dust = Main.dust[index];
 			dust.position.X = Projectile.Center.X;
 			dust.position.Y = Projectile.Center.Y;
@@ -66,7 +67,7 @@ namespace ClickerClass.Projectiles
 					Vector2 vector2 = Vector2.Zero;
 					vector2 += -Vector2.UnitY.RotatedBy(i * (MathHelper.TwoPi / max)) * new Vector2(2f, 2f);
 					vector2 = vector2.RotatedBy(Projectile.velocity.ToRotation(), default(Vector2));
-					int index2 = Dust.NewDust(Projectile.Center, 0, 0, dustType, 0f, 0f, 0, default(Color), 1.5f);
+					int index2 = Dust.NewDust(Projectile.Center, 0, 0, dustType, 0f, 0f, 0, dustColor, dustScale);
 					Dust dust2 = Main.dust[index2];
 					dust2.noGravity = true;
 					dust2.position = Projectile.Center + vector2;
@@ -76,35 +77,141 @@ namespace ClickerClass.Projectiles
 			}
 		}
 
-		private int getTorchType(Player player)
+		private void getTorchInfo(Player player, out int dustType, out Color dustColor, out float dustScale)
 		{
-			int returnType = DustID.Torch;
+			dustType = DustID.Torch;
+			dustColor = default(Color);
+			dustScale = 1.5f;
 
-			if (player.ZoneShimmer) returnType = DustID.ShimmerTorch;
+			// Modded biomes
+			if (ThoriumModSupportHelper.InAquaticDepths(player))
+			{
+				dustType = DustID.GemSapphire;
+				dustScale = 1f;
+				return;
+			}
+			if (CalamityModSupportHelper.InBiome(player, "abyss"))
+			{
+				dustType = DustID.RainbowTorch;
+				dustColor = new Color(100, 130, 150);
+				dustScale = 1f;
+				return;
+			}
+			if (CalamityModSupportHelper.InBiome(player, "astral infection"))
+			{
+				dustType = DustID.RainbowTorch;
+				dustColor = new Color(255, 95, 48);
+				dustScale = 1f;
+				return;
+			}
+			if (CalamityModSupportHelper.InBiome(player, "brimstone crags"))
+			{
+				dustType = DustID.RainbowTorch;
+				dustColor = new Color(190, 255, 60);
+				dustScale = 1f;
+				return;
+			}
+			if (CalamityModSupportHelper.InBiome(player, "sulphurous sea"))
+			{
+				dustType = DustID.RainbowTorch;
+				dustColor = new Color(190, 255, 60);
+				dustScale = 1f;
+				return;
+			}
+			if (CalamityModSupportHelper.InBiome(player, "sunken sea"))
+			{
+				dustType = DustID.RainbowTorch;
+				dustColor = new Color(170, 255, 255);
+				dustScale = 1f;
+				return;
+			}
+			if (MoRSupportHelper.InWasteland(player))
+			{
+				dustType = ModLoader.GetMod("Redemption").TryFind<ModDust>("WastelandTorchDust", out ModDust wastelandDust) ? wastelandDust.Type : DustID.Torch;
+			}
+
+			// Vanilla biomes
+			if (player.ZoneShimmer)
+			{
+				dustType = DustID.ShimmerTorch;
+				return;
+			}
 			if (player.ZoneHallow)
 			{
-				if (player.ZoneRockLayerHeight) returnType = DustID.HallowedTorch;
-				else returnType = DustID.RainbowTorch;
+				if (player.ZoneRockLayerHeight)
+				{
+					dustType = DustID.HallowedTorch;
+					return;
+				}
+				else
+				{
+					dustType = DustID.RainbowTorch;
+					dustColor = Main.DiscoColor;
+					dustScale = 1f;
+					return;
+				}
 			}
 			else if (player.ZoneCorrupt)
 			{
-				if (player.ZoneRockLayerHeight) returnType = DustID.CursedTorch;
-				else returnType = DustID.CorruptTorch;
+				if (player.ZoneRockLayerHeight)
+				{
+					dustType = DustID.CursedTorch;
+					return;
+				}
+				else
+				{
+					dustType = DustID.CorruptTorch;
+					return;
+				}
 			}
 			else if (player.ZoneCrimson)
 			{
-				if (player.ZoneRockLayerHeight) returnType = DustID.IchorTorch;
-				else returnType = DustID.CrimsonTorch;
+				if (player.ZoneRockLayerHeight)
+				{
+					dustType = DustID.IchorTorch;
+					return;
+				}
+				else
+				{
+					dustType = DustID.CrimsonTorch;
+					return;
+				}
 			}
-			else if (player.ZoneDungeon) returnType = DustID.BoneTorch;
-			else if (player.ZoneUnderworldHeight) returnType = DustID.DemonTorch;
-			else if (player.ZoneGlowshroom) returnType = DustID.MushroomTorch;
-			else if (player.ZoneJungle || player.ZoneLihzhardTemple) returnType = DustID.JungleTorch;
-			else if (player.ZoneUndergroundDesert || player.ZoneDesert) returnType = DustID.DesertTorch;
-			else if (player.ZoneSnow) returnType = DustID.IceTorch;
-			else if (player.ZoneBeach) returnType = DustID.CoralTorch;
-
-			return returnType;
+			else if (player.ZoneDungeon)
+			{
+				dustType = DustID.BoneTorch;
+				return;
+			}
+			else if (player.ZoneUnderworldHeight)
+			{
+				dustType = DustID.DemonTorch;
+				return;
+			}
+			else if (player.ZoneGlowshroom)
+			{
+				dustType = DustID.MushroomTorch;
+				return;
+			}
+			else if (player.ZoneJungle || player.ZoneLihzhardTemple)
+			{
+				dustType = DustID.JungleTorch;
+				return;
+			}
+			else if (player.ZoneUndergroundDesert || player.ZoneDesert)
+			{
+				dustType = DustID.DesertTorch;
+				return;
+			}
+			else if (player.ZoneSnow)
+			{
+				dustType = DustID.IceTorch;
+				return;
+			}
+			else if (player.ZoneBeach)
+			{
+				dustType = DustID.CoralTorch;
+				return;
+			}
 		}
 	}
 }

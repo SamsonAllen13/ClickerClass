@@ -10,23 +10,20 @@ namespace ClickerClass.Projectiles
 {
 	public class DreamClickerPro : ClickerProjectile
 	{
-		public int proTimer = 45;
-		public Vector2 basePos;
-		public int baseDir;
-		public int length = 180;
-		public double t;
-		public double startTheta;
-		public double endTheta;
-		public double currTheta;
-		public int i;
+		public static readonly int projectileTimeLeftMax = 45;
+		private float progress;
+		public Vector2 origin;
+		public int direction;
+		public float rotationOffset = 0f;
+		public const float roseDistance = 16f * 8.5f;
+		public const float roseMultiplier = 2.5f; // Adjusts width of curve
+		private float thetaMax;
 
-		public bool HasSpawnEffects
+		private bool HasSpawnEffects
 		{
-			get => Projectile.ai[0] == 1f;
-			set => Projectile.ai[0] = value ? 1f : 0f;
+			get => Projectile.ai[0] == 0f;
+			set => Projectile.ai[0] = value ? 0f : -1f;
 		}
-
-		public bool fadeOut = false;
 
 		public override void SetStaticDefaults()
 		{
@@ -45,7 +42,7 @@ namespace ClickerClass.Projectiles
 			Projectile.height = 42;
 			Projectile.aiStyle = -1;
 			Projectile.penetrate = -1;
-			Projectile.timeLeft = proTimer;
+			Projectile.timeLeft = projectileTimeLeftMax;
 			Projectile.friendly = true;
 			Projectile.ignoreWater = true;
 			Projectile.tileCollide = false;
@@ -74,22 +71,14 @@ namespace ClickerClass.Projectiles
 
 		public override void AI()
 		{
-			Player player = Main.player[Projectile.owner];
-
-			if (Projectile.timeLeft == proTimer)
+			if (Projectile.timeLeft == projectileTimeLeftMax)
 			{
-				basePos = Projectile.position;
-				baseDir = player.direction;
-				i = (int)Projectile.ai[1];
+				Player player = Main.player[Projectile.owner];
 
-				// Set polar curve theta boundaries
-				startTheta = MathHelper.PiOver2 * i;
-				endTheta = (((3 * i) + 4) * MathHelper.Pi) / 6.0;
-				if (baseDir == -1)
-				{
-					startTheta += MathHelper.Pi / 3.0;
-					endTheta += MathHelper.Pi / 3.0;
-				}
+				origin = Projectile.Center;
+				direction = player.direction;
+				rotationOffset = Vector2.UnitX.RotatedBy(MathHelper.PiOver2 * (int)Projectile.ai[0]).ToRotation();
+				thetaMax = MathHelper.Pi / roseMultiplier;
 			}
 
 			if (HasSpawnEffects)
@@ -99,11 +88,13 @@ namespace ClickerClass.Projectiles
 				SoundEngine.PlaySound(SoundID.Item71.WithVolumeScale(0.6f), Projectile.Center);
 				for (int k = 0; k < 15; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.Center, 8, 8, 57, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 255, default, 1.25f);
+					Dust dust = Dust.NewDustDirect(Projectile.Center, 8, 8, DustID.Enchanted_Gold, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 255, default, 1.25f);
 					dust.noGravity = true;
 				}
 				HasSpawnEffects = false;
 			}
+
+			progress = (projectileTimeLeftMax - Projectile.timeLeft) / (float)projectileTimeLeftMax;
 
 			HandlePosition();
 			HandleExtra();
@@ -112,67 +103,30 @@ namespace ClickerClass.Projectiles
 
 		private void HandlePosition()
 		{
-			// Curve function:
-			//  if dir == 1:  r = sin( 1.5theta + (ipi/4) ),
-			//    ipi/2 <= theta <= (3i + 4)pi/6
-			//  if dir == -1: r = sin( 1.5theta + (ipi/4) + pi/2 ),
-			//    (3i + 4)pi/6 + pi/3 <= theta <= ipi/2 + pi/3
+			// Rose curve with theta bound to (0, thetaMax) to only produce 1 'petal'
+			float theta = progress * thetaMax;
+			float r = (roseDistance * direction) * (float)Math.Sin(theta * roseMultiplier);
 
-			// Calculate frame theta based on projectile time
-			t = 1.0 - ((double)Projectile.timeLeft / proTimer);
+			// Polar to Cartesian coordinates
+			float x = r * (float)Math.Cos(theta);
+			float y = -r * (float)Math.Sin(theta);
 
-			double parametricA;
-			double parametricB;
-			if (baseDir == -1)
-			{
-				parametricA = (t) * startTheta;
-				parametricB = (1 - t) * endTheta;
-			}
-			else
-			{
-				parametricA = (1 - t) * startTheta;
-				parametricB = (t) * endTheta;
-			}
-			currTheta = parametricA + parametricB;
-
-			// Calculate polar function
-			double p = (MathHelper.Pi * i) / 4.0;
-			double rho;
-			if (baseDir == -1)
-			{
-				rho = Math.Sin((1.5 * currTheta) + p + MathHelper.PiOver2) * length;
-			}
-			else
-			{
-				rho = Math.Sin((1.5 * currTheta) + p) * length;
-			}
-
-			// Convert from polar to Cartesian
-			Projectile.position.X = (float)(basePos.X + (rho * Math.Cos(currTheta)));
-			Projectile.position.Y = (float)(basePos.Y + (rho * Math.Sin(currTheta)));
+			// Rotate and offset
+			Vector2 offset = new Vector2(x, y).RotatedBy(rotationOffset);
+			Projectile.Center = origin + offset;
 		}
 
 		private void HandleExtra()
 		{
 			// Scale
-			Projectile.scale = MathHelper.Lerp(0.75f, 1.5f, (float)(Utils.GetLerpValue(0.1f, 0.5f, t, true) * Utils.GetLerpValue(0.9f, 0.5f, t, true)));
+			float bellCurve = (float)Math.Sin(MathHelper.Pi * Utils.GetLerpValue(0.1f, 0.9f, progress, true));
+			Projectile.scale = MathHelper.Lerp(0.75f, 1.5f, bellCurve);
 
 			// Rotation
-			if (baseDir == -1)
-			{
-				Projectile.rotation -= (2.5f * MathHelper.TwoPi) / proTimer;
-			}
-			else
-			{
-				Projectile.rotation += (2.5f * MathHelper.TwoPi) / proTimer;
-			}
+			Projectile.rotation += direction * ((2.5f * MathHelper.TwoPi) / projectileTimeLeftMax);
 
 			// Fade out
 			if (Projectile.timeLeft < 15)
-			{
-				fadeOut = true;
-			}
-			if (fadeOut)
 			{
 				Projectile.alpha += 15;
 				if (Projectile.alpha > 255)
@@ -194,7 +148,7 @@ namespace ClickerClass.Projectiles
 			{
 				for (int i = 0; i < Main.rand.Next(2); i++)
 				{
-					int starDust = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, 57, 0f, 0f, 150, new Color(120, 5, 90), 0.8f);
+					int starDust = Dust.NewDust(Projectile.Center, Projectile.width, Projectile.height, DustID.Enchanted_Gold, 0f, 0f, 150, new Color(120, 5, 90), 0.8f);
 					Main.dust[starDust].velocity = Vector2.Zero;
 				}
 			}

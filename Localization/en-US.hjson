@@ -1,5 +1,12 @@
 Mods: {
 	ClickerClass: {
+		Achievements: {
+			DigitDestroyerAchievement: {
+				FriendlyName: Digit Destroyer
+				Description: Accumulate a total of 1,000,000 clicks with clicker weapons.
+			}
+		}
+
 		Buffs: {
 			AutoClick: {
 				DisplayName: Auto Click

@@ -399,6 +399,7 @@ namespace ClickerClass
 			clickerPerSecondCalculateDisplay = true;
 			clickTimers.Add(new Ref<float>(1f));
 			clickerTotal++;
+			AchievementHelper.UpdateDigitDestroyerAchievement(this);
 		}
 
 		/// <summary>
@@ -956,6 +957,11 @@ namespace ClickerClass
 			paintingCondition_Clicked100Cookies = tag.GetBool("paintingCondition_Clicked100Cookies");
 			paintingCondition_ClickedCookiesCount = tag.GetInt("paintingCondition_ClickedCookiesCount");
 			pickedUpDreamClicker = tag.GetBool("pickedUpDreamClicker");
+		}
+
+		public override void OnEnterWorld()
+		{
+			AchievementHelper.UpdateDigitDestroyerAchievement(this);
 		}
 
 		public override void CopyClientState(ModPlayer clientClone)

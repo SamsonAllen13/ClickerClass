@@ -74,6 +74,7 @@ namespace ClickerClass
 		{
 			DoWikithisSupport();
 			DoColoredDamageTypesSupport();
+			DoTooltipIconSupport();
 			DoThoriumModSupport();
 			DoRecipeBrowserSupport();
 			DoNewBeginningsSupport();
@@ -102,6 +103,44 @@ namespace ClickerClass
 				var damageColor = (172, 189, 246);
 				var critColor = (88, 92, 222);
 				coloreddamagetypes.Call("AddDamageType", ModContent.GetInstance<ClickerDamage>(), tooltipColor, damageColor, critColor);
+			}
+		}
+
+		private static void DoTooltipIconSupport()
+		{
+			if (!Main.dedServ && ModLoader.TryGetMod("TooltipIcon", out Mod tooltipIcon))
+			{
+				Asset<Texture2D> getIcon(string name)
+					=> mod.Assets.Request<Texture2D>($"UI/TooltipIcon_{name}");
+
+				tooltipIcon.Call(
+					"AddDamageClassIcon",
+					ModContent.GetInstance<ClickerDamage>(),
+					getIcon("ClickerDamageIcon"),
+					getIcon("ClickerSpeedIcon"),
+					null, // use default knockback icon
+					null  // use default crit chance icon
+				);
+				tooltipIcon.Call(
+					"AddPrefixIcon", mod.Name, "PrefixClickBoost",
+					getIcon("ClickerEffectIcon"),
+					true // denotes reductions are a positive effect
+				);
+				tooltipIcon.Call(
+					"AddPrefixIcon", mod.Name, "PrefixClickerRadius",
+					getIcon("ClickerRadiusIcon")
+				);
+				tooltipIcon.Call(
+					"AddPrefixIcon", mod.Name, "ClickerRadiusTooltip",
+					getIcon("ClickerRadiusIcon")
+				);
+				foreach (ClickEffect effect in ClickerSystem.GetAllEffects().Values)
+				{
+					tooltipIcon.Call(
+						"AddNormalIcon", mod.Name, $"ClickEffect_{effect.UniqueName}",
+						getIcon("ClickerEffectIcon")
+					);
+				}
 			}
 		}
 

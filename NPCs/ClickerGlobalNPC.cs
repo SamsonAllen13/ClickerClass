@@ -325,16 +325,21 @@ namespace ClickerClass.NPCs
 
 						var dropParametersNormal = new DropOneByOne.Parameters()
 						{
+							// 3-5 stacks of 1-3 items = 3-15 total
 							ChanceNumerator = 1,
 							ChanceDenominator = 1,
+							MinimumItemDropsCount = 3, // 25% of vanilla (12)
+							MaximumItemDropsCount = 5, // 25% of vanilla (20)
 							MinimumStackPerChunkBase = 1,
-							MaximumStackPerChunkBase = 1,
-							MinimumItemDropsCount = 3,
-							MaximumItemDropsCount = 15
+							MaximumStackPerChunkBase = 3,
 						};
-						var dropParametersExpert = dropParametersNormal;
-						dropParametersExpert.MinimumItemDropsCount = 5;
-						dropParametersExpert.MaximumItemDropsCount = 22;
+						// 3-5 stacks of 1-4 (+1 per player) items = 6-25 total in Expert Mode
+						var dropParametersExpert = dropParametersNormal with
+						{
+							MaximumStackPerChunkBase = 4,
+							BonusMinDropsPerChunkPerPlayer = 1,
+							BonusMaxDropsPerChunkPerPlayer = 1
+						};
 
 						isExpertRule.OnSuccess(new DropOneByOne(miceFragment, dropParametersExpert));
 						notExpertRule.OnSuccess(new DropOneByOne(miceFragment, dropParametersNormal));

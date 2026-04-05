@@ -714,9 +714,21 @@ Mods: {
 				Tooltip: ""
 			}
 
-			ArcaneClicker.DisplayName: Arcane Clicker
-			AdamantiteClicker.DisplayName: Adamantite Clicker
-			ArthursClicker.DisplayName: Arthur's Clicker
+			ArcaneClicker: {
+				DisplayName: Arcane Clicker
+				Hint: Obtained from floating island chests
+			}
+
+			AdamantiteClicker: {
+				DisplayName: Adamantite Clicker
+				Hint: Obtained from crafting with a Hardmode ore
+			}
+
+			ArthursClicker: {
+				DisplayName: Arthur's Clicker
+				Hint: Obtained from crafting with a Hardmode bar
+			}
+
 			AstralClicker.DisplayName: Astral Clicker
 			BalloonClicker.DisplayName: Balloon Clicker
 			BoneClicker.DisplayName: Bone Clicker
@@ -804,6 +816,11 @@ Mods: {
 			}
 
 			CosmicClicker.DisplayName: Cosmic Clicker
+
+			DemonHand: {
+				DisplayName: Demon Hand
+				Tooltip: Allows you to select a clicker effect from your Clicker Catalogue, granting you the effect
+			}
 		}
 
 		InfoDisplays: {
@@ -1319,6 +1336,10 @@ Mods: {
 			StingingClickerPro.DisplayName: Stinging Clicker Pro
 			StingingClickerPro2.DisplayName: Stinging Clicker Pro2
 			FloralClickerPro.DisplayName: Floral Clicker Pro
+			CosmicClickerPro.DisplayName: Cosmic Clicker Pro
+			CosmicClickerPro2.DisplayName: Cosmic Clicker Pro2
+			CosmicClickerPro4.DisplayName: Cosmic Clicker Pro4
+			CosmicClickerPro3.DisplayName: Cosmic Clicker Pro3
 		}
 
 		Configs: {

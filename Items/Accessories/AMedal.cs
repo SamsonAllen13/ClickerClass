@@ -6,8 +6,8 @@ namespace ClickerClass.Items.Accessories
 {
 	public class AMedal : ClickerItem
 	{
-		public static readonly int ChargeMeterMax = 200;
-		public static readonly int ChargeAmount = 10;
+		public static readonly int ChargeMeterMax = 300;
+		public static readonly int ChargeAmount = 15;
 		public static readonly int ChargeMeterStep = 20;
 
 		public override LocalizedText Tooltip => base.Tooltip.WithFormatArgs(ChargeAmount);

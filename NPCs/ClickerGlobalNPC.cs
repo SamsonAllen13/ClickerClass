@@ -443,7 +443,7 @@ namespace ClickerClass.NPCs
 					break;
 				case NPCID.CultistBoss:
 					{
-						npcLoot.Add(ItemDropRule.ByCondition(notExpert, ModContent.ItemType<CosmicClicker>(), 2));
+						npcLoot.Add(ItemDropRule.Common(ModContent.ItemType<CosmicClicker>(), 2));
 					}
 					break;
 				case NPCID.MoonLordCore:

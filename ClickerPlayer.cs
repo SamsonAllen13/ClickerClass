@@ -276,6 +276,11 @@ namespace ClickerClass
 		/// If player has consumed a Heavenly Chip and has its bonus clicker radius
 		/// </summary>
 		public bool consumedHeavenlyChip;
+		
+		/// <summary>
+		/// If player has consumed a Demon Hand and unlocked its ability
+		/// </summary>
+		public bool consumedDemonHand;
 
 		//Need to be synced
 		public bool paintingCondition_MoonLordDefeatedWithClicker;
@@ -942,6 +947,7 @@ namespace ClickerClass
 			tag.Add("clickerTotal", clickerTotal);
 			tag.Add("clickerMoneyGenerated", clickerMoneyGenerated);
 			tag.Add("consumedHeavenlyChip", consumedHeavenlyChip);
+			tag.Add("consumedDemonHand", consumedDemonHand);
 			tag.Add("paintingCondition_MoonLordDefeatedWithClicker", paintingCondition_MoonLordDefeatedWithClicker);
 			tag.Add("paintingCondition_Clicked100Cookies", paintingCondition_Clicked100Cookies);
 			tag.Add("paintingCondition_ClickedCookiesCount", paintingCondition_ClickedCookiesCount);
@@ -953,6 +959,7 @@ namespace ClickerClass
 			clickerTotal = tag.GetInt("clickerTotal");
 			clickerMoneyGenerated = tag.GetInt("clickerMoneyGenerated");
 			consumedHeavenlyChip = tag.GetBool("consumedHeavenlyChip");
+			consumedDemonHand = tag.GetBool("consumedDemonHand");
 			paintingCondition_MoonLordDefeatedWithClicker = tag.GetBool("paintingCondition_MoonLordDefeatedWithClicker");
 			paintingCondition_Clicked100Cookies = tag.GetBool("paintingCondition_Clicked100Cookies");
 			paintingCondition_ClickedCookiesCount = tag.GetInt("paintingCondition_ClickedCookiesCount");
@@ -1102,19 +1109,19 @@ namespace ClickerClass
 
 			ResetAutoClickToggle();
 			
-			//TODO - Clicker Catalogue
-			
-			//Player.GetModPlayer<ClickerPlayer>().EnableClickEffect(ClickEffect.Yoink);
-			/*
-			for (int k = 0; k < foundClickers.Count; k++)
-			{
-				Main.NewText("Clickers: " + foundClickers[k]);
-			}
-			*/
-			
 			//TODO - Clicker Catalogue - Add way to sort clickers by name, damage, click effect cost, and rarity
 			//Item item = ContentSamples.ItemsByType[itemType];
 			//ClickerClass.mod.totalClickers.OrderBy(p => p.damage).ToList();
+			
+			//Demon Hand handle
+			if (consumedDemonHand && chosenSecondClicker != -1)
+			{
+				Item heldItem2 = ContentSamples.ItemsByType[chosenSecondClicker];
+				if (ClickerSystem.IsClickerWeapon(heldItem2, out ClickerItemCore clickerItem2))
+				{
+					EnableClickEffect(clickerItem2.itemClickEffects);
+				}
+			}
 			
 			//Handle Seafoam health timer
 			if (itemSeafoamClickerHPS > 0)
@@ -1468,7 +1475,7 @@ namespace ClickerClass
 							float len = (proj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
 							if (proj.DistanceSQ(Main.MouseWorld) < len)
 							{
-								accAMedalAmount += 2;
+								accAMedalAmount += 3;
 								medal.MouseoverAlpha = 1f;
 								Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 								Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 86, Scale: 1.25f);
@@ -1492,7 +1499,7 @@ namespace ClickerClass
 							float len = (proj.Size / 2f).LengthSquared() * 0.78f; //Circle inside the projectile hitbox
 							if (proj.DistanceSQ(Main.MouseWorld) < len)
 							{
-								accFMedalAmount += 2;
+								accFMedalAmount += 3;
 								medal.MouseoverAlpha = 1f;
 								Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 								Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 173, Scale: 1.25f);
@@ -1521,7 +1528,7 @@ namespace ClickerClass
 							{
 								if (proj.type == sMedalType1 && accFMedalAmount < FMedal.ChargeMeterMax) //F Medal Equivalent
 								{
-									accFMedalAmount += 3;
+									accFMedalAmount += 4;
 									sMedal.MouseoverAlpha = 1f;
 									Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 									Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 88, Scale: 1.25f);
@@ -1530,7 +1537,7 @@ namespace ClickerClass
 								}
 								if (proj.type == sMedalType2 && accAMedalAmount < AMedal.ChargeMeterMax) //A Medal Equivalent
 								{
-									accAMedalAmount += 3;
+									accAMedalAmount += 4;
 									sMedal.MouseoverAlpha = 1f;
 									Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 									Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 87, Scale: 1.25f);
@@ -1539,7 +1546,7 @@ namespace ClickerClass
 								}
 								if (proj.type == sMedalType3 && accSMedalAmount < SMedal.ChargeMeterMax)
 								{
-									accSMedalAmount += 3;
+									accSMedalAmount += 4;
 									sMedal.MouseoverAlpha = 1f;
 									Vector2 offset = new Vector2(Main.rand.Next(-20, 21), Main.rand.Next(-20, 21));
 									Dust dust = Dust.NewDustDirect(Main.MouseWorld + offset, 8, 8, 89, Scale: 1.25f);

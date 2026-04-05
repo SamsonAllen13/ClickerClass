@@ -714,9 +714,21 @@ Mods: {
 				Tooltip: ""
 			}
 
-			ArcaneClicker.DisplayName: 奥术点击器
-			AdamantiteClicker.DisplayName: 精金点击器
-			ArthursClicker.DisplayName: 神圣点击器
+			ArcaneClicker: {
+				DisplayName: 奥术点击器
+				// Hint: Obtained from floating island chests
+			}
+
+			AdamantiteClicker: {
+				DisplayName: 精金点击器
+				// Hint: Obtained from crafting with a Hardmode ore
+			}
+
+			ArthursClicker: {
+				DisplayName: 神圣点击器
+				// Hint: Obtained from crafting with a Hardmode bar
+			}
+
 			AstralClicker.DisplayName: 星体点击器
 			BalloonClicker.DisplayName: 气球点击器
 			BoneClicker.DisplayName: 骨头点击器
@@ -804,6 +816,11 @@ Mods: {
 			}
 
 			// CosmicClicker.DisplayName: Cosmic Clicker
+
+			DemonHand: {
+				// DisplayName: Demon Hand
+				// Tooltip: Allows you to select a clicker effect from your Clicker Catalogue, granting you the effect
+			}
 		}
 
 		InfoDisplays: {
@@ -1319,6 +1336,10 @@ Mods: {
 			// StingingClickerPro.DisplayName: Stinging Clicker Pro
 			// StingingClickerPro2.DisplayName: Stinging Clicker Pro2
 			// FloralClickerPro.DisplayName: Floral Clicker Pro
+			// CosmicClickerPro.DisplayName: Cosmic Clicker Pro
+			// CosmicClickerPro2.DisplayName: Cosmic Clicker Pro2
+			// CosmicClickerPro4.DisplayName: Cosmic Clicker Pro4
+			// CosmicClickerPro3.DisplayName: Cosmic Clicker Pro3
 		}
 
 		Configs: {

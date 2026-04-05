@@ -6,7 +6,7 @@ namespace ClickerClass.Items.Accessories
 {
 	public class SMedal : ClickerItem
 	{
-		public static readonly int ChargeMeterMax = 200;
+		public static readonly int ChargeMeterMax = 300;
 		public static readonly int ChargeMeterStep = 20;
 
 		public override void SetStaticDefaults()

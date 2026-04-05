@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
+using ClickerClass.Items.Weapons.Clickers;
 
 namespace ClickerClass.Items
 {
@@ -90,10 +91,17 @@ namespace ClickerClass.Items
 					}
 				}
 				
-				//TODO - Clicker Catalogue - Need to somehow add Wooden Clicker too since it doesnt have a click effect
 				if (!ClickerClass.mod.totalClickers.Contains(item.type))
 				{
 					ClickerClass.mod.totalClickers.Add(item.type);
+				}
+				else
+				{
+					//Hardcode add Wooden Clicker to list, since it has no effect | Hopefully other mods don't have something similar...
+					if (!ClickerClass.mod.totalClickers.Contains(ModContent.ItemType<WoodenClicker>()))
+					{
+						ClickerClass.mod.totalClickers.Add(ModContent.ItemType<WoodenClicker>());
+					}
 				}
 			}
 		}

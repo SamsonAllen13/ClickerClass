@@ -714,9 +714,21 @@ Mods: {
 				Tooltip: ""
 			}
 
-			ArcaneClicker.DisplayName: Clicker Arcano
-			AdamantiteClicker.DisplayName: Clicker de Adamantina
-			ArthursClicker.DisplayName: Clicker de Artur
+			ArcaneClicker: {
+				DisplayName: Clicker Arcano
+				// Hint: Obtained from floating island chests
+			}
+
+			AdamantiteClicker: {
+				DisplayName: Clicker de Adamantina
+				// Hint: Obtained from crafting with a Hardmode ore
+			}
+
+			ArthursClicker: {
+				DisplayName: Clicker de Artur
+				// Hint: Obtained from crafting with a Hardmode bar
+			}
+
 			AstralClicker.DisplayName: Clicker Astral
 			BalloonClicker.DisplayName: Clicker Balão
 			BoneClicker.DisplayName: Clicker de Osso
@@ -804,6 +816,11 @@ Mods: {
 			}
 
 			// CosmicClicker.DisplayName: Cosmic Clicker
+
+			DemonHand: {
+				// DisplayName: Demon Hand
+				// Tooltip: Allows you to select a clicker effect from your Clicker Catalogue, granting you the effect
+			}
 		}
 
 		InfoDisplays: {
@@ -1319,6 +1336,10 @@ Mods: {
 			// StingingClickerPro.DisplayName: Stinging Clicker Pro
 			// StingingClickerPro2.DisplayName: Stinging Clicker Pro2
 			// FloralClickerPro.DisplayName: Floral Clicker Pro
+			// CosmicClickerPro.DisplayName: Cosmic Clicker Pro
+			// CosmicClickerPro2.DisplayName: Cosmic Clicker Pro2
+			// CosmicClickerPro4.DisplayName: Cosmic Clicker Pro4
+			// CosmicClickerPro3.DisplayName: Cosmic Clicker Pro3
 		}
 
 		Configs: {

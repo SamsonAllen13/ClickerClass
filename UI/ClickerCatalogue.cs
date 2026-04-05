@@ -4,8 +4,11 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
+using System.Reflection;
+using System.Text;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.Audio;
 using Terraria.GameContent;
 using Terraria.ID;
 using Terraria.Localization;
@@ -35,7 +38,9 @@ namespace ClickerClass.UI
 		private Lazy<Asset<Texture2D>> sheetAsset5 = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/Catalogue_SortButton"));
 
 		public LocalizedText MouseoverText { get; private set; }
-
+		
+		public LocalizedText HintText { get; private set; }
+		
 		public override void Update(GameTime gameTime)
 		{
 			Player player = Main.LocalPlayer;
@@ -119,11 +124,11 @@ namespace ClickerClass.UI
 				
 				//Draw slot background
 				texture = slotAsset.Value;
-				frame = texture.Frame(1, 6);
+				frame = texture.Frame(1, 7);
 				origin = frame.Size() / 2;
 				color = Color.White * alphaMult;
 				
-				frame.Y = clickerPlayer.chosenSecondClicker == itemType ? frame.Height * 3 : frame.Height * 0;
+				frame.Y = clickerPlayer.chosenSecondClicker == itemType ? frame.Height * 4 : frame.Height * 0;
 				Main.spriteBatch.Draw(texture, position + new Vector2(offSetX, offSetY), frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 				
 				//Draw the clicker's texture
@@ -145,7 +150,7 @@ namespace ClickerClass.UI
 				
 				//Draw slot border
 				texture = slotAsset.Value;
-				frame = texture.Frame(1, 6);
+				frame = texture.Frame(1, 7);
 				origin = frame.Size() / 2;
 				color = Color.White * alphaMult;
 
@@ -161,22 +166,32 @@ namespace ClickerClass.UI
 				Rectangle hoverSpot = new Rectangle((int)currentClickerPosition.X - frame.Width / 2, (int)currentClickerPosition.Y - frame.Height / 2, frame.Width, frame.Height);
 				if (hoverSpot.Contains(Main.mouseX, Main.mouseY) && hasClicker)
 				{
-					if (clickerPlayer.chosenSecondClicker != itemType)
+					if (clickerPlayer.consumedDemonHand)
+					{
+						if (clickerPlayer.chosenSecondClicker != itemType)
+						{
+							frame.Y = frame.Height * 3;
+							Main.spriteBatch.Draw(texture, position + new Vector2(offSetX, offSetY), frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+						}
+
+						if (Main.mouseLeft && Main.mouseLeftRelease)
+						{
+							if (clickerPlayer.chosenSecondClicker == itemType)
+							{
+								clickerPlayer.chosenSecondClicker = -1;
+								SoundEngine.PlaySound(SoundID.MenuTick, player.position);
+							}
+							else
+							{
+								clickerPlayer.chosenSecondClicker = itemType;
+								SoundEngine.PlaySound(SoundID.Item129, player.position);
+							}
+						}
+					}
+					else
 					{
 						frame.Y = frame.Height * 2;
 						Main.spriteBatch.Draw(texture, position + new Vector2(offSetX, offSetY), frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
-					}
-
-					if (Main.mouseLeft && Main.mouseLeftRelease)
-					{
-						if (clickerPlayer.chosenSecondClicker == itemType)
-						{
-							clickerPlayer.chosenSecondClicker = -1;
-						}
-						else
-						{
-							clickerPlayer.chosenSecondClicker = itemType;
-						}
 					}
 
 					float alpha = Main.mouseTextColor / 255f;
@@ -239,15 +254,17 @@ namespace ClickerClass.UI
 					frame.Y = frame.Height * 2;
 					Main.spriteBatch.Draw(texture, position + new Vector2(offSetX, offSetY), frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 					
-					//TODO - Clicker Catalogue - Add Mod support option to allow a hint for every clicker
-					string s = "???";
-					UICommon.TooltipMouseText(s);
+					Item item = ContentSamples.ItemsByType[itemType];
+					string hintProcess = RemoveSpecialCharacters("Items." + item.Name + $".Hint");
+					HintText = ClickerClass.mod.GetLocalization(hintProcess);
+					string hint = HintText.Format();
+					UICommon.TooltipMouseText("???\n" + hint);
 				}
 
 				//If you have chosen this clicker, make the slot border look 'selected'
 				if (clickerPlayer.chosenSecondClicker == itemType)
 				{
-					frame.Y = frame.Height * 4;
+					frame.Y = frame.Height * 5;
 					Main.spriteBatch.Draw(texture, position + new Vector2(offSetX, offSetY), frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 				}
 
@@ -276,10 +293,24 @@ namespace ClickerClass.UI
 			frame.Y = frame.Height * 0;
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 			
+			Rectangle hoverSpotPage = new Rectangle((int)position.X - frame.Width / 2, (int)position.Y - frame.Height / 2, frame.Width, frame.Height);
+			if (hoverSpotPage.Contains(Main.mouseX, Main.mouseY))
+			{
+				frame.Y = frame.Height * 2;
+				Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+			}
+			
 			position.X += 30;
 			
 			frame.Y = frame.Height * 1;
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+			
+			hoverSpotPage = new Rectangle((int)position.X - frame.Width / 2, (int)position.Y - frame.Height / 2, frame.Width, frame.Height);
+			if (hoverSpotPage.Contains(Main.mouseX, Main.mouseY))
+			{
+				frame.Y = frame.Height * 2;
+				Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+			}
 			
 			//TODO - Clicker Catalogue - Allow other mods to have their own progress bar
 			//Draw Progress Bar
@@ -319,7 +350,7 @@ namespace ClickerClass.UI
 				UICommon.TooltipMouseText(s);
 			}
 			
-			//TODO - Clicker Catalogue - When sorting by rarity, use slot background 5 (white) and color based on rarity color
+			//TODO - Clicker Catalogue - When sorting by rarity, use slot background 6 (white) and color based on rarity color
 			//Draw Sorting Button
 			texture = sortAsset.Value;
 			frame = texture.Frame(1, 2);
@@ -334,6 +365,23 @@ namespace ClickerClass.UI
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 			
 			return true;
+		}
+		
+		//TODO - Clicker Catalogue - Temporary way to allow the hint localization strings to function. Probably wont work with cross-mod compat...
+		public static string RemoveSpecialCharacters(string str)
+		{
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < str.Length; i++)
+			{
+				if ((str[i] >= '0' && str[i] <= '9')
+					|| (str[i] >= 'A' && str[i] <= 'z'
+						|| (str[i] == '.' || str[i] == '_')))
+					{
+						sb.Append(str[i]);
+					}
+			}
+
+			return sb.ToString();
 		}
 
 		public override int GetInsertIndex(List<GameInterfaceLayer> layers)

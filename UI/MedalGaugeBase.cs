@@ -8,6 +8,7 @@ using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.UI;
+using ClickerClass.Items.Accessories;
 
 namespace ClickerClass.UI
 {
@@ -109,7 +110,7 @@ namespace ClickerClass.UI
 
 			// Percentage of bar filled
 			//Ugly magic numbers
-			float fill = (float)GetValue() / 200;
+			float fill = (float)GetValue() / AMedal.ChargeMeterMax;
 
 			// Change the width of the frame so it only draws part of the bar
 			frame.Width = (int)((frame.Width - 8) * fill + 8);
@@ -133,7 +134,7 @@ namespace ClickerClass.UI
 			{
 				//player.showItemIcon = false;
 				//Ugly magic numbers
-				string text = MouseoverText.Format(GetValue() / 20, 10);
+				string text = MouseoverText.Format(GetValue() / 20, AMedal.ChargeAmount);
 				Main.instance.MouseTextHackZoom(text, TextColor());
 				Main.mouseText = true;
 			}

@@ -8,6 +8,8 @@ using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using System;
+using System.Reflection;
+using System.Text;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -1109,9 +1111,25 @@ namespace ClickerClass
 
 			ResetAutoClickToggle();
 			
-			//TODO - Clicker Catalogue - Add way to sort clickers by name, damage, click effect cost, and rarity
-			//Item item = ContentSamples.ItemsByType[itemType];
-			//ClickerClass.mod.totalClickers.OrderBy(p => p.damage).ToList();
+			//TODO Clicker Catalogue - Sorting feature WIP | Temporarily placed here for testing
+			
+			//Orders by name ascending
+			//ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderBy(x => x).ToList();
+			
+			//Orders by name descending
+			//ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderByDescending(x => x).ToList();
+			
+			//Orders by damage ascending
+			// ___
+			
+			//Orders by damage descending
+			// ___
+			
+			//Orders by rarity ascending
+			// ___
+			
+			//Orders by rarity descending
+			// ___
 			
 			//Demon Hand handle
 			if (consumedDemonHand && chosenSecondClicker != -1)

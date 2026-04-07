@@ -821,6 +821,21 @@ Mods: {
 				// DisplayName: Demon Hand
 				// Tooltip: Allows you to select a clicker effect from your Clicker Catalogue, granting you the effect
 			}
+
+			CodeBreakerLeggings: {
+				// DisplayName: Code Breaker Leggings
+				// Tooltip: ""
+			}
+
+			CodeBreakerMask: {
+				// DisplayName: Code Breaker Mask
+				// Tooltip: ""
+			}
+
+			CodeBreakerSuit: {
+				// DisplayName: Code Breaker Suit
+				// Tooltip: ""
+			}
 		}
 
 		InfoDisplays: {

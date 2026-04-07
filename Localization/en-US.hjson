@@ -821,6 +821,21 @@ Mods: {
 				DisplayName: Demon Hand
 				Tooltip: Allows you to select a clicker effect from your Clicker Catalogue, granting you the effect
 			}
+
+			CodeBreakerLeggings: {
+				DisplayName: Code Breaker Leggings
+				Tooltip: ""
+			}
+
+			CodeBreakerMask: {
+				DisplayName: Code Breaker Mask
+				Tooltip: ""
+			}
+
+			CodeBreakerSuit: {
+				DisplayName: Code Breaker Suit
+				Tooltip: ""
+			}
 		}
 
 		InfoDisplays: {
@@ -1003,7 +1018,7 @@ Mods: {
 
 			Discharge: {
 				Name: Discharge
-				Description: Blasts out {0} short-ranged lasers around the cursor
+				Description: Releases {0} surges of arcing electricity from the cursor
 			}
 
 			StickyHoney: {

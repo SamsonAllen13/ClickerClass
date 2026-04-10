@@ -108,10 +108,12 @@ namespace ClickerClass.Projectiles
 
 		public override void OnKill(int timeLeft)
 		{
-			for (int u = 0; u < 15; u++)
+			for (int u = 0; u < 20; u++)
 			{
-				int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 174, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 0, default(Color), 1f);
+				int dust = Dust.NewDust(Projectile.Center, 10, 10, 55, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 175, default(Color), 2.5f);
 				Main.dust[dust].noGravity = true;
+				int dust2 = Dust.NewDust(Projectile.Center, 34, 34, 174, 0f, 0f, 0, default(Color), 3.5f);
+				Main.dust[dust2].noGravity = true;
 			}
 		}
 	}

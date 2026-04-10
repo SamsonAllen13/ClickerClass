@@ -73,7 +73,7 @@ namespace ClickerClass.Projectiles
 				SoundEngine.PlaySound(SoundID.Item104, Projectile.Center);
 				for (int k = 0; k < 15; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.Center - new Vector2(4), 8, 8, 27, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 255, default, 2f);
+					Dust dust = Dust.NewDustDirect(Projectile.Center - new Vector2(4), 8, 8, 27, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 25, default, 2f);
 					dust.noGravity = true;
 				}
 			}
@@ -83,9 +83,9 @@ namespace ClickerClass.Projectiles
 
 			if (Main.rand.Next(3) == 0)
 			{
-				int DustID = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 27, 0f, 0f, 255, default(Color), 1f);
+				int DustID = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 27, 0f, 0f, 25, default(Color), 1f);
 				Main.dust[DustID].noGravity = true;
-				int DustID2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 27, 0f, 0f, 150, default(Color), 0.75f);
+				int DustID2 = Dust.NewDust(new Vector2(Projectile.position.X, Projectile.position.Y), Projectile.width, Projectile.height, 27, 0f, 0f, 25, default(Color), 0.75f);
 				Main.dust[DustID2].noGravity = true;
 			}
 			
@@ -111,7 +111,7 @@ namespace ClickerClass.Projectiles
 		{
 			for (int u = 0; u < 15; u++)
 			{
-				int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 27, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 255, default(Color), 1.25f);
+				int dust = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 27, Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f), 25, default(Color), 1.25f);
 				Main.dust[dust].noGravity = true;
 			}
 		}

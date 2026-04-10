@@ -61,7 +61,7 @@ namespace ClickerClass.Projectiles
 			{
 				Spawned = true;
 
-				SoundEngine.PlaySound(SoundID.Item24, Projectile.Center);
+				SoundEngine.PlaySound(SoundID.Item46.WithPitchOffset(0.25f), Projectile.Center);
 				for (int k = 0; k < 20; k++)
 				{
 					Dust dust = Dust.NewDustDirect(Projectile.Center - new Vector2(4), 8, 8, 92, Main.rand.NextFloat(-5f, 5f), Main.rand.NextFloat(-5f, 5f), 0, default, 2f);
@@ -72,11 +72,11 @@ namespace ClickerClass.Projectiles
 			Projectile.rotation += 0.05f;
 
 			Timer++;
-			if (Timer > 6)
+			if (Timer > 6 && Projectile.alpha == 0)
 			{
 				if (Main.myPlayer == Projectile.owner)
 				{
-					Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, new Vector2(Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f)), ModContent.ProjectileType<CosmicClickerPro3>(), (int)(Projectile.damage * 0.5f), Projectile.knockBack, Projectile.owner);
+					Projectile.NewProjectile(Projectile.GetSource_FromThis(), Projectile.Center, new Vector2(Main.rand.NextFloat(-4f, 4f), Main.rand.NextFloat(-4f, 4f)), ModContent.ProjectileType<CosmicClickerPro3>(), (int)(Projectile.damage * 0.1f), Projectile.knockBack, Projectile.owner);
 				}
 				Timer = 0;
 			}

@@ -16,7 +16,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			base.SetStaticDefaults();
 			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Celestial, projsInheritItemElements: true);
 			
-			ClickEffect.CosmicFlux = ClickerSystem.RegisterClickEffect(Mod, "CosmicFlux", 6, () => Color.Lerp(Color.White, new Color(Main.DiscoR, 0, Main.DiscoB), 0.5f), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.CosmicFlux = ClickerSystem.RegisterClickEffect(Mod, "CosmicFlux", 8, () => Color.Lerp(Color.White, new Color(Main.DiscoR, 0, Main.DiscoB), 0.5f), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 				
@@ -24,6 +24,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 				{
 					case 0:
 						{
+							//Consider making this a three round barrage
 							Vector2 pos = position;
 
 							int index = -1;
@@ -81,10 +82,15 @@ namespace ClickerClass.Items.Weapons.Clickers
 							}
 						}
 						break;
+					case 3:
+						{
+							Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<CosmicClickerPro5>(), damage, knockBack, player.whoAmI);
+						}
+						break;
 				}
 				
 				clickerPlayer.itemCosmicClickerStage++;
-				if (clickerPlayer.itemCosmicClickerStage > 2)
+				if (clickerPlayer.itemCosmicClickerStage > 3)
 				{
 					clickerPlayer.itemCosmicClickerStage = 0;
 				}

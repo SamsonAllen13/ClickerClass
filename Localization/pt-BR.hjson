@@ -679,6 +679,36 @@ Mods: {
 				SetBonus: Uma explosão cromática será liberada de seu cursor a cada {0} cliques
 			}
 
+			CodeBreakerLeggings: {
+				// DisplayName: Code Breaker Leggings
+				// Tooltip: ""
+			}
+
+			CodeBreakerMask: {
+				// DisplayName: Code Breaker Mask
+				// Tooltip: ""
+			}
+
+			CodeBreakerSuit: {
+				// DisplayName: Code Breaker Suit
+				// Tooltip: ""
+			}
+
+			ClickerCatalogue: {
+				// Tooltip: ""
+				// DisplayName: Clicker Catalogue
+			}
+
+			DemonHand: {
+				// DisplayName: Demon Hand
+				/* Tooltip:
+					'''
+					Permanently allows you to select a clicker effect from your 'Clicker Catalogue'
+					Your current held clicker gains this selected effect in addition to its current effects
+					You may change the selected clicker effect at will
+					''' */
+			}
+
 			ClickerEffectHairDye: {
 				DisplayName: Tintura para Cabelo de Efeito do Clicker
 				Tooltip: ""
@@ -721,26 +751,50 @@ Mods: {
 
 			AdamantiteClicker: {
 				DisplayName: Clicker de Adamantina
-				// Hint: Obtained from crafting with a Hardmode ore
+				// Hint: Obtained from crafting with Adamantite Bars
 			}
 
 			ArthursClicker: {
 				DisplayName: Clicker de Artur
-				// Hint: Obtained from crafting with a Hardmode bar
+				// Hint: Obtained from crafting with Hallowed Bars
 			}
 
-			AstralClicker.DisplayName: Clicker Astral
-			BalloonClicker.DisplayName: Clicker Balão
-			BoneClicker.DisplayName: Clicker de Osso
-			BlizzardClicker.DisplayName: Clicker da Nevasca
+			AshenClicker: {
+				DisplayName: Clicker Carbonizado
+				// Hint: Obtained from crafting with Ash Wood
+			}
+
+			AstralClicker: {
+				DisplayName: Clicker Astral
+				// Hint: Obtained from crafting with Mice Fragments
+			}
+
+			BalloonClicker: {
+				DisplayName: Clicker Balão
+				// Hint: Dropped from a Windy Day foe
+			}
+
+			BlizzardClicker: {
+				DisplayName: Clicker da Nevasca
+				// Hint: Obtained from crafting with Frost Cores
+			}
+
+			BoneClicker: {
+				DisplayName: Clicker de Osso
+				// Hint: Obtained from crafting with Sturdy Fossils
+			}
+
 			BurningSuperDeathClicker.DisplayName: Clicker da Super Morte Ardente
+			// BurrowingClicker.DisplayName: Burrowing Clicker
 			CandleClicker.DisplayName: Clicker Vela
 			CaptainsClicker.DisplayName: Clicker do Capitão
 			ChlorophyteClicker.DisplayName: Clicker de Clorofita
 			CobaltClicker.DisplayName: Clicker de Cobalto
+			// CollectorsClicker.DisplayName: Collector's Clicker
 			ConfettiClicker.DisplayName: Clicker de Confete
 			CopperClicker.DisplayName: Clicker de Cobre
 			CorruptClicker.DisplayName: Clicker Corrompido
+			// CosmicClicker.DisplayName: Cosmic Clicker
 			CrimsonClicker.DisplayName: Clicker de Carmim
 			CritterClicker.DisplayName: Clicker Animalesco
 			CrystalClicker.DisplayName: Clicker de Cristal
@@ -751,6 +805,7 @@ Mods: {
 			EclipticClicker.DisplayName: Clicker Elíptico
 			FamishedClicker.DisplayName: Clicker Faminto
 			FaultyClicker.DisplayName: Clicker Defeituoso
+			// FloralClicker.DisplayName: Floral Clicker
 			FrozenClicker.DisplayName: Clicker Congelado
 			GoldClicker.DisplayName: Clicker de Ouro
 			HeartyClicker.DisplayName: Clicker Vigoroso
@@ -765,6 +820,8 @@ Mods: {
 			LordsClicker.DisplayName: Clicker do Senhor
 			MagnetClicker.DisplayName: Clicker Magnético
 			MiceClicker.DisplayName: Clicker de Mouse
+			// MindfulClicker.DisplayName: Mindful Clicker
+			MouseClicker.DisplayName: Clicker de Mouse
 			MyceliumClicker.DisplayName: Clicker de Micélio
 			MythrilClicker.DisplayName: Clicker de Mithril
 			NaughtyClicker.DisplayName: Clicker Malcriado
@@ -785,56 +842,23 @@ Mods: {
 			SlickClicker.DisplayName: Clicker Liso
 			SnottyClicker.DisplayName: Clicker Ranhento
 			SpaceClicker.DisplayName: Clicker do Espaço
-
-			SpectreClicker: {
-				DisplayName: Clicker Espectral
-				Tooltip: Clique em um inimigo dentro da sua visão para causar danos nele
-			}
-
 			SpiralClicker.DisplayName: Clicker Espiral
 			StarryClicker.DisplayName: Clicker Estelar
+			// StingingClicker.DisplayName: Stinging Clicker
 			TheClicker.DisplayName: O Clicker
 			TinClicker.DisplayName: Clicker de Estanho
 			TitaniumClicker.DisplayName: Clicker de Titânio
 			TorchClicker.DisplayName: Clicker Tocha
 			TungstenClicker.DisplayName: Clicker de Tungstênio
 			UmbralClicker.DisplayName: Clicker Umbral
-			WitchClicker.DisplayName: Clicker da Bruxa
-			WebClicker.DisplayName: Clicker de Teia
-			WoodenClicker.DisplayName: Clicker de Madeira
-			AshenClicker.DisplayName: Clicker Carbonizado
-			MouseClicker.DisplayName: Clicker de Mouse
 			// WatchfulClicker.DisplayName: Watchful Clicker
-			// BurrowingClicker.DisplayName: Burrowing Clicker
-			// MindfulClicker.DisplayName: Mindful Clicker
-			// StingingClicker.DisplayName: Stinging Clicker
-			// FloralClicker.DisplayName: Floral Clicker
+			WebClicker.DisplayName: Clicker de Teia
+			WitchClicker.DisplayName: Clicker da Bruxa
+			WoodenClicker.DisplayName: Clicker de Madeira
 
-			ClickerCatalogue: {
-				// Tooltip: ""
-				// DisplayName: Clicker Catalogue
-			}
-
-			// CosmicClicker.DisplayName: Cosmic Clicker
-
-			DemonHand: {
-				// DisplayName: Demon Hand
-				// Tooltip: Allows you to select a clicker effect from your Clicker Catalogue, granting you the effect
-			}
-
-			CodeBreakerLeggings: {
-				// DisplayName: Code Breaker Leggings
-				// Tooltip: ""
-			}
-
-			CodeBreakerMask: {
-				// DisplayName: Code Breaker Mask
-				// Tooltip: ""
-			}
-
-			CodeBreakerSuit: {
-				// DisplayName: Code Breaker Suit
-				// Tooltip: ""
+			SpectreClicker: {
+				DisplayName: Clicker Espectral
+				Tooltip: Clique em um inimigo dentro da sua visão para causar danos nele
 			}
 		}
 
@@ -1225,6 +1249,11 @@ Mods: {
 				// Name: Cosmic Flux
 				// Description: Cycles between different cosmic attacks every time it triggers
 			}
+
+			Greed: {
+				// Name: Greed
+				// Description: Grants you massively increased luck
+			}
 		}
 
 		Prefixes: {
@@ -1347,16 +1376,18 @@ Mods: {
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			MouseClickerPro.DisplayName: "{$Items.MouseClicker.DisplayName}"
-			// MindfulClickerPro.DisplayName: Mindful Clicker Pro
-			// StingingClickerPro.DisplayName: Stinging Clicker Pro
-			// StingingClickerPro2.DisplayName: Stinging Clicker Pro2
-			// FloralClickerPro.DisplayName: Floral Clicker Pro
-			// CosmicClickerPro.DisplayName: Cosmic Clicker Pro
-			// CosmicClickerPro2.DisplayName: Cosmic Clicker Pro2
-			// CosmicClickerPro4.DisplayName: Cosmic Clicker Pro4
-			// CosmicClickerPro3.DisplayName: Cosmic Clicker Pro3
-			// CosmicClickerPro6.DisplayName: Cosmic Clicker Pro6
-			// CosmicClickerPro5.DisplayName: Cosmic Clicker Pro5
+			// MindfulClickerPro.DisplayName: "{$Items.MindfulClicker.DisplayName}"
+			// StingingClickerPro.DisplayName: "{$Items.StingingClicker.DisplayName}"
+			// StingingClickerPro2.DisplayName: "{$Items.StingingClicker.DisplayName}"
+			// FloralClickerPro.DisplayName: "{$Items.FloralClicker.DisplayName}"
+			// CosmicClickerPro.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro2.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro3.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro4.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro5.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro6.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro7.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// TrickyKeychainPro.DisplayName: Tricky Keychain Pro
 		}
 
 		Configs: {

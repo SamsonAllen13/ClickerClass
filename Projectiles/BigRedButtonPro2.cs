@@ -59,7 +59,7 @@ namespace ClickerClass.Projectiles
 				{
 					float num364 = Projectile.velocity.X / 3f * (float)num363;
 					float num365 = Projectile.velocity.Y / 3f * (float)num363;
-					int num366 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 55, 0f, 0f, 75, default(Color), 1f);
+					int num366 = Dust.NewDust(Projectile.position, Projectile.width, Projectile.height, 55, 0f, 0f, 150, default(Color), 1f);
 					Main.dust[num366].position.X = Projectile.Center.X - num364;
 					Main.dust[num366].position.Y = Projectile.Center.Y - num365;
 					Main.dust[num366].velocity *= 0f;
@@ -73,7 +73,7 @@ namespace ClickerClass.Projectiles
 					SoundEngine.PlaySound(SoundID.Item110, Projectile.Center);
 					for (int k = 0; k < 10; k++)
 					{
-						Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 55, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
+						Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, 55, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 150, default, 1f);
 						dust.noGravity = true;
 					}
 					Projectile.ai[1] = 1f;

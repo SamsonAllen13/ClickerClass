@@ -48,16 +48,18 @@ namespace ClickerClass.Projectiles
 			Item item = player.HeldItem;
 
 			int dustType = 0;
+			int alpha = 0;
 			if (ClickerSystem.IsClickerWeapon(item, out ClickerItemCore clickerItem))
 			{
 				dustType = clickerItem.clickerDustColor;
+				alpha = clickerItem.clickerDustAlpha;
 			}
 
 			if (dustType != -1)
 			{
 				for (int k = 0; k < 5; k++)
 				{
-					Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default, 1f);
+					Dust dust = Dust.NewDustDirect(Projectile.Center, 10, 10, dustType, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), alpha, default, 1f);
 					dust.noGravity = true;
 				}
 			}

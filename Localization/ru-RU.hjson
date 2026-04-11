@@ -679,6 +679,36 @@ Mods: {
 				SetBonus: Каждые {0} кликов вызывает цветовой всплеск из вашего курсора
 			}
 
+			CodeBreakerLeggings: {
+				// DisplayName: Code Breaker Leggings
+				// Tooltip: ""
+			}
+
+			CodeBreakerMask: {
+				// DisplayName: Code Breaker Mask
+				// Tooltip: ""
+			}
+
+			CodeBreakerSuit: {
+				// DisplayName: Code Breaker Suit
+				// Tooltip: ""
+			}
+
+			ClickerCatalogue: {
+				// Tooltip: ""
+				// DisplayName: Clicker Catalogue
+			}
+
+			DemonHand: {
+				// DisplayName: Demon Hand
+				/* Tooltip:
+					'''
+					Permanently allows you to select a clicker effect from your 'Clicker Catalogue'
+					Your current held clicker gains this selected effect in addition to its current effects
+					You may change the selected clicker effect at will
+					''' */
+			}
+
 			ClickerEffectHairDye: {
 				DisplayName: Краска для волос с эффектом курсора
 				Tooltip: ""
@@ -721,26 +751,50 @@ Mods: {
 
 			AdamantiteClicker: {
 				DisplayName: Адамантитовый курсор
-				// Hint: Obtained from crafting with a Hardmode ore
+				// Hint: Obtained from crafting with Adamantite Bars
 			}
 
 			ArthursClicker: {
 				DisplayName: Курсор Артура
-				// Hint: Obtained from crafting with a Hardmode bar
+				// Hint: Obtained from crafting with Hallowed Bars
 			}
 
-			AstralClicker.DisplayName: Астральный курсор
-			BalloonClicker.DisplayName: Курсор-воздушный шар
-			BoneClicker.DisplayName: Костяной курсор
-			BlizzardClicker.DisplayName: Курсор снежной бури
+			AshenClicker: {
+				DisplayName: Пепельный курсор
+				// Hint: Obtained from crafting with Ash Wood
+			}
+
+			AstralClicker: {
+				DisplayName: Астральный курсор
+				// Hint: Obtained from crafting with Mice Fragments
+			}
+
+			BalloonClicker: {
+				DisplayName: Курсор-воздушный шар
+				// Hint: Dropped from a Windy Day foe
+			}
+
+			BlizzardClicker: {
+				DisplayName: Курсор снежной бури
+				// Hint: Obtained from crafting with Frost Cores
+			}
+
+			BoneClicker: {
+				DisplayName: Костяной курсор
+				// Hint: Obtained from crafting with Sturdy Fossils
+			}
+
 			BurningSuperDeathClicker.DisplayName: Горящий суперсмертельный курсор
+			// BurrowingClicker.DisplayName: Burrowing Clicker
 			CandleClicker.DisplayName: Курсор-свеча
 			CaptainsClicker.DisplayName: Курсор капитана
 			ChlorophyteClicker.DisplayName: Хлорофитовый курсор
 			CobaltClicker.DisplayName: Кобальтовый курсор
+			// CollectorsClicker.DisplayName: Collector's Clicker
 			ConfettiClicker.DisplayName: Курсор-конфетти
 			CopperClicker.DisplayName: Медный курсор
 			CorruptClicker.DisplayName: Искажённый курсор
+			// CosmicClicker.DisplayName: Cosmic Clicker
 			CrimsonClicker.DisplayName: Багряный курсор
 			CritterClicker.DisplayName: Животный курсор
 			CrystalClicker.DisplayName: Кристальный курсор
@@ -751,6 +805,7 @@ Mods: {
 			EclipticClicker.DisplayName: Потускневший курсор
 			FamishedClicker.DisplayName: Изголодавший курсор
 			FaultyClicker.DisplayName: Неисправный курсор
+			// FloralClicker.DisplayName: Floral Clicker
 			FrozenClicker.DisplayName: Замороженный курсор
 			GoldClicker.DisplayName: Золотой курсор
 			HeartyClicker.DisplayName: Сердечный курсор
@@ -765,6 +820,8 @@ Mods: {
 			LordsClicker.DisplayName: Курсор Лорда
 			MagnetClicker.DisplayName: Магнитный курсор
 			MiceClicker.DisplayName: Курсор фрагмента мыши
+			// MindfulClicker.DisplayName: Mindful Clicker
+			MouseClicker.DisplayName: Мышиный курсор
 			MyceliumClicker.DisplayName: Мицелиевый курсор
 			MythrilClicker.DisplayName: Мифриловый курсор
 			NaughtyClicker.DisplayName: Непослушный курсор
@@ -785,56 +842,23 @@ Mods: {
 			SlickClicker.DisplayName: Скользкий курсор
 			SnottyClicker.DisplayName: Сопливый курсор
 			SpaceClicker.DisplayName: Космический курсор
-
-			SpectreClicker: {
-				DisplayName: Спектральный курсор
-				Tooltip: Кликните на врага в пределах экрана, чтобы нанести ему урон
-			}
-
 			SpiralClicker.DisplayName: Спиральный курсор
 			StarryClicker.DisplayName: Звёздный курсор
+			// StingingClicker.DisplayName: Stinging Clicker
 			TheClicker.DisplayName: Курсор
 			TinClicker.DisplayName: Оловянный курсор
 			TitaniumClicker.DisplayName: Титановый курсор
 			TorchClicker.DisplayName: Курсор-факел
 			TungstenClicker.DisplayName: Вольфрамовый курсор
 			UmbralClicker.DisplayName: Теневой курсор
-			WitchClicker.DisplayName: Курсор ведьмы
-			WebClicker.DisplayName: Курсор паутины
-			WoodenClicker.DisplayName: Деревянный курсор
-			AshenClicker.DisplayName: Пепельный курсор
-			MouseClicker.DisplayName: Мышиный курсор
 			// WatchfulClicker.DisplayName: Watchful Clicker
-			// BurrowingClicker.DisplayName: Burrowing Clicker
-			// MindfulClicker.DisplayName: Mindful Clicker
-			// StingingClicker.DisplayName: Stinging Clicker
-			// FloralClicker.DisplayName: Floral Clicker
+			WebClicker.DisplayName: Курсор паутины
+			WitchClicker.DisplayName: Курсор ведьмы
+			WoodenClicker.DisplayName: Деревянный курсор
 
-			ClickerCatalogue: {
-				// Tooltip: ""
-				// DisplayName: Clicker Catalogue
-			}
-
-			// CosmicClicker.DisplayName: Cosmic Clicker
-
-			DemonHand: {
-				// DisplayName: Demon Hand
-				// Tooltip: Allows you to select a clicker effect from your Clicker Catalogue, granting you the effect
-			}
-
-			CodeBreakerLeggings: {
-				// DisplayName: Code Breaker Leggings
-				// Tooltip: ""
-			}
-
-			CodeBreakerMask: {
-				// DisplayName: Code Breaker Mask
-				// Tooltip: ""
-			}
-
-			CodeBreakerSuit: {
-				// DisplayName: Code Breaker Suit
-				// Tooltip: ""
+			SpectreClicker: {
+				DisplayName: Спектральный курсор
+				Tooltip: Кликните на врага в пределах экрана, чтобы нанести ему урон
 			}
 		}
 
@@ -1225,6 +1249,11 @@ Mods: {
 				// Name: Cosmic Flux
 				// Description: Cycles between different cosmic attacks every time it triggers
 			}
+
+			Greed: {
+				// Name: Greed
+				// Description: Grants you massively increased luck
+			}
 		}
 
 		Prefixes: {
@@ -1347,16 +1376,18 @@ Mods: {
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			MouseClickerPro.DisplayName: "{$Items.MouseClicker.DisplayName}"
-			// MindfulClickerPro.DisplayName: Mindful Clicker Pro
-			// StingingClickerPro.DisplayName: Stinging Clicker Pro
-			// StingingClickerPro2.DisplayName: Stinging Clicker Pro2
-			// FloralClickerPro.DisplayName: Floral Clicker Pro
-			// CosmicClickerPro.DisplayName: Cosmic Clicker Pro
-			// CosmicClickerPro2.DisplayName: Cosmic Clicker Pro2
-			// CosmicClickerPro4.DisplayName: Cosmic Clicker Pro4
-			// CosmicClickerPro3.DisplayName: Cosmic Clicker Pro3
-			// CosmicClickerPro6.DisplayName: Cosmic Clicker Pro6
-			// CosmicClickerPro5.DisplayName: Cosmic Clicker Pro5
+			// MindfulClickerPro.DisplayName: "{$Items.MindfulClicker.DisplayName}"
+			// StingingClickerPro.DisplayName: "{$Items.StingingClicker.DisplayName}"
+			// StingingClickerPro2.DisplayName: "{$Items.StingingClicker.DisplayName}"
+			// FloralClickerPro.DisplayName: "{$Items.FloralClicker.DisplayName}"
+			// CosmicClickerPro.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro2.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro3.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro4.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro5.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro6.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro7.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// TrickyKeychainPro.DisplayName: Tricky Keychain Pro
 		}
 
 		Configs: {

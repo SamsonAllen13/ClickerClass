@@ -35,7 +35,7 @@ namespace ClickerClass.Items.Armors
 
 			SetBonusText = this.GetLocalization("SetBonus").WithFormatArgs(ClickAmount);
 
-			ClickEffect.ChromaticBurst = ClickerSystem.RegisterClickEffect(Mod, "ChromaticBurst", ClickAmount, () => Color.Lerp(Color.White, Main.DiscoColor, 0.5f), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+			ClickEffect.ChromaticBurst = ClickerSystem.RegisterClickEffect(Mod, "ChromaticBurst", ClickAmount, () => Color.Lerp(Color.White, Main.DiscoColor, 0.2f), delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
 			{
 				bool spawnEffects = true;
 				int chromatic = ModContent.ProjectileType<RGBPro>();

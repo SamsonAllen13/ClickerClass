@@ -46,13 +46,14 @@ namespace ClickerClass.Projectiles
 			Texture2D texture2D = TextureAssets.Projectile[Projectile.type].Value;
 			Vector2 drawOrigin = new Vector2(TextureAssets.Projectile[Projectile.type].Value.Width * 0.5f, Projectile.height * 0.5f);
 			
-			Main.EntitySpriteDraw(texture2D, Projectile.Center - Main.screenPosition, null, (new Color(255, 255, 255, 150) * 0.25f) * Projectile.Opacity, -Projectile.rotation / 2, drawOrigin, Projectile.scale + 0.3f, SpriteEffects.None, 0);
+			Main.EntitySpriteDraw(texture2D, Projectile.Center - Main.screenPosition, null, (new Color(255, 255, 255, 150) * 0.2f) * Projectile.Opacity, Projectile.rotation / 3, drawOrigin, Projectile.scale + 0.75f, SpriteEffects.None, 0);
+			Main.EntitySpriteDraw(texture2D, Projectile.Center - Main.screenPosition, null, (new Color(255, 255, 255, 150) * 0.5f) * Projectile.Opacity, -Projectile.rotation / 2, drawOrigin, Projectile.scale + 0.3f, SpriteEffects.None, 0);
 			return true;
 		}
 		
 		public override Color? GetAlpha(Color lightColor)
 		{
-			return (new Color(255, 255, 255, 150) * 0.8f) * Projectile.Opacity;
+			return new Color(255, 255, 255, 150) * Projectile.Opacity;
 		}
 
 		public override void AI()

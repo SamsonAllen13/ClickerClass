@@ -24,36 +24,10 @@ namespace ClickerClass.Items.Weapons.Clickers
 				{
 					case 0:
 						{
-							//Consider making this a three round barrage
-							Vector2 pos = position;
-
-							int index = -1;
-							for (int i = 0; i < Main.maxNPCs; i++)
-							{
-								NPC npc = Main.npc[i];
-								if (npc.active && npc.CanBeChasedBy() && npc.DistanceSQ(pos) < 400f * 400f && Collision.CanHit(pos, 1, 1, npc.Center, 1, 1))
-								{
-									index = i;
-								}
-							}
-							Vector2 vector = index == -1 ? pos - player.Center : Main.npc[index].Center - pos;
-							
-							float speed = 6f;
-							float mag = vector.Length();
-							if (mag > speed)
-							{
-								mag = speed / mag;
-								vector *= mag;
-							}
-							
 							const float numberProjectiles = 3;
-							float rotation = MathHelper.ToRadians(15);
-							position += Vector2.Normalize(vector) * 15f;
-
 							for (int i = 0; i < numberProjectiles; i++)
 							{
-								Vector2 perturbedSpeed = vector.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * 1f;
-								Projectile.NewProjectile(source, position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<CosmicClickerPro>(), damage, knockBack, player.whoAmI);
+								Projectile.NewProjectile(source, position.X, position.Y, 0f, 0f, ModContent.ProjectileType<CosmicClickerPro>(), (int)(damage * 0.5f), knockBack, player.whoAmI, 0, i * 8);
 							}
 						}
 						break;
@@ -87,10 +61,42 @@ namespace ClickerClass.Items.Weapons.Clickers
 							Projectile.NewProjectile(source, position, Vector2.Zero, ModContent.ProjectileType<CosmicClickerPro5>(), damage, knockBack, player.whoAmI);
 						}
 						break;
+					case 4:
+						{
+							int index = -1;
+							for (int i = 0; i < Main.maxNPCs; i++)
+							{
+								NPC npc = Main.npc[i];
+								if (npc.active && npc.CanBeChasedBy() && npc.DistanceSQ(position) < 400f * 400f && Collision.CanHit(position, 1, 1, npc.Center, 1, 1))
+								{
+									index = i;
+								}
+							}
+							Vector2 vector = index == -1 ? position - player.Center : Main.npc[index].Center - position;
+							
+							float speed = 10f;
+							float mag = vector.Length();
+							if (mag > speed)
+							{
+								mag = speed / mag;
+								vector *= mag;
+							}
+							
+							const float numberProjectiles = 5;
+							float rotation = MathHelper.ToRadians(8);
+							position += Vector2.Normalize(vector) * 15f;
+
+							for (int i = 0; i < numberProjectiles; i++)
+							{
+								Vector2 perturbedSpeed = vector.RotatedBy(MathHelper.Lerp(-rotation, rotation, i / (numberProjectiles - 1))) * 1f;
+								Projectile.NewProjectile(source, position.X, position.Y, perturbedSpeed.X, perturbedSpeed.Y, ModContent.ProjectileType<CosmicClickerPro7>(), (int)(damage * 0.75f), knockBack, player.whoAmI);
+							}
+						}
+						break;
 				}
 				
 				clickerPlayer.itemCosmicClickerStage++;
-				if (clickerPlayer.itemCosmicClickerStage > 3)
+				if (clickerPlayer.itemCosmicClickerStage > 4)
 				{
 					clickerPlayer.itemCosmicClickerStage = 0;
 				}
@@ -105,7 +111,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 221);
 			AddEffect(Item, ClickEffect.CosmicFlux);
 
-			Item.damage = 88;
+			Item.damage = 84;
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 2f;

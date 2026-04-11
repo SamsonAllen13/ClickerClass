@@ -679,6 +679,36 @@ Mods: {
 				SetBonus: 每{0}次点击,光标处就会产生色彩爆发
 			}
 
+			CodeBreakerLeggings: {
+				// DisplayName: Code Breaker Leggings
+				// Tooltip: ""
+			}
+
+			CodeBreakerMask: {
+				// DisplayName: Code Breaker Mask
+				// Tooltip: ""
+			}
+
+			CodeBreakerSuit: {
+				// DisplayName: Code Breaker Suit
+				// Tooltip: ""
+			}
+
+			ClickerCatalogue: {
+				// Tooltip: ""
+				// DisplayName: Clicker Catalogue
+			}
+
+			DemonHand: {
+				// DisplayName: Demon Hand
+				/* Tooltip:
+					'''
+					Permanently allows you to select a clicker effect from your 'Clicker Catalogue'
+					Your current held clicker gains this selected effect in addition to its current effects
+					You may change the selected clicker effect at will
+					''' */
+			}
+
 			ClickerEffectHairDye: {
 				DisplayName: 点击效果染发剂
 				Tooltip: ""
@@ -721,26 +751,50 @@ Mods: {
 
 			AdamantiteClicker: {
 				DisplayName: 精金点击器
-				// Hint: Obtained from crafting with a Hardmode ore
+				// Hint: Obtained from crafting with Adamantite Bars
 			}
 
 			ArthursClicker: {
 				DisplayName: 神圣点击器
-				// Hint: Obtained from crafting with a Hardmode bar
+				// Hint: Obtained from crafting with Hallowed Bars
 			}
 
-			AstralClicker.DisplayName: 星体点击器
-			BalloonClicker.DisplayName: 气球点击器
-			BoneClicker.DisplayName: 骨头点击器
-			BlizzardClicker.DisplayName: 暴雪点击器
+			AshenClicker: {
+				// DisplayName: Ashen Clicker
+				// Hint: Obtained from crafting with Ash Wood
+			}
+
+			AstralClicker: {
+				DisplayName: 星体点击器
+				// Hint: Obtained from crafting with Mice Fragments
+			}
+
+			BalloonClicker: {
+				DisplayName: 气球点击器
+				// Hint: Dropped from a Windy Day foe
+			}
+
+			BlizzardClicker: {
+				DisplayName: 暴雪点击器
+				// Hint: Obtained from crafting with Frost Cores
+			}
+
+			BoneClicker: {
+				DisplayName: 骨头点击器
+				// Hint: Obtained from crafting with Sturdy Fossils
+			}
+
 			BurningSuperDeathClicker.DisplayName: 爆燃超级死亡点击器
+			// BurrowingClicker.DisplayName: Burrowing Clicker
 			CandleClicker.DisplayName: 蜡烛点击器
 			CaptainsClicker.DisplayName: 船长点击器
 			ChlorophyteClicker.DisplayName: 叶绿点击器
 			CobaltClicker.DisplayName: 钴点击器
+			// CollectorsClicker.DisplayName: Collector's Clicker
 			ConfettiClicker.DisplayName: 彩纸点击器
 			CopperClicker.DisplayName: 铜点击器
 			CorruptClicker.DisplayName: 腐化点击器
+			// CosmicClicker.DisplayName: Cosmic Clicker
 			CrimsonClicker.DisplayName: 猩红点击器
 			CritterClicker.DisplayName: 动物点击器
 			CrystalClicker.DisplayName: 水晶点击器
@@ -751,6 +805,7 @@ Mods: {
 			EclipticClicker.DisplayName: 日食点击器
 			FamishedClicker.DisplayName: 饥渴点击器
 			FaultyClicker.DisplayName: 故障点击器
+			// FloralClicker.DisplayName: Floral Clicker
 			FrozenClicker.DisplayName: 寒冰点击器
 			GoldClicker.DisplayName: 金点击器
 			HeartyClicker.DisplayName: 甜心点击器
@@ -765,6 +820,8 @@ Mods: {
 			LordsClicker.DisplayName: 月亮领主点击器
 			MagnetClicker.DisplayName: 磁铁点击器
 			MiceClicker.DisplayName: 鼠标点击器
+			// MindfulClicker.DisplayName: Mindful Clicker
+			// MouseClicker.DisplayName: Mouse Clicker
 			MyceliumClicker.DisplayName: 菌丝点击器
 			MythrilClicker.DisplayName: 秘银点击器
 			NaughtyClicker.DisplayName: 顽皮点击器
@@ -785,56 +842,23 @@ Mods: {
 			SlickClicker.DisplayName: 灵动点击器
 			SnottyClicker.DisplayName: 鼻涕点击器
 			SpaceClicker.DisplayName: 太空点击器
-
-			SpectreClicker: {
-				DisplayName: 幽灵点击器
-				Tooltip: 点击屏幕内的敌人对其造成伤害
-			}
-
 			SpiralClicker.DisplayName: 螺旋点击器
 			StarryClicker.DisplayName: 星空点击器
+			// StingingClicker.DisplayName: Stinging Clicker
 			TheClicker.DisplayName: 大师点击器
 			TinClicker.DisplayName: 锡点击器
 			TitaniumClicker.DisplayName: 钛金点击器
 			TorchClicker.DisplayName: 火把点击器
 			TungstenClicker.DisplayName: 钨点击器
 			UmbralClicker.DisplayName: 阴影点击器
-			WitchClicker.DisplayName: 女巫点击器
-			WebClicker.DisplayName: 蛛网点击器
-			WoodenClicker.DisplayName: 木点击器
-			// AshenClicker.DisplayName: Ashen Clicker
-			// MouseClicker.DisplayName: Mouse Clicker
 			// WatchfulClicker.DisplayName: Watchful Clicker
-			// BurrowingClicker.DisplayName: Burrowing Clicker
-			// MindfulClicker.DisplayName: Mindful Clicker
-			// StingingClicker.DisplayName: Stinging Clicker
-			// FloralClicker.DisplayName: Floral Clicker
+			WebClicker.DisplayName: 蛛网点击器
+			WitchClicker.DisplayName: 女巫点击器
+			WoodenClicker.DisplayName: 木点击器
 
-			ClickerCatalogue: {
-				// Tooltip: ""
-				// DisplayName: Clicker Catalogue
-			}
-
-			// CosmicClicker.DisplayName: Cosmic Clicker
-
-			DemonHand: {
-				// DisplayName: Demon Hand
-				// Tooltip: Allows you to select a clicker effect from your Clicker Catalogue, granting you the effect
-			}
-
-			CodeBreakerLeggings: {
-				// DisplayName: Code Breaker Leggings
-				// Tooltip: ""
-			}
-
-			CodeBreakerMask: {
-				// DisplayName: Code Breaker Mask
-				// Tooltip: ""
-			}
-
-			CodeBreakerSuit: {
-				// DisplayName: Code Breaker Suit
-				// Tooltip: ""
+			SpectreClicker: {
+				DisplayName: 幽灵点击器
+				Tooltip: 点击屏幕内的敌人对其造成伤害
 			}
 		}
 
@@ -1225,6 +1249,11 @@ Mods: {
 				// Name: Cosmic Flux
 				// Description: Cycles between different cosmic attacks every time it triggers
 			}
+
+			Greed: {
+				// Name: Greed
+				// Description: Grants you massively increased luck
+			}
 		}
 
 		Prefixes: {
@@ -1347,16 +1376,18 @@ Mods: {
 			PharaohsClickerPro.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			PharaohsClickerPro2.DisplayName: "{$Items.PharaohsClicker.DisplayName}"
 			MouseClickerPro.DisplayName: "{$Items.MouseClicker.DisplayName}"
-			// MindfulClickerPro.DisplayName: Mindful Clicker Pro
-			// StingingClickerPro.DisplayName: Stinging Clicker Pro
-			// StingingClickerPro2.DisplayName: Stinging Clicker Pro2
-			// FloralClickerPro.DisplayName: Floral Clicker Pro
-			// CosmicClickerPro.DisplayName: Cosmic Clicker Pro
-			// CosmicClickerPro2.DisplayName: Cosmic Clicker Pro2
-			// CosmicClickerPro4.DisplayName: Cosmic Clicker Pro4
-			// CosmicClickerPro3.DisplayName: Cosmic Clicker Pro3
-			// CosmicClickerPro6.DisplayName: Cosmic Clicker Pro6
-			// CosmicClickerPro5.DisplayName: Cosmic Clicker Pro5
+			// MindfulClickerPro.DisplayName: "{$Items.MindfulClicker.DisplayName}"
+			// StingingClickerPro.DisplayName: "{$Items.StingingClicker.DisplayName}"
+			// StingingClickerPro2.DisplayName: "{$Items.StingingClicker.DisplayName}"
+			// FloralClickerPro.DisplayName: "{$Items.FloralClicker.DisplayName}"
+			// CosmicClickerPro.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro2.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro3.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro4.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro5.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro6.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// CosmicClickerPro7.DisplayName: "{$Items.CosmicClicker.DisplayName}"
+			// TrickyKeychainPro.DisplayName: Tricky Keychain Pro
 		}
 
 		Configs: {

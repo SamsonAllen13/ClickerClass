@@ -91,7 +91,7 @@ namespace ClickerClass.Items
 					}
 				}
 				
-				if (!ClickerClass.mod.totalClickers.Contains(item.type))
+				if (!ClickerClass.mod.totalClickers.Contains(item.type) && item.type != ModContent.ItemType<CollectorsClicker>())
 				{
 					ClickerClass.mod.totalClickers.Add(item.type);
 				}
@@ -111,11 +111,12 @@ namespace ClickerClass.Items
 		/// </summary>
 		/// <param name="item">The clicker weapon</param>
 		/// <param name="type">the dust type</param>
-		public static void SetDust(Item item, int type)
+		public static void SetDust(Item item, int type, int alpha = 75)
 		{
 			if (ClickerSystem.IsClickerWeapon(item, out ClickerItemCore clickerItem))
 			{
 				clickerItem.clickerDustColor = type;
+				clickerItem.clickerDustAlpha = alpha;
 			}
 		}
 	}

@@ -42,9 +42,10 @@ namespace ClickerClass.Items
 		public List<string> itemClickEffects = new List<string>();
 
 		/// <summary>
-		/// The clickers dust that is spawned on use
+		/// The clickers dust that is spawned on use and its alpha
 		/// </summary>
 		public int clickerDustColor = 0;
+		public int clickerDustAlpha = 0;
 
 		/// <summary>
 		/// Makes it so that this item cannot be equiped when other items of the same type are already equipped
@@ -75,6 +76,7 @@ namespace ClickerClass.Items
 			myClone.clickerRadiusColor = clickerRadiusColor;
 			myClone.itemClickEffects = new List<string>(itemClickEffects);
 			myClone.clickerDustColor = clickerDustColor;
+			myClone.clickerDustAlpha = clickerDustAlpha;
 			myClone.clickBoostPrefix = clickBoostPrefix;
 			myClone.accessoryType = accessoryType;
 			myClone.isClickerDisplayTotal = isClickerDisplayTotal;
@@ -222,7 +224,7 @@ namespace ClickerClass.Items
 				{
 					tooltips.Insert(index + 1, new TooltipLine(Mod, "ClickerTag", $"-{LangHelper.GetText("Tooltip.ClickerTag")}-")
 					{
-						OverrideColor = Main.DiscoColor
+						OverrideColor = Color.Lerp(Color.White, Main.DiscoColor, 0.5f)
 					});
 				}
 			}

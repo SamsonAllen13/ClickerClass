@@ -1,11 +1,13 @@
 using ClickerClass.Buffs;
 using ClickerClass.DropRules.DropConditions;
+using ClickerClass.Dusts;
 using ClickerClass.Items;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Consumables;
 using ClickerClass.Items.Misc;
 using ClickerClass.Items.Placeable;
 using ClickerClass.Items.Weapons.Clickers;
+using ClickerClass.Items.Vanity;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using Terraria;
@@ -640,6 +642,9 @@ namespace ClickerClass.NPCs
 					break;
 				case NPCID.Cyborg:
 					shop.Add(ModContent.ItemType<DesktopComputer>());
+					shop.Add(ModContent.ItemType<CodeBreakerMask>());
+					shop.Add(ModContent.ItemType<CodeBreakerSuit>());
+					shop.Add(ModContent.ItemType<CodeBreakerLeggings>());
 					break;
 				case NPCID.Mechanic:
 					shop.Add(ModContent.ItemType<HandCream>());
@@ -748,16 +753,16 @@ namespace ClickerClass.NPCs
 			}
 			if (frozen)
 			{
-				if (!Main.rand.NextBool(5))
+				if (Main.rand.NextBool(3))
 				{
-					Dust dust = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, 111, 0f, 0f, 0, default(Color), 0.75f);
-					dust.noGravity = true;
-					dust.velocity *= 0f;
-					dust.fadeIn = 1.75f;
+					Dust dust = Dust.NewDustDirect(npc.position - new Vector2(2f, 2f), npc.width, npc.height, ModContent.DustType<FrozenDust>(), npc.velocity.X / 2f, npc.velocity.Y / 2f, 0, default(Color), 1f);
+					if (Main.rand.NextBool(4))
+					{
+						dust.scale *= 0.75f;
+					}
 				}
-				Lighting.AddLight(npc.position, 0.1f, 0.2f, 0.6f);
-				drawColor.R = (byte)(drawColor.R * 0.35f);
-				drawColor.G = (byte)(drawColor.G * 0.65f);
+				Lighting.AddLight(npc.Center, 0.1f, 0.2f, 0.6f);
+				drawColor = NPC.buffColor(drawColor, 0.35f, 0.65f, 1f, 1f);
 			}
 			if (embrittle)
 			{

@@ -24,6 +24,9 @@ namespace ClickerClass.Items.Weapons.Clickers
 					ClickEffect.Conqueror,
 					ClickEffect.AutoClick,
 					ClickEffect.PhaseReach,
+					ClickEffect.Transcend,
+					ClickEffect.TheClick,
+					ClickEffect.Greed,
 					//PHM
 					ClickEffect.Bold,
 					ClickEffect.Yoink,

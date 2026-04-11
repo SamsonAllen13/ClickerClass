@@ -61,7 +61,7 @@ namespace ClickerClass.Projectiles
 
 		public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
 		{
-			target.AddBuff(ModContent.BuffType<Frozen>(), 30, false);
+			target.AddBuff(ModContent.BuffType<Frozen>(), 60, false);
 		}
 
 		public override void AI()

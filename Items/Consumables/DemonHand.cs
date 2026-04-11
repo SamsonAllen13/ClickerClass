@@ -23,6 +23,7 @@ namespace ClickerClass.Items.Consumables
 			Item.useStyle = ItemUseStyleID.HoldUp;
 			Item.value = Item.sellPrice(0, 0, 40, 0);
 			Item.rare = ItemRarityID.Expert;
+			Item.expert = true;
 		}
 
 		public override bool CanUseItem(Player player)
@@ -37,7 +38,6 @@ namespace ClickerClass.Items.Consumables
 			{
 				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 				clickerPlayer.consumedDemonHand = true;
-				//No syncing required, click radius is not something that is seen or interacted with by other players
 				return true;
 			}
 

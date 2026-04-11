@@ -28,6 +28,8 @@ namespace ClickerClass.Projectiles
 		public override void SetStaticDefaults()
 		{
 			Main.projFrames[Projectile.type] = 4;
+			
+			MoRSupportHelper.RegisterElement(Projectile, MoRSupportHelper.Thunder, projsInheritProjElements: true);
 		}
 		
 		public override void SetDefaults()
@@ -87,7 +89,7 @@ namespace ClickerClass.Projectiles
 					if (Timer >= 60)
 					{
 						Timer = 30;
-						SoundEngine.PlaySound(SoundID.Item94, Projectile.Center);
+						SoundEngine.PlaySound(SoundID.Item94.WithVolumeScale(0.5f), Projectile.Center);
 						if (Main.myPlayer == Projectile.owner)
 						{
 							for (int k = 0; k < 10; k++)

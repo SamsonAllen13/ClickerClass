@@ -4,6 +4,7 @@ using ClickerClass.Items;
 using ClickerClass.Items.Accessories;
 using ClickerClass.Items.Consumables;
 using ClickerClass.Items.Misc;
+using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
@@ -150,6 +151,7 @@ namespace ClickerClass
 		public bool itemWatchfulClicker = false;
 		public bool itemBurningSuperDeath = false;
 		public bool itemDreamClicker = false;
+		public bool itemCollectorsClicker = false;
 		public int itemCosmicClickerStage = 0;
 		public int itemSeafoamClickerTimer = 0;
 		public int itemSeafoamClickerHPS = 0;
@@ -283,6 +285,11 @@ namespace ClickerClass
 		/// If player has consumed a Demon Hand and unlocked its ability
 		/// </summary>
 		public bool consumedDemonHand;
+		
+		/// <summary>
+		/// If player has found 100% of Clicker Class clickers and obtained the Collector's Clicker
+		/// </summary>
+		public bool obtainedCollectorsClicker;
 
 		//Need to be synced
 		public bool paintingCondition_MoonLordDefeatedWithClicker;
@@ -869,6 +876,7 @@ namespace ClickerClass
 			//Item
 			itemBurningSuperDeath = false;
 			itemDreamClicker = false;
+			itemCollectorsClicker = false;
 
 			//Armor
 			setMotherboard = false;
@@ -950,6 +958,7 @@ namespace ClickerClass
 			tag.Add("clickerMoneyGenerated", clickerMoneyGenerated);
 			tag.Add("consumedHeavenlyChip", consumedHeavenlyChip);
 			tag.Add("consumedDemonHand", consumedDemonHand);
+			tag.Add("obtainedCollectorsClicker", obtainedCollectorsClicker);
 			tag.Add("paintingCondition_MoonLordDefeatedWithClicker", paintingCondition_MoonLordDefeatedWithClicker);
 			tag.Add("paintingCondition_Clicked100Cookies", paintingCondition_Clicked100Cookies);
 			tag.Add("paintingCondition_ClickedCookiesCount", paintingCondition_ClickedCookiesCount);
@@ -962,6 +971,7 @@ namespace ClickerClass
 			clickerMoneyGenerated = tag.GetInt("clickerMoneyGenerated");
 			consumedHeavenlyChip = tag.GetBool("consumedHeavenlyChip");
 			consumedDemonHand = tag.GetBool("consumedDemonHand");
+			obtainedCollectorsClicker = tag.GetBool("obtainedCollectorsClicker");
 			paintingCondition_MoonLordDefeatedWithClicker = tag.GetBool("paintingCondition_MoonLordDefeatedWithClicker");
 			paintingCondition_Clicked100Cookies = tag.GetBool("paintingCondition_Clicked100Cookies");
 			paintingCondition_ClickedCookiesCount = tag.GetInt("paintingCondition_ClickedCookiesCount");
@@ -1100,7 +1110,20 @@ namespace ClickerClass
 				}
 			}
 		}
-
+		
+		public override void ModifyLuck(ref float luck)
+		{
+			//Greed
+			Item heldItem = Player.HeldItem;
+			if (ClickerSystem.IsClickerWeapon(heldItem, out ClickerItemCore clickerItem))
+			{
+				if (HasClickEffect(ClickEffect.Greed))
+				{
+					luck += 1f;
+				}
+			}
+		}
+		
 		public override void PostUpdateEquips()
 		{
 			clickerClassTime++;
@@ -1114,7 +1137,7 @@ namespace ClickerClass
 			//TODO Clicker Catalogue - Sorting feature WIP | Temporarily placed here for testing
 			
 			//Orders by name ascending
-			//ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderBy(x => x).ToList();
+			ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderBy(x => x).ToList();
 			
 			//Orders by name descending
 			//ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderByDescending(x => x).ToList();
@@ -1130,6 +1153,31 @@ namespace ClickerClass
 			
 			//Orders by rarity descending
 			// ___
+			
+			//Collector's Clicker handle
+			
+			float collectionProgress = (float)foundClickers.Count / ClickerClass.mod.totalClickers.Count;
+			if (collectionProgress == 1f && !obtainedCollectorsClicker)
+			{
+				SoundEngine.PlaySound(SoundID.ResearchComplete, Player.Center);
+				
+				Vector2 pos = Player.Center + new Vector2(0, -80);
+				for (int k = 0; k < 15; k++)
+				{
+					Dust dust = Dust.NewDustDirect(pos, 20, 20, 15, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 255, default, 2.5f);
+					dust.noGravity = true;
+					dust.noLight = true;
+				}
+				
+				var source = Player.GetSource_FromThis();
+				int item = Item.NewItem(source, pos, ModContent.ItemType<CollectorsClicker>(), 1, false, 0, false, false);
+				if (Main.netMode == NetmodeID.MultiplayerClient)
+				{
+					NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
+				}
+				
+				obtainedCollectorsClicker = true;
+			}
 			
 			//Demon Hand handle
 			if (consumedDemonHand && chosenSecondClicker != -1)
@@ -1765,6 +1813,7 @@ namespace ClickerClass
 				{
 					if (AccGoldenTicket)
 					{
+						Player player = Main.player[proj.owner];
 						for (int k = 0; k < 15; k++)
 						{
 							int dust = Dust.NewDust(target.position, 20, 20, 11, Main.rand.NextFloat(-3f, 3f), Main.rand.NextFloat(-3f, 3f), 75, default(Color), 1.25f);
@@ -1773,7 +1822,7 @@ namespace ClickerClass
 
 						var entitySource = Player.GetSource_Accessory_OnHit(accGoldenTicketItem, target);
 						int amount = 1 + Main.rand.Next(6);
-						int coin = Item.NewItem(entitySource, target.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
+						int coin = Item.NewItem(entitySource, player.Hitbox, ItemID.CopperCoin, amount, false, 0, false, false);
 						if (amount > 0)
 						{
 							clickerMoneyGenerated += amount;

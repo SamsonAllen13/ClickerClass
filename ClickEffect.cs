@@ -178,6 +178,7 @@ namespace ClickerClass
 		public static string Flurry { get; internal set; } = string.Empty;
 		public static string Freeze { get; internal set; } = string.Empty;
 		public static string Fritz { get; internal set; } = string.Empty;
+		public static string Greed { get; internal set; } = string.Empty;
 		public static string HappyHeart { get; internal set; } = string.Empty;
 		public static string Haste { get; internal set; } = string.Empty;
 		public static string HolyNova { get; internal set; } = string.Empty;

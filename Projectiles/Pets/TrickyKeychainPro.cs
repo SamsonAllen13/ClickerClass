@@ -10,7 +10,7 @@ namespace ClickerClass.Projectiles.Pets
 	{
 		public int animateIdleMax = 3;
 		public int animateIdle = 0;
-		public int animateFall = 3;
+		public int animateFall = 6;
 
 		public int animateWalkMin = 4;
 		public int animateWalkMax = 7;
@@ -23,9 +23,9 @@ namespace ClickerClass.Projectiles.Pets
 			Main.projFrames[Projectile.type] = 9;
 			Main.projPet[Projectile.type] = true;
 			
-			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(animateWalkMin, animateWalkMax + 1 - animateWalkMin, 3)
-				.WhenNotSelected(6, 0)
-				.WithOffset(-10, 0)
+			ProjectileID.Sets.CharacterPreviewAnimations[Projectile.type] = ProjectileID.Sets.SimpleLoop(animateIdle, animateIdleMax + 1 - animateIdle, 5)
+				.WhenNotSelected(1, 0)
+				.WithOffset(-8, 0)
 				.WithSpriteDirection(-1);
 		}
 
@@ -35,27 +35,23 @@ namespace ClickerClass.Projectiles.Pets
 			Projectile.height = 42;
 			Projectile.aiStyle = -1;
 			Projectile.manualDirectionChange = true;
-
-			DrawOriginOffsetY = -3;
 		}
 
 		public override void AI()
 		{
 			Player player = Main.player[Projectile.owner];
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			
-			/*
-			ThoriumPlayer modPlayer = player.GetThoriumPlayer();
 			if (player.dead)
 			{
-				modPlayer.petRat = false;
+				clickerPlayer.petTrickyKeychain = false;
 			}
-			if (modPlayer.petRat)
+			if (clickerPlayer.petTrickyKeychain)
 			{
 				Projectile.timeLeft = 2;
 			}
-			*/
 
-			if (!Main.player[Projectile.owner].active)
+			if (!player.active)
 			{
 				Projectile.active = false;
 				return;

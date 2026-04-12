@@ -25,7 +25,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 15, 255);
 			AddEffect(Item, ClickEffect.Greed);
 
-			Item.damage = 138;
+			Item.damage = 162;
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 2f;

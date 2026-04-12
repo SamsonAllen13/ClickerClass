@@ -231,6 +231,8 @@ namespace ClickerClass
 		public int accPaperclipsAmount = 0;
 		public int accHotKeychainTimer = 0;
 		public int accHotKeychainAmount = 0;
+		
+		public bool petTrickyKeychain = false;
 
 		//Store item type mapped to stack
 		private Dictionary<int, int> sfxButtons;
@@ -913,6 +915,8 @@ namespace ClickerClass
 			accSFXButtonSoundboard = false;
 
 			sfxButtons.Clear();
+			
+			petTrickyKeychain = false;
 
 			//Stats
 			clickerBonus = 0;

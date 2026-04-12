@@ -39,12 +39,12 @@ namespace ClickerClass.Items.Weapons.Clickers
 			SetDust(Item, 272);
 			AddEffect(Item, ClickEffect.Transcend);
 
-			Item.damage = 160;
+			Item.damage = 142;
 			Item.width = 30;
 			Item.height = 30;
 			Item.knockBack = 1f;
 			Item.value = Item.sellPrice(0, 10, 0, 0);
-			Item.rare = ItemRarityID.Purple;
+			Item.rare = ItemRarityID.Red;
 		}
 	}
 }

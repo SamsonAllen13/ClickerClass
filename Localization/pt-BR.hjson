@@ -102,6 +102,11 @@ Mods: {
 				// DisplayName: Charmed
 				// Description: Dealing reduced contact damage to players
 			}
+
+			TrickyKeychainBuff: {
+				// DisplayName: Tricky Cursor
+				// Description: It's rude to try and use him like a clicker...
+			}
 		}
 
 		Common: {
@@ -859,6 +864,11 @@ Mods: {
 			SpectreClicker: {
 				DisplayName: Clicker Espectral
 				Tooltip: Clique em um inimigo dentro da sua visão para causar danos nele
+			}
+
+			TrickyKeychain: {
+				// DisplayName: Tricky Keychain
+				// Tooltip: ""
 			}
 		}
 

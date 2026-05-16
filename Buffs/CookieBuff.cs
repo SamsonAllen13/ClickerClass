@@ -13,7 +13,7 @@ namespace ClickerClass.Buffs
 		public override void Update(Player player, ref int buffIndex)
 		{
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			clickerPlayer.clickerRadius += 0.4f;
+			clickerPlayer.ClickerRadius += 0.4f;
 			player.GetDamage<ClickerDamage>() += 0.1f;
 			player.lifeRegen += 2;
 		}

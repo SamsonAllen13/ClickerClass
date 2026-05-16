@@ -215,7 +215,7 @@ namespace ClickerClass.Items
 
 			if (item.prefix == ModContent.PrefixType<ClickerRadius>())
 			{
-				clickerPlayer.clickerRadius += 2 * ClickerRadius.RadiusIncrease / 100f;
+				clickerPlayer.ClickerRadius += 2 * ClickerRadius.RadiusIncrease / 100f;
 			}
 		}
 	}

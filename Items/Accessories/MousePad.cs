@@ -26,7 +26,7 @@ namespace ClickerClass.Items.Accessories
 
 		public override void UpdateAccessory(Player player, bool hideVisual)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerRadius += 2 * RadiusIncrease / 100f;
+			player.GetModPlayer<ClickerPlayer>().ClickerRadius += 2 * RadiusIncrease / 100f;
 		}
 	}
 }

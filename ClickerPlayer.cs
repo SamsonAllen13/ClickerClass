@@ -248,25 +248,35 @@ namespace ClickerClass
 		/// </summary>
 		public float clickerBonusPercent = 1f;
 
-		/// <summary>
-		/// Effective clicker radius in pixels when multiplied by 100
-		/// </summary>
+		//TODO 1.4.5 remove and simplify the ClickerRadius syntax to just ClickerRadius { get; set; }
+		[Obsolete($"No longer supported, use {nameof(ClickerRadius)}", error: false)]
 		public float clickerRadius = 1f;
+
+		private StatModifier _ClickerRadius;
+
+		/// <summary>
+		/// Effective clicker radius in pixels when applied to 100
+		/// </summary>
+		public StatModifier ClickerRadius
+		{
+			get => _ClickerRadius.CombineWith(new StatModifier(clickerRadius, 1f));
+			set => _ClickerRadius = value;
+		}
 
 		/// <summary>
 		/// Cached clickerRadius for draw
 		/// </summary>
-		public float clickerRadiusDraw = 1f;
+		public StatModifier ClickerRadiusDraw { get; private set; }
 
 		/// <summary>
 		/// Clicker radius in pixels
 		/// </summary>
-		public float ClickerRadiusReal => clickerRadius * 100;
+		public float ClickerRadiusReal => ClickerRadius.ApplyTo(100);
 
 		/// <summary>
 		/// Clicker draw radius in pixels
 		/// </summary>
-		public float ClickerRadiusRealDraw => clickerRadiusDraw * 100;
+		public float ClickerRadiusRealDraw => ClickerRadiusDraw.ApplyTo(100);
 
 		/// <summary>
 		/// Motherboard radius in pixels
@@ -922,6 +932,7 @@ namespace ClickerClass
 			clickerBonus = 0;
 			clickerBonusPercent = 1f;
 			clickerRadius = 1f;
+			ClickerRadius = StatModifier.Default;
 		}
 
 		public override void ResetInfoAccessories()
@@ -932,6 +943,7 @@ namespace ClickerClass
 		public override void UpdateAutopause()
 		{
 			clickerRadius = 1f;
+			ClickerRadius = StatModifier.Default;
 		}
 
 		public override void Initialize()
@@ -1212,7 +1224,7 @@ namespace ClickerClass
 			//Shimmer Clicker item handle
 			if (consumedHeavenlyChip)
 			{
-				clickerRadius += 2 * HeavenlyChip.RadiusIncrease / 100f;
+				ClickerRadius += 2 * HeavenlyChip.RadiusIncrease / 100f;
 			}
 
 			if (!setMotherboard)
@@ -1238,7 +1250,7 @@ namespace ClickerClass
 				}
 			}
 
-			clickerRadius += 0.005f * accFMedalAmount;
+			ClickerRadius += 0.005f * accFMedalAmount;
 
 			Item heldItem = Player.HeldItem;
 			if (ClickerSystem.IsClickerWeapon(heldItem, out ClickerItemCore clickerItem))
@@ -1264,16 +1276,16 @@ namespace ClickerClass
 
 				if (clickerItem.radiusBoost > 0f)
 				{
-					clickerRadius += clickerItem.radiusBoost;
+					ClickerRadius += clickerItem.radiusBoost;
 				}
 
 				if (clickerItem.radiusBoostPrefix > 0f)
 				{
-					clickerRadius += clickerItem.radiusBoostPrefix;
+					ClickerRadius += clickerItem.radiusBoostPrefix;
 				}
 
 				//Cache for draw
-				clickerRadiusDraw = clickerRadius;
+				ClickerRadiusDraw = ClickerRadius;
 
 				if (setMotherboard)
 				{
@@ -1419,7 +1431,7 @@ namespace ClickerClass
 				accCookieTimer++;
 				if (Player.whoAmI == Main.myPlayer && accCookieTimer > 600)
 				{
-					int radius = (int)(95 * clickerRadius);
+					int radius = (int)ClickerRadius.ApplyTo(95);
 					if (radius > 350)
 					{
 						radius = 350;

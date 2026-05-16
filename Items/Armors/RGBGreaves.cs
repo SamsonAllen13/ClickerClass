@@ -41,7 +41,7 @@ namespace ClickerClass.Items.Armors
 
 		public override void UpdateEquip(Player player)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerRadius += 2 * RadiusIncrease / 100f;
+			player.GetModPlayer<ClickerPlayer>().ClickerRadius += 2 * RadiusIncrease / 100f;
 		}
 
 		public override void AddRecipes()

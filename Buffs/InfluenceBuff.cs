@@ -18,7 +18,7 @@ namespace ClickerClass.Buffs
 
 		public override void Update(Player player, ref int buffIndex)
 		{
-			player.GetModPlayer<ClickerPlayer>().clickerRadius += 2 * RadiusIncrease / 100f;
+			player.GetModPlayer<ClickerPlayer>().ClickerRadius += 2 * RadiusIncrease / 100f;
 		}
 	}
 }

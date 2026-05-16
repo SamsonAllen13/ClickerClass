@@ -442,7 +442,12 @@ namespace ClickerClass
 
 					if (statName == "clickerRadius")
 					{
-						return clickerPlayer.clickerRadius;
+						//TODO 1.4.5 remove
+						return clickerPlayer.ClickerRadius.Additive;
+					}
+					else if (statName == "ClickerRadius")
+					{
+						return clickerPlayer.ClickerRadius;
 					}
 					else if (statName == "clickAmountTotal")
 					{
@@ -716,8 +721,27 @@ namespace ClickerClass
 						{
 							throw new Exception($"Call Error: The radius argument for the attempted message, \"{message}\" has returned null.");
 						}
-						clickerPlayer.clickerRadius += radius.Value;
-						clickerPlayer.clickerRadius = Math.Max(0f, clickerPlayer.clickerRadius);
+						if (radius.Value < 0 && clickerPlayer.ClickerRadius.Additive + radius.Value < 0)
+						{
+							//Floor to 0 if it would've been negative
+							var oldStat = clickerPlayer.ClickerRadius;
+							clickerPlayer.ClickerRadius = new StatModifier(0f, oldStat.Additive, oldStat.Flat, oldStat.Base);
+						}
+						else
+						{
+							clickerPlayer.ClickerRadius += radius.Value;
+						}
+						return success;
+					}
+					else if (statName == "clickerRadiusMult")
+					{
+						var radius = args[index + 2] as float?;
+						if (radius == null)
+						{
+							throw new Exception($"Call Error: The radius argument for the attempted message, \"{message}\" has returned null.");
+						}
+						//Very unlikely someone is going to multiply with a negative value, no safety checks
+						clickerPlayer.ClickerRadius *= radius.Value;
 						return success;
 					}
 

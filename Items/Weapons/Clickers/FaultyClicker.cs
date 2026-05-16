@@ -18,7 +18,7 @@ namespace ClickerClass.Items.Weapons.Clickers
 			{
 				var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 
-				int radius = (int)(95 * clickerPlayer.clickerRadius);
+				int radius = (int)clickerPlayer.ClickerRadius.ApplyTo(95);
 				if (radius > 350)
 				{
 					radius = 350;

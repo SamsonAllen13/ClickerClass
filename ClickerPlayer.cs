@@ -1032,8 +1032,8 @@ namespace ClickerClass
 
 		public override void ProcessTriggers(TriggersSet triggersSet)
 		{
-			// checks for frozen, webbed and stoned
-			if (Player.CCed)
+			// checks for dead, frozen, webbed and stoned
+			if (Player.dead || Player.CCed)
 			{
 				return;
 			}

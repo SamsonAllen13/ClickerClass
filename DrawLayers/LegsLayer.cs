@@ -65,7 +65,14 @@ namespace ClickerClass.DrawLayers
 
 			if (drawInfo.isSitting && (!DrawLayerHelper.ShouldOverrideLegs_CheckShoes(ref drawInfo) || drawPlayer.wearsRobe))
 			{
-				DrawLayerHelper.DrawSittingLegsMethod(ref drawInfo, texture, color, drawInfo.cLegs);
+				if (DrawLayerHelper.UseDrawSittingLegsMethodPre2026_06)
+				{
+					DrawLayerHelper.DrawSittingLegsMethodPre2026_06(ref drawInfo, texture, color, drawInfo.cLegs);
+				}
+				else
+				{
+					DrawLayerHelper.DrawSittingLegsMethod(ref drawInfo, texture, color, drawInfo.cLegs, false, EquipType.Legs);
+				}
 				return;
 			}
 

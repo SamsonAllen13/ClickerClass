@@ -1,6 +1,7 @@
 using ClickerClass.Items;
 using System.Collections.Generic;
 using Terraria;
+using Terraria.ID;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Prefixes.ClickerPrefixes
@@ -13,23 +14,25 @@ namespace ClickerClass.Prefixes.ClickerPrefixes
 		/// <summary>
 		/// List of all registered clicker prefix types
 		/// </summary>
-		internal static List<int> ClickerPrefixes;
+		public static List<int> ClickerPrefixes { get; private set; }
 
-		internal float damageMult = 1f;
-		internal float radiusBonus = 0;
-		internal int clickBonus = 0;
-		internal int critBonus = 0;
+		protected float damageMult = 1f;
+		protected float radiusBonus = 0;
+		protected int clickBonus = 0;
+		protected int critBonus = 0;
+		protected bool mercy = false;
 
 		public override PrefixCategory Category => PrefixCategory.Custom;
 
 		public ClickerPrefix() { }
 
-		public ClickerPrefix(float damageMult, float radiusBonus, int clickBonus, int critBonus)
+		public ClickerPrefix(float damageMult, float radiusBonus, int clickBonus, int critBonus, bool mercy = false)
 		{
 			this.damageMult = damageMult;
 			this.radiusBonus = radiusBonus;
 			this.clickBonus = clickBonus;
 			this.critBonus = critBonus;
+			this.mercy = mercy;
 		}
 
 		public override void Load()
@@ -45,6 +48,11 @@ namespace ClickerClass.Prefixes.ClickerPrefixes
 		public override void SetStaticDefaults()
 		{
 			ClickerPrefixes.Add(Type);
+
+			if (mercy)
+			{
+				PrefixID.Sets.ReducedNaturalChance[Type] = true;
+			}
 		}
 
 		public override void Apply(Item item)

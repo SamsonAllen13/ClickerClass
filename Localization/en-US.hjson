@@ -751,7 +751,7 @@ Mods: {
 
 			ArcaneClicker: {
 				DisplayName: Arcane Clicker
-				Hint: Dropped from a powerful Old One's Army foe
+				Hint: Dropped by a powerful Old One's Army foe
 			}
 
 			AdamantiteClicker: {
@@ -776,7 +776,7 @@ Mods: {
 
 			BalloonClicker: {
 				DisplayName: Balloon Clicker
-				Hint: Dropped from a Windy Day foe
+				Hint: Dropped by a Windy Day foe
 			}
 
 			BlizzardClicker: {
@@ -789,27 +789,106 @@ Mods: {
 				Hint: Obtained from crafting with Sturdy Fossils
 			}
 
-			BurningSuperDeathClicker.DisplayName: Burning Super Death Clicker
-			BurrowingClicker.DisplayName: Burrowing Clicker
-			CandleClicker.DisplayName: Candle Clicker
-			CaptainsClicker.DisplayName: Captain's Clicker
-			ChlorophyteClicker.DisplayName: Chlorophyte Clicker
-			CobaltClicker.DisplayName: Cobalt Clicker
-			CollectorsClicker.DisplayName: Collector's Clicker
-			ConfettiClicker.DisplayName: Confetti Clicker
-			CopperClicker.DisplayName: Copper Clicker
-			CorruptClicker.DisplayName: Corrupt Clicker
-			CosmicClicker.DisplayName: Cosmic Clicker
-			CrimsonClicker.DisplayName: Crimson Clicker
-			CritterClicker.DisplayName: Critter Clicker
-			CrystalClicker.DisplayName: Crystal Clicker
-			CyclopsClicker.DisplayName: Cyclops Clicker
-			DarkClicker.DisplayName: Dark Clicker
-			DraconicClicker.DisplayName: Draconic Clicker
-			DreamClicker.DisplayName: Dream Clicker
-			EclipticClicker.DisplayName: Ecliptic Clicker
-			FamishedClicker.DisplayName: Famished Clicker
-			FaultyClicker.DisplayName: Faulty Clicker
+			BurningSuperDeathClicker: {
+				DisplayName: Burning Super Death Clicker
+				Hint: Dropped by a powerful Underworld foe
+			}
+
+			BurrowingClicker: {
+				DisplayName: Burrowing Clicker
+				Hint: Dropped by a powerful Corruption foe
+			}
+
+			CandleClicker: {
+				DisplayName: Candle Clicker
+				Hint: Rarely purchasable from the Skeleton Merchant
+			}
+
+			CaptainsClicker: {
+				DisplayName: Captain's Clicker
+				Hint: Dropped by a strong Pirate Invasion foe
+			}
+
+			ChlorophyteClicker: {
+				DisplayName: Chlorophyte Clicker
+				Hint: Obtained from crafting with Chlorophyte Bars
+			}
+
+			CobaltClicker: {
+				DisplayName: Cobalt Clicker
+				Hint: Obtained from crafting with Cobalt Bars
+			}
+
+			CollectorsClicker: {
+				DisplayName: Collector's Clicker
+				Hint: ???
+			}
+
+			ConfettiClicker: {
+				DisplayName: Confetti Clicker
+				Hint: Obtained from having fun with Pigronatas
+			}
+
+			CopperClicker: {
+				DisplayName: Copper Clicker
+				Hint: Obtained from crafting with Copper Bars
+			}
+
+			CorruptClicker: {
+				DisplayName: Corrupt Clicker
+				Hint: Obtained from crafting with Cursed Flames
+			}
+
+			CosmicClicker: {
+				DisplayName: Cosmic Clicker
+				Hint: Dropped by a powerful Celestial foe
+			}
+
+			CrimsonClicker: {
+				DisplayName: Crimson Clicker
+				Hint: Obtained from crafting with Ichor
+			}
+
+			CritterClicker: {
+				DisplayName: Critter Clicker
+				Hint: Purchasable from the Zoologist after proving your worth
+			}
+
+			CrystalClicker: {
+				DisplayName: Crystal Clicker
+				Hint: Obtained from crafting with Crystal Shards
+			}
+
+			CyclopsClicker: {
+				DisplayName: Cyclops Clicker
+				Hint: Dropped by a powerful Blizzard foe
+			}
+
+			DarkClicker: {
+				DisplayName: Dark Clicker
+				Hint: Obtained from crafting with Demonite Bars
+			}
+
+			DraconicClicker: {
+				DisplayName: Draconic Clicker
+				Hint: Dropped by a powerful Old One's Army foe
+			}
+
+			DreamClicker: {
+				DisplayName: Dream Clicker
+				Hint: Obtained from taking a midnight stroll
+			}
+
+			EclipticClicker: {
+				DisplayName: Ecliptic Clicker
+				Hint: Dropped by a Solar Eclipse foe
+			}
+
+			FaultyClicker: {
+				DisplayName: Faulty Clicker
+				Hint: Found rarely in Dead Man's Chests
+			}
+
 			FloralClicker.DisplayName: Floral Clicker
 			FrozenClicker.DisplayName: Frozen Clicker
 			GoldClicker.DisplayName: Gold Clicker

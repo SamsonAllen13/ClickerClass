@@ -751,7 +751,7 @@ Mods: {
 
 			ArcaneClicker: {
 				DisplayName: 奥术点击器
-				// Hint: Dropped from a powerful Old One's Army foe
+				// Hint: Dropped by a powerful Old One's Army foe
 			}
 
 			AdamantiteClicker: {
@@ -776,7 +776,7 @@ Mods: {
 
 			BalloonClicker: {
 				DisplayName: 气球点击器
-				// Hint: Dropped from a Windy Day foe
+				// Hint: Dropped by a Windy Day foe
 			}
 
 			BlizzardClicker: {
@@ -789,27 +789,106 @@ Mods: {
 				// Hint: Obtained from crafting with Sturdy Fossils
 			}
 
-			BurningSuperDeathClicker.DisplayName: 爆燃超级死亡点击器
-			// BurrowingClicker.DisplayName: Burrowing Clicker
-			CandleClicker.DisplayName: 蜡烛点击器
-			CaptainsClicker.DisplayName: 船长点击器
-			ChlorophyteClicker.DisplayName: 叶绿点击器
-			CobaltClicker.DisplayName: 钴点击器
-			// CollectorsClicker.DisplayName: Collector's Clicker
-			ConfettiClicker.DisplayName: 彩纸点击器
-			CopperClicker.DisplayName: 铜点击器
-			CorruptClicker.DisplayName: 腐化点击器
-			// CosmicClicker.DisplayName: Cosmic Clicker
-			CrimsonClicker.DisplayName: 猩红点击器
-			CritterClicker.DisplayName: 动物点击器
-			CrystalClicker.DisplayName: 水晶点击器
-			CyclopsClicker.DisplayName: 鹿角怪点击器
-			DarkClicker.DisplayName: 魔矿点击器
-			DraconicClicker.DisplayName: 飞龙点击器
-			DreamClicker.DisplayName: 梦幻点击器
-			EclipticClicker.DisplayName: 日食点击器
-			FamishedClicker.DisplayName: 饥渴点击器
-			FaultyClicker.DisplayName: 故障点击器
+			BurningSuperDeathClicker: {
+				DisplayName: 爆燃超级死亡点击器
+				// Hint: Dropped by a powerful Underworld foe
+			}
+
+			BurrowingClicker: {
+				// DisplayName: Burrowing Clicker
+				// Hint: Dropped by a powerful Corruption foe
+			}
+
+			CandleClicker: {
+				DisplayName: 蜡烛点击器
+				// Hint: Rarely purchasable from the Skeleton Merchant
+			}
+
+			CaptainsClicker: {
+				DisplayName: 船长点击器
+				// Hint: Dropped by a strong Pirate Invasion foe
+			}
+
+			ChlorophyteClicker: {
+				DisplayName: 叶绿点击器
+				// Hint: Obtained from crafting with Chlorophyte Bars
+			}
+
+			CobaltClicker: {
+				DisplayName: 钴点击器
+				// Hint: Obtained from crafting with Cobalt Bars
+			}
+
+			CollectorsClicker: {
+				// DisplayName: Collector's Clicker
+				// Hint: ???
+			}
+
+			ConfettiClicker: {
+				DisplayName: 彩纸点击器
+				// Hint: Obtained from having fun with Pigronatas
+			}
+
+			CopperClicker: {
+				DisplayName: 铜点击器
+				// Hint: Obtained from crafting with Copper Bars
+			}
+
+			CorruptClicker: {
+				DisplayName: 腐化点击器
+				// Hint: Obtained from crafting with Cursed Flames
+			}
+
+			CosmicClicker: {
+				// DisplayName: Cosmic Clicker
+				// Hint: Dropped by a powerful Celestial foe
+			}
+
+			CrimsonClicker: {
+				DisplayName: 猩红点击器
+				// Hint: Obtained from crafting with Ichor
+			}
+
+			CritterClicker: {
+				DisplayName: 动物点击器
+				// Hint: Purchasable from the Zoologist after proving your worth
+			}
+
+			CrystalClicker: {
+				DisplayName: 水晶点击器
+				// Hint: Obtained from crafting with Crystal Shards
+			}
+
+			CyclopsClicker: {
+				DisplayName: 鹿角怪点击器
+				// Hint: Dropped by a powerful Blizzard foe
+			}
+
+			DarkClicker: {
+				DisplayName: 魔矿点击器
+				// Hint: Obtained from crafting with Demonite Bars
+			}
+
+			DraconicClicker: {
+				DisplayName: 飞龙点击器
+				// Hint: Dropped by a powerful Old One's Army foe
+			}
+
+			DreamClicker: {
+				DisplayName: 梦幻点击器
+				// Hint: Obtained from taking a midnight stroll
+			}
+
+			EclipticClicker: {
+				DisplayName: 日食点击器
+				// Hint: Dropped by a Solar Eclipse foe
+			}
+
+			FaultyClicker: {
+				DisplayName: 故障点击器
+				// Hint: Found rarely in Dead Man's Chests
+			}
+
 			// FloralClicker.DisplayName: Floral Clicker
 			FrozenClicker.DisplayName: 寒冰点击器
 			GoldClicker.DisplayName: 金点击器

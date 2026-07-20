@@ -1,10 +1,12 @@
+using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using Terraria;
+using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
-using ClickerClass.Items.Weapons.Clickers;
 
 namespace ClickerClass.Items
 {
@@ -90,18 +92,12 @@ namespace ClickerClass.Items
 						}
 					}
 				}
-				
-				if (!ClickerClass.mod.totalClickers.Contains(item.type) && item.type != ModContent.ItemType<CollectorsClicker>())
+
+				//TODO Clicker Catalgoue - Adds the clicker to catalogue once AddEffect runs
+				//Current impl won't work with clickers lacking an effect
+				if (!ClickerClass.mod.totalClickers.Contains(item) && !ClickerClass.mod.totalClickers.Exists(x => x.type == item.type) && item.type != ModContent.ItemType<CollectorsClicker>())
 				{
-					ClickerClass.mod.totalClickers.Add(item.type);
-				}
-				else
-				{
-					//Hardcode add Wooden Clicker to list, since it has no effect | Hopefully other mods don't have something similar...
-					if (!ClickerClass.mod.totalClickers.Contains(ModContent.ItemType<WoodenClicker>()))
-					{
-						ClickerClass.mod.totalClickers.Add(ModContent.ItemType<WoodenClicker>());
-					}
+					ClickerClass.mod.totalClickers.Add(item);
 				}
 			}
 		}

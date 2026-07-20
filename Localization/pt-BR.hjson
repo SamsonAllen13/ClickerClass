@@ -751,7 +751,7 @@ Mods: {
 
 			ArcaneClicker: {
 				DisplayName: Clicker Arcano
-				// Hint: Dropped from a powerful Old One's Army foe
+				// Hint: Dropped by a powerful Old One's Army foe
 			}
 
 			AdamantiteClicker: {
@@ -776,7 +776,7 @@ Mods: {
 
 			BalloonClicker: {
 				DisplayName: Clicker Balão
-				// Hint: Dropped from a Windy Day foe
+				// Hint: Dropped by a Windy Day foe
 			}
 
 			BlizzardClicker: {
@@ -789,27 +789,106 @@ Mods: {
 				// Hint: Obtained from crafting with Sturdy Fossils
 			}
 
-			BurningSuperDeathClicker.DisplayName: Clicker da Super Morte Ardente
-			// BurrowingClicker.DisplayName: Burrowing Clicker
-			CandleClicker.DisplayName: Clicker Vela
-			CaptainsClicker.DisplayName: Clicker do Capitão
-			ChlorophyteClicker.DisplayName: Clicker de Clorofita
-			CobaltClicker.DisplayName: Clicker de Cobalto
-			// CollectorsClicker.DisplayName: Collector's Clicker
-			ConfettiClicker.DisplayName: Clicker de Confete
-			CopperClicker.DisplayName: Clicker de Cobre
-			CorruptClicker.DisplayName: Clicker Corrompido
-			// CosmicClicker.DisplayName: Cosmic Clicker
-			CrimsonClicker.DisplayName: Clicker de Carmim
-			CritterClicker.DisplayName: Clicker Animalesco
-			CrystalClicker.DisplayName: Clicker de Cristal
-			CyclopsClicker.DisplayName: Clicker Ciclope
-			DarkClicker.DisplayName: Clicker das Sombras
-			DraconicClicker.DisplayName: Clicker Dracônico
-			DreamClicker.DisplayName: Clicker Onírico
-			EclipticClicker.DisplayName: Clicker Elíptico
-			FamishedClicker.DisplayName: Clicker Faminto
-			FaultyClicker.DisplayName: Clicker Defeituoso
+			BurningSuperDeathClicker: {
+				DisplayName: Clicker da Super Morte Ardente
+				// Hint: Dropped by a powerful Underworld foe
+			}
+
+			BurrowingClicker: {
+				// DisplayName: Burrowing Clicker
+				// Hint: Dropped by a powerful Corruption foe
+			}
+
+			CandleClicker: {
+				DisplayName: Clicker Vela
+				// Hint: Rarely purchasable from the Skeleton Merchant
+			}
+
+			CaptainsClicker: {
+				DisplayName: Clicker do Capitão
+				// Hint: Dropped by a strong Pirate Invasion foe
+			}
+
+			ChlorophyteClicker: {
+				DisplayName: Clicker de Clorofita
+				// Hint: Obtained from crafting with Chlorophyte Bars
+			}
+
+			CobaltClicker: {
+				DisplayName: Clicker de Cobalto
+				// Hint: Obtained from crafting with Cobalt Bars
+			}
+
+			CollectorsClicker: {
+				// DisplayName: Collector's Clicker
+				// Hint: ???
+			}
+
+			ConfettiClicker: {
+				DisplayName: Clicker de Confete
+				// Hint: Obtained from having fun with Pigronatas
+			}
+
+			CopperClicker: {
+				DisplayName: Clicker de Cobre
+				// Hint: Obtained from crafting with Copper Bars
+			}
+
+			CorruptClicker: {
+				DisplayName: Clicker Corrompido
+				// Hint: Obtained from crafting with Cursed Flames
+			}
+
+			CosmicClicker: {
+				// DisplayName: Cosmic Clicker
+				// Hint: Dropped by a powerful Celestial foe
+			}
+
+			CrimsonClicker: {
+				DisplayName: Clicker de Carmim
+				// Hint: Obtained from crafting with Ichor
+			}
+
+			CritterClicker: {
+				DisplayName: Clicker Animalesco
+				// Hint: Purchasable from the Zoologist after proving your worth
+			}
+
+			CrystalClicker: {
+				DisplayName: Clicker de Cristal
+				// Hint: Obtained from crafting with Crystal Shards
+			}
+
+			CyclopsClicker: {
+				DisplayName: Clicker Ciclope
+				// Hint: Dropped by a powerful Blizzard foe
+			}
+
+			DarkClicker: {
+				DisplayName: Clicker das Sombras
+				// Hint: Obtained from crafting with Demonite Bars
+			}
+
+			DraconicClicker: {
+				DisplayName: Clicker Dracônico
+				// Hint: Dropped by a powerful Old One's Army foe
+			}
+
+			DreamClicker: {
+				DisplayName: Clicker Onírico
+				// Hint: Obtained from taking a midnight stroll
+			}
+
+			EclipticClicker: {
+				DisplayName: Clicker Elíptico
+				// Hint: Dropped by a Solar Eclipse foe
+			}
+
+			FaultyClicker: {
+				DisplayName: Clicker Defeituoso
+				// Hint: Found rarely in Dead Man's Chests
+			}
+
 			// FloralClicker.DisplayName: Floral Clicker
 			FrozenClicker.DisplayName: Clicker Congelado
 			GoldClicker.DisplayName: Clicker de Ouro

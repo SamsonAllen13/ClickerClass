@@ -1,6 +1,7 @@
 ﻿using ClickerClass.Buffs;
 using ClickerClass.Dusts;
 using ClickerClass.Items.Armors;
+using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Prefixes.ClickerPrefixes;
 using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
@@ -95,10 +96,22 @@ namespace ClickerClass.Items
 			
 			//TODO - Clicker Catalogue - Make this net sync and be stored across world loading
 			var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-			
-			if (ClickerClass.mod.totalClickers.Contains(item.type) && !clickerPlayer.foundClickers.Contains(item.type))
+
+			if (!ClickerClass.mod.totalClickers.Exists(x => x.type == item.type) && item.type == ModContent.ItemType<WoodenClicker>())
 			{
-				clickerPlayer.foundClickers.Add(item.type);
+				ClickerClass.mod.totalClickers.Add(ContentSamples.ItemsByType[item.type]);
+				clickerPlayer.foundClickers.Add(ContentSamples.ItemsByType[item.type]);
+			}
+
+			if (!ClickerClass.mod.totalClickers.Exists(x => x.type == item.type) && item.type == ModContent.ItemType<CollectorsClicker>())
+			{
+				ClickerClass.mod.totalClickers.Add(ContentSamples.ItemsByType[item.type]);
+				clickerPlayer.foundClickers.Add(ContentSamples.ItemsByType[item.type]);
+			}
+
+			if (ClickerClass.mod.totalClickers.Contains(ContentSamples.ItemsByType[item.type]) && !clickerPlayer.foundClickers.Contains(ContentSamples.ItemsByType[item.type]))
+			{
+				clickerPlayer.foundClickers.Add(ContentSamples.ItemsByType[item.type]);
 			}
 		}
 

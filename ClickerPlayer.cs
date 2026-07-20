@@ -9,10 +9,11 @@ using ClickerClass.Projectiles;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using System;
-using System.Reflection;
-using System.Text;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Text;
 using Terraria;
 using Terraria.Audio;
 using Terraria.DataStructures;
@@ -70,7 +71,7 @@ namespace ClickerClass
 		/// <summary>
 		/// Keeps track of clickers the player has picked up for the purposes of the 'Clicker Catalogue'
 		/// </summary>
-		public List<int> foundClickers = new List<int>();
+		public List<Item> foundClickers = new List<Item>();
 		/// <summary>
 		/// Set via hotkey, reset if no autoclick-giving effects are applied (i.e. Hand Cream)
 		/// <br/>Synced whenever changed
@@ -141,6 +142,10 @@ namespace ClickerClass
 		public int effectHotWingsFrame = 0;
 
 		public bool DrawHotWings => effectHotWingsTimer > 0;
+
+		// Clicker Catalogue Sorting Variables
+		public int clickerCatalogueSorting = 0;
+		public int clickerCatalogueSortingMax = 5;
 
 		//Out of combat
 		public const int OutOfCombatTimeMax = 300;
@@ -1139,7 +1144,16 @@ namespace ClickerClass
 				}
 			}
 		}
-		
+		public enum CatalogueSorting : int
+		{
+			Name_Ascending,
+			Name_Descending,
+			Damage_Ascending,
+			Damage_Descending,
+			Rarity_Ascending,
+			Rarity_Descending
+		}
+
 		public override void PostUpdateEquips()
 		{
 			clickerClassTime++;
@@ -1149,29 +1163,43 @@ namespace ClickerClass
 			}
 
 			ResetAutoClickToggle();
-			
-			//TODO Clicker Catalogue - Sorting feature WIP | Temporarily placed here for testing
-			
-			//Orders by name ascending
-			ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderBy(x => x).ToList();
-			
-			//Orders by name descending
-			//ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderByDescending(x => x).ToList();
-			
-			//Orders by damage ascending
-			// ___
-			
-			//Orders by damage descending
-			// ___
-			
-			//Orders by rarity ascending
-			// ___
-			
-			//Orders by rarity descending
-			// ___
-			
+
+			//TODO Clicker Catalogue - Sorting feature | Rarely throws up 'Object reference not set to an instance of an object' error
+
+			switch (clickerCatalogueSorting)
+			{
+				//Orders by name ascending
+				case 0:
+					ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderBy(x => x.type).ToList();
+					break;
+
+				//Orders by name descending
+				case 1:
+					ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderByDescending(x => x.type).ToList();
+					break;
+
+				//Orders by damage ascending
+				case 2:
+					ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderBy(x => x.damage).ThenBy(x => x.type).ToList();
+					break;
+
+				//Orders by damage descending
+				case 3:
+					ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderByDescending(x => x.damage).ThenBy(x => x.type).ToList();
+					break;
+
+				//Orders by rarity ascending
+				case 4:
+					ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderBy(x => x.rare).ThenBy(x => x.damage).ToList();
+					break;
+
+				//Orders by rarity descending
+				case 5:
+					ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderByDescending(x => x.rare).ThenBy(x => x.damage).ToList();
+					break;
+			}
+
 			//Collector's Clicker handle
-			
 			float collectionProgress = (float)foundClickers.Count / ClickerClass.mod.totalClickers.Count;
 			if (collectionProgress == 1f && !obtainedCollectorsClicker)
 			{
@@ -1180,21 +1208,27 @@ namespace ClickerClass
 				Vector2 pos = Player.Center + new Vector2(0, -80);
 				for (int k = 0; k < 15; k++)
 				{
-					Dust dust = Dust.NewDustDirect(pos, 20, 20, 15, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 255, default, 2.5f);
+					Dust dust = Dust.NewDustDirect(pos, 20, 20, 15, Main.rand.NextFloat(-8f, 8f), Main.rand.NextFloat(-8f, 8f), 225, default, 2.5f);
 					dust.noGravity = true;
 					dust.noLight = true;
 				}
-				
+				for (int k = 0; k < 10; k++)
+				{
+					Dust dust = Dust.NewDustDirect(pos, 20, 20, 57, Main.rand.NextFloat(-10f, 10f), Main.rand.NextFloat(-10f, 10f), 150, default, 1.5f);
+					dust.noGravity = true;
+					dust.noLight = true;
+				}
+
 				var source = Player.GetSource_FromThis();
 				int item = Item.NewItem(source, pos, ModContent.ItemType<CollectorsClicker>(), 1, false, 0, false, false);
 				if (Main.netMode == NetmodeID.MultiplayerClient)
 				{
 					NetMessage.SendData(MessageID.SyncItem, -1, -1, null, item, 1f);
 				}
-				
+
 				obtainedCollectorsClicker = true;
 			}
-			
+
 			//Demon Hand handle
 			if (consumedDemonHand && chosenSecondClicker != -1)
 			{

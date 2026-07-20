@@ -751,7 +751,7 @@ Mods: {
 
 			ArcaneClicker: {
 				DisplayName: Мистический курсор
-				// Hint: Dropped from a powerful Old One's Army foe
+				// Hint: Dropped by a powerful Old One's Army foe
 			}
 
 			AdamantiteClicker: {
@@ -776,7 +776,7 @@ Mods: {
 
 			BalloonClicker: {
 				DisplayName: Курсор-воздушный шар
-				// Hint: Dropped from a Windy Day foe
+				// Hint: Dropped by a Windy Day foe
 			}
 
 			BlizzardClicker: {
@@ -789,27 +789,106 @@ Mods: {
 				// Hint: Obtained from crafting with Sturdy Fossils
 			}
 
-			BurningSuperDeathClicker.DisplayName: Горящий суперсмертельный курсор
-			// BurrowingClicker.DisplayName: Burrowing Clicker
-			CandleClicker.DisplayName: Курсор-свеча
-			CaptainsClicker.DisplayName: Курсор капитана
-			ChlorophyteClicker.DisplayName: Хлорофитовый курсор
-			CobaltClicker.DisplayName: Кобальтовый курсор
-			// CollectorsClicker.DisplayName: Collector's Clicker
-			ConfettiClicker.DisplayName: Курсор-конфетти
-			CopperClicker.DisplayName: Медный курсор
-			CorruptClicker.DisplayName: Искажённый курсор
-			// CosmicClicker.DisplayName: Cosmic Clicker
-			CrimsonClicker.DisplayName: Багряный курсор
-			CritterClicker.DisplayName: Животный курсор
-			CrystalClicker.DisplayName: Кристальный курсор
-			CyclopsClicker.DisplayName: Курсор циклопа
-			DarkClicker.DisplayName: Тёмный курсор
-			DraconicClicker.DisplayName: Драконий курсор
-			DreamClicker.DisplayName: Курсор мечты
-			EclipticClicker.DisplayName: Потускневший курсор
-			FamishedClicker.DisplayName: Изголодавший курсор
-			FaultyClicker.DisplayName: Неисправный курсор
+			BurningSuperDeathClicker: {
+				DisplayName: Горящий суперсмертельный курсор
+				// Hint: Dropped by a powerful Underworld foe
+			}
+
+			BurrowingClicker: {
+				// DisplayName: Burrowing Clicker
+				// Hint: Dropped by a powerful Corruption foe
+			}
+
+			CandleClicker: {
+				DisplayName: Курсор-свеча
+				// Hint: Rarely purchasable from the Skeleton Merchant
+			}
+
+			CaptainsClicker: {
+				DisplayName: Курсор капитана
+				// Hint: Dropped by a strong Pirate Invasion foe
+			}
+
+			ChlorophyteClicker: {
+				DisplayName: Хлорофитовый курсор
+				// Hint: Obtained from crafting with Chlorophyte Bars
+			}
+
+			CobaltClicker: {
+				DisplayName: Кобальтовый курсор
+				// Hint: Obtained from crafting with Cobalt Bars
+			}
+
+			CollectorsClicker: {
+				// DisplayName: Collector's Clicker
+				// Hint: ???
+			}
+
+			ConfettiClicker: {
+				DisplayName: Курсор-конфетти
+				// Hint: Obtained from having fun with Pigronatas
+			}
+
+			CopperClicker: {
+				DisplayName: Медный курсор
+				// Hint: Obtained from crafting with Copper Bars
+			}
+
+			CorruptClicker: {
+				DisplayName: Искажённый курсор
+				// Hint: Obtained from crafting with Cursed Flames
+			}
+
+			CosmicClicker: {
+				// DisplayName: Cosmic Clicker
+				// Hint: Dropped by a powerful Celestial foe
+			}
+
+			CrimsonClicker: {
+				DisplayName: Багряный курсор
+				// Hint: Obtained from crafting with Ichor
+			}
+
+			CritterClicker: {
+				DisplayName: Животный курсор
+				// Hint: Purchasable from the Zoologist after proving your worth
+			}
+
+			CrystalClicker: {
+				DisplayName: Кристальный курсор
+				// Hint: Obtained from crafting with Crystal Shards
+			}
+
+			CyclopsClicker: {
+				DisplayName: Курсор циклопа
+				// Hint: Dropped by a powerful Blizzard foe
+			}
+
+			DarkClicker: {
+				DisplayName: Тёмный курсор
+				// Hint: Obtained from crafting with Demonite Bars
+			}
+
+			DraconicClicker: {
+				DisplayName: Драконий курсор
+				// Hint: Dropped by a powerful Old One's Army foe
+			}
+
+			DreamClicker: {
+				DisplayName: Курсор мечты
+				// Hint: Obtained from taking a midnight stroll
+			}
+
+			EclipticClicker: {
+				DisplayName: Потускневший курсор
+				// Hint: Dropped by a Solar Eclipse foe
+			}
+
+			FaultyClicker: {
+				DisplayName: Неисправный курсор
+				// Hint: Found rarely in Dead Man's Chests
+			}
+
 			// FloralClicker.DisplayName: Floral Clicker
 			FrozenClicker.DisplayName: Замороженный курсор
 			GoldClicker.DisplayName: Золотой курсор

@@ -751,7 +751,7 @@ Mods: {
 
 			ArcaneClicker: {
 				DisplayName: Cliqueur des Arcanes
-				// Hint: Dropped from a powerful Old One's Army foe
+				// Hint: Dropped by a powerful Old One's Army foe
 			}
 
 			AdamantiteClicker: {
@@ -776,7 +776,7 @@ Mods: {
 
 			BalloonClicker: {
 				DisplayName: Cliqueur Ballon
-				// Hint: Dropped from a Windy Day foe
+				// Hint: Dropped by a Windy Day foe
 			}
 
 			BlizzardClicker: {
@@ -789,27 +789,106 @@ Mods: {
 				// Hint: Obtained from crafting with Sturdy Fossils
 			}
 
-			BurningSuperDeathClicker.DisplayName: Cliqueur de la Mort Super Brûlante
-			// BurrowingClicker.DisplayName: Burrowing Clicker
-			CandleClicker.DisplayName: Cliqueur Bougie
-			CaptainsClicker.DisplayName: Cliqueur du Capitaine
-			ChlorophyteClicker.DisplayName: Cliqueur en Chlorophite
-			CobaltClicker.DisplayName: Cliqueur de Cobalt
-			// CollectorsClicker.DisplayName: Collector's Clicker
-			ConfettiClicker.DisplayName: Cliqueur Confetti
-			CopperClicker.DisplayName: Cliqueur en Cuivrescroll
-			CorruptClicker.DisplayName: Cliqueur Corrompu
-			// CosmicClicker.DisplayName: Cosmic Clicker
-			CrimsonClicker.DisplayName: Cliqueur Cramoisi
-			CritterClicker.DisplayName: Cliqueur Bestiole
-			CrystalClicker.DisplayName: Cliqueur de Cristal
-			CyclopsClicker.DisplayName: Cliqueur Cyclopéen
-			DarkClicker.DisplayName: Cliqueur Sombre
-			DraconicClicker.DisplayName: Cliqueur Draconique
-			DreamClicker.DisplayName: Cliqueur des Rêves
-			EclipticClicker.DisplayName: Cliqueur Écliptique
-			FamishedClicker.DisplayName: Cliqueur Affamé
-			FaultyClicker.DisplayName: Cliqueur Défectueux
+			BurningSuperDeathClicker: {
+				DisplayName: Cliqueur de la Mort Super Brûlante
+				// Hint: Dropped by a powerful Underworld foe
+			}
+
+			BurrowingClicker: {
+				// DisplayName: Burrowing Clicker
+				// Hint: Dropped by a powerful Corruption foe
+			}
+
+			CandleClicker: {
+				DisplayName: Cliqueur Bougie
+				// Hint: Rarely purchasable from the Skeleton Merchant
+			}
+
+			CaptainsClicker: {
+				DisplayName: Cliqueur du Capitaine
+				// Hint: Dropped by a strong Pirate Invasion foe
+			}
+
+			ChlorophyteClicker: {
+				DisplayName: Cliqueur en Chlorophite
+				// Hint: Obtained from crafting with Chlorophyte Bars
+			}
+
+			CobaltClicker: {
+				DisplayName: Cliqueur de Cobalt
+				// Hint: Obtained from crafting with Cobalt Bars
+			}
+
+			CollectorsClicker: {
+				// DisplayName: Collector's Clicker
+				// Hint: ???
+			}
+
+			ConfettiClicker: {
+				DisplayName: Cliqueur Confetti
+				// Hint: Obtained from having fun with Pigronatas
+			}
+
+			CopperClicker: {
+				DisplayName: Cliqueur en Cuivrescroll
+				// Hint: Obtained from crafting with Copper Bars
+			}
+
+			CorruptClicker: {
+				DisplayName: Cliqueur Corrompu
+				// Hint: Obtained from crafting with Cursed Flames
+			}
+
+			CosmicClicker: {
+				// DisplayName: Cosmic Clicker
+				// Hint: Dropped by a powerful Celestial foe
+			}
+
+			CrimsonClicker: {
+				DisplayName: Cliqueur Cramoisi
+				// Hint: Obtained from crafting with Ichor
+			}
+
+			CritterClicker: {
+				DisplayName: Cliqueur Bestiole
+				// Hint: Purchasable from the Zoologist after proving your worth
+			}
+
+			CrystalClicker: {
+				DisplayName: Cliqueur de Cristal
+				// Hint: Obtained from crafting with Crystal Shards
+			}
+
+			CyclopsClicker: {
+				DisplayName: Cliqueur Cyclopéen
+				// Hint: Dropped by a powerful Blizzard foe
+			}
+
+			DarkClicker: {
+				DisplayName: Cliqueur Sombre
+				// Hint: Obtained from crafting with Demonite Bars
+			}
+
+			DraconicClicker: {
+				DisplayName: Cliqueur Draconique
+				// Hint: Dropped by a powerful Old One's Army foe
+			}
+
+			DreamClicker: {
+				DisplayName: Cliqueur des Rêves
+				// Hint: Obtained from taking a midnight stroll
+			}
+
+			EclipticClicker: {
+				DisplayName: Cliqueur Écliptique
+				// Hint: Dropped by a Solar Eclipse foe
+			}
+
+			FaultyClicker: {
+				DisplayName: Cliqueur Défectueux
+				// Hint: Found rarely in Dead Man's Chests
+			}
+
 			// FloralClicker.DisplayName: Floral Clicker
 			FrozenClicker.DisplayName: Cliqueur Gelé
 			GoldClicker.DisplayName: Cliqueur d'Or

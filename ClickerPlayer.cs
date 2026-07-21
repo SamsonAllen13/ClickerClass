@@ -984,6 +984,9 @@ namespace ClickerClass
 			tag.Add("paintingCondition_Clicked100Cookies", paintingCondition_Clicked100Cookies);
 			tag.Add("paintingCondition_ClickedCookiesCount", paintingCondition_ClickedCookiesCount);
 			tag.Add("pickedUpDreamClicker", pickedUpDreamClicker);
+
+			//TODO Catalogue - Save and store collected clickers data
+			//tag.Add("foundClickers", foundClickers);
 		}
 
 		public override void LoadData(TagCompound tag)
@@ -997,6 +1000,9 @@ namespace ClickerClass
 			paintingCondition_Clicked100Cookies = tag.GetBool("paintingCondition_Clicked100Cookies");
 			paintingCondition_ClickedCookiesCount = tag.GetInt("paintingCondition_ClickedCookiesCount");
 			pickedUpDreamClicker = tag.GetBool("pickedUpDreamClicker");
+			
+			//TODO Catalogue - Load collected clickers data
+			//foundClickers = tag.GetList("foundClickers");
 		}
 
 		public override void OnEnterWorld()

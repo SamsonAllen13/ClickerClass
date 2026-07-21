@@ -749,6 +749,11 @@ Mods: {
 				Tooltip: ""
 			}
 
+			TrickyKeychain: {
+				// DisplayName: Tricky Keychain
+				// Tooltip: ""
+			}
+
 			ArcaneClicker: {
 				DisplayName: 奥术点击器
 				// Hint: Dropped by a powerful Old One's Army foe
@@ -781,7 +786,7 @@ Mods: {
 
 			BlizzardClicker: {
 				DisplayName: 暴雪点击器
-				// Hint: Obtained from crafting with Frost Cores
+				// Hint: Dropped by a strong Blizzard foe
 			}
 
 			BoneClicker: {
@@ -889,65 +894,260 @@ Mods: {
 				// Hint: Found rarely in Dead Man's Chests
 			}
 
-			// FloralClicker.DisplayName: Floral Clicker
-			FrozenClicker.DisplayName: 寒冰点击器
-			GoldClicker.DisplayName: 金点击器
-			HeartyClicker.DisplayName: 甜心点击器
-			HemoClicker.DisplayName: 血液点击器
-			HighTechClicker.DisplayName: 高科技点击器
-			HoneyGlazedClicker.DisplayName: 蜜釉点击器
-			ImpishClicker.DisplayName: 小恶魔点击器
-			IronClicker.DisplayName: 铁点击器
-			LanternClicker.DisplayName: 提灯点击器
-			LeadClicker.DisplayName: 铅点击器
-			LihzahrdClicker.DisplayName: 丛林蜥蜴点击器
-			LordsClicker.DisplayName: 月亮领主点击器
-			MagnetClicker.DisplayName: 磁铁点击器
-			MiceClicker.DisplayName: 鼠标点击器
-			// MindfulClicker.DisplayName: Mindful Clicker
-			// MouseClicker.DisplayName: Mouse Clicker
-			MyceliumClicker.DisplayName: 菌丝点击器
-			MythrilClicker.DisplayName: 秘银点击器
-			NaughtyClicker.DisplayName: 顽皮点击器
-			OrichalcumClicker.DisplayName: 山铜点击器
-			PalladiumClicker.DisplayName: 钯金点击器
-			PharaohsClicker.DisplayName: 法老点击器
-			PlatinumClicker.DisplayName: 铂金点击器
-			PointyClicker.DisplayName: 尖刺点击器
-			QuintessenceClicker.DisplayName: 精粹点击器
-			RainbowClicker.DisplayName: 彩虹点击器
-			RedHotClicker.DisplayName: 狱石点击器
-			SandstormClicker.DisplayName: 沙暴点击器
-			SeafoamClicker.DisplayName: 海泡石点击器
-			ShadowyClicker.DisplayName: 幽暗点击器
-			ShroomiteClicker.DisplayName: 蘑菇点击器
-			SilverClicker.DisplayName: 银点击器
-			SinisterClicker.DisplayName: 厄兆点击器
-			SlickClicker.DisplayName: 灵动点击器
-			SnottyClicker.DisplayName: 鼻涕点击器
-			SpaceClicker.DisplayName: 太空点击器
-			SpiralClicker.DisplayName: 螺旋点击器
-			StarryClicker.DisplayName: 星空点击器
-			// StingingClicker.DisplayName: Stinging Clicker
-			TheClicker.DisplayName: 大师点击器
-			TinClicker.DisplayName: 锡点击器
-			TitaniumClicker.DisplayName: 钛金点击器
-			TorchClicker.DisplayName: 火把点击器
-			TungstenClicker.DisplayName: 钨点击器
-			UmbralClicker.DisplayName: 阴影点击器
-			// WatchfulClicker.DisplayName: Watchful Clicker
-			WebClicker.DisplayName: 蛛网点击器
-			WitchClicker.DisplayName: 女巫点击器
-			WoodenClicker.DisplayName: 木点击器
+			FloralClicker: {
+				// DisplayName: Floral Clicker
+				// Hint: Dropped by a powerful Jungle foe
+			}
+
+			FrozenClicker: {
+				DisplayName: 寒冰点击器
+				// Hint: Dropped by a powerful Frost Moon foe
+			}
+
+			GoldClicker: {
+				DisplayName: 金点击器
+				// Hint: Obtained from crafting with Gold Bars
+			}
+
+			HeartyClicker: {
+				DisplayName: 甜心点击器
+				// Hint: Rarely obtained from breaking Life Crystals
+			}
+
+			HemoClicker: {
+				DisplayName: 血液点击器
+				// Hint: Dropped by a Blood Moon foe
+			}
+
+			HighTechClicker: {
+				DisplayName: 高科技点击器
+				// Hint: Dropped by a powerful Martian Madness foe
+			}
+
+			HoneyGlazedClicker: {
+				DisplayName: 蜜釉点击器
+				// Hint: Obtained from crafting with Bee Wax
+			}
+
+			ImpishClicker: {
+				DisplayName: 小恶魔点击器
+				// Hint: Dropped by a Underworld foe
+			}
+
+			IronClicker: {
+				DisplayName: 铁点击器
+				// Hint: Obtained from crafting with Iron Bars
+			}
+
+			LanternClicker: {
+				DisplayName: 提灯点击器
+				// Hint: Dropped by a powerful Pumpkin Moon foe
+			}
+
+			LeadClicker: {
+				DisplayName: 铅点击器
+				// Hint: Obtained from crafting with Lead Bars
+			}
+
+			LihzahrdClicker: {
+				DisplayName: 丛林蜥蜴点击器
+				// Hint: Obtained from crafting with Solar Tablet Fragments
+			}
+
+			LordsClicker: {
+				DisplayName: 月亮领主点击器
+				// Hint: Dropped by an incredibly powerful foe
+			}
+
+			MagnetClicker: {
+				DisplayName: 磁铁点击器
+				// Hint: Purchasable from the Mechanic
+			}
+
+			MiceClicker: {
+				DisplayName: 鼠标点击器
+				// Hint: Obtained from crafting with Mice Fragments
+			}
+
+			MindfulClicker: {
+				// DisplayName: Mindful Clicker
+				// Hint: Dropped by a powerful Crimson foe
+			}
+
+			MouseClicker: {
+				// DisplayName: Mouse Clicker
+				// Hint: Obtained with the help of the Dungeon Key
+			}
+
+			MyceliumClicker: {
+				DisplayName: 菌丝点击器
+				// Hint: Found rarely in Mushroom Chests
+			}
+
+			MythrilClicker: {
+				DisplayName: 秘银点击器
+				// Hint: Obtained from crafting with Mythril Bars
+			}
+
+			NaughtyClicker: {
+				DisplayName: 顽皮点击器
+				// Hint: Dropped by a powerful Frost Moon foe
+			}
+
+			OrichalcumClicker: {
+				DisplayName: 山铜点击器
+				// Hint: Obtained from crafting with Orichalcum Bars
+			}
+
+			PalladiumClicker: {
+				DisplayName: 钯金点击器
+				// Hint: Obtained from crafting with Palladium Bars
+			}
+
+			PharaohsClicker: {
+				DisplayName: 法老点击器
+				// Hint: Found rarely in Pyramid Chests
+			}
+
+			PlatinumClicker: {
+				DisplayName: 铂金点击器
+				// Hint: Obtained from crafting with Platinum Bars
+			}
+
+			PointyClicker: {
+				DisplayName: 尖刺点击器
+				// Hint: Obtained from crafting with Jungle Spores
+			}
+
+			QuintessenceClicker: {
+				DisplayName: 精粹点击器
+				// Hint: ???
+			}
+
+			RainbowClicker: {
+				DisplayName: 彩虹点击器
+				// Hint: Dropped by a powerful Hallowed foe
+			}
+
+			RedHotClicker: {
+				DisplayName: 狱石点击器
+				// Hint: Obtained from crafting with Hellstone Bars
+			}
+
+			SandstormClicker: {
+				DisplayName: 沙暴点击器
+				// Hint: Dropped by a strong Sandstorm foe
+			}
+
+			SeafoamClicker: {
+				DisplayName: 海泡石点击器
+				// Hint: Dropped by a powerful Ocean foe
+			}
+
+			ShadowyClicker: {
+				DisplayName: 幽暗点击器
+				// Hint: Dropped by a Goblin Invasion foe
+			}
+
+			ShroomiteClicker: {
+				DisplayName: 蘑菇点击器
+				// Hint: Obtained from crafting with Shroomite Bars
+			}
+
+			SilverClicker: {
+				DisplayName: 银点击器
+				// Hint: Obtained from crafting with Silver Bars
+			}
+
+			SinisterClicker: {
+				DisplayName: 厄兆点击器
+				// Hint: Obtained from crafting with Crimtane Bars
+			}
+
+			SlickClicker: {
+				DisplayName: 灵动点击器
+				// Hint: Found rarely in Dungeon Chests
+			}
+
+			SnottyClicker: {
+				DisplayName: 鼻涕点击器
+				// Hint: Dropped by a powerful Old One's Army foe
+			}
+
+			SpaceClicker: {
+				DisplayName: 太空点击器
+				// Hint: Obtained from crafting with Meteorite Bars
+			}
 
 			SpectreClicker: {
 				DisplayName: 幽灵点击器
+				// Hint: Obtained from crafting with Spectre Bars
 				Tooltip: 点击屏幕内的敌人对其造成伤害
 			}
 
-			TrickyKeychain: {
-				// DisplayName: Tricky Keychain
-				// Tooltip: ""
+			SpiralClicker: {
+				DisplayName: 螺旋点击器
+				// Hint: Dropped by a powerful Blood Moon foe
+			}
+
+			StarryClicker: {
+				DisplayName: 星空点击器
+				// Hint: Found rarely in Sky Island Chests
+			}
+
+			StingingClicker: {
+				// DisplayName: Stinging Clicker
+				// Hint: Dropped by a powerful Bee Hive foe
+			}
+
+			TheClicker: {
+				DisplayName: 大师点击器
+				// Hint: Dropped by an incredibly powerful foe
+			}
+
+			TinClicker: {
+				DisplayName: 锡点击器
+				// Hint: Obtained from crafting with Tin Bars
+			}
+
+			TitaniumClicker: {
+				DisplayName: 钛金点击器
+				// Hint: Obtained from crafting with Titanium Bars
+			}
+
+			TorchClicker: {
+				DisplayName: 火把点击器
+				// Hint: Obtained by making a fool of the Torch God
+			}
+
+			TungstenClicker: {
+				DisplayName: 钨点击器
+				// Hint: Obtained from crafting with Tungsten Bars
+			}
+
+			UmbralClicker: {
+				DisplayName: 阴影点击器
+				// Hint: Found rarely in Shadow Chests
+			}
+
+			WatchfulClicker: {
+				// DisplayName: Watchful Clicker
+				// Hint: Dropped by a powerful Nighttime foe
+			}
+
+			WebClicker: {
+				DisplayName: 蛛网点击器
+				// Hint: Obtained from crafting with Spider Fangs
+			}
+
+			WitchClicker: {
+				DisplayName: 女巫点击器
+				// Hint: Dropped by a powerful Pumpkin Moon foe
+			}
+
+			WoodenClicker: {
+				DisplayName: 木点击器
+				// Hint: ???
 			}
 		}
 

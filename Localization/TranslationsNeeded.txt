@@ -1,5 +1,5 @@
-en-US, 517/517, 100%, missing 0
-fr-FR, 424/517, 82%, missing 93
-ru-RU, 452/517, 87%, missing 65
-zh-Hans, 424/517, 82%, missing 93
-pt-BR, 453/517, 88%, missing 64
+en-US, 568/568, 100%, missing 0
+fr-FR, 423/568, 74%, missing 145
+ru-RU, 451/568, 79%, missing 117
+zh-Hans, 423/568, 74%, missing 145
+pt-BR, 452/568, 80%, missing 116

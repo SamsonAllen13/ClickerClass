@@ -749,6 +749,11 @@ Mods: {
 				Tooltip: ""
 			}
 
+			TrickyKeychain: {
+				// DisplayName: Tricky Keychain
+				// Tooltip: ""
+			}
+
 			ArcaneClicker: {
 				DisplayName: Clicker Arcano
 				// Hint: Dropped by a powerful Old One's Army foe
@@ -781,7 +786,7 @@ Mods: {
 
 			BlizzardClicker: {
 				DisplayName: Clicker da Nevasca
-				// Hint: Obtained from crafting with Frost Cores
+				// Hint: Dropped by a strong Blizzard foe
 			}
 
 			BoneClicker: {
@@ -889,65 +894,260 @@ Mods: {
 				// Hint: Found rarely in Dead Man's Chests
 			}
 
-			// FloralClicker.DisplayName: Floral Clicker
-			FrozenClicker.DisplayName: Clicker Congelado
-			GoldClicker.DisplayName: Clicker de Ouro
-			HeartyClicker.DisplayName: Clicker Vigoroso
-			HemoClicker.DisplayName: Clicker Hemo
-			HighTechClicker.DisplayName: Clicker de Alta Tecnologia
-			HoneyGlazedClicker.DisplayName: Clicker Glaceado com Mel
-			ImpishClicker.DisplayName: Clicker Demoníaco
-			IronClicker.DisplayName: Clicker de Ferro
-			LanternClicker.DisplayName: Clicker Lanterna
-			LeadClicker.DisplayName: Clicker de Chumbo
-			LihzahrdClicker.DisplayName: Clicker Lagharto
-			LordsClicker.DisplayName: Clicker do Senhor
-			MagnetClicker.DisplayName: Clicker Magnético
-			MiceClicker.DisplayName: Clicker de Mouse
-			// MindfulClicker.DisplayName: Mindful Clicker
-			MouseClicker.DisplayName: Clicker de Mouse
-			MyceliumClicker.DisplayName: Clicker de Micélio
-			MythrilClicker.DisplayName: Clicker de Mithril
-			NaughtyClicker.DisplayName: Clicker Malcriado
-			OrichalcumClicker.DisplayName: Clicker de Oricalco
-			PalladiumClicker.DisplayName: Clicker de Paládio
-			PharaohsClicker.DisplayName: Clicker do Faraó
-			PlatinumClicker.DisplayName: Clicker de Platina
-			PointyClicker.DisplayName: Clicker Pontudo
-			QuintessenceClicker.DisplayName: Clicker da Quintessência
-			RainbowClicker.DisplayName: Clicker Arco-íris
-			RedHotClicker.DisplayName: Clicker em Brasa
-			SandstormClicker.DisplayName: Clicker da Tempestade de Areia
-			SeafoamClicker.DisplayName: Clicker da Espuma Marinha
-			ShadowyClicker.DisplayName: Clicker Sombrio
-			ShroomiteClicker.DisplayName: Clicker de Cogumelita
-			SilverClicker.DisplayName: Clicker de Prata
-			SinisterClicker.DisplayName: Clicker Sinistro
-			SlickClicker.DisplayName: Clicker Liso
-			SnottyClicker.DisplayName: Clicker Ranhento
-			SpaceClicker.DisplayName: Clicker do Espaço
-			SpiralClicker.DisplayName: Clicker Espiral
-			StarryClicker.DisplayName: Clicker Estelar
-			// StingingClicker.DisplayName: Stinging Clicker
-			TheClicker.DisplayName: O Clicker
-			TinClicker.DisplayName: Clicker de Estanho
-			TitaniumClicker.DisplayName: Clicker de Titânio
-			TorchClicker.DisplayName: Clicker Tocha
-			TungstenClicker.DisplayName: Clicker de Tungstênio
-			UmbralClicker.DisplayName: Clicker Umbral
-			// WatchfulClicker.DisplayName: Watchful Clicker
-			WebClicker.DisplayName: Clicker de Teia
-			WitchClicker.DisplayName: Clicker da Bruxa
-			WoodenClicker.DisplayName: Clicker de Madeira
+			FloralClicker: {
+				// DisplayName: Floral Clicker
+				// Hint: Dropped by a powerful Jungle foe
+			}
+
+			FrozenClicker: {
+				DisplayName: Clicker Congelado
+				// Hint: Dropped by a powerful Frost Moon foe
+			}
+
+			GoldClicker: {
+				DisplayName: Clicker de Ouro
+				// Hint: Obtained from crafting with Gold Bars
+			}
+
+			HeartyClicker: {
+				DisplayName: Clicker Vigoroso
+				// Hint: Rarely obtained from breaking Life Crystals
+			}
+
+			HemoClicker: {
+				DisplayName: Clicker Hemo
+				// Hint: Dropped by a Blood Moon foe
+			}
+
+			HighTechClicker: {
+				DisplayName: Clicker de Alta Tecnologia
+				// Hint: Dropped by a powerful Martian Madness foe
+			}
+
+			HoneyGlazedClicker: {
+				DisplayName: Clicker Glaceado com Mel
+				// Hint: Obtained from crafting with Bee Wax
+			}
+
+			ImpishClicker: {
+				DisplayName: Clicker Demoníaco
+				// Hint: Dropped by a Underworld foe
+			}
+
+			IronClicker: {
+				DisplayName: Clicker de Ferro
+				// Hint: Obtained from crafting with Iron Bars
+			}
+
+			LanternClicker: {
+				DisplayName: Clicker Lanterna
+				// Hint: Dropped by a powerful Pumpkin Moon foe
+			}
+
+			LeadClicker: {
+				DisplayName: Clicker de Chumbo
+				// Hint: Obtained from crafting with Lead Bars
+			}
+
+			LihzahrdClicker: {
+				DisplayName: Clicker Lagharto
+				// Hint: Obtained from crafting with Solar Tablet Fragments
+			}
+
+			LordsClicker: {
+				DisplayName: Clicker do Senhor
+				// Hint: Dropped by an incredibly powerful foe
+			}
+
+			MagnetClicker: {
+				DisplayName: Clicker Magnético
+				// Hint: Purchasable from the Mechanic
+			}
+
+			MiceClicker: {
+				DisplayName: Clicker de Mouse
+				// Hint: Obtained from crafting with Mice Fragments
+			}
+
+			MindfulClicker: {
+				// DisplayName: Mindful Clicker
+				// Hint: Dropped by a powerful Crimson foe
+			}
+
+			MouseClicker: {
+				DisplayName: Clicker de Mouse
+				// Hint: Obtained with the help of the Dungeon Key
+			}
+
+			MyceliumClicker: {
+				DisplayName: Clicker de Micélio
+				// Hint: Found rarely in Mushroom Chests
+			}
+
+			MythrilClicker: {
+				DisplayName: Clicker de Mithril
+				// Hint: Obtained from crafting with Mythril Bars
+			}
+
+			NaughtyClicker: {
+				DisplayName: Clicker Malcriado
+				// Hint: Dropped by a powerful Frost Moon foe
+			}
+
+			OrichalcumClicker: {
+				DisplayName: Clicker de Oricalco
+				// Hint: Obtained from crafting with Orichalcum Bars
+			}
+
+			PalladiumClicker: {
+				DisplayName: Clicker de Paládio
+				// Hint: Obtained from crafting with Palladium Bars
+			}
+
+			PharaohsClicker: {
+				DisplayName: Clicker do Faraó
+				// Hint: Found rarely in Pyramid Chests
+			}
+
+			PlatinumClicker: {
+				DisplayName: Clicker de Platina
+				// Hint: Obtained from crafting with Platinum Bars
+			}
+
+			PointyClicker: {
+				DisplayName: Clicker Pontudo
+				// Hint: Obtained from crafting with Jungle Spores
+			}
+
+			QuintessenceClicker: {
+				DisplayName: Clicker da Quintessência
+				// Hint: ???
+			}
+
+			RainbowClicker: {
+				DisplayName: Clicker Arco-íris
+				// Hint: Dropped by a powerful Hallowed foe
+			}
+
+			RedHotClicker: {
+				DisplayName: Clicker em Brasa
+				// Hint: Obtained from crafting with Hellstone Bars
+			}
+
+			SandstormClicker: {
+				DisplayName: Clicker da Tempestade de Areia
+				// Hint: Dropped by a strong Sandstorm foe
+			}
+
+			SeafoamClicker: {
+				DisplayName: Clicker da Espuma Marinha
+				// Hint: Dropped by a powerful Ocean foe
+			}
+
+			ShadowyClicker: {
+				DisplayName: Clicker Sombrio
+				// Hint: Dropped by a Goblin Invasion foe
+			}
+
+			ShroomiteClicker: {
+				DisplayName: Clicker de Cogumelita
+				// Hint: Obtained from crafting with Shroomite Bars
+			}
+
+			SilverClicker: {
+				DisplayName: Clicker de Prata
+				// Hint: Obtained from crafting with Silver Bars
+			}
+
+			SinisterClicker: {
+				DisplayName: Clicker Sinistro
+				// Hint: Obtained from crafting with Crimtane Bars
+			}
+
+			SlickClicker: {
+				DisplayName: Clicker Liso
+				// Hint: Found rarely in Dungeon Chests
+			}
+
+			SnottyClicker: {
+				DisplayName: Clicker Ranhento
+				// Hint: Dropped by a powerful Old One's Army foe
+			}
+
+			SpaceClicker: {
+				DisplayName: Clicker do Espaço
+				// Hint: Obtained from crafting with Meteorite Bars
+			}
 
 			SpectreClicker: {
 				DisplayName: Clicker Espectral
+				// Hint: Obtained from crafting with Spectre Bars
 				Tooltip: Clique em um inimigo dentro da sua visão para causar danos nele
 			}
 
-			TrickyKeychain: {
-				// DisplayName: Tricky Keychain
-				// Tooltip: ""
+			SpiralClicker: {
+				DisplayName: Clicker Espiral
+				// Hint: Dropped by a powerful Blood Moon foe
+			}
+
+			StarryClicker: {
+				DisplayName: Clicker Estelar
+				// Hint: Found rarely in Sky Island Chests
+			}
+
+			StingingClicker: {
+				// DisplayName: Stinging Clicker
+				// Hint: Dropped by a powerful Bee Hive foe
+			}
+
+			TheClicker: {
+				DisplayName: O Clicker
+				// Hint: Dropped by an incredibly powerful foe
+			}
+
+			TinClicker: {
+				DisplayName: Clicker de Estanho
+				// Hint: Obtained from crafting with Tin Bars
+			}
+
+			TitaniumClicker: {
+				DisplayName: Clicker de Titânio
+				// Hint: Obtained from crafting with Titanium Bars
+			}
+
+			TorchClicker: {
+				DisplayName: Clicker Tocha
+				// Hint: Obtained by making a fool of the Torch God
+			}
+
+			TungstenClicker: {
+				DisplayName: Clicker de Tungstênio
+				// Hint: Obtained from crafting with Tungsten Bars
+			}
+
+			UmbralClicker: {
+				DisplayName: Clicker Umbral
+				// Hint: Found rarely in Shadow Chests
+			}
+
+			WatchfulClicker: {
+				// DisplayName: Watchful Clicker
+				// Hint: Dropped by a powerful Nighttime foe
+			}
+
+			WebClicker: {
+				DisplayName: Clicker de Teia
+				// Hint: Obtained from crafting with Spider Fangs
+			}
+
+			WitchClicker: {
+				DisplayName: Clicker da Bruxa
+				// Hint: Dropped by a powerful Pumpkin Moon foe
+			}
+
+			WoodenClicker: {
+				DisplayName: Clicker de Madeira
+				// Hint: ???
 			}
 		}
 

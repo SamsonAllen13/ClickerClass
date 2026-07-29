@@ -50,12 +50,15 @@ namespace ClickerClass.UI
 		{
 			Player player = Main.LocalPlayer;
 			ClickerPlayer clickerPlayer = Main.LocalPlayer.GetClickerPlayer();
-			
+
+			FadeTime = 0;
+
 			if (player.dead)
 			{
 				FadeTime = 0;
 			}
 			//TODO - Clicker Catalogue
+			/*
 			else if (player.HeldItem.type == ModContent.ItemType<ClickerCatalogue>())
 			{
 				FadeTime = MAX_FADE_TIME + FADE_DELAY;
@@ -66,15 +69,13 @@ namespace ClickerClass.UI
 				FadeTime--;
 				_delay = 0;
 			}
+			*/
 		}
 
 		protected override bool DrawSelf()
 		{
 			Player player = Main.LocalPlayer;
 			ClickerPlayer clickerPlayer = player.GetClickerPlayer();
-
-			//TODO Catalogue - Debug hide Ui
-			return true;
 
 			if (player.dead || player.ghost || FadeTime == 0)
 			{

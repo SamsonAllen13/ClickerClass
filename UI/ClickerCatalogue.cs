@@ -72,7 +72,10 @@ namespace ClickerClass.UI
 		{
 			Player player = Main.LocalPlayer;
 			ClickerPlayer clickerPlayer = player.GetClickerPlayer();
-			
+
+			//TODO Catalogue - Debug hide Ui
+			return true;
+
 			if (player.dead || player.ghost || FadeTime == 0)
 			{
 				return true;

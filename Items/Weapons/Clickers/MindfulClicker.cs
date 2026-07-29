@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
-	public class MindfulClicker : ClickerWeapon
+	public abstract class MindfulClicker : ClickerWeapon
 	{
 		public static readonly int CharmReduction = 30;
 		

@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
-	public class BurrowingClicker : ClickerWeapon
+	public abstract class BurrowingClicker : ClickerWeapon
 	{
 		public override void SetStaticDefaults()
 		{

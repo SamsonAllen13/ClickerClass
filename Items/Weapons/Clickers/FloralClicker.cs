@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
-	public class FloralClicker : ClickerWeapon
+	public abstract class FloralClicker : ClickerWeapon
 	{
 		public static readonly int EntangleCount = 5;
 

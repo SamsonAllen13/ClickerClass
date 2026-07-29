@@ -6,7 +6,7 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Misc
 {
-	public class TrickyKeychain : ModItem
+	public abstract class TrickyKeychain : ModItem
 	{
 		public override void SetDefaults()
 		{

@@ -371,6 +371,18 @@ namespace ClickerClass
 			}
 			return false;
 		}
+
+		public static bool InSaltFlat(Player player)
+		{
+			if (ModLoader.TryGetMod("SpiritReforged", out Mod spiritReforgedMod))
+			{
+				if (spiritReforgedMod.TryFind<ModBiome>("SaltBiome", out ModBiome saltBiome))
+				{
+					return player.InModBiome(saltBiome);
+				}
+			}
+			return false;
+		}
 	}
 
 	public static class DepthsModSupportHelper

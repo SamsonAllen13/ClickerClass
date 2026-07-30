@@ -94,7 +94,28 @@ namespace ClickerClass.Projectiles
 				dustScale = 1f;
 				return;
 			}
-			if (CalamityModSupportHelper.InBiome(player, "abyss"))
+			if (CalamityModSupportHelper.InBiome(player, "layer1"))
+			{
+				dustType = DustID.RainbowTorch;
+				dustColor = new Color(190, 255, 60);
+				dustScale = 1f;
+				return;
+			}
+			if (CalamityModSupportHelper.InBiome(player, "layer2"))
+			{
+				dustType = DustID.RainbowTorch;
+				dustColor = new Color(255, 255, 68);
+				dustScale = 1f;
+				return;
+			}
+			if (CalamityModSupportHelper.InBiome(player, "layer3"))
+			{
+				dustType = DustID.RainbowTorch;
+				dustColor = new Color(193, 0, 0);
+				dustScale = 1f;
+				return;
+			}
+			if (CalamityModSupportHelper.InBiome(player, "layer4"))
 			{
 				dustType = DustID.RainbowTorch;
 				dustColor = new Color(100, 130, 150);
@@ -111,7 +132,7 @@ namespace ClickerClass.Projectiles
 			if (CalamityModSupportHelper.InBiome(player, "brimstone crags"))
 			{
 				dustType = DustID.RainbowTorch;
-				dustColor = new Color(190, 255, 60);
+				dustColor = new Color(142, 211, 255);
 				dustScale = 1f;
 				return;
 			}
@@ -126,6 +147,13 @@ namespace ClickerClass.Projectiles
 			{
 				dustType = DustID.RainbowTorch;
 				dustColor = new Color(170, 255, 255);
+				dustScale = 1f;
+				return;
+			}
+			if (SpiritReforgedSupportHelper.InSaltFlat(player))
+			{
+				dustType = DustID.RainbowTorch;
+				dustColor = new Color(215, 202, 237);
 				dustScale = 1f;
 				return;
 			}

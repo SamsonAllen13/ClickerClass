@@ -353,17 +353,22 @@ namespace ClickerClass
 				else if (message == "SetDust")
 				{
 					var item = args[index + 0] as Item;
-					var dust = args[index + 1] as int?;
+					var type = args[index + 1] as int?;
+					var alpha = args[index + 2] as int?; //Optional
 					if (item == null)
 					{
 						throw new Exception($"Call Error: The item argument for the attempted message, \"{message}\" has returned null.");
 					}
-					if (dust == null)
+					if (type == null)
 					{
-						dust = 0;
+						type = 0;
+					}
+					if (alpha == null)
+					{
+						alpha = 75;
 					}
 
-					ClickerWeapon.SetDust(item, dust.Value);
+					ClickerWeapon.SetDust(item, type.Value, alpha.Value);
 					return success;
 				}
 				else if (message == "SetRadius")

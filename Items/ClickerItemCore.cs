@@ -43,10 +43,10 @@ namespace ClickerClass.Items
 		public List<string> itemClickEffects = new List<string>();
 
 		/// <summary>
-		/// The clickers dust that is spawned on use and its alpha
+		/// The clickers dust that is spawned on use and its alpha (<see cref="clickerDustAlpha"/>)
 		/// </summary>
 		public int clickerDustColor = 0;
-		public int clickerDustAlpha = 0;
+		public int clickerDustAlpha = ClickerWeapon.DefaultDustAlpha;
 
 		/// <summary>
 		/// Makes it so that this item cannot be equiped when other items of the same type are already equipped

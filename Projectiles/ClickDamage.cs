@@ -48,7 +48,7 @@ namespace ClickerClass.Projectiles
 			Item item = player.HeldItem;
 
 			int dustType = 0;
-			int alpha = 0;
+			int alpha = ClickerWeapon.DefaultDustAlpha;
 			if (ClickerSystem.IsClickerWeapon(item, out ClickerItemCore clickerItem))
 			{
 				dustType = clickerItem.clickerDustColor;

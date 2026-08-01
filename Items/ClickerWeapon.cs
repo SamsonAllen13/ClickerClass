@@ -102,12 +102,15 @@ namespace ClickerClass.Items
 			}
 		}
 
+		public const int DefaultDustAlpha = 75;
+
 		/// <summary>
 		/// Call in <see cref="ModItem.SetDefaults"/> for a clicker weapon to set its dust type when it's used
 		/// </summary>
 		/// <param name="item">The clicker weapon</param>
 		/// <param name="type">the dust type</param>
-		public static void SetDust(Item item, int type, int alpha = 75)
+		/// <param name="alpha">the dust alpha</param>
+		public static void SetDust(Item item, int type, int alpha = DefaultDustAlpha)
 		{
 			if (ClickerSystem.IsClickerWeapon(item, out ClickerItemCore clickerItem))
 			{

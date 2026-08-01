@@ -365,7 +365,7 @@ namespace ClickerClass
 					}
 					if (alpha == null)
 					{
-						alpha = 75;
+						alpha = ClickerWeapon.DefaultDustAlpha;
 					}
 
 					ClickerWeapon.SetDust(item, type.Value, alpha.Value);

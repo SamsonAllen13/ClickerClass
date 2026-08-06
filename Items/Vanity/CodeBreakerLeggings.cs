@@ -10,7 +10,7 @@ using Terraria.ModLoader;
 namespace ClickerClass.Items.Vanity
 {
 	[AutoloadEquip(EquipType.Legs)]
-	public abstract class CodeBreakerLeggings : ClickerItem
+	public class CodeBreakerLeggings : ClickerItem
 	{
 		public override void SetStaticDefaults()
 		{

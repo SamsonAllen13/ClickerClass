@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
-	public abstract class CollectorsClicker : ClickerWeapon
+	public class CollectorsClicker : ClickerWeapon
 	{
 		public override void SetStaticDefaults()
 		{

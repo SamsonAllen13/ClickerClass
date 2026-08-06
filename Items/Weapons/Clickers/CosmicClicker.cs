@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
-	public abstract class CosmicClicker : ClickerWeapon
+	public class CosmicClicker : ClickerWeapon
 	{
 		public static readonly int ShadowAmount = 12;
 		

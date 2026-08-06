@@ -4,7 +4,7 @@ using Terraria.Localization;
 
 namespace ClickerClass.Items.Consumables
 {
-	public abstract class DemonHand : ClickerItem
+	public class DemonHand : ClickerItem
 	{
 		public override void SetStaticDefaults()
 		{

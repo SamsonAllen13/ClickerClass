@@ -5,7 +5,7 @@ using ClickerClass.Items.Placeable;
 
 namespace ClickerClass.Items.Misc
 {
-	public abstract class ClickerCatalogue : ModItem
+	public class ClickerCatalogue : ModItem
 	{
 		public override void SetDefaults()
 		{

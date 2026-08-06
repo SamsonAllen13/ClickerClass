@@ -63,7 +63,7 @@ namespace ClickerClass
 			if (!ClickerSystem.TryGetClickEffectDescription(uniqueName, out LocalizedText description))
 			{
 				//First initialization and binding
-				Description = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}.{name}.Description"), () => $"${ClickerSystem.UnknownText.Key}");
+				Description = Language.GetOrRegister(Mod.GetLocalizationKey($"{category}.{name}.Description"), ClickerSystem.GetUnknownTextInterpolation);
 				if (descriptionArgs != null)
 				{
 					Description = Description.WithFormatArgs(descriptionArgs);
@@ -124,23 +124,15 @@ namespace ClickerClass
 		/// </summary>
 		internal static void LoadMiscEffects()
 		{
-			ClickEffect.DoubleClick = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick", 10, Color.White, delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
-			{
-				DoubleClick(player, source, position, type, damage, knockBack);
-			},
-			preHardMode: true);
+			DoubleClick = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick", 10, Color.White, DoubleClickAction, preHardMode: true);
 
-			ClickEffect.DoubleClick2 = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick2", 8, Color.White, delegate (Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
-			{
-				DoubleClick(player, source, position, type, damage, knockBack);
-			},
-			preHardMode: true);
+			DoubleClick2 = ClickerSystem.RegisterClickEffect(ClickerClass.mod, "DoubleClick2", 8, Color.White, DoubleClickAction, preHardMode: true);
+		}
 
-			static void DoubleClick(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
-			{
-				SoundEngine.PlaySound(SoundID.Item37, position);
-				Projectile.NewProjectile(source, position, Vector2.Zero, type, damage, knockBack, player.whoAmI);
-			}
+		public static void DoubleClickAction(Player player, EntitySource_ItemUse_WithAmmo source, Vector2 position, int type, int damage, float knockBack)
+		{
+			SoundEngine.PlaySound(SoundID.Item37, position);
+			Projectile.NewProjectile(source, position, Vector2.Zero, type, damage, knockBack, player.whoAmI);
 		}
 
 		#region Registered Effects

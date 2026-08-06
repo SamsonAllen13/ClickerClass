@@ -3,18 +3,21 @@ using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class CollectorsClicker : ClickerWeapon
 	{
+		public override LocalizedText HintTooltip => LocalizedText.Empty;
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
 			MoRSupportHelper.RegisterElement(Item, MoRSupportHelper.Celestial, projsInheritItemElements: true);
 
-			ClickEffect.Greed = ClickerSystem.RegisterClickEffect(Mod, "Greed", 1, new Color(15, 215, 215), null, preHardMode: true);
+			ClickEffect.Greed = ClickerSystem.RegisterClickEffect(Mod, "Greed", 1, new Color(15, 215, 215), null);
 		}
 
 		public override void SetDefaults()

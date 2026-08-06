@@ -86,6 +86,7 @@ namespace ClickerClass.UI
 				}
 				borderAsset = customCursorTexturesByType[itemType];
 			}
+			//TODO Convert these to a virtual in ClickerWeapon
 			else if (clickerPlayer.itemBurningSuperDeath)
 			{
 				borderAsset = burningSuperDeathOutlineTexture.Value;

@@ -1207,7 +1207,7 @@ namespace ClickerClass
 
 			//Collector's Clicker handle
 			float collectionProgress = (float)foundClickers.Count / ClickerClass.mod.totalClickers.Count;
-			if (collectionProgress == 1f && !obtainedCollectorsClicker)
+			if (collectionProgress + 0.0001f >= 1f && !obtainedCollectorsClicker)
 			{
 				SoundEngine.PlaySound(SoundID.ResearchComplete, Player.Center);
 				

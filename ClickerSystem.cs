@@ -42,6 +42,11 @@ namespace ClickerClass
 		private static HashSet<int> ClickerProjectiles { get; set; }
 
 		/// <summary>
+		/// Contains hint tooltips for each item, if they exist
+		/// </summary>
+		internal static Dictionary<int, LocalizedText> HintTooltipTexts { get; private set; }
+
+		/// <summary>
 		/// A dictionary containing registered (!) ClickEffects. When "creating" new ones to assign to something, it clones it from this
 		/// </summary>
 		private static Dictionary<string, ClickEffect> ClickEffectsByName { get; set; }
@@ -67,6 +72,7 @@ namespace ClickerClass
 			SFXButtons = new Dictionary<int, Action<int>>();
 			ClickerProjectiles = new HashSet<int>();
 			ClickerWeaponProjectiles = new HashSet<int>();
+			HintTooltipTexts = new Dictionary<int, LocalizedText>();
 			ClickEffectsByName = new Dictionary<string, ClickEffect>();
 			DisplayNamesByName = new Dictionary<string, LocalizedText>();
 			DescriptionsByName = new Dictionary<string, LocalizedText>();
@@ -82,6 +88,8 @@ namespace ClickerClass
 			SFXButtons = null;
 			ClickerProjectiles = null;
 			ClickerWeaponProjectiles = null;
+			HintTooltipTexts?.Clear();
+			HintTooltipTexts = null;
 			ClickEffectsByName?.Clear();
 			ClickEffectsByName = null;
 			DisplayNamesByName?.Clear();
@@ -98,6 +106,44 @@ namespace ClickerClass
 		public override void PostAddRecipes()
 		{
 			FinalizedRegisterCompat = true;
+		}
+
+		//A bug with this is that when this actually triggers (new lang entry) in the same game session it will not properly elaborate into the value, needs a lang file reload.
+		//It's fine on subsequent game launches though and will not be a problem for players since this only manifests during development
+		internal static string GetUnknownTextInterpolation() => $"{{${UnknownText.Key}}}";
+
+		/// <summary>
+		/// Adds an obtainment hint tooltip to the given item type. If null or <see cref="LocalizedText.Empty"/>, will not be added
+		/// </summary>
+		/// <param name="itemType">The item type</param>
+		/// <param name="hintTooltip">The hint's <see cref="LocalizedText"/></param>
+		/// <returns><see langword="true"/> if successfully added</returns>
+		public static bool TryAddHintTooltipText(int itemType, LocalizedText hintTooltip)
+		{
+			if (hintTooltip == null || hintTooltip == LocalizedText.Empty)
+			{
+				return false;
+			}
+
+			HintTooltipTexts[itemType] = hintTooltip;
+			return true;
+		}
+
+		/// <summary>
+		/// Checks if an item has already defined its hint tooltip, and assigns it
+		/// </summary>
+		/// <param name="itemType">The item type</param>
+		/// <param name="hintTooltip">The hint's <see cref="LocalizedText"/></param>
+		/// <returns><see langword="true"/> if a hint tooltip exists</returns>
+		public static bool TryGetHintTooltipText(int itemType, out LocalizedText hintTooltip)
+		{
+			hintTooltip = null;
+			if (HintTooltipTexts.TryGetValue(itemType, out LocalizedText other))
+			{
+				hintTooltip = other;
+				return hintTooltip != LocalizedText.Empty;
+			}
+			return false;
 		}
 
 		public static string UniqueEffectName(Mod mod, string internalName) => $"{mod.Name}:{internalName}";
@@ -305,7 +351,8 @@ namespace ClickerClass
 		}
 
 		/// <summary>
-		/// Call this in <see cref="ModType.SetStaticDefaults"/> to register this projectile into the "clicker class" category
+		/// Call this in <see cref="ModType.SetStaticDefaults"/> to register this projectile into the "clicker class" category.
+		/// This will apply armor penetration and hit direction defaults
 		/// </summary>
 		/// <param name="modProj">The <see cref="ModProjectile"/> that is to be registered</param>
 		/// <exception cref="InvalidOperationException"/>
@@ -316,10 +363,9 @@ namespace ClickerClass
 				throw new InvalidOperationException("Tried to register a clicker projectile at the wrong time, do so in ModProjectile.SetStaticDefaults");
 			}
 			int type = modProj.Projectile.type;
-			if (!ClickerProjectiles.Contains(type))
-			{
-				ClickerProjectiles.Add(type);
-			}
+			if (!ClickerProjectiles.Add(type)) return;
+
+			//Extra registration code here
 		}
 
 		/// <summary>
@@ -336,10 +382,9 @@ namespace ClickerClass
 				throw new InvalidOperationException("Tried to register a clicker weapon projectile at the wrong time, do so in ModProjectile.SetStaticDefaults");
 			}
 			int type = modProj.Projectile.type;
-			if (!ClickerWeaponProjectiles.Contains(type))
-			{
-				ClickerWeaponProjectiles.Add(type);
-			}
+			if (!ClickerWeaponProjectiles.Add(type)) return;
+
+			//Extra registration code here
 		}
 
 		/// <summary>
@@ -354,10 +399,9 @@ namespace ClickerClass
 				throw new InvalidOperationException("Tried to register a clicker item at the wrong time, do so in ModItem.SetStaticDefaults");
 			}
 			int type = modItem.Item.type;
-			if (!ClickerItems.Contains(type))
-			{
-				ClickerItems.Add(type);
-			}
+			if (!ClickerItems.Add(type)) return;
+
+			//Extra registration code here
 		}
 
 		/// <summary>
@@ -366,8 +410,9 @@ namespace ClickerClass
 		/// </summary>
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
 		/// <param name="borderTexture">The path to the border texture (optional)</param>
+		/// <param name="hintTooltip">A custom obtainment hint tooltip. If left unassigned, will be automatically generated in the localization file for your item. If set to <see cref="LocalizedText.Empty"/>, no hint tooltip will be set.</param>
 		/// <exception cref="InvalidOperationException"/>
-		public static void RegisterClickerWeapon(ModItem modItem, string borderTexture = null)
+		public static void RegisterClickerWeapon(ModItem modItem, string borderTexture = null, LocalizedText hintTooltip = null)
 		{
 			if (FinalizedRegisterCompat)
 			{
@@ -375,24 +420,22 @@ namespace ClickerClass
 			}
 			RegisterClickerItem(modItem);
 			int type = modItem.Item.type;
-			if (!ClickerWeapons.Contains(type))
+			if (!ClickerWeapons.Add(type)) return;
+
+			if (borderTexture != null)
 			{
-				ClickerWeapons.Add(type);
-				if (borderTexture != null)
+				if (ModContent.HasAsset(borderTexture))
 				{
-					if (ModContent.HasAsset(borderTexture))
-					{
-						if (!ClickerWeaponBorderTexture.ContainsKey(type))
-						{
-							ClickerWeaponBorderTexture.Add(type, borderTexture);
-						}
-					}
-					else
-					{
-						ClickerClass.mod.Logger.Info($"Border texture for {modItem.Name} not found: {borderTexture}");
-					}
+					ClickerWeaponBorderTexture.TryAdd(type, borderTexture);
+				}
+				else
+				{
+					ClickerClass.mod.Logger.Info($"Border texture for {modItem.Name} not found: {borderTexture}");
 				}
 			}
+
+			hintTooltip ??= modItem.GetLocalization("Hint", GetUnknownTextInterpolation);
+			TryAddHintTooltipText(modItem.Type, hintTooltip);
 		}
 
 		/// <summary>
@@ -411,10 +454,9 @@ namespace ClickerClass
 			}
 			RegisterClickerItem(modItem);
 			int type = modItem.Item.type;
-			if (!SFXButtons.ContainsKey(type))
-			{
-				SFXButtons.Add(type, playSoundAction);
-			}
+			if (!SFXButtons.TryAdd(type, playSoundAction)) return;
+
+			//Extra registration code here
 		}
 
 		/// <summary>

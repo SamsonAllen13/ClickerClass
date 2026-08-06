@@ -44,8 +44,6 @@ namespace ClickerClass.UI
 
 		public LocalizedText MouseoverText { get; private set; }
 		
-		public LocalizedText HintText { get; private set; }
-		
 		public override void Update(GameTime gameTime)
 		{
 			Player player = Main.LocalPlayer;
@@ -314,11 +312,10 @@ namespace ClickerClass.UI
 					frame.Y = frame.Height * 2;
 					Main.spriteBatch.Draw(texture, position + new Vector2(offSetX, offSetY), frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 					
-					Item item = ContentSamples.ItemsByType[itemType.type];
-					string hintProcess = RemoveSpecialCharacters("Items." + item.Name + $".Hint");
-					HintText = ClickerClass.mod.GetLocalization(hintProcess);
-					string hint = HintText.Format();
-					UICommon.TooltipMouseText("???\n" + hint);
+					if (ClickerSystem.TryGetHintTooltipText(itemType.type, out var hintTooltip))
+					{
+						UICommon.TooltipMouseText(hintTooltip.ToString());
+					}
 				}
 
 				//If you have chosen this clicker, make the slot border look 'selected'
@@ -337,7 +334,7 @@ namespace ClickerClass.UI
 				}
 			}
 
-			//TODO Clicker Catalogue - Only draw if other mods are enabled
+			//TODO Clicker Catalogue - Only draw if other mods are enabled (on mod load, build database indexed per mod)
 			//Reset
 			//Draw Mod's small_icon
 			texture = modAsset.Value;
@@ -419,7 +416,7 @@ namespace ClickerClass.UI
 			
 			// Percentage of bar filled
 			float fill = (float)clickerPlayer.foundClickers.Count / ClickerClass.mod.totalClickers.Count;
-			bool catalogueComplete = fill == 1f;
+			bool catalogueComplete = fill + 0.0001f >= 1f;
 
 			// Change the width of the frame so it only draws part of the bar
 			frame.Width = (int)(frame.Width * fill);

@@ -17,6 +17,8 @@ namespace ClickerClass.Items
 	{
 		public override LocalizedText Tooltip => ClickerSystem.DefaultClickerWeaponTooltipText;
 
+		public virtual LocalizedText HintTooltip => null;
+
 		/// <summary>
 		/// Call this in the inherited class as base.SetStaticDefaults() at the start of SetStaticDefaults
 		/// </summary>
@@ -24,7 +26,7 @@ namespace ClickerClass.Items
 		{
 			base.SetStaticDefaults();
 
-			ClickerSystem.RegisterClickerWeapon(this);
+			ClickerSystem.RegisterClickerWeapon(this, hintTooltip: HintTooltip);
 		}
 
 		/// <summary>

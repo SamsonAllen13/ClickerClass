@@ -824,10 +824,7 @@ Mods: {
 				// Hint: Obtained from crafting with Cobalt Bars
 			}
 
-			CollectorsClicker: {
-				// DisplayName: Collector's Clicker
-				// Hint: ???
-			}
+			// CollectorsClicker.DisplayName: Collector's Clicker
 
 			ConfettiClicker: {
 				DisplayName: Cliqueur Confetti
@@ -1021,7 +1018,7 @@ Mods: {
 
 			QuintessenceClicker: {
 				DisplayName: Cliqueur de la Quintessence
-				// Hint: ???
+				// Hint: "{$Mods.ClickerClass.Common.Unknown}"
 			}
 
 			RainbowClicker: {
@@ -1147,7 +1144,7 @@ Mods: {
 
 			WoodenClicker: {
 				DisplayName: Cliqueur en Bois
-				// Hint: ???
+				// Hint: "{$Mods.ClickerClass.Common.Unknown}"
 			}
 		}
 

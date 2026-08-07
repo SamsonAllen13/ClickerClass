@@ -9,6 +9,7 @@ namespace ClickerClass.Core.Netcode.Packets
 		private readonly bool paintingCondition_MoonLordDefeatedWithClicker = false;
 		private readonly bool paintingCondition_Clicked100Cookies = false;
 		private readonly bool pickedUpDreamClicker = false;
+		private readonly bool consumedDemonHand = false;
 		//Add more fields here and to the ctor/write/read
 
 		//For reflection
@@ -20,6 +21,7 @@ namespace ClickerClass.Core.Netcode.Packets
 			paintingCondition_MoonLordDefeatedWithClicker = clickerPlayer.paintingCondition_MoonLordDefeatedWithClicker;
 			paintingCondition_Clicked100Cookies = clickerPlayer.paintingCondition_Clicked100Cookies;
 			pickedUpDreamClicker = clickerPlayer.pickedUpDreamClicker;
+			consumedDemonHand = clickerPlayer.consumedDemonHand;
 		}
 
 		protected override void PostSend(BinaryWriter writer, Player player)
@@ -29,6 +31,7 @@ namespace ClickerClass.Core.Netcode.Packets
 			flags[1] = paintingCondition_MoonLordDefeatedWithClicker;
 			flags[2] = paintingCondition_Clicked100Cookies;
 			flags[3] = pickedUpDreamClicker;
+			flags[4] = consumedDemonHand;
 			writer.Write((byte)flags);
 		}
 
@@ -39,12 +42,14 @@ namespace ClickerClass.Core.Netcode.Packets
 			bool paintingCondition_MoonLordDefeatedWithClicker = flags[1];
 			bool paintingCondition_Clicked100Cookies = flags[2];
 			bool pickedUpDreamClicker = flags[3];
+			bool consumedDemonHand = flags[4];
 
 			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			clickerPlayer.clickerAutoClick = clickerAutoClick;
 			clickerPlayer.paintingCondition_MoonLordDefeatedWithClicker = paintingCondition_MoonLordDefeatedWithClicker;
 			clickerPlayer.paintingCondition_Clicked100Cookies = paintingCondition_Clicked100Cookies;
 			clickerPlayer.pickedUpDreamClicker = pickedUpDreamClicker;
+			clickerPlayer.consumedDemonHand = consumedDemonHand;
 		}
 	}
 }

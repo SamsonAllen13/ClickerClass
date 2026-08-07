@@ -1,6 +1,7 @@
 ﻿using Terraria;
 using Terraria.ID;
-using Terraria.Localization;
+using ClickerClass.Core.Handlers.ClickerDamageDropHandler;
+using ClickerClass.DropRules.DropConditions;
 
 namespace ClickerClass.Items.Consumables
 {
@@ -9,6 +10,8 @@ namespace ClickerClass.Items.Consumables
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();
+
+			ClickerNPCDropGlobalNPC.AddDrop(NPCID.WallofFlesh, new ClickerNPCDropData(Type, new DemonHandCondition()));
 		}
 
 		public override void SetDefaults()
@@ -34,9 +37,10 @@ namespace ClickerClass.Items.Consumables
 
 		public override bool? UseItem(Player player)
 		{
-			if (player.itemAnimation > 0 && player.ItemTimeIsZero)
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+			if (!clickerPlayer.consumedDemonHand)
 			{
-				ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
+				//Needs to run on all sides, for drop code on server
 				clickerPlayer.consumedDemonHand = true;
 				return true;
 			}

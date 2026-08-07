@@ -157,9 +157,6 @@ namespace ClickerClass.Items
 					break;
 				case ItemID.WallOfFleshBossBag:
 					{
-						//TODO - Make this not drop if the player already has [consumedDemonHand == true]
-						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<DemonHand>()));
-
 						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<BurningSuperDeathClicker>(), 4));
 						itemLoot.Add(ItemDropRule.Common(ModContent.ItemType<ClickerEmblem>(), 4));
 					}

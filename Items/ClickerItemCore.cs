@@ -4,6 +4,7 @@ using ClickerClass.Items.Armors;
 using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Prefixes.ClickerPrefixes;
 using ClickerClass.Projectiles;
+using ClickerClass.UI;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using System;
@@ -89,29 +90,18 @@ namespace ClickerClass.Items
 
 		public override void UpdateInventory(Item item, Player player)
 		{
+			ClickerPlayer clickerPlayer = player.GetModPlayer<ClickerPlayer>();
 			if (ClickerSystem.IsSFXButton(item.type, out var playSoundAction))
 			{
-				player.GetModPlayer<ClickerPlayer>().AddSFXButtonStack(item);
-			}
-			
-			//TODO - Clicker Catalogue - Make this net sync and be stored across world loading
-			var clickerPlayer = player.GetModPlayer<ClickerPlayer>();
-
-			if (!ClickerClass.mod.totalClickers.Exists(x => x.type == item.type) && item.type == ModContent.ItemType<WoodenClicker>())
-			{
-				ClickerClass.mod.totalClickers.Add(ContentSamples.ItemsByType[item.type]);
-				clickerPlayer.foundClickers.Add(ContentSamples.ItemsByType[item.type]);
+				clickerPlayer.AddSFXButtonStack(item);
 			}
 
-			if (!ClickerClass.mod.totalClickers.Exists(x => x.type == item.type) && item.type == ModContent.ItemType<CollectorsClicker>())
+			if (ClickerSystem.IsClickerWeapon(item.type))
 			{
-				ClickerClass.mod.totalClickers.Add(ContentSamples.ItemsByType[item.type]);
-				clickerPlayer.foundClickers.Add(ContentSamples.ItemsByType[item.type]);
-			}
+				clickerPlayer.DiscoverClicker(item);
 
-			if (ClickerClass.mod.totalClickers.Contains(ContentSamples.ItemsByType[item.type]) && !clickerPlayer.foundClickers.Contains(ContentSamples.ItemsByType[item.type]))
-			{
-				clickerPlayer.foundClickers.Add(ContentSamples.ItemsByType[item.type]);
+				//Needed for items that are set to unobtainable but are actually obtained while the UI is open
+				ClickerCatalogueUI.SortThisTick = true;
 			}
 		}
 

@@ -1,6 +1,7 @@
 using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Terraria;
@@ -18,6 +19,7 @@ namespace ClickerClass.Items
 		public override LocalizedText Tooltip => ClickerSystem.DefaultClickerWeaponTooltipText;
 
 		public virtual LocalizedText HintTooltip => null;
+		public virtual Func<bool> ObtainmentCondition => null;
 
 		/// <summary>
 		/// Call this in the inherited class as base.SetStaticDefaults() at the start of SetStaticDefaults
@@ -26,7 +28,7 @@ namespace ClickerClass.Items
 		{
 			base.SetStaticDefaults();
 
-			ClickerSystem.RegisterClickerWeapon(this, hintTooltip: HintTooltip);
+			ClickerSystem.RegisterClickerWeapon(this, hintTooltip: HintTooltip, obtainmentCondition: ObtainmentCondition);
 		}
 
 		/// <summary>
@@ -93,13 +95,6 @@ namespace ClickerClass.Items
 							list.Add(name);
 						}
 					}
-				}
-
-				//TODO Clicker Catalgoue - Adds the clicker to catalogue once AddEffect runs
-				//Current impl won't work with clickers lacking an effect
-				if (!ClickerClass.mod.totalClickers.Contains(item) && !ClickerClass.mod.totalClickers.Exists(x => x.type == item.type) && item.type != ModContent.ItemType<CollectorsClicker>())
-				{
-					ClickerClass.mod.totalClickers.Add(item);
 				}
 			}
 		}

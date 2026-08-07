@@ -90,7 +90,7 @@ Mods: {
 
 			TranscendBuff: {
 				DisplayName: Transcended
-				Description: Negates the next damage you take, recovering {0}% of your life instead
+				Description: Negates the next damage you take, recovering {0}% of your maximum life instead
 			}
 
 			DesktopComputerBuff: {
@@ -710,7 +710,7 @@ Mods: {
 					'''
 					Permanently allows you to select a clicker effect from your 'Clicker Catalogue'
 					Your current held clicker gains this selected effect in addition to its current effects
-					You may change the selected clicker effect at will
+					You may change the selected clicker effect at any time
 					'''
 			}
 
@@ -1144,7 +1144,7 @@ Mods: {
 
 			WoodenClicker: {
 				DisplayName: Wooden Clicker
-				Hint: "{$Mods.ClickerClass.Common.Unknown}"
+				Hint: Obtained from crafting with Wood
 			}
 		}
 
@@ -1572,7 +1572,22 @@ Mods: {
 			HotKeychainGauge: Heat: {0} / {1}
 			MedalGauge: Charges: {0} / {1}
 			PaperclipsGauge: Matter: {0} / {1}
-			ClickerCatalogueUI: Mods.ClickerClass.UI.ClickerCatalogueUI
+
+			ClickerCatalogueUI: {
+				CatalogueSorting: {
+					Name_Ascending: Name
+					Name_Descending: Name (Descending)
+					Damage_Ascending: Damage
+					Damage_Descending: Damage (Descending)
+					Rarity_Ascending: Rarity
+					Rarity_Descending: Rarity (Descending)
+				}
+
+				PreviousMod: Previous Mod: {0}
+				NextMod: Next Mod: {0}
+				Progress: "{0} - Clickers Collected: {1}%"
+				SortingBy: Sorting by: {0}
+			}
 		}
 
 		GameTips: {

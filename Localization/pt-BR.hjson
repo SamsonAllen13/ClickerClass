@@ -1144,7 +1144,7 @@ Mods: {
 
 			WoodenClicker: {
 				DisplayName: Clicker de Madeira
-				// Hint: "{$Mods.ClickerClass.Common.Unknown}"
+				// Hint: Obtained from crafting with Wood
 			}
 		}
 
@@ -1572,7 +1572,22 @@ Mods: {
 			HotKeychainGauge: Calor: {0} / {1}
 			MedalGauge: Cargas: {0} / {1}
 			PaperclipsGauge: Matéria: {0} / {1}
-			// ClickerCatalogueUI: Mods.ClickerClass.UI.ClickerCatalogueUI
+
+			ClickerCatalogueUI: {
+				CatalogueSorting: {
+					// Name_Ascending: Name
+					// Name_Descending: Name (Descending)
+					// Damage_Ascending: Damage
+					// Damage_Descending: Damage (Descending)
+					// Rarity_Ascending: Rarity
+					// Rarity_Descending: Rarity (Descending)
+				}
+
+				// PreviousMod: Previous Mod: {0}
+				// NextMod: Next Mod: {0}
+				// Progress: "{0} - Clickers Collected: {1}%"
+				// SortingBy: Sorting by: {0}
+			}
 		}
 
 		GameTips: {

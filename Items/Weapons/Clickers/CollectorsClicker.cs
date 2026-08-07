@@ -1,5 +1,6 @@
 using ClickerClass.Projectiles;
 using Microsoft.Xna.Framework;
+using System;
 using Terraria;
 using Terraria.DataStructures;
 using Terraria.ID;
@@ -11,6 +12,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 	public class CollectorsClicker : ClickerWeapon
 	{
 		public override LocalizedText HintTooltip => LocalizedText.Empty;
+
+		public override Func<bool> ObtainmentCondition => () => false;
 
 		public override void SetStaticDefaults()
 		{

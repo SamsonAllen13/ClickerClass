@@ -9,9 +9,13 @@ using ReLogic.Content;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using Terraria;
 using Terraria.ID;
+using Terraria.Localization;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Core;
 
 namespace ClickerClass
 {
@@ -23,16 +27,12 @@ namespace ClickerClass
 
 		internal static int AutoreuseWig_Head_Slot = -1;
 		
-		//TODO - Clicker Catalogue
-		/// <summary>
-		/// Keeps track of total number of clickers for the purposes of the 'Clicker Catalogue'
-		/// </summary>
-		public List<Item> totalClickers = new List<Item>();
-		
 		/// <summary>
 		/// Populated by the buffs themselves, includes all buffs that bosses should be immune to (so no more manual npc.buffImmune)
 		/// </summary>
 		internal static HashSet<int> BossBuffImmunity;
+
+		private static Dictionary<Type, Dictionary<string, LocalizedText>> EnumTypeToLocalizationMapping { get; set; }
 
 		public override void Load()
 		{
@@ -46,6 +46,8 @@ namespace ClickerClass
 			if (!Main.dedServ)
 			{
 				LoadClient();
+
+				LoadEnumText();
 			}
 		}
 
@@ -57,6 +59,34 @@ namespace ClickerClass
 			AimAssistKey = null;
 			BossBuffImmunity = null;
 			mod = null;
+		}
+
+		private void LoadEnumText()
+		{
+			EnumTypeToLocalizationMapping = new Dictionary<Type, Dictionary<string, LocalizedText>>();
+
+			foreach (var type in AssemblyManager.GetLoadableTypes(Code)
+				.Where(t => t.IsEnum && t.IsDefined(typeof(LocalizeEnumAttribute), false)))
+			{
+				var attr = (LocalizeEnumAttribute)Attribute.GetCustomAttribute(type, typeof(LocalizeEnumAttribute));
+				var category = attr.Category == null ? type.Name : $"{attr.Category}.{type.Name}";
+				var dict = EnumTypeToLocalizationMapping[type] = new Dictionary<string, LocalizedText>();
+				foreach (var name in Enum.GetNames(type))
+				{
+					dict[name] = RegisterEnumText(category, name);
+				}
+			}
+		}
+
+		private LocalizedText RegisterEnumText(string category, string suffix)
+		{
+			string commonKey = $"{category}.";
+			return GetLocalization($"{commonKey}{suffix}", () => Regex.Replace(suffix, "([A-Z])", " $1").Trim());
+		}
+
+		public static LocalizedText GetEnumText<T>(T enumValue) where T : Enum
+		{
+			return EnumTypeToLocalizationMapping[typeof(T)][enumValue.ToString()];
 		}
 
 		private void LoadClient()
@@ -398,5 +428,17 @@ namespace ClickerClass
 			}
 			return false;
 		}
+	}
+
+	/// <summary>
+	/// Marker for localizing enums, automatically registered (<see cref="ClickerClass.RegisterEnumText"/>) and accessible (<see cref="ClickerClass.GetEnumText{T}(T)"/>)
+	/// </summary>
+	[AttributeUsage(AttributeTargets.Enum)]
+	public class LocalizeEnumAttribute : Attribute
+	{
+		/// <summary>
+		/// Can be null. Type name is always appended, otherwise defaults to type name
+		/// </summary>
+		public string Category { get; init; } = null;
 	}
 }

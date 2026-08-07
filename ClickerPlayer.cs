@@ -6,6 +6,7 @@ using ClickerClass.Items.Consumables;
 using ClickerClass.Items.Misc;
 using ClickerClass.Items.Weapons.Clickers;
 using ClickerClass.Projectiles;
+using ClickerClass.UI;
 using ClickerClass.Utilities;
 using Microsoft.Xna.Framework;
 using System;
@@ -21,6 +22,7 @@ using Terraria.GameContent.Drawing;
 using Terraria.GameInput;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.ModLoader.Default;
 using Terraria.ModLoader.IO;
 
 namespace ClickerClass
@@ -65,13 +67,17 @@ namespace ClickerClass
 		public const float clickerRadiusRangeAlphaMax = 0.8f;
 		public const float clickerRadiusRangeAlphaStep = clickerRadiusRangeAlphaMax / 20f;
 		public float clickerRadiusRangeAlpha = clickerRadiusRangeAlphaMin;
-		
-		//TODO - Clicker Catalogue
-		public int chosenSecondClicker = -1;
+
+		public int chosenSecondClicker;
+		private Dictionary<string, HashSet<int>> foundClickersByMod;
 		/// <summary>
-		/// Keeps track of clickers the player has picked up for the purposes of the 'Clicker Catalogue'
+		/// Keeps track of clickers the player has picked up for the purposes of the 'Clicker Catalogue' UI of the currently selected mod only.
 		/// </summary>
-		public List<Item> foundClickers = new List<Item>();
+		public HashSet<int> FoundClickersUI => foundClickersByMod.TryGetValue(clickerCatalogueMod.Name, out var set) ? set : new HashSet<int>();
+		/// <summary>
+		/// Extension of <see cref="foundClickersByMod"/> for unloaded clickers, persistent but not concidered for any logic
+		/// </summary>
+		private List<Item> unloadedFoundClickers;
 		/// <summary>
 		/// Set via hotkey, reset if no autoclick-giving effects are applied (i.e. Hand Cream)
 		/// <br/>Synced whenever changed
@@ -144,8 +150,8 @@ namespace ClickerClass
 		public bool DrawHotWings => effectHotWingsTimer > 0;
 
 		// Clicker Catalogue Sorting Variables
-		public int clickerCatalogueSorting = 0;
-		public int clickerCatalogueSortingMax = 5;
+		public CatalogueSorting clickerCatalogueSorting = default;
+		public Mod clickerCatalogueMod;
 
 		//Out of combat
 		public const int OutOfCombatTimeMax = 300;
@@ -307,6 +313,8 @@ namespace ClickerClass
 		/// If player has found 100% of Clicker Class clickers and obtained the Collector's Clicker
 		/// </summary>
 		public bool obtainedCollectorsClicker;
+		
+		public bool spawnCollectorsClicker;
 
 		//Need to be synced
 		public bool paintingCondition_MoonLordDefeatedWithClicker;
@@ -968,6 +976,11 @@ namespace ClickerClass
 				ClickEffectActive.Add(name, false);
 			}
 
+			clickerCatalogueMod = Mod;
+			chosenSecondClicker = -1;
+			foundClickersByMod = new Dictionary<string, HashSet<int>>();
+			unloadedFoundClickers = new List<Item>();
+
 			clickTimers = new List<Ref<float>>();
 
 			sfxButtons = new Dictionary<int, int>();
@@ -985,8 +998,9 @@ namespace ClickerClass
 			tag.Add("paintingCondition_ClickedCookiesCount", paintingCondition_ClickedCookiesCount);
 			tag.Add("pickedUpDreamClicker", pickedUpDreamClicker);
 
-			//TODO Catalogue - Save and store collected clickers data
-			//tag.Add("foundClickers", foundClickers);
+			SaveChosenSecondClicker(tag);
+
+			SaveFoundClickers(tag);
 		}
 
 		public override void LoadData(TagCompound tag)
@@ -1000,13 +1014,109 @@ namespace ClickerClass
 			paintingCondition_Clicked100Cookies = tag.GetBool("paintingCondition_Clicked100Cookies");
 			paintingCondition_ClickedCookiesCount = tag.GetInt("paintingCondition_ClickedCookiesCount");
 			pickedUpDreamClicker = tag.GetBool("pickedUpDreamClicker");
-			
-			//TODO Catalogue - Load collected clickers data
-			//foundClickers = tag.GetList("foundClickers");
+
+			LoadChosenSecondClicker(tag);
+
+			LoadFoundClickers(tag);
+		}
+
+		private void SaveChosenSecondClicker(TagCompound tag)
+		{
+			if (chosenSecondClicker != -1)
+			{
+				tag.Add("chosenSecondClicker", ContentSamples.ItemsByType[chosenSecondClicker]);
+			}
+		}
+
+		private void LoadChosenSecondClicker(TagCompound tag)
+		{
+			if (tag.ContainsKey("chosenSecondClicker"))
+			{
+				Item item = tag.Get<Item>("chosenSecondClicker");
+				if (ClickerSystem.IsClickerWeapon(item))
+				{
+					chosenSecondClicker = item.type;
+				}
+			}
+		}
+
+		private void SaveFoundClickers(TagCompound tag)
+		{
+			//Convert to item on save to handle unloaded items
+			TagCompound byMod = new TagCompound();
+			foreach (var pair in foundClickersByMod)
+			{
+				byMod.Add(pair.Key, pair.Value.Select(x => ContentSamples.ItemsByType[x]).ToList());
+			}
+			tag.Add("foundClickersByMod", byMod);
+
+			if (unloadedFoundClickers.Count > 0)
+			{
+				tag.Add("unloadedFoundClickers", unloadedFoundClickers);
+			}
+		}
+
+		private void LoadFoundClickers(TagCompound tag)
+		{
+			if (tag.ContainsKey("unloadedFoundClickers"))
+			{
+				unloadedFoundClickers = tag.GetList<Item>("unloadedFoundClickers").ToList();
+			}
+
+			TagCompound byMod = tag.Get<TagCompound>("foundClickersByMod");
+			foreach (var pair in byMod)
+			{
+				string modName = pair.Key;
+				foundClickersByMod[modName] = new HashSet<int>();
+				var foundClickersItems = byMod.GetList<Item>(modName);
+
+				//First step: If any previously unloaded items become loaded, add them to the found list
+				foreach (var item in unloadedFoundClickers)
+				{
+					if (MatchLoadedItem(item, modName))
+					{
+						//Mod.Logger.Info("found " + item.Name + " " + modName);
+						foundClickersItems.Add(item);
+					}
+				}
+
+				//Second step: remove all loaded items from unloaded list
+				if (unloadedFoundClickers.RemoveAll(x => MatchLoadedItem(x, modName)) is int count && count > 0)
+				{
+					//Mod.Logger.Info("removed from unloaded " + count);
+				}
+
+				//Third step: if any in previous found list became unloaded, move them to unloaded list
+				foreach (var item in foundClickersItems)
+				{
+					if (item.type == ModContent.ItemType<UnloadedItem>())
+					{
+						//Mod.Logger.Info("became unloaded " + item.Name + " " + modName);
+						//Became unloaded since last save, meaning they weren't in unloadedFoundClickers before
+						unloadedFoundClickers.Add(item);
+						continue;
+					}
+
+					//Final step: add loaded ones to final list
+					//Mod.Logger.Info("add loaded " + item.Name + " " + modName);
+					foundClickersByMod[modName].Add(item.type);
+				}
+				continue;
+
+				static bool MatchLoadedItem(Item item, string modName)
+				{
+					return item.type != ModContent.ItemType<UnloadedItem>() &&
+						item.ModItem is ModItem modItem &&
+						modItem.Mod.Name == modName;
+				}
+			}
 		}
 
 		public override void OnEnterWorld()
 		{
+			ClickerCatalogueUI.FadeTime = 0; //Else UI fades out when re-entering the world
+			ClickerCatalogueUI.SortThisTick = true; //Else the sorting is desynced from the selected mod in the above case aswell
+
 			AchievementHelper.UpdateDigitDestroyerAchievement(this);
 		}
 
@@ -1150,15 +1260,6 @@ namespace ClickerClass
 				}
 			}
 		}
-		public enum CatalogueSorting : int
-		{
-			Name_Ascending,
-			Name_Descending,
-			Damage_Ascending,
-			Damage_Descending,
-			Rarity_Ascending,
-			Rarity_Descending
-		}
 
 		public override void PostUpdateEquips()
 		{
@@ -1170,44 +1271,8 @@ namespace ClickerClass
 
 			ResetAutoClickToggle();
 
-			//TODO Clicker Catalogue - Sorting feature | Rarely throws up 'Object reference not set to an instance of an object' error
-
-			switch (clickerCatalogueSorting)
-			{
-				//Orders by name ascending
-				case 0:
-					ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderBy(x => x.type).ToList();
-					break;
-
-				//Orders by name descending
-				case 1:
-					ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderByDescending(x => x.type).ToList();
-					break;
-
-				//Orders by damage ascending
-				case 2:
-					ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderBy(x => x.damage).ThenBy(x => x.type).ToList();
-					break;
-
-				//Orders by damage descending
-				case 3:
-					ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderByDescending(x => x.damage).ThenBy(x => x.type).ToList();
-					break;
-
-				//Orders by rarity ascending
-				case 4:
-					ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderBy(x => x.rare).ThenBy(x => x.damage).ToList();
-					break;
-
-				//Orders by rarity descending
-				case 5:
-					ClickerClass.mod.totalClickers = ClickerClass.mod.totalClickers.OrderByDescending(x => x.rare).ThenBy(x => x.damage).ToList();
-					break;
-			}
-
 			//Collector's Clicker handle
-			float collectionProgress = (float)foundClickers.Count / ClickerClass.mod.totalClickers.Count;
-			if (collectionProgress + 0.0001f >= 1f && !obtainedCollectorsClicker)
+			if (spawnCollectorsClicker)
 			{
 				SoundEngine.PlaySound(SoundID.ResearchComplete, Player.Center);
 				
@@ -1233,6 +1298,7 @@ namespace ClickerClass
 				}
 
 				obtainedCollectorsClicker = true;
+				spawnCollectorsClicker = false;
 			}
 
 			//Demon Hand handle
@@ -2072,6 +2138,23 @@ namespace ClickerClass
 					itemDrop = ModContent.ItemType<HotKeychain>();
 				}
 			}
+		}
+
+		public void DiscoverClicker(Item item)
+		{
+			if (!ClickerSystem.IsClickerWeapon(item) || item.ModItem is not ModItem modItem)
+			{
+				return;
+			}
+
+			string modName = modItem.Mod.Name;
+			if (!foundClickersByMod.TryGetValue(modName, out HashSet<int> set))
+			{
+				set = new HashSet<int>();
+				foundClickersByMod[modName] = set;
+			}
+
+			set.Add(modItem.Type);
 		}
 	}
 }

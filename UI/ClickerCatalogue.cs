@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using ReLogic.Content;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using Terraria;
 using Terraria.Audio;
 using Terraria.GameContent;
@@ -15,34 +15,51 @@ using Terraria.Localization;
 using Terraria.ModLoader;
 using Terraria.ModLoader.UI;
 using Terraria.UI;
-using static ClickerClass.ClickerPlayer;
 
 namespace ClickerClass.UI
 {
+	[LocalizeEnum(Category = $"UI.{nameof(ClickerCatalogueUI)}")]
+	public enum CatalogueSorting : int
+	{
+		Name_Ascending,
+		Name_Descending,
+		Damage_Ascending,
+		Damage_Descending,
+		Rarity_Ascending,
+		Rarity_Descending
+	}
+
 	internal class ClickerCatalogueUI : InterfaceResource
 	{
 		public ClickerCatalogueUI() : base("ClickerClass: Clicker Catalogue UI", InterfaceScaleType.UI)
 		{
-			MouseoverText = Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey("UI.ClickerCatalogueUI"));
+			string category = $"UI.{nameof(ClickerCatalogueUI)}.";
+			PreviousModText = Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey($"{category}PreviousMod"));
+			NextModText = Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey($"{category}NextMod"));
+			ProgressText = Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey($"{category}Progress"));
+			SortingByText = Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey($"{category}SortingBy"));
 		}
 
 		public const int MAX_FADE_TIME = 35;
 		public const int FADE_DELAY = 5;
 		public static int FadeTime { get; internal set; }
 		private int _delay = 0;
+		public static bool SortThisTick = false;
 
 		//Textures
+		//TODO automatically size background using the vanilla methods used for tooltips etc
 		private Lazy<Asset<Texture2D>> sheetAsset = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/Catalogue_Background"));
 		private Lazy<Asset<Texture2D>> sheetAsset2 = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/Catalogue_Slots"));
 		private Lazy<Asset<Texture2D>> sheetAsset3 = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/Catalogue_Progress"));
 		private Lazy<Asset<Texture2D>> sheetAsset4 = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/Catalogue_PageButton"));
 		private Lazy<Asset<Texture2D>> sheetAsset5 = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/Catalogue_SortButton"));
 		private Lazy<Asset<Texture2D>> sheetAsset6 = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/Catalogue_Icons"));
+		private Lazy<Asset<Texture2D>> defaultIconSmallAsset = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/PlaceholderSmallModIcon"));
 
-		//TODO - Allow other mods to use their icon_small
-		private Lazy<Asset<Texture2D>> sheetAsset7 = new(() => ModContent.Request<Texture2D>("ClickerClass/icon_small"));
-
-		public LocalizedText MouseoverText { get; private set; }
+		public LocalizedText PreviousModText { get; private set; }
+		public LocalizedText NextModText { get; private set; }
+		public LocalizedText ProgressText { get; private set; }
+		public LocalizedText SortingByText { get; private set; }
 		
 		public override void Update(GameTime gameTime)
 		{
@@ -56,6 +73,11 @@ namespace ClickerClass.UI
 			//TODO - Clicker Catalogue
 			else if (player.HeldItem.type == ModContent.ItemType<ClickerCatalogue>())
 			{
+				if (_delay == 0)
+				{
+					SortThisTick = true;
+				}
+
 				FadeTime = MAX_FADE_TIME + FADE_DELAY;
 				_delay++;
 			}
@@ -97,9 +119,6 @@ namespace ClickerClass.UI
 			Asset<Texture2D> iconAsset;
 			iconAsset = sheetAsset6.Value;
 
-			Asset<Texture2D> modAsset;
-			modAsset = sheetAsset7.Value;
-
 			if (!backgroundAsset.IsLoaded || !slotAsset.IsLoaded || !progressAsset.IsLoaded || !pageAsset.IsLoaded || !sortAsset.IsLoaded)
 			{
 				return true;
@@ -125,11 +144,36 @@ namespace ClickerClass.UI
 			
 			int offSetX = 0;
 			int offSetY = 0;
-			
-			var list = ClickerClass.mod.totalClickers.ToArray();
-			for (int k = 0; k < list.Length; k++)
+
+			Mod mod = clickerPlayer.clickerCatalogueMod;
+			if (SortThisTick)
 			{
-				Item itemType = list[k];
+				SortThisTick = false;
+				ClickerSystem.SortBy(clickerPlayer.FoundClickersUI, clickerPlayer.clickerCatalogueSorting, mod);
+			}
+
+			// Make clone to avoid glitches during enumeration. Sorting should happen just before this is accessed
+			var list = new List<int>(ClickerSystem.SortedClickerWeapons);
+			if (list.Count == 0)
+			{
+				clickerPlayer.clickerCatalogueMod = ClickerClass.mod; //soft-reset from error if another mod messes things up during runtime
+				throw new Exception($"Clicker Catalogue was not populated with items. Sort mode: {clickerPlayer.clickerCatalogueSorting}, Mod: {mod.Name}");
+			}
+			
+			// Fill calc has to be before mod switching buttons
+			// Percentage of bar filled
+			float fill = (float)clickerPlayer.FoundClickersUI.Count / ClickerSystem.SortedClickerWeapons.Count + 0.00001f;
+			bool catalogueComplete = fill >= 1f;
+
+			if (mod == ClickerClass.mod && !clickerPlayer.obtainedCollectorsClicker && catalogueComplete)
+			{
+				//Defer spawning to a non-UI method for compatibility with High FPS Support mod
+				clickerPlayer.spawnCollectorsClicker = true;
+			}
+
+			for (int k = 0; k < list.Count; k++)
+			{
+				Item item = ContentSamples.ItemsByType[list[k]];
 
 				//Draw slot background
 				texture = slotAsset.Value;
@@ -137,14 +181,14 @@ namespace ClickerClass.UI
 				origin = frame.Size() / 2;
 
 				Color colorBackground = Color.White;
-				float gradient = (float)k / ClickerClass.mod.totalClickers.Count;
-				CatalogueSorting check = (CatalogueSorting)clickerPlayer.clickerCatalogueSorting;
+				float gradient = (float)k / list.Count;
+				CatalogueSorting check = clickerPlayer.clickerCatalogueSorting;
 
 				frame.Y = frame.Height * 6;
 
-				if (check == ClickerPlayer.CatalogueSorting.Rarity_Ascending || check == ClickerPlayer.CatalogueSorting.Rarity_Descending)
+				if (check == CatalogueSorting.Rarity_Ascending || check == CatalogueSorting.Rarity_Descending)
 				{
-					colorBackground = itemType.rare switch
+					colorBackground = item.rare switch
 					{
 						ItemRarityID.Gray => new Color(100, 100, 100),
 						ItemRarityID.Blue => new Color(134, 134, 229),
@@ -159,18 +203,19 @@ namespace ClickerClass.UI
 						ItemRarityID.Red => new Color(225, 6, 67),
 						ItemRarityID.Purple => new Color(178, 39, 253),
 						ItemRarityID.Quest => new Color(241, 165, 0),
-						_ => new Color(255, 255, 255),
+						_ => Color.White,
 					};
 
-					//TODO - Remove Hardcoded Rarity color | Figure out modded rarity in above switch
-					colorBackground = itemType.type == ModContent.ItemType<CollectorsClicker>() ? new Color(255, 135, 0) * 0.9f : colorBackground * 0.9f;
-					
+					if (colorBackground == Color.White && RarityLoader.GetRarity(item.rare) is ModRarity modRarity)
+					{
+						colorBackground = modRarity.RarityColor;
+					}
 				}
-				else if (check == ClickerPlayer.CatalogueSorting.Damage_Ascending)
+				else if (check == CatalogueSorting.Damage_Ascending)
 				{
 					colorBackground = Color.Lerp(new Color(255, 255, 155), new Color(255, 60, 60), gradient);
 				}
-				else if (check == ClickerPlayer.CatalogueSorting.Damage_Descending)
+				else if (check == CatalogueSorting.Damage_Descending)
 				{
 					colorBackground = Color.Lerp(new Color(255, 255, 155), new Color(255, 60, 60), 1f - gradient);
 				}
@@ -179,7 +224,7 @@ namespace ClickerClass.UI
 					frame.Y = frame.Height * 0;
 				}
 
-				if (clickerPlayer.chosenSecondClicker == itemType.type)
+				if (clickerPlayer.chosenSecondClicker == item.type)
 				{
 					colorBackground = Color.White;
 					frame.Y = frame.Height * 4;
@@ -191,13 +236,13 @@ namespace ClickerClass.UI
 				
 				//Draw the clicker's texture
 				//TODO - Clicker Catalogue - Remove magic numbers
-				texture = TextureAssets.Item[itemType.type].Value;
+				texture = TextureAssets.Item[item.type].Value;
 				Vector2 offSet = new Vector2(10, 8);
 				
 				bool hasClicker = false;
 				
 				color = Color.Black * alphaMult;
-				if (clickerPlayer.foundClickers.Contains(itemType))
+				if (clickerPlayer.FoundClickersUI.Contains(item.type))
 				{
 					color = Color.White * alphaMult;
 					hasClicker = true;
@@ -213,7 +258,7 @@ namespace ClickerClass.UI
 				color = Color.White * alphaMult;
 
 				//If you have chosen this clicker, make the slot look 'selected'
-				if (clickerPlayer.chosenSecondClicker != itemType.type)
+				if (clickerPlayer.chosenSecondClicker != item.type)
 				{
 					frame.Y = frame.Height * 1;
 					Main.spriteBatch.Draw(texture, position + new Vector2(offSetX, offSetY), frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
@@ -226,7 +271,7 @@ namespace ClickerClass.UI
 				{
 					if (clickerPlayer.consumedDemonHand)
 					{
-						if (clickerPlayer.chosenSecondClicker != itemType.type)
+						if (clickerPlayer.chosenSecondClicker != item.type)
 						{
 							frame.Y = frame.Height * 3;
 							Main.spriteBatch.Draw(texture, position + new Vector2(offSetX, offSetY), frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
@@ -234,14 +279,14 @@ namespace ClickerClass.UI
 
 						if (Main.mouseLeft && Main.mouseLeftRelease)
 						{
-							if (clickerPlayer.chosenSecondClicker == itemType.type)
+							if (clickerPlayer.chosenSecondClicker == item.type)
 							{
 								clickerPlayer.chosenSecondClicker = -1;
 								SoundEngine.PlaySound(SoundID.MenuTick, player.position);
 							}
 							else
 							{
-								clickerPlayer.chosenSecondClicker = itemType.type;
+								clickerPlayer.chosenSecondClicker = item.type;
 								SoundEngine.PlaySound(SoundID.Item129, player.position);
 							}
 						}
@@ -253,7 +298,6 @@ namespace ClickerClass.UI
 					}
 
 					float alpha = Main.mouseTextColor / 255f;
-					Item item = ContentSamples.ItemsByType[itemType.type];
 					string s = Lang.GetItemNameValue(item.type);
 
 					Color rarityColor = Color.White;
@@ -283,11 +327,11 @@ namespace ClickerClass.UI
 							ItemRarityID.Red => new Color(225, 6, 67),
 							ItemRarityID.Purple => new Color(178, 39, 253),
 							ItemRarityID.Quest => new Color(241, 165, 0),
-							_ => new Color(255, 255, 255),
+							_ => Color.White,
 						};
 					}
 
-					if (RarityLoader.GetRarity(item.rare) is ModRarity modRarity && rarityColor == Color.White)
+					if (rarityColor == Color.White && RarityLoader.GetRarity(item.rare) is ModRarity modRarity)
 					{
 						rarityColor = modRarity.RarityColor;
 					}
@@ -312,14 +356,14 @@ namespace ClickerClass.UI
 					frame.Y = frame.Height * 2;
 					Main.spriteBatch.Draw(texture, position + new Vector2(offSetX, offSetY), frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 					
-					if (ClickerSystem.TryGetHintTooltipText(itemType.type, out var hintTooltip))
+					if (ClickerSystem.TryGetHintTooltipText(item.type, out var hintTooltip))
 					{
 						UICommon.TooltipMouseText(hintTooltip.ToString());
 					}
 				}
 
 				//If you have chosen this clicker, make the slot border look 'selected'
-				if (clickerPlayer.chosenSecondClicker == itemType.type)
+				if (clickerPlayer.chosenSecondClicker == item.type)
 				{
 					frame.Y = frame.Height * 5;
 					Main.spriteBatch.Draw(texture, position + new Vector2(offSetX, offSetY), frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
@@ -334,10 +378,9 @@ namespace ClickerClass.UI
 				}
 			}
 
-			//TODO Clicker Catalogue - Only draw if other mods are enabled (on mod load, build database indexed per mod)
 			//Reset
 			//Draw Mod's small_icon
-			texture = modAsset.Value;
+			texture = mod.SmallModIcon != null ? mod.SmallModIcon.Value : defaultIconSmallAsset.Value.Value;
 			frame = texture.Frame(1, 1);
 			origin = frame.Size() / 2;
 
@@ -349,53 +392,78 @@ namespace ClickerClass.UI
 				frame.Y = frame.Height * 2;
 				Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 
-				//TODO - A given Mod's Display name
-				string s = "Clicker Class";
-				UICommon.TooltipMouseText(s);
+				UICommon.TooltipMouseText(mod.DisplayNameClean);
 			}
 
 			Main.spriteBatch.Draw(texture, position, null, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 
-			//Reset
-			//Draw Page Buttons
-			texture = pageAsset.Value;
-			frame = texture.Frame(1, 3);
-			origin = frame.Size() / 2;
-			color = Color.White * alphaMult;
-
-			//Add offset to page buttons
-			//TODO - Clicker Catalogue - Remove magic numbers
-			position.X += 32;
-
-			frame.Y = frame.Height * 0;
-			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
-			
-			hoverSpotPage = new Rectangle((int)position.X - frame.Width / 2, (int)position.Y - frame.Height / 2, frame.Width, frame.Height);
-			if (hoverSpotPage.Contains(Main.mouseX, Main.mouseY))
+			//If there is more than one other mod with clickers and if atleast one is obtainable
+			if (AnyOtherObtainableClickers())
 			{
-				frame.Y = frame.Height * 2;
-				Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+				//Reset
+				//Draw Page Buttons
+				texture = pageAsset.Value;
+				frame = texture.Frame(1, 3);
+				origin = frame.Size() / 2;
+				color = Color.White * alphaMult;
 
-				string s = "Previous Mod: ";
-				UICommon.TooltipMouseText(s);
+				//Add offset to page buttons
+				//TODO - Clicker Catalogue - Remove magic numbers
+				position.X += 32;
+
+				frame.Y = frame.Height * 0;
+				Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+				
+				hoverSpotPage = new Rectangle((int)position.X - frame.Width / 2, (int)position.Y - frame.Height / 2, frame.Width, frame.Height);
+				if (hoverSpotPage.Contains(Main.mouseX, Main.mouseY))
+				{
+					frame.Y = frame.Height * 2;
+					Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+
+					string name = GetNextMod(mod, backward: true);
+					var nextMod = ModLoader.GetMod(name);
+
+					UICommon.TooltipMouseText(PreviousModText.Format(nextMod.DisplayNameClean));
+
+					if (Main.mouseLeft && Main.mouseLeftRelease)
+					{
+						SortThisTick = true;
+						clickerPlayer.clickerCatalogueMod = nextMod;
+					}
+				}
+				
+				position.X += 30;
+				
+				frame.Y = frame.Height * 1;
+				Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+				
+				hoverSpotPage = new Rectangle((int)position.X - frame.Width / 2, (int)position.Y - frame.Height / 2, frame.Width, frame.Height);
+				if (hoverSpotPage.Contains(Main.mouseX, Main.mouseY))
+				{
+					frame.Y = frame.Height * 2;
+					Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
+
+					string name = GetNextMod(mod);
+					var nextMod = ModLoader.GetMod(name);
+
+					UICommon.TooltipMouseText(NextModText.Format(nextMod.DisplayNameClean));
+
+					if (Main.mouseLeft && Main.mouseLeftRelease)
+					{
+						SortThisTick = true;
+						clickerPlayer.clickerCatalogueMod = nextMod;
+					}
+				}
 			}
-			
-			position.X += 30;
-			
-			frame.Y = frame.Height * 1;
-			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
-			
-			hoverSpotPage = new Rectangle((int)position.X - frame.Width / 2, (int)position.Y - frame.Height / 2, frame.Width, frame.Height);
-			if (hoverSpotPage.Contains(Main.mouseX, Main.mouseY))
+			else
 			{
-				frame.Y = frame.Height * 2;
-				Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
-
-				string s = "Next Mod: ";
-				UICommon.TooltipMouseText(s);
+				//TODO - Clicker Catalogue - Remove magic numbers
+				//The same numbers from the if block, to make sure the subsequent draws are positioned properly
+				position.X += 32;
+				position.X += 30;
 			}
 
-			//TODO Clicker Catalogue - Localize Text / Allow modded %
+
 			//Reset
 			//Draw Progress Bar
 			texture = progressAsset.Value;
@@ -413,10 +481,6 @@ namespace ClickerClass.UI
 			
 			frame.Y = frame.Height * 1;
 			Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
-			
-			// Percentage of bar filled
-			float fill = (float)clickerPlayer.foundClickers.Count / ClickerClass.mod.totalClickers.Count;
-			bool catalogueComplete = fill + 0.0001f >= 1f;
 
 			// Change the width of the frame so it only draws part of the bar
 			frame.Width = (int)(frame.Width * fill);
@@ -463,10 +527,8 @@ namespace ClickerClass.UI
 			{
 				float fillPercent = fill * 100f;
 				float endResult = (float)Math.Round(fillPercent, 2);
-				
-				//TODO - Given mod's display name
-				string s = "Clicker Class - Clickers Collected: " + endResult + "%";
-				UICommon.TooltipMouseText(s);
+
+				UICommon.TooltipMouseText(ProgressText.Format(mod.DisplayNameClean, endResult));
 			}
 			
 			//Reset
@@ -490,42 +552,60 @@ namespace ClickerClass.UI
 				frame.Y = frame.Height * 1;
 				Main.spriteBatch.Draw(texture, position, frame, color, 0f, origin, 1f, SpriteEffects.None, 0f);
 
-				CatalogueSorting check = (CatalogueSorting)clickerPlayer.clickerCatalogueSorting;
-				string s = "Sorting by: " + check;
-				UICommon.TooltipMouseText(s);
+				UICommon.TooltipMouseText(SortingByText.Format(ClickerClass.GetEnumText(clickerPlayer.clickerCatalogueSorting)));
 
 				if (Main.mouseLeft && Main.mouseLeftRelease)
 				{
-					clickerPlayer.clickerCatalogueSorting++;
-					if (clickerPlayer.clickerCatalogueSorting > clickerPlayer.clickerCatalogueSortingMax)
-					{
-						clickerPlayer.clickerCatalogueSorting = 0;
-					}
+					SortThisTick = true;
+					MiscHelper.CycleEnum(ref clickerPlayer.clickerCatalogueSorting);
+				}
+				else if (Main.mouseRight && Main.mouseRightRelease)
+				{
+					SortThisTick = true;
+					MiscHelper.CycleEnum(ref clickerPlayer.clickerCatalogueSorting, backwards: true);
 				}
 			}
 			return true;
-		}
-		
-		//TODO Clicker Catalogue - Temporary way to allow the hint localization strings to function. Probably wont work with cross-mod compat...
-		public static string RemoveSpecialCharacters(string str)
-		{
-			StringBuilder sb = new StringBuilder();
-			for (int i = 0; i < str.Length; i++)
-			{
-				if ((str[i] >= '0' && str[i] <= '9')
-					|| (str[i] >= 'A' && str[i] <= 'z'
-						|| (str[i] == '.' || str[i] == '_')))
-					{
-						sb.Append(str[i]);
-					}
-			}
-
-			return sb.ToString();
 		}
 
 		public override int GetInsertIndex(List<GameInterfaceLayer> layers)
 		{
 			return layers.FindIndex(layer => layer.Active && layer.Name.Equals("Vanilla: Ingame Options"));
+		}
+
+		private static string GetNextMod(Mod mod, bool backward = false)
+		{
+			int currentIndex = ClickerSystem.SortedModsByClickerWeaponCount.IndexOf(mod.Name);
+			int iterations = ClickerSystem.SortedModsByClickerWeaponCount.Count;
+			string name = mod.Name;
+			for (int i = 1; i < iterations; i++)
+			{
+				int index = (currentIndex + (backward ? -i : i) + iterations) % iterations;
+				name = ClickerSystem.SortedModsByClickerWeaponCount[index];
+				if (!ClickerSystem.ObtainmentConditionsByMod.TryGetValue(name, out var funcList) || funcList.Any(func => func()))
+				{
+					break;
+				}
+			}
+			return name;
+		}
+
+		private static bool AnyOtherObtainableClickers()
+		{
+			if (ClickerSystem.SortedModsByClickerWeaponCount.Count <= 1)
+			{
+				return false;
+			}
+
+			foreach (var name in ClickerSystem.SortedModsByClickerWeaponCount)
+			{
+				if (name != ClickerClass.mod.Name &&
+					(!ClickerSystem.ObtainmentConditionsByMod.TryGetValue(name, out var funcList) || funcList.Any(func => func())))
+				{
+					return true;
+				}
+			}
+			return false;
 		}
 	}
 }

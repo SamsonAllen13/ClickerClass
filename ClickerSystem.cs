@@ -1,6 +1,7 @@
 ﻿using ClickerClass.Items;
 using ClickerClass.Items.Misc;
 using ClickerClass.Projectiles;
+using ClickerClass.UI;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,18 @@ namespace ClickerClass
 		private static Dictionary<int, string> ClickerWeaponBorderTexture { get; set; }
 
 		private static HashSet<int> ClickerWeapons { get; set; }
+		private static Dictionary<string, HashSet<int>> ClickerWeaponsByMod { get; set; }
+		public static List<string> SortedModsByClickerWeaponCount { get; private set; }
+		/// <summary>
+		/// If not in this dict, assumed to always be obtainable
+		/// </summary>
+		private static Dictionary<int, Func<bool>> ObtainmentConditionsByClickerWeapon { get; set; }
+		public static Dictionary<string, List<Func<bool>>> ObtainmentConditionsByMod { get; private set; }
+
+		/// <summary>
+		/// Keeps track of sorted view for 'Clicker Catalogue'
+		/// </summary>
+		public static List<int> SortedClickerWeapons { get; private set; }
 
 		private static Dictionary<int, Action<int>> SFXButtons { get; set; }
 
@@ -69,6 +82,11 @@ namespace ClickerClass
 			ClickerItems = new HashSet<int>();
 			ClickerWeaponBorderTexture = new Dictionary<int, string>();
 			ClickerWeapons = new HashSet<int>();
+			ClickerWeaponsByMod = new Dictionary<string, HashSet<int>>();
+			SortedModsByClickerWeaponCount = new List<string>();
+			ObtainmentConditionsByClickerWeapon = new Dictionary<int, Func<bool>>();
+			ObtainmentConditionsByMod = new Dictionary<string, List<Func<bool>>>();
+			SortedClickerWeapons = new List<int>();
 			SFXButtons = new Dictionary<int, Action<int>>();
 			ClickerProjectiles = new HashSet<int>();
 			ClickerWeaponProjectiles = new HashSet<int>();
@@ -85,6 +103,11 @@ namespace ClickerClass
 			ClickerWeaponBorderTexture?.Clear();
 			ClickerWeaponBorderTexture = null;
 			ClickerWeapons = null;
+			ClickerWeaponsByMod = null;
+			SortedModsByClickerWeaponCount = null;
+			ObtainmentConditionsByClickerWeapon = null;
+			ObtainmentConditionsByMod = null;
+			SortedClickerWeapons = null;
 			SFXButtons = null;
 			ClickerProjectiles = null;
 			ClickerWeaponProjectiles = null;
@@ -105,6 +128,11 @@ namespace ClickerClass
 
 		public override void PostAddRecipes()
 		{
+			SortedModsByClickerWeaponCount = ClickerWeaponsByMod.Keys
+				.Where(x => ClickerWeaponsByMod[x].Count > 0)
+				.OrderBy(x => ClickerWeaponsByMod[x].Count)
+				.ToList();
+
 			FinalizedRegisterCompat = true;
 		}
 
@@ -411,8 +439,9 @@ namespace ClickerClass
 		/// <param name="modItem">The <see cref="ModItem"/> that is to be registered</param>
 		/// <param name="borderTexture">The path to the border texture (optional)</param>
 		/// <param name="hintTooltip">A custom obtainment hint tooltip. If left unassigned, will be automatically generated in the localization file for your item. If set to <see cref="LocalizedText.Empty"/>, no hint tooltip will be set.</param>
+		/// <param name="obtainmentCondition">A custom obtainment condition. This should be generic and only used for things where an item cannot be obtained legit, like a specific world seed or config toggle. If left unassigned, will be assumed to always obtainable.</param>
 		/// <exception cref="InvalidOperationException"/>
-		public static void RegisterClickerWeapon(ModItem modItem, string borderTexture = null, LocalizedText hintTooltip = null)
+		public static void RegisterClickerWeapon(ModItem modItem, string borderTexture = null, LocalizedText hintTooltip = null, Func<bool> obtainmentCondition = null)
 		{
 			if (FinalizedRegisterCompat)
 			{
@@ -421,6 +450,25 @@ namespace ClickerClass
 			RegisterClickerItem(modItem);
 			int type = modItem.Item.type;
 			if (!ClickerWeapons.Add(type)) return;
+
+			if (!ClickerWeaponsByMod.TryGetValue(modItem.Mod.Name, out HashSet<int> modClickers))
+			{
+				modClickers = new HashSet<int>();
+				ClickerWeaponsByMod[modItem.Mod.Name] = modClickers;
+			}
+			modClickers.Add(type);
+
+			if (obtainmentCondition != null)
+			{
+				ObtainmentConditionsByClickerWeapon[type] = obtainmentCondition;
+
+				if (!ObtainmentConditionsByMod.TryGetValue(modItem.Mod.Name, out List<Func<bool>> modConditions))
+				{
+					modConditions = new List<Func<bool>>();
+					ObtainmentConditionsByMod[modItem.Mod.Name] = modConditions;
+				}
+				modConditions.Add(obtainmentCondition);
+			}
 
 			if (borderTexture != null)
 			{
@@ -598,5 +646,62 @@ namespace ClickerClass
 			_ = IsClickerWeapon(item) && item.TryGetGlobalItem(out clickerItem);
 			return clickerItem != null;
 		}
+
+		#region Sorting
+		public static void SortBy(HashSet<int> foundClickers, CatalogueSorting sorting, Mod currentMod)
+		{
+			Func<IEnumerable<Item>, IEnumerable<Item>> action = sorting switch
+			{
+				CatalogueSorting.Name_Ascending => Sort_Name_Ascending,
+				CatalogueSorting.Name_Descending => Sort_Name_Descending,
+				CatalogueSorting.Damage_Ascending => Sort_Damage_Ascending,
+				CatalogueSorting.Damage_Descending => Sort_Damage_Descending,
+				CatalogueSorting.Rarity_Ascending => Sort_Rarity_Ascending,
+				CatalogueSorting.Rarity_Descending => Sort_Rarity_Descending,
+				_ => throw new ArgumentOutOfRangeException(nameof(sorting), sorting, null)
+			};
+
+			SortedClickerWeapons = Sort_Internal(foundClickers, ClickerWeaponsByMod[currentMod.Name], action);
+		}
+
+		private static IEnumerable<Item> Sort_Name_Ascending(IEnumerable<Item> source) => source
+			.OrderBy(x => x.Name)
+		;
+
+		private static IEnumerable<Item> Sort_Name_Descending(IEnumerable<Item> source) => source
+			.OrderByDescending(x => x.Name)
+		;
+
+		private static IEnumerable<Item> Sort_Damage_Ascending(IEnumerable<Item> source) => source
+			.OrderBy(x => x.damage)
+			.ThenBy(x => x.Name)
+		;
+
+		private static IEnumerable<Item> Sort_Damage_Descending(IEnumerable<Item> source) => source
+			.OrderBy(x => x.rare)
+			.ThenBy(x => x.damage)
+		;
+
+		private static IEnumerable<Item> Sort_Rarity_Ascending(IEnumerable<Item> source) => source
+			.OrderBy(x => x.rare)
+			.ThenBy(x => x.damage)
+		;
+
+		private static IEnumerable<Item> Sort_Rarity_Descending(IEnumerable<Item> source) => source
+			.OrderByDescending(x => x.rare)
+			.ThenBy(x => x.damage)
+		;
+
+		private static List<int> Sort_Internal(HashSet<int> foundClickers, HashSet<int> currentModClickers, Func<IEnumerable<Item>, IEnumerable<Item>> action)
+		{
+			var preprocess = currentModClickers
+				.Where(x => foundClickers.Contains(x) || !ObtainmentConditionsByClickerWeapon.TryGetValue(x, out var func) || func())
+				.Select(x => ContentSamples.ItemsByType[x]);
+
+			return action(preprocess)
+			.Select(x => x.type)
+			.ToList();
+		}
+		#endregion
 	}
 }

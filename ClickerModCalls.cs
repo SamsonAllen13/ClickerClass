@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using Terraria;
 using Terraria.DataStructures;
+using Terraria.Localization;
 using Terraria.ModLoader;
 
 namespace ClickerClass
@@ -100,12 +101,20 @@ namespace ClickerClass
 				{
 					var modItem = args[index + 0] as ModItem;
 					var borderTexture = args[index + 1] as string;
+					var hintTooltip = args[index + 2] as LocalizedText;
+					var obtainmentCondition = args[index + 3] as Func<bool>;
 					if (modItem == null)
 					{
 						throw new Exception($"Call Error: The modItem argument for the attempted message, \"{message}\" has returned null.");
 					}
 
-					ClickerSystem.RegisterClickerWeapon(modItem, borderTexture);
+					if (apiVersion < new Version(1, 4, 2))
+					{
+						//Backwards compat for already compiled mods on old version
+						hintTooltip = ClickerSystem.UnknownText;
+					}
+
+					ClickerSystem.RegisterClickerWeapon(modItem, borderTexture, hintTooltip, obtainmentCondition);
 					return success;
 				}
 				else if (message == "RegisterSFXButton")

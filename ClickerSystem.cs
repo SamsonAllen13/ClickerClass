@@ -658,6 +658,8 @@ namespace ClickerClass
 				CatalogueSorting.Damage_Descending => Sort_Damage_Descending,
 				CatalogueSorting.Rarity_Ascending => Sort_Rarity_Ascending,
 				CatalogueSorting.Rarity_Descending => Sort_Rarity_Descending,
+				CatalogueSorting.Clicks_Ascending => Sort_Clicks_Ascending,
+				CatalogueSorting.Clicks_Descending => Sort_Clicks_Descending,
 				_ => throw new ArgumentOutOfRangeException(nameof(sorting), sorting, null)
 			};
 
@@ -689,6 +691,16 @@ namespace ClickerClass
 
 		private static IEnumerable<Item> Sort_Rarity_Descending(IEnumerable<Item> source) => source
 			.OrderByDescending(x => x.rare)
+			.ThenBy(x => x.damage)
+		;
+
+		private static IEnumerable<Item> Sort_Clicks_Ascending(IEnumerable<Item> source) => source
+			.OrderBy(x => Main.LocalPlayer.GetModPlayer<ClickerPlayer>().clickerTotalPerItem.TryGetValue(x.type, out var value) ? value.Value : 0)
+			.ThenBy(x => x.damage)
+		;
+
+		private static IEnumerable<Item> Sort_Clicks_Descending(IEnumerable<Item> source) => source
+			.OrderByDescending(x => Main.LocalPlayer.GetModPlayer<ClickerPlayer>().clickerTotalPerItem.TryGetValue(x.type, out var value) ? value.Value : 0)
 			.ThenBy(x => x.damage)
 		;
 

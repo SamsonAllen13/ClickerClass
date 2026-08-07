@@ -84,6 +84,14 @@ namespace ClickerClass
 		/// </summary>
 		public bool clickerAutoClick = false;
 		/// <summary>
+		/// Saved amount of clicks done with specific clickers, accumulated, fluff
+		/// </summary>
+		public Dictionary<int, Ref<int>> clickerTotalPerItem;
+		/// <summary>
+		/// Extension of <see cref="clickerTotalPerItem"/> for unloaded clickers, persistent but not concidered for any logic
+		/// </summary>
+		public List<(Item, int)> unloadedClickerTotalPerItem;
+		/// <summary>
 		/// Saved amount of clicks done with any clicker, accumulated, fluff
 		/// </summary>
 		public int clickerTotal = 0;
@@ -433,11 +441,18 @@ namespace ClickerClass
 		/// <summary>
 		/// Call to register a click towards the "clicks per second" and total calculations
 		/// </summary>
-		internal void AddClick()
+		internal void AddClick(Item item)
 		{
 			clickerPerSecondCalculateDisplay = true;
 			clickTimers.Add(new Ref<float>(1f));
 			clickerTotal++;
+			if (!clickerTotalPerItem.TryGetValue(item.type, out var counter))
+			{
+				counter = new Ref<int>();
+				clickerTotalPerItem[item.type] = counter;
+			}
+			counter.Value++;
+
 			AchievementHelper.UpdateDigitDestroyerAchievement(this);
 		}
 
@@ -961,6 +976,8 @@ namespace ClickerClass
 
 		public override void Initialize()
 		{
+			clickerTotalPerItem = new Dictionary<int, Ref<int>>();
+			unloadedClickerTotalPerItem = new List<(Item, int)>();
 			clickerTotal = 0;
 			clickerMoneyGenerated = 0;
 
@@ -998,8 +1015,8 @@ namespace ClickerClass
 			tag.Add("paintingCondition_ClickedCookiesCount", paintingCondition_ClickedCookiesCount);
 			tag.Add("pickedUpDreamClicker", pickedUpDreamClicker);
 
+			SaveClickerTotalPerItem(tag);
 			SaveChosenSecondClicker(tag);
-
 			SaveFoundClickers(tag);
 		}
 
@@ -1015,8 +1032,8 @@ namespace ClickerClass
 			paintingCondition_ClickedCookiesCount = tag.GetInt("paintingCondition_ClickedCookiesCount");
 			pickedUpDreamClicker = tag.GetBool("pickedUpDreamClicker");
 
+			LoadClickerTotalPerItem(tag);
 			LoadChosenSecondClicker(tag);
-
 			LoadFoundClickers(tag);
 		}
 
@@ -1038,6 +1055,100 @@ namespace ClickerClass
 					chosenSecondClicker = item.type;
 				}
 			}
+		}
+
+		private void SaveClickerTotalPerItem(TagCompound tag)
+		{
+			if (clickerTotalPerItem.Count > 0)
+			{
+				//Store as two lists of equal lengths
+				var items = new List<Item>();
+				var counters = new List<int>();
+
+				foreach (var pair in clickerTotalPerItem)
+				{
+					items.Add(ContentSamples.ItemsByType[pair.Key]);
+					counters.Add(pair.Value.Value);
+				}
+				tag.Add("clickerTotalPerItem_items", items);
+				tag.Add("clickerTotalPerItem_counters", counters);
+			}
+
+			if (unloadedClickerTotalPerItem.Count > 0)
+			{
+				var items = new List<Item>();
+				var counters = new List<int>();
+
+				foreach (var pair in unloadedClickerTotalPerItem)
+				{
+					items.Add(pair.Item1);
+					counters.Add(pair.Item2);
+				}
+				tag.Add("unloadedClickerTotalPerItem_items", items);
+				tag.Add("unloadedClickerTotalPerItem_counters", counters);
+			}
+		}
+
+		private void LoadClickerTotalPerItem(TagCompound tag)
+		{
+			if (tag.ContainsKey("unloadedClickerTotalPerItem_items"))
+			{
+				var unloadedItems = tag.GetList<Item>("unloadedClickerTotalPerItem_items").ToList();
+				var unloadedCounters = tag.GetList<int>("unloadedClickerTotalPerItem_counters").ToList();
+				int count = Math.Min(unloadedItems.Count, unloadedCounters.Count); //In case they are different for some reason
+				for (int i = 0; i < count; i++)
+				{
+					unloadedClickerTotalPerItem.Add((unloadedItems[i], unloadedCounters[i]));
+				}
+			}
+
+			var items = tag.GetList<Item>("clickerTotalPerItem_items").ToList();
+			var counters = tag.GetList<int>("clickerTotalPerItem_counters").ToList();
+
+			//First step: If any previously unloaded items become loaded, add them to the found list
+			for (int i = unloadedClickerTotalPerItem.Count - 1; i >= 0; i--)
+			{
+				Item item = unloadedClickerTotalPerItem[i].Item1;
+				int counter = unloadedClickerTotalPerItem[i].Item2;
+				if (MatchLoadedItem(item))
+				{
+					items.Add(item);
+					counters.Add(counter);
+
+					//Second step: remove all loaded items from unloaded list
+					unloadedClickerTotalPerItem.RemoveAt(i);
+				}
+			}
+
+			int total = Math.Min(items.Count, counters.Count);
+			for (int i = 0; i < total; i++)
+			{
+				Item item = items[i];
+				int counter = counters[i];
+
+				//Third step: if any in previous total list became unloaded, move them to unloaded list
+				if (!MatchLoadedItem(item))
+				{
+					//Became unloaded since last save, meaning they weren't in unloadedClickerTotalPerItem before
+					unloadedClickerTotalPerItem.Add((item, counter));
+					continue;
+				}
+
+				//Final step: add loaded ones to final list
+				clickerTotalPerItem[item.type] = new Ref<int>(counter);
+			}
+		}
+
+		private static bool MatchLoadedItem(Item item)
+		{
+			return item.type != ModContent.ItemType<UnloadedItem>();
+		}
+
+		private static bool MatchLoadedItem(Item item, string modName)
+		{
+			return item.type != ModContent.ItemType<UnloadedItem>() &&
+				item.ModItem is ModItem modItem &&
+				modItem.Mod.Name == modName;
 		}
 
 		private void SaveFoundClickers(TagCompound tag)
@@ -1089,7 +1200,7 @@ namespace ClickerClass
 				//Third step: if any in previous found list became unloaded, move them to unloaded list
 				foreach (var item in foundClickersItems)
 				{
-					if (item.type == ModContent.ItemType<UnloadedItem>())
+					if (!MatchLoadedItem(item))
 					{
 						//Mod.Logger.Info("became unloaded " + item.Name + " " + modName);
 						//Became unloaded since last save, meaning they weren't in unloadedFoundClickers before
@@ -1100,14 +1211,6 @@ namespace ClickerClass
 					//Final step: add loaded ones to final list
 					//Mod.Logger.Info("add loaded " + item.Name + " " + modName);
 					foundClickersByMod[modName].Add(item.type);
-				}
-				continue;
-
-				static bool MatchLoadedItem(Item item, string modName)
-				{
-					return item.type != ModContent.ItemType<UnloadedItem>() &&
-						item.ModItem is ModItem modItem &&
-						modItem.Mod.Name == modName;
 				}
 			}
 		}

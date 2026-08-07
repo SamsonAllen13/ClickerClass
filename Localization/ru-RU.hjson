@@ -710,7 +710,7 @@ Mods: {
 					'''
 					Permanently allows you to select a clicker effect from your 'Clicker Catalogue'
 					Your current held clicker gains this selected effect in addition to its current effects
-					You may change the selected clicker effect at will
+					You may change the selected clicker effect at any time
 					''' */
 			}
 
@@ -1581,6 +1581,8 @@ Mods: {
 					// Damage_Descending: Damage (Descending)
 					// Rarity_Ascending: Rarity
 					// Rarity_Descending: Rarity (Descending)
+					// Clicks_Ascending: Total clicks
+					// Clicks_Descending: Total clicks (Descending)
 				}
 
 				// PreviousMod: Previous Mod: {0}

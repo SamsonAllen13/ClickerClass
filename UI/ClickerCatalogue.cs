@@ -26,7 +26,9 @@ namespace ClickerClass.UI
 		Damage_Ascending,
 		Damage_Descending,
 		Rarity_Ascending,
-		Rarity_Descending
+		Rarity_Descending,
+		Clicks_Ascending,
+		Clicks_Descending
 	}
 
 	internal class ClickerCatalogueUI : InterfaceResource
@@ -346,6 +348,14 @@ namespace ClickerClass.UI
 							{
 								s += $"\n{effect.ToTooltip(clickerPlayer.GetClickAmountTotal(clickerItem, name), alpha, true).Text}";
 							}
+						}
+
+						if (check == CatalogueSorting.Clicks_Ascending || check == CatalogueSorting.Clicks_Descending)
+						{
+							string colorFormat = (new Color(252, 210, 44) * alpha).Hex3();
+							int clicksTotal = clickerPlayer.clickerTotalPerItem.TryGetValue(item.type, out var value) ? value.Value : 0;
+							string clicks = LangHelper.GetLocalization("Tooltip.TotalClicks").Format(colorFormat, clicksTotal);
+							s += $"\n{clicks}";
 						}
 					}
 

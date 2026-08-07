@@ -488,7 +488,7 @@ namespace ClickerClass.Items
 				//This shouldn't be here, but some mods (DormantDawnMOD) override projectile position, so we set it again like in ModifyShootStats
 				position = clickerPlayer.clickerPosition;
 
-				clickerPlayer.AddClick();
+				clickerPlayer.AddClick(item);
 
 				bool preventsClickEffects = player.CanAutoReuseItem(item) && clickerPlayer.ActiveAutoReuseEffect.PreventsClickEffects;
 				if (!preventsClickEffects)

@@ -11,6 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class DreamClicker : ClickerWeapon
 	{
+		public override string BorderTexturePath => Texture + "_Outline";
+
 		public static readonly int StarStrikesAmount = 4;
 
 		protected override bool CloneNewInstances => true;

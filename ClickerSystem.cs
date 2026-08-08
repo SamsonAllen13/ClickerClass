@@ -514,11 +514,7 @@ namespace ClickerClass
 		/// <returns>The path to the border texture, null if not found</returns>
 		public static string GetPathToBorderTexture(int type)
 		{
-			if (ClickerWeaponBorderTexture.TryGetValue(type, out string borderTexture))
-			{
-				return borderTexture;
-			}
-			return null;
+			return ClickerWeaponBorderTexture.GetValueOrDefault(type);
 		}
 
 		/// <summary>

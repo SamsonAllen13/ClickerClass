@@ -18,6 +18,8 @@ namespace ClickerClass.Items
 	{
 		public override LocalizedText Tooltip => ClickerSystem.DefaultClickerWeaponTooltipText;
 
+		public virtual string BorderTexturePath => null;
+
 		public virtual LocalizedText HintTooltip => null;
 		public virtual Func<bool> ObtainmentCondition => null;
 
@@ -28,7 +30,7 @@ namespace ClickerClass.Items
 		{
 			base.SetStaticDefaults();
 
-			ClickerSystem.RegisterClickerWeapon(this, hintTooltip: HintTooltip, obtainmentCondition: ObtainmentCondition);
+			ClickerSystem.RegisterClickerWeapon(this, borderTexture: BorderTexturePath, hintTooltip: HintTooltip, obtainmentCondition: ObtainmentCondition);
 		}
 
 		/// <summary>

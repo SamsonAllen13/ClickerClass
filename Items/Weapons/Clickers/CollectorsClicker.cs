@@ -11,6 +11,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class CollectorsClicker : ClickerWeapon
 	{
+		public override string BorderTexturePath => Texture + "_Outline";
+
 		public override LocalizedText HintTooltip => LocalizedText.Empty;
 
 		public override Func<bool> ObtainmentCondition => () => false;

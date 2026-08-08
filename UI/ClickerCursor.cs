@@ -36,12 +36,6 @@ namespace ClickerClass.UI
 
 		public Lazy<Asset<Texture2D>> outlineTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/CursorOutline"));
 
-		public Lazy<Asset<Texture2D>> burningSuperDeathOutlineTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/CursorOutline2"));
-
-		public Lazy<Asset<Texture2D>> dreamClickerOutlineTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/CursorOutline3"));
-		
-		public Lazy<Asset<Texture2D>> collectorsClickerOutlineTexture = new(() => ModContent.Request<Texture2D>("ClickerClass/UI/CursorOutline4"));
-
 		public override void Update(GameTime gameTime)
 		{
 			_clickerScale = Main.cursorScale;
@@ -85,19 +79,6 @@ namespace ClickerClass.UI
 					customCursorTexturesByType[itemType] = ModContent.Request<Texture2D>(borderTexturePath);
 				}
 				borderAsset = customCursorTexturesByType[itemType];
-			}
-			//TODO Convert these to a virtual in ClickerWeapon
-			else if (clickerPlayer.itemBurningSuperDeath)
-			{
-				borderAsset = burningSuperDeathOutlineTexture.Value;
-			}
-			else if (clickerPlayer.itemDreamClicker)
-			{
-				borderAsset = dreamClickerOutlineTexture.Value;
-			}
-			else if (clickerPlayer.itemCollectorsClicker)
-			{
-				borderAsset = collectorsClickerOutlineTexture.Value;
 			}
 			else
 			{

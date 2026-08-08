@@ -8,6 +8,8 @@ namespace ClickerClass.Items.Weapons.Clickers
 {
 	public class BurningSuperDeathClicker : ClickerWeapon
 	{
+		public override string BorderTexturePath => Texture + "_Outline";
+
 		public override void SetStaticDefaults()
 		{
 			base.SetStaticDefaults();

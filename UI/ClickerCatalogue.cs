@@ -40,6 +40,7 @@ namespace ClickerClass.UI
 			NextModText = Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey($"{category}NextMod"));
 			ProgressText = Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey($"{category}Progress"));
 			SortingByText = Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey($"{category}SortingBy"));
+			DemonHandText = Language.GetOrRegister(ClickerClass.mod.GetLocalizationKey($"{category}DemonHand"));
 		}
 
 		public const int MAX_FADE_TIME = 35;
@@ -62,6 +63,7 @@ namespace ClickerClass.UI
 		public LocalizedText NextModText { get; private set; }
 		public LocalizedText ProgressText { get; private set; }
 		public LocalizedText SortingByText { get; private set; }
+		public LocalizedText DemonHandText { get; private set; }
 		
 		public override void Update(GameTime gameTime)
 		{
@@ -349,12 +351,20 @@ namespace ClickerClass.UI
 
 					if (ClickerSystem.IsClickerWeapon(item, out var clickerItem))
 					{
+						int effectCount = 0;
 						foreach (var name in clickerItem.itemClickEffects)
 						{
+							effectCount++;
 							if (ClickerSystem.IsClickEffect(name, out ClickEffect effect))
 							{
 								s += $"\n{effect.ToTooltip(clickerPlayer.GetClickAmountTotal(clickerItem, name), alpha, true).Text}";
 							}
+						}
+
+						if (clickerPlayer.chosenSecondClicker == item.type)
+						{
+							string colorFormat = (new Color(255, 50, 50) * alpha).Hex3();
+							s += $"\n{DemonHandText.Format(colorFormat, effectCount)}";
 						}
 
 						if (check == CatalogueSorting.Clicks_Ascending || check == CatalogueSorting.Clicks_Descending)

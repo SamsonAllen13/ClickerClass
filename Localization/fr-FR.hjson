@@ -709,7 +709,7 @@ Mods: {
 				/* Tooltip:
 					'''
 					Permanently allows you to select a clicker effect from your 'Clicker Catalogue'
-					Your current held clicker gains this selected effect in addition to its current effects
+					Your currently held clicker gains this selected effect in addition to its current effects
 					You may change the selected clicker effect at any time
 					''' */
 			}
@@ -1589,6 +1589,7 @@ Mods: {
 				// NextMod: Next Mod: {0}
 				// Progress: "{0} - Clickers Collected: {1}%"
 				// SortingBy: Sorting by: {0}
+				// DemonHand: "[c/{0}:Your currently held clicker gains {^1:this selected effect;these selected effects} in addition to its current effects]"
 			}
 		}
 

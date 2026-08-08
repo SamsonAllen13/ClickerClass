@@ -130,7 +130,7 @@ namespace ClickerClass
 		{
 			SortedModsByClickerWeaponCount = ClickerWeaponsByMod.Keys
 				.Where(x => ClickerWeaponsByMod[x].Count > 0)
-				.OrderBy(x => ClickerWeaponsByMod[x].Count)
+				.OrderByDescending(x => ClickerWeaponsByMod[x].Count) //highest count first
 				.ToList();
 
 			FinalizedRegisterCompat = true;
@@ -714,6 +714,8 @@ namespace ClickerClass
 			.Select(x => x.type)
 			.ToList();
 		}
+
+		public static int GetClickerCountFromMod(string modName) => ClickerWeaponsByMod[modName].Count;
 		#endregion
 	}
 }

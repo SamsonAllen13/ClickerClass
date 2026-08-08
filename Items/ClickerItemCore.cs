@@ -98,10 +98,11 @@ namespace ClickerClass.Items
 
 			if (ClickerSystem.IsClickerWeapon(item.type))
 			{
-				clickerPlayer.DiscoverClicker(item);
-
-				//Needed for items that are set to unobtainable but are actually obtained while the UI is open
-				ClickerCatalogueUI.SortThisTick = true;
+				if (clickerPlayer.DiscoverClicker(item))
+				{
+					//Needed for items that are set to unobtainable but are actually obtained while the UI is open
+					ClickerCatalogueUI.SortThisTick = true;
+				}
 			}
 		}
 

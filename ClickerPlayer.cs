@@ -2243,11 +2243,11 @@ namespace ClickerClass
 			}
 		}
 
-		public void DiscoverClicker(Item item)
+		public bool DiscoverClicker(Item item)
 		{
 			if (!ClickerSystem.IsClickerWeapon(item) || item.ModItem is not ModItem modItem)
 			{
-				return;
+				return false;
 			}
 
 			string modName = modItem.Mod.Name;
@@ -2257,7 +2257,7 @@ namespace ClickerClass
 				foundClickersByMod[modName] = set;
 			}
 
-			set.Add(modItem.Type);
+			return set.Add(modItem.Type);
 		}
 	}
 }

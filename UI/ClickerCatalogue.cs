@@ -148,6 +148,7 @@ namespace ClickerClass.UI
 			int offSetY = 0;
 
 			Mod mod = clickerPlayer.clickerCatalogueMod;
+
 			if (SortThisTick)
 			{
 				SortThisTick = false;
@@ -156,12 +157,18 @@ namespace ClickerClass.UI
 
 			// Make clone to avoid glitches during enumeration. Sorting should happen just before this is accessed
 			var list = new List<int>(ClickerSystem.SortedClickerWeapons);
-			if (list.Count == 0)
+			if (list.Count == 0 || 
+				ClickerSystem.ObtainmentConditionsByMod.TryGetValue(mod.Name, out var funcList) && funcList.Count(func => !func()) >= ClickerSystem.GetClickerCountFromMod(mod.Name))
 			{
-				clickerPlayer.clickerCatalogueMod = ClickerClass.mod; //soft-reset from error if another mod messes things up during runtime
+				//If no items, or the number of conditions (one per item) is equal to the number of items from the mod (= all unobtainable)
+				//The second case can only happen if the condition is evaluated dynamically while the page is open, which is discouraged by the API documentation for that reason
+				//soft-reset from errors, default to Clicker Class and re-sort
+				SortThisTick = true;
+				clickerPlayer.clickerCatalogueSorting = CatalogueSorting.Name_Ascending;
+				clickerPlayer.clickerCatalogueMod = ClickerClass.mod;
 				throw new Exception($"Clicker Catalogue was not populated with items. Sort mode: {clickerPlayer.clickerCatalogueSorting}, Mod: {mod.Name}");
 			}
-			
+
 			// Fill calc has to be before mod switching buttons
 			// Percentage of bar filled
 			float fill = (float)clickerPlayer.FoundClickersUI.Count / ClickerSystem.SortedClickerWeapons.Count + 0.00001f;
@@ -592,7 +599,7 @@ namespace ClickerClass.UI
 			{
 				int index = (currentIndex + (backward ? -i : i) + iterations) % iterations;
 				name = ClickerSystem.SortedModsByClickerWeaponCount[index];
-				if (!ClickerSystem.ObtainmentConditionsByMod.TryGetValue(name, out var funcList) || funcList.Any(func => func()))
+				if (!ClickerSystem.ObtainmentConditionsByMod.TryGetValue(name, out var funcList) || funcList.Count(func => !func()) < ClickerSystem.GetClickerCountFromMod(name))
 				{
 					break;
 				}
